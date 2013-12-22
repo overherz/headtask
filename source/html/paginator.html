@@ -1,0 +1,17 @@
+<span class="paginator">
+{% if paginator.current_page != 1 and paginator.pages > 0 %}    
+<a href="{{paginator.url(paginator.current_page - 1)}}">Предыдущая</a>
+{% endif %}
+{% for i in paginator.num_list %}
+{% if loop.first and i!=1 %} <a href="{{paginator.url(1)}}">1</a>{% if i>2 %}<span> ...</span>{% endif %}{% endif %}
+{% if i == paginator.current_page %}
+    <span><b>{{i}}</b></span>
+{% else %}
+    <a href="{{paginator.url(i)}}">{{i}}</a>
+{% endif %}
+{% if loop.last and i != paginator.get_pages %}{% if i< paginator.get_pages-1 %}<span>... </span>{% endif %}<a href="{{paginator.url(paginator.get_pages)}}">{{paginator.get_pages}}</a> {% endif %}
+{% endfor %}
+{% if paginator.current_page != paginator.pages and paginator.pages > 0 %}    
+<a href="{{paginator.url(paginator.current_page + 1)}}">Следующая</a>
+{% endif %}
+</span>

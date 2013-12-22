@@ -1,0 +1,49 @@
+<div class="add_html">
+<form class="new_page">
+    <input type="hidden" name="id" value="{{page.id}}">
+    <input type="hidden" name="act" value="save">    
+    <input type="hidden" name="parent" value="{{parent}}">        
+    
+    <div class="body"><span class="title">Название</span>
+        <div><input type="text" name="name" value="{{page.name}}" class="input"></div></div>
+    <div class="body"><span class="title">Английское название</span>
+        <div><input type="text" name="url" value="{{page.url}}" class="input"></div></div>
+    <div class="body"><span class="title">Тип</span>
+        <div>
+            <select name='type'>
+                <option value='application'>Приложение</option>
+                <option value='link' {% if page.type == "link" %}selected{% endif %}>Ссылка</option>
+            </select>
+        </div>
+    </div>
+    <div id="app" {% if page.type != "application" and page.id %}style='display:none;'{% endif %}>
+    <div class="body"><span class="title">Приложение</span>
+        <div>    
+        {% if applications %}
+                <select name="application">
+                    <option value=""></option>
+                {% for k,ap in applications %}
+                    <option value="{{k}}" {% if k == page.application %}selected{% endif %}>{% if ap.name %}{{ap.name}}{% else %}{{k}}{% endif %}</option>
+                    {% for sub in ap.subapp %}
+                        {% if sub != k %}<option value="{{k}}/{{sub}}" {% if k~"/"~sub == page.application %}selected{% endif %}>&nbsp;&nbsp;&nbsp;&nbsp;{{sub}}</option>{% endif %}
+                    {% endfor %}
+                {% endfor %}
+                </select>
+            {% else %}
+            не найдены
+            {% endif %}
+        </div></div>
+    <div class="body"><span class="title">Значение</span>
+        <div><span id="value">{{values|raw}}</span></div></div>
+    </div>
+
+    <div class="body" id="link" {% if page.type == "application" or not page.id %}style='display:none;'{% endif %}><span class="title">Ссылка</span>
+    <div><input type="text" name="path" value="{{page.path}}" class="input"></div></div>
+    <div class="body"><span class="title">Невидимый</span>
+        <span id="value"><input type="checkbox" name="invisible" value="1" style="margin-top:-3px;" {% if page.invisible %}checked{% endif %}></span></div>
+    <div class="body"><span class="title">Кликабельный</span>
+        <span id="value"><input type="checkbox" name="clickable" value="1" style="margin-top:-3px;" {% if page.clickable %}checked{% endif %}></span></div>
+    <div class="body"><span class="title">В новом окне</span>
+        <span id="value"><input type="checkbox" name="new_window" value="1" style="margin-top:-3px;" {% if page.new_window %}checked{% endif %}></span></div>
+</form>
+</div>

@@ -1,0 +1,31 @@
+{% extends app.path('projects','project.html') %}
+
+{% block title %}
+Проект "{{project.name}}"
+{% endblock %}
+
+{% block css %}
+{{ parent() }}
+    <link rel="stylesheet" type="text/css" href="/source/js/fancybox/jquery.fancybox.css">
+{% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script type ="text/javascript" src="/source/js/search.js"></script>
+<script type ="text/javascript" src="/source/js/fancybox/jquery.fancybox.pack.js"></script>
+<script type ="text/javascript">
+    $(document).ready(function($) {
+        activate_fancy()
+    });
+</script>
+{% endblock %}
+
+{% block project_data %}
+<form action="" id="search_form" method="post" style="margin: 0px;">
+    <input type="text" size="50" name="search" class="input-large" placeholder="Поиск">
+    <input type="hidden" name="page" value="">
+</form>
+<div id="search_result">
+    {% include app.path('projects','files/files_table.html') %}
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+<input type="hidden" name='id_page' value="{{id_page}}">
+<table class="controls-tbl w100 all_pages" {% if versions %}style='width:900px;'{% endif %}>
+    {% if not versions %}<caption>Страницы {% include "/source/html/jpaginator.html" %}</caption>
+    {% else %}<caption>Версии страницы "{{page_name}}"</caption>
+    {% endif %}
+    <tr>
+        {% if not versions %}
+        <th width="250">Название страницы</th>
+        <th width="250">Ссылка на страницу</th>
+        {% endif %}
+        <th width="1650">Краткое описание</th>
+        <th>Создано</th>
+        {% if not versions %}<th style="white-space: nowrap;">Кол-во версий</th>{% endif %}
+        {% if versions %}
+        <th>Статус</th>
+        {% endif %}
+        <th colspan="2">Управление</th>
+    </tr>
+    {% for i in pages %}
+    {% include '/applications/pages/layouts/admin/pages-list.html' %}
+    {% else %}
+    {% if not versions %}<tr><td colspan="8">Ничего не найдено</td></tr>{% endif %}
+    {% endfor %}
+    {% if not versions %}
+    <tr>
+        <td colspan="6">&nbsp;</td>
+        <td colspan="2"><a title="Добавить" class="add-btn"></a></td>
+    </tr>
+    {% endif %}
+</table>

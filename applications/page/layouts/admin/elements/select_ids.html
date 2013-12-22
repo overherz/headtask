@@ -1,0 +1,11 @@
+{% if ids %}
+<select name="value">
+    <option></option>
+    {% for id in ids %}
+    {% if id.id_user %}{% set i = id.id_user %}{% else %}{% set i = id.id %}{% endif %}
+    <option value="{{i}}" {% if i == value and value != '' %}selected{% endif %}>{% if id.name %}{{id.name}}{% elseif id.url %}{{id.url}}{% elseif id.title %}{{id.title}}{% elseif id.fio %}{{id.fio}}{% endif %}</option>
+    {% endfor %}
+</select>
+{% else %}
+ничего не найдено
+{% endif %}

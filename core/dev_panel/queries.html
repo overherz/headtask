@@ -1,0 +1,16 @@
+{% if queries %}
+<table style='width:100%;' cellspacing='0' cellpadding='0'>
+{% for qu in queries %}
+<tr>
+    <td style='width:1px;white-space:nowrap !important;{% if loop.index % 2 == 0 %}background:#fff;{% endif %}' valign='top'>
+        <b {% if qu.time > 10 %}class='dev_panel_red'{% endif %}>{% if qu.error.2 != '' %}<div style='color:red;'>Error</div>{% else %}{{qu.time}}&nbsp;<span style="color:#555;padding-right:5px; ">мс</span>{% endif %}</b></td>
+    <td {% if loop.index % 2 == 0 %}style='background:#fff;'{% endif %}>
+    <div class="backtrace"><span>file</span>: {{qu.file}} <span style="text-decoration: underline">line</span>: {{qu.line}}</div>
+    <div style="clear: both;">{{qu.query|raw}}{% if qu.error.2 != '' %} <div style='color:red;'>{{qu.error.2}}</div>{% endif %}</div>
+    </td>
+</tr>
+{% endfor %}    
+    </table>
+{% else %}
+<b>Запросы отсутствуют</b>
+{% endif %}

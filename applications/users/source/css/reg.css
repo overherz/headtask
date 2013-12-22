@@ -1,0 +1,70 @@
+#male {
+    background:url(http://cube-in-cube.ru:8090/source/images/sprites.png);   
+    background-position: 0 -375px; width: 25px; height: 25px;
+    display: inline-block;
+    cursor: pointer;    
+}
+
+#female {
+    background:url(http://cube-in-cube.ru:8090/source/images/sprites.png);
+    background-position: 0 -90px; width: 25px; height: 25px;
+    display: inline-block;   
+    cursor: pointer;
+}
+
+#male.select {
+    background:url(http://cube-in-cube.ru:8090/source/images/sprites.png);  
+    background-position: 0 -405px; width: 25px; height: 25px;    
+}
+
+#female.select {
+    background:url(http://cube-in-cube.ru:8090/source/images/sprites.png);  
+    background-position: 0 -120px; width: 25px; height: 25px;    
+}
+#regForm .reg_erroru {
+    color: red;
+    font-size: 11px !important;
+    font-weight: bold;
+}
+
+#regForm #captcha_name {
+    font-weight: bold;
+}
+#regForm .input {
+    width: 410px !important;
+}
+
+#regForm .radio {
+    border: none !important;
+    background: none !important;
+}
+#regForm input.error, .body_reg #captcha.error,.body_reg #gender.error {
+    background: #FFC1C1 !important;
+}
+
+#regForm .btn {
+  color: #fff;
+  font-weight: bold;
+  vertical-align: top !important;
+  border: none !important;
+  background: url(http://cube-in-cube.ru:8090/source/images/sprites.png) no-repeat 0% 0%;
+  background-position: 0 -60px; width: 84px; height: 25px;
+  line-height: 23px;
+  text-align: center;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;   
+    cursor: pointer;
+}
+
+#regForm .btn:hover {
+  color: #8e0000;
+  background: url(http://cube-in-cube.ru:8090/source/images/sprites.png) no-repeat 0% 0%; 
+  background-position: 0 -30px; width: 84px; height: 25px;
+}
+
+#regForm .btn:active {
+  color: #0a63db;    
+  background: url(http://cube-in-cube.ru:8090/source/images/sprites.png) no-repeat 0% 0%;
+  background-position: 0 0; width: 84px; height: 25px;
+}

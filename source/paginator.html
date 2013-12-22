@@ -1,0 +1,24 @@
+{% if paginator.num_list %}
+<div class="pagination" style="text-align: center;">
+    <ul>
+        {% for i in paginator.num_list %}
+        {% if loop.first and i != 1 %}
+        <li><a href="{{paginator.url(1)}}">1</a>
+            {% if i>2 %}<span>&nbsp;...</span>{% endif %}
+        </li>
+        {% endif %}
+
+        {% if i == paginator.current_page %}
+        <li class="active"><a href="">{{i}}</a></li>
+        {% else %}
+        <li><a href="{{paginator.url(i)}}">{{i}}</a></li>
+        {% endif %}
+
+        {% if loop.last and i != paginator.get_pages %}
+        {% if i< paginator.get_pages-1 %}<li><a href="" onclick="return false;">...</a></li>{% endif %}
+        <li><a href="{{paginator.url(paginator.get_pages)}}">{{paginator.get_pages}}</a></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

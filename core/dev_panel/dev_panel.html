@@ -1,0 +1,64 @@
+    <link rel="stylesheet" href="/core/dev_panel/dev_panel.css" type="text/css" />
+    <link rel="stylesheet" href="/source/css/popup.css" type="text/css" />
+    <script src="/source/js/functions.js"></script>
+    <style>
+        .dev_panel_name {
+            background: {% if count_error or errors %}darkred{% else %}#000{% endif %};
+        }
+    </style>
+    <script type="text/javascript" src="/core/dev_panel/dev_panel.js"></script>
+
+    <div class="dev_panel_wrapper">
+    {% if not to_email %}
+    <table cellspacing='0' cellpadding='0' style='width:100%;height:10px;'>
+    <tr>
+        <td class="dev_panel_name" colspan="3">Developer's Panel
+            <a style="float: right;" class="dev_panel_options_link">Опции</a>
+            <div class="dev_panel_options">
+                Запросы в одну строку: <input type='checkbox' id="queries_one_line"><br/><br/>
+                <form action='/core/repository/new_app.php' method='get' style='display:inline;'>
+                    Новый модуль: <input type='text' name='app_name' value='' class="dev_panel_input" />
+                    <input type='submit' value='Создать' class="dev_panel_button" />
+                </form>
+            </div>
+        </td>
+    </tr>
+    </table>
+    {% endif %}
+    <div id='dev_panel'>
+        <div>
+            <div class="queries_tab hover" mode="dev_panel_queries" style="float:left;">GET -
+                Время (мс) - <span class="dev_panel_red"> {{time}}</span>
+                Память (мб) - <span class="dev_panel_red"> {{memory}}</span>
+                Пик памяти (мб) - <span class="dev_panel_red"> {{memory_peak}}</span>
+                <div style="background:#F08080;float: right;padding: 2px 10px;margin:-2px 0;color:darkred !important;">Ошибок ({{count_error|default(0)}})</div>
+                <div style="float: right;padding-right: 10px;padding-left: 10px;">Запросы ({{count_queries}})</div>
+            </div>
+            {% if not to_email %}<div class="queries_tab" mode="dev_panel_ajax_queries" style="float:right;">AJAX -
+                Время (мс) - <span class="dev_panel_red dev_panel_time">0</span>
+                Память (мб) - <span class="dev_panel_red dev_panel_memory">0</span>
+                Пик памяти (мб) - <span class="dev_panel_red dev_panel_memory_peak">0</span>
+                <div style="background:#F08080;float: right;padding: 2px 10px;margin:-2px 0;color:darkred !important;">Ошибок (<span id="dev_panel_ajax_count_ajax_error">0</span>)</div>
+                <div style="float: right;padding-right: 10px;padding-left: 10px;">Запросы (<span id="dev_panel_ajax_count_queries">0</span>)</div>
+            </div>
+            {% endif %}
+        </div>
+        <div style="clear:both;"></div>
+        {% if not to_email %}
+            <div class="dev_panel_ajax_queries" style="display:none;">
+                <div class="dev_errors"></div>
+                <div class="dev_queries"><b style="margin: 5px;">Запросы отсутствуют</b></div>
+            </div>
+        {% endif %}
+        <div class="dev_panel_queries">
+            <div class="dev_errors">
+                {% for er in errors %}
+                <div class="{% if er.type %}fatal_error{% else %}warning_error{% endif %}" {% if to_email %}style='font-weight:bold;color:darkred;'{% endif %}>
+                    <div>{{er.err}}</div>
+                    <div>file {{er.file}} line {{er.line}}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="dev_queries">{% include '/core/dev_panel/queries.html' %}</div>
+        </div>
+    </div>

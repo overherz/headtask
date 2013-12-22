@@ -1,0 +1,32 @@
+@import url('/source/css/index.css');
+
+.wysiwyg.content_text {
+    height: auto !important;
+    overflow-x: auto;
+}
+
+.wysiwyg {
+    min-height: 0px !important;
+    color: #444;
+    line-height: 120%;
+}
+.wysiwyg, .wysiwyg p {
+    background: transparent;
+}
+
+.wysiwyg.transparent,.wysiwyg.transparent > p {
+    background: transparent !important;
+}
+
+.wysiwyg p {
+    margin-top: 0px;
+}
+
+.cke_wysiwyg_div {
+    padding-top: 8px !important;
+}
+
+.cke_chrome {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+}

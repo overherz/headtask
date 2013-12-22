@@ -1,0 +1,19 @@
+{% extends app.path('projects','project.html') %}
+
+{% block title %}
+Проект "{{project.name}}"
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/libraries/gantt/css/style.css" type="text/css" />
+{% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script src="/libraries/gantt/js/jquery.fn.gantt.min.js"></script>
+    <script src="{{ app.path('projects','gantt.js') }}"></script>
+{% endblock %}
+
+{% block project_data %}
+<div class="gantt" style="min-height: 50px;"></div>
+{% endblock %}

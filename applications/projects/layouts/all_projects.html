@@ -1,0 +1,19 @@
+{% extends app.path('projects','index.html') %}
+
+{% block title %}
+Все проекты
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script type ="text/javascript" src="/source/js/search.js"></script>
+{% endblock %}
+
+{% block project %}
+{% include "/source/crumbs.html" %}
+<form action="" id="search_form" method="post" style="margin-bottom:0;">
+    <input type="text" size="50" name="search" class="input-large" placeholder="Поиск">
+    <input type="hidden" name="page">
+</form>
+<div id="search_result">{% include app.path("projects","all_projects_table.html") %}</div>
+{% endblock %}

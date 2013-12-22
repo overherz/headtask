@@ -1,0 +1,18 @@
+{% extends "/source/index.html" %}
+{% block css %}
+<style>
+    #wrap {
+        background: #fff;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div style="text-align: center;">
+    <img src="/source/images/access_denied.png">
+    <div>
+        {% if referer %}<a href="{{referer}}">вернуться на предыдущую страницу</a>
+        {% else %} <a href="/">вернуться на главную страницу</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,164 @@
+.year ul {
+  margin-right: -2%;
+  overflow: hidden;
+}
+.year li {
+  float: left;
+  width: 23%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  box-shadow: rgba(0,0,0, .05) 0px 2px 5px;
+}
+.year li h2 {
+  background: red;
+  color: #fff;
+  border: 1px solid red;
+  padding: 10px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 18px;
+  box-shadow: rgba(255,255,255, .06) 0px 1px 0px inset;
+}
+.year li h2 a {
+  color: inherit;
+}
+.year li table {
+  height: 200px;
+  border-left: 1px solid #e6e6e6;
+}
+.year li th,
+.year li td {
+  vertical-align: middle;
+  text-align: center;
+  border-bottom: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  width: 14.2%;
+  box-shadow: rgba(255,255,255, .06) 0px 1px 0px inset;
+}
+.year li th {
+  font-size: 12px;
+  font-weight: normal;
+  border-bottom: 1px solid red;
+  color: red;
+}
+.year li td strong {
+  color: red;
+}
+.year li td.inactive {
+  background: #fff;
+  color: rgba(0,0,0, .2);
+}
+
+.month table {
+  table-layout: fixed;
+}
+.month th {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    padding: 5px 0;
+    background: #3A87AD;
+}
+.month td {
+  height: 120px;
+  vertical-align: top !important;
+}
+.month td.inactive {
+  background: #fff;
+  color: rgba(0,0,0, .2);
+}
+
+.months td {
+    text-align: center;
+    vertical-align: middle !important;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.months td:hover {
+    color: red;
+    background: #DFF0D8;
+}
+
+.week table {
+  box-shadow: rgba(0,0,0, .05) 0px 2px 5px;
+  table-layout: fixed;
+}
+.week th,
+.week td { 
+  vertical-align: middle;
+  text-align: center;
+  border-bottom: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  box-shadow: rgba(255,255,255, .06) 0px 1px 0px inset;
+}
+.week th {
+  font-size: 12px;
+  font-weight: normal;
+  border-bottom: 1px solid red;
+  color: red;
+  padding: 10px 0;
+}
+.week li {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 10px 0;
+}
+
+.hide_tasks {
+    display: none;
+}
+
+.day_div {
+    float: right;
+    margin-bottom: 0px;
+    text-align: center;
+    color: #fff;
+    height: 20px;
+    padding-top: 2px;
+    font-size: 12px;
+    background: #3A87AD;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.day_div.success {
+    background: #468847;
+}
+
+.tasks_table {
+    margin-bottom: 0px;
+}
+
+.tasks_table td {
+    height: inherit;
+    line-height: 12px;
+    font-size: 12px;
+}
+
+.tasks_table td div {
+
+}
+
+.tasks_table td a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#legend {
+    display: none;
+}
+
+.weekend.weekend_hide {
+    display: none;
+}
+
+.calendar_table {
+    border-spacing: 3px;
+    background: #3A87AD;
+}
+
+.calendar_table td,.calendar_table th {
+    border: none;
+}

@@ -1,0 +1,26 @@
+<div class="navbar navbar-inverse" xmlns="http://www.w3.org/1999/html">
+    <div class="navbar-inner">
+        <div class="container">
+            <span class="brand" style="color: deepskyblue;font-weight: bold;">Task me!</span>
+            <div class="nav-collapse collapse">
+                <p style="position: absolute;right:0;margin-top: 5px;">
+                    {% if globals.user %}
+                        <a href="/users/logout/" id="logout"><i class="icon-off"></i></a>
+                    {% endif %}
+                </p>
+                <p class="navbar-text pull-right" style="margin-right: 40px;font-weight: bold;">
+                    {% if globals.user %}
+                        <a href="/users/profile/" class="username_in_top" title="Профиль">{{globals.user.fio}}</a>
+                    {% endif %}
+                </p>
+                <ul class="nav">
+                    {% for k,m in globals.menu %}
+                    {% if k != "crumbs"%}
+                        <li {% if m.active or globals.menu.crumbs[m.id] %}class="active"{% endif %}><a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}//{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} title="{{m.name}}" class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{m.name}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

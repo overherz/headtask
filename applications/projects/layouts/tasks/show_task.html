@@ -1,0 +1,85 @@
+{% extends app.path('projects','project.html') %}
+
+{% block title %}
+{% if task %}Задача - {{ task.name}}{% endif %}
+{% endblock %}
+
+{% block css %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/source/js/fancybox/jquery.fancybox.css">
+{% endblock %}
+
+{% block js %}
+{{parent()}}
+    <script type ="text/javascript" src="/source/js/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="{{app.path('projects','tasks.js')}}"></script>
+    <script>
+        $(document).ready(function ($) {
+            animate_progress_bars();
+        });
+    </script>
+{% endblock %}
+
+{% block project_data %}
+
+{% set undate = false %}
+{% if task.end and ((now|date('Y-m-d') > task.end) and (task.status == 'new' or task.status == 'in_progress'))%}
+{% set undate = true %}
+{% endif %}
+<table class="table" style="margin-bottom: 0px;background: transparent;">
+    <tr>
+        <td style="border-top: none;width: 1%;white-space: nowrap;padding:0px;">Статус выполнения</td>
+        <td style="border-top: none;padding:0px;padding-left: 10px;">
+            <div class="progress progress-striped {% if undate %}progress-danger{% endif %} {% if task.status == "in_progress" %}active{% endif %}">
+                <div class="bar" style="width: {% if task.percent > 0 %}0%;{% else %}30px;{% endif %}text-align: right;" {% if task.percent > 0 %}data-width="{{task.percent}}"{% endif %}>
+                    <span class="progress_text">{{ task.percent }} %</span>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<table class="table table-bordered" style="background: #fff;margin-top:20px;" id="tasks_table">
+    <tr>
+        <th></th>
+        <th>Статус</th>
+        <th>Приоритет</th>
+        <th>Делегировано</th>
+        <th>Начало</th>
+        <th>Окончание</th>
+        <th>Расчетное время</th>
+        <th>Затраченное время</th>
+        <th>Добавил</th>
+        <th></th>
+    </tr>
+    {% include app.path('projects','tasks/task.html') %}
+</table>
+{% if files %}
+    {% include app.path('projects','files/files_table.html') %}
+{% endif %}
+<div class="wysiwyg" style="padding-bottom: 20px;">{{task.description|raw}}</div>
+
+{% if logs %}
+<ul class="breadcrumb second">
+    <li>Логи</li>
+</ul>
+
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th>Пользователь</th>
+        <th>Дата</th>
+        <th>Описание</th>
+    </tr>
+    {% for l in logs %}
+    <tr>
+        <td>
+            <a href="/users/~{{l.id_user}}/" style="color:{{ l.color }} !important;font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
+            <div class="nickname">{{l.nickname}}</div>
+        </td>
+        <td>{{l.created|date('d.m.Y H:i:s')}}</td>
+        <td>{{l.text|raw}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endif %}
+{% endblock %}

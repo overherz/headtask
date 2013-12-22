@@ -1,0 +1,26 @@
+{% extends "/source/html/admin.html" %}
+{% block title %}&rarr; Пользователи{% endblock %}
+{% block js %}
+    ,"/applications/users/source/js/admin.js"
+    ,"/source/js/search.js"
+{% endblock %}
+{% block body %}
+<form action="" id="search_form" method="post" style="margin-bottom:20px;">
+    Поиск:&nbsp;<input type="text" size="50" name="search" class="input">
+    <input type="hidden" name="page" value="">
+    {% for k,f in form%}
+    &nbsp;{{f.label}}
+        {% if f.type == 'select' %}
+            &nbsp;<select name="{{k}}">
+                {% for j,o in f.options %}
+                <option value="{{j}}" {% if f.selected == j %}selected{% endif %}>{{o}}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+    {% endfor %}
+</form>
+<div id="search_result">
+    {% include "/applications/users/layouts/admin/elements/all_result.html" %}
+</div>
+
+{% endblock%}

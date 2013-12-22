@@ -1,0 +1,20 @@
+{% include '/source/jpaginator_boot.html' %}
+{% if all_projects %}
+    <table class="table table-bordered" style="background: #fff;">
+        <tr>
+            {% for p in all_projects %}
+            <td style="width:33%;">
+                <a href="/projects/~{{p.id}}"> {{p.name}}</a>
+            </td>
+        {% if loop.index % 3 == 0 and not loop.last %}<tr>{% endif %}
+            {% if loop.last and loop.index % 3 > 0 %}
+                {% for i in 1..3-loop.index % 3 %}
+                    <td>&nbsp;</td>
+                {% endfor %}
+            {% endif %}
+            {% endfor %}
+    </table>
+{% else %}
+    проекты не найдены
+{% endif %}
+{% include '/source/jpaginator_boot.html' %}

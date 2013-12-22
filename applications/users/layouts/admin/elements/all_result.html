@@ -1,0 +1,36 @@
+    <table class="controls-tbl w100" all_users>
+    <caption>Пользователи {% include "/source/html/jpaginator.html" %}</caption>
+    <tr>
+        <th>Email</th>
+        <th>ФИО</th>
+        <th>Ник</th>
+        <th>Зарегистрирован</th>
+        <th style="white-space: nowrap;">Группа</th>
+        <th colspan="2">Управление</th>
+    </tr>
+    {% for k,d in users %}
+    <tr user="{{k}}">
+        <td class="w1"><a href="mailto:{{d.email}}">{{d.email}}</a></td>
+        <td style="width:2000px;">{{d.fio}}</td>
+        <td>{{d.nickname}}</td>
+        <td>{{d.created|date("d.m.Y")}}</td>
+        <td style="white-space: nowrap;color:{{d.group_color}}">{{d.group_name}}</td>
+        <td class="w1">{% if globals.admin.id_group == 1 %}<a class="edit-btn" id="{{k}}"></a>
+            {% elseif d.id_group != 1 %}<a class="edit-btn" id="{{k}}"></a>
+            {% endif %}</td>
+        <td class="w1">
+            {% if k != 1 %}
+                {% if globals.admin.id_group == 1 %}<a class="del-btn" id="{{k}}"></a>
+                {% elseif d.id_group != 1 %}<a class="del-btn" id="{{k}}"></a>
+                {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="7">Ничего не найдено</td></tr>
+    {% endfor %}
+        <tr>
+            <td colspan="5" style="width:2000px;">&nbsp;</td>
+            <td colspan="2"><a title="Добавить" class="add-btn"></a></td>
+        </tr>
+    </table>

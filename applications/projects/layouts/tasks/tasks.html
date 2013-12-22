@@ -1,0 +1,45 @@
+{% extends app.path('projects','project.html') %}
+
+{% block title %}
+Проект "{{project.name}}"
+{% endblock %}
+
+{% block css %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/source/js/fancybox/jquery.fancybox.css">
+{% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script type ="text/javascript" src="/source/js/search.js"></script>
+<script src="{{app.path('projects','tasks.js')}}"></script>
+
+{% endblock %}
+
+{% block project_data %}
+{% import "/source/search_macro.html" as inputs %}
+<form action="" id="search_form" method="post" class="form-horizontal" style="margin-bottom:0px;">
+    <input type="hidden" name="page" value="">
+    <table class="table table-condensed" id="filter_table">
+        <tr>
+            <th>Статус</th>
+            <th>Приоритет</th>
+            <th>Тип</th>
+            <th>Другое</th>
+        </tr>
+        <tr>
+            <td>{{ inputs.input(form.status,'status') }}</td>
+            <td>{{ inputs.input(form.priority,'priority') }}</td>
+            <td>{{ inputs.input(form.type,'type') }}</td>
+            <td>
+                <input type="text" name="search" id="search_label" class="input-large" placeholder="Поиск"><br/><br/>
+                {{ inputs.input(form.percent,'percent',true) }}
+            </td>
+        </tr>
+    </table>
+</form>
+<div class="clearfix"></div>
+<div id="search_result">
+    {% include app.path('projects','tasks/tasks_table.html') %}
+</div>
+{% endblock %}

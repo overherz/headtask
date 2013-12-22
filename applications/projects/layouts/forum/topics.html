@@ -1,0 +1,24 @@
+{% include '/source/jpaginator_boot.html' %}
+<div class="new_post_count"><a href='/projects/forum/new_posts/{{project.id}}'>Новый сообщений: {{new_post_count}}</a></div>
+<table class="table table-bordered table-hover vert_middle table-condensed" style="background: #fff;" id="topics_table">
+    <tr>
+        <th>Название темы</th>
+        <th style="width:15%;">Автор</th>
+        <th style="width:15%;">Статистика</th>
+        <th style="width:15%;">Последнее сообщение</th>
+        <th style="width: 1px;text-align: center;"><a class="btn btn-oscar btn-small" href="/projects/forum/add_topic/{{forum.id}}/"><i class="icon-plus icon-white"></i></a></th>
+    </tr>
+    <tbody>
+    {% if topics or fixed_topics %}
+    {% for t in fixed_topics %}
+        {% include app.path('projects','forum/topic.html') %}
+    {% endfor %}
+    {% for t in topics %}
+        {% include app.path('projects','forum/topic.html') %}
+    {% endfor %}
+    {% else %}
+    <td colspan="5" id="no_file">темы не найдены</td>
+    {% endif %}
+    </tbody>
+</table>
+{% include '/source/jpaginator_boot.html' %}

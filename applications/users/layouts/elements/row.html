@@ -1,0 +1,37 @@
+<div class="comment_box {% if com.parent_id > 0 %}reply_comment{% endif %}">
+<div class="comment {% if com.id_user == globals.user.id_user %}own{% endif %} {% if not com.parent_id %}root{% endif %}" id="{{com.id}}"> 
+    <div class="folding-dot-holder">
+        <div class="folding-dot"></div>
+    </div>    
+    <a name="comment_{{com.id}}"></a>
+    <table class="comment_tbl">
+        <tr>
+            <td class="comm_ava_td"><a class="a_comm_ava" href="/users/~{{com.id_user}}/"><img class="comm_ava" {% if not com.avatar or com.avatar == '' %}src="/source/images/no-ava-comment.jpg"{% else %}src="/uploads/users/ava_comment/{{com.avatar|real_path}}"{% endif %}></a></td>
+            <td class="comm_td">
+                <div class="comment_head">
+                    <a href="/users/~{{com.id_user}}/" class="account-group"><span class="account-fio">{{com.fio}}</span>{% if com.id_group != '7' %} <span class="statuslabel sl{{com.id_group}}" title="{{com.group_name}}"></span> {% else %}&nbsp;{% endif %}<span class="account-nick">{{com.nickname}}</span></a>
+                    <span class="commdate">{{com.created|date("d.m.Y, H:i:s")}}</span>
+                    <a href="#comment_{{com.id}}" class="link_to_comment"></a>
+                    {% if com.parent_id > 0 %}<a href="#comment_{{com.parent_id}}" parent="{{com.parent_id}}" class="to_parent"></a>{% endif %}
+                    {% if article.subscribe.last_visit and com.created > article.subscribe.last_visit %}<span style="color:blue;">новый!</span>{% endif  %}
+                    {% if article.community_id %}
+                        {% if member %}{% set access_to_comment = true %}{% endif %}
+                    {% else %} {% set access_to_comment = true %}
+                    {% endif %}
+                    <div style="float:right;"><a href="" class="comment_to_comment" to_comment="{{com.id}}">ответить</a></div>
+                    {% if own %}<div style="float:right;margin-left: 5px;">|&nbsp;</div>{% endif %}
+                    {% if own %}<div style="float:right;"><a href="" class="del_comment" del_comment="{{com.id}}">удалить</a></div>{% endif %}
+                </div>
+                <div class="comment_body">{{com.text|nl2br}}</div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% if com.category %}
+    {% for com in com.category %}
+        {% include "/applications/users/layouts/elements/row.html" %}
+    {% endfor %}
+{% endif %}
+
+</div>

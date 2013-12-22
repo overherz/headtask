@@ -1,0 +1,42 @@
+{% if tags %} 
+<script>
+$(document).ready(function($) {
+    $(".tag").live("click",function(){
+        var tag = $(this).text();
+        if ($("input[name='tag']").length < 1) $("#search_form").append("<input type='hidden' name='tag' value='"+tag+"'>");
+        else 
+        {
+            value = $("input[name='tag']").val();
+            tags = value.split(",");
+            found = $.inArray(tag, tags)
+            if (found == -1) tags.push(tag);
+            else 
+            {
+                if (!found) tags.splice(0,1);
+                else tags.splice(found,1);
+            }
+            if (tags.length > 0) $("input[name='tag']").val(tags.join(","));            
+            else $("input[name='tag']").remove();
+        }               
+        $("#search_form").submit();
+        return false;
+    });         
+    
+    $(".show_all_user_tag").live("click",function(){
+        user_api({act:'get_user_tags'},function(res){
+            show_popup(res,"Все ваши теги",300);  
+        },false,'/users/');        
+        return false;
+    })    
+});
+</script>
+<div id="sideRight">
+    <div class="taglist">
+    {% if tag.0 not in tags and tag.0 %}<div><a href="" class="tag" style='color:#FF5400;'>{{tag.0}}</a></div>{% endif %}
+        {% for t in tags %}
+            <div><a href="" class="tag" style="{% if loop.last %}border-bottom:none;{% endif %}{% if t in tag %}color:#FF5400;{% endif %}" >{{t}}</a></div>
+        {% endfor %}
+        {% if tags_count > 15 %}<br><a href="" class="show_all_user_tag">все теги</a>{% endif %}
+    </div>
+</div>            
+{% endif  %}                

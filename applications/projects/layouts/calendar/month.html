@@ -1,0 +1,80 @@
+<div style="float: left;"><a href="" show_legend>Показать легенду</a></div>
+<div id="legend">
+    <table>
+        <td valign="top" style="padding-right: 20px;">
+            <i class="icon icon-time"></i> - Дата начала и окончания совпадают<br>
+            <i class="icon icon-play"></i> - Дата начала<br>
+            <i class="icon icon-stop"></i> - Дата окончания<br>
+            <i class="icon icon-arrow-left"></i> - Задание началось в предыдущие дни
+        </td>
+        <td valign="top">
+            <span style="color:red;">Просроченная задача</span><br>
+            <table class="table table-condensed"><tr class="warning"><td style="border: none;">Чужая задача в проекте, где вы являетесь менеджером, <br /> или которую создавали Вы</td></tr></table>
+        </td>
+    </table>
+</div>
+<div>
+    <div style="float: right;"><a href="" weekend_hide style="display: none;margin: 0 10px;">Показать выходные</a><a href="" weekend_show style="display: none;margin: 0 10px;">Скрыть выходные</a>&nbsp;
+        <a href="" style="margin: 0 10px;">Актуальный месяц</a>
+    </div>
+</div>
+
+<section class="month" style="clear: both;">
+    <h2 style="text-align: center;">
+        <a class="arrow" href="" month='{{prevMonth.year}}:{{prevMonth.month}}'>&larr;</a>
+        <a href="" get_months="{{currentMonth.year.int}}">{{currentMonth.name}} {{currentMonth.year.int}}</a>
+        <a class="arrow" href="" month='{{nextMonth.year}}:{{nextMonth.month}}'>&rarr;</a>
+    </h2>
+
+    <table class="table table-bordered calendar_table">
+        <tr>
+            {% for weekDay in currentMonth.weeks.first.days %}
+            <th {% if loop.index > 5 %}class="weekend" {% if not weekend %}style='display:none;'{% endif %}{% endif %}>{{weekDay.shortname}}</th>
+            {% endfor %}
+        </tr>
+        {% set day_int = 0 %}
+        {% for week in currentMonth.weeks() %}
+        <tr>
+            {% for day in week.days %}
+            {% set day_int = day_int + 1 %}
+            {% set counter = 1 %}
+            <td {% if loop.index > 5 %}class="weekend {% if not weekend %}weekend_hide{% endif %}"{% endif %} style='padding: 0px;background: #fff;'>
+            {% if day.month == currentMonth %}
+            <div class="day_div badge {% if day.isToday and day.month == currentMonth %}badge-success success{% else %}badge-info{% endif %}">{{day.int}}</div>
+                {% set date = currentMonth.year.int~"-"~currentMonth.month.intString~"-"~day.intString %}
+                {% if tasks %}
+                <table class="table table-condensed table-hover tasks_table" style="background: transparent;">
+                {% for t in tasks %}
+                    {% if t.start <= date and ((t.end != "" and t.end >= date) or not t.end or (t.end < current_date)) %}
+                    {% if counter > 8 and not show_all %}{% set show_all = true %}<tr><td style="text-align: center;margin-top: 10px;border-left: none;" colspan="2"><a href="" show_hide_tasks><div>Показать остальные</div></a></td></tr>{% endif %}
+                    <tr class="{% if t.assigned != globals.user.id_user %}warning{% endif %} {% if counter > 8 %}hide_tasks{% endif %}">
+                        {% set color = "999" %}
+                        {% if t.priority == "2" %}{% set color = "468847" %}
+                        {% elseif t.priority == "3" %}{% set color = "F89406" %}
+                        {% elseif t.priority == "4" %}{% set color = "B94A48" %}
+                        {% endif %}
+                        <td style="width: 15px;vertical-align: middle !important;border-left:none;padding-right: 0px;">
+                            {% if date == t.start and date == t.end %}<span class="icon icon-time" style="color:#{{color}}"></span>
+                            {% elseif date == t.start %}<span class="icon icon-play" style="color:#{{color}}"></span>
+                            {% elseif date == t.end %}<span class="icon icon-stop" style="color:#{{color}}"></span>
+                            {% else %}<span class="icon icon-arrow-left" style="color:#{{color}}"></span>
+                            {% endif %}
+                        </td>
+                        <td style="border-left: none;padding-left: 3px;">
+                            <a href="/projects/tasks/show/{{t.id}}/" {% if t.end and t.end < current_date %}style='color:red;'{% endif %} title='Проект "{{t.project_name}}"{% if t.assigned_name %}. Ответственный {{ t.assigned_name }}{% endif %}'>
+                                <div>{{t.name}}</div>
+                            </a>
+                        </td>
+                    </tr>
+                        {% set counter = counter + 1 %}
+                    {% endif %}
+                {% endfor %}
+                </table>
+                {% endif %}
+            {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</section>

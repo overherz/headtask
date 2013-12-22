@@ -1,0 +1,44 @@
+<script>
+    $(document).ready(function ($) {
+        $(".get_info").popover({
+            offset: 10,
+            trigger: 'manual',
+            html: true,
+            placement: 'right',
+            template: '<div class="popover" onmouseover="clearTimeout(timeoutObj);$(this).mouseleave(function() {$(this).hide();});"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+        }).mouseenter(function(e) {
+            $(this).popover('show');
+        }).mouseleave(function(e) {
+            var ref = $(this);
+            timeoutObj = setTimeout(function(){
+                ref.popover('hide');
+            }, 50);
+        });
+
+        animate_progress_bars();
+    });
+</script>
+<div style="position: relative;margin-top: 10px;">{% include '/source/jpaginator_boot.html' %}
+    <div style="position: absolute;right:0;bottom:0;"><a href="" id="show_filter">Фильтр</a></div>
+</div>
+<table class="table table-bordered table-hover table-condensed" id="tasks_table">
+    <tr>
+        <th></th>
+        <th>Название</th>
+        <th>Статус</th>
+        <th>Приоритет</th>
+        <th>Делегировано</th>
+        <th>Статус выполнения</th>
+        <th></th>
+    </tr>
+    <tbody>
+    {% if tasks %}
+    {% for task in tasks %}
+        {% include app.path('projects','tasks/task.html') %}
+    {% endfor %}
+    {% else %}
+    <td colspan="6" id="no_file">задач нет</td>
+    {% endif %}
+    </tbody>
+</table>
+{% include '/source/jpaginator_boot.html' %}

@@ -1,0 +1,17 @@
+<tr id="page-tr-{{i.id}}-{{i.id_text}}">
+    {% if not versions %}
+    <td>{{i.name}}</td>
+    <td><a href="/pages/~{{i.url}}/">/pages/~{{i.url}}/</a></td>
+    {% endif %}
+    <td>{{i.text|nl2br}}</td>
+    <td style="white-space: nowrap;">{% if i.created %}{{i.created|date("d.m.Y H:i:s")}}{% endif %}</td>
+    {% if not versions %}<td style="text-align: center;">{% if i.count > 1 %}<a href="" class="show_versions" id_page='{{i.id}}'>{{i.count}}</a>{% else %}{{i.count}}{% endif %}</td>{% endif %}
+    {% if versions %}
+        <td>
+            <span class="main_version" main_version="{{i.id_text}}" style="display:{% if i.main %}block{% else %}none{% endif %};"><span style="color:green;">выбрано</span></span>
+            <span class="main_version_set" set_version="{{i.id}}-{{i.id_text}}" style="display:{% if not i.main %}block{% else %}none{% endif %};"><a href="">выбрать</a></span>
+        </td>
+    {% endif %}
+    <td class="td-align-middle w1"><a title="Изменить" class="edit-btn" id="{{i.id}}-{{i.id_text}}"></a></td>
+    <td class="td-align-middle w1"><a title="Удалить" class="del-btn" id="{{i.id}}{% if versions %}-{{i.id_text}}{% endif %}"></a></td>
+</tr>

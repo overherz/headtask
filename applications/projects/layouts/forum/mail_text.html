@@ -1,0 +1,9 @@
+<div>Здравствуйте, <b>{{new_posts[0].fio}}</b></div>
+
+<div>У Вас на форумах Таскера накопились непрочитанные сообщения</div>
+
+<br><br>
+{% for n in new_posts %}
+    <div>Проект <a href="http://tasker.cube-in-cube.ru/projects/forum/new_posts/{{ n.id }}/"><b>"{{ n.name }}"</b></a>. Новых сообщений - {{ n.count }}</div>
+{% endfor %}
+

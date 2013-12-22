@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Панель управления {% block title %}&rarr;{% endblock %}</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="http://yandex.st/jquery-ui/1.10.3/themes/blitzer/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/source/css/jquery.jgrowl.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/source/css/popup.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/source/css/admin.css" type="text/css" media="screen, projection" />
+    {% block css %}{% endblock %}
+    <script src="/source/js/head.min.js"></script>
+    <script src="http://yandex.st/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        head.js(
+         "http://yandex.st/jquery-ui/1.10.3/jquery-ui.min.js",
+         "/source/js/jquery.jgrowl_minimized.js",
+         "/source/js/functions.js",
+         "/applications/index/source/js/change_pass.js",
+         "/source/js/message.js",
+         "/applications/index/source/js/index_admin.js"
+         {% block js %}{% endblock %}
+         );
+    </script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div id="header">
+            <div id="topline-wrap">
+                <div id="topline-img"></div>
+                <div id="sitename">Панель управления <a class="cityname" href="/admin/index/logout/">[выход]</a> <a href="/" target="_blank" class="cityname">[перейти на сайт]</a></div>
+            </div>
+        <div id="middlehead">
+            <div id="logo"><a href="http://www.cube-in-cube.ru" target="_blank" title="Куб в кубе. Создание и продвижение сайтов."><img src="/source/images/admin/logo.png"/></a></div>
+            <div id="hellotext">
+                Добро пожаловать,<br />
+                <span class="user-fio">{{globals.admin.fio}}</span>
+                &nbsp;[ <span style="color:{{globals.admin.group_color}};">{{globals.admin.group_name}}</span> ]
+                <br />
+                <a href="" change_admin_pass>изменить пароль</a>
+            </div>
+        </div>
+	</div>
+
+	<div id="middle">
+		<div id="container">
+			<div id="content">
+                <div id="mainmenu">
+                    <ul>
+                        {% set submenu = '' %}
+                        {% for k,r_m in globals.root_menu %}
+                        <li {% if globals.menu == k %}class="current"{% endif %}><a href="{% if not r_m.url %}/admin/~{{k}}/{% else %}/admin/{{r_m.url}}/{% endif %}" title="title">{{r_m.name}}</a></li>
+                            {% if r_m.submenu and k == globals.menu %}{% set submenu = r_m.submenu %}{% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="messagewrap"><div class="message">{% block message %}{% endblock %}</div></div>
+                <div id="realcont">
+                {% block body %}
+
+                {% endblock %}
+                </div>
+			</div>
+		</div>
+
+		<div class="sidebar" id="sideLeft">
+            <div id="sidehead">
+                <div id="date"><strong>{{ now|date('d.m.Y') }}</strong></div>
+                <a id="show_date" title="Календарь"></a>
+            </div>
+            <div id="sidecontent">
+                <ul id="leftmenu">
+                    {% for m in submenu %}
+                    <li>
+                        {% if m.count > 1 and m.category != "" %}
+                        {% if category != m.category %}<span style="margin-left: 5px;font-weight: bold;">{{m.category}}</span>{% endif %}
+                        {% set category = m.category %}{% set show_category = true %}
+                        {% else %}
+                        {% set show_category = false %}
+                        {% endif %}
+                        <a href="/admin/{{m.url}}" {% if m.url == globals.submenu %}class="active"{% endif %} title="{{m.name}}">{% if show_category %} – {% endif %}{{m.name}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

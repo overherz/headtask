@@ -1,0 +1,29 @@
+<div class="add_html" {% if not show %}style="display: none;"{% endif %}>
+<form class="new_page">
+    <input type="hidden" name="id" value="{{page.id}}">
+    <input type="hidden" name="id_text" value="{{page.id_text}}">
+    <input type="hidden" name="act" value="save">
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Описание</a></li>
+            <li><a href="#tabs-2">Текст</a></li>
+        </ul>
+        <div id="tabs-1">
+            <div class="body"><span class="title">Название</span>
+                <div><input type="text" name="name" value="{{page.name}}" class="input" style="width:350px"></div></div>
+            <div class="body"><span class="title">Английское название</span>
+                <div><input type="text" name="url" value="{{page.url}}" class="input" style="width:350px"></div></div>
+            <div class="body"><span class="title">Title</span>
+                <div><input type="text" name="title" value="{{page.title}}" class="input" style="width:350px"></div></div>
+            <div class="body"><span class="title">Keywords</span>
+                <div><input type="text" name="keywords" value="{{page.keywords}}" class="input" style="width:350px"></div></div>
+            <div class="body"><span class="title">Description</span>
+                <div><textarea name="description" class="input" style="width:350px;height:100px;">{{page.description}}</textarea></div></div>
+        </div>
+        <div id="tabs-2">
+            <div class="body">
+                <div><textarea name="text" class="input">{{page.text}}</textarea></div></div>
+        </div>
+    </div>
+</form>
+</div>

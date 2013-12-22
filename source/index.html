@@ -1,0 +1,12 @@
+{% extends "/source/wrapper_index.html" %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="hero-unit" style="padding:10px;">
+                {% block context %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

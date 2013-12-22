@@ -1,0 +1,17 @@
+{% if groups %}
+  <table class="controls-tbl" all_group>
+        <caption>Группы</caption>
+        <tr>
+            <th>Название</th>
+            <th>Пользователей</th>
+            <th colspan="2">Управление</th>
+        </tr>
+        {% for g in groups %}
+        {% include app.path('groups','admin/elements/group.html') %}
+        {% endfor %}
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td colspan="2"><a title="Добавить" class="add-btn"></a></td>
+        </tr>
+   </table>
+{% endif %}

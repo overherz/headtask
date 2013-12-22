@@ -1,0 +1,23 @@
+<script>
+    $(document).ready(function($) {
+        $(document).on("click",".feedback_button",function(){
+            user_api({act:'get_form'},function(res){
+                show_popup(res,"Форма обратной связи");
+                add_popup_button("Отправить",'send_feedback',false,function(){
+                    user_api($(".popup_body .feedback_form").serialize(),function(res){
+                        show_message("success","Сообщение отправлено");
+                        hide_popup();
+                    },function(res){
+                        $(".popup_body #feedback_captcha").html(res.captcha_html);
+                        if ($(".error #captcha_name").length < 1) $("#captcha_name").append("<span class='error' id='captcha'></span>")
+                        $(".popup_body .error").hide();
+                        $.each(res,function(k,v){
+                            $(".feedback_form #"+k+"").text(v).show();
+                        })
+                    },'/feedback/');
+                });
+            },false,'/feedback/');
+            return false;
+        })
+    });
+</script>

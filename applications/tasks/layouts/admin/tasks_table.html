@@ -1,0 +1,23 @@
+<table class="controls-tbl w100" all_pages>
+    <caption>Страницы {% include "/source/html/jpaginator.html" %}</caption>
+    <tr>
+        <th width="250">Название</th>
+        <th width="250">Задача</th>
+        <th width="250">Параметры запуска</th>
+        <th width="200">Дата последнего старта</th>
+        <th width="200">Дата завершения</th>
+        <th width="200">Дата следующего старта</th>
+        <th width="200">Статус</th>
+        <th>Ошибка</th>
+        <th colspan="3">Управление</th>
+    </tr>
+    {% for i in tasks %}
+    {% include '/applications/tasks/layouts/admin/tasks-list.html' %}
+    {% else %}
+    <tr><td colspan="11">Ничего не найдено</td></tr>
+    {% endfor %}
+    <tr>
+        <td colspan="8">&nbsp;</td>
+        <td colspan="3"><a title="Добавить" class="add-btn"></a></td>
+    </tr>        
+</table>

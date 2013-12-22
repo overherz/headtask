@@ -1,0 +1,7 @@
+<form class="group">
+    <input type="hidden" name="act" value="save_group">
+    <input type="hidden" name="act_group" value="{{act}}">
+{% if group.id %}<input type="hidden" name="id" value="{{group.id}}">{% endif %}
+<div class="body"><span class="title">Название:</span>
+    <div><input type="text" name="name" value="{{group.name}}" class="input_text"></div></div>
+</form>

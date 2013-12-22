@@ -1,0 +1,12 @@
+<ul class="nav nav-list projects_list">
+    <li class="nav-header" style="position: absolute;top:0;left: 50%;margin-left: -25px;">Проекты</li>
+    {% for p in projects.projects %}
+        <li {% if project.id == p.id or projects.current_project == p.id %}class="active"{% endif %} style="display:inline-block;margin-right:30px;">
+            <a href="/projects/~{{p.id}}/" {% if p.description or p.url %}class="project_description_bottom" rel="popover" data-original-title="Описание проекта" data-content="{% if p.description %}{{p.description}}{% endif %}{% if p.url %}{% if p.description %}<br>{% endif %}<a href='//{{p.url}}' target='_blank'>{{p.url}}</a>{% endif %}"{% endif %}>
+                {% if p.owner %}<i class="icon-user"></i> {% endif %}{{p.name}}
+            </a>
+        </li>
+    {% else %}ничего не найдено
+    {% endfor %}
+</ul>
+<div style="position:absolute;right:10px;top:0;">{% include app.path('projects','jpaginator_project_panel.html') %}</div>

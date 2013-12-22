@@ -1,0 +1,9 @@
+#leftside {
+    width:220px;
+    float: left;
+}
+#realcont {
+    padding-top: 0px;
+    padding-bottom: 20px;
+    margin-left: 285px;
+}

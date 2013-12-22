@@ -1,0 +1,32 @@
+<div class="add_html">
+<form class="new_users">
+    <input type="hidden" name="id" value="{{data.id_user}}">
+    <input type="hidden" name="act" value="save">
+    <input type="hidden" name="mode" value="{{act|default('new')}}">
+
+    <div class="body"><span class="title">Email:<span>
+        <div><input type="text" name="email" class="input" style="width:350px;" value="{{data.email}}"></div></div>
+    <div class="body"><span class="title">Ник:<span>
+        <div><input type="text" name="nickname" class="input" style="width:350px;" value="{{data.nickname}}"></div></div>
+    <div class="body"><span class="title">ФИО<span>
+        <div><input type="text" name="fio" class="input" style="width:350px;" value="{{data.fio}}"></div></div>
+    <div class="body"><span class="title">Пол:<span>
+        <div><select name="gender">
+                <option value="m">мужской</option>
+                <option value="f" {% if data.gender == 'f' %}selected{% endif %}>женский</option>
+            </select></div></div>
+    <div class="body"><span class="title">Группа:<span>
+        <div>
+            {% if groups %}
+            <select name="id_group">
+                <option></option>
+                {% for g in groups %}
+                <option value="{{g.id}}" {% if g.id == data.id_group %}selected{% endif %}>{{g.name}}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+        </div></div>
+    <div class="body"><span class="title">Пароль:<span>
+        <div>{% if data.id_user %}<a href="" class="change_password">изменить</a>{% endif %}<input type="text" name="password" class="input w100" style="width:350px;{% if data.id_user %}display:none;{% endif %}"></div></div>
+</form>
+</div>

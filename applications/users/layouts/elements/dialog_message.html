@@ -1,0 +1,7 @@
+{% for m in messages %}        
+    <tr class="msg_row{% if loop.last %} msg_row_last{% endif %}{% if globals.user.id_user == m.id_user %} msg_row_my{% endif %}" message="{{m.id}}">
+        <td class="msg_img"><a href="/users/~{{m.id_user}}"><img src="{% if m.avatar %}/uploads/users/ava_comment/{{m.avatar|real_path}}{% else %}/source/images/no-ava-comment{% if m.gender == "f" %}_f{% endif %}.jpg{% endif %}"></a></td>
+        <td class="msg_fiotext"><div class="msg_fio"><a href="/users/~{{m.id_user}}">{{m.fio}}</a></div><div class="msg_text">{{m.message|nl2br}}</div></td>
+        <td class="msg_date">{{m.created|date("d.m.y H:i")}}</td>
+    </tr>
+{% endfor %}   

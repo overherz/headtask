@@ -1,0 +1,37 @@
+{% extends app.path('projects','project.html') %}
+
+{% block title %}
+{% if documents %}Редактирование новости{% else %}Добавление новости{% endif %}
+{% endblock %}
+
+{% block js %}
+{{parent()}}
+<script type ="text/javascript" src="/source/js/ckeditor/ckeditor.js"></script>
+
+<script src="{{app.path('projects','tasks.js')}}"></script>
+{% endblock %}
+
+{% block project_data %}
+<form id="documents_form" class="form-horizontal">
+    <input type="hidden" name="act" value="save_documents">
+    {% if documents.id %}<input type="hidden" name="id" value="{{documents.id}}">{% endif %}
+        <div class="docs-input-sizes">
+            <div class="control-group">
+                <label class="control-label" for="name">Название</label>
+                <div class="controls">
+                    <input type="text" name="name" id="name" class="input-xxlarge" value="{{documents.name}}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="description">Текст</label>
+                <div class="controls">
+                    <div class="wysiwyg"><textarea rows="5" class="input-xxlarge" name="description" id="description">{{documents.description}}</textarea></div>
+                </div>
+            </div>
+            <div style="text-align: center">
+                <button class="btn btn-large btn-primary save_documents" type="button">{% if project.id %}Сохранить{% else %}Создать{% endif %}</button>
+            </div>
+        </div>
+</form>
+<div class="clearfix"></div>
+{% endblock %}

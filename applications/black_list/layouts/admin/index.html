@@ -1,0 +1,13 @@
+{% extends "/source/html/admin.html" %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('black_list','black_list_admin.css')}}">
+{% endblock %}
+{% block js %}
+    ,"{{app.path('black_list','black_list_admin.js')}}"
+{% endblock %}
+
+{% block body %}
+black_list
+{% endblock %}
+
+

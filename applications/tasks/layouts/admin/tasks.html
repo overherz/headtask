@@ -1,0 +1,40 @@
+{% extends "/source/html/admin.html" %}
+{% block title %}
+&rarr; Статические страницы
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{app.path('tasks','tasks.css')}}">
+<link rel="stylesheet" type="text/css" href="{{app.path('tasks','jqCron.css')}}">
+{% endblock %}
+{% block js %}
+    ,"/source/js/search.js"
+    ,"{{app.path('tasks','tasks_admin.js')}}"
+{% endblock %}
+{% block body %}
+{% if exec %}
+<div style='color:black;margin-bottom: 20px;'>Для активации планировщика внесите строки в cron на вашем сервере <br>
+    {% for str in cron_string %}
+        <div style="color:red;">{{str}}</div>
+    {% endfor %}
+</div>
+
+<form action="" id="search_form" method="post" style="margin-bottom:20px;">
+    Поиск:&nbsp;<input type="text" size="50" name="search" class="input">
+    <input type="hidden" name="page">
+    {% for k,f in form%}
+    &nbsp;{{f.label}}
+    {% if f.type == 'select' %}
+    &nbsp;<select name="{{k}}">
+    {% for j,o in f.options %}
+    <option value="{{j}}" {% if f.selected == j %}selected{% endif %}>{{o}}</option>
+    {% endfor %}
+</select>
+    {% endif %}
+    {% endfor %}
+</form>
+{% else %}
+<div style="color:red;">Функция exec недоступна!</div>
+{% endif %}
+
+<div id="search_result">{% include '/applications/tasks/layouts/admin/tasks_table.html' %}</div>
+{% endblock %}

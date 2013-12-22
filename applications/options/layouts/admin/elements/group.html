@@ -1,0 +1,20 @@
+<tr group="{{op.id}}">
+    <td group_option="{{op.id}}" class="cursor" {% if op.sub %}style="font-weight: bold;" {% endif %}>{{op.name}}</td>
+    <td><a href="" open_options="{{op.id}}">открыть</a></td>
+    {% if dev_mode %}
+    <td class="td-align-middle"><a title="Изменить" class="edit-btn edit-btn-category" id="{{op.id}}"></a></td>
+    <td class="td-align-middle"><a title="Удалить" class="del-btn" id="{{op.id}}"></a></td>
+    <td class="td-align-middle"><a title="Добавить подкатегорию" class="add-btn add-subcategory" data-id="{{op.id}}"></a></td>
+    {% endif %}
+</tr>
+{% for sub in op.sub %}
+    <tr>
+        <td class="cursor" style="padding-left: 20px;">{{sub.name}}</td>
+        <td>&nbsp;</td>
+        {% if dev_mode %}
+            <td class="td-align-middle"><a title="Изменить" class="edit-btn edit-btn-subcategory" id="{{sub.id}}"></a></td>
+            <td class="td-align-middle"><a title="Удалить" class="del-btn" id="{{sub.id}}"></a></td>
+            <td>&nbsp;</td>
+        {% endif %}
+    </tr>
+{% endfor %}

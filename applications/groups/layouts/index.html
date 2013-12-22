@@ -1,0 +1,12 @@
+{% extends "/source/index.html" %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('groups','groups.css')}}">
+{% endblock %}
+{% block js %}
+    ,"{{app.path('groups','groups.js')}}"
+{% endblock %}
+
+{% block body %}
+groups
+{% endblock %}
+

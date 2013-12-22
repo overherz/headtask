@@ -1,0 +1,105 @@
+{% extends "/source/html/admin.html" %}
+{% block title %}
+    &rarr; Конструктор настроек
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('options','options.css')}}">
+{% endblock %}
+{% block js %}
+    ,"{{app.path('options','constructor.js')}}"
+{% endblock %}
+
+{% block body %}
+{% if develop %}
+Включите режим разработчика
+{% elseif options %}
+<input type="hidden" name="id" value="{{option.id}}">
+<table id="constructor" style="margin-top:15px;width: 100%">
+    <tr>
+        <th><strong>Настройки</strong></th>
+        <th><strong>Значение</strong></th>
+    </tr>
+    <tr><td style="width:50%;vertical-align: top;">
+    <table style="width: 100%;margin-bottom: 20px;" id="constructor_settings">
+        <tr>
+            <td>Группа: </td>
+            <td>
+                <select name="id_group">
+                    {% for op in options %}
+                        <option value="{{op.id}}" {% if option.id_group == op.id %}selected{% endif %}>{{op.name}}</option>
+                        {% for sub in op.sub %}
+                            <option value="{{sub.id}}" {% if option.id_group == sub.id %}selected{% endif %}>-- {{sub.name}}</option>
+                        {% endfor %}
+                    {% endfor %}
+                </select>                                
+            </td>
+        </tr>
+        <tr>
+            <td style="width:1px;white-space: nowrap;">Название ключа: </td>
+            <td><input type="text" name="key_name" style="width: 98%;" value="{{option.key_name}}"></td>
+        </tr>
+        <tr>
+            <td>Название: </td>
+            <td><input type="text" name="name" style="width: 98%;" value="{{option.name}}"></td>
+        </tr>
+        <tr>
+            <td>Описание</td>
+            <td><textarea name='descr' style='width:98%;height: 100px;' class="input">{{option.description}}</textarea></td>
+        </tr>
+        <tr>
+            <td>Тип: </td>
+            <td>
+                <select name="type">
+                    <option value="type_no_change">---</option>        
+                    {% for t in types %}
+                    <option value="{{t}}" {% if option.type == t %}selected{% endif %}>{{t}}</option>
+                    {% endfor %}
+                </select>                
+            </td>
+        </tr>
+    </table>
+    </td>
+    <td id="constructor_box1" style="width:50%;" valign="top">
+        {% if option.id %}
+        <div>
+            {% if option.type == "select" or option.type == "radio" %}
+            <select name='value' {% if option.multy_select %}multiple{% endif %}>
+                {% for k,ov in option.options %}
+                <option value="{{k}}" {% if k in option.value %}selected{% endif %}>{{ov}}</option>
+                {% endfor %}
+            </select>
+            {% elseif option.type == "checkbox" %}
+                <div><input type='checkbox' name='value' {% if option.value == "1" %}checked{% endif %}></div>
+            {% elseif option.type == "text" %}
+                <div><input type='text' name='value' value="{{option.value}}" style="width:99%;"></div>
+            {% elseif option.type == "textarea" %}
+            <div><textarea name='value' style='width:98%;height:150px;' class="input">{{option.value}}</textarea></div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </td>
+    <tr id="tr_options" {% if option.type != 'select' and option.type != 'radio' %}style="display:none;"{% endif %}>
+        <th colspan="2"><span style="float:left;"><strong>Опции</strong></span> <span {% if option.type != 'select' %}style="display:none;"{% endif %}>Мультивыбор: <input type="checkbox" id="multy_select" {% if option.multy_select %}checked{% endif %}></span> <input type="button" value="Добавить" class="button" style="float:right;" id="add_option"></th>
+    </tr>    
+    <tr id="tr_options1" {% if option.type != 'select' and option.type != 'radio' %}style="display:none;"{% endif %}>
+        <td colspan="2" id="constructor_box">
+            {% if option.type == 'select' or option.type == 'radio' %}<input type='hidden' name='options'></div>{% endif %}
+            {% for k,op in option.options %}
+                <div>Название опции: <input type='text' name='option_name' value="{{op}}"> Значение: <input type='text' name='option_value' value="{{k}}"> <a title="Удалить" class="del-btn delete_option" style="display:inline-block;"></a></div>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2" align="center">           
+            <input type="button" value="Сохранить" class="button" style="float:right;{% if not option.id %}display: none;{% endif %}" id="save_button">
+            <span style="float:left;">
+                <input type="button" value="Удалить" class="button" {% if not option.id or option.no_delete %}style="display: none;"{% endif %}" id="delete_option" option="{{option.id}}">            
+                <input type="button" value="Новая настройка" class="button" {% if not option.id %}style="display: none;"{% endif %}" id="new_option">
+            </span>
+        </th>        
+    </tr>
+</table>
+{% endif %}
+{% endblock %}
+
+

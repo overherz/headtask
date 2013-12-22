@@ -1,0 +1,19 @@
+{% extends "/source/html/admin.html" %}
+{% block title %}
+    &rarr; Настройки
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('options','options.css')}}">
+{% endblock %}
+{% block js %}
+    ,"{{app.path('options','options_admin.js')}}"
+{% endblock %}
+
+{% block body %}
+<form action="" id="search_form"></form>
+<div id="search_result">{% include app.path('options','admin/options_table.html') %}</div>
+
+<div id="result"></div>
+{% endblock %}
+
+

@@ -1,0 +1,12 @@
+<tr id="tr-{{i.id}}">
+    <td>{{i.title}}</td>
+    <td>{% if i.fio %}<span style="color:{{i.color}}">{{i.fio}}</span>{% else %}---{% endif %}</td>
+    <td>{{i.date|date('d.m.Y H:i:s')}}</td>
+    <td>{{i.ip}}</td>
+    <td>{% if type == 'login' %}
+            {% if i.status %}<span style="color:green;">{{i.message}}</span>{% else %}<span style="color:red;">{{i.message}}</span>{% endif %}
+        {% else %}
+        {{i.message}}
+        {% endif %}
+    </td>
+</tr>

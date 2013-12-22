@@ -1,0 +1,23 @@
+{% extends "/source/wrapper_index.html" %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('users','login.css')}}">
+{% endblock %}
+{% block js %}
+    <script type ="text/javascript" src="{{app.path('users','login.js')}}"></script>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <form class="form-signin" id="login_form">
+        <input type="hidden" name="act" value="login">
+        <div class="alert alert-error" style="display: none;"></div>
+        <h2 class="form-signin-heading">Авторизация</h2>
+        <input type="text" class="input-block-level" name="login" placeholder="Email">
+        <input type="password" class="input-block-level" name="password" placeholder="Password">
+        <label class="checkbox" style="padding-left: 0px;">
+            <input type="checkbox" name="cookie"> запомнить
+        </label>
+        <button class="btn btn-large btn-primary login" type="button">Войти</button>
+    </form>
+</div> <!-- /container -->
+{% endblock %}

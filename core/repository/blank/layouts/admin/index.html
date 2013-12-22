@@ -1,0 +1,13 @@
+{% extends "/source/html/admin.html" %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('%blank%','%blank%.css')}}">
+{% endblock %}
+{% block js %}
+    ,"{{app.path('%blank%','%blank%_admin.js')}}"
+{% endblock %}
+
+{% block body %}
+%blank%
+{% endblock %}
+
+

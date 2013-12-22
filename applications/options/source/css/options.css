@@ -1,0 +1,41 @@
+#constructor td,#constructor th {
+    border: 1px solid #c7c7c7;
+}
+
+#constructor_settings td {
+    border: none;
+    padding:2px;
+}
+
+#constructor_settings td input,#constructor_settings td select {
+    border: 1px solid silver;
+    padding:2px;
+}
+
+#constructor th {
+    padding:5px;
+    background: silver;
+    text-align: center;
+}
+
+#constructor_box1,#constructor_box {
+    padding:10px;
+}
+
+#constructor_box1 textarea,#constructor_box1 input,#constructor_box1 select {
+    border: 1px solid silver;
+    padding:2px;
+}
+
+#constructor_box textarea,#constructor_box input,#constructor_box select {
+    border: 1px solid silver;
+    padding:2px;
+}
+
+#constructor_box div {
+    margin-top: 10px;
+}
+
+#add_option {
+    margin-bottom:-2px;
+}

@@ -1,0 +1,56 @@
+{% extends "/source/wrapper_index.html" %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('projects','projects.css')}}">
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="{{app.path('projects','projects.js')}}"></script>
+{% endblock %}
+
+{% block body %}
+<input type="hidden" name="id_project" value="{{project.id}}">
+<div class="well sidebar-nav" id="for_projects_panel" style="padding:10px;margin: 20px;border: 0;position: relative;">
+    <div class="btn-group">
+        {% if access.add_project or access.add_own_project %}
+            <a href="/projects/add/" class="btn btn-primary btn-small {% if add %}active{% endif %}" style="margin-bottom: 10px;"><i class="icon-plus icon-white"></i></a>
+        {% endif %}
+        <a href="/projects/all/" class="btn btn-info btn-small {% if all_projects %}active{% endif %}" style="margin-bottom: 10px;" title="Все проекты"><i class="icon-book icon-white"></i> Все</a>
+    </div>
+    <form action="" class="project_panel_form" method="post" style="margin: 0px;">
+        <input type="hidden" name="project_panel_page" value="">
+        <input type="hidden" name="act" value="get_panel_page_projects">
+        <input type="hidden" name="id_project" value="{{project.id}}">
+    </form>
+    <div id="project_top_result">
+        {% include app.path('projects','projects_in_top.html') %}
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2" id="projects_panel">
+            <div class="well sidebar-nav" style="padding:10px;border: 0px;">
+                <div class="btn-group">
+                {% if access.add_project or access.add_own_project %}
+                <a href="/projects/add/" class="btn btn-primary {% if add %}active{% endif %}" style="margin-bottom: 20px;"><i class="icon-plus icon-white"></i></a>
+                {% endif %}
+                    <a href="/projects/all/" class="btn btn-info {% if all_projects %}active{% endif %}" style="margin-bottom: 20px;" title="Все проекты"><i class="icon-book icon-white"></i> Все</a>
+                </div>
+                <form action="" class="project_panel_form" method="post" style="margin: 0px;">
+                    <input type="hidden" name="project_panel_page" value="">
+                    <input type="hidden" name="act" value="get_panel_page_projects">
+                    <input type="hidden" name="id_project" value="{{project.id}}">
+                </form>
+                <div id="project_panel_result">
+                    {% include app.path('projects','projects_in_panel.html') %}
+                </div>
+            </div>
+        </div>
+        <div class="span10" id="projects_second_panel">
+            <div class="hero-unit" style="padding: 10px;">
+            {% block project %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

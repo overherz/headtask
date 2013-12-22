@@ -1,0 +1,19 @@
+{% extends "/source/html/admin.html" %}
+{% block title %}
+    &rarr; Группы
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('groups','groups.css')}}">
+    <link rel="stylesheet" type="text/css" href="/source/js/miniColors/jquery.miniColors.css">
+{% endblock %}
+{% block js %}
+    ,"/source/js/miniColors/jquery.miniColors.min.js"
+    ,"{{app.path('groups','groups_admin.js')}}"
+{% endblock %}
+
+{% block body %}
+<div id="result">
+{% include '/applications/groups/layouts/admin/groups.html' %}
+</div>
+{% endblock %}

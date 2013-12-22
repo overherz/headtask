@@ -1,0 +1,8 @@
+.review_table .left_column div {
+    margin-bottom: 10px;
+}
+
+.right_column td {
+    border-left: 0;
+    border-right: 0;
+}

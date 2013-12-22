@@ -1,0 +1,40 @@
+.video-delete {
+    height: 25px;
+    cursor: pointer;
+    float: right;
+    position: absolute;
+    top: 0px;
+    background: #aedb86;
+    display: none;
+    padding-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    width: 304px;
+}
+
+.video-play {
+    height: 30px;
+    cursor: pointer;
+    float: right;
+    position: absolute;
+    bottom: 0px;
+    background: #aedb86;
+    display: none;
+    padding-top: 5px;
+    font-weight: bold;
+    text-align: center;
+    width: 304px;
+    font-size: 16px;
+}
+
+.video_block {
+    display:inline-block;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.video_block img {
+    cursor: pointer;
+}

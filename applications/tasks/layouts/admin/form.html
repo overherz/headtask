@@ -1,0 +1,30 @@
+<script src="{{app.path('tasks','jqCron.js')}}"></script>
+<form class="new_page">
+    <input type="hidden" name="id" value="{{task.id}}">
+    <input type="hidden" name="act" value="save">    
+    <table width="100%">
+        <tr>
+            <td valign="top">
+                <div class="body"><span class="title">Название</span>
+                    <div><input type="text" name="name" value="{{task.name}}" class="input" style="width:350px"></div></div>
+                <div class="body"><span class="title">Задача</span>
+                    <div>
+                        {% if tasks %}
+                        <select name="controller">
+                            {% for t in tasks %}
+                            <option value="{{t}}" {% if task.controller == t %}selected{% endif %}>{{t}}</option>
+                            {% endfor %}
+                        </select>
+                        {% endif %}
+                    </div></div>
+                <div class="body"><span class="title">Период запуска</span>
+                    <div id="cron" style="margin-bottom: 10px;"></div>
+                    <div><input type="text" name="period" value="{{task.period}}" class="input" style="width:350px;" readonly></div></div>
+                <div class="body"><span class="title">Параметры запуска</span>
+                    <div><input type="text" name="params" value="{{task.params}}" class="input" style="width:350px"></div></div>
+                <div class="body"><span class="title">Дополнительная информация</span>
+                    <div><textarea name="info" class="input" style="width:550px;height: 250px;">{{task.info}}</textarea></div></div>
+            </td>
+        </tr>
+    </table>
+</form>

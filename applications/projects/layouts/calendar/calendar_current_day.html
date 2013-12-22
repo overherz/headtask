@@ -1,0 +1,106 @@
+{% extends "/source/index.html" %}
+
+{% block title %}Календарь. Задачи сегодня{% endblock %}
+
+{% block js %}
+    <script src="{{app.path('projects','tasks.js')}}"></script>
+    <script>
+        $(document).ready(function ($) {
+            animate_progress_bars();
+        });
+    </script>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/libraries/calendar/calendar.css">
+{% endblock %}
+
+{% block context %}
+<ul class="breadcrumb">
+    <li>Общая статистика: </li>
+    <li>
+        <span class="label label-info">{{count_project|default(0)}}</span> {{ "stats_projects"|lang(count_project|default(0)) }}
+        <span class="label label-info">{{count_personal_tasks|default(0)}}</span> {{ "stats_personal_tasks"|lang(count_personal_tasks|default(0)) }}
+
+        <span style="margin-left: 20px;font-weight: bold;" title='У участника с ролью "Менеджер" учитываются все задачи в проекте. У просто участника только задачи, которые создавал он'>Менеджер: </span>
+        <span class="label label-info">{{manager_stats.new|default(0)}}</span> {{ "stats_tasks_new"|lang(manager_stats.new|default(0)) }}
+        <span class="label label-info">{{manager_stats.in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}
+        <span class="label label-info">{{manager_stats.closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(manager_stats.closed|default(0)) }}
+        <span class="label label-info">{{manager_stats.rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(manager_stats.rejected|default(0)) }}
+    </li>
+</ul>
+
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th></th>
+        <th>Проект</th>
+        <th>Задача</th>
+        <th>Статус</th>
+        <th>Приоритет</th>
+        <th>Статус выполнения</th>
+        <th>Ответственный</th>
+    </tr>
+    {% for task in tasks %}
+        <tr id="task{{task.id}}" {% if task.type == "error" %}class='error'{% endif %}>
+            <td style="text-align: center;width: 10px;">{% if task.task_creater == globals.user.id_user %}<i class="icon-user" style="font-size: 20px;"></i>{% endif %}</td>
+            <td><a href="/projects/~{{task.id_project}}/">{{ task.project_name }}</a></td>
+            <td><a href="/projects/tasks/show/{{task.id}}/">{{task.name}}</a></td>
+            <td>
+                {% if task.status == "new" %}новая
+                {% elseif task.status == "in_progress" %}в процессе
+                {% elseif task.status == "closed" %}закрытая
+                {% elseif task.status == "rejected" %}отклоненная
+                    <i class="icon icon-info-sign get_info" rel="popover" data-original-title="Причина отклонения" data-content="{{task.message}}"></i>
+                {% endif %}
+            </td>
+            <td>
+                {% if task.priority == "1" %}<span class="label">низкий</span>
+                {% elseif task.priority == "2" %}<span class="label label-success">обычный</span>
+                {% elseif task.priority == "3" %}<span class="label label-warning">высокий</span>
+                {% elseif task.priority == "4" %}<span class="label label-important">критический</span>
+                {% endif %}
+            </td>
+            <td>
+                {% set undate = false %}
+                {% if task.end and ((now|date('Y-m-d') > task.end) and (task.status == 'new' or task.status == 'in_progress'))%}
+                    {% set undate = true %}
+                {% endif %}
+
+                <div class="progress progress-striped {% if undate %}progress-danger{% endif %} {% if task.status == "in_progress" %}active{% endif %}">
+                    <div class="bar" style="width: {% if task.percent > 0 %}0%;{% else %}30px;{% endif %}text-align: right;" {% if task.percent > 0 %}data-width="{{task.percent}}"{% endif %}>
+                        <span class="progress_text">{{ task.percent }} %</span>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <a href="/users/~{{task.assigned}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.assigned_name}}</a>
+                <div class="nickname">{{task.assigned_nickname}}</div>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">Задачи не найдены</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<ul class="breadcrumb second">
+    <li>Форумы</li>
+</ul>
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th>Проект</th>
+        <th style="width: 350px;">Количество новых сообщений</th>
+    </tr>
+    {% for n in new_posts %}
+        <tr>
+            <td><a href="/projects/forum/new_posts/{{ n.id }}/">{{ n.name }}</a></td>
+            <td>{{ n.count }}</td>
+        </tr>
+    {% else  %}
+        <tr>
+            <td colspan="2">Новых сообщений на форумах нет</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

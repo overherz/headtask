@@ -1,0 +1,52 @@
+{% extends app.path('projects','index.html') %}
+
+{% block title %}
+    {% if project %}Редактирование проекта{% else %}Создание проекта{% endif %}
+{% endblock %}
+
+{% block project %}
+{% include "/source/crumbs.html" %}
+    {% if project.id %}{% include app.path('projects','project_menu.html') %}{% endif %}
+    <form id="project_form" class="form-horizontal">
+        <input type="hidden" name="act" value="save_project">
+        {% if project.id %}<input type="hidden" name="id" value="{{project.id}}">{% endif %}
+            <div class="docs-input-sizes">
+                <div class="control-group">
+                    <label class="control-label" for="name">Название проекта</label>
+                    <div class="controls">
+                        <input type="text" name="name" id="name" class="input-xxlarge" value="{{project.name}}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="description">Описание проекта</label>
+                    <div class="controls">
+                        <textarea rows="5" class="input-xxlarge" name="description" id="description">{{project.description}}</textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="url">Ссылка</label>
+                    <div class="controls">
+                        <input type="text" class="input-xxlarge" name="url" id="url" value="{{project.url}}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="archive">Архивный</label>
+                    <div class="controls">
+                        <input type="checkbox" name="archive" id="archive" value="1" {% if project.archive %}checked{% endif %} />
+                    </div>
+                </div>
+                {% if not project.id and access.add_project %}
+                <div class="control-group">
+                    <label class="control-label" for="owner">Личный</label>
+                    <div class="controls">
+                        <input type="checkbox" name="owner" id="owner" value="1" />
+                    </div>
+                </div>
+                {% endif %}
+                <div class="controls">
+                    <button class="btn btn-large btn-primary save_project" type="button">{% if project.id %}Сохранить{% else %}Создать{% endif %}</button>
+                </div>
+            </div>
+    </form>
+<div class="clearfix"></div>
+{% endblock %}

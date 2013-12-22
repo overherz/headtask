@@ -1,0 +1,47 @@
+{% if options %}
+<table class="controls-tbl" style="margin-top:10px;width:100%;">
+    <caption>Настройки</caption>
+    <tr>
+        <th>Название</th>
+        <th>Значение</th>
+        {% if dev_mode %}<th colspan="1">Управление</th>{% endif %}
+    </tr>
+    {% for g in options %}
+    {% if g.id_parent > 0 %}
+        <tr>
+            <td style="font-weight: bold;" colspan="{{ dev_mode ? '3' : '2' }}">{{ g.group_name }}</td>
+        </tr>
+    {% endif %}
+    {% for o in g.sub %}
+    <tr>
+        <td style="width:300px;padding:5px;" title="{{o.key_name}}">{{o.name}}
+            <div style="font-size: 11px;">{{ o.description }}</div>
+        </td>
+        <td style="padding:5px;">
+            {% if o.type == 'text' %}
+                <input type='text' name="{{o.key_name}}" value="{{o.value}}" oname="{{o.name}}" class="input_text">
+            {% elseif o.type == 'textarea' %}
+            <textarea name='{{o.key_name}}' class="input_text" style="height:150px;" oname="{{o.name}}">{{o.value}}</textarea>
+            {% elseif o.type == 'checkbox' %}
+            <input type='checkbox' name='{{o.key_name}}' value="{{o.value}}" oname="{{o.name}}" {% if o.value == '1' %}checked{% endif %}>
+            {% elseif o.type == 'select' or o.type == 'multy_select' %}
+                {% if o.options %}
+                    <select oname="{{o.name}}" name="{{o.key_name}}" {% if o.type == 'multy_select' %}{% if o.options|length > 4 %}size='4'{% else %}size='{{o.options|length}}'{% endif %} multiple{% endif %}>
+                    {% for k,op in o.options %}
+                        <option value="{{k}}" {% if k in o.value %}selected{% endif %}>{{op}}</option>
+                    {% endfor %}
+                    </select>
+                {% endif %}
+            {% elseif o.type == 'radio' %}
+                {% for k,op in o.options %}
+                    <input oname="{{o.name}}" type="radio" name="{{o.key_name}}" value="{{k}}" {% if k in o.value %}checked{% endif %}> {{op}}
+                {% endfor %}
+            {% endif %}
+        </td>
+        {% if dev_mode %}<td style="width: 1px;"><a href="/admin/options/constructor/{{o.id}}" class="edit-btn"></a></td>{% endif %}
+    {% endfor %}
+    {% endfor %}
+</table>
+{% else %}
+настроек не найдено
+{% endif%}

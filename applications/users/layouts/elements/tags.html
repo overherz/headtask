@@ -1,0 +1,24 @@
+{% if search %}
+    {% for tag in tags %}
+    <span>{{tag}} <a href="" add_tag="{{tag}}"><img src="/source/images/addtag.png" title="Добавить" style="vertical-align: middle;"></a> {% if not loop.last %},{% endif %}</span>
+    {% else %}
+    ничего не найдено
+    {% endfor %}    
+{% else %}
+
+{% if popup %}
+
+<div style="width:700px;">
+    {% for tag in tags %}
+        <span style="font-size:16px;margin-right: 10px;line-height: 20px;white-space: nowrap;">
+            <a href="" class="tag">{{tag}}</a>{% if not loop.last %}, {% endif %}
+        </span>
+    {% endfor %}
+</div>
+{% else %}
+    {% for tag in tags %}
+        <span tag="{{tag}}" style="font-size:18px;margin-right: 10px;line-height: 28px;white-space: nowrap;"><a href="/articles/?tag={{tag}}">{{tag}}</a> <a href="" del_tag="{{tag}}"><img src="/source/images/del.png" title="Удалить" style="vertical-align: middle;margin-top: -3px;"></a>{% if not loop.last %},{% endif %}</span>
+    {% endfor %}
+{% endif %}
+
+{% endif %}

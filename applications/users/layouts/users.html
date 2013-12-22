@@ -1,0 +1,19 @@
+{% extends "/source/index.html" %}
+
+{% block title %}Пользователи{% endblock %}
+
+{% block js %}
+    <script type ="text/javascript" src="/source/js/search.js"></script>
+    <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+{% endblock %}
+
+{% block context %}
+    <form action="" id="search_form" method="post" style="margin: 0px;">
+        <input type="text" size="50" name="search" class="input-large" placeholder="Поиск">
+        <input type="hidden" name="page" value="">
+    </form>
+    <div class="clearfix"></div>
+    <div id="search_result">
+        {% include app.path('users','users_table.html') %}
+    </div>
+{% endblock %}

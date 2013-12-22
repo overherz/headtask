@@ -1,0 +1,45 @@
+{% extends "/source/index.html" %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('feedback','feedback.css')}}">
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function($) {
+        $(document).on("click",".feedback_button",function(){
+            user_api($(".feedback_form").serialize(),function(res){
+                show_message("success","Сообщение отправлено");
+                redirect("/",2);
+            },function(res){
+                $("#feedback_captcha").html(res.captcha_html);
+                if ($(".error #captcha_name").length < 1) $("#captcha_name").append("<span class='error' id='captcha'></span>")
+                $(".feedback_form .error").hide();
+                $.each(res,function(k,v){
+                    $(".feedback_form #"+k+"").text(v).show();
+                })
+            },'/feedback/');
+            return false;
+        })
+    });
+</script>
+{% endblock %}
+{% block beforecont %}
+<div class="crumbs_block">
+    <h4 class="crumbs"><a href="/">Главная</a> / Форма обратной связи</h4>
+</div>
+{% endblock %}
+{% block leftside %}
+    {% include "/source/banners_left.html" %}
+{% endblock %}
+{% block body %}
+<form class="feedback_form">
+    <input type="hidden" name="act" value="send_feedback">
+    <div>ФИО <span class="error" id="fio"></span></div>
+    <div><input type="text" name="fio" style="width:350px;"></div>
+    <div>E-mail <span class="error" id="email"></span></div>
+    <div><input type="text" name="email" style="width:350px;"></div>
+    <div>Текст <span class="error" id="text"></span></div>
+    <div><textarea name="text" style="width:350px;height:150px;"></textarea></div>
+    <div id="feedback_captcha">{{captcha|raw}}</div>
+    <input type="submit" value="Отправить" class="feedback_button newbtn" style="margin-top: 10px;">
+</form>
+{% endblock %}

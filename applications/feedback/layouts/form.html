@@ -1,0 +1,32 @@
+<script>
+    $(document).ready(function($) {
+        $(document).on("click",".feedback_button",function(){
+            user_api($(".feedback_form").serialize(),function(res){
+                $(".feedback_form").after("<div style='color:green;'>Сообщение отправлено</div>")
+                $(".feedback_form").hide();
+            },function(res){
+                $("#feedback_captcha").html(res.captcha_html);
+                if ($(".error #captcha_name").length < 1) $("#captcha_name").append("<span class='error' id='captcha'></span>")
+                $(".feedback_form .error").hide();
+                $.each(res,function(k,v){
+                    $(".feedback_form #"+k+"").text(v).show();
+                })
+            },'/feedback/');
+            return false;
+        })
+    });
+</script>
+<div class="title_block">Обратная связь</div>
+<form class="feedback_form">
+    <input type="hidden" name="act" value="send_feedback">
+    <div class="feedback_title">ФИО<sup>*</sup> <span class="error" id="fio"></span></div>
+    <div><input type="text" name="fio" style="width:350px;" class="input_field"></div>
+    <div class="feedback_title">E-mail<sup>*</sup> <span class="error" id="email"></span></div>
+    <div><input type="text" name="email" style="width:350px;" class="input_field"></div>
+    <div class="feedback_title">Телефон <span class="error" id="phone"></span></div>
+    <div><input type="text" name="phone" style="width:350px;" class="input_field"></div>
+    <div class="feedback_title">Текст<sup>*</sup> <span class="error" id="text"></span></div>
+    <div><textarea name="text" style="width:350px;height:150px;" class="input_field"></textarea></div>
+    <div id="feedback_captcha" style="margin-left: 25px;">{{captcha|raw}}</div>
+    <input type="submit" value="Отправить" class="feedback_button newbtn" style="margin-top: 10px;margin-left: 25px;">
+</form>

@@ -1,0 +1,21 @@
+.left_side,.left_side > div:first-child {
+    width: 656px;
+    overflow: hidden;
+    max-width: 656px;
+}
+
+.right_side,.right_side > div:first-child {
+    width: 341px;
+    max-width: 341px;
+    overflow: hidden;
+}
+
+.most_articles {
+    color: #326901;
+    font: 12px Tahoma,sans-serif;
+    font-weight: bold;
+}
+
+.rotator {
+    background: url(/source/images/slider/sl3.jpg) no-repeat;
+}

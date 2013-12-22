@@ -1,0 +1,15 @@
+{% extends "/source/index.html" %}
+
+{% block js %}
+<script type ="text/javascript" src="{{app.path('projects','logs.js')}}"></script>
+<script src="http://yandex.st/jquery-ui/1.10.0/i18n/jquery.ui.datepicker-ru.min.js"></script>
+{% endblock %}
+
+{% block context %}
+<div style="text-align: center;">
+    <input type="text" name="start" value="{{start}}" class="input-small" readonly> <i class="icon-resize-horizontal" style="font-size: 20px;"></i> <input type="text" name="end" value="{{end}}" class="input-small" readonly>
+</div>
+<div id="result">
+    {% include app.path('projects','logs.html') %}
+</div>
+{% endblock %}

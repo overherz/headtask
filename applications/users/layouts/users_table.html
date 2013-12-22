@@ -1,0 +1,38 @@
+{% include '/source/jpaginator_boot.html' %}
+<table class="table table-bordered table-condensed table-hover">
+    <tr>
+        <th style="width: 100px;"></th>
+        <th>Имя</th>
+        <th>Группа</th>
+        <th style="width: 10px;">Статус</th>
+        <th style="width: 200px;">Контакты</th>
+        <th style="width: 1px;">Активность</th>
+    </tr>
+    {% for u in users %}
+    <tr>
+        <td style="text-align: center;"><a href="/users/~{{u.id_user}}/">{% if u.avatar %}<img src="/uploads/users/ava_small/{{u.avatar|real_path}}" class="img-polaroid">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}</a></td>
+        <td><a href="/users/~{{u.id_user}}/" style="font-weight: bold;">{{u.fio}}</a><div class="nickname">{{u.nickname}}</div></td>
+        <td style="color:{{ u.color }};font-weight: bold;white-space: nowrap;width: 1px;">{{ u.group_name }}</td>
+        <td style="text-align: center;">
+            {% if u.last_user_action >= globals.time %}
+                <div class="user_online big"></div>
+            {% else %}
+                <div class="user_offline big"></div>
+            {% endif %}
+        </td>
+        <td>
+            {% if u.skypename %}<div><span style="font-weight: bold;">Skype:</span> <a href="skype:{{u.skypename}}?chat">{{ u.skypename }}</a>{% endif %}</div>
+            {% if u.mphone %}<div><span style="font-weight: bold;">М. тел:</span> {{ u.mphone }}{% endif %}</div>
+            {% if not u.skypename and not u.mphone %}&nbsp;{% endif %}
+        </td>
+        <td>
+            {% if u.last_user_action %}{{ u.last_user_action|date('d.m.Y H:i') }}
+            {% else %}дата неизвестна
+            {% endif %}
+        </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6">Пользователи не найдены</td></tr>
+    {% endfor %}
+</table>
+{% include '/source/jpaginator_boot.html' %}

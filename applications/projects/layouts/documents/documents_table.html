@@ -1,0 +1,19 @@
+{% include '/source/jpaginator_boot.html' %}
+<table class="table table-bordered table-hover table-condensed" id="documents_table">
+    <tr>
+        <th>Название</th>
+        <th>Дата</th>
+        <th>Автор</th>
+        {% if access.documents %}<th></th>{% endif %}
+    </tr>
+    <tbody>
+    {% if documents %}
+    {% for n in documents %}
+        {% include app.path('projects','documents/documents_element.html') %}
+    {% endfor %}
+    {% else %}
+    <td colspan="4" id="no_file">документов нет</td>
+    {% endif %}
+    </tbody>
+</table>
+{% include '/source/jpaginator_boot.html' %}

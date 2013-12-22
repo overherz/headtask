@@ -1,0 +1,23 @@
+<script>
+    $(document).ready(function($) {
+        $('#search_form input[name="q"]').keyup(function(e){
+             var keyCode = e.keyCode || e.which;
+             if (keyCode != 9)
+             {
+                 clearTimeout(window.timer);
+                 window.timer = setTimeout(function(){$('#search_form').submit();},500);
+             }
+        }).cursorToEnd();
+
+        $("#search_form input[type='checkbox']").live("click",function(){
+            $('#search_form').submit();
+        })   
+
+        $("#search_form label").inFieldLabels();
+    });
+</script>
+
+<p style="position:relative;margin:0px;"><label for="q" style="position:absolute;display: none;top:4px; left:5px;color:#888;font-size:12px;">Поиск</label>
+<input type="text" autocomplete="off" name="q" value="{{search}}" id="q" class="input w100">
+<div class="search_list"></div>
+</p>     

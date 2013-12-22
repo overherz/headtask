@@ -1,0 +1,17 @@
+{% extends "/source/index.html" %}
+{% block title %}{% if page.title %}{{page.title}}{% else %}{{ page.name }}{% endif %}{% endblock %}
+{% block keywords %}{% if page.keywords %}{{page.keywords}}{% else %}{{parent()}}{% endif %}{% endblock %}
+{% block description %}{% if page.description %}{{page.description}}{% else %}{{parent()}}{% endif %}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('pages','pages.css')}}">
+{% endblock %}
+{% block js %}
+<script type ="text/javascript" src="{{app.path('pages','pages.js')}}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="title_block">{{page.name}}</div>
+<div class="content_text"><div class="wysiwyg">{{page.text|raw}}</div></div>
+{% endblock %}
+

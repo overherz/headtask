@@ -1,0 +1,58 @@
+{% extends app.path('projects','project.html') %}
+
+{% block title %}
+{% if news %}Редактирование новости{% else %}Добавление новости{% endif %}
+{% endblock %}
+
+{% block js %}
+{{parent()}}
+<script type ="text/javascript" src="/source/js/ckeditor/ckeditor.js"></script>
+
+<script src="{{app.path('projects','tasks.js')}}"></script>
+{% endblock %}
+
+{% block project_data %}
+<form id="news_form" class="form-horizontal">
+    <input type="hidden" name="act" value="save_news">
+    {% if news.id %}<input type="hidden" name="id" value="{{news.id}}">{% endif %}
+        <div class="docs-input-sizes">
+            <div class="control-group">
+                <label class="control-label" for="name">Название</label>
+                <div class="controls">
+                    <input type="text" name="name" id="name" class="input-xxlarge" value="{{news.name}}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="description">Текст новости</label>
+                <div class="controls">
+                    <div class="wysiwyg"><textarea rows="5" class="input-xxlarge" name="description" id="description">{{news.description}}</textarea></div>
+                </div>
+            </div>
+            {% if users %}
+            <div class="control-group">
+                <label class="control-label" for="notifications">Уведомления</label>
+                <div class="controls">
+                    <table class="table table-bordered table-condensed" style="width: auto;">
+                        <tr>
+                            <th>Имя</th>
+                            <th style="white-space: nowrap;">Email <input type="checkbox" id="checkbox_email"></th>
+                            <th style="white-space: nowrap;">Sms <input type="checkbox" id="checkbox_sms"></th>
+                        </tr>
+                        {% for u in users %}
+                        <tr>
+                            <td style="white-space: nowrap;">{{u.fio}} {{u.nickname}}</td>
+                            <td style="text-align: right;"><input type="checkbox" class="checkbox_email" name="email[]" value="{{u.id_user}}"></td>
+                            <td style="text-align: right;"><input type="checkbox" class="checkbox_sms" name="sms[]" value="{{u.id_user}}"></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+            <div style="text-align: center">
+                <button class="btn btn-large btn-primary save_news" type="button">{% if project.id %}Сохранить{% else %}Создать{% endif %}</button>
+            </div>
+        </div>
+</form>
+<div class="clearfix"></div>
+{% endblock %}

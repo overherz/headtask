@@ -1,0 +1,32 @@
+{% extends "/source/html/admin.html" %}
+{% block title %}
+    &rarr; Статические страницы
+{% endblock %}
+{% block css %}
+    
+{% endblock %}
+{% block js %}
+    ,"/source/js/search.js"
+    ,"/source/js/ckeditor/ckeditor.js"
+    ,"{{app.path('pages','pages_admin.js')}}"
+{% endblock %}
+{% block body %}
+<form action="" id="search_form" method="post" style="margin-bottom:20px;">
+    Поиск:&nbsp;<input type="text" size="50" name="search" class="input">
+    <input type="hidden" name="page">
+    {% for k,f in form%}
+    &nbsp;{{f.label}}
+        {% if f.type == 'select' %}
+            &nbsp;<select name="{{k}}">
+                {% for j,o in f.options %}
+                <option value="{{j}}" {% if f.selected == j %}selected{% endif %}>{{o}}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+    {% endfor %}
+</form>
+
+<div id="search_result">{% include '/applications/pages/layouts/admin/pages_table.html' %}</div>
+
+{% include '/applications/pages/layouts/admin/form.html' %}
+{% endblock %}

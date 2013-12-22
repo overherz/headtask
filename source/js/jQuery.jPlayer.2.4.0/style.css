@@ -1,0 +1,109 @@
+.player {
+    width: 100%;
+    position: relative;
+    margin-bottom: 3px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+#controls {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+#controls a {
+    outline: none
+}
+
+#controls .jp-play {
+    width: 16px;
+    height: 16px;
+    background: url(/source/js/jQuery.jPlayer.2.2.0/playpause.gif) no-repeat;
+    float: left;
+}
+
+#controls .jp-pause {
+    width: 16px;
+    height: 16px;
+    background: url(/source/js/jQuery.jPlayer.2.2.0/playpause.gif) no-repeat;
+    background-position: 0px -16px;
+    float: left;
+    display: none;
+}
+
+#controls a.jp-play:hover, #controls a.jp-pause:hover {
+    opacity: 1;
+    -webkit-transition: opacity ease 0.3s
+}
+
+#controls .jp-progress {
+    margin-top: 3px;
+    cursor: pointer;
+    width: 91%;
+    float: left;
+}
+
+#controls .jp-seek-bar {
+    background-color: #aedb86;
+    height: 5px;
+}
+
+#controls .jp-play-bar {
+    background-color: #469806;
+    height: 5px;
+}
+
+#controls .track {
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+#controls .timer {
+    float: right;
+    font-size: 14px;
+    margin-right: 16px;
+}
+
+#controls .timer div {
+    display: inline;
+}
+
+#controls .jp-duration {
+}
+
+div.jp-volume-bar {
+    overflow:hidden;
+    background: #aedb86;
+    width:5%;
+    height:5px;
+    cursor: pointer;
+    float: right;
+    margin-top: 3px;
+    margin-right: 18px;
+}
+
+div.jp-volume-bar-value {
+    background: #469806;
+    width:0px;
+    height:5px;
+}
+
+.progress {
+    display: none;
+}
+
+.c_b {
+    margin-top: 3px;
+}
+
+.audio-delete {
+    width: 11px;
+    height: 11px;
+    background: url(/source/js/jQuery.jPlayer.2.2.0/audio_delete.gif) no-repeat;
+    float: right;
+    margin-left: 5px;
+    margin-top: 3px;
+    display: none;
+    cursor: pointer;
+}

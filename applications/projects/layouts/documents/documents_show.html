@@ -1,0 +1,25 @@
+{% extends app.path('projects','project.html') %}
+
+{% block title %}
+{% if task %}{% endif %}
+{% endblock %}
+
+{% block js %}
+{{parent()}}
+<script src="{{app.path('projects','tasks.js')}}" xmlns="http://www.w3.org/1999/html"></script>
+{% endblock %}
+
+{% block project_data %}
+<ul class="breadcrumb second">
+    <li><span style="font-weight: bold;">Дата:</span> {{documents.created|date('d.m.Y H:i:s')}}</li>
+    <li><span style="font-weight: bold;margin-left: 20px;">Автор:</span> {{documents.fio}} <span style="color:silver;">{{documents.nickname}}</span> </li>
+
+    {% if access.documents %}
+    <div class="btn-group" style="float: right;margin-right: 2px;">
+        <a class="btn btn-foxtrot btn-small" href="/projects/documents/edit/{{documents.id}}"><i class="icon-pencil icon-white"></i></a>
+        <a class="btn btn-foxtrot btn-small" delete_documents={{documents.id}} href="" mode='inside'><i class="icon-trash icon-white"></i></a>
+    </div>
+    {% endif %}
+</ul>
+<div class="wysiwyg">{{documents.description|raw}}</div>
+{% endblock %}

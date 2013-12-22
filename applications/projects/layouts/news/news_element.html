@@ -1,0 +1,13 @@
+<tr id="news{{n.id}}">
+    <td><a href="/projects/news/show/{{n.id}}/">{{n.name}}</a></td>
+    <td>{{n.created|date('d.m.Y H:i:s')}}</td>
+    <td><a href="/users/~{{n.author}}/" style="color:{{ n.color }};font-weight: bold;" title="{{ n.group_name }}">{{n.fio}}</a><div class="nickname">{{n.nickname}}</div></td>
+    {% if access.news %}
+    <td style="width: 1px;">
+        <div class="btn-group">
+            <a class="btn btn-purple btn-small" href="/projects/news/edit/{{n.id}}"><i class="icon-pencil icon-white"></i></a>
+            <a class="btn btn-purple btn-small" delete_news={{n.id}} href=""><i class="icon-trash icon-white"></i></a>
+        </div>
+    </td>
+    {% endif %}
+</tr>

@@ -1,0 +1,39 @@
+#add_link {
+    background: #f1f1f1;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    display: none;
+}
+
+svg a:hover {
+    text-decoration: none;
+}
+
+.data-title_node:before,.data-title_edge:before {
+    content: attr(data-menutitle);
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: #DDD;
+    padding: 2px;
+
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+}
+.data-title_node :first-child,.data-title_edge :first-child {
+    margin-top: 20px;
+}
+
+svg {
+    overflow: hidden;
+}
+
+.bio_info {
+    color: #2b6100;
+    font: 16px Tahoma,sans-serif;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}

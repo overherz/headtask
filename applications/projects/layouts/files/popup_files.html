@@ -1,0 +1,20 @@
+{% include '/source/jpaginator_boot.html' %}
+<table class="table table-bordered table-condensed" style="background: #fff;min-width: 700px;" id="{% if not get_popup_files and not post_data.get_popup_files %}files_table{% else %}popup_files_table{% endif %}">
+    <tr>
+        <th>Файл</th>
+        <th>Описание</th>
+        <th>Создан</th>
+        <th>Размер</th>
+        <th>Добавил</th>
+        <th></th>
+    </tr>
+    <tbody>
+    {% if files %}
+    {% for file in files %}
+    {% include app.path('projects','files/popup_file.html') %}
+    {% endfor %}
+    {% else %}
+    <td colspan="5" id="no_file">файлов нет</td>
+    {% endif %}
+    </tbody>
+</table>

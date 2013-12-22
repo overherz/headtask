@@ -1,0 +1,15 @@
+{% for note in notes %}
+
+<table class="articlelist" border="0" cellspacing="0" cellpadding="0" {% if loop.last %}style="border-bottom: none;"{% endif %}>
+<tr>
+    <td colspan="2">
+        <b><a href="/users/notes/show_note/{{note.id}}/">{{note.name}}</a><br>
+    </td>
+</tr>
+<tr>
+    <td class="userinfo-alist" style="padding-bottom: 15px;">Дата: {{note.created|date("d.m.y H:i")}}</td>
+</tr>
+</table>
+{% else %}
+заметок нет
+{% endfor %}

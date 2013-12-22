@@ -1,0 +1,58 @@
+{% include '/source/jpaginator_boot.html' %}
+<table class="table table-bordered table-hover table-condensed" xmlns="http://www.w3.org/1999/html">
+    <tr>
+        <th style="width: 100px;"></th>
+        <th>Имя</th>
+        <th>Задачи</th>
+        <th style="width: 10px;">Статус</th>
+        <th style="width: 200px;">Контакты</th>
+        <th style="width: 1px;">Активность</th>
+        {% if access.users %}<th></th>{% endif %}
+    </tr>
+    {% for u in users %}
+        <tr {% if u.role == 'manager' %}class="success"{% endif %} id="tr_user{{u.id_user}}">
+            <td style="text-align: center;"><a href="/users/~{{u.id_user}}/">{% if u.avatar %}<img src="/uploads/users/ava_small/{{u.avatar|real_path}}" class="img-polaroid">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}</a></td>
+            <td>
+                <a href="/users/~{{u.id_user}}/" style="color:{{ u.color }};font-weight: bold;" title="{{ u.group_name }}">{{u.fio}}</a>
+                <div class="nickname" style="margin-bottom: 15px;">{{u.nickname}}</div>
+                {% if u.role == "manager" %}<span style="font-weight: bold;">Менеджер проекта</span>
+                {% elseif u.role == "user" %}<span style="font-weight: bold;">Участник проекта</span>
+                {% endif %}
+                <div class="nickname">{{ u.description }}</div>
+            </td>
+            <td>
+                <div style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].all|default(0)}}</span> {{ "stats_tasks_all"|lang }}</div>
+                <div style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].new|default(0)}}</span> {{ "stats_tasks_new"|lang(stats[u.id_user].new|default(0)) }}</div>
+                <div style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}</div>
+                <div style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(stats[u.id_user].closed|default(0)) }}</div>
+                <div style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats[u.id_user].rejected|default(0)) }}</div>
+            </td>
+            <td style="text-align: center;">
+                {% if u.last_user_action >= globals.time %}
+                    <div class="user_online big"></div>
+                {% else %}
+                    <div class="user_offline big"></div>
+                {% endif %}
+            </td>
+            <td>
+                {% if u.skypename %}<div><span style="font-weight: bold;">Skype:</span> <a href="skype:{{u.skypename}}?chat">{{ u.skypename }}</a>{% endif %}</div>
+                {% if u.mphone %}<div><span style="font-weight: bold;">М. тел:</span> {{ u.mphone }}{% endif %}</div>
+                {% if not u.skypename and not u.mphone %}&nbsp;{% endif %}
+            </td>
+            <td>
+                {% if u.last_user_action %}{{ u.last_user_action|date('d.m.Y H:i') }}
+                {% else %}дата неизвестна
+                {% endif %}
+            </td>
+            {% if access.users %}
+            <td style="width: 1px;">
+                <div class="btn-group">
+                    <a class="btn btn-primary btn-small" href="/projects/users/edit/{{ project.id }}/{{ u.id_user }}/"><i class="icon-pencil icon-white"></i></a>
+                    <a class="btn btn-primary btn-small" href="" delete_project_user="{{ u.id_user }}"><i class="icon-trash icon-white"></i></a>
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+{% include '/source/jpaginator_boot.html' %}

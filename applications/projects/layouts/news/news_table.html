@@ -1,0 +1,19 @@
+{% include '/source/jpaginator_boot.html' %}
+<table class="table table-bordered table-hover table-condensed" id="tasks_table">
+    <tr>
+        <th>Название</th>
+        <th>Дата</th>
+        <th>Автор</th>
+        {% if access.news %}<th></th>{% endif %}
+    </tr>
+    <tbody>
+    {% if news %}
+    {% for n in news %}
+        {% include app.path('projects','news/news_element.html') %}
+    {% endfor %}
+    {% else %}
+    <td colspan="4" id="no_file">новостей нет</td>
+    {% endif %}
+    </tbody>
+</table>
+{% include '/source/jpaginator_boot.html' %}

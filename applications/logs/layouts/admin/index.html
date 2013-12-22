@@ -1,0 +1,35 @@
+{% extends "/source/html/admin.html" %}
+{% block title %}
+    &rarr; Логи авторизации
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('logs','logs.css')}}">
+{% endblock %}
+{% block js %}
+    ,"/source/js/search.js"
+    ,"{{app.path('logs','logs_admin.js')}}"
+{% endblock %}
+
+{% block message %}
+{% if type == 'login' %}Показаны логи за последние 3 месяца{% endif %}
+{% endblock %}
+
+{% block body %}
+<form action="" id="search_form" method="post" style="margin-bottom:20px;">
+    Поиск:&nbsp;<input type="text" size="50" name="search" class="input">
+    <input type="hidden" name="page">
+    {% for k,f in form%}
+    &nbsp;{{f.label}}
+        {% if f.type == 'select' %}
+            &nbsp;<select name="{{k}}">
+                {% for j,o in f.options %}
+                <option value="{{j}}" {% if f.selected == j %}selected{% endif %}>{{o}}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+    {% endfor %}
+</form>
+
+<div id="search_result">{% include '/applications/logs/layouts/admin/table.html' %}</div>
+
+{% endblock %}

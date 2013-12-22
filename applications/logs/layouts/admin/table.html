@@ -1,0 +1,15 @@
+<table class="controls-tbl w100" all_pages>
+    <caption>Логи {% include "/source/html/jpaginator.html" %}</caption>
+    <tr>
+        <th width="200">Тип</th>
+        <th width="300">Пользователь</th>
+        <th width="150">Дата</th>
+        <th width="150">IP</th>
+        <th>Описание</th>
+    </tr>
+    {% for i in logs %}
+    {% include '/applications/logs/layouts/admin/list.html' %}
+    {% else %}
+    <tr><td colspan="5">Ничего не найдено</td></tr>
+    {% endfor %}
+</table>

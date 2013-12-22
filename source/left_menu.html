@@ -1,0 +1,11 @@
+<div class="well sidebar-nav">
+    <ul class="nav nav-list">
+        {% for l in left_menu %}
+            <li class="nav-header">Проекты</li>
+            {% for link in l.links %}
+                <li {% if link.active %}class="active"{% endif %}><a href="{{link.target}}">{{link.name}}</a></li>
+            {% endfor %}
+        {% else %}ничего не найдено
+        {% endfor %}
+    </ul>
+</div><!--/.well -->

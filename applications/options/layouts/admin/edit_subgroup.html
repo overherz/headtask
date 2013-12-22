@@ -1,0 +1,16 @@
+<form class="subgroup">
+    <input type="hidden" name="act" value="save_subgroup">
+    <input type="hidden" name="act_group" value="{{act}}">
+    {% if subcategory.id %}<input type="hidden" name="id" value="{{subcategory.id}}">{% endif %}
+    <div class="body"><span class="title">Группа:</span>
+        <div>
+            <select name='category'>
+                {% for c in cats %}
+                    <option value="{{ c.id }}" {% if subcategory.id_parent == c.id %}selected{% endif %}>{{ c.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="body"><span class="title">Название:</span>
+        <div><input type="text" name="name" value="{{subcategory.name}}" class="input_text"></div></div>
+</form>

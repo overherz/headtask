@@ -1,0 +1,37 @@
+<tr id="file{{file.id}}">
+    <td style="width: 1px;text-align:center;">
+        {% if file.type == "image" %}
+            <a href="/uploads/projects/projects_big/{{file.file|real_path}}" class="fancybox" rel="main">
+                <img src="/uploads/projects/projects_small/{{file.file|real_path}}">
+            </a>
+        {% else %}
+            <a href="/uploads/projects/{{file.file|real_path}}"><img src="/source/images/icons/file.png"></a>
+        {% endif%}
+        {% if not get_popup_files and not post_data.get_popup_files %}<input type="hidden" name="files[]" value="{{file.id}}">{% endif %}
+    </td>
+    <td>
+        {% if file.type == "image" %}
+        <a href="/uploads/projects/projects_big/{{file.file|real_path}}">{{file.name}}</a>
+        {% else %}
+        <a href="/uploads/projects/{{file.file|real_path}}">{{file.name}}</a>
+        {% endif%}
+    </td>
+    <td>{{file.created|date('d.m.Y H:i:s')}}</td>
+    <td>{{ file.size }}</td>
+    <td><a href="/users/~{{file.owner}}/" style="color:{{ file.color }};font-weight: bold;" title="{{ file.group_name }}">{{file.fio}}</a><div class="nickname">{{file.nickname}}</div></td>
+    {% if not show_task %}
+    {% if access.delete_files and not to_task %}
+    <td style="width: 1px;">
+        <div class="btn-group">
+            <a class="btn btn-info btn-small" delete_file={{file.id}} href=""><i class="icon-trash icon-white"></i></a>
+        </div>
+    </td>
+    {% elseif not get_popup_files and not post_data.get_popup_files and to_task %}
+    <td style="width: 1px;">
+        <div class="btn-group">
+            <a class="btn btn-info btn-small" {% if to_task %}delete_file_from_task={{file.id}}{% endif %} href=""><i class="icon-trash icon-white"></i></a>
+        </div>
+    </td>
+    {% endif %}
+    {% endif %}
+</tr>

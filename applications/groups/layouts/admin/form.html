@@ -1,0 +1,40 @@
+<div class="add_html">
+<form id="group_form">
+    <input type="hidden" name="id" value="{{group.id}}">
+    <input type="hidden" name="act" value="save">
+    <input type="hidden" name="mode" value="{{mode|default('new')}}">
+    <div class="body"><span class="title">Название:</span>
+        <div><input type="text" name="name" class="input" style="width:350px;" value="{{group.name}}"></div></div>
+    <div class="body"><span class="title">Цвет:</span>
+        <input type="hidden" name="color" class="input" value="{{group.color|default('#000000')}}"></div>
+
+{% if globals.admin.id_group == 1 and group.id != 1 %}
+    <div class="body"><span class="title">Разрешения</span>
+        <div>
+            <ul style="list-style: none;">
+                <input name="access_site[authorization]" type="checkbox" {% if group.access_site.authorization %}checked{% endif %} style="margin-bottom: 3px;"> Авторизация
+            </ul>
+        </div></div>
+    <div class="body"><span class="title">Доступ в панель управления: </span
+        <div><input type="checkbox" name="access_admin" value="1" {% if group.access_admin == 1 %}checked{% endif %}></div>
+    <div class="body"><div class="title" style="font-weight: bold;color:#A00002;text-align: center;">Ограничения панели управления</div>
+        <table><tr>
+        {% for k,l in globals.root_menu %}
+            {% if group_name != l.name %}{% set group_name = l.name %}{% endif %}<td valign="top" style="padding-right: 5px;"><div style="background:#dcdcdc;padding:2px;text-align: center;padding-left:5px;padding-right: 5px;">{{group_name}} <input type="checkbox" class="check_all"></div><ul>
+            {% for h,g in l.submenu %}
+            {% if g.count > 1 and g.category != "" %}
+                {% if category != g.category %}<li style="margin-left: 0px;list-style: none;">{{g.category}}{% endif %}
+                {% set category = g.category %}{% set show_category = true %}
+            {% else %}
+            {% set show_category = false %}
+            {% endif %}
+                <li style="margin-left: {% if show_category %}15{% else %}0{% endif %}px;list-style: none;"><input name="access[]" type="checkbox" value="{{g.url}}" {% if g.url in group.access %}checked{% endif %} style="margin-bottom: 3px;"> {{g.name}}</li>
+            {% if show_category %}</li>{% endif %}
+            {% endfor %}
+            </ul></td>
+            {% if loop.index % 3 == 0 %}</tr><tr>{% endif %}
+        {% endfor %}
+        </table></div>
+{% endif %}
+</form>
+</div>

@@ -1,0 +1,6 @@
+{% if edit %}
+Изменена новость "{{ old_news_name }}" в проекте
+{% else %}
+Добавлена новость "{{ news_name }}" в проект
+{% endif %}
+&nbsp;"{{name}}" <a href="http://{{server_name}}/projects/news/show/{{news}}/">http://{{server_name}}/projects/news/show/{{news}}/</a>

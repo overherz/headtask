@@ -1,0 +1,26 @@
+{% if globals.user %}
+<ul class="user_menu">
+    
+    {% if globals.show_add_article or globals.show_add_article_admin %}
+    <li style="margin-bottom: 10px;border: none;"><a style="color:#FF5400;" {% if globals.user_menu == 'addart' %}class="active"{% endif %} href="/articles/add/{% if globals.show_add_article != 'null' %}{{globals.show_add_article}}/{% endif %}">Добавить {% if globals.show_add_article_admin %}материал{% else %}статью{% endif %}{% if globals.show_add_article != 'null' %} в сообщество{% endif %}</a></li>    
+    {% endif %}   
+    
+    <li><a {% if globals.user_menu == 'profile' %}class="active"{% endif %} href="/users/~{{globals.user.id_user}}/">Моя страница</a></li>
+    <li><a {% if globals.user_menu == 'messages' %}class="active"{% endif %} href="/users/messages/">Мои диалоги <span id="count_new_messages_box" style="display: none;">(<span id="count_new_messages"></span>)</span></a></li>
+    <li style="white-space: nowrap;"><a {% if globals.user_menu == 'communities' %}class="active"{% endif %} href="/users/communities/">Мои сообщества</a>{% if globals.new_communities > 0 %} <a href="/users/communities/?act=notifications">({{globals.new_communities}}){% endif %}</a></li>
+    <li><a {% if globals.user_menu == 'tags' %}class="active"{% endif %} href="/users/tags/">Мои интересы</a></li>
+    <li><a {% if globals.user_menu == 'comments' %}class="active"{% endif %} href="/users/comments/">Мои дискуссии</a></li>
+    <li><a {% if globals.user_menu == 'contactlist' %}class="active"{% endif %} href="/users/contactlist/">Список контактов</a></li>
+    <!--<li><a href="/companies/~{{globals.user.company_id}}/">Моя компания</a>
+        <ul>
+            <li><a href="#">Партнеры</a></li>
+            <li><a href="#">Сделки</a></li>
+        </ul>
+    </li>-->
+    <li  style="border-bottom: none;"><a href="/users/logout/">Выход</a></li>
+</ul>
+{% else %}
+<ul class="user_menu">
+    <li style="border-bottom: none;"><a href="#" class="loginlink">Войти</a></li>
+</ul>
+{% endif %}

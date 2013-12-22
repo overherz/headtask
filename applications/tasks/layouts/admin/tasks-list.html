@@ -1,0 +1,13 @@
+<tr id="tasks-tr-{{i.id}}">
+    <td>{{i.name}}</td>
+    <td>{{i.controller}}</td>
+    <td>{{i.period}}</td>
+    <td>{% if i.last_start %}{{i.last_start|date('d.m.Y H:i:s')}}{% else %}-{% endif %}</td>
+    <td>{% if i.completed %}{{i.completed|date('d.m.Y H:i:s')}}{% else %}-{% endif %}</td>
+    <td>{{i.next_start|date('d.m.Y H:i:s')}}</td>
+    <td>{% if i.status == "stand" %}не запущен{% elseif i.status == "run" %}<span style="color:green;">запущен</span>{% endif %}</td>
+    <td style="color:red;">{{i.error_message}}</td>
+    <td class="td-align-middle w1"><a title="Запустить" class="run-btn" id="{{i.id}}"></a></td>
+    <td class="td-align-middle w1"><a title="Изменить" class="edit-btn" id="{{i.id}}"></a></td>
+    <td class="td-align-middle w1"><a title="Удалить" class="del-btn" id="{{i.id}}"></a></td>   
+</tr>

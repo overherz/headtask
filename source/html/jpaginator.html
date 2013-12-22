@@ -1,0 +1,14 @@
+{% if paginator.total %}
+    <span class="">{{paginator.from}} - {{paginator.to}} <b>из {{paginator.total}}</b></span>
+{% endif %}
+<span class="paginator">
+{% for i in paginator.num_list %}
+{% if loop.first and i != 1 %}<a href="#" onclick="get_page(1);return false;">1</a>{% if i>2 %}<span>&nbsp;...</span>{% endif %}{% endif %}
+{% if i == paginator.current_page %}
+    <span><b>{{i}}</b></span>
+{% else %}
+    <a href="#" onclick="get_page('{{i}}');return false;">{{i}}</a>
+{% endif %}
+{% if loop.last and i != paginator.get_pages %}{% if i< paginator.get_pages-1 %}<span>...&nbsp;</span>{% endif %}<a href="#" onclick="get_page('{{paginator.get_pages}}');return false;">{{paginator.get_pages}}</a> {% endif %}
+{% endfor %}
+&#160;</span>
