@@ -4,6 +4,31 @@ body {
     /* The html and body elements cannot have any padding or margin. */
 }
 
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(/source/fonts/uYKcPVoh6c5R0NpdEY5A-Q.woff) format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(/source/fonts/MTP_ySUJH_bn48VBG8sNShsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Open Sans Italic'), local('OpenSans-Italic'), url(/source/fonts/O4NhV7_qs9r9seTo7fnsVD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 600;
+    src: local('Open Sans Semibold Italic'), local('OpenSans-SemiboldItalic'), url(/source/fonts/PRmiXeptR36kaC0GEAetxsUW6j0fiq4_bYOAoMNnBhA.woff) format('woff');
+}
+
 body {
     overflow-y: scroll;
     font-family: 'Open Sans', sans-serif !important;
@@ -451,6 +476,7 @@ blockquote:before {
 
 #filter_table th {
     border: 1px solid #DDDDDD;
+    white-space: nowrap;
 }
 
 #hide_filter {

@@ -1,0 +1,62 @@
+{% include '/source/jpaginator_boot.html' %}
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th></th>
+        <th>Проект</th>
+        <th>Задача</th>
+        <th>Статус</th>
+        <th>Приоритет</th>
+        <th>Статус выполнения</th>
+        <th>Ответственный</th>
+        <th>До окончания</th>
+    </tr>
+    {% for task in tasks %}
+        <tr id="task{{task.id}}" {% if task.type == "error" %}class='error'{% endif %}>
+            <td style="text-align: center;width: 10px;">{% if task.task_creater == globals.user.id_user %}<i class="icon-user" style="font-size: 20px;"></i>{% endif %}</td>
+            <td><a href="/projects/~{{task.id_project}}/">{{ task.project_name }}</a></td>
+            <td><a href="/projects/tasks/show/{{task.id}}/">{{task.name}}</a></td>
+            <td>
+                {% if task.status == "new" %}новая
+                {% elseif task.status == "in_progress" %}в процессе
+                {% elseif task.status == "closed" %}закрытая
+                {% elseif task.status == "rejected" %}отклоненная
+                    <i class="icon icon-info-sign get_info" rel="popover" data-original-title="Причина отклонения" data-content="{{task.message}}"></i>
+                {% endif %}
+            </td>
+            <td>
+                {% if task.priority == "1" %}<span class="label">низкий</span>
+                {% elseif task.priority == "2" %}<span class="label label-success">обычный</span>
+                {% elseif task.priority == "3" %}<span class="label label-warning">высокий</span>
+                {% elseif task.priority == "4" %}<span class="label label-important">критический</span>
+                {% endif %}
+            </td>
+            <td>
+                {% set undate = false %}
+                {% if task.end and ((now|date('Y-m-d') > task.end) and (task.status == 'new' or task.status == 'in_progress'))%}
+                    {% set undate = true %}
+                {% endif %}
+
+                <div class="progress progress-striped {% if undate %}progress-danger{% endif %} {% if task.status == "in_progress" %}active{% endif %}">
+                    <div class="bar" style="width: {% if task.percent > 0 %}0%;{% else %}30px;{% endif %}text-align: right;" {% if task.percent > 0 %}data-width="{{task.percent}}"{% endif %}>
+                        <span class="progress_text">{{ task.percent }} %</span>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <a href="/users/~{{task.assigned}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.assigned_name}}</a>
+                <div class="nickname">{{task.assigned_nickname}}</div>
+            </td>
+            <td>{% if undate %}просрочен{% endif %} {% if task.diff != "0" and task.diff != "inf" %}{{ task.diff }} {{ "days"|lang(task.diff) }}{% elseif task.diff == "inf" %}&infin;{% else %}сегодня{% endif %}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">Задачи не найдены</td>
+        </tr>
+    {% endfor %}
+</table>
+{% include '/source/jpaginator_boot.html' %}
+<script>
+    $(document).ready(function ($) {
+        animate_progress_bars();
+    });
+</script>

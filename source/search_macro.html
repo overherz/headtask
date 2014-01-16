@@ -1,7 +1,7 @@
 {% macro input(f,name,label) %}
     {% if label %}&nbsp;{{f.label|raw}}{% endif %}
     {% if f.type == 'select' or f.type == 'multy_select' %}
-    &nbsp;<select name="{{name}}{% if f.type == "multy_select" %}[]{% endif %}" {% if f.type == 'multy_select' %}multiple='true' size='{% if f.options|length > 5 %}5{% else %}{{f.options|length}}{% endif %}'{% endif %}>
+    <select name="{{name}}{% if f.type == "multy_select" %}[]{% endif %}" {% if f.type == 'multy_select' %}multiple='true' size='{% if f.options|length > 5 %}5{% else %}{{f.options|length}}{% endif %}'{% endif %}>
     {% for j,o in f.options %}
     <option value="{{j}}" {% if j in f.selected %}selected{% endif %}>{{o}}</option>
     {% endfor %}

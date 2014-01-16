@@ -1,0 +1,49 @@
+{% extends "/source/index.html" %}
+
+{% block title %}
+Отчет по задачам
+{% endblock %}
+
+{% block js %}
+    <script src="/source/js/jquery.ui.datepicker-ru.min.js"></script>
+    <script type="text/javascript" src="/source/js/search.js"></script>
+    <script type="text/javascript" src="{{ app.path('projects','user_tasks.js') }}"></script>
+{% endblock %}
+
+{% block context %}
+    {% import "/source/search_macro.html" as inputs %}
+    <form action="" id="search_form" method="post" class="form-horizontal" style="margin-bottom:0px;">
+        <input type="hidden" name="page" value="">
+        <table class="table table-condensed table-bordered" style="width: 1px;display: block;" id="filter_table">
+            <tr>
+                <th>Пользователь</th>
+                <th>Дата</th>
+                <th>Статус задачи</th>
+                <th>Приоритет задачи</th>
+                <th>Тип задачи</th>
+                <th>Другое</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="id_user">
+                        <option>&nbsp;</option>
+                        {% for u in users %}
+                            <option value="{{ u.id_user }}">{{ u.fio }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>Начало: <input type="text" name="start" value="{{start}}" class="input-small" readonly>
+                    Окончание: <input type="text" name="end" value="{{end}}" class="input-small" readonly></td>
+                <td>{{ inputs.input(form.status,'status') }}</td>
+                <td>{{ inputs.input(form.priority,'priority') }}</td>
+                <td>{{ inputs.input(form.type,'type') }}</td>
+                <td>
+                    <input type="text" name="search" id="search_label" class="input-large" placeholder="Поиск"><br/><br/>
+                    {{ inputs.input(form.percent,'percent',true) }}
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div class="clearfix"></div>
+    <div id="search_result"></div>
+{% endblock %}

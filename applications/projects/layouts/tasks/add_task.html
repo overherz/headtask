@@ -11,7 +11,7 @@
 
 {% block js %}
     {{parent()}}
-    <script src="http://yandex.st/jquery-ui/1.10.0/i18n/jquery.ui.datepicker-ru.min.js"></script>
+    <script src="/source/js/jquery.ui.datepicker-ru.min.js"></script>
     <script type ="text/javascript" src="/source/js/ckeditor/ckeditor.js"></script>
     <script type ="text/javascript" src="/source/js/fancybox/jquery.fancybox.pack.js"></script>
     {% if access.edit_tasks or access.edit_task or not task %}
@@ -156,7 +156,7 @@
                     <div style="margin-bottom: 10px;">
                     Послать уведомление&nbsp;&nbsp;
                         <input type="checkbox" name="email" checked> по email&nbsp;&nbsp;
-                        <input type="checkbox" name="sms"> по смс
+                        {% if settings.send_sms.value == 1 %}<input type="checkbox" name="sms"> по смс{% endif %}
                     </div>
                     {% endif %}
                     <button class="btn btn-large btn-primary save_task" type="button">{% if task.id %}Сохранить{% else %}Создать{% endif %}</button>

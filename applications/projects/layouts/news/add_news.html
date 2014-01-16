@@ -36,13 +36,17 @@
                         <tr>
                             <th>Имя</th>
                             <th style="white-space: nowrap;">Email <input type="checkbox" id="checkbox_email"></th>
-                            <th style="white-space: nowrap;">Sms <input type="checkbox" id="checkbox_sms"></th>
+                            {% if settings.send_sms.value == 1 %}
+                                <th style="white-space: nowrap;">Sms <input type="checkbox" id="checkbox_sms"></th>
+                            {% endif %}
                         </tr>
                         {% for u in users %}
                         <tr>
                             <td style="white-space: nowrap;">{{u.fio}} {{u.nickname}}</td>
                             <td style="text-align: right;"><input type="checkbox" class="checkbox_email" name="email[]" value="{{u.id_user}}"></td>
-                            <td style="text-align: right;"><input type="checkbox" class="checkbox_sms" name="sms[]" value="{{u.id_user}}"></td>
+                            {% if settings.send_sms.value == 1 %}
+                                <td style="text-align: right;"><input type="checkbox" class="checkbox_sms" name="sms[]" value="{{u.id_user}}"></td>
+                            {% endif %}
                         </tr>
                         {% endfor %}
                     </table>

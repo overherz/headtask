@@ -20,5 +20,7 @@ $GLOBALS['lang'] = array(
     'stats_forum_posts' => array('сообщение','сообщения','сообщений'),
     'stats_projects' => array('проект','проекта','проектов'),
     'stats_personal_tasks' => array('личная задача','личных задач','личных задач'),
+
+    'days' => array('день','дня','дней'),
 );
 ?>

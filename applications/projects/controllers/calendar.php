@@ -71,6 +71,8 @@ class calendar extends \Controller {
 
     function get_calendar_tasks($date)
     {
+        $datetime1 = date_create(date("Y-m-d"));
+
         $query = $this->db->prepare("select pt.id,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
@@ -80,7 +82,17 @@ class calendar extends \Controller {
             order by p.name ASC,pt.name ASC
         ");
         $query->execute(array($_SESSION['user']['id_user'],$_SESSION['user']['id_user'],$_SESSION['user']['id_user'],$date));
-        while ($row = $query->fetch()) $tasks[$row['id']] = $row;
+        while ($row = $query->fetch())
+        {
+            if ($row['end'] != "")
+            {
+                $datetime2 = date_create($row['end']);
+                $interval = date_diff($datetime1, $datetime2);
+                $row['diff'] = $interval->format('%d');
+            }
+            else $row['diff'] = "inf";
+            $tasks[$row['id']] = $row;
+        }
 
         $query = $this->db->prepare("select pt.id,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
             from projects_tasks as pt
@@ -93,6 +105,13 @@ class calendar extends \Controller {
         $query->execute(array($_SESSION['user']['id_user'],$date,$_SESSION['user']['id_user']));
         while ($row = $query->fetch())
         {
+            if ($row['end'] != "")
+            {
+                $datetime2 = date_create($row['end']);
+                $interval = date_diff($datetime1, $datetime2);
+                $row['diff'] = $interval->format('%d');
+            }
+            else $row['diff'] = "inf";
             $tasks[$row['id']] = $row;
             $manager = true;
         }
