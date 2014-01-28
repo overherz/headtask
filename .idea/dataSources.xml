@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1387281584">
+    <data-source source="LOCAL" name="mysql" uuid="47fcce2c-f928-4610-b54b-6438fcad42a6">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://cube-in-cube.ru/tasker</jdbc-url>
+      <user-name>tasker</user-name>
+      <user-password>dfe0dfccdfcddfc2df80df99dfc2df8bdfc2dfcddfc0df82df8e</user-password>
+      <libraries>
+        <library>
+          <url>jar://$PROJECT_DIR$/../../mysql-connector-java-5.1.26-bin.jar!/</url>
+        </library>
+        <library>
+          <url>file://$PROJECT_DIR$/../../mysql-connector-license.txt</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+
