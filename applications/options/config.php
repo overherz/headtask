@@ -7,4 +7,6 @@ $submenu['options'] = array(
     'constructor' => 'Конструктор'
 );
 
+$icon = "fa-cog";
+
 

@@ -53,7 +53,7 @@ class __TwigTemplate_e500e0bfb68aba990097152c1b33d3ae extends Twig_Template
         echo \layout::func_from_text("    ");
         $this->displayParentBlock("js", $context, $blocks);
         echo \layout::func_from_text("
-    <script src=\"http://yandex.st/jquery-ui/1.10.0/i18n/jquery.ui.datepicker-ru.min.js\"></script>
+    <script src=\"/source/js/jquery.ui.datepicker-ru.min.js\"></script>
     <script type =\"text/javascript\" src=\"/source/js/ckeditor/ckeditor.js\"></script>
     <script type =\"text/javascript\" src=\"/source/js/fancybox/jquery.fancybox.pack.js\"></script>
     ");
@@ -391,8 +391,13 @@ class __TwigTemplate_e500e0bfb68aba990097152c1b33d3ae extends Twig_Template
             echo \layout::func_from_text("                    <div style=\"margin-bottom: 10px;\">
                     Послать уведомление&nbsp;&nbsp;
                         <input type=\"checkbox\" name=\"email\" checked> по email&nbsp;&nbsp;
-                        <input type=\"checkbox\" name=\"sms\"> по смс
-                    </div>
+                        ");
+            // line 159
+            if (($this->getAttribute($this->getAttribute((isset($context["settings"]) ? $context["settings"] : null), "send_sms"), "value") == 1)) {
+                echo \layout::func_from_text("<input type=\"checkbox\" name=\"sms\"> по смс");
+            }
+            // line 160
+            echo \layout::func_from_text("                    </div>
                     ");
         }
         // line 162
@@ -422,6 +427,6 @@ class __TwigTemplate_e500e0bfb68aba990097152c1b33d3ae extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  399 => 162,  391 => 156,  389 => 155,  385 => 153,  382 => 152,  379 => 151,  376 => 150,  372 => 149,  368 => 147,  366 => 146,  358 => 140,  343 => 138,  339 => 137,  333 => 133,  324 => 129,  315 => 123,  310 => 120,  304 => 116,  283 => 114,  279 => 113,  272 => 108,  269 => 107,  267 => 106,  263 => 104,  254 => 98,  241 => 90,  235 => 89,  229 => 88,  223 => 87,  217 => 83,  215 => 82,  209 => 79,  201 => 76,  196 => 73,  189 => 71,  182 => 70,  180 => 69,  173 => 68,  169 => 67,  160 => 60,  153 => 56,  148 => 53,  142 => 49,  133 => 48,  129 => 47,  123 => 43,  121 => 42,  115 => 39,  110 => 36,  108 => 35,  105 => 34,  99 => 33,  94 => 30,  88 => 28,  82 => 26,  80 => 25,  77 => 24,  74 => 23,  67 => 20,  63 => 18,  61 => 17,  53 => 13,  50 => 12,  43 => 8,  40 => 7,  32 => 4,  29 => 3,);
+        return array (  404 => 162,  400 => 160,  396 => 159,  391 => 156,  389 => 155,  385 => 153,  382 => 152,  379 => 151,  376 => 150,  372 => 149,  368 => 147,  366 => 146,  358 => 140,  343 => 138,  339 => 137,  333 => 133,  324 => 129,  315 => 123,  310 => 120,  304 => 116,  283 => 114,  279 => 113,  272 => 108,  269 => 107,  267 => 106,  263 => 104,  254 => 98,  241 => 90,  235 => 89,  229 => 88,  223 => 87,  217 => 83,  215 => 82,  209 => 79,  201 => 76,  196 => 73,  189 => 71,  182 => 70,  180 => 69,  173 => 68,  169 => 67,  160 => 60,  153 => 56,  148 => 53,  142 => 49,  133 => 48,  129 => 47,  123 => 43,  121 => 42,  115 => 39,  110 => 36,  108 => 35,  105 => 34,  99 => 33,  94 => 30,  88 => 28,  82 => 26,  80 => 25,  77 => 24,  74 => 23,  67 => 20,  63 => 18,  61 => 17,  53 => 13,  50 => 12,  43 => 8,  40 => 7,  32 => 4,  29 => 3,);
     }
 }

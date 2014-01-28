@@ -24,7 +24,7 @@ $(document).ready(function($) {
         {
             localStorage.setItem('dev_panel',"show");
             $("#dev_panel").slideDown(function(){
-                $(".dev_panel_name").fadeTo('fast',1);
+                $(".dev_panel_name").fadeTo('fast',0.99);
             });
         }
         else

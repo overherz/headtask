@@ -7,7 +7,7 @@ class __TwigTemplate_99c2a7029e9d8cd96b452204ce125752 extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("/source/html/admin.html");
+        $this->parent = $this->env->loadTemplate("/source/admin/index.html");
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
@@ -19,7 +19,7 @@ class __TwigTemplate_99c2a7029e9d8cd96b452204ce125752 extends Twig_Template
 
     protected function doGetParent(array $context)
     {
-        return "/source/html/admin.html";
+        return "/source/admin/index.html";
     }
 
     protected function doDisplay(array $context, array $blocks = array())

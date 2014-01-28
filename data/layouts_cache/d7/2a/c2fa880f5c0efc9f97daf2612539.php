@@ -63,18 +63,18 @@ class __TwigTemplate_d72ac2fa880f5c0efc9f97daf2612539 extends Twig_Template
         // line 9
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "error_message"), "html", null, true));
         echo \layout::func_from_text("</td>
-    <td class=\"td-align-middle w1\"><a title=\"Запустить\" class=\"run-btn\" id=\"");
+    <td class=\"td-align-middle w1\"><a title=\"Запустить\" class=\"fa fa-15x fa-play run-btn\" id=\"");
         // line 10
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("\"></a></td>
-    <td class=\"td-align-middle w1\"><a title=\"Изменить\" class=\"edit-btn\" id=\"");
+    <td class=\"td-align-middle w1\"><a title=\"Изменить\" class=\"fa fa-15x fa-edit edit-btn\" id=\"");
         // line 11
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("\"></a></td>
-    <td class=\"td-align-middle w1\"><a title=\"Удалить\" class=\"del-btn\" id=\"");
+    <td class=\"td-align-middle w1\"><a title=\"Удалить\" class=\"fa fa-15x fa-trash-o del-btn\" id=\"");
         // line 12
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "id"), "html", null, true));
-        echo \layout::func_from_text("\"></a></td>   
+        echo \layout::func_from_text("\"></a></td>
 </tr>
 ");
     }
@@ -91,6 +91,6 @@ class __TwigTemplate_d72ac2fa880f5c0efc9f97daf2612539 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  76 => 12,  72 => 11,  64 => 9,  52 => 7,  44 => 6,  36 => 5,  32 => 4,  28 => 3,  24 => 2,  78 => 19,  71 => 17,  58 => 16,  55 => 15,  37 => 14,  22 => 2,  19 => 1,  149 => 39,  146 => 38,  142 => 36,  138 => 34,  132 => 33,  128 => 31,  113 => 29,  109 => 28,  104 => 27,  102 => 26,  97 => 25,  93 => 24,  86 => 19,  77 => 17,  73 => 16,  70 => 15,  68 => 10,  65 => 13,  59 => 11,  56 => 8,  53 => 9,  47 => 7,  42 => 6,  39 => 5,  34 => 3,  31 => 2,);
+        return array (  76 => 12,  72 => 11,  68 => 10,  64 => 9,  56 => 8,  52 => 7,  44 => 6,  36 => 5,  32 => 4,  28 => 3,  24 => 2,  19 => 1,);
     }
 }

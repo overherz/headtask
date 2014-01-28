@@ -7,4 +7,6 @@ $submenu['options'] = array(
     'admin' => 'Действия в панеле'
 );
 
+$icon = "fa-list-ul";
+
 

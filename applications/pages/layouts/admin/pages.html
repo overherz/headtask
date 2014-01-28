@@ -1,4 +1,4 @@
-{% extends "/source/html/admin.html" %}
+{% extends "/source/admin/index.html" %}
 {% block title %}
     &rarr; Статические страницы
 {% endblock %}
@@ -12,7 +12,7 @@
 {% endblock %}
 {% block body %}
 <form action="" id="search_form" method="post" style="margin-bottom:20px;">
-    Поиск:&nbsp;<input type="text" size="50" name="search" class="input">
+    Поиск:&nbsp;<input type="text" name="search" class="input">
     <input type="hidden" name="page">
     {% for k,f in form%}
     &nbsp;{{f.label}}
@@ -25,7 +25,6 @@
         {% endif %}
     {% endfor %}
 </form>
-
 <div id="search_result">{% include '/applications/pages/layouts/admin/pages_table.html' %}</div>
 
 {% include '/applications/pages/layouts/admin/form.html' %}

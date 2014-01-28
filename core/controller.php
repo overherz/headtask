@@ -186,6 +186,7 @@ class Admin extends Controller {
         {
             $submenu = array();
             $name = "";
+            $icon = false;
             $path=ROOT."applications/{$mod}/config.php";
             if (is_file($path) && include($path))
             {
@@ -202,6 +203,7 @@ class Admin extends Controller {
                         $s['count'] = count($t);
                         $s['application'] = $mod;
                         $s['sort'] = $s['count'] > 1 ? $name.$g : $g;
+                        $s['icon'] = $icon;
                         $menu[$h]['submenu'][] = $s;
                         $applications[$mod] += 1;
                     }

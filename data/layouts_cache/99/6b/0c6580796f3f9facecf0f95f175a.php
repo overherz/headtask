@@ -7,7 +7,7 @@ class __TwigTemplate_996b0c6580796f3f9facecf0f95f175a extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("/source/html/admin.html");
+        $this->parent = $this->env->loadTemplate("/source/admin/index.html");
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
@@ -20,7 +20,7 @@ class __TwigTemplate_996b0c6580796f3f9facecf0f95f175a extends Twig_Template
 
     protected function doGetParent(array $context)
     {
-        return "/source/html/admin.html";
+        return "/source/admin/index.html";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -71,8 +71,8 @@ class __TwigTemplate_996b0c6580796f3f9facecf0f95f175a extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 18
-        echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" style=\"margin-bottom:20px;\">
-    Поиск:&nbsp;<input type=\"text\" size=\"50\" name=\"search\" class=\"input\">
+        echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\">
+    Поиск&nbsp;<input type=\"text\" name=\"search\" class=\"input\">
     <input type=\"hidden\" name=\"page\">
     ");
         // line 21
@@ -80,7 +80,7 @@ class __TwigTemplate_996b0c6580796f3f9facecf0f95f175a extends Twig_Template
         $context['_seq'] = twig_ensure_traversable((isset($context["form"]) ? $context["form"] : null));
         foreach ($context['_seq'] as $context["k"] => $context["f"]) {
             // line 22
-            echo \layout::func_from_text("    &nbsp;");
+            echo \layout::func_from_text("        &nbsp;");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["f"]) ? $context["f"] : null), "label"), "html", null, true));
             echo \layout::func_from_text("
         ");
@@ -90,7 +90,7 @@ class __TwigTemplate_996b0c6580796f3f9facecf0f95f175a extends Twig_Template
                 echo \layout::func_from_text("            &nbsp;<select name=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["k"]) ? $context["k"] : null), "html", null, true));
                 echo \layout::func_from_text("\">
-                ");
+            ");
                 // line 25
                 $context['_parent'] = (array) $context;
                 $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["f"]) ? $context["f"] : null), "options"));
@@ -103,15 +103,19 @@ class __TwigTemplate_996b0c6580796f3f9facecf0f95f175a extends Twig_Template
                         echo \layout::func_from_text("selected");
                     }
                     echo \layout::func_from_text(">");
-                    echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["o"]) ? $context["o"] : null), "html", null, true));
+                    if (((isset($context["o"]) ? $context["o"] : null) != "")) {
+                        echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["o"]) ? $context["o"] : null), "html", null, true));
+                    } else {
+                        echo \layout::func_from_text("&nbsp;");
+                    }
                     echo \layout::func_from_text("</option>
-                ");
+            ");
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['j'], $context['o'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
                 // line 28
-                echo \layout::func_from_text("            </select>
+                echo \layout::func_from_text("        </select>
         ");
             }
             // line 30
@@ -121,10 +125,9 @@ class __TwigTemplate_996b0c6580796f3f9facecf0f95f175a extends Twig_Template
         unset($context['_seq'], $context['_iterated'], $context['k'], $context['f'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 31
-        echo \layout::func_from_text("</form>
-
-<div id=\"search_result\">");
-        // line 33
+        echo \layout::func_from_text("
+    <div id=\"search_result\">");
+        // line 32
         $this->env->loadTemplate("/applications/logs/layouts/admin/table.html")->display($context);
         echo \layout::func_from_text("</div>
 
@@ -143,6 +146,6 @@ class __TwigTemplate_996b0c6580796f3f9facecf0f95f175a extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  128 => 33,  124 => 31,  118 => 30,  114 => 28,  99 => 26,  95 => 25,  90 => 24,  88 => 23,  83 => 22,  79 => 21,  74 => 18,  71 => 17,  65 => 14,  62 => 13,  56 => 10,  53 => 9,  50 => 8,  43 => 6,  40 => 5,  35 => 3,  32 => 2,);
+        return array (  131 => 32,  128 => 31,  122 => 30,  118 => 28,  99 => 26,  95 => 25,  90 => 24,  88 => 23,  83 => 22,  79 => 21,  74 => 18,  71 => 17,  65 => 14,  62 => 13,  56 => 10,  53 => 9,  50 => 8,  43 => 6,  40 => 5,  35 => 3,  32 => 2,);
     }
 }

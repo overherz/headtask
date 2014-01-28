@@ -1,4 +1,4 @@
-{% extends "/source/html/admin.html" %}
+{% extends "/source/admin/index.html" %}
 {% block title %}&rarr; Пользователи{% endblock %}
 {% block js %}
     ,"/applications/users/source/js/admin.js"
@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body %}
 <form action="" id="search_form" method="post" style="margin-bottom:20px;">
-    Поиск:&nbsp;<input type="text" size="50" name="search" class="input">
+    Поиск:&nbsp;<input type="text" name="search" class="input">
     <input type="hidden" name="page" value="">
     {% for k,f in form%}
     &nbsp;{{f.label}}

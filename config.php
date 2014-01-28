@@ -5,7 +5,7 @@ $INFO['sql_host'] = 'localhost';
 $INFO['sql_database'] = 'tasker';
 $INFO['sql_user'] = 'root';
 $INFO['sql_pass'] = 'jckjck';
-$INFO['dev_mode'] = '0';
+$INFO['dev_mode'] = '1';
 $INFO['error_to_mail'] = '1';
 $INFO['antiddos'] = '0';
 

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<!-- Mirrored from bootstrapstyler.com/preview/_/hyperia/ by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 24 Jan 2014 02:08:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Панель управления сайтом</title>
+
+    <link rel="stylesheet" href="/source/css/jquery.jgrowl.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/source/css/popup.css" type="text/css" media="screen, projection" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/source/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link href="/source/admin/fonts/font-awesome/css/font-awesome.minba72.css?v=4.0.3" rel="stylesheet">
+
+    <!-- Animate CSS -->
+    <link href="/source/admin/css/libs/animate.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Switch -->
+    <link href="/source/admin/css/libs/bootstrap-switch.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/source/js/styler/jquery.formstyler.css" type="text/css" />
+    <link href="/source/admin/css/styler/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/source/css/jquery-ui.min.css" type="text/css">
+    {% block css %}{% endblock %}
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="top_div">
+    <i class="navbar-toggle2 fa fa-bars" data-toggle="side-menu" data-target="#sidebar"></i>
+    <span>Панель управления сайтом <a href="/" target="_blank">{{ settings.site_name.value }}</a></span>
+</div>
+
+<div id="wrapper">
+<div id="sidebar">
+	<div class="inner">
+		<nav class="side-nav">
+			<ul class="nav nav-pills nav-stacked user-bar">
+				<li>
+					<a href="#user-menu" data-toggle="collapse" class="dropdown-toggle">
+							<div class="user-name">{{globals.admin.fio}}</div>
+							<div class="" style="color:{{globals.admin.group_color}};margin-bottom: 0px;">{{globals.admin.group_name}}</div>
+                        <b class="caret"></b>
+					</a>
+					<ul class="panel-collapse collapse" id="user-menu">
+						<li><a href="" change_admin_pass><i class="fa fa-user"></i> Изменить пароль</a></li>
+						<li><a href="/admin/index/logout/"><i class="fa fa-sign-out"></i> Выход</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<!--
+		<nav class="navbar navbar-inverse user-notification">
+			<div class="">
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="tooltip" title="Friend Requests" data-placement="bottom" data-trigger="hover">
+							<i class="fa fa-users"></i>
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="tasks.html" class="dropdown-toggle" data-toggle="tooltip" title="My Tasks" data-placement="bottom" data-trigger="hover">
+							<i class="fa fa-th-list"></i>
+							<span class="badge badge-info">1</span>
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="messages.html" class="dropdown-toggle" data-toggle="tooltip" title="Messages" data-placement="bottom" data-trigger="hover">
+							<i class="fa fa-envelope"></i>
+							<span class="badge badge-danger">4</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		-->
+        {% set submenu = '' %}
+        {% for k,r_m in globals.root_menu %}
+            {% if r_m.submenu and k == globals.menu %}{% set submenu = r_m.submenu %}{% endif %}
+        {% endfor %}
+
+        <nav class="side-nav">
+            <ul class="nav nav-pills nav-stacked">
+                {% for m in submenu %}
+                    {% if m.count > 1 and m.category != "" %}
+                        {% if category != m.category %}
+                            {% set count = 1 %}
+                            <li>
+                                <a href="#{{m.category}}" data-toggle="collapse" data-parent=".side-nav" class="collapsed">
+                                    <i class="fa fa-fw fa-15x {% if m.icon %}{{ m.icon }}{% else %}fa-list-ul{% endif %}"></i>
+                                    <span class="fa-12x">{{m.category}}</span> <b class="caret"></b>
+                                </a>
+                            <ul class="panel-collapse in" id="{{m.category}}">
+                        {% endif %}
+                        {% set category = m.category %}
+
+                        <li {% if m.url == globals.submenu %}class="active"{% endif %}><a href="/admin/{{m.url}}"><i class="fa fa-fw fa-arrow-right" style="margin-top: -3px;"></i> <span>{{m.name}}</span></a></li>
+
+                        {% if count == m.count %}
+                            </ul></li>
+                        {% else  %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+                    {% else %}
+                        <li {% if m.url == globals.submenu %}class="active"{% endif %}>
+                            <a href="/admin/{{m.url}}">
+                                <i class="fa fa-fw fa-15x {% if m.icon %}{{ m.icon }}{% else %}fa-list-ul{% endif %}"></i>
+                                <span class="fa-12x">{{m.name}}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+<!--
+		<nav class="side-nav">
+			<ul class="nav nav-pills nav-stacked">
+				<li >
+					<a href="index-2.html">
+						<i class="fa fa-dashboard"></i>
+						Dashboard
+					</a>
+				</li>
+
+				<li>
+					<a href="#tasks" data-toggle="collapse" data-parent=".side-nav" class="collapsed">
+						<i class="fa fa-list-ul"></i>
+						Task Lists <b class="caret"></b>
+					</a>
+					<ul class="panel-collapse collapse " id="tasks">
+						<li ><a href="tasks.html"><i class="fa fa-arrow-right"></i> Task inside Panel</a></li>
+						<li ><a href="tasks-alt.html"><i class="fa fa-arrow-right"></i> Task without Panel</a></li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="#messages" data-toggle="collapse" data-parent=".side-nav" class="collapsed">
+						<i class="fa fa-comments"></i>
+						Messages <b class="caret"></b>
+					</a>
+					<ul class="panel-collapse collapse " id="messages">
+						<li ><a href="messages.html"><i class="fa fa-arrow-right"></i> Messages inside Panel</a></li>
+						<li ><a href="messages-alt.html"><i class="fa fa-arrow-right"></i> Messages without Panel</a></li>
+					</ul>
+				</li>
+
+				<li >
+					<a href="charts.html">
+						<i class="fa fa-bar-chart-o"></i>
+						Charts
+					</a>
+				</li>
+
+				<li >
+					<a href="calendar.html">
+						<i class="fa fa-calendar"></i>
+						Calendar
+					</a>
+				</li>
+
+				<li>
+					<a href="#ui" data-toggle="collapse" data-parent=".side-nav" class="collapsed">
+						<i class="icon-wand"></i>
+						UI Elements <b class="caret"></b>
+					</a>
+					<ul class="panel-collapse collapse " id="ui">
+						<li >
+							<a href="forms.html">
+								<i class="fa fa-list-alt"></i>
+								Forms
+							</a>
+						</li>
+						<li >
+							<a href="typo.html">
+								<i class="fa fa-font"></i>
+								Typography
+							</a>
+						</li>
+
+						<li >
+							<a href="icons.html">
+								<i class="fa fa-picture-o"></i>
+								Icons
+							</a>
+						</li>
+
+						<li >
+							<a href="tables.html">
+								<i class="fa fa-table"></i>
+								Tables
+							</a>
+						</li>
+
+						<li >
+							<a href="panels.html">
+								<i class="fa fa-th-large"></i>
+								Panels
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="#pages" data-toggle="collapse" data-parent=".side-nav" class="collapsed">
+						<i class="icon-copy"></i>
+						Pages <b class="caret"></b>
+					</a>
+					<ul class="panel-collapse collapse " id="pages">
+						<li ><a href="signup.html"><i class="fa fa-arrow-right"></i> Sign up</a></li>
+						<li ><a href="signin.html"><i class="fa fa-arrow-right"></i> Sign in</a></li>
+						<li ><a href="profile.html"><i class="fa fa-arrow-right"></i> Profile</a></li>
+						<li ><a href="404.html"><i class="fa fa-arrow-right"></i> Error 404</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="panel panel-outline">
+			<div class="panel-body">
+				<ul class="list-unstyled">
+					
+					<li>
+						CPU Usage
+						<div class="progress">
+							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+								<span class="sr-only">40%</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						RAM Usage
+						<div class="progress">
+							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+								<span class="sr-only">10%</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						Bandwidth
+						<div class="progress">
+							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+								<span class="sr-only">60%</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						HDD Space
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+								<span class="sr-only">80%</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>-->
+	</div>
+</div>
+<div id="middle">
+	<header id="header">
+        <nav class="navbar navbar-default">
+            <div class="navbar-switcher">
+                <button type="button" class="navbar-toggle" data-toggle="side-menu" data-target="#sidebar">
+                    <span class="sr-only">Toggle Sidebar</span>
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="navbar-switcher navbar-switcher-right">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topnav">
+                    <span class="sr-only">Toggle Menu</span>
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <div class="navbar-header">
+
+            </div>
+            <div class="collapse navbar-collapse" id="topnav">
+                <ul class="nav navbar-nav">
+                    {% for k,r_m in globals.root_menu %}
+                        <li {% if globals.menu == k %}class="active"{% endif %} style="position: relative;">
+                            <a href="{% if not r_m.url %}/admin/~{{k}}/{% else %}/admin/{{r_m.url}}/{% endif %}" title="title">{{r_m.name}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+    </header><!-- /#header -->
+	<div id="content">
+		<div class="container">
+            {% block body %}{% endblock %}
+
+
+		</div><!-- /.container -->
+	</div>
+	<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				
+			</div>
+		</div><!-- /.row -->
+	</footer>
+</div>
+
+</div><!-- /#wrapper -->
+		
+
+
+		<!-- jQuery -->
+		<script src="/source/js/jquery.min.js"></script>
+
+		<!-- Bootstrap core JavaScript -->
+		<script src="/source/admin/bootstrap/js/bootstrap.min.js"></script>
+
+		<!-- jQuery Transit -->
+		<script src="/source/admin/js/libs/jquery.transit.min692f.js?v=0.9.9"></script>
+
+		<!-- Bootstrap Switch -->
+		<script src="/source/admin/js/libs/bootstrap-switch.js"></script>
+
+		<!-- jQuery EqualHeights -->
+		<script src="/source/admin/js/libs/jquery.equalheights.min.js"></script>
+
+		<!-- jQuery Nicescroll -->
+		<script src="/source/admin/js/libs/jquery.nicescroll.min.js"></script>
+
+		<!-- Theme script -->
+		<script src="/source/admin/js/styler/script.js"></script>
+
+        <script src="/source/js/head.min.js"></script>
+        <script src="/source/js/styler/jquery.formstyler.js"></script>
+        <script>
+            $(document).ready(function($) {
+                $('#middle input, #middle select').styler();
+
+                var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+                //$(".navbar-nav .active a").css("background",randomColor);
+            });
+        </script>
+        <script>
+            head.js(
+                    "/source/js/jquery-ui.min.js",
+                    "/source/js/jquery.jgrowl_minimized.js",
+                    "/source/js/functions.js",
+                    "/applications/index/source/js/change_pass.js",
+                    "/source/js/message.js",
+                    "/applications/index/source/js/index_admin.js"
+                    {% block js %}{% endblock %}
+            );
+        </script>
+
+	</body>
+
+<!-- Mirrored from bootstrapstyler.com/preview/_/hyperia/ by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 24 Jan 2014 02:09:01 GMT -->
+</html>

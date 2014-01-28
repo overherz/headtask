@@ -1,5 +1,6 @@
-    <table class="controls-tbl w100" all_users>
-    <caption>Пользователи {% include "/source/html/jpaginator.html" %}</caption>
+{% include "/source/admin/jpaginator_boot.html" %}
+    <table class="table table-bordered table-striped table-condensed" all_users>
+    <thead>
     <tr>
         <th>Email</th>
         <th>ФИО</th>
@@ -8,6 +9,8 @@
         <th style="white-space: nowrap;">Группа</th>
         <th colspan="2">Управление</th>
     </tr>
+    </thead>
+    <tbody>
     {% for k,d in users %}
     <tr user="{{k}}">
         <td class="w1"><a href="mailto:{{d.email}}">{{d.email}}</a></td>
@@ -15,14 +18,12 @@
         <td>{{d.nickname}}</td>
         <td>{{d.created|date("d.m.Y")}}</td>
         <td style="white-space: nowrap;color:{{d.group_color}}">{{d.group_name}}</td>
-        <td class="w1">{% if globals.admin.id_group == 1 %}<a class="edit-btn" id="{{k}}"></a>
-            {% elseif d.id_group != 1 %}<a class="edit-btn" id="{{k}}"></a>
-            {% endif %}</td>
+        <td class="w1">
+            {% if globals.admin.id_group == 1 or d.id_group != 1 %}<a class="fa fa-15x fa-edit edit-btn" id="{{k}}"></a>{% endif %}
+        </td>
         <td class="w1">
             {% if k != 1 %}
-                {% if globals.admin.id_group == 1 %}<a class="del-btn" id="{{k}}"></a>
-                {% elseif d.id_group != 1 %}<a class="del-btn" id="{{k}}"></a>
-                {% endif %}
+                {% if globals.admin.id_group == 1 or d.id_group != 1 %}<a class="fa fa-15x fa-trash-o del-btn" id="{{k}}"></a>{% endif %}
             {% endif %}
         </td>
     </tr>
@@ -31,6 +32,7 @@
     {% endfor %}
         <tr>
             <td colspan="5" style="width:2000px;">&nbsp;</td>
-            <td colspan="2"><a title="Добавить" class="add-btn"></a></td>
+            <td colspan="2"><a title="Добавить" class="fa fa-15x fa-plus add-btn"></a></td>
         </tr>
+    </tbody>
     </table>

@@ -55,7 +55,7 @@ class logs extends \Admin {
 
         $form = array(
             'type' => array('label' => 'Тип логов','type' => 'select', 'options' => $types),
-            'on_page' => array('label' => 'Показывать по','type' => 'select', 'options' => array('15' => '15','20' => '20','50' => '50','100' => '100'), 'selected' => $on_page),
+            'on_page' => array('label' => 'По','type' => 'select', 'options' => array('15' => '15','20' => '20','50' => '50','100' => '100'), 'selected' => $on_page),
         );
 
         $data = array('logs'=> $logs, 'total'=> $total,'paginator' => $paginator,'form' => $form,'type' => $type);

@@ -76,7 +76,7 @@ class options extends \Admin {
                 $options[$row['id_group']]['sub'][$row['id']]['value'] = explode(",",$row['value']);
             }
         }
-//pr($options);
+
         $res['success'] = $this->layout_get('/admin/options.html',array('options' => $options,'dev_mode' => $this->check_dev_mode()));
 
         echo json_encode($res);

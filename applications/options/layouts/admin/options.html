@@ -1,14 +1,9 @@
 {% if options %}
-<table class="controls-tbl" style="margin-top:10px;width:100%;">
-    <caption>Настройки</caption>
-    <tr>
-        <th>Название</th>
-        <th>Значение</th>
-        {% if dev_mode %}<th colspan="1">Управление</th>{% endif %}
-    </tr>
+<table class="table table-bordered table-condensed">
+    <tbody>
     {% for g in options %}
     {% if g.id_parent > 0 %}
-        <tr>
+        <tr class="warning">
             <td style="font-weight: bold;" colspan="{{ dev_mode ? '3' : '2' }}">{{ g.group_name }}</td>
         </tr>
     {% endif %}
@@ -18,10 +13,11 @@
             <div style="font-size: 11px;">{{ o.description }}</div>
         </td>
         <td style="padding:5px;">
+            <form>
             {% if o.type == 'text' %}
-                <input type='text' name="{{o.key_name}}" value="{{o.value}}" oname="{{o.name}}" class="input_text">
+                <input type='text' name="{{o.key_name}}" value="{{o.value}}" oname="{{o.name}}" style="width: 300px;">
             {% elseif o.type == 'textarea' %}
-            <textarea name='{{o.key_name}}' class="input_text" style="height:150px;" oname="{{o.name}}">{{o.value}}</textarea>
+            <textarea name='{{o.key_name}}' class="input_text" style="height:150px;width: 300px;" oname="{{o.name}}">{{o.value}}</textarea>
             {% elseif o.type == 'checkbox' %}
             <input type='checkbox' name='{{o.key_name}}' value="{{o.value}}" oname="{{o.name}}" {% if o.value == '1' %}checked{% endif %}>
             {% elseif o.type == 'select' or o.type == 'multy_select' %}
@@ -34,13 +30,15 @@
                 {% endif %}
             {% elseif o.type == 'radio' %}
                 {% for k,op in o.options %}
-                    <input oname="{{o.name}}" type="radio" name="{{o.key_name}}" value="{{k}}" {% if k in o.value %}checked{% endif %}> {{op}}
+                    <input oname="{{o.name}}" type="radio" name="{{o.key_name}}" value="{{k}}" {% if k in o.value %}checked{% endif %}>&nbsp;{{op}}&nbsp;&nbsp;
                 {% endfor %}
             {% endif %}
+            </form>
         </td>
-        {% if dev_mode %}<td style="width: 1px;"><a href="/admin/options/constructor/{{o.id}}" class="edit-btn"></a></td>{% endif %}
+        {% if dev_mode %}<td style="width: 1px;"><a href="/admin/options/constructor/{{o.id}}" class="fa fa-2x fa-edit edit-btn"></a></td>{% endif %}
     {% endfor %}
     {% endfor %}
+    </tbody>
 </table>
 {% else %}
 настроек не найдено

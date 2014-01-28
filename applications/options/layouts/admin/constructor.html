@@ -1,4 +1,4 @@
-{% extends "/source/html/admin.html" %}
+{% extends "/source/admin/index.html" %}
 {% block title %}
     &rarr; Конструктор настроек
 {% endblock %}
@@ -14,7 +14,7 @@
 Включите режим разработчика
 {% elseif options %}
 <input type="hidden" name="id" value="{{option.id}}">
-<table id="constructor" style="margin-top:15px;width: 100%">
+<table id="constructor" class="table table-condensed table-bordered">
     <tr>
         <th><strong>Настройки</strong></th>
         <th><strong>Значение</strong></th>
@@ -79,7 +79,7 @@
         {% endif %}
     </td>
     <tr id="tr_options" {% if option.type != 'select' and option.type != 'radio' %}style="display:none;"{% endif %}>
-        <th colspan="2"><span style="float:left;"><strong>Опции</strong></span> <span {% if option.type != 'select' %}style="display:none;"{% endif %}>Мультивыбор: <input type="checkbox" id="multy_select" {% if option.multy_select %}checked{% endif %}></span> <input type="button" value="Добавить" class="button" style="float:right;" id="add_option"></th>
+        <th colspan="2"><span style="float:left;margin-right: 20px;"><strong>Опции</strong></span> <span id="multy_select_span" {% if option.type != 'select' %}style="display:none;"{% endif %}>Мультивыбор: <input type="checkbox" id="multy_select" {% if option.multy_select %}checked{% endif %}></span> <input type="button" value="Добавить" class="button" style="float:right;" id="add_option"></th>
     </tr>    
     <tr id="tr_options1" {% if option.type != 'select' and option.type != 'radio' %}style="display:none;"{% endif %}>
         <td colspan="2" id="constructor_box">
@@ -90,13 +90,13 @@
         </td>
     </tr>
     <tr>
-        <th colspan="2" align="center">           
-            <input type="button" value="Сохранить" class="button" style="float:right;{% if not option.id %}display: none;{% endif %}" id="save_button">
+        <td colspan="2" align="center">
+            <input type="button" value="Сохранить" class="save-btn" style="float:right;{% if not option.id %}display: none;{% endif %}" id="save_button">
             <span style="float:left;">
-                <input type="button" value="Удалить" class="button" {% if not option.id or option.no_delete %}style="display: none;"{% endif %}" id="delete_option" option="{{option.id}}">            
-                <input type="button" value="Новая настройка" class="button" {% if not option.id %}style="display: none;"{% endif %}" id="new_option">
+                <input type="button" value="Удалить" class="del-btn" {% if not option.id or option.no_delete %}style="display: none;"{% endif %}" id="delete_option" option="{{option.id}}">
+                <input type="button" value="Новая настройка" class="add-btn" {% if not option.id %}style="display: none;"{% endif %}" id="new_option">
             </span>
-        </th>        
+        </td>
     </tr>
 </table>
 {% endif %}

@@ -7,7 +7,7 @@ class __TwigTemplate_3c03fea7cf5046838eb93d1a5f794ed9 extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("/source/html/admin.html");
+        $this->parent = $this->env->loadTemplate("/source/admin/index.html");
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
@@ -19,7 +19,7 @@ class __TwigTemplate_3c03fea7cf5046838eb93d1a5f794ed9 extends Twig_Template
 
     protected function doGetParent(array $context)
     {
-        return "/source/html/admin.html";
+        return "/source/admin/index.html";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -61,7 +61,7 @@ class __TwigTemplate_3c03fea7cf5046838eb93d1a5f794ed9 extends Twig_Template
     {
         // line 14
         echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" style=\"margin-bottom:20px;\">
-    Поиск:&nbsp;<input type=\"text\" size=\"50\" name=\"search\" class=\"input\">
+    Поиск:&nbsp;<input type=\"text\" name=\"search\" class=\"input\">
     <input type=\"hidden\" name=\"page\">
     ");
         // line 17
@@ -111,14 +111,13 @@ class __TwigTemplate_3c03fea7cf5046838eb93d1a5f794ed9 extends Twig_Template
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 27
         echo \layout::func_from_text("</form>
-
 <div id=\"search_result\">");
-        // line 29
+        // line 28
         $this->env->loadTemplate("/applications/pages/layouts/admin/pages_table.html")->display($context);
         echo \layout::func_from_text("</div>
 
 ");
-        // line 31
+        // line 30
         $this->env->loadTemplate("/applications/pages/layouts/admin/form.html")->display($context);
     }
 
@@ -134,6 +133,6 @@ class __TwigTemplate_3c03fea7cf5046838eb93d1a5f794ed9 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  122 => 31,  117 => 29,  113 => 27,  107 => 26,  103 => 24,  88 => 22,  84 => 21,  79 => 20,  77 => 19,  72 => 18,  68 => 17,  63 => 14,  60 => 13,  54 => 11,  50 => 9,  47 => 8,  42 => 6,  39 => 5,  34 => 3,  31 => 2,);
+        return array (  121 => 30,  116 => 28,  113 => 27,  107 => 26,  103 => 24,  88 => 22,  84 => 21,  79 => 20,  77 => 19,  72 => 18,  68 => 17,  63 => 14,  60 => 13,  54 => 11,  50 => 9,  47 => 8,  42 => 6,  39 => 5,  34 => 3,  31 => 2,);
     }
 }

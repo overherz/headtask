@@ -7,7 +7,7 @@ class __TwigTemplate_51b299f4d948971034c439735841bde6 extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("/source/html/admin.html");
+        $this->parent = $this->env->loadTemplate("/source/admin/index.html");
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
@@ -19,7 +19,7 @@ class __TwigTemplate_51b299f4d948971034c439735841bde6 extends Twig_Template
 
     protected function doGetParent(array $context)
     {
-        return "/source/html/admin.html";
+        return "/source/admin/index.html";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -68,7 +68,7 @@ class __TwigTemplate_51b299f4d948971034c439735841bde6 extends Twig_Template
             echo \layout::func_from_text("<input type=\"hidden\" name=\"id\" value=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["option"]) ? $context["option"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\">
-<table id=\"constructor\" style=\"margin-top:15px;width: 100%\">
+<table id=\"constructor\" class=\"table table-condensed table-bordered\">
     <tr>
         <th><strong>Настройки</strong></th>
         <th><strong>Значение</strong></th>
@@ -247,7 +247,7 @@ class __TwigTemplate_51b299f4d948971034c439735841bde6 extends Twig_Template
                 echo \layout::func_from_text("style=\"display:none;\"");
             }
             echo \layout::func_from_text(">
-        <th colspan=\"2\"><span style=\"float:left;\"><strong>Опции</strong></span> <span ");
+        <th colspan=\"2\"><span style=\"float:left;margin-right: 20px;\"><strong>Опции</strong></span> <span id=\"multy_select_span\" ");
             // line 82
             if (($this->getAttribute((isset($context["option"]) ? $context["option"] : null), "type") != "select")) {
                 echo \layout::func_from_text("style=\"display:none;\"");
@@ -290,30 +290,30 @@ class __TwigTemplate_51b299f4d948971034c439735841bde6 extends Twig_Template
             echo \layout::func_from_text("        </td>
     </tr>
     <tr>
-        <th colspan=\"2\" align=\"center\">           
-            <input type=\"button\" value=\"Сохранить\" class=\"button\" style=\"float:right;");
+        <td colspan=\"2\" align=\"center\">
+            <input type=\"button\" value=\"Сохранить\" class=\"save-btn\" style=\"float:right;");
             // line 94
             if ((!$this->getAttribute((isset($context["option"]) ? $context["option"] : null), "id"))) {
                 echo \layout::func_from_text("display: none;");
             }
             echo \layout::func_from_text("\" id=\"save_button\">
             <span style=\"float:left;\">
-                <input type=\"button\" value=\"Удалить\" class=\"button\" ");
+                <input type=\"button\" value=\"Удалить\" class=\"del-btn\" ");
             // line 96
             if (((!$this->getAttribute((isset($context["option"]) ? $context["option"] : null), "id")) || $this->getAttribute((isset($context["option"]) ? $context["option"] : null), "no_delete"))) {
                 echo \layout::func_from_text("style=\"display: none;\"");
             }
             echo \layout::func_from_text("\" id=\"delete_option\" option=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["option"]) ? $context["option"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("\">            
-                <input type=\"button\" value=\"Новая настройка\" class=\"button\" ");
+            echo \layout::func_from_text("\">
+                <input type=\"button\" value=\"Новая настройка\" class=\"add-btn\" ");
             // line 97
             if ((!$this->getAttribute((isset($context["option"]) ? $context["option"] : null), "id"))) {
                 echo \layout::func_from_text("style=\"display: none;\"");
             }
             echo \layout::func_from_text("\" id=\"new_option\">
             </span>
-        </th>        
+        </td>
     </tr>
 </table>
 ");

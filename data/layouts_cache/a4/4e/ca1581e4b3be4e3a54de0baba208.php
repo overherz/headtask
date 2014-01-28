@@ -7,7 +7,7 @@ class __TwigTemplate_a44eca1581e4b3be4e3a54de0baba208 extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("/source/html/admin.html");
+        $this->parent = $this->env->loadTemplate("/source/admin/index.html");
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
@@ -19,7 +19,7 @@ class __TwigTemplate_a44eca1581e4b3be4e3a54de0baba208 extends Twig_Template
 
     protected function doGetParent(array $context)
     {
-        return "/source/html/admin.html";
+        return "/source/admin/index.html";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -67,14 +67,14 @@ class __TwigTemplate_a44eca1581e4b3be4e3a54de0baba208 extends Twig_Template
         // line 14
         if ((isset($context["exec"]) ? $context["exec"] : null)) {
             // line 15
-            echo \layout::func_from_text("<div style='color:black;margin-bottom: 20px;'>Для активации планировщика внесите строки в cron на вашем сервере <br>
+            echo \layout::func_from_text("    <div class=\"alert alert-info\"><b>Для активации планировщика внесите следующие строки в cron на вашем сервере</b> <br><br>
     ");
             // line 16
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["cron_string"]) ? $context["cron_string"] : null));
             foreach ($context['_seq'] as $context["_key"] => $context["str"]) {
                 // line 17
-                echo \layout::func_from_text("        <div style=\"color:red;\">");
+                echo \layout::func_from_text("        <div>");
                 echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["str"]) ? $context["str"] : null), "html", null, true));
                 echo \layout::func_from_text("</div>
     ");
@@ -86,7 +86,7 @@ class __TwigTemplate_a44eca1581e4b3be4e3a54de0baba208 extends Twig_Template
             echo \layout::func_from_text("</div>
 
 <form action=\"\" id=\"search_form\" method=\"post\" style=\"margin-bottom:20px;\">
-    Поиск:&nbsp;<input type=\"text\" size=\"50\" name=\"search\" class=\"input\">
+    Поиск:&nbsp;<input type=\"text\" name=\"search\" class=\"input\">
     <input type=\"hidden\" name=\"page\">
     ");
             // line 24

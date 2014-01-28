@@ -10,14 +10,14 @@ $(document).ready(function($) {
         box.html('');
         box1.html('');
         tr_options.hide();
-        $("#multy_select").parent().hide();
+        $("#multy_select_span").hide();
         
         if (type == "radio" || type == "select" || type == "multy_select")
         {
             box.append("<input type='hidden' name='options'></div>");
             box1.append("<div><select name='value' style='display:none;'></select></div>");            
             tr_options.show();
-            if (type == "select") $("#multy_select").parent().show();            
+            if (type == "select") $("#multy_select_span").show();
             button.show();            
         }
         else if (type == "text")
@@ -34,12 +34,13 @@ $(document).ready(function($) {
         {
             box1.append("<div><input type='checkbox' name='value'></div>");
             button.show();
-        }                
+        }
+        $('#middle input, #middle select').styler();
     });
 
     $(document).on("click","#add_option",function(){
         var box = $("#constructor_box");        
-        box.append("<div>Название опции: <input type='text' name='option_name'> Значение: <input type='text' name='option_value'> <a title='Удалить' class='del-btn delete_option' style='display:inline-block;'></a></div>");        
+        box.append("<div style='margin-bottom: 5px;'>Название опции: <input type='text' name='option_name'> Значение: <input type='text' name='option_value'> <a title='Удалить' class='del-btn delete_option' style='display:inline-block;'></a></div>");
         
     });
 
@@ -48,9 +49,9 @@ $(document).ready(function($) {
         $("[name='option_value']").keypress();
     });
 
-    $(document).on("click","#multy_select",function(){
-        if ($(this).prop('checked')) $("[name='value']").attr('multiple',true);
-        else $("[name='value']").removeAttr('multiple');
+    $(document).on("change","#multy_select",function(){
+        if ($(this).prop('checked')) $("[name='value']").attr('multiple',true).trigger('refresh');
+        else $("[name='value']").removeAttr('multiple').trigger('refresh');
     });
 
     $(document).on("keypress","[name='option_name'],[name='option_value']",function(){
@@ -65,7 +66,7 @@ $(document).ready(function($) {
                 var value = $(this).next().val();
                 if (name.length > 0 && value.length > 0) 
                 {
-                    $("[name='value']").append( $('<option value="'+value+'">'+name+'</option>'));       
+                    $("[name='value']").append( $('<option value="'+value+'">'+name+'</option>')).trigger('refresh');
                     options.push(value+":::"+name);
                 }
             });
@@ -74,7 +75,8 @@ $(document).ready(function($) {
                 $("[name='value']").val(values).show();
             }
             else $("[name='value']").hide();
-            $("[name='options']").val(options.join(","));                        
+            console.log(options);
+            $("[name='options']").val(options.join(","));
         },100);
     });
 

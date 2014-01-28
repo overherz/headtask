@@ -16,24 +16,25 @@ class __TwigTemplate_8241c0d02e06640ba88ab3376c218597 extends Twig_Template
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<table class=\"controls-tbl w100\" all_pages>
-    <caption>Страницы ");
+        $this->env->loadTemplate("/source/admin/jpaginator_boot.html")->display($context);
         // line 2
-        $this->env->loadTemplate("/source/html/jpaginator.html")->display($context);
-        echo \layout::func_from_text("</caption>
+        echo \layout::func_from_text("<table class=\"table table-bordered table-condensed table-striped\" all_pages>
+    <thead>
     <tr>
         <th width=\"250\">Название</th>
         <th width=\"250\">Задача</th>
         <th width=\"250\">Параметры запуска</th>
-        <th width=\"200\">Дата последнего старта</th>
-        <th width=\"200\">Дата завершения</th>
-        <th width=\"200\">Дата следующего старта</th>
+        <th width=\"200\">Последний запуск</th>
+        <th width=\"200\">Завершение</th>
+        <th width=\"200\">Следующий запуск</th>
         <th width=\"200\">Статус</th>
         <th>Ошибка</th>
         <th colspan=\"3\">Управление</th>
     </tr>
+    </thead>
+    <tbody>
     ");
-        // line 14
+        // line 17
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["tasks"]) ? $context["tasks"] : null));
         $context['_iterated'] = false;
@@ -51,10 +52,10 @@ class __TwigTemplate_8241c0d02e06640ba88ab3376c218597 extends Twig_Template
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-            // line 15
+            // line 18
             echo \layout::func_from_text("    ");
             $this->env->loadTemplate("/applications/tasks/layouts/admin/tasks-list.html")->display($context);
-            // line 16
+            // line 19
             echo \layout::func_from_text("    ");
             $context['_iterated'] = true;
             ++$context['loop']['index0'];
@@ -67,18 +68,19 @@ class __TwigTemplate_8241c0d02e06640ba88ab3376c218597 extends Twig_Template
             }
         }
         if (!$context['_iterated']) {
-            // line 17
+            // line 20
             echo \layout::func_from_text("    <tr><td colspan=\"11\">Ничего не найдено</td></tr>
     ");
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 19
+        // line 22
         echo \layout::func_from_text("    <tr>
         <td colspan=\"8\">&nbsp;</td>
-        <td colspan=\"3\"><a title=\"Добавить\" class=\"add-btn\"></a></td>
-    </tr>        
+        <td colspan=\"3\"><a title=\"Добавить\" class=\"fa fa-15x fa-plus add-btn\"></a></td>
+    </tr>
+    </tbody>
 </table>
 ");
     }
@@ -95,6 +97,6 @@ class __TwigTemplate_8241c0d02e06640ba88ab3376c218597 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  78 => 19,  71 => 17,  58 => 16,  55 => 15,  37 => 14,  22 => 2,  19 => 1,  149 => 39,  146 => 38,  142 => 36,  138 => 34,  132 => 33,  128 => 31,  113 => 29,  109 => 28,  104 => 27,  102 => 26,  97 => 25,  93 => 24,  86 => 19,  77 => 17,  73 => 16,  70 => 15,  68 => 14,  65 => 13,  59 => 11,  56 => 10,  53 => 9,  47 => 7,  42 => 6,  39 => 5,  34 => 3,  31 => 2,);
+        return array (  79 => 22,  72 => 20,  59 => 19,  56 => 18,  38 => 17,  21 => 2,  19 => 1,);
     }
 }

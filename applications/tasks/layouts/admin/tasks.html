@@ -1,4 +1,4 @@
-{% extends "/source/html/admin.html" %}
+{% extends "/source/admin/index.html" %}
 {% block title %}
 &rarr; Статические страницы
 {% endblock %}
@@ -12,14 +12,14 @@
 {% endblock %}
 {% block body %}
 {% if exec %}
-<div style='color:black;margin-bottom: 20px;'>Для активации планировщика внесите строки в cron на вашем сервере <br>
+    <div class="alert alert-info"><b>Для активации планировщика внесите следующие строки в cron на вашем сервере</b> <br><br>
     {% for str in cron_string %}
-        <div style="color:red;">{{str}}</div>
+        <div>{{str}}</div>
     {% endfor %}
 </div>
 
 <form action="" id="search_form" method="post" style="margin-bottom:20px;">
-    Поиск:&nbsp;<input type="text" size="50" name="search" class="input">
+    Поиск:&nbsp;<input type="text" name="search" class="input">
     <input type="hidden" name="page">
     {% for k,f in form%}
     &nbsp;{{f.label}}

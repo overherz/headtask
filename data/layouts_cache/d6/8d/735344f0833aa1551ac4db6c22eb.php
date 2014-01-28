@@ -94,45 +94,58 @@ class __TwigTemplate_d68d735344f0833aa1551ac4db6c22eb extends Twig_Template
                         <tr>
                             <th>Имя</th>
                             <th style=\"white-space: nowrap;\">Email <input type=\"checkbox\" id=\"checkbox_email\"></th>
-                            <th style=\"white-space: nowrap;\">Sms <input type=\"checkbox\" id=\"checkbox_sms\"></th>
-                        </tr>
+                            ");
+            // line 39
+            if (($this->getAttribute($this->getAttribute((isset($context["settings"]) ? $context["settings"] : null), "send_sms"), "value") == 1)) {
+                // line 40
+                echo \layout::func_from_text("                                <th style=\"white-space: nowrap;\">Sms <input type=\"checkbox\" id=\"checkbox_sms\"></th>
+                            ");
+            }
+            // line 42
+            echo \layout::func_from_text("                        </tr>
                         ");
-            // line 41
+            // line 43
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["users"]) ? $context["users"] : null));
             foreach ($context['_seq'] as $context["_key"] => $context["u"]) {
-                // line 42
+                // line 44
                 echo \layout::func_from_text("                        <tr>
                             <td style=\"white-space: nowrap;\">");
-                // line 43
+                // line 45
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "fio"), "html", null, true));
                 echo \layout::func_from_text(" ");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "nickname"), "html", null, true));
                 echo \layout::func_from_text("</td>
                             <td style=\"text-align: right;\"><input type=\"checkbox\" class=\"checkbox_email\" name=\"email[]\" value=\"");
-                // line 44
+                // line 46
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
                 echo \layout::func_from_text("\"></td>
-                            <td style=\"text-align: right;\"><input type=\"checkbox\" class=\"checkbox_sms\" name=\"sms[]\" value=\"");
-                // line 45
-                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
-                echo \layout::func_from_text("\"></td>
-                        </tr>
+                            ");
+                // line 47
+                if (($this->getAttribute($this->getAttribute((isset($context["settings"]) ? $context["settings"] : null), "send_sms"), "value") == 1)) {
+                    // line 48
+                    echo \layout::func_from_text("                                <td style=\"text-align: right;\"><input type=\"checkbox\" class=\"checkbox_sms\" name=\"sms[]\" value=\"");
+                    echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
+                    echo \layout::func_from_text("\"></td>
+                            ");
+                }
+                // line 50
+                echo \layout::func_from_text("                        </tr>
                         ");
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['u'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 48
+            // line 52
             echo \layout::func_from_text("                    </table>
                 </div>
             </div>
             ");
         }
-        // line 52
+        // line 56
         echo \layout::func_from_text("            <div style=\"text-align: center\">
                 <button class=\"btn btn-large btn-primary save_news\" type=\"button\">");
-        // line 53
+        // line 57
         if ($this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id")) {
             echo \layout::func_from_text("Сохранить");
         } else {
@@ -158,6 +171,6 @@ class __TwigTemplate_d68d735344f0833aa1551ac4db6c22eb extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  136 => 53,  133 => 52,  127 => 48,  118 => 45,  114 => 44,  108 => 43,  105 => 42,  101 => 41,  90 => 32,  88 => 31,  82 => 28,  73 => 22,  67 => 18,  61 => 17,  57 => 15,  54 => 14,  48 => 11,  42 => 8,  39 => 7,  31 => 4,  28 => 3,);
+        return array (  149 => 57,  146 => 56,  140 => 52,  133 => 50,  127 => 48,  125 => 47,  121 => 46,  115 => 45,  112 => 44,  108 => 43,  105 => 42,  101 => 40,  99 => 39,  90 => 32,  88 => 31,  82 => 28,  73 => 22,  67 => 18,  61 => 17,  57 => 15,  54 => 14,  48 => 11,  42 => 8,  39 => 7,  31 => 4,  28 => 3,);
     }
 }

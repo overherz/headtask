@@ -18,15 +18,17 @@ class __TwigTemplate_73ca6086e6da1e0182b02fa6bca80253 extends Twig_Template
         // line 1
         if ((isset($context["groups"]) ? $context["groups"] : null)) {
             // line 2
-            echo \layout::func_from_text("  <table class=\"controls-tbl\" all_group>
-        <caption>Группы</caption>
+            echo \layout::func_from_text("    <table class=\"table table-bordered table-striped table-condensed\">
+        <thead>
         <tr>
             <th>Название</th>
             <th>Пользователей</th>
             <th colspan=\"2\">Управление</th>
         </tr>
+        </thead>
+        <tbody>
         ");
-            // line 9
+            // line 11
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["groups"]) ? $context["groups"] : null));
             $context['loop'] = array(
@@ -43,11 +45,11 @@ class __TwigTemplate_73ca6086e6da1e0182b02fa6bca80253 extends Twig_Template
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["_key"] => $context["g"]) {
-                // line 10
+                // line 12
                 echo \layout::func_from_text("        ");
                 $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "groups", 1 => "admin/elements/group.html"), "method"));
                 $template->display($context);
-                // line 11
+                // line 13
                 echo \layout::func_from_text("        ");
                 ++$context['loop']['index0'];
                 ++$context['loop']['index'];
@@ -61,11 +63,12 @@ class __TwigTemplate_73ca6086e6da1e0182b02fa6bca80253 extends Twig_Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['g'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 12
+            // line 14
             echo \layout::func_from_text("        <tr>
             <td colspan=\"2\">&nbsp;</td>
-            <td colspan=\"2\"><a title=\"Добавить\" class=\"add-btn\"></a></td>
+            <td colspan=\"2\"><a title=\"Добавить\" class=\"fa fa-15x fa-plus-square add-btn\"></a></td>
         </tr>
+        </tbody>
    </table>
 ");
         }
@@ -83,6 +86,6 @@ class __TwigTemplate_73ca6086e6da1e0182b02fa6bca80253 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  51 => 11,  47 => 10,  30 => 9,  21 => 2,  19 => 1,  70 => 18,  68 => 17,  65 => 12,  62 => 15,  56 => 12,  53 => 11,  50 => 10,  42 => 7,  39 => 6,  34 => 3,  31 => 2,);
+        return array (  67 => 14,  53 => 13,  49 => 12,  32 => 11,  21 => 2,  19 => 1,);
     }
 }

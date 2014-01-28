@@ -146,7 +146,7 @@ class __TwigTemplate_2b025a8fbb92dc3b2f78910777a6d73b extends Twig_Template
                 // line 48
                 if (($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name") == "skypename")) {
                     // line 49
-                    echo \layout::func_from_text("                        <script type=\"text/javascript\" src=\"http://download.skype.com/share/skypebuttons/js/skypeCheck.js\"></script>
+                    echo \layout::func_from_text("                        <script type=\"text/javascript\" src=\"/source/js/skypeCheck.js\"></script>
                         <a href=\"skype:");
                     // line 50
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "value"), "html", null, true));

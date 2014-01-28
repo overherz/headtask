@@ -31,14 +31,14 @@ class __TwigTemplate_dd372a318d9bd60476b1c6d4e7dc40ef extends Twig_Template
         // line 3
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["g"]) ? $context["g"] : null), "count"), "html", null, true));
         echo \layout::func_from_text("</td>
-    <td class=\"td-align-middle\"><a title=\"Изменить\" class=\"edit-btn\" id=\"");
+    <td class=\"td-align-middle\" style=\"width: 1px;\"><a title=\"Изменить\" class=\"fa fa-15x fa-edit edit-btn\" id=\"");
         // line 4
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["g"]) ? $context["g"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("\"></a></td>
-    <td class=\"td-align-middle\">");
+    <td class=\"td-align-middle\" style=\"width: 1px;\">");
         // line 5
         if (($this->getAttribute((isset($context["g"]) ? $context["g"] : null), "id") != 1)) {
-            echo \layout::func_from_text("<a title=\"Удалить\" class=\"del-btn\" id=\"");
+            echo \layout::func_from_text("<a title=\"Удалить\" class=\"fa fa-15x fa-trash-o del-btn\" id=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["g"]) ? $context["g"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\"></a>");
         }
@@ -59,6 +59,6 @@ class __TwigTemplate_dd372a318d9bd60476b1c6d4e7dc40ef extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  40 => 5,  36 => 4,  32 => 3,  24 => 2,  51 => 11,  47 => 10,  30 => 9,  21 => 2,  19 => 1,  70 => 18,  68 => 17,  65 => 12,  62 => 15,  56 => 12,  53 => 11,  50 => 10,  42 => 7,  39 => 6,  34 => 3,  31 => 2,);
+        return array (  40 => 5,  36 => 4,  24 => 2,  67 => 14,  53 => 13,  49 => 12,  32 => 3,  21 => 2,  19 => 1,);
     }
 }

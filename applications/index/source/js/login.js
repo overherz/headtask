@@ -3,7 +3,8 @@ $(document).ready(function() {
         var request = $("#login_form").serialize();
         user_api(request,function(data){
             window.location.href = "/admin/";
-        });          
+        });
+        return false;
     }); 
 
     $("#login_form").keypress(function(e){

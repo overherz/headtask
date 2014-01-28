@@ -1,4 +1,4 @@
-{% extends "/source/html/admin.html" %}
+{% extends "/source/admin/index.html" %}
 {% block title %}
     &rarr; Логи авторизации
 {% endblock %}
@@ -15,21 +15,20 @@
 {% endblock %}
 
 {% block body %}
-<form action="" id="search_form" method="post" style="margin-bottom:20px;">
-    Поиск:&nbsp;<input type="text" size="50" name="search" class="input">
+<form action="" id="search_form" method="post">
+    Поиск&nbsp;<input type="text" name="search" class="input">
     <input type="hidden" name="page">
     {% for k,f in form%}
-    &nbsp;{{f.label}}
+        &nbsp;{{f.label}}
         {% if f.type == 'select' %}
             &nbsp;<select name="{{k}}">
-                {% for j,o in f.options %}
-                <option value="{{j}}" {% if f.selected == j %}selected{% endif %}>{{o}}</option>
-                {% endfor %}
-            </select>
+            {% for j,o in f.options %}
+                <option value="{{j}}" {% if f.selected == j %}selected{% endif %}>{% if o != "" %}{{o}}{% else %}&nbsp;{% endif %}</option>
+            {% endfor %}
+        </select>
         {% endif %}
     {% endfor %}
-</form>
 
-<div id="search_result">{% include '/applications/logs/layouts/admin/table.html' %}</div>
+    <div id="search_result">{% include '/applications/logs/layouts/admin/table.html' %}</div>
 
 {% endblock %}

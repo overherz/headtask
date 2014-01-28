@@ -2,6 +2,27 @@ var timer = false;
 
 $(document).ready(function($) {
 
+    $('#accordion').collapse();
+
+    $('#accordion').on('show.bs.collapse', function (event) {
+        el = event.target;
+        $(el).parent().find('.panel-heading').addClass('active');
+        var id = $(el).attr("data-id");
+        user_api({act:'get_options',id:id},function(data){
+            $("[data-result='"+id+"']").html(data);
+
+            $('#middle input, #middle select').styler();
+            $("#result input[type='text'],#result textarea,#result input[type='checkbox'],#result select,#result input[type='radio']").each(function(k,v){
+                $("[name='"+$(this).attr('name')+"']").data('value',$(this).val());
+            })
+        });
+    })
+
+    $('#accordion').on('hide.bs.collapse', function (event) {
+        el = event.target;
+        $(el).parent().find('.panel-heading').removeClass('active');
+    })
+
     $(document).on("click","[open_options]",function(){
         var id = $(this).attr('open_options');
         user_api({act:'get_options',id:id},function(data){
@@ -29,7 +50,7 @@ $(document).ready(function($) {
         },500);
     })
 
-    $(document).on("click","input[type='checkbox'][oname]",function(){
+    $(document).on("change","input[type='checkbox'][oname]",function(){
         var th = this;
         var key = $(this).attr('name');
         var name = $(this).attr('oname');
@@ -38,8 +59,8 @@ $(document).ready(function($) {
         user_api({act:'save_options',key:key,value:value,name:name},function(data){
             show_message("success",name+" изменено");
         },function(){
-            if ($(th).data('value') == 1) $(th).attr('checked',true);
-            else $(th).removeAttr('checked');
+            if ($(th).data('value') == 1) $(th).attr('checked',true).trigger('refresh');
+            else $(th).removeAttr('checked').trigger('refresh');
         });
     })
 
@@ -53,8 +74,8 @@ $(document).ready(function($) {
         },function(){
             var type = $(th).get(0).tagName;
 
-            if (type == "SELECT") $(th).val($(th).data('value'));
-            else if (type == "INPUT") $("[name='"+key+"'][value='"+$(th).data('value')+"']").attr('checked',true);
+            if (type == "SELECT") $(th).val($(th).data('value')).trigger('refresh');
+            else if (type == "INPUT") $("[name='"+key+"'][value='"+$(th).data('value')+"']").attr('checked',true).trigger('refresh');
         });
     })
 

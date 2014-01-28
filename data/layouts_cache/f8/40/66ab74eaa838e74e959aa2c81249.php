@@ -40,7 +40,7 @@ class __TwigTemplate_f84066ab74eaa838e74e959aa2c81249 extends Twig_Template
             echo \layout::func_from_text("    ");
             if ((($this->getAttribute((isset($context["f"]) ? $context["f"] : null), "type") == "select") || ($this->getAttribute((isset($context["f"]) ? $context["f"] : null), "type") == "multy_select"))) {
                 // line 4
-                echo \layout::func_from_text("    &nbsp;<select name=\"");
+                echo \layout::func_from_text("    <select name=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : null), "html", null, true));
                 if (($this->getAttribute((isset($context["f"]) ? $context["f"] : null), "type") == "multy_select")) {
                     echo \layout::func_from_text("[]");
