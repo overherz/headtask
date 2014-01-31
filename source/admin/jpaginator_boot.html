@@ -1,11 +1,11 @@
 {% if paginator.num_list %}
-<table style="width: 100%"
+<table style="width: 100%;">
     <tr>
         {% if paginator.total %}
             <td>{{paginator.from}} - {{paginator.to}} <b>из {{paginator.total}}</b></td>
         {% endif %}
         <td style="white-space: nowrap;text-align: right;">
-            <ul class="pagination" style="margin: 0px;">
+            <ul class="pagination" style="margin: 0px;margin-top: 15px;">
                 {% for i in paginator.num_list %}
                     {% if loop.first and i != 1 %}
                         <li><a href="#" onclick="get_page(1);return false;">1</a></li>

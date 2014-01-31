@@ -61,12 +61,12 @@ class __TwigTemplate_069410d2254f78f0f672a0c1b1b71c3f extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 13
-        echo \layout::func_from_text("<h2>Меню <a class=\"add-btn\" style=\"display:inline-block;margin-bottom: -2px;\"></a></h2>
+        echo \layout::func_from_text("<a class=\"fa fa-15x fa-plus add-btn\"></a>
     ");
         // line 14
         if ((isset($context["menu"]) ? $context["menu"] : null)) {
-            echo \layout::func_from_text("   
-    <ol class=\"sortable\">
+            // line 15
+            echo \layout::func_from_text("    <ol class=\"sortable\">
         ");
             // line 16
             $context['_parent'] = (array) $context;
@@ -131,6 +131,6 @@ class __TwigTemplate_069410d2254f78f0f672a0c1b1b71c3f extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  117 => 21,  113 => 19,  91 => 17,  72 => 16,  67 => 14,  64 => 13,  61 => 12,  55 => 10,  52 => 9,  49 => 8,  42 => 6,  39 => 5,  34 => 3,  31 => 2,);
+        return array (  117 => 21,  113 => 19,  91 => 17,  72 => 16,  69 => 15,  67 => 14,  64 => 13,  61 => 12,  55 => 10,  52 => 9,  49 => 8,  42 => 6,  39 => 5,  34 => 3,  31 => 2,);
     }
 }

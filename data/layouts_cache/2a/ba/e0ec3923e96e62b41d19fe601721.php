@@ -20,7 +20,10 @@ class __TwigTemplate_2abae0ec3923e96e62b41d19fe601721 extends Twig_Template
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("\">");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "name"), "html", null, true));
-        echo \layout::func_from_text(" <span class=\"tree_icons\"><span class=\"path\">");
+        echo \layout::func_from_text("
+    <span class=\"path\">
+            ");
+        // line 3
         if ($this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "path")) {
             echo \layout::func_from_text("<a href=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "path"), "html", null, true));
@@ -28,14 +31,21 @@ class __TwigTemplate_2abae0ec3923e96e62b41d19fe601721 extends Twig_Template
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "path"), "html", null, true));
             echo \layout::func_from_text("</a>");
         }
-        echo \layout::func_from_text("</span><a class=\"add-btn\" style=\"display:inline-block;margin-bottom: -4px;margin-right:3px;margin-left: 10px;\"><a class=\"edit-btn\" style=\"display:inline-block;margin-bottom: -4px;\"><a class=\"del-btn\" style=\"display:inline-block;margin-bottom: -4px;\"></a></span></div>
+        // line 4
+        echo \layout::func_from_text("    </span>
+    <span class=\"tree_icons\">
+        <a class=\"fa fa-plus fa-fw fa-15x add-btn\"></a>
+        <a class=\"fa fa-edit fa-fw fa-15x edit-btn\"></a>
+        <a class=\"fa fa-trash-o fa-fw fa-15x del-btn\"></a>
+    </span>
+</div>
 ");
-        // line 2
+        // line 11
         if ($this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "category")) {
-            // line 3
+            // line 12
             echo \layout::func_from_text("<ol>
     ");
-            // line 4
+            // line 13
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "category"));
             $context['loop'] = array(
@@ -52,7 +62,7 @@ class __TwigTemplate_2abae0ec3923e96e62b41d19fe601721 extends Twig_Template
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
-                // line 5
+                // line 14
                 echo \layout::func_from_text("        <li id=\"list_");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("\" menu=\"");
@@ -75,7 +85,7 @@ class __TwigTemplate_2abae0ec3923e96e62b41d19fe601721 extends Twig_Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 7
+            // line 16
             echo \layout::func_from_text("</ol>
 ");
         }
@@ -93,6 +103,6 @@ class __TwigTemplate_2abae0ec3923e96e62b41d19fe601721 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  79 => 7,  56 => 5,  36 => 3,  19 => 1,  117 => 21,  113 => 19,  91 => 17,  72 => 16,  67 => 14,  64 => 13,  61 => 12,  55 => 10,  52 => 9,  49 => 8,  42 => 6,  39 => 4,  34 => 2,  31 => 2,);
+        return array (  89 => 16,  66 => 14,  49 => 13,  46 => 12,  44 => 11,  35 => 4,  27 => 3,  19 => 1,);
     }
 }

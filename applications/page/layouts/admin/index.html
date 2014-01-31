@@ -10,8 +10,8 @@
     ,"{{app.path('page','page_admin.js')}}"
 {% endblock %}
 {% block body %}
-<h2>Меню <a class="add-btn" style="display:inline-block;margin-bottom: -2px;"></a></h2>
-    {% if menu %}   
+<a class="fa fa-15x fa-plus add-btn"></a>
+    {% if menu %}
     <ol class="sortable">
         {% for cat in menu %}         
         <li id="list_{{cat.id}}" menu="{{cat.id}}" url="{{cat.url}}">{% include "/applications/page/layouts/admin/elements/row.html" %}</li>

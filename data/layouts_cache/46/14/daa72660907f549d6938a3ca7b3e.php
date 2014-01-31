@@ -18,7 +18,7 @@ class __TwigTemplate_4614daa72660907f549d6938a3ca7b3e extends Twig_Template
         // line 1
         $this->env->loadTemplate("/source/admin/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("<table class=\"table table-bordered table-striped table-condensed\">
+        echo \layout::func_from_text("<table class=\"table table-bordered table-striped table-condensed mt15\">
     <thead>
         <tr>
             <th width=\"200\">Тип</th>

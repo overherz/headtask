@@ -2034,7 +2034,7 @@ body {
     margin-top: -2px;
 }
 
-.jq-selectbox__select,input[type=text] {
+.jq-selectbox__select,input[type=text],input[type=password] {
     height: 28px;
     font: 14px/26px 'Open Sans', sans-serif !important;
     border-bottom-color: #CCC;
@@ -2193,4 +2193,8 @@ input.edit-btn {
     cursor: pointer;
     margin-right: 10px;
     margin-left: 8px;
+}
+
+.mt15 {
+    margin-top: 15px;
 }

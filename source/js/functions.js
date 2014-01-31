@@ -46,7 +46,7 @@ function redirect(url,timeout)
 }
 
 function show_popup(html,title,callback1,callback2){
-    var default_bottom = "<a href='' style='text-align:center;float:none;' class='popup_close btn newbtn'><span>Отмена</span></a>";
+    var default_bottom = "<a href='' style='text-align:center;float:none;' class='popup_close btn newbtn btn-danger'><span>Отмена</span></a>";
     if ($(".popup").length < 1) $('body').prepend("<div class='popup_wrap'><div class='popup_layer'><div class='popup'>\n\
     <div class='popup_title'>\n\
         <table width='100%' cellpadding='0' cellspacing='0'>\n\
@@ -69,6 +69,10 @@ function show_popup(html,title,callback1,callback2){
     window.popup = setInterval(function(){
         $('.popup').css({'marginTop':get_top_offset()})
     },200);
+
+    if(jQuery().styler) {
+        $(".popup input").styler();
+    }
 
     if (callback1) callback1();
 

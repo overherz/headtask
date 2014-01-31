@@ -250,7 +250,7 @@ class page extends \Admin {
                                     {
                                         $path[] = $urll[$n];
                                     }
-                                    $path = implode("/",$path);
+                                    $path = "page/".implode("/",$path);
                                 }
                             }
                             else $path = $a[$m]->value ? $a[$m]->application."/".$a[$m]->value : $a[$m]->application;

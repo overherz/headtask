@@ -25,19 +25,21 @@ ol.sortable {
     }
 
 .sortable li div  {
-        border: 1px solid #c7c7c7;
-        padding: 3px;
+        border: 1px solid #ddd;
+        padding: 5px;
         margin: 0;
         cursor: move;
+        position: relative;
 }
 
 .placeholder {
-        background-color: #cfcfcf;
+        background-color: #f9f9f9;
 }
 
 .tree_icons {
-    display:none;
-    float:right;
+    display: none;
+    position: absolute;
+    right: 0;
 }
 
 .tree_block {
@@ -46,9 +48,9 @@ ol.sortable {
 }
 
 .tree_block:hover {
-    background: #c7c7c7;
+    background: #f9f9f9;
 }
 
 .path {
-    font-weight: normal;
+    margin-left: 20px;
 }

@@ -560,3 +560,7 @@ blockquote:before {
 .label .sublabel {
     color:yellow;
 }
+
+input[type="search"] {
+    box-sizing: border-box;
+}

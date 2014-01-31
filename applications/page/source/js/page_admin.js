@@ -49,10 +49,9 @@ $(document).ready(function($) {
     });
 
     $(document).on("click",".add-btn,.edit-btn",function(){
-        var parent = $(this).parent().parent().attr('id');        
-        var this_class = $(this).attr('class');
+        var parent = $(this).parent().parent().attr('id');
         var new_menu = false;
-        if (this_class == "add-btn" ) 
+        if ($(this).hasClass("add-btn"))
         {
             title = "Добавление пункта меню";  
             new_menu = true;

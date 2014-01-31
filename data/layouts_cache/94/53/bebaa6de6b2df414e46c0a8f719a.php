@@ -18,7 +18,7 @@ class __TwigTemplate_9453bebaa6de6b2df414e46c0a8f719a extends Twig_Template
         // line 1
         if ($this->getAttribute((isset($context["paginator"]) ? $context["paginator"] : null), "num_list")) {
             // line 2
-            echo \layout::func_from_text("<table style=\"width: 100%\"
+            echo \layout::func_from_text("<table style=\"width: 100%;\">
     <tr>
         ");
             // line 4
@@ -35,7 +35,7 @@ class __TwigTemplate_9453bebaa6de6b2df414e46c0a8f719a extends Twig_Template
             }
             // line 7
             echo \layout::func_from_text("        <td style=\"white-space: nowrap;text-align: right;\">
-            <ul class=\"pagination\" style=\"margin: 0px;\">
+            <ul class=\"pagination\" style=\"margin: 0px;margin-top: 15px;\">
                 ");
             // line 9
             $context['_parent'] = (array) $context;
@@ -139,6 +139,6 @@ class __TwigTemplate_9453bebaa6de6b2df414e46c0a8f719a extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  108 => 25,  100 => 23,  95 => 22,  93 => 21,  90 => 20,  76 => 16,  64 => 12,  61 => 11,  58 => 10,  41 => 9,  37 => 7,  27 => 5,  25 => 4,  75 => 18,  68 => 13,  55 => 15,  52 => 14,  34 => 13,  19 => 1,  537 => 366,  532 => 301,  522 => 367,  520 => 366,  454 => 302,  452 => 301,  444 => 295,  425 => 292,  418 => 291,  414 => 290,  247 => 125,  241 => 124,  234 => 120,  226 => 119,  222 => 118,  215 => 117,  212 => 116,  209 => 115,  206 => 114,  202 => 112,  200 => 111,  189 => 109,  186 => 108,  183 => 107,  178 => 105,  173 => 103,  165 => 102,  161 => 101,  158 => 100,  155 => 99,  152 => 98,  149 => 97,  145 => 96,  140 => 93,  129 => 91,  122 => 26,  82 => 18,  78 => 53,  21 => 2,  142 => 43,  134 => 92,  128 => 36,  124 => 90,  105 => 32,  101 => 31,  96 => 30,  94 => 29,  89 => 28,  85 => 27,  74 => 15,  71 => 14,  65 => 43,  62 => 13,  56 => 10,  53 => 9,  50 => 8,  43 => 6,  40 => 5,  35 => 3,  32 => 2,);
+        return array (  122 => 26,  108 => 25,  100 => 23,  95 => 22,  93 => 21,  90 => 20,  82 => 18,  76 => 16,  74 => 15,  71 => 14,  68 => 13,  64 => 12,  61 => 11,  58 => 10,  41 => 9,  37 => 7,  27 => 5,  25 => 4,  21 => 2,  19 => 1,);
     }
 }

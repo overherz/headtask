@@ -18,7 +18,7 @@ class __TwigTemplate_c5877ba80ffce163bd02e7c51b691fd2 extends Twig_Template
         // line 1
         $this->env->loadTemplate("/source/admin/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("<table class=\"table table-bordered table-striped table-condensed\">
+        echo \layout::func_from_text("<table class=\"table table-bordered table-striped table-condensed mt15\">
     <thead>
         <tr>
             <th width=\"200\">Тип</th>
@@ -89,6 +89,6 @@ class __TwigTemplate_c5877ba80ffce163bd02e7c51b691fd2 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  75 => 18,  68 => 16,  55 => 15,  52 => 14,  34 => 13,  19 => 1,  537 => 366,  532 => 301,  522 => 367,  520 => 366,  454 => 302,  452 => 301,  444 => 295,  425 => 292,  418 => 291,  414 => 290,  247 => 125,  241 => 124,  234 => 120,  226 => 119,  222 => 118,  215 => 117,  212 => 116,  209 => 115,  206 => 114,  202 => 112,  200 => 111,  189 => 109,  186 => 108,  183 => 107,  178 => 105,  173 => 103,  165 => 102,  161 => 101,  158 => 100,  155 => 99,  152 => 98,  149 => 97,  145 => 96,  140 => 93,  129 => 91,  122 => 89,  82 => 54,  78 => 53,  21 => 2,  142 => 43,  134 => 92,  128 => 36,  124 => 90,  105 => 32,  101 => 31,  96 => 30,  94 => 29,  89 => 28,  85 => 27,  74 => 18,  71 => 17,  65 => 43,  62 => 13,  56 => 10,  53 => 9,  50 => 8,  43 => 6,  40 => 5,  35 => 3,  32 => 2,);
+        return array (  75 => 18,  68 => 16,  55 => 15,  52 => 14,  34 => 13,  21 => 2,  19 => 1,);
     }
 }

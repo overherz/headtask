@@ -1,4 +1,13 @@
-<div class="tree_block" id="{{cat.id}}">{{cat.name}} <span class="tree_icons"><span class="path">{% if cat.path %}<a href="{{cat.path}}" target="_blank">{{cat.path}}</a>{% endif %}</span><a class="add-btn" style="display:inline-block;margin-bottom: -4px;margin-right:3px;margin-left: 10px;"><a class="edit-btn" style="display:inline-block;margin-bottom: -4px;"><a class="del-btn" style="display:inline-block;margin-bottom: -4px;"></a></span></div>
+<div class="tree_block" id="{{cat.id}}">{{cat.name}}
+    <span class="path">
+            {% if cat.path %}<a href="{{cat.path}}" target="_blank">{{cat.path}}</a>{% endif %}
+    </span>
+    <span class="tree_icons">
+        <a class="fa fa-plus fa-fw fa-15x add-btn"></a>
+        <a class="fa fa-edit fa-fw fa-15x edit-btn"></a>
+        <a class="fa fa-trash-o fa-fw fa-15x del-btn"></a>
+    </span>
+</div>
 {% if cat.category %}
 <ol>
     {% for cat in cat.category %}
