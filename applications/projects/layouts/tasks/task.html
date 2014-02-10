@@ -40,12 +40,12 @@
     <td>{{task.spent_time|default(0)}} ч.</td>
     <td><a href="/users/~{{task.id_user}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.user_name}}</a><div class="nickname">{{task.user_nickname}}</div></td>
     {% endif %}
-    <td style="width: 1px;">
+    <td style="width: 115px;">
         <div class="btn-group">
             {% if access.edit_tasks or task.assigned == globals.user.id_user or task.id_user == globals.user.id_user or not task.assigned %}
-            {% if task.status != "closed" %}<a class="btn btn-success btn-small" close_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}'><i class="icon-off white"></i></a>{% endif %}
-            <a class="btn btn-info btn-small" href="/projects/tasks/edit/{{task.id}}"><i class="icon-pencil white"></i></a>
-            {% if access.delete_tasks %}<a class="btn btn-danger btn-small" delete_task={{task.id}} from='{% if show_task %}show_task{% endif %}' href=""><i class="icon-trash white"></i></a>{% endif %}
+            {% if task.status != "closed" %}<a class="btn btn-success btn-sm" close_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}'><i class="fa fa-power-off"></i></a>{% endif %}
+            <a class="btn btn-info btn-sm" href="/projects/tasks/edit/{{task.id}}"><i class="fa fa-edit"></i></a>
+            {% if access.delete_tasks %}<a class="btn btn-danger btn-sm" delete_task={{task.id}} from='{% if show_task %}show_task{% endif %}' href=""><i class="fa fa-trash-o"></i></a>{% endif %}
             {% endif %}
         </div>
     </td>

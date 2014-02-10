@@ -110,7 +110,7 @@ class projects extends \Controller {
         require_once(ROOT.'libraries/paginator/paginator.php');
         $paginator = new \Paginator($total, $page, $this->project_panel_limit);
 
-        $query = $this->db->query("select * from projects as p
+        $query = $this->db->query("select p.* from projects as p
             LEFT JOIN projects_users as u ON p.id = u.id_project
             {$where}
             group by p.id
@@ -125,7 +125,6 @@ class projects extends \Controller {
             {
                 $data['projects'] = array('projects' => $projects,'paginator' => $paginator,'current_project' => $_POST['id_project']);
                 $res['success']['panel'] = $this->layout_get("projects_in_panel.html",$data);
-                $res['success']['top'] = $this->layout_get("projects_in_top.html",$data);
 
                 echo json_encode($res);
             }

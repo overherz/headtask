@@ -11,7 +11,7 @@
         <th>До окончания</th>
     </tr>
     {% for task in tasks %}
-        <tr id="task{{task.id}}" {% if task.type == "error" %}class='error'{% endif %}>
+        <tr id="task{{task.id}}" {% if task.type == "error" %}class='danger'{% endif %}>
             <td style="text-align: center;width: 10px;">{% if task.task_creater == globals.user.id_user %}<i class="icon-user" style="font-size: 20px;"></i>{% endif %}</td>
             <td><a href="/projects/~{{task.id_project}}/">{{ task.project_name }}</a></td>
             <td><a href="/projects/tasks/show/{{task.id}}/">{{task.name}}</a></td>
@@ -36,9 +36,9 @@
                     {% set undate = true %}
                 {% endif %}
 
-                <div class="progress progress-striped {% if undate %}progress-danger{% endif %} {% if task.status == "in_progress" %}active{% endif %}">
-                    <div class="bar" style="width: {% if task.percent > 0 %}0%;{% else %}30px;{% endif %}text-align: right;" {% if task.percent > 0 %}data-width="{{task.percent}}"{% endif %}>
-                        <span class="progress_text">{{ task.percent }} %</span>
+                <div class="progress progress-striped {% if task.status == "in_progress" %}active{% endif %}">
+                    <div class="progress-bar {% if undate %}progress-bar-danger{% endif %}" role="progressbar" aria-valuenow="{{task.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {% if task.percent > 0 %}{{task.percent}}%;{% else %}30px;{% endif %}">
+                        <span>{{ task.percent }} %</span>
                     </div>
                 </div>
             </td>

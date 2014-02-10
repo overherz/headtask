@@ -21,13 +21,14 @@ class __TwigTemplate_3bc8d8a134d5ea851cfe3a0b3de55915 extends Twig_Template
     <head>
         <title>Панель управления</title>
         <script src=\"/source/js/head.min.js\"></script>
+        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
         <link rel=\"stylesheet\" href=\"/source/css/jquery.jgrowl.css\" type=\"text/css\" media=\"screen, projection\" />
         <link href=\"/source/admin/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">
         <link href=\"/source/admin/css/styler/style.css\" rel=\"stylesheet\" type=\"text/css\">
         <link rel=\"stylesheet\" href=\"/source/css/notifications.css\" type=\"text/css\">
+        <script src=\"/source/js/jquery.min.js\"></script>
         <script>
             head.js(
-             \"/source/js/jquery.min.js\",
              \"/source/js/jquery.jgrowl_minimized.js\",
              \"/source/js/functions.js\",
              \"/source/js/message.js\",
@@ -37,11 +38,10 @@ class __TwigTemplate_3bc8d8a134d5ea851cfe3a0b3de55915 extends Twig_Template
     </head>
     <body>
         <div class=\"top_div\">Панель управления сайтом <a href=\"/\" target=\"_blank\">");
-        // line 21
+        // line 22
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["settings"]) ? $context["settings"] : null), "site_name"), "value"), "html", null, true));
         echo \layout::func_from_text("</a></div>
         <div class=\"container\">
-
             <form class=\"form-signin\" id=\"login_form\">
                 <h2 class=\"form-signin-heading\">Пожалуйста, авторизуйтесь</h2>
                 <input type=\"hidden\" name=\"act\" value=\"login\">
@@ -70,6 +70,6 @@ class __TwigTemplate_3bc8d8a134d5ea851cfe3a0b3de55915 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  41 => 21,  19 => 1,);
+        return array (  42 => 22,  19 => 1,);
     }
 }

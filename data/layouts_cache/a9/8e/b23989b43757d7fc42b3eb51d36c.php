@@ -415,23 +415,22 @@ class __TwigTemplate_a98eb23989b43757d7fc42b3eb51d36c extends Twig_Template
                 </button>
             </div>
             <div class=\"navbar-header\">
-
             </div>
             <div class=\"collapse navbar-collapse\" id=\"topnav\">
                 <ul class=\"nav navbar-nav\">
                     ");
-        // line 296
+        // line 295
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "root_menu"));
         foreach ($context['_seq'] as $context["k"] => $context["r_m"]) {
-            // line 297
+            // line 296
             echo \layout::func_from_text("                        <li ");
             if (($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu") == (isset($context["k"]) ? $context["k"] : null))) {
                 echo \layout::func_from_text("class=\"active\"");
             }
             echo \layout::func_from_text(" style=\"position: relative;\">
                             <a href=\"");
-            // line 298
+            // line 297
             if ((!$this->getAttribute((isset($context["r_m"]) ? $context["r_m"] : null), "url"))) {
                 echo \layout::func_from_text("/admin/~");
                 echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["k"]) ? $context["k"] : null), "html", null, true));
@@ -450,7 +449,7 @@ class __TwigTemplate_a98eb23989b43757d7fc42b3eb51d36c extends Twig_Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['k'], $context['r_m'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 301
+        // line 300
         echo \layout::func_from_text("                </ul>
             </div>
         </nav>
@@ -458,9 +457,9 @@ class __TwigTemplate_a98eb23989b43757d7fc42b3eb51d36c extends Twig_Template
 \t<div id=\"content\">
 \t\t<div class=\"container\">
             ");
-        // line 307
+        // line 306
         $this->displayBlock('body', $context, $blocks);
-        // line 308
+        // line 307
         echo \layout::func_from_text("
 
 \t\t</div><!-- /.container -->
@@ -518,9 +517,9 @@ class __TwigTemplate_a98eb23989b43757d7fc42b3eb51d36c extends Twig_Template
                     \"/source/js/message.js\",
                     \"/applications/index/source/js/index_admin.js\"
                     ");
-        // line 364
+        // line 363
         $this->displayBlock('js', $context, $blocks);
-        // line 365
+        // line 364
         echo \layout::func_from_text("            );
         </script>
 
@@ -535,12 +534,12 @@ class __TwigTemplate_a98eb23989b43757d7fc42b3eb51d36c extends Twig_Template
     {
     }
 
-    // line 307
+    // line 306
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 364
+    // line 363
     public function block_js($context, array $blocks = array())
     {
     }
@@ -557,6 +556,6 @@ class __TwigTemplate_a98eb23989b43757d7fc42b3eb51d36c extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  544 => 364,  539 => 307,  534 => 34,  524 => 365,  522 => 364,  464 => 308,  462 => 307,  454 => 301,  435 => 298,  428 => 297,  424 => 296,  255 => 129,  249 => 128,  242 => 124,  234 => 123,  230 => 122,  223 => 121,  220 => 120,  217 => 119,  214 => 118,  210 => 116,  208 => 115,  197 => 113,  194 => 112,  191 => 111,  186 => 109,  181 => 107,  173 => 106,  169 => 105,  166 => 104,  163 => 103,  160 => 102,  157 => 101,  153 => 100,  148 => 97,  142 => 96,  137 => 95,  132 => 94,  130 => 93,  90 => 58,  86 => 57,  73 => 47,  59 => 35,  57 => 34,  22 => 1,);
+        return array (  543 => 363,  538 => 306,  533 => 34,  523 => 364,  521 => 363,  463 => 307,  461 => 306,  453 => 300,  434 => 297,  427 => 296,  423 => 295,  255 => 129,  249 => 128,  242 => 124,  234 => 123,  230 => 122,  223 => 121,  220 => 120,  217 => 119,  214 => 118,  210 => 116,  208 => 115,  197 => 113,  194 => 112,  191 => 111,  186 => 109,  181 => 107,  173 => 106,  169 => 105,  166 => 104,  163 => 103,  160 => 102,  157 => 101,  153 => 100,  148 => 97,  142 => 96,  137 => 95,  132 => 94,  130 => 93,  90 => 58,  86 => 57,  73 => 47,  59 => 35,  57 => 34,  22 => 1,);
     }
 }

@@ -17,7 +17,7 @@
 $(document).ready(function($) {
     var offset = 120;
     var duration = 500;
-    if ($(".back-to-top").length == 0) $("body").append("<a href='#' class='back-to-top'><i class='icon-chevron-up'></i></a>");
+    if ($(".back-to-top").length == 0) $("body").append("<a href='#' class='back-to-top'><i class='fa fa-chevron-up'></i></a>");
     jQuery(window).scroll(function() {
         if (jQuery(this).scrollTop() > offset) {
             jQuery('.back-to-top').fadeIn(duration).blur();

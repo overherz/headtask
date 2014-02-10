@@ -7,3 +7,7 @@
 .panel-heading.active {
     background: #FCF8E3;
 }
+
+#constructor td,#constructor th {
+    padding: 5px;
+}
