@@ -1,5 +1,5 @@
 {% include '/source/jpaginator_boot.html' %}
-<table class="table table-bordered table-hover table-condensed" xmlns="http://www.w3.org/1999/html">
+<table class="table table-bordered table-hover table-condensed">
     <tr>
         <th style="width: 100px;"></th>
         <th>Имя</th>
@@ -11,7 +11,7 @@
     </tr>
     {% for u in users %}
         <tr {% if u.role == 'manager' %}class="success"{% endif %} id="tr_user{{u.id_user}}">
-            <td style="text-align: center;"><a href="/users/~{{u.id_user}}/">{% if u.avatar %}<img src="/uploads/users/ava_small/{{u.avatar|real_path}}" class="img-polaroid">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}</a></td>
+            <td style="text-align: center;"><a href="/users/~{{u.id_user}}/">{% if u.avatar %}<img src="/uploads/users/ava_small/{{u.avatar|real_path}}">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}</a></td>
             <td>
                 <a href="/users/~{{u.id_user}}/" style="color:{{ u.color }};font-weight: bold;" title="{{ u.group_name }}">{{u.fio}}</a>
                 <div class="nickname" style="margin-bottom: 15px;">{{u.nickname}}</div>
@@ -47,8 +47,8 @@
             {% if access.users %}
             <td style="width: 1px;">
                 <div class="btn-group">
-                    <a class="btn btn-primary btn-small" href="/projects/users/edit/{{ project.id }}/{{ u.id_user }}/"><i class="icon-pencil icon-white"></i></a>
-                    <a class="btn btn-primary btn-small" href="" delete_project_user="{{ u.id_user }}"><i class="icon-trash icon-white"></i></a>
+                    <a class="btn btn-primary btn-small" href="/projects/users/edit/{{ project.id }}/{{ u.id_user }}/"><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-primary btn-small" href="" delete_project_user="{{ u.id_user }}"><i class="fa fa-trash-o"></i></a>
                 </div>
             </td>
             {% endif %}

@@ -19,10 +19,10 @@
 
 <a href="" class="btn btn-oscar {% if topic.subscribe %}unsubscribe{% else %}subscribe{% endif %}" data-id="{{topic.id}}" style="float: right;margin-bottom: 10px;margin-top: 10px;">{% if topic.subscribe %}Отписаться{% else %}Подписаться{% endif %}</a>
 {% if topic.closed %}
-    <i class="icon-lock" style="float: left;font-size: 40px;margin-right: 10px;" title="Закрытая тема"></i>
+    <i class="fa fa-lock" style="float: left;font-size: 40px;margin-right: 10px;" title="Закрытая тема"></i>
 {% endif %}
 {% if topic.fixed %}
-    <i class="icon-pushpin" style="float: left;font-size: 40px;" title="Закрепленная тема"></i>
+    <i class="fa-thumb-tack " style="float: left;font-size: 40px;" title="Закрепленная тема"></i>
 {% endif %}
 <table class="table table-bordered" id="posts_table">
     {% for p in posts %}
@@ -51,14 +51,14 @@
     </tr>
     <tr>
         <td class="forum_post_footer" colspan="2">
-            <a href="" class="btn btn-oscar btn-mini quote_post" data-id="{{p.id}}"><i class="icon-quote-right"></i></a>
+            <a href="" class="btn btn-oscar btn-mini quote_post" data-id="{{p.id}}"><i class="fa fa-quote-right"></i></a>
             <div class="forum_post_action">
                 <div class="btn-group">
                     {% if access.forum or p.author == globals.user.id_user %}
-                        <a href="" class="btn btn-oscar btn-mini edit_post" data-id="{{p.id}}"><i class="icon-pencil icon-white"></i></a>
+                        <a href="" class="btn btn-oscar btn-mini edit_post" data-id="{{p.id}}"><i class="fa fa-pencil"></i></a>
                     {% endif %}
                     {% if access.forum and first_post != p.id %}
-                        <a href="" class="btn btn-oscar btn-mini delete_post" data-id="{{p.id}}"><i class="icon-trash icon-white"></i></a>
+                        <a href="" class="btn btn-oscar btn-mini delete_post" data-id="{{p.id}}"><i class="fa fa-trash-o"></i></a>
                     {% endif %}
                 </div>
             </div>

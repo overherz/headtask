@@ -12,12 +12,14 @@
         <input type="hidden" name="act" value="login">
         <div class="alert alert-error" style="display: none;"></div>
         <h2 class="form-signin-heading">Авторизация</h2>
-        <input type="text" class="input-block-level" name="login" placeholder="Email">
-        <input type="password" class="input-block-level" name="password" placeholder="Password">
-        <label class="checkbox" style="padding-left: 0px;">
+        <input type="text" name="login" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <div class="checkbox" style="padding-left: 0px;">
+        <label>
             <input type="checkbox" name="cookie"> запомнить
         </label>
-        <button class="btn btn-large btn-primary login" type="button">Войти</button>
+        </div>
+        <button class="btn btn-primary login" type="button">Войти</button>
     </form>
 </div> <!-- /container -->
 {% endblock %}

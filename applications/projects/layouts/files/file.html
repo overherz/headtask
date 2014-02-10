@@ -23,13 +23,13 @@
     {% if access.delete_files and not to_task %}
     <td style="width: 1px;">
         <div class="btn-group">
-            <a class="btn btn-info btn-small" delete_file={{file.id}} href=""><i class="icon-trash icon-white"></i></a>
+            <a class="btn btn-info btn-small" delete_file={{file.id}} href=""><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
     {% elseif not get_popup_files and not post_data.get_popup_files and to_task %}
     <td style="width: 1px;">
         <div class="btn-group">
-            <a class="btn btn-info btn-small" {% if to_task %}delete_file_from_task={{file.id}}{% endif %} href=""><i class="icon-trash icon-white"></i></a>
+            <a class="btn btn-info btn-small" {% if to_task %}delete_file_from_task={{file.id}}{% endif %} href=""><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
     {% endif %}

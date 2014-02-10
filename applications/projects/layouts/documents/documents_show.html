@@ -16,8 +16,8 @@
 
     {% if access.documents %}
     <div class="btn-group" style="float: right;margin-right: 2px;">
-        <a class="btn btn-foxtrot btn-small" href="/projects/documents/edit/{{documents.id}}"><i class="icon-pencil icon-white"></i></a>
-        <a class="btn btn-foxtrot btn-small" delete_documents={{documents.id}} href="" mode='inside'><i class="icon-trash icon-white"></i></a>
+        <a class="btn btn-foxtrot btn-small" href="/projects/documents/edit/{{documents.id}}"><i class="fa fa-pencil"></i></a>
+        <a class="btn btn-foxtrot btn-small" delete_documents={{documents.id}} href="" mode='inside'><i class="fa fa-trash-o"></i></a>
     </div>
     {% endif %}
 </ul>

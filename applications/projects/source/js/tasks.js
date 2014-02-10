@@ -83,7 +83,8 @@ $(document).ready(function ($) {
                 "<input type='hidden' name='get_popup_files' value='true'>" +
                 "<input type='hidden' name='project' value='"+project+"'>" +
                 "<input type='hidden' name='page' value=''>" + input_file +
-                "<input type='text' size='50' name='search' class='input-large' placeholder='Поиск'>" +
+                "<div class='form-group col-xs-6' style='padding-left: 0;'><input type='text' name='search' placeholder='Поиск' class='form-control'></div>" +
+                "<div class='clearfix'></div>"+
                 "<div id='search_result'>"+data+"</div></form>","Прикрепление файлов");
 
             $(".popup input").styler();
@@ -165,8 +166,7 @@ $(document).ready(function ($) {
         if ($("#filter_table").is(":hidden"))
         {
             $("#filter_table").show()
-            $("#filter_table .jq-select-multiple").remove();
-            $('#wrap input, #wrap select').styler();
+            $('#wrap input, #wrap select').trigger('refresh');
         }
         else
         {

@@ -1,5 +1,6 @@
 {% include '/source/jpaginator_boot.html' %}
-<table class="table table-hover table-bordered table-condensed">
+<table class="table table-hover table-condensed">
+    <thead>
     <tr>
         <th></th>
         <th>Проект</th>
@@ -10,9 +11,11 @@
         <th>Ответственный</th>
         <th>До окончания</th>
     </tr>
+    </thead>
+    <tbody>
     {% for task in tasks %}
         <tr id="task{{task.id}}" {% if task.type == "error" %}class='danger'{% endif %}>
-            <td style="text-align: center;width: 10px;">{% if task.task_creater == globals.user.id_user %}<i class="icon-user" style="font-size: 20px;"></i>{% endif %}</td>
+            <td style="text-align: center;width: 10px;">{% if task.task_creater == globals.user.id_user %}<i class="fa fa-user" style="font-size: 20px;"></i>{% endif %}</td>
             <td><a href="/projects/~{{task.id_project}}/">{{ task.project_name }}</a></td>
             <td><a href="/projects/tasks/show/{{task.id}}/">{{task.name}}</a></td>
             <td>
@@ -20,7 +23,7 @@
                 {% elseif task.status == "in_progress" %}в процессе
                 {% elseif task.status == "closed" %}закрытая
                 {% elseif task.status == "rejected" %}отклоненная
-                    <i class="icon icon-info-sign get_info" rel="popover" data-original-title="Причина отклонения" data-content="{{task.message}}"></i>
+                    <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
                 {% endif %}
             </td>
             <td>
@@ -53,6 +56,7 @@
             <td colspan="6">Задачи не найдены</td>
         </tr>
     {% endfor %}
+    </tbody>
 </table>
 {% include '/source/jpaginator_boot.html' %}
 <script>

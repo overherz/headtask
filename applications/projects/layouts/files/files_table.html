@@ -1,5 +1,6 @@
 {% include '/source/jpaginator_boot.html' %}
-<table class="table table-bordered table-hover table-condensed" id="{% if not get_popup_files and not post_data.get_popup_files %}files_table{% else %}popup_files_table{% endif %}">
+<table class="table table-hover table-condensed" id="{% if not get_popup_files and not post_data.get_popup_files %}files_table{% else %}popup_files_table{% endif %}">
+    <thead>
     <tr>
         <th>Файл</th>
         <th>Название</th>
@@ -8,6 +9,7 @@
         <th>Добавил</th>
         {% if not show_task %}{% if access.delete_files %}<th></th>{% endif %}{% endif %}
     </tr>
+
     <tbody>
     {% if files %}
     {% for file in files %}

@@ -1,11 +1,13 @@
 {% include '/source/jpaginator_boot.html' %}
 <table class="table table-bordered table-hover table-condensed" id="documents_table">
+    <thead>
     <tr>
         <th>Название</th>
         <th>Дата</th>
         <th>Автор</th>
         {% if access.documents %}<th></th>{% endif %}
     </tr>
+    </thead>
     <tbody>
     {% if documents %}
     {% for n in documents %}

@@ -1,6 +1,6 @@
 <tr id="topic{{t.id}}">
     <td>
-        {% if t.closed %}<i class="icon-lock" {% if t.fixed %}style="margin-right: 5px;"{% endif %}></i>{% endif %}{% if t.fixed %}<i class="icon-pushpin"></i>{% endif %} <a href="/projects/forum/show_topic/{{t.id}}/">{{t.name}}</a>
+        {% if t.closed %}<i class="fa fa-lock" {% if t.fixed %}style="margin-right: 5px;"{% endif %}></i>{% endif %}{% if t.fixed %}<i class="fa fa-thumb-tack"></i>{% endif %} <a href="/projects/forum/show_topic/{{t.id}}/">{{t.name}}</a>
         <div class="nickname">{{t.topic_created|date('d.m.Y H:i')}}</div>
     </td>
     <td><a href="/users/~{{authors[t.author].id_user}}/" style="color:{{ authors[t.author].color }};font-weight: bold;" title="{{ authors[t.author].group_name }}">{{authors[t.author].fio}}</a><div class="nickname">{{authors[t.author].nickname}}</div></td>
@@ -15,8 +15,8 @@
     <td style="width: 1px;">
         {% if access.forum %}
             <div class="btn-group">
-                <a class="btn btn-oscar btn-small" href="/projects/forum/edit_topic/{{t.id}}"><i class="icon-pencil icon-white"></i></a>
-                <a class="btn btn-oscar btn-small" delete_topic={{t.id}} href=""><i class="icon-trash icon-white"></i></a>
+                <a class="btn btn-oscar btn-small" href="/projects/forum/edit_topic/{{t.id}}"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-oscar btn-small" delete_topic={{t.id}} href=""><i class="fa fa-trash-o"></i></a>
             </div>
         {% else %}&nbsp;
         {% endif %}

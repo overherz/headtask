@@ -11,10 +11,7 @@
 {% endblock %}
 
 {% block project_data %}
-<form action="" id="search_form" method="post" style="margin: 0px;">
-    <input type="text" size="50" name="search" class="input-large" placeholder="Поиск">
-    <input type="hidden" name="page" value="">
-</form>
+{% include "/source/search_form.html" %}
 <div class="clearfix"></div>
 <div id="search_result">
     {% include app.path('projects','documents/documents_table.html') %}

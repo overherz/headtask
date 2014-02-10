@@ -158,11 +158,11 @@ body {
     background: #fff;
     box-shadow: none;
     font-family: 'Open Sans', sans-serif !important;
-    border-radius: 0 !important;
 }
 
-.panel-title .jq-selectbox__select {
-    margin-top: -2px;
+.jq-selectbox__select {
+    height: 34px;
+    line-height: 34px;
 }
 
 .jq-checkbox,.jq-radio {
@@ -173,21 +173,18 @@ body {
 
 .jq-selectbox__select,input[type=text],input[type=password] {
     border-bottom-color: #CCC;
-    border-radius: 0 !important;
 }
 .jq-selectbox__select {
     padding-left: 6px;
 }
 
-
-.jq-selectbox__select:hover {
-    background-color: #fff;
-    border-radius: 0 !important;
-}
-
 .jq-checkbox {
     top: 0;
     border-radius: 0 !important;
+}
+
+.jq-selectbox__select:hover {
+    background-color: #fff;
 }
 
 .jq-selectbox-wrapper {
@@ -216,6 +213,14 @@ input,textarea {
     padding: 4px 6px;
 }
 
+.jumbotron {
+    background: #f2f2f2;
+}
+
+.pagination_disabled a {
+    cursor: default !important;
+}
+
 .back-to-top {
     position: fixed;
     bottom: 10px;
@@ -234,6 +239,66 @@ input,textarea {
     background-color: #387038;
     text-decoration: none;
     color: #fff;
+}
+
+.user_online,.user_offline {
+    font-size: 20px;
+}
+
+.user_online.small,.user_offline.small {
+    font-size: 12px;
+}
+
+.user_online.big,.user_offline.big {
+    font-size: 30px;
+}
+
+.user_online {
+    color:green;
+}
+
+.user_offline {
+    color:#777;
+}
+
+.user_online:before {
+    content: "\f130";
+    font-family: FontAwesome;
+}
+
+.user_offline:before {
+    content: "\f131";
+    font-family: FontAwesome;
+}
+
+#ui-datepicker-div {
+    z-index: 100 !important;
+}
+
+#filter_table {
+    display: none;
+    width: auto;
+    background: transparent;
+}
+
+#filter_table td {
+    vertical-align: top !important;
+    background: #fff;
+    border: 1px solid #DDDDDD;
+}
+
+#filter_table th {
+    border: 1px solid #DDDDDD;
+    white-space: nowrap;
+}
+
+.table_statistic td.first {
+    background: #F9F9F9 !important;
+    color: #333;
+    border-right: 1px solid #ddd;
+    font-weight: bold;
+    width: 1px;
+    white-space: nowrap;
 }
 
 .btn-india {

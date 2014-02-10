@@ -221,3 +221,23 @@ function scrollbarWidth() {
 
     return (width1 - width2) + "px";
 }
+
+$(document).ready(function ($) {
+    if(jQuery().popover)
+    {
+        $(".get_info").popover({
+            offset: 10,
+            trigger: 'manual',
+            html: true,
+            placement: 'right',
+            template: '<div class="popover" onmouseover="clearTimeout(timeoutObj);$(this).mouseleave(function() {$(this).hide();});"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+        }).mouseenter(function(e) {
+            $(this).popover('show');
+        }).mouseleave(function(e) {
+            var ref = $(this);
+            timeoutObj = setTimeout(function(){
+                ref.popover('hide');
+            }, 50);
+        });
+    }
+});

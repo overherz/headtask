@@ -17,6 +17,7 @@ $(document).ready(function($) {
         user_api({act:'get_form_upload'},function(res){
             show_popup(res,'Загрузка файлов',function(){
                     make_upload();
+                   // $(".popup .jq-file").hide();
                 },function(){
                 var activeUploads = $('#fileupload').fileupload('active')
                 if (activeUploads > 0)

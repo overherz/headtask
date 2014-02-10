@@ -378,7 +378,7 @@
 								var selCloneWidth = selClone.width();
 								selClone.remove();
 								if (selCloneWidth == selectbox.width()) {
-                                    s_w = selectbox.find('div.jq-selectbox__trigger').width() - 20;
+                                    s_w = selectbox.find('div.jq-selectbox__trigger').width() - 10;
 									divText.width(liWidth2 + s_w);
 									liWidth1 += s_w;
 								}
