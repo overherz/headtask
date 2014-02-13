@@ -1,0 +1,12 @@
+{% if p.id != page.id %}
+    {% set depth = depth+1 %}
+    <option value="{{p.id}}" {% if p.id==page.parent_id %}selected{% endif %}>
+        {% for i in 0..depth %}- {% endfor %}
+        {{p.name|cut(40)}}
+    </option>
+    {% if p.sub %}
+        {% for p in p.sub %}
+            {% include app.path('pages','admin/nested_option.html') %}
+        {% endfor %}
+    {% endif %}
+{% endif %}

@@ -1,4 +1,4 @@
-<div class="add_html" {% if not show %}style="display: none;"{% endif %}>
+<div class="add_html">
 <form class="new_page">
     <input type="hidden" name="id" value="{{page.id}}">
     <input type="hidden" name="id_text" value="{{page.id_text}}">
@@ -9,10 +9,37 @@
             <li><a href="#tabs-2">Текст</a></li>
         </ul>
         <div id="tabs-1">
+            <div class="body"><span class="title">Родительская страница</span>
+                <div>
+                    <select name="parent_id">
+                        <option>&nbsp;</option>
+                        {% for p in pages_cat %}
+                            {% if p.id != page.id %}
+                                <option value="{{p.id}}" {% if p.id == page.parent_id %}selected{% endif %}>{{ p.name|cut(40) }}</option>
+                                {% for p in p.sub %}
+                                    {% include app.path('pages','admin/nested_option.html') %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
             <div class="body"><span class="title">Название</span>
                 <div><input type="text" name="name" value="{{page.name}}" class="input" style="width:350px"></div></div>
-            <div class="body"><span class="title">Английское название</span>
-                <div><input type="text" name="url" value="{{page.url}}" class="input" style="width:350px"></div></div>
+            <div class="body"><span class="title">Url</span>
+                <div><input type="text" name="url" value="{{page.url}}" class="input" style="width:350px"></div>
+                <div class="description">допускаются английские буквы, цифры и знаки "-", "_"</div>
+                <div class="description">знанение "index" сделает страницу главной</div>
+            </div>
+            <div class="body"><span class="title">Шаблон</span>
+                <div>
+                    <select name="template">
+                        {% for t in templates %}
+                            <option value="{{ t }}" {% if  page.template == t %}selected{% endif %}>{{ t }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
             <div class="body"><span class="title">Title</span>
                 <div><input type="text" name="title" value="{{page.title}}" class="input" style="width:350px"></div></div>
             <div class="body"><span class="title">Keywords</span>

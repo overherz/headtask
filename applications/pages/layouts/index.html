@@ -10,8 +10,10 @@
 <script type ="text/javascript" src="{{app.path('pages','pages.js')}}"></script>
 {% endblock %}
 
-{% block body %}
-<div class="title_block">{{page.name}}</div>
-<div class="content_text"><div class="wysiwyg">{{page.text|raw}}</div></div>
+{% block context %}
+    <div class="jumbotron">
+        <div class="title_block">{{page.name}}</div>
+        <div class="content_text"><div class="wysiwyg">{{page.text|raw}}</div></div>
+    </div>
 {% endblock %}
 

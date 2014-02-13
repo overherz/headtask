@@ -85,7 +85,7 @@ function show_popup(html,title,callback1,callback2){
 function add_popup_button(text,identificator,vars,func)
 {
     $(".popup_bottom ["+identificator+"]").remove();
-    $(".popup_bottom").prepend("<a href='' class='btn btn-primary newbtn' "+identificator+" onclick='return false;'><span>"+text+"</span></a>");
+    $(".popup_bottom").prepend("<a href='' class='btn btn-primary newbtn' style='margin-left: 10px;' "+identificator+" onclick='return false;'><span>"+text+"</span></a>");
     if (func)
     {
         $(".popup_bottom ["+identificator+"]").off("click").on("click",function(){

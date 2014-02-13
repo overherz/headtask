@@ -14,9 +14,10 @@ CKEDITOR.editorConfig = function( config )
     config.contentsCss = ["/source/css/content.css"];
     config.height = 400;
     config.enterMode = CKEDITOR.ENTER_DIV;
-    CKEDITOR.config.protectedSource.push(/<(script)[^>]*>.*<\/script>/ig);
-    CKEDITOR.config.protectedSource.push(/<map .*<\/map>/ig);
-    CKEDITOR.config.protectedSource.push(/<(area).*>/ig);
+    config.allowedContent = true;
+    config.protectedSource.push(/<(script).*>.*<\/script>/ig);
+    config.protectedSource.push(/<(map).*>.*<\/map>/ig);
+    config.protectedSource.push(/<(area).*>/ig);
 
     config.toolbar_Basic =
         [
@@ -45,3 +46,6 @@ CKEDITOR.editorConfig = function( config )
             ['Link','Unlink'],
         ];
 };
+
+CKEDITOR.dtd.$removeEmpty['i'] = false;
+CKEDITOR.dtd.$removeEmpty['span'] = false;

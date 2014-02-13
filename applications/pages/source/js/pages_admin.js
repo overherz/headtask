@@ -1,9 +1,11 @@
 $(document).ready(function($) {
     $(document).on("click",".add-btn",function(){
-        var html = $(".add_html").html();
-        show_popup(html,"Добавление новой страницы");
-        add_popup_button("Сохранить и закрыть",'save_close');
-        CKEDITOR.replace('text');
+        user_api({act:'add_page'},function(data){
+            show_popup(data,"Добавление новой страницы");
+            add_popup_button("Сохранить и закрыть",'save_close');
+            CKEDITOR.replace('text');
+        });
+        return false;
     });
 
     $(document).on("click","[save]",function(){

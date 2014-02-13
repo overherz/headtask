@@ -52,7 +52,7 @@ function make_upload()
                     "<td style='border-top: none;width: 1%;white-space: nowrap;'>"+file.name.substr(0,40)+"</td>" +
                     "<td style='border-top: none;'>" +
                         "<div class='progress progress-striped active'>" +
-                            "<div class='bar' id='"+file.name+"' style='width: 0%;text-align: right;'></div>" +
+                            "<div class='progress-bar' id='"+file.name+"' style='width: 0%;text-align: right;'></div>" +
                         "</div>" +
                     "</td>" +
                     "<td style='width: 100px;border-top: none;' data-speed='"+file.name+"'></td>" +

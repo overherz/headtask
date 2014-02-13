@@ -1,7 +1,7 @@
 <tr id="page-tr-{{i.id}}-{{i.id_text}}">
     {% if not versions %}
-    <td>{{i.name}}</td>
-    <td><a href="/pages/~{{i.url}}/">/pages/~{{i.url}}/</a></td>
+    <td>{% if i.level > 0 %}{% for i in 1..i.level %}- {% endfor %}{% endif %}{{i.name}}</td>
+    <td><a href="{{i.path}}">{{i.path|cut(50)}}</a></td>
     {% endif %}
     <td>{{i.text|nl2br}}</td>
     <td style="white-space: nowrap;">{% if i.created %}{{i.created|date("d.m.Y H:i:s")}}{% endif %}</td>

@@ -17,7 +17,7 @@ class pages extends \Controller {
             if ($page = $query->fetch())
             {
                 if ($get) return $page;
-                else $this->layout_show('index.html',array('page' => $page));
+                else $this->layout_show("templates/{$page['template']}.html",array('page' => $page));
             }
             else $this->error_page();
 

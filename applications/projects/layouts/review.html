@@ -10,7 +10,19 @@
 {% endblock %}
 
 {% block project_data %}
-<table class="table review_table table-bordered table-condensed">
+{% if project.description or project.url %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Описание проекта</h3>
+    </div>
+    <div class="panel-body">
+        {% if project.description %}<div>{{ project.description }}</div>{% endif %}
+        {% if project.url %}<div><a href="{{ project.url }}">{{ project.url }}</a></div>{% endif %}
+    </div>
+</div>
+{% endif %}
+
+<table class="table review_table table-condensed">
     <tr>
         <th class="left_column">Статистика</th>
         {% if not project.owner and news %}<th>Последние новости</th>{% endif %}

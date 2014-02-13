@@ -134,7 +134,11 @@ body {
 .table th {
     background: #428BCA !important;
     color: #fff;
-    border-bottom: 1px solid #101010 !important;
+    border-bottom: 1px solid #428BCA !important;
+}
+
+.table-hover tbody tr:hover td {
+    background-color: lightgoldenrodyellow;
 }
 
 .breadcrumb {
@@ -232,7 +236,6 @@ input,textarea {
     padding: 5px;
     display: none;
     z-index: 1000;
-    text-decoration: none;
 }
 
 .back-to-top:hover {

@@ -14,7 +14,7 @@
                 {% for k,m in globals.menu %}
                     {% if k != "crumbs"%}
                          {% if not m.category %}
-                            <li {% if m.active or globals.menu.crumbs[m.id] %}class="active"{% endif %}><a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}//{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} title="{{m.name}}" class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{m.name}}</a></li>
+                            <li {% if m.active or globals.menu.crumbs[m.id] %}class="active"{% endif %}><a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} title="{{m.name}}" class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{m.name}}</a></li>
                          {% else %}
                              <li class="dropdown">
                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ m.name|raw }} <b class="caret"></b></a>

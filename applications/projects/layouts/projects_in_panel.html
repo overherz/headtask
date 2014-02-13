@@ -1,16 +1,6 @@
 <div class="list-group">
     {% for p in projects.projects %}
-        <a href="/projects/~{{p.id}}/" class="list-group-item  project_description {% if project.id == p.id or projects.current_project == p.id %}active{% endif %}"
-        {% if p.description or p.url %}
-            data-title="Описание&nbsp;проекта"
-            data-content="
-            {% if p.description %}{{p.description}}{% endif %}
-            {% if p.url %}
-                {% if p.description %}<br>{% endif %}
-                <a href='{{p.url}}' target='_blank'>{{p.url}}</a>
-            {% endif %}"
-        {% endif %}
-         >
+        <a href="/projects/~{{p.id}}/" class="list-group-item {% if project.id == p.id or projects.current_project == p.id %}active{% endif %}">
         {% if p.owner %}<i class="fa fa-user"></i> {% endif %}{{p.name}}
         </a>
     {% else %}ничего не найдено

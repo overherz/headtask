@@ -3,7 +3,7 @@ namespace admin\pages;
 
 class pages extends \Admin {
 
-    var $limit = 10;
+    var $limit = 20;
 
     function default_method()
     {
@@ -17,6 +17,9 @@ class pages extends \Admin {
                 break;
             case "edit":
                 $this->edit();
+                break;
+            case "add_page":
+                $this->add_page();
                 break;
             case "show_versions":
                 $this->show_versions();
@@ -53,7 +56,7 @@ class pages extends \Admin {
 
         $query = $this->db->query("select p.*,pt.created,pt.main,pt.text,pt.id as id_text,(select count(id) from pages_text where id_page=p.id) as count from pages as p
             LEFT JOIN pages_text as pt ON pt.id_page=p.id
-            {$sql_text} group by p.id ORDER BY name ASC,main DESC LIMIT {$on_page} OFFSET {$paginator->get_range('from')}");
+            {$sql_text} group by p.id ORDER BY path ASC,level ASC,name ASC,main DESC LIMIT {$on_page} OFFSET {$paginator->get_range('from')}");
         while ($row = $query->fetch())
         {
             $row['text'] = cut($row['text'],50);
@@ -76,6 +79,12 @@ class pages extends \Admin {
         }
     }
 
+    function add_page()
+    {
+        $res['success'] = $this->layout_get('admin/form.html',array('pages_cat' => $this->get_nested_pages(),'templates' => $this->get_templates()));
+        echo json_encode($res);
+    }
+
     function edit()
     {
         if ($_POST['id'] != "")
@@ -84,7 +93,7 @@ class pages extends \Admin {
             if ($page = $this->get_full_page($ids[0],$ids[1]))
             {
                 \layout::$func_from_text = false;
-                $res['success'] = $this->layout_get('admin/form.html',array('page' => $page,'show' => true));
+                $res['success'] = $this->layout_get('admin/form.html',array('page' => $page,'show' => true,'pages_cat' => $this->get_nested_pages(),'templates' => $this->get_templates()));
             }
             else $res['error'] = "Данных не найдено";
         }
@@ -96,8 +105,11 @@ class pages extends \Admin {
     function save()
     {
         if ($_POST['name'] == "") $res['error'] = "Укажите название";
-        if ($_POST['url'] == "") $res['error'] = "Укажите правильную ссылку";
+        if ($_POST['url'] == "") $_POST['url'] = translit($_POST['name']);
         if ($_POST['text'] == "") $res['error'] = "Текст не может быть пустым";
+        $_POST['url'] = translit($_POST['url']);
+
+        if (preg_match('/[^A-Za-z0-9_\-]/', $_POST['url'])) $res['error'] = "Обнаружены запрещенные символы";
 
         $this->db->beginTransaction();
         if (!$res['error'])
@@ -110,16 +122,20 @@ class pages extends \Admin {
             }
 
             $_POST['text'] = preg_replace("/[[(.*)]&shy;]/","[[$1]]",$_POST['text']);
-            $data = array($_POST['name'],translit($_POST['url']),$_POST['title'],$_POST['keywords'],$_POST['description']);
+            $data = array($_POST['name'],$_POST['url'],$_POST['title'],$_POST['keywords'],$_POST['description'],$_POST['parent_id'],$_POST['template']);
 
             if ($_POST['id'] != "")
             {
-                $query = $this->db->prepare("update pages set name=?,url=?,title=?,keywords=?,description=? where id=?");
+                $query = $this->db->prepare("update pages set name=?,url=?,title=?,keywords=?,description=?,parent_id=?,template=? where id=?");
                 $data[] = $_POST['id'];
+
+                $get_old = $this->db->prepare("select url,parent_id from pages where id=?");
+                $get_old->execute(array($_POST['id']));
+                $old = $get_old->fetch();
             }
             else
             {
-                $query = $this->db->prepare("insert into pages(name,url,title,keywords,description) values(?,?,?,?,?)");
+                $query = $this->db->prepare("insert into pages(name,url,title,keywords,description,parent_id,template) values(?,?,?,?,?,?,?)");
             }
 
             $query2 = $this->db->prepare("insert into pages_text(text,created,main,id_page) values(?,?,?,?)");
@@ -127,10 +143,12 @@ class pages extends \Admin {
 
             $query3 = $this->db->prepare("update pages_text set main = NULL where id_page=?");
 
+            if (!$res['error'])
             if ($query->execute($data))
             {
-                if ($_POST['id'] == "") $data2[] = $this->db->lastInsertId();
-                else $data2[] = $_POST['id'];
+                if ($_POST['id'] == "") $db_id = $this->db->lastInsertId();
+                else $db_id = $_POST['id'];
+                $data2[] = $db_id;
 
                 if ($query3->execute(array($_POST['id'])) && $query2->execute($data2))
                 {
@@ -146,6 +164,78 @@ class pages extends \Admin {
                 else $res['error'] = "Не удалось сохранить страницу";
             }
             else $res['error'] = "Не удалось сохранить страницу";
+
+            if ($old['parent_id'] != $_POST['parent_id'] || $old['url'] != $_POST['url'])
+            {
+                $a_query = $this->db->query("select id,parent_id,name,path,url from pages order by parent_id");
+                while ($row = $a_query->fetchObject())
+                {
+                    $a[] = $row;
+                    $urls[$row->id] = $row->url;
+                }
+
+                $parents = $this->parents($db_id,false,$a);
+                $childs = $this->childs($db_id,false,$a);
+
+                $paths = array();
+                if ($parents)
+                {
+                    $parents = array_reverse($parents);
+                    foreach ($parents as $j => $m)
+                    {
+                        $paths[] = $urls[$m];
+                    }
+                    $count_paths_p = count($paths);
+                    if ($count_paths_p > 0) $path = "/".implode("/",$paths);
+                }
+                $path = $path."/".$_POST['url']."/";
+
+                if ($childs)
+                {
+                    foreach ($childs as $j => $m)
+                    {
+                        $paths = array();
+                        $count_paths = 0;
+                        $parents = $this->parents($m,true,$a);
+                        if ($parents)
+                        {
+                            $parents = array_reverse($parents);
+                            foreach ($parents as $l => $n)
+                            {
+                                $paths[] = $urls[$n];
+                            }
+                            $count_paths = count($paths);
+                            if ($count_paths > 0) $path_child = "/".implode("/",$paths)."/";
+                        }
+
+                        $sql[] = "when {$m} then '{$path_child}'";
+                        $sql1[] = "when {$m} then '".($count_paths-1)."'";
+                        $update_menu[] = array('path' => $path_child,'value' => $m);
+                    }
+                    if (!$this->db->query("update pages set path= case `id` ".implode(" ",$sql)." end,
+                        level= case `id` ".implode(" ",$sql1)." end
+                        where id IN(".implode(",",$childs).")")) $res['error'] = "Ошибка базы данных";
+                }
+
+                $query4 = $this->db->prepare("update menu set path=? where application='pages' and value=?");
+                $update_menu[] = array('path' => $path,'value' => $db_id);
+                foreach ($update_menu as $v)
+                {
+                    if (!$query4->execute(array($v['path'],$v['value']))) $res['error'] = "Ошибка базы данных";
+                }
+
+                if ($path)
+                {
+                    $dublicate = $this->db->prepare("select id from pages where path=? and id !=?");
+                    $dublicate->execute(array($path,$db_id));
+                    if ($dublicate->fetch()) $res['error'] = "Страница с таким адресом уже существует";
+                    else
+                    {
+                        $query5 = $this->db->prepare("update pages set path=?,level=? where id=?");
+                        if (!$query5->execute(array($path,$count_paths_p,$db_id))) $res['error'] = "Ошибка базы данных";
+                    }
+                }
+            }
         }
 
         if (!$res['error'])
@@ -168,7 +258,7 @@ class pages extends \Admin {
             {
                 $_POST['id'] = $ids[0];
                 $version = true;
-                $page = $this->get_full_page($_POST['id'],$ids[1]);
+                $page = $this->get_full_page($_POST['id'],$ids[1],false);
                 $query = $this->db->prepare("delete from pages_text where id=? LIMIT 1");
                 if (!$query->execute(array($ids[1]))) $res['error'] = "Произошла ошибка";
                 $count = $this->db->num_rows("pages_text where id_page=".$this->db->quote($ids[0]));
@@ -186,13 +276,14 @@ class pages extends \Admin {
             }
             else $page = $this->get_page($_POST['id']);
 
-            $query = $this->db->prepare("delete from pages where id=? LIMIT 1");
-
             $log = $this->get_controller("logs");
 
             if (!$version || $count < 1)
             {
-                if ($query->execute(array($_POST['id'])))
+                $childs = $this->childs($_POST['id'],true);
+                $c_ids = implode(",",$childs);
+                $query = $this->db->prepare("delete from pages where id IN({$c_ids})");
+                if ($query->execute())
                 {
                     if ($log && !$version) $log->save_into_log("admin","Статические страницы",true,"Удалена страница \"{$page['name']}\"",$_SESSION['admin']['id_user']);
                 }
@@ -234,9 +325,10 @@ class pages extends \Admin {
         return $page;
     }
 
-    function get_full_page($id,$id_text)
+    function get_full_page($id,$id_text,$text=true)
     {
-        $query = $this->db->prepare("select p.*,pt.created,pt.main,pt.text,pt.id as id_text from pages as p
+        if ($text) $text_select = ",pt.text";
+        $query = $this->db->prepare("select p.*,pt.created,pt.main{$text_select},pt.id as id_text from pages as p
                 LEFT JOIN pages_text as pt ON pt.id_page=p.id
                 where p.id=? and pt.id=? LIMIT 1");
         $query->execute(array($id,$id_text));
@@ -287,6 +379,86 @@ class pages extends \Admin {
         else $res['error'] = "Переданы неверные данные";
 
         echo json_encode($res);
+    }
+
+    function get_nested_pages()
+    {
+        $query = $this->db->query("select id,parent_id,name from pages");
+        while ($row = $query->fetch()) $pages[$row['id']] = $row;
+        if($pages)
+        {
+            return $this->generate_foreach($pages);
+        }
+    }
+
+    function generate_foreach(array $listIdParent)
+    {
+        $to_delete = array();
+        foreach ($listIdParent as $id => $node)
+        {
+            if ($node['parent_id'])
+            {
+                $listIdParent[$node['parent_id']]['sub'][$id] = &$listIdParent[$id];
+                $to_delete[] = $id;
+            }
+        }
+
+        $final = $listIdParent;
+
+        foreach ($to_delete as $v) unset($final[$v]);
+        return $final;
+    }
+
+    function parents($id, $with_self=false, $a='', &$res=array()){
+        if(!$a){
+            $query = $this->db->query("select id,parent_id,name,path from pages order by parent_id");
+            while ($row = $query->fetchObject()) $a[] = $row;
+        }
+        if($a){
+            if($with_self && !in_array($id,$res)) $res[]=$id;
+            foreach ($a as $val){
+                if($val->id==$id && $val->parent_id){
+                    $res[]=$val->parent_id;
+                    $this->parents($val->parent_id, $with_self, $a, $res);
+                }
+            }
+            return $res;
+        }
+    }
+
+    function childs($id, $with_self=false, $a='', &$res=array()){
+        if(!$a){
+            $query = $this->db->query("select id,parent_id,name,path from pages order by parent_id");
+            while ($row = $query->fetchObject()) $a[] = $row;
+        }
+
+        if($a){
+            if($with_self && !in_array($id,$res)) $res[]=$id;
+            foreach ($a as $val){
+                if($val->parent_id==$id){
+                    $res[]=$val->id;
+                    $this->childs($val->id, $with_self, $a, $res);
+                }
+            }
+            return $res;
+        }
+    }
+
+    function get_templates()
+    {
+        $folder = ROOT."applications/pages/layouts/templates/";
+        if ($templates = glob($folder."*.html"))
+        {
+            foreach ($templates as $t)
+            {
+                $name = basename($t);
+                $pos = strrpos($name, '.');
+                if ($pos !== false) $name = substr($name, 0, $pos);
+                $templates_name[] = $name;
+            }
+        }
+
+        return $templates_name;
     }
 }
 

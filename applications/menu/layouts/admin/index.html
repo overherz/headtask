@@ -1,0 +1,23 @@
+{% extends "/source/admin/index.html" %}
+{% block title %}
+    &rarr; Меню
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('menu','menu.css')}}">
+{% endblock %}
+{% block js %}
+    ,"/source/js/nestedSortable.js"
+    ,"{{app.path('menu','menu_admin.js')}}"
+{% endblock %}
+{% block body %}
+<a class="fa fa-15x fa-plus add-btn"></a>
+    {% if menu %}
+    <ol class="sortable">
+        {% for cat in menu %}         
+        <li id="list_{{cat.id}}" menu="{{cat.id}}" url="{{cat.url}}">{% include app.path('menu','admin/elements/row.html') %}</li>
+        {% endfor %}
+    </ol>
+    {% else %}
+        Нет данных
+    {% endif %}
+{% endblock %}

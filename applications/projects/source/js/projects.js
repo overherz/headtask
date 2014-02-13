@@ -21,8 +21,6 @@ $(document).ready(function ($) {
         });
         return false;
     });
-
-    projects_descriptions();
 });
 
 function get_project_panel_page(page){
@@ -33,40 +31,5 @@ function get_project_panel_page(page){
 
     user_api(request,function(res){
         $('#project_panel_result').html(res.panel);
-        $('#project_top_result').html(res.top);
-        projects_descriptions();
     },false,'/projects/');
-}
-
-function projects_descriptions()
-{
-    $(".project_description").popover({
-        offset: 10,
-        trigger: 'manual',
-        html: true,
-        placement: 'right',
-        template: '<div class="popover" onmouseover="clearTimeout(timeoutObj);$(this).mouseleave(function() {$(this).hide();});"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
-    }).mouseenter(function(e) {
-            $(this).popover('show');
-        }).mouseleave(function(e) {
-            var ref = $(this);
-            timeoutObj = setTimeout(function(){
-                ref.popover('hide');
-            }, 50);
-        });
-
-    $(".project_description_bottom").popover({
-        offset: 10,
-        trigger: 'manual',
-        html: true,
-        placement: 'bottom',
-        template: '<div class="popover" onmouseover="clearTimeout(timeoutObj);$(this).mouseleave(function() {$(this).hide();});"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
-    }).mouseenter(function(e) {
-            $(this).popover('show');
-        }).mouseleave(function(e) {
-            var ref = $(this);
-            timeoutObj = setTimeout(function(){
-                ref.popover('hide');
-            }, 50);
-        });
 }

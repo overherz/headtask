@@ -1,0 +1,15 @@
+<div class="tree_block" id="{{cat.id}}">
+    {% if cat.path %}<a href="{{cat.path}}" target="_blank">{{cat.name}}</a>{% endif %}
+    <span class="tree_icons">
+        <a class="fa fa-plus fa-fw fa-15x add-btn"></a>
+        <a class="fa fa-edit fa-fw fa-15x edit-btn"></a>
+        <a class="fa fa-trash-o fa-fw fa-15x del-btn"></a>
+    </span>
+</div>
+{% if cat.category %}
+<ol>
+    {% for cat in cat.category %}
+        <li id="list_{{cat.id}}" menu="{{cat.id}}" url="{{cat.url}}">{% include app.path('menu','admin/elements/row.html') %}</li>
+    {% endfor %}
+</ol>
+{% endif %}

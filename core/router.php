@@ -73,8 +73,8 @@ class Router {
 
         unset($this->route[0]);
         unset($this->route[1]);
-
         $this->rules();
+
         self::run_globals();
         $this->get_application();
     }
@@ -93,13 +93,17 @@ class Router {
     {
         if (!self::$admin)
         {
-            if (self::$application == "page")
+            $c = \MyPDO::connect();
+            if ($_SERVER['REQUEST_URI'] == "/") $_SERVER['REQUEST_URI'] = "/index/";
+            $query = $c->prepare("select id from pages where path=?");
+            $query->execute(array($_SERVER['REQUEST_URI']));
+            $result = $query->fetch();
+
+            if ($result['id'] != "")
             {
-                if ($this->second) array_unshift($this->route,$this->second);
-                array_unshift($this->route,self::$controller);
-                self::$id = implode("/",$this->route);
-                unset($this->route);
-                self::$controller = "page";
+                self::$id = $result['id'];
+                self::$application = "pages";
+                self::$controller = "pages";
             }
         }
     }
