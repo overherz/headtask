@@ -1,0 +1,25 @@
+{% if news %}
+<div class="title_block" style="margin-top: 30px;">Новости</div>
+<table class="table_news" border="0">
+    <tr>
+        {% set count = 2 %}
+        {% for n in news %}
+        <td style="{% if loop.index % count > 0 %}padding-right:50px;{% endif  %}{% if loop.index > count %}padding-top:30px;{% endif %}">
+            <a href="/news/~{{n.id}}/">
+                {% if n.image %}<img src="/uploads/news/news_small/{{n.image|real_path}}">
+                {% endif %}
+            </a>
+            <span class="news_date">{{n.created|date('d.m.Y')}}</span>
+            <a href="/news/~{{n.id}}/">{{n.name}}</a>
+        </td>
+        {% if loop.index % count == 0 and not loop.last %}<tr>{% endif %}
+    {% if loop.last and loop.index % count > 0 %}
+    {% for i in 1..count-loop.index % count %}
+    <td>&nbsp;</td>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+</tr>
+</table>
+<a href="/news/" class="news_date" style="margin-top: 10px;font-size: 14px;display: block;text-indent: 0px;">Все новости</a>
+{% endif %}

@@ -93,12 +93,13 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
                 </form>
             </div>
         </div><!--/span-->
-        <div class=\"col-sm-10 col-lg-10\" id=\"projects_second_panel\">
+        <div class=\"col-sm-12 col-lg-10\" id=\"projects_second_panel\">
             <div class=\"jumbotron\" style=\"padding: 10px;\">
+
             ");
-        // line 32
-        $this->displayBlock('project', $context, $blocks);
         // line 33
+        $this->displayBlock('project', $context, $blocks);
+        // line 34
         echo \layout::func_from_text("            </div>
         </div>
     </div>
@@ -107,7 +108,7 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
 ");
     }
 
-    // line 32
+    // line 33
     public function block_project($context, array $blocks = array())
     {
     }
@@ -124,6 +125,6 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
 
     public function getDebugInfo()
     {
-        return array (  111 => 32,  102 => 33,  100 => 32,  91 => 26,  85 => 22,  82 => 21,  74 => 19,  66 => 17,  64 => 16,  54 => 10,  51 => 9,  44 => 6,  41 => 5,  34 => 3,  31 => 2,);
+        return array (  112 => 33,  103 => 34,  101 => 33,  91 => 26,  85 => 22,  82 => 21,  74 => 19,  66 => 17,  64 => 16,  54 => 10,  51 => 9,  44 => 6,  41 => 5,  34 => 3,  31 => 2,);
     }
 }

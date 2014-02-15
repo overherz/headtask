@@ -68,6 +68,7 @@ class pages extends \Admin {
         );
 
         $data = array('pages'=>$pages, 'total'=>$total,'paginator' => $paginator,'form' => $form);
+        \layout::$func_from_text = false;
         if (!isset($_POST['page']))
         {
             $this->layout_show('admin/pages.html',$data);
@@ -106,10 +107,10 @@ class pages extends \Admin {
     {
         if ($_POST['name'] == "") $res['error'] = "Укажите название";
         if ($_POST['url'] == "") $_POST['url'] = translit($_POST['name']);
+        else $_POST['url'] = translit($_POST['url']);
         if ($_POST['text'] == "") $res['error'] = "Текст не может быть пустым";
-        $_POST['url'] = translit($_POST['url']);
 
-        if (preg_match('/[^A-Za-z0-9_\-]/', $_POST['url'])) $res['error'] = "Обнаружены запрещенные символы";
+        if ($_POST['url'] != "" && !preg_match('/^[a-zA-Z0-9_\-]+$/', $_POST['url'])) $res['error'] = "Обнаружены запрещенные символы";
 
         $this->db->beginTransaction();
         if (!$res['error'])

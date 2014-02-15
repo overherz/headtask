@@ -150,7 +150,7 @@ class __TwigTemplate_4459c944ff331e79b7bb8dc0a5ed06ec4f45b3f45f1392c5afca37e8d58
             echo \layout::func_from_text("                            <option value=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["t"]) ? $context["t"] : null), "html", null, true));
             echo \layout::func_from_text("\" ");
-            if (($this->getAttribute((isset($context["pate"]) ? $context["pate"] : null), "template") == (isset($context["t"]) ? $context["t"] : null))) {
+            if (($this->getAttribute((isset($context["page"]) ? $context["page"] : null), "template") == (isset($context["t"]) ? $context["t"] : null))) {
                 echo \layout::func_from_text("selected");
             }
             echo \layout::func_from_text(">");

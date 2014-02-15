@@ -4,7 +4,7 @@
     {% if dev_mode %}
     <td class="td-align-middle"><a title="Изменить" class="edit-btn edit-btn-category" id="{{op.id}}"></a></td>
     <td class="td-align-middle"><a title="Удалить" class="del-btn" id="{{op.id}}"></a></td>
-    <td class="td-align-middle"><a title="Добавить подкатегорию" class="add-btn add-subcategory" data-id="{{op.id}}"></a></td>
+    <td class="td-align-middle"><a title="Добавить подкатегорию" class="fa fa-plus fa-15x add-btn add-subcategory" data-id="{{op.id}}"></a></td>
     {% endif %}
 </tr>
 {% for sub in op.sub %}
@@ -12,8 +12,8 @@
         <td class="cursor" style="padding-left: 20px;">{{sub.name}}</td>
         <td>&nbsp;</td>
         {% if dev_mode %}
-            <td class="td-align-middle"><a title="Изменить" class="edit-btn edit-btn-subcategory" id="{{sub.id}}"></a></td>
-            <td class="td-align-middle"><a title="Удалить" class="del-btn" id="{{sub.id}}"></a></td>
+            <td class="td-align-middle"><a title="Изменить" class="fa fa-edit fa-15x edit-btn edit-btn-subcategory" id="{{sub.id}}"></a></td>
+            <td class="td-align-middle"><a title="Удалить" class="fa fa-trash-o fa-15x del-btn" id="{{sub.id}}"></a></td>
             <td>&nbsp;</td>
         {% endif %}
     </tr>

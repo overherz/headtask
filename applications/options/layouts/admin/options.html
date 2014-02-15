@@ -1,10 +1,14 @@
 {% if options %}
 <table class="table table-bordered table-condensed">
     <tbody>
-    {% for g in options %}
+    {% for k,g in options %}
     {% if g.id_parent > 0 %}
         <tr class="warning">
-            <td style="font-weight: bold;" colspan="{{ dev_mode ? '3' : '2' }}">{{ g.group_name }}</td>
+            <td style="font-weight: bold;" colspan="2">{{ g.group_name }}</td>
+            {% if dev_mode %}
+                <td style="width: 1px;"><a title="Изменить" class="fa fa-edit fa-15x edit-btn edit-btn-subcategory" id="{{k}}"></a></td>
+                <td style="width: 1px;"><a title="Удалить" class="fa fa-trash-o fa-15x del-btn" id="{{k}}"></a></td>
+            {% endif %}
         </tr>
     {% endif %}
     {% for o in g.sub %}
@@ -35,7 +39,7 @@
             {% endif %}
             </form>
         </td>
-        {% if dev_mode %}<td style="width: 1px;"><a href="/admin/options/constructor/{{o.id}}" class="fa fa-2x fa-edit edit-btn"></a></td>{% endif %}
+        {% if dev_mode %}<td style="width: 1px;" colspan="2"><a href="/admin/options/constructor/{{o.id}}" class="fa fa-15x fa-edit edit-btn"></a></td>{% endif %}
     {% endfor %}
     {% endfor %}
     </tbody>

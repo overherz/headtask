@@ -144,11 +144,11 @@ class __TwigTemplate_7f17a24a9828dd2e5ad7406762ee17ac0f39dcd0a5dc198804ac8f467e5
                 <a class=\"btn btn-oscar btn-small\" href=\"/projects/forum/edit/");
                     // line 43
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["f"]) ? $context["f"] : null), "id"), "html", null, true));
-                    echo \layout::func_from_text("\"><i class=\"icon-pencil icon-white\"></i></a>
+                    echo \layout::func_from_text("\"><i class=\"fa fa-pencil\"></i></a>
                 <a class=\"btn btn-oscar btn-small\" delete_forum=");
                     // line 44
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["f"]) ? $context["f"] : null), "id"), "html", null, true));
-                    echo \layout::func_from_text(" href=\"\"><i class=\"icon-trash icon-white\"></i></a>
+                    echo \layout::func_from_text(" href=\"\"><i class=\"fa fa-trash-o\"></i></a>
             </div>
         </td>
         ");

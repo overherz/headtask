@@ -94,9 +94,9 @@ class Router {
         if (!self::$admin)
         {
             $c = \MyPDO::connect();
-            if ($_SERVER['REQUEST_URI'] == "/") $_SERVER['REQUEST_URI'] = "/index/";
+            if (self::$url == "/") self::$url = "/index/";
             $query = $c->prepare("select id from pages where path=?");
-            $query->execute(array($_SERVER['REQUEST_URI']));
+            $query->execute(array(self::$url));
             $result = $query->fetch();
 
             if ($result['id'] != "")
@@ -148,5 +148,17 @@ class Router {
     static function url()
     {
         return Router::$url;
+    }
+
+    static function url_array()
+    {
+        if ($ar = explode("/",\Router::$url))
+        {
+            foreach ($ar as &$arr)
+            {
+                if ($arr != "") $return_arr[] = $arr;
+            }
+            return $return_arr;
+        }
     }
 }

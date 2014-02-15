@@ -1,0 +1,26 @@
+{% extends "/source/wrapper_index.html" %}
+{% block title %}{% if page.title %}{{page.title}}{% else %}{{ page.name }}{% endif %}{% endblock %}
+{% block keywords %}{% if page.keywords %}{{page.keywords}}{% else %}{{parent()}}{% endif %}{% endblock %}
+{% block description %}{% if page.description %}{{page.description}}{% else %}{{parent()}}{% endif %}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('pages','pages.css')}}">
+{% endblock %}
+{% block js %}
+<script type ="text/javascript" src="{{app.path('pages','pages.js')}}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div  style="background: #FFF url('/source/images/pattern-bg.png'); padding:20px; border:1px solid #ccc; box-shadow:0px 0 3px #ccc">
+        <table>
+            <td valign="top"><h2 style="font-weight:normal; font-size:25px">Инструкции и подсказки</h2>
+                <div style="width:650px"><div class="wysiwyg">{{page.text|raw}}</div></div>
+                <div class="help-list"><?php echo Page::available(); ?></div>
+            </td>
+            <td valign="top"><ul class="newz"><?php News::last(10);?></ul></td>
+        </table>
+    </div>
+</div>
+{% endblock %}
+

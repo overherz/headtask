@@ -61,7 +61,7 @@ class options extends \Admin {
     {
         $query = $this->db->prepare("select r.*,g.name as group_name,g.id_parent,g.id as id_group
             from options as r
-            LEFT JOIN group_options as g ON r.id_group=g.id
+            RIGHT JOIN group_options as g ON r.id_group=g.id
             where r.id_group=? or g.id_parent=?
         ");
         $query->execute(array($_POST['id'],$_POST['id']));

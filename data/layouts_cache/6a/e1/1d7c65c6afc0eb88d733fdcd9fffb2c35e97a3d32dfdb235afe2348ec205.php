@@ -41,7 +41,7 @@ class __TwigTemplate_6ae11d7c65c6afc0eb88d733fdcd9fffb2c35e97a3d32dfdb235afe2348
         }
         // line 11
         echo \layout::func_from_text("    </tr>
-
+    </thead>
     <tbody>
     ");
         // line 14

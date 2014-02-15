@@ -24,5 +24,11 @@ class pages extends \Controller {
         }
         else $this->error_page();
     }
+
+    function get_layout($layout)
+    {
+        $this->layout = false;
+        return $this->layout_get($layout);
+    }
 }
 

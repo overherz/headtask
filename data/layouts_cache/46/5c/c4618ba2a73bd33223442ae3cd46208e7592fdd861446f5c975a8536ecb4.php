@@ -107,31 +107,34 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
     <script>
         \$(document).ready(function(\$) {
             \$('#wrap input, #wrap select').styler();
+
+            var randomColor = \"#000000\".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+           // \$(\"a\").css(\"color\",randomColor);
         });
     </script>
     ");
-        // line 43
+        // line 46
         $this->displayBlock('js', $context, $blocks);
-        // line 45
+        // line 48
         echo \layout::func_from_text("</head>
 <body>
 <div id=\"wrap\">
     ");
-        // line 48
+        // line 51
         if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user")) {
             $this->env->loadTemplate("/source/menu.html")->display($context);
         }
-        // line 49
+        // line 52
         echo \layout::func_from_text("    <div class=\"from_top\"></div>
     ");
-        // line 50
+        // line 53
         $this->displayBlock('body', $context, $blocks);
-        // line 51
+        // line 54
         echo \layout::func_from_text("</div>
 ");
-        // line 52
+        // line 55
         $this->env->loadTemplate("/source/footer.html")->display($context);
-        // line 53
+        // line 56
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -148,14 +151,14 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
         echo \layout::func_from_text("    ");
     }
 
-    // line 43
+    // line 46
     public function block_js($context, array $blocks = array())
     {
-        // line 44
+        // line 47
         echo \layout::func_from_text("    ");
     }
 
-    // line 50
+    // line 53
     public function block_body($context, array $blocks = array())
     {
     }
@@ -172,6 +175,6 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
 
     public function getDebugInfo()
     {
-        return array (  159 => 50,  155 => 44,  152 => 43,  148 => 30,  145 => 29,  140 => 4,  135 => 53,  133 => 52,  130 => 51,  128 => 50,  125 => 49,  121 => 48,  116 => 45,  114 => 43,  100 => 31,  97 => 29,  88 => 25,  82 => 24,  76 => 23,  70 => 22,  64 => 21,  58 => 20,  52 => 19,  48 => 18,  44 => 16,  42 => 15,  28 => 4,  23 => 1,);
+        return array (  162 => 53,  158 => 47,  155 => 46,  151 => 30,  148 => 29,  143 => 4,  138 => 56,  136 => 55,  133 => 54,  131 => 53,  128 => 52,  124 => 51,  119 => 48,  117 => 46,  100 => 31,  97 => 29,  88 => 25,  82 => 24,  76 => 23,  70 => 22,  64 => 21,  58 => 20,  52 => 19,  48 => 18,  44 => 16,  42 => 15,  28 => 4,  23 => 1,);
     }
 }

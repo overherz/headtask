@@ -1,0 +1,18 @@
+{% extends "/source/index.html" %}
+{% block title %}{{news.name}}{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('news','news.css')}}">
+{% endblock %}
+{% block js %}
+<script type ="text/javascript" src="{{app.path('news','news.js')}}"></script>
+{% endblock %}
+{% block body %}
+<div class="title_block"><a href="/news/">Новости</a> &rarr; {{news.name}}</div>
+<div class="wysiwyg">
+    {% if news.image %}<img src="/uploads/news/news_middle/{{news.image|real_path}}" style="float:left:margin-right:20px;margin-bottom: 20px;">{% endif %}
+    {{news.text|raw}}
+</div>
+{% endblock %}
+
+
+

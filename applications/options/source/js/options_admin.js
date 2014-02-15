@@ -79,7 +79,8 @@ $(document).ready(function($) {
         });
     })
 
-    $(document).on("click",".del-btn",function(){
+    $(document).on("click",".del-btn",function(event){
+        event.stopPropagation();
         var id = this.id;
         if (confirm("Действительно хотите удалить данную категорию"))
         {
@@ -90,7 +91,8 @@ $(document).ready(function($) {
         }
     });
 
-    $(document).on("click",".edit-btn-category",function(){
+    $(document).on("click",".edit-btn-category",function(event){
+        event.stopPropagation();
         var id = this.id;
         user_api({act:'edit_group',id:id},function(data){
             show_popup(data,"Редактирование категории");
@@ -113,7 +115,8 @@ $(document).ready(function($) {
         });
     });
 
-    $(document).on("click",".add-subcategory",function(){
+    $(document).on("click",".add-subcategory",function(event){
+        event.stopPropagation();
         var id = $(this).attr('data-id');
         user_api({act:'add_subgroup',id:id},function(data){
             show_popup(data,"Добавление подкатегории");

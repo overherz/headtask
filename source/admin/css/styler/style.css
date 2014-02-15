@@ -47,7 +47,8 @@ a {
   color: #FF693E;
 }
 a:hover {
-  color: #903956;;
+  color: #903956;
+  cursor: pointer;
 }
 
 .form-horizontal {

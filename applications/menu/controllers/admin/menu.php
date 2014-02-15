@@ -128,7 +128,6 @@ class menu extends \Admin {
         if (!$app) $app = $_POST['app'];
         if ($app != "")
         {
-            if ($app == "index") $app = "pages";
             $query = $this->db->prepare("select * from `{$app}`");
             $query->execute();
             $ids = $query->fetchAll();

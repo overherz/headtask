@@ -1,9 +1,20 @@
+{% if dev_mode %}
+    <a class="fa fa-15x fa-plus add-btn add-category"></a>
+{% endif %}
+
 {% if options %}
     <div class="panel-group" id="accordion">
         {% for op in options %}
         <div class="panel panel-default">
             <div class="panel-heading get_options" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ op.id }}">
                 <h4 class="panel-title">{{ op.name }}</h4>
+                <div style="text-align: right;margin-top: 10px;">
+                    {% if dev_mode %}
+                        <a class="fa fa-edit fa-15x edit-btn fa-fw edit-btn-category" id="{{op.id}}"></a>
+                        <a class="fa fa-trash-o fa-15x fa-fw del-btn" id="{{op.id}}"></a>
+                        <a class="fa fa-plus fa-15x fa-fw add-btn add-subcategory" data-id="{{op.id}}"></a>
+                    {% endif %}
+                </div>
             </div>
             <div id="collapse{{ op.id }}" class="panel-collapse collapse" data-id="{{ op.id }}">
                 <div class="panel-body" data-result="{{ op.id }}">

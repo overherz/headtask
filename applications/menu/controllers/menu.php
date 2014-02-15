@@ -40,44 +40,57 @@ class menu extends \Controller {
     function generate_menu($application,$controller,$id,$target='top'){
         $query = $this->db->prepare("select * from menu where invisible IS NULL and target=? order by position");
         $query->execute(array($target));
-        while ($row = $query->fetchObject()) $menu[$row->id] = $row;
+        while ($row = $query->fetch()) $menu[$row['id']] = $row;
 
+        $arr = false;
         if($menu)
         {
+            $r_path = \Router::url();
+            a:
             foreach ($menu as $k => &$m)
             {
-                if ($m->application == "pages" && $m->path == $_SERVER['REQUEST_URI'])
+                if ($m['application'] == "pages" && $m['path'] == $r_path)
                 {
                     $found_active = $k;
-                    $m->active = true;
+                    $m['active'] = true;
                     break;
                 }
-                elseif ($controller && $m->application == "{$application}/{$controller}")
+                elseif ($controller && $m['application'] == "{$application}/{$controller}")
                 {
                     $found_active = $k;
                     $sub_controller = true;
-                    $m->active = true;
+                    $m['active'] = true;
                     break;
                 }
-                elseif ($m->application == $application && $m->application != "pages")
+                elseif ($m['application'] == $application && $m['application'] != "pages")
                 {
                     $found_active = $k;
-                    $m->active = true;
+                    $m['active'] = true;
                 }
             }
 
             if ($found_active)
             {
-                $menu[$found_active]->active = true;
-                if ($menu[$found_active]->parent_id) $get_parents = $menu[$found_active]->id;
-                crumbs($menu[$found_active]->name,$menu[$found_active]->path,true);
+                $menu[$found_active]['active'] = true;
+                if ($menu[$found_active]['parent_id']) $get_parents = $menu[$found_active]['id'];
+                crumbs($menu[$found_active]['name'],$menu[$found_active]['path'],true);
 
                 if ($sub_controller)
                 {
                     foreach ($menu as $d => &$s)
                     {
-                        if ($d != $found_active) $s->active = false;
+                        if ($d != $found_active) $s['active'] = false;
                     }
+                }
+            }
+            else if ($application == "pages")
+            {
+                if (!$arr) $arr = \Router::url_array();
+                if (count($arr) > 1)
+                {
+                    array_pop($arr);
+                    $r_path = "/".implode("/",$arr)."/";
+                    goto a;
                 }
             }
 
@@ -87,16 +100,14 @@ class menu extends \Controller {
                 {
                     foreach ($crumbs as $p)
                     {
-                        $res['crumbs'][$p] = $menu[$p]->name;
-                        crumbs($menu[$p]->name,$menu[$p]->path,false,true);
+                        crumbs($menu[$p]['name'],$menu[$p]['path'],false,true);
 
-                        $menu[$p]->active = true;
+                        $menu[$p]['active'] = true;
                     }
                 }
             }
-            $res = $this->generate_menu_foreach($menu);
+            $res = $this->generate_foreach($menu);
         }
-
         return $res;
     }
 
@@ -104,6 +115,24 @@ class menu extends \Controller {
         if($v1->position < $v2->position) return -1;
         elseif($v1->position > $v2->position) return 1;
         else return 0;
+    }
+
+    function generate_foreach(array $listIdParent)
+    {
+        $to_delete = array();
+        foreach ($listIdParent as $id => $node)
+        {
+            if ($node['parent_id'])
+            {
+                $listIdParent[$node['parent_id']]['category'][$id] = &$listIdParent[$id];
+                $to_delete[] = $id;
+            }
+        }
+
+        $final = $listIdParent;
+
+        foreach ($to_delete as $v) unset($final[$v]);
+        return $final;
     }
 
     function generate_menu_foreach($a, $res='', $second=false){
