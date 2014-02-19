@@ -16,6 +16,7 @@ class __TwigTemplate_c8001798b4f7c4fff35c05b4f397e243fcf687dee32412454e8a0a1ce5c
             'css' => array($this, 'block_css'),
             'js' => array($this, 'block_js'),
             'body' => array($this, 'block_body'),
+            'footer' => array($this, 'block_footer'),
         );
     }
 
@@ -83,10 +84,15 @@ class __TwigTemplate_c8001798b4f7c4fff35c05b4f397e243fcf687dee32412454e8a0a1ce5c
     public function block_body($context, array $blocks = array())
     {
         // line 14
-        echo \layout::func_from_text("        <div class=\"wysiwyg\">");
+        echo \layout::func_from_text("    <div class=\"wysiwyg\">");
         echo \layout::func_from_text($this->getAttribute((isset($context["page"]) ? $context["page"] : null), "text"));
         echo \layout::func_from_text("</div>
 ");
+    }
+
+    // line 16
+    public function block_footer($context, array $blocks = array())
+    {
     }
 
     public function getTemplateName()
@@ -101,6 +107,6 @@ class __TwigTemplate_c8001798b4f7c4fff35c05b4f397e243fcf687dee32412454e8a0a1ce5c
 
     public function getDebugInfo()
     {
-        return array (  86 => 14,  83 => 13,  76 => 10,  73 => 9,  66 => 7,  63 => 6,  53 => 4,  43 => 3,  33 => 2,);
+        return array (  94 => 16,  87 => 14,  84 => 13,  77 => 10,  74 => 9,  67 => 7,  64 => 6,  54 => 4,  44 => 3,  34 => 2,);
     }
 }

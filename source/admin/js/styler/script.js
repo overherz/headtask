@@ -12,7 +12,6 @@ var setSectionHeights = function() {
 			'min-height': innerHeight
 		});
 	}, 100);
-
 };
 
 $(document).ready(function(){

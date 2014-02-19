@@ -16,12 +16,12 @@
         <td style="width:300px;padding:5px;" title="{{o.key_name}}">{{o.name}}
             <div style="font-size: 11px;">{{ o.description }}</div>
         </td>
-        <td style="padding:5px;">
+        <td style="padding:5px;width: 4000px;">
             <form>
             {% if o.type == 'text' %}
-                <input type='text' name="{{o.key_name}}" value="{{o.value}}" oname="{{o.name}}" style="width: 300px;">
+                <input type='text' name="{{o.key_name}}" value="{{o.value}}" oname="{{o.name}}" style="width: 100%;">
             {% elseif o.type == 'textarea' %}
-            <textarea name='{{o.key_name}}' class="input_text" style="height:150px;width: 300px;" oname="{{o.name}}">{{o.value}}</textarea>
+            <textarea name='{{o.key_name}}' class="input_text" style="height:150px;width: 100%;" oname="{{o.name}}">{{o.value}}</textarea>
             {% elseif o.type == 'checkbox' %}
             <input type='checkbox' name='{{o.key_name}}' value="{{o.value}}" oname="{{o.name}}" {% if o.value == '1' %}checked{% endif %}>
             {% elseif o.type == 'select' or o.type == 'multy_select' %}

@@ -55,9 +55,9 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("\">
 <div class=\"container-fluid\">
-    <div class=\"row\">
-        <div class=\"col-sm-12 col-lg-2\" id=\"sidebar\" role=\"navigation\">
-            <div class=\"well well-sm\">
+    <div class=\"row row-offcanvas row-offcanvas-left\">
+        <div class=\"col-xs-6 col-md-2 sidebar-offcanvas\" id=\"sidebar\" role=\"navigation\" style=\"padding-right: 0;\">
+            <div class=\"well well-sm\" style=\"background: #222;border: 0;margin-bottom: 20px\">
                 <div class=\"btn-group\">
                     ");
         // line 16
@@ -77,12 +77,12 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
         }
         echo \layout::func_from_text("\" style=\"margin-bottom: 20px;\" title=\"Все проекты\"><i class=\"fa fa-book\"></i> Все</a>
                 </div>
-                ");
+                <div id=\"project_panel_result\">");
         // line 21
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "projects_in_panel.html"), "method"));
         $template->display($context);
-        // line 22
-        echo \layout::func_from_text("
+        echo \layout::func_from_text("</div>
+
                 <form action=\"\" class=\"project_panel_form\" method=\"post\" style=\"margin: 0px;\">
                     <input type=\"hidden\" name=\"project_panel_page\" value=\"\">
                     <input type=\"hidden\" name=\"act\" value=\"get_panel_page_projects\">
@@ -93,13 +93,15 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
                 </form>
             </div>
         </div><!--/span-->
-        <div class=\"col-sm-12 col-lg-10\" id=\"projects_second_panel\">
-            <div class=\"jumbotron\" style=\"padding: 10px;\">
-
+        <div class=\"col-xs-12 col-sm-12 col-md-10\" id=\"projects_second_panel\" style=\"padding-left: 0;\">
+            <div class=\"jumbotron\" style=\"padding: 10px;margin-bottom: 20px;\">
+                <p class=\"hidden-md hidden-lg\" style=\"margin-left: -10px;margin-top: -25px;\">
+                    <button type=\"button\" class=\"btn btn-primary btn-xs\" data-toggle=\"offcanvas\">Панель проектов</button>
+                </p>
             ");
-        // line 33
+        // line 35
         $this->displayBlock('project', $context, $blocks);
-        // line 34
+        // line 36
         echo \layout::func_from_text("            </div>
         </div>
     </div>
@@ -108,7 +110,7 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
 ");
     }
 
-    // line 33
+    // line 35
     public function block_project($context, array $blocks = array())
     {
     }
@@ -125,6 +127,6 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
 
     public function getDebugInfo()
     {
-        return array (  112 => 33,  103 => 34,  101 => 33,  91 => 26,  85 => 22,  82 => 21,  74 => 19,  66 => 17,  64 => 16,  54 => 10,  51 => 9,  44 => 6,  41 => 5,  34 => 3,  31 => 2,);
+        return array (  114 => 35,  105 => 36,  103 => 35,  91 => 26,  82 => 21,  74 => 19,  66 => 17,  64 => 16,  54 => 10,  51 => 9,  44 => 6,  41 => 5,  34 => 3,  31 => 2,);
     }
 }

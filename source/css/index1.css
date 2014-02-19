@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    font-family: 'Open Sans', sans-serif !important;
     /* The html and body elements cannot have any padding or margin. */
 }
 
@@ -31,8 +32,6 @@ body {
 
 body {
     overflow-y: scroll;
-    font-family: 'Open Sans', sans-serif !important;
-
     background-attachment: fixed;
     background-repeat: repeat;
     background-color: #374554;
@@ -74,27 +73,9 @@ body {
 #footer {
 }
 
-@media (max-device-width: 1024px) {
-    #footer {
-        display: none;
-    }
-}
 
 #for_projects_panel {
     display: none;
-}
-
-@media screen and (max-width: 1190px) {
-    #projects_panel {
-        display: none;
-    }
-    #projects_second_panel {
-        width: 100%;
-        margin-left: 0;
-    }
-    #for_projects_panel {
-        display: block;
-    }
 }
 
 .navbar-brand {
@@ -145,10 +126,7 @@ a {
 }
 
 .table th {
-    background-color: #2D5870;
 
-    color: #fff;
-    border-bottom: 1px solid #657D8A !important;
     /*
     -webkit-box-shadow: 0px -2px 5px 0px rgba(101, 125, 138, 0.8);
     -moz-box-shadow:    0px -2px 5px 0px rgba(101, 125, 138, 0.8);
@@ -440,3 +418,16 @@ fieldset[disabled] .btn-oscar.active {
     border-color: #00720a;
 }
 
+#sidebar .list-group a {
+    background: inherit;
+    border: 0;
+    color: #fff;
+}
+
+#sidebar .list-group a:hover {
+    background: #333;
+}
+
+#sidebar .list-group a.active {
+    background: #428BCA;
+}

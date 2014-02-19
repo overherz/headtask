@@ -34,7 +34,7 @@ class __TwigTemplate_32cd3f3e3a4b8271a901a1da7896d185d8f38ded75d4d0f68667c6f2666
         ");
             // line 4
             if ($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "owner")) {
-                echo \layout::func_from_text("<i class=\"fa fa-user\"></i> ");
+                echo \layout::func_from_text("<i class=\"fa fa-user fa-fw\"></i> ");
             }
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("

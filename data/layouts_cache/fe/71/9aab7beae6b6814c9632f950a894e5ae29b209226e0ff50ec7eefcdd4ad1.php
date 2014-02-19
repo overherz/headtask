@@ -87,13 +87,13 @@ class __TwigTemplate_fe719aab7beae6b6814c9632f950a894e5ae29b209226e0ff50ec7eefcd
         // line 21
         if ($this->getAttribute((isset($context["topic"]) ? $context["topic"] : null), "closed")) {
             // line 22
-            echo \layout::func_from_text("    <i class=\"icon-lock\" style=\"float: left;font-size: 40px;margin-right: 10px;\" title=\"Закрытая тема\"></i>
+            echo \layout::func_from_text("    <i class=\"fa fa-lock\" style=\"float: left;font-size: 40px;margin-right: 10px;\" title=\"Закрытая тема\"></i>
 ");
         }
         // line 24
         if ($this->getAttribute((isset($context["topic"]) ? $context["topic"] : null), "fixed")) {
             // line 25
-            echo \layout::func_from_text("    <i class=\"icon-pushpin\" style=\"float: left;font-size: 40px;\" title=\"Закрепленная тема\"></i>
+            echo \layout::func_from_text("    <i class=\"fa-thumb-tack \" style=\"float: left;font-size: 40px;\" title=\"Закрепленная тема\"></i>
 ");
         }
         // line 27
@@ -181,7 +181,7 @@ class __TwigTemplate_fe719aab7beae6b6814c9632f950a894e5ae29b209226e0ff50ec7eefcd
             <a href=\"\" class=\"btn btn-oscar btn-mini quote_post\" data-id=\"");
             // line 54
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("\"><i class=\"icon-quote-right\"></i></a>
+            echo \layout::func_from_text("\"><i class=\"fa fa-quote-right\"></i></a>
             <div class=\"forum_post_action\">
                 <div class=\"btn-group\">
                     ");
@@ -190,7 +190,7 @@ class __TwigTemplate_fe719aab7beae6b6814c9632f950a894e5ae29b209226e0ff50ec7eefcd
                 // line 58
                 echo \layout::func_from_text("                        <a href=\"\" class=\"btn btn-oscar btn-mini edit_post\" data-id=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
-                echo \layout::func_from_text("\"><i class=\"icon-pencil icon-white\"></i></a>
+                echo \layout::func_from_text("\"><i class=\"fa fa-pencil\"></i></a>
                     ");
             }
             // line 60
@@ -199,7 +199,7 @@ class __TwigTemplate_fe719aab7beae6b6814c9632f950a894e5ae29b209226e0ff50ec7eefcd
                 // line 61
                 echo \layout::func_from_text("                        <a href=\"\" class=\"btn btn-oscar btn-mini delete_post\" data-id=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
-                echo \layout::func_from_text("\"><i class=\"icon-trash icon-white\"></i></a>
+                echo \layout::func_from_text("\"><i class=\"fa fa-trash-o\"></i></a>
                     ");
             }
             // line 63

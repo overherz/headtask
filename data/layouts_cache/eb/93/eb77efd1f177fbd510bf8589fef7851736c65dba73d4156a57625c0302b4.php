@@ -23,14 +23,14 @@ class __TwigTemplate_eb93eb77efd1f177fbd510bf8589fef7851736c65dba73d4156a57625c0
         ");
         // line 3
         if ($this->getAttribute((isset($context["t"]) ? $context["t"] : null), "closed")) {
-            echo \layout::func_from_text("<i class=\"icon-lock\" ");
+            echo \layout::func_from_text("<i class=\"fa fa-lock\" ");
             if ($this->getAttribute((isset($context["t"]) ? $context["t"] : null), "fixed")) {
                 echo \layout::func_from_text("style=\"margin-right: 5px;\"");
             }
             echo \layout::func_from_text("></i>");
         }
         if ($this->getAttribute((isset($context["t"]) ? $context["t"] : null), "fixed")) {
-            echo \layout::func_from_text("<i class=\"icon-pushpin\"></i>");
+            echo \layout::func_from_text("<i class=\"fa fa-thumb-tack\"></i>");
         }
         echo \layout::func_from_text(" <a href=\"/projects/forum/show_topic/");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["t"]) ? $context["t"] : null), "id"), "html", null, true));
@@ -91,11 +91,11 @@ class __TwigTemplate_eb93eb77efd1f177fbd510bf8589fef7851736c65dba73d4156a57625c0
                 <a class=\"btn btn-oscar btn-small\" href=\"/projects/forum/edit_topic/");
             // line 18
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["t"]) ? $context["t"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("\"><i class=\"icon-pencil icon-white\"></i></a>
+            echo \layout::func_from_text("\"><i class=\"fa fa-pencil\"></i></a>
                 <a class=\"btn btn-oscar btn-small\" delete_topic=");
             // line 19
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["t"]) ? $context["t"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text(" href=\"\"><i class=\"icon-trash icon-white\"></i></a>
+            echo \layout::func_from_text(" href=\"\"><i class=\"fa fa-trash-o\"></i></a>
             </div>
         ");
         } else {
@@ -120,6 +120,6 @@ class __TwigTemplate_eb93eb77efd1f177fbd510bf8589fef7851736c65dba73d4156a57625c0
 
     public function getDebugInfo()
     {
-        return array (  107 => 23,  103 => 21,  97 => 19,  93 => 18,  90 => 17,  88 => 16,  82 => 13,  70 => 12,  47 => 6,  25 => 3,  125 => 24,  121 => 22,  117 => 20,  114 => 19,  100 => 18,  96 => 17,  78 => 16,  64 => 9,  60 => 8,  42 => 4,  40 => 12,  34 => 9,  21 => 2,  19 => 1,  69 => 21,  66 => 20,  59 => 15,  56 => 14,  50 => 11,  45 => 9,  41 => 8,  38 => 7,  31 => 4,  28 => 3,);
+        return array (  107 => 23,  103 => 21,  97 => 19,  93 => 18,  90 => 17,  88 => 16,  82 => 13,  70 => 12,  47 => 6,  25 => 3,  125 => 24,  121 => 22,  117 => 20,  114 => 19,  100 => 18,  96 => 17,  78 => 16,  64 => 9,  60 => 8,  42 => 4,  40 => 12,  34 => 9,  21 => 2,  19 => 1,);
     }
 }

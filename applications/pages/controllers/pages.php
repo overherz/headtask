@@ -17,7 +17,12 @@ class pages extends \Controller {
             if ($page = $query->fetch())
             {
                 if ($get) return $page;
-                else $this->layout_show("templates/{$page['template']}.html",array('page' => $page));
+                else
+                {
+                    $data['page'] = $page;
+                    $data = $data+$this->rules($page['template'],$page['id_page']);
+                    $this->layout_show("templates/{$page['template']}.html",$data);
+                }
             }
             else $this->error_page();
 
@@ -28,7 +33,23 @@ class pages extends \Controller {
     function get_layout($layout)
     {
         $this->layout = false;
-        return $this->layout_get($layout);
+        return $this->layout_get($layout,array($data));
+    }
+
+    function rules($template,$id)
+    {
+        $data = array();
+        if ($template == "with_news" || $template == "with_news_and_list")
+        {
+            $data['last_news'] = $this->get_controller("news","news")->get_news(10);
+            if ($template == "with_news_and_list")
+            {
+                $query = $this->db->prepare("select path,name from pages where parent_id=? order by name");
+                $query->execute(array($id));
+                $data['childs'] = $query->fetchAll();
+            }
+        }
+        return $data;
     }
 }
 

@@ -7,18 +7,30 @@
     <div id="tabs">
         <ul>
                 <li><a href="#tabs-1">Описание</a></li>
-                <li><a href="#tabs-3">Изображения</a></li>
+                <li><a href="#tabs-2">SEO</a></li>
+                <!--<li><a href="#tabs-3">Изображения</a></li>-->
         </ul>
         <div id="tabs-1">
-            <div class="body"><span class="title">Показывать всегда</span>
-                <input type="checkbox" name="always" value="1" {% if page.always %}checked{% endif %} style='display:inline-block;'></div>
+            <!--<div class="body"><span class="title">Показывать всегда</span>
+                <input type="checkbox" name="always" value="1" {% if page.always %}checked{% endif %} style='display:inline-block;'></div>-->
             <div class="body"><span class="title">Дата</span>
                 <div><input type="text" name="created" value="{{page.created}}" class="input" style="width:350px"></div></div>
             <div class="body"><span class="title">Заголовок</span>
-                <div><input type="text" name="name" value="{{page.name}}" class="input" style="width:350px"></div></div>
+                <div><input type="text" name="name" value="{{page.name}}" class="input" style="width:650px"></div></div>
             <div class="body"><span class="title">Текст</span>
                 <div><textarea name="text" class="input" style="width:400px;height: 200px;">{{page.text}}</textarea></div></div>
         </div>
+        <div id="tabs-2">
+            <div class="body"><span class="title">H1</span>
+                <div><input type="text" name="h1" value="{{page.h1}}" class="input" style="width:650px"></div></div>
+            <div class="body"><span class="title">Title</span>
+                <div><input type="text" name="title" value="{{page.title}}" class="input" style="width:650px"></div></div>
+            <div class="body"><span class="title">Description</span>
+                <div><textarea name="description" class="input" style="width:650px;height:100px;">{{page.description}}</textarea></div></div>
+            <div class="body"><span class="title">Keywords</span>
+                <div><input type="text" name="keywords" value="{{page.keywords}}" class="input" style="width:650px"></div></div>
+        </div>
+        <!--
          <div id="tabs-3" style="max-width:700px;">
              <div class="crop" style="display:none;">
                  <div style="text-align:center;margin-top:10px;"><input type="button" value="Вернуться к изображениям" class="button return_to_images"></div>
@@ -41,7 +53,7 @@
                 <div style="clear:both;padding-top:20px;"><a href="" class="add_images">добавить поле</a></div>
                 <div style="margin-top:5px;"><input type="file" name="images[]"></div>
             </div>
-        </div>
+        </div>-->
     </div>
 </form>
 </div>

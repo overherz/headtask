@@ -52,6 +52,7 @@ class Router {
             if ($this->route[1] && $this->route[2])
             {
                 if (substr($this->route[1],0,1) == "~") self::$id = substr($this->route[1], 1);
+                elseif (preg_match("/^[0-9]+$/",$this->route[1])) self::$id = $this->route[1];
                 else {
                     self::$controller = $this->route[1];
                     self::$id = $this->route[2];
@@ -62,6 +63,7 @@ class Router {
             else if ($this->route[1])
             {
                 if (substr($this->route[1],0,1) == "~") self::$id = substr($this->route[1], 1);
+                elseif (preg_match("/^[0-9]+$/",$this->route[1])) self::$id = $this->route[1];
                 else self::$controller = $this->route[1];
             }
         }
@@ -160,5 +162,12 @@ class Router {
             }
             return $return_arr;
         }
+    }
+
+    static function get_info()
+    {
+        pr("app - ".self::$application);
+        pr("contr - ".self::$controller);
+        pr("id - ".self::$id);
     }
 }

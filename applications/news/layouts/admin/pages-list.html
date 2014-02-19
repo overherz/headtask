@@ -1,5 +1,5 @@
 <tr id="page-tr-{{i.id}}">
-    <td>{{i.name}}</td>
+    <td><a href='/news/{{ i.id }}/{{ i.tr_name }}/'>{{i.name}}</a></td>
     <td>{{i.created|date('d.m.Y')}}</td>
     <td>{{i.text|nl2br}}</td>
     <td class="td-align-middle w1"><a title="Изменить" class="fa fa-edit fa-15x edit-btn" id="{{i.id}}"></a></td>

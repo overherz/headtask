@@ -44,20 +44,44 @@ class __TwigTemplate_1917c0e88a53e780c8f43ffa13d8c989c4246553dd72775010fac7d7a59
             echo \layout::func_from_text("\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, cut($this->getAttribute((isset($context["i"]) ? $context["i"] : null), "path"), 50), "html", null, true));
             echo \layout::func_from_text("</a></td>
+    <td>");
+            // line 5
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "template"), "html", null, true));
+            echo \layout::func_from_text("</td>
+    <td>");
+            // line 6
+            if ($this->getAttribute((isset($context["i"]) ? $context["i"] : null), "title")) {
+                echo \layout::func_from_text("<i class=\"fa fa-check\"></i>");
+            }
+            echo \layout::func_from_text("</td>
+    <td>");
+            // line 7
+            if ($this->getAttribute((isset($context["i"]) ? $context["i"] : null), "keywords")) {
+                echo \layout::func_from_text("<i class=\"fa fa-check\"></i>");
+            }
+            echo \layout::func_from_text("</td>
+    <td>");
+            // line 8
+            if ($this->getAttribute((isset($context["i"]) ? $context["i"] : null), "description")) {
+                echo \layout::func_from_text("<i class=\"fa fa-check\"></i>");
+            }
+            echo \layout::func_from_text("</td>
+    ");
+        } else {
+            // line 10
+            echo \layout::func_from_text("        <td>");
+            echo \layout::func_from_text(nl2br(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "text"), "html", null, true)));
+            echo \layout::func_from_text("</td>
     ");
         }
-        // line 6
-        echo \layout::func_from_text("    <td>");
-        echo \layout::func_from_text(nl2br(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "text"), "html", null, true)));
-        echo \layout::func_from_text("</td>
-    <td style=\"white-space: nowrap;\">");
-        // line 7
+        // line 12
+        echo \layout::func_from_text("    <td style=\"width: 100px;\">");
         if ($this->getAttribute((isset($context["i"]) ? $context["i"] : null), "created")) {
             echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "created"), "d.m.Y H:i:s"), "html", null, true));
         }
         echo \layout::func_from_text("</td>
     ");
-        // line 8
+        // line 13
         if ((!(isset($context["versions"]) ? $context["versions"] : null))) {
             echo \layout::func_from_text("<td style=\"text-align: center;\">");
             if (($this->getAttribute((isset($context["i"]) ? $context["i"] : null), "count") > 1)) {
@@ -71,13 +95,13 @@ class __TwigTemplate_1917c0e88a53e780c8f43ffa13d8c989c4246553dd72775010fac7d7a59
             }
             echo \layout::func_from_text("</td>");
         }
-        // line 9
+        // line 14
         echo \layout::func_from_text("    ");
         if ((isset($context["versions"]) ? $context["versions"] : null)) {
-            // line 10
+            // line 15
             echo \layout::func_from_text("        <td>
             <span class=\"main_version\" main_version=\"");
-            // line 11
+            // line 16
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "id_text"), "html", null, true));
             echo \layout::func_from_text("\" style=\"display:");
             if ($this->getAttribute((isset($context["i"]) ? $context["i"] : null), "main")) {
@@ -87,7 +111,7 @@ class __TwigTemplate_1917c0e88a53e780c8f43ffa13d8c989c4246553dd72775010fac7d7a59
             }
             echo \layout::func_from_text(";\"><span style=\"color:green;\">выбрано</span></span>
             <span class=\"main_version_set\" set_version=\"");
-            // line 12
+            // line 17
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("-");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "id_text"), "html", null, true));
@@ -101,14 +125,14 @@ class __TwigTemplate_1917c0e88a53e780c8f43ffa13d8c989c4246553dd72775010fac7d7a59
         </td>
     ");
         }
-        // line 15
+        // line 20
         echo \layout::func_from_text("    <td class=\"td-align-middle w1\"><a title=\"Изменить\" class=\"fa fa-15x fa-edit edit-btn\" id=\"");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("-");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "id_text"), "html", null, true));
         echo \layout::func_from_text("\"></a></td>
     <td class=\"td-align-middle w1\"><a title=\"Удалить\" class=\"fa fa-15x fa-trash-o del-btn\" id=\"");
-        // line 16
+        // line 21
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["i"]) ? $context["i"] : null), "id"), "html", null, true));
         if ((isset($context["versions"]) ? $context["versions"] : null)) {
             echo \layout::func_from_text("-");
@@ -131,6 +155,6 @@ class __TwigTemplate_1917c0e88a53e780c8f43ffa13d8c989c4246553dd72775010fac7d7a59
 
     public function getDebugInfo()
     {
-        return array (  112 => 16,  105 => 15,  91 => 12,  81 => 11,  78 => 10,  75 => 9,  61 => 8,  55 => 7,  50 => 6,  43 => 4,  28 => 3,  26 => 2,  19 => 1,);
+        return array (  136 => 21,  129 => 20,  105 => 16,  102 => 15,  99 => 14,  85 => 13,  78 => 12,  72 => 10,  65 => 8,  59 => 7,  49 => 5,  43 => 4,  28 => 3,  125 => 36,  118 => 31,  115 => 17,  109 => 29,  104 => 28,  91 => 27,  88 => 26,  70 => 25,  64 => 21,  60 => 19,  57 => 18,  53 => 6,  50 => 16,  46 => 14,  37 => 7,  35 => 6,  26 => 2,  24 => 2,  19 => 1,);
     }
 }

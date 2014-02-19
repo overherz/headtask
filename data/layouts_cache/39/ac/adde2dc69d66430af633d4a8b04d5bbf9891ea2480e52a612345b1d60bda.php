@@ -49,7 +49,7 @@ class __TwigTemplate_39acadde2dc69d66430af633d4a8b04d5bbf9891ea2480e52a612345b1d
         }
         // line 11
         echo \layout::func_from_text("    </td>
-    <td>
+    <td style=\"overflow: hidden;max-width: 100px;text-overflow: ellipsis;\">
         ");
         // line 13
         if (($this->getAttribute((isset($context["file"]) ? $context["file"] : null), "type") == "image")) {

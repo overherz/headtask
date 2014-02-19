@@ -47,7 +47,9 @@ class pages extends \Admin {
         $sql[] = "main IS NOT NULL";
         if ($sql) $sql_text = "where ".implode(" AND ",$sql);
 
-        $total= $this->db->query("select count(id) as count from pages {$sql}")->fetch();
+        $total= $this->db->query("select count(p.id) as count from pages as p
+            LEFT JOIN pages_text as pt ON pt.id_page=p.id
+            {$sql_text}")->fetch();
         $total = $total['count'];
 
         require_once(ROOT.'libraries/paginator/paginator.php');
@@ -105,6 +107,8 @@ class pages extends \Admin {
 
     function save()
     {
+        foreach($_POST as &$p) $p = trim($p);
+
         if ($_POST['name'] == "") $res['error'] = "Укажите название";
         if ($_POST['url'] == "") $_POST['url'] = translit($_POST['name']);
         else $_POST['url'] = translit($_POST['url']);
@@ -343,6 +347,7 @@ class pages extends \Admin {
             LEFT JOIN pages_text as pt ON pt.id_page=p.id
             where p.id=? ORDER BY created DESC");
         $query->execute(array($_POST['id_page']));
+        \layout::$func_from_text = false;
         while ($row = $query->fetch())
         {
             $row['text'] = cut($row['text'],50);

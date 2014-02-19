@@ -18,6 +18,7 @@ CKEDITOR.editorConfig = function( config )
     config.protectedSource.push(/<(script).*>.*<\/script>/ig);
     config.protectedSource.push(/<(map).*>.*<\/map>/ig);
     config.protectedSource.push(/<(area).*>/ig);
+    config.protectedSource.push(/<(form).*>.*<\/form>/ig);
 
     config.toolbar_Basic =
         [

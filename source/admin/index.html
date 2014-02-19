@@ -12,7 +12,7 @@
     <link href="/source/admin/css/libs/animate.min.css" rel="stylesheet">
     <link href="/source/admin/css/libs/bootstrap-switch.css" rel="stylesheet">
     <link rel="stylesheet" href="/source/js/styler/jquery.formstyler.css" type="text/css" />
-    <link rel="stylesheet" href="/source/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/source/css/smoothness/jquery-ui-1.10.4.custom.css" type="text/css">
     <link href="/source/admin/css/styler/style.css" rel="stylesheet" type="text/css">
     {% block css %}{% endblock %}
 
@@ -284,10 +284,9 @@
         </nav>
     </header><!-- /#header -->
 	<div id="content">
-		<div class="container">
-            {% block body %}{% endblock %}
-
-
+		<div class="container" style="position: relative">
+            <div id="for_popup" style="position: absolute;top:0;left:0;background: #fff"></div>
+            <div id="under_popup">{% block body %}{% endblock %}</div>
 		</div><!-- /.container -->
 	</div>
 	<footer>

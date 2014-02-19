@@ -4,27 +4,32 @@
     <thead>
     <tr>
         {% if not versions %}
-        <th width="250">Название страницы</th>
+        <th width="2350">Название страницы</th>
         <th width="250">Ссылка на страницу</th>
+        <th>Шаблон</th>
+        <th width="30">Title</th>
+        <th width="30">Keywords</th>
+        <th width="30">Description</th>
+        {% else %}
+            <th>Текст</th>
         {% endif %}
-        <th width="1650">Краткое описание</th>
         <th>Создано</th>
         {% if not versions %}<th style="white-space: nowrap;">Кол-во версий</th>{% endif %}
         {% if versions %}
         <th>Статус</th>
         {% endif %}
-        <th colspan="2">Управление</th>
+        <th colspan="2">&nbsp;</th>
     </tr>
     </thead>
     <tbody>
     {% for i in pages %}
     {% include '/applications/pages/layouts/admin/pages-list.html' %}
     {% else %}
-    {% if not versions %}<tr><td colspan="8">Ничего не найдено</td></tr>{% endif %}
+    {% if not versions %}<tr><td colspan="10">Ничего не найдено</td></tr>{% endif %}
     {% endfor %}
     {% if not versions %}
     <tr>
-        <td colspan="6">&nbsp;</td>
+        <td colspan="8">&nbsp;</td>
         <td colspan="2"><a title="Добавить" class="fa fa-15x fa-plus add-btn"></a></td>
     </tr>
     {% endif %}

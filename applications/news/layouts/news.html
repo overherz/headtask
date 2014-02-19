@@ -1,16 +1,66 @@
-{% extends "/source/index.html" %}
-{% block title %}{{news.name}}{% endblock %}
+{% extends "/source/wrapper_index.html" %}
+{% block title %}
+    {{ settings.seo_title.value }}
+    {% if not all %}
+        {% if news[0].h1 %}
+            - {{ news[0].title }}
+        {% else %}
+            - {{ news[0].name }}
+        {% endif %}
+    {% else %}
+        - Новости
+    {% endif %}
+{% endblock %}
+{% block description %}
+    {% if news[0].description and not all %}
+        {{ news[0].description }}
+    {% else %}
+        {{ settings.seo_description.value }}
+    {% endif %}
+{% endblock %}
+{% block keywords %}
+    {% if news[0].keywords and not all %}
+        {{ news[0].keywords }}
+    {% else %}
+        {{ settings.seo_keywords.value }}
+    {% endif %}
+{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{app.path('news','news.css')}}">
 {% endblock %}
-{% block js %}
-<script type ="text/javascript" src="{{app.path('news','news.js')}}"></script>
-{% endblock %}
+
 {% block body %}
-<div class="title_block"><a href="/news/">Новости</a> &rarr; {{news.name}}</div>
-<div class="wysiwyg">
-    {% if news.image %}<img src="/uploads/news/news_middle/{{news.image|real_path}}" style="float:left:margin-right:20px;margin-bottom: 20px;">{% endif %}
-    {{news.text|raw}}
+<div style="background: #FFF url('/source/images/pattern-bg.png'); padding:20px; border:1px solid #ccc; box-shadow:0px 0 3px #ccc">
+    <table>
+        <tr>
+            <td valign="top">
+                <div style="width:650px">
+                    <div id="news">
+                        <div id="news-list">
+                            {% for n in news %}
+                            <div class="news-item">
+                                <h1 style="font-size:25px; font-weight:normal; line-height:25px">{% if not all %}<a href="/news/">Новости</a> / {% endif %}{% if n.h1 and not all %}{{ n.h1 }}{% else %}{{ n.name }}{% endif %}</h1>
+                                <div class="news-content">{{n.text|raw}}</div>
+                                <div class="news-status">
+                                    <div class="news-fleft">
+                                        {{ n.created|date('d.m.Y') }}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% include "/source/paginator.html" %}
+                    </div>
+                </div>
+                <div style="width:610px; margin-top:20px; background:#fff; box-shadow:inset 0px 1px 3px #ccc; padding:20px; border-radius:5px">
+                    {% include "/source/company_info.html" %}
+                </div>
+            </td>
+            <td valign="top">
+                {% include app.path("news","news_right_table.html") %}
+            </td>
+        </tr>
+    </table>
 </div>
 {% endblock %}
 

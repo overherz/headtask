@@ -34,32 +34,39 @@ class __TwigTemplate_c94ea2b6f68d3a61b90a855081600a7d59417f81261574f0e0071b46077
         // line 6
         if ((!(isset($context["versions"]) ? $context["versions"] : null))) {
             // line 7
-            echo \layout::func_from_text("        <th width=\"250\">Название страницы</th>
+            echo \layout::func_from_text("        <th width=\"2350\">Название страницы</th>
         <th width=\"250\">Ссылка на страницу</th>
+        <th>Шаблон</th>
+        <th width=\"30\">Title</th>
+        <th width=\"30\">Keywords</th>
+        <th width=\"30\">Description</th>
         ");
-        }
-        // line 10
-        echo \layout::func_from_text("        <th width=\"1650\">Краткое описание</th>
-        <th>Создано</th>
-        ");
-        // line 12
-        if ((!(isset($context["versions"]) ? $context["versions"] : null))) {
-            echo \layout::func_from_text("<th style=\"white-space: nowrap;\">Кол-во версий</th>");
-        }
-        // line 13
-        echo \layout::func_from_text("        ");
-        if ((isset($context["versions"]) ? $context["versions"] : null)) {
+        } else {
             // line 14
-            echo \layout::func_from_text("        <th>Статус</th>
+            echo \layout::func_from_text("            <th>Текст</th>
         ");
         }
         // line 16
-        echo \layout::func_from_text("        <th colspan=\"2\">Управление</th>
+        echo \layout::func_from_text("        <th>Создано</th>
+        ");
+        // line 17
+        if ((!(isset($context["versions"]) ? $context["versions"] : null))) {
+            echo \layout::func_from_text("<th style=\"white-space: nowrap;\">Кол-во версий</th>");
+        }
+        // line 18
+        echo \layout::func_from_text("        ");
+        if ((isset($context["versions"]) ? $context["versions"] : null)) {
+            // line 19
+            echo \layout::func_from_text("        <th>Статус</th>
+        ");
+        }
+        // line 21
+        echo \layout::func_from_text("        <th colspan=\"2\">&nbsp;</th>
     </tr>
     </thead>
     <tbody>
     ");
-        // line 20
+        // line 25
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["pages"]) ? $context["pages"] : null));
         $context['_iterated'] = false;
@@ -77,10 +84,10 @@ class __TwigTemplate_c94ea2b6f68d3a61b90a855081600a7d59417f81261574f0e0071b46077
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-            // line 21
+            // line 26
             echo \layout::func_from_text("    ");
             $this->env->loadTemplate("/applications/pages/layouts/admin/pages-list.html")->display($context);
-            // line 22
+            // line 27
             echo \layout::func_from_text("    ");
             $context['_iterated'] = true;
             ++$context['loop']['index0'];
@@ -93,28 +100,28 @@ class __TwigTemplate_c94ea2b6f68d3a61b90a855081600a7d59417f81261574f0e0071b46077
             }
         }
         if (!$context['_iterated']) {
-            // line 23
+            // line 28
             echo \layout::func_from_text("    ");
             if ((!(isset($context["versions"]) ? $context["versions"] : null))) {
-                echo \layout::func_from_text("<tr><td colspan=\"8\">Ничего не найдено</td></tr>");
+                echo \layout::func_from_text("<tr><td colspan=\"10\">Ничего не найдено</td></tr>");
             }
-            // line 24
+            // line 29
             echo \layout::func_from_text("    ");
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 25
+        // line 30
         echo \layout::func_from_text("    ");
         if ((!(isset($context["versions"]) ? $context["versions"] : null))) {
-            // line 26
+            // line 31
             echo \layout::func_from_text("    <tr>
-        <td colspan=\"6\">&nbsp;</td>
+        <td colspan=\"8\">&nbsp;</td>
         <td colspan=\"2\"><a title=\"Добавить\" class=\"fa fa-15x fa-plus add-btn\"></a></td>
     </tr>
     ");
         }
-        // line 31
+        // line 36
         echo \layout::func_from_text("    </tbody>
 </table>
 ");
@@ -132,6 +139,6 @@ class __TwigTemplate_c94ea2b6f68d3a61b90a855081600a7d59417f81261574f0e0071b46077
 
     public function getDebugInfo()
     {
-        return array (  118 => 31,  111 => 26,  108 => 25,  102 => 24,  97 => 23,  84 => 22,  81 => 21,  63 => 20,  57 => 16,  53 => 14,  50 => 13,  46 => 12,  42 => 10,  37 => 7,  35 => 6,  26 => 3,  24 => 2,  19 => 1,);
+        return array (  125 => 36,  118 => 31,  115 => 30,  109 => 29,  104 => 28,  91 => 27,  88 => 26,  70 => 25,  64 => 21,  60 => 19,  57 => 18,  53 => 17,  50 => 16,  46 => 14,  37 => 7,  35 => 6,  26 => 3,  24 => 2,  19 => 1,);
     }
 }

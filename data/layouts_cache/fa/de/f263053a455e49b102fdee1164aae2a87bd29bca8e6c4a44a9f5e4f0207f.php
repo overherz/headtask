@@ -32,7 +32,7 @@ class __TwigTemplate_fadef263053a455e49b102fdee1164aae2a87bd29bca8e6c4a44a9f5e4f
         <th style=\"width: 1px;text-align: center;\"><a class=\"btn btn-oscar btn-small\" href=\"/projects/forum/add_topic/");
         // line 9
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["forum"]) ? $context["forum"] : null), "id"), "html", null, true));
-        echo \layout::func_from_text("/\"><i class=\"icon-plus icon-white\"></i></a></th>
+        echo \layout::func_from_text("/\"><i class=\"fa fa-plus\"></i></a></th>
     </tr>
     <tbody>
     ");
@@ -137,6 +137,6 @@ class __TwigTemplate_fadef263053a455e49b102fdee1164aae2a87bd29bca8e6c4a44a9f5e4f
 
     public function getDebugInfo()
     {
-        return array (  125 => 24,  121 => 22,  117 => 20,  114 => 19,  100 => 18,  96 => 17,  78 => 16,  64 => 15,  60 => 14,  42 => 13,  40 => 12,  34 => 9,  21 => 2,  19 => 1,  69 => 21,  66 => 20,  59 => 15,  56 => 14,  50 => 11,  45 => 9,  41 => 8,  38 => 7,  31 => 4,  28 => 3,);
+        return array (  125 => 24,  121 => 22,  117 => 20,  114 => 19,  100 => 18,  96 => 17,  78 => 16,  64 => 15,  60 => 14,  42 => 13,  40 => 12,  34 => 9,  21 => 2,  19 => 1,);
     }
 }

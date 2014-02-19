@@ -364,7 +364,7 @@ function set_end_statistic()
     $GLOBALS['dev']['memory_peak'] = memory_get_peak_usage();
 }
 
-function translit($str,$space=true,$to_lower=true)
+function translit($str,$space=true,$to_lower=true,$bracket=true)
 {
     $rus = array('ё','ж','ц','ч','ш','щ','ю','я','Ё','Ж','Ц','Ч','Ш','Щ','Ю','Я');
     $lat = array('yo','zh','tc','ch','sh','sh','yu','ya','YO','ZH','TC','CH','SH','SH','YU','YA');
@@ -372,7 +372,15 @@ function translit($str,$space=true,$to_lower=true)
     if ($space)
     {
         $rus[] = " ";
-        $lat[] = "_";
+        $lat[] = "-";
+    }
+
+    if ($bracket)
+    {
+        $rus[] = "(";
+        $rus[] = ")";
+        $lat[] = "";
+        $lat[] = "";
     }
 
     $rusChars = "АБВГДЕЗИЙКЛМНОПРСТУФХЪЫЬЭабвгдезийклмнопрстуфхъыьэ";
@@ -390,6 +398,39 @@ function translit($str,$space=true,$to_lower=true)
         return strtolower(str_replace($rus, $lat, $str));
     }
     else return str_replace($rus, $lat, $str);
+}
+
+function safe_name($str, $delimiter = '-', $lowercase = false)
+{
+    // Redefine vars
+    $str       = (string) $str;
+    $delimiter = (string) $delimiter;
+    $lowercase = (bool) $lowercase;
+    $delimiter = (string) $delimiter;
+
+    // Remove tags
+    $str = filter_var($str, FILTER_SANITIZE_STRING);
+
+    // Decode all entities to their simpler forms
+    $str = html_entity_decode($str, ENT_QUOTES, 'UTF-8');
+
+    // Reserved characters (RFC 3986)
+    $reserved_characters = array(
+        '/', '?', ':', '@', '#', '[', ']',
+        '!', '$', '&', '\'', '(', ')', '*',
+        '+', ',', ';', '='
+    );
+
+    $str = str_replace($reserved_characters, ' ', $str);
+    $str = translit($str);
+
+    // Remove characters
+    $str = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $str );
+    $str = preg_replace("/[\/_|+ -]+/", $delimiter, $str );
+    $str = trim($str, $delimiter);
+
+    if ($lowercase === true) $str = strtolower($str);
+    return $str;
 }
 
 function do_flush()

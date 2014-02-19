@@ -1,0 +1,10 @@
+<ul class="newz">
+    {% for n in last_news %}
+        <li>{{ n.created|date('d.m.Y') }}
+            <br>
+            <a href="/news/{{ n.id }}/{{ n.tr_name }}/">
+                {{ n.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

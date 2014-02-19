@@ -46,6 +46,7 @@ class news extends \Admin {
         $query = $this->db->query("select * from news {$sql} ORDER BY created DESC LIMIT {$on_page} OFFSET {$paginator->get_range('from')}");
         while ($row = $query->fetch())
         {
+            $row['tr_name'] = $this->safeName($row['name'],"-",true);
             $pages[$row['id']] = $row;
             $pages[$row['id']]['text'] = cut($pages[$row['id']]['text'],50);
         }
@@ -112,6 +113,7 @@ class news extends \Admin {
     function save()
     {
         $id = intval($_POST['id']);
+        $_POST['name'] = trim($_POST['name']);
 
         if ($_POST['name'] == "") $res['error'] = "Укажите название";
         if ($_POST['text'] == "") $res['error'] = "Введите текст";
@@ -158,19 +160,19 @@ class news extends \Admin {
         {
             if ($_POST['always'] == "") $_POST['always'] = null;
             $data = array(
-                $_POST['name'],$_POST['text'],strtotime($_POST['created']),$_POST['always']
+                $_POST['name'],$_POST['text'],strtotime($_POST['created']),$_POST['always'],$_POST['h1'],$_POST['title'],$_POST['description'],$_POST['keywords']
             );
 
             if ($id > 0)
             {
                 $data[] = $id;
-                $query = $this->db->prepare("update news set name=?,text=?,created=?,always=? where id=?");
+                $query = $this->db->prepare("update news set name=?,text=?,created=?,always=?,h1=?,title=?,description=?,keywords=? where id=?");
                 if (!$query->execute($data)) $res['error'] = "Ошибка базы данных";
                 else $last_id = $id;
             }
             else
             {
-                $query = $this->db->prepare("insert into news(name,text,created,always) values(?,?,?,?)");
+                $query = $this->db->prepare("insert into news(name,text,created,always,h1,title,description,keywords) values(?,?,?,?,?,?,?,?)");
                 if (!$query->execute($data)) $res['error'] = "Ошибка базы данных";
                 else $last_id = $this->db->lastInsertId();
             }
@@ -318,6 +320,87 @@ class news extends \Admin {
         else $res['error'] = "Передан неверный id";
 
         echo json_encode($res);
+    }
+
+    public function translitIt($str)
+    {
+        // Redefine vars
+        $str = (string) $str;
+
+        $patern = array(
+            "А" => "A", "Б" => "B", "В" => "V", "Г" => "G",
+            "Д" => "D", "Е" => "E", "Ж" => "J", "З" => "Z",
+            "И" => "I", "Й" => "Y", "К" => "K", "Л" => "L",
+            "М" => "M", "Н" => "N", "О" => "O", "П" => "P",
+            "Р" => "R", "С" => "S", "Т" => "T", "У" => "U",
+            "Ф" => "F", "Х" => "H", "Ц" => "TS", "Ч" => "CH",
+            "Ш" => "SH", "Щ" => "SCH", "Ъ" => "", "Ы" => "YI",
+            "Ь" => "", "Э" => "E", "Ю" => "YU", "Я" => "YA",
+            "а" => "a", "б" => "b", "в" => "v", "г" => "g",
+            "д" => "d", "е" => "e", "ж" => "j", "з" => "z",
+            "и" => "i", "й" => "y", "к" => "k", "л" => "l",
+            "м" => "m", "н" => "n", "о" => "o","п" => "p",
+            "р" => "r", "с" => "s", "т" => "t", "у" => "u",
+            "ф" => "f", "х" => "h", "ц" => "ts", "ч" => "ch",
+            "ш" => "sh", "щ" => "sch", "ъ" => "y", "ї" => "i",
+            "Ї" => "Yi", "є" => "ie", "Є" => "Ye", "ы" => "yi",
+            "ь" => "", "э" => "e", "ю" => "yu", "я" => "ya", "ё" => "yo"
+        );
+
+        return strtr($str, $patern);
+    }
+
+    public function safeName($str, $delimiter = '-', $lowercase = false)
+    {
+        // Redefine vars
+        $str       = (string) $str;
+        $delimiter = (string) $delimiter;
+        $lowercase = (bool) $lowercase;
+        $delimiter = (string) $delimiter;
+
+        // Remove tags
+        $str = filter_var($str, FILTER_SANITIZE_STRING);
+
+        // Decode all entities to their simpler forms
+        $str = html_entity_decode($str, ENT_QUOTES, 'UTF-8');
+
+        // Reserved characters (RFC 3986)
+        $reserved_characters = array(
+            '/', '?', ':', '@', '#', '[', ']',
+            '!', '$', '&', '\'', '(', ')', '*',
+            '+', ',', ';', '='
+        );
+
+        // Remove reserved characters
+        $str = str_replace($reserved_characters, ' ', $str);
+
+        // Set locale to en_US.UTF8
+        setlocale(LC_ALL, 'en_US.UTF8');
+
+        // Translit ua,ru => latin
+        $str = $this->translitIt($str);
+
+        // Convert string
+        $str = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+
+        // Remove characters
+        $str = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $str );
+        $str = preg_replace("/[\/_|+ -]+/", $delimiter, $str );
+        $str = trim($str, $delimiter);
+
+        // Lowercase
+        if ($lowercase === true) $str = $this->lowercase($str);
+
+        // Return safe name
+        return $str;
+    }
+
+    public function lowercase($str)
+    {
+        // Redefine vars
+        $str = (string) $str;
+
+        return function_exists('mb_strtolower') ? mb_strtolower($str, 'utf-8') : strtolower($str);
     }
 }
 ?>

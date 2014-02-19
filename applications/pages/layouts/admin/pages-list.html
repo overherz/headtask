@@ -2,9 +2,14 @@
     {% if not versions %}
     <td>{% if i.level > 0 %}{% for i in 1..i.level %}- {% endfor %}{% endif %}{{i.name}}</td>
     <td><a href="{{i.path}}">{{i.path|cut(50)}}</a></td>
+    <td>{{ i.template }}</td>
+    <td>{% if i.title %}<i class="fa fa-check"></i>{% endif %}</td>
+    <td>{% if i.keywords %}<i class="fa fa-check"></i>{% endif %}</td>
+    <td>{% if i.description %}<i class="fa fa-check"></i>{% endif %}</td>
+    {% else %}
+        <td>{{i.text|nl2br}}</td>
     {% endif %}
-    <td>{{i.text|nl2br}}</td>
-    <td style="white-space: nowrap;">{% if i.created %}{{i.created|date("d.m.Y H:i:s")}}{% endif %}</td>
+    <td style="width: 100px;">{% if i.created %}{{i.created|date("d.m.Y H:i:s")}}{% endif %}</td>
     {% if not versions %}<td style="text-align: center;">{% if i.count > 1 %}<a href="" class="show_versions" id_page='{{i.id}}'>{{i.count}}</a>{% else %}{{i.count}}{% endif %}</td>{% endif %}
     {% if versions %}
         <td>

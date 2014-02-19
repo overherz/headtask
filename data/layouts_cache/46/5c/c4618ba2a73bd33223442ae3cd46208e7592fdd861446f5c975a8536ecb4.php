@@ -110,31 +110,52 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
 
             var randomColor = \"#000000\".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
            // \$(\"a\").css(\"color\",randomColor);
+            var setSectionHeights = function() {
+                setTimeout( function() {
+                    var w = \$(window).innerHeight();
+                    var psp = \$(\"#projects_second_panel\").innerHeight();
+
+                    if (w < psp) innerHeight = psp;
+                    else
+                    {
+                        var innerHeight = w - \$('.navbar').outerHeight(true) - \$('#footer').outerHeight(true);
+                    }
+
+                    \$('#sidebar .well,#projects_second_panel .jumbotron').css({
+                        'min-height': innerHeight - 20
+                    });
+                }, 100);
+            };
+            setSectionHeights();
+
+            \$(window).resize( function() {
+                setSectionHeights();
+            });
         });
     </script>
     ");
-        // line 46
+        // line 67
         $this->displayBlock('js', $context, $blocks);
-        // line 48
+        // line 69
         echo \layout::func_from_text("</head>
 <body>
 <div id=\"wrap\">
     ");
-        // line 51
+        // line 72
         if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user")) {
             $this->env->loadTemplate("/source/menu.html")->display($context);
         }
-        // line 52
+        // line 73
         echo \layout::func_from_text("    <div class=\"from_top\"></div>
     ");
-        // line 53
+        // line 74
         $this->displayBlock('body', $context, $blocks);
-        // line 54
+        // line 75
         echo \layout::func_from_text("</div>
 ");
-        // line 55
+        // line 76
         $this->env->loadTemplate("/source/footer.html")->display($context);
-        // line 56
+        // line 77
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -151,14 +172,14 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
         echo \layout::func_from_text("    ");
     }
 
-    // line 46
+    // line 67
     public function block_js($context, array $blocks = array())
     {
-        // line 47
+        // line 68
         echo \layout::func_from_text("    ");
     }
 
-    // line 53
+    // line 74
     public function block_body($context, array $blocks = array())
     {
     }
@@ -175,6 +196,6 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
 
     public function getDebugInfo()
     {
-        return array (  162 => 53,  158 => 47,  155 => 46,  151 => 30,  148 => 29,  143 => 4,  138 => 56,  136 => 55,  133 => 54,  131 => 53,  128 => 52,  124 => 51,  119 => 48,  117 => 46,  100 => 31,  97 => 29,  88 => 25,  82 => 24,  76 => 23,  70 => 22,  64 => 21,  58 => 20,  52 => 19,  48 => 18,  44 => 16,  42 => 15,  28 => 4,  23 => 1,);
+        return array (  183 => 74,  179 => 68,  176 => 67,  172 => 30,  169 => 29,  164 => 4,  159 => 77,  157 => 76,  154 => 75,  152 => 74,  149 => 73,  145 => 72,  140 => 69,  138 => 67,  100 => 31,  97 => 29,  88 => 25,  82 => 24,  76 => 23,  70 => 22,  64 => 21,  58 => 20,  52 => 19,  48 => 18,  44 => 16,  42 => 15,  28 => 4,  23 => 1,);
     }
 }

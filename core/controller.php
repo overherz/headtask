@@ -64,7 +64,7 @@ class Controller {
 
         if($admin_mode)
         {
-            if ($router_admin[$controller])
+            if (isset($router_admin) && $router_admin[$controller])
             {
                 $old_router = array('application' => $application,'controller' => $controller);
                 $application = $router_admin[$controller]['application'];
@@ -75,7 +75,7 @@ class Controller {
         }
         else
         {
-            if ($router[$controller])
+            if (isset($router) && $router[$controller])
             {
                 $old_router = array('application' => $application,'controller' => $controller);
                 $application = $router[$controller]['application'];

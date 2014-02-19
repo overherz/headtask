@@ -41,6 +41,27 @@
 
             var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
            // $("a").css("color",randomColor);
+            var setSectionHeights = function() {
+                setTimeout( function() {
+                    var w = $(window).innerHeight();
+                    var psp = $("#projects_second_panel").innerHeight();
+
+                    if (w < psp) innerHeight = psp;
+                    else
+                    {
+                        var innerHeight = w - $('.navbar').outerHeight(true) - $('#footer').outerHeight(true);
+                    }
+
+                    $('#sidebar .well,#projects_second_panel .jumbotron').css({
+                        'min-height': innerHeight - 20
+                    });
+                }, 100);
+            };
+            setSectionHeights();
+
+            $(window).resize( function() {
+                setSectionHeights();
+            });
         });
     </script>
     {% block js %}

@@ -2219,3 +2219,7 @@ input.edit-btn {
 .popup_body .description {
     color: #666;
 }
+
+.popup_title {
+    background: #FF693E !important;
+}

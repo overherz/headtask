@@ -1,0 +1,14 @@
+{% extends "/source/wrapper_index.html" %}
+
+{% block body %}
+    <div  style="background: #FFF url('/source/images/pattern-bg.png'); padding:20px; border:1px solid #ccc; box-shadow:0px 0 3px #ccc">
+        <table>
+            <td valign="top"><h2 style="font-weight:normal; font-size:25px">Инструкции и подсказки</h2>
+                <div style="width:650px"><div class="wysiwyg">{{page.text|raw}}</div></div>
+                <div class="help-list">{% include app.path('pages','childs.html') %}</div>
+            </td>
+            <td valign="top">{% include app.path('news','news_right_table.html') %}</td>
+        </table>
+    </div>
+{% endblock %}
+

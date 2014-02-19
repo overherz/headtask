@@ -21,7 +21,7 @@ class __TwigTemplate_b9cc250427bb374e7a8626df8a3281b08c289ee8e747dcd6ea84001029e
         // line 2
         echo \layout::func_from_text("    <div style=\"position: absolute;right:0;bottom:0;\"><a href=\"\" id=\"show_filter\">Фильтр</a></div>
 </div>
-<table class=\"table table-bordered table-hover table-condensed\" id=\"tasks_table\">
+<table class=\"table table-hover table-condensed\" id=\"tasks_table\">
     <thead>
     <tr>
         <th></th>
