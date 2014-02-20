@@ -17,7 +17,8 @@
         </div></div>
     <div class="body"><span class="title">Доступ в панель управления: </span
         <div><input type="checkbox" name="access_admin" value="1" {% if group.access_admin == 1 %}checked{% endif %}></div>
-    <div class="body"><div class="title" style="font-weight: bold;color:#A00002;text-align: center;">Ограничения панели управления</div>
+
+    <div class="body"><div class="title" style="font-weight: bold;color:#A00002;text-align: center;">Ограничения панели управления. Запрещены разделы:</div>
         <table><tr>
         {% for k,l in globals.root_menu %}
             {% if group_name != l.name %}{% set group_name = l.name %}{% endif %}<td valign="top" style="padding-right: 5px;"><div style="background:#dcdcdc;padding:2px;text-align: center;padding-left:5px;padding-right: 5px;">{{group_name}} <input type="checkbox" class="check_all"></div><ul>
@@ -34,7 +35,8 @@
             </ul></td>
             {% if loop.index % 3 == 0 %}</tr><tr>{% endif %}
         {% endfor %}
-        </table></div>
+        </table>
+    </div>
 {% endif %}
 </form>
 </div>

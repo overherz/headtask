@@ -30,7 +30,7 @@ $(document).ready(function() {
     });
 
     $(document).on("click","[save]",function(){
-        var params = $("#group_form").serialize();
+        var params = $("#group_form").find(":input").serialize();
         user_api(params,function(res){
             user_api(false,function(data){
                 $("#result").html(data);
@@ -40,13 +40,14 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on("click",".check_all",function(){
+    $(document).on("change","input.check_all",function(){
         var status = false;
-        if ($(this).prop("checked")) status = true;
-        $(this).parent().next("ul").find("input:checkbox:enabled").prop('checked', status);
+        if ($(this).is(":checked")) status = true;
+
+        $(this).parent().parent().next("ul").find("input:checkbox:enabled").prop('checked', status).trigger('refresh');
     });
 
-    $(document).on("click",".popup_body ul input:checkbox",function(){
+    $(document).on("change",".popup_body ul input:checkbox",function(){
         check_checkboxes();
     });
 });
@@ -60,6 +61,6 @@ function check_checkboxes()
         var status = false;
         if (count_checked == count_all) status = true;
 
-        $(v).parent().find(".check_all").prop("checked",status)
+        $(v).parent().find("input.check_all").prop("checked",status).trigger('refresh');
     });
 }

@@ -2223,3 +2223,7 @@ input.edit-btn {
 .popup_title {
     background: #FF693E !important;
 }
+
+.popup_body ul {
+    padding-left: 0;
+}
