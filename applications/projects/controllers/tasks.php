@@ -24,6 +24,12 @@ class tasks extends \Controller {
             case "delete_task":
                 $this->delete_task();
                 break;
+            case "add_comment":
+                $this->add_comment();
+                break;
+            case "delete_comment":
+                $this->delete_comment();
+                break;
             default:
                 $this->default_for_this();
         }
@@ -113,6 +119,18 @@ class tasks extends \Controller {
             }
             else $layout = "tasks/show_task.html";
 
+            if ($this->id == "show")
+            {
+                $query = $this->db->prepare("select * from projects_tasks_last_visit where id_task=? and id_user=? LIMIT 1");
+                $query->execute(array($this->_0,$_SESSION['user']['id_user']));
+                $task['subscribe'] = $query->fetch();
+                $last_visit = time();
+                $query = $this->db->prepare("insert into projects_tasks_last_visit (last_visit,id_task,id_user) values (?,?,?) ON DUPLICATE KEY UPDATE last_visit=?");
+                $query->execute(array($last_visit,$this->_0,$_SESSION['user']['id_user'],$last_visit));
+
+                $comments = $this->generate_comments($this->_0);
+            }
+
             $this->layout_show($layout,array(
                 'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'tasks_button' => true,
@@ -124,7 +142,8 @@ class tasks extends \Controller {
                 'to_task' => $to_task,
                 'access' => $access['access'],
                 'logs' => $logs,
-                'types_tasks' => $access['types_tasks']
+                'types_tasks' => $access['types_tasks'],
+                'comments'=> $comments
             ));
         }
         else $this->error_page();
@@ -694,5 +713,108 @@ class tasks extends \Controller {
         }
 
         return $stats;
+    }
+
+    function add_comment()
+    {
+        $access = $this->get_controller("projects","users")->get_access(false,false,$_POST['id']);
+
+        $parent = intval($_POST['parent']);
+        if ($parent < 1) $parent = null;
+        $comment = trim(strip_tags($_POST['comment']));
+        $created = time();
+//        $created_test = $created-$this->time_limit;
+
+        if ($comment == "") $res['error'] = "Комментарий не может быть пустым";
+//        if ($_SESSION['last_comment'] > $created_test && $_SESSION['user']['id_group'] != 1) $res['error'] = "Комментарий можно добавлять каждые {$this->time_limit} секунд";
+
+        if ($parent)
+        {
+            $query = $this->db->prepare("select id from projects_tasks_comments where id=?");
+            $query->execute(array($parent));
+            if (!$query->fetch()) $res['error'] = "Комментарий выше был удален";
+        }
+
+        if (!$res['error'])
+        {
+            $query = $this->db->prepare("insert into projects_tasks_comments(text,parent_id,id_task,id_user,created) values(?,?,?,?,?)");
+            if ($query->execute(array($comment,$parent,$_POST['id'],$_SESSION['user']['id_user'],$created)))
+            {
+                $insert_id = $this->db->lastInsertId();
+                $_SESSION['last_comment'] = $created;
+                $query = $this->db->prepare("select c.*,u.nickname,u.fio,u.avatar,u.id_group,gr.name as group_name from projects_tasks_comments as c LEFT JOIN users as u ON u.id_user=c.id_user LEFT JOIN groups as gr ON gr.id=u.id_group where c.id = ? LIMIT 1");
+                $query->execute(array($insert_id));
+                $com = $query->fetch();
+
+                $last_visit = strtotime("now");
+                $query = $this->db->prepare("insert into projects_tasks_last_visit(id_user,id_task,last_visit) values(?,?,?) ON DUPLICATE KEY UPDATE last_visit=?");
+                $query->execute(array($_SESSION['user']['id_user'],$_POST['id'],$last_visit,$last_visit));
+
+                $res['success'] = $this->layout_get('tasks/comment.html',array('com' => $com,'ajax' => true));
+            }
+            else $res['error'] = "Ошибка базы данных";
+        }
+
+        echo json_encode($res);
+    }
+
+    function delete_comment()
+    {
+        $access = $this->get_controller("projects","users")->get_access(false,false,$_POST['id_task']);
+
+        $id = intval($_POST['id']);
+        $query = $this->db->prepare("select id_task
+            from projects_tasks_comments as co
+            where id=? LIMIT 1");
+        $query->execute(array($id));
+
+        if ($comment = $query->fetch())
+        {
+            $data = $this->get_controller("users","access")->get_access("article",$comment['id_article']);
+            if (!$data['access']['delete_comment']) $res['error'] = "У Вас недостаточно прав";
+            else
+            {
+                if (!$this->db->query("delete from comments_to_articles where id=".$this->db->quote($id)." LIMIT 1")) $res['error'] = "Ошибка базы данных";
+                else $res['success'] = true;
+            }
+        }
+
+        echo json_encode($res);
+    }
+
+    function generate_comments($id)
+    {
+        $comments = array();
+        $query = $this->db->prepare("SELECT c.*,u.nickname,u.fio,u.avatar,u.id_group,gr.name as group_name
+                from projects_tasks_comments as c
+                LEFT JOIN users as u ON u.id_user=c.id_user
+                LEFT JOIN groups as gr ON gr.id=u.id_group
+                where c.id_task=?
+                order by c.id ASC
+        ");
+        $query->execute(array($id));
+
+        while ($row = $query->fetch()) $comments[$row['id']] = $row;
+        if($comments) $res = $this->generate_comments_foreach($comments);
+
+        return $res;
+    }
+
+    function generate_comments_foreach(array $listIdParent)
+    {
+        $to_delete = array();
+        foreach ($listIdParent as $id => $node)
+        {
+            if ($node['parent_id'])
+            {
+                $listIdParent[$node['parent_id']]['category'][$id] = &$listIdParent[$id];
+                $to_delete[] = $id;
+            }
+        }
+
+        $final = $listIdParent;
+
+        foreach ($to_delete as $v) unset($final[$v]);
+        return $final;
     }
 }

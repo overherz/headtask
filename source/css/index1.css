@@ -51,7 +51,7 @@ body {
     height: 100%;
     /* Negative indent footer by it's height */
     margin: 0 auto -25px;
-    color: #444;
+    color: #333;
     min-width: 720px;
 }
 
@@ -69,10 +69,6 @@ body {
     background-image: linear-gradient(to bottom, #111111, #222222);
     background-repeat: repeat-x;
 }
-
-#footer {
-}
-
 
 #for_projects_panel {
     display: none;
@@ -106,6 +102,7 @@ body {
 
 a {
     color: #2E6980;
+    outline: none !important;
 }
 
 .table tbody tr.danger td {
@@ -116,9 +113,13 @@ a {
     color: #860000 !important;
 }
 
+.table tbody tr.danger td .btn .fa {
+    color: #fff;
+}
+
 .table {
-    background: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    background: #fff;
 }
 
 .table th, .table td {
@@ -126,7 +127,8 @@ a {
 }
 
 .table th {
-
+    background: #333;
+    color: #fff;
     /*
     -webkit-box-shadow: 0px -2px 5px 0px rgba(101, 125, 138, 0.8);
     -moz-box-shadow:    0px -2px 5px 0px rgba(101, 125, 138, 0.8);
@@ -142,14 +144,14 @@ a {
     margin: -10px -10px 10px -10px;
     background: #fff;
     font-size: 14px;
-    border-bottom: 1px solid #49AFCD;
+    border-bottom: 1px solid #ccc;
     position: relative;
     font-weight: bold;
 }
 
 .breadcrumb.second {
     margin-top: 15px;
-    border-top: 1px solid #49AFCD;
+    border-top: 1px solid #ccc;
 }
 
 .progress {
@@ -216,7 +218,7 @@ input,textarea {
 }
 
 .jumbotron {
-    background: #f2f2f2;
+    background: #f5f5f5;
 }
 
 .pagination_disabled a {
@@ -430,4 +432,9 @@ fieldset[disabled] .btn-oscar.active {
 
 #sidebar .list-group a.active {
     background: #428BCA;
+}
+
+.tab-content {
+    background: #fff;
+    padding: 10px 5px;
 }

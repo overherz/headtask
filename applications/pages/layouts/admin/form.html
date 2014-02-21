@@ -3,12 +3,13 @@
     <input type="hidden" name="id" value="{{page.id}}">
     <input type="hidden" name="id_text" value="{{page.id_text}}">
     <input type="hidden" name="act" value="save">
-    <div id="tabs">
-        <ul>
-            <li><a href="#tabs-1">Описание</a></li>
-            <li><a href="#tabs-2">Текст</a></li>
-        </ul>
-        <div id="tabs-1">
+    <ul class="nav nav-tabs" id="form_tabs">
+        <li class="active"><a href="#tabs-1">Описание</a></li>
+        <li><a href="#tabs-2">Текст</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="tabs-1" class="tab-pane fade in active">
             <div class="body"><span class="title">Родительская страница</span>
                 <div>
                     <select name="parent_id">
@@ -47,7 +48,7 @@
             <div class="body"><span class="title">Keywords</span>
                 <div><input type="text" name="keywords" value="{{page.keywords}}" class="input" style="width:350px"></div></div>
         </div>
-        <div id="tabs-2">
+        <div id="tabs-2" class="tab-pane fade">
             <div class="body">
                 <div><textarea name="text" class="input">{{page.text}}</textarea></div></div>
         </div>

@@ -1,0 +1,34 @@
+<div class="comment_box {% if com.parent_id > 0 %}reply_comment{% endif %}">
+<div class="comment {% if com.id_user == globals.user.id_user %}own{% endif %} {% if not com.parent_id %}root{% endif %}" id="{{com.id}}"> 
+    <div class="folding-dot-holder">
+        <div class="folding-dot"></div>
+    </div>    
+    <a name="comment_{{com.id}}"></a>
+    <table class="comment_tbl">
+        <tr>
+            <td class="comm_ava_td"><a class="a_comm_ava" href="/users/~{{com.id_user}}/"><img class="comm_ava" {% if not com.avatar or com.avatar == '' %}src="/source/images/no-ava-comment.jpg"{% else %}src="/uploads/users/ava_comment/{{com.avatar|real_path}}"{% endif %}></a></td>
+            <td class="comm_td">
+                <div class="comment_head">
+                    <a href="/users/~{{com.id_user}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{com.fio}} <span class="account-nick">{{com.nickname}}</span></a>
+                    <span class="commdate">{{com.created|date("d.m.Y, H:i:s")}}</span>
+                    <a href="#comment_{{com.id}}">#</a>
+                    {% if com.parent_id > 0 %}<a href="#comment_{{com.parent_id}}" parent="{{com.parent_id}}">↑</a>{% endif %}
+                    {% if task.subscribe.last_visit and com.created > task.subscribe.last_visit %}<span style="color:blue;">новый!</span>{% endif  %}
+
+                    <div style="float:right;"><a href="" class="comment_to_comment" to_comment="{{com.id}}">ответить</a></div>
+                    {% if access_article.comment and access_article.delete_comment %}<div style="float:right;margin-left: 5px;">|&nbsp;</div>{% endif %}
+                    {% if access_article.delete_comment %}<div style="float:right;"><a href="" class="del_comment" del_comment="{{com.id}}">удалить</a></div>{% endif %}
+                </div>
+                <div class="comment_body">{{com.text|nl2br}}</div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% if com.category %}
+    {% for com in com.category %}
+        {% include app.path('projects','tasks/comment.html') %}
+    {% endfor %}
+{% endif %}
+
+</div>

@@ -25,6 +25,11 @@ $(document).ready(function($) {
             jQuery('.back-to-top').fadeOut(duration).blur();
         }
     });
+
+    $(document).on("click",'#form_tabs a',function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
 });
 
 jQuery('.back-to-top').click(function(event) {

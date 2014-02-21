@@ -79,7 +79,7 @@ class calendar extends \Controller {
             LEFT JOIN users as u ON pt.assigned = u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
             where (pt.assigned=? OR pt.assigned IS NULL or pt.id_user=?) and pt.id_project IN( SELECT id_project from projects_users where id_user=? and role='user') and pt.start <= ? and pt.status IN ('new','in_progress','rejected')
-            order by p.name ASC,pt.name ASC
+            order by pt.created DESC
         ");
         $query->execute(array($_SESSION['user']['id_user'],$_SESSION['user']['id_user'],$_SESSION['user']['id_user'],$date));
         while ($row = $query->fetch())
@@ -100,7 +100,7 @@ class calendar extends \Controller {
             LEFT JOIN users as u ON pt.assigned = u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
             where pt.id_project IN( SELECT id_project from projects_users where id_user=? and role='manager') and pt.start <= ? and pt.status IN ('new','in_progress','rejected')
-            order by field(pt.assigned,?) DESC,p.name ASC,pt.name ASC
+            order by field(pt.assigned,?) DESC, pt.created DESC
         ");
         $query->execute(array($_SESSION['user']['id_user'],$date,$_SESSION['user']['id_user']));
         while ($row = $query->fetch())

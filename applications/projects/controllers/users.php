@@ -326,7 +326,7 @@ class users extends \Controller {
             'delete_project' => false,
 
             'save_task' => false,
-            'edit_task' => false,
+            'edit_task' => false
         );
 
         if (!$id_user)

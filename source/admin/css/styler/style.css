@@ -45,6 +45,7 @@ h6 {
 }
 a {
   color: #FF693E;
+  outline: none !important;
 }
 a:hover {
   color: #903956;
@@ -2226,4 +2227,8 @@ input.edit-btn {
 
 .popup_body ul {
     padding-left: 0;
+}
+
+.nav.nav-tabs {
+    margin-bottom: 10px !important;
 }

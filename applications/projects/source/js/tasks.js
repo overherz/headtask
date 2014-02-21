@@ -173,7 +173,7 @@ $(document).ready(function ($) {
             $("#filter_table").hide();
         }
         return false;
-    })
+    });
 
     $(document).on("click", ".save_documents", function () {
         $("[name='description']").val(CKEDITOR.instances.description.getData());
@@ -200,6 +200,64 @@ $(document).ready(function ($) {
         });
         return false;
     });
+
+    $(document).on("click",".comment_to_comment",function(){
+        var id = $(this).attr('to_comment');
+        var form = $(".comment_form").clone().attr('class','comment_form_clone').show();
+        $(".comment_form_clone").remove();
+        if (id > 0) {
+            $(".comment[id='"+id+"']").after(form);
+            $("#botnewcomm").css('display', 'inline-block');
+        }
+        else {
+            $(this).after(form);
+            $(this).css('display', 'none');
+        }
+        $("[name='parent']").val(id);
+        return false;
+    });
+
+    $(document).on("click",".add_comment",function(){
+        var request = $(".comment_form_clone").serialize();
+        var parent = $(".comment_form_clone").find("[name='parent']").val();
+        var th = this;
+        user_api(request,function(data){
+            if (parent > 0) $(".comment[id='"+parent+"']").parent().append(data);
+            else $(".all_comments").append(data);
+            $(th).parent().remove();
+            show_message("success","Комментарий добавлен");
+            $("#botnewcomm").css('display', 'inline-block');
+            $(".all_comm_header").show();
+        });
+        return false;
+    });
+
+    $(document).on("click",".canc_comm",function(){
+        $(this).parent().remove();
+        $("#botnewcomm").css('display', 'inline-block');
+        return false;
+    });
+
+    $(document).on("click",".to_parent",function(){
+        var parent = $(this).attr('parent');
+        $.scrollTo($(".comment[id='"+parent+"']") , 800,{ axis: 'y' } );
+        return false;
+    });
+
+    $(document).on("click",".del_comment",function(){
+        var id = $(this).attr('del_comment');
+        show_popup("Хотите удалить этот коментарий и все ответы на него?","Редактирование сообщества");
+        add_popup_button("Да",'delete',{id:id},function(vars){
+            hide_popup();
+            user_api({id:vars.id,act:'delete_comment'},function(data){
+                $(".comment[id='"+vars.id+"']").parent().remove();
+                show_message("success","Комментарий удален");
+            },false,'/articles/');
+            return false;
+        });
+        return false;
+    });
+
 });
 
 function animate_progress_bars()

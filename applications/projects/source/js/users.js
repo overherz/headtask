@@ -46,11 +46,11 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("change",".users_checkbox",function(){
-        var mode;
-        if ($(this).prop("checked")) mode = true;
-        else mode = false;
-        var td = $(this).parent().next();
+    $(document).on("change","input.users_checkbox",function(){
+        var mode = false;
+        if ($(this).is(":checked")) mode = true;
+
+        var td = $(this).parent().parent().next();
         td.find("input").prop("checked",mode).trigger('refresh');
     });
 

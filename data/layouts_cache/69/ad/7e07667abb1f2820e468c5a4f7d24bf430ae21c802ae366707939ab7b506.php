@@ -33,7 +33,7 @@ class __TwigTemplate_69ad7e07667abb1f2820e468c5a4f7d24bf430ae21c802ae366707939ab
     <link href=\"/source/admin/css/libs/animate.min.css\" rel=\"stylesheet\">
     <link href=\"/source/admin/css/libs/bootstrap-switch.css\" rel=\"stylesheet\">
     <link rel=\"stylesheet\" href=\"/source/js/styler/jquery.formstyler.css\" type=\"text/css\" />
-    <link rel=\"stylesheet\" href=\"/source/css/jquery-ui.min.css\" type=\"text/css\">
+    <link rel=\"stylesheet\" href=\"/source/css/smoothness/jquery-ui-1.10.4.custom.css\" type=\"text/css\">
     <link href=\"/source/admin/css/styler/style.css\" rel=\"stylesheet\" type=\"text/css\">
     ");
         // line 17
@@ -437,13 +437,12 @@ class __TwigTemplate_69ad7e07667abb1f2820e468c5a4f7d24bf430ae21c802ae366707939ab
         </nav>
     </header><!-- /#header -->
 \t<div id=\"content\">
-\t\t<div class=\"container\">
-            ");
-        // line 288
-        $this->displayBlock('body', $context, $blocks);
+\t\t<div class=\"container\" style=\"position: relative\">
+            <div id=\"for_popup\" style=\"position: absolute;top:0;left:0;background: #fff\"></div>
+            <div id=\"under_popup\">");
         // line 289
-        echo \layout::func_from_text("
-
+        $this->displayBlock('body', $context, $blocks);
+        echo \layout::func_from_text("</div>
 \t\t</div><!-- /.container -->
 \t</div>
 \t<footer>
@@ -499,9 +498,9 @@ class __TwigTemplate_69ad7e07667abb1f2820e468c5a4f7d24bf430ae21c802ae366707939ab
                     \"/source/js/message.js\",
                     \"/applications/index/source/js/index_admin.js\"
                     ");
-        // line 345
+        // line 344
         $this->displayBlock('js', $context, $blocks);
-        // line 346
+        // line 345
         echo \layout::func_from_text("            );
         </script>
 
@@ -516,12 +515,12 @@ class __TwigTemplate_69ad7e07667abb1f2820e468c5a4f7d24bf430ae21c802ae366707939ab
     {
     }
 
-    // line 288
+    // line 289
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 345
+    // line 344
     public function block_js($context, array $blocks = array())
     {
     }
@@ -538,6 +537,6 @@ class __TwigTemplate_69ad7e07667abb1f2820e468c5a4f7d24bf430ae21c802ae366707939ab
 
     public function getDebugInfo()
     {
-        return array (  525 => 345,  520 => 288,  515 => 17,  505 => 346,  503 => 345,  445 => 289,  443 => 288,  435 => 282,  416 => 279,  409 => 278,  405 => 277,  237 => 111,  231 => 110,  224 => 106,  216 => 105,  212 => 104,  205 => 103,  202 => 102,  199 => 101,  196 => 100,  192 => 98,  190 => 97,  179 => 95,  176 => 94,  173 => 93,  168 => 91,  163 => 89,  155 => 88,  151 => 87,  148 => 86,  145 => 85,  142 => 84,  139 => 83,  135 => 82,  130 => 79,  124 => 78,  119 => 77,  114 => 76,  112 => 75,  72 => 40,  68 => 39,  55 => 29,  42 => 18,  40 => 17,  22 => 1,);
+        return array (  524 => 344,  519 => 289,  514 => 17,  504 => 345,  502 => 344,  444 => 289,  435 => 282,  416 => 279,  409 => 278,  405 => 277,  237 => 111,  231 => 110,  224 => 106,  216 => 105,  212 => 104,  205 => 103,  202 => 102,  199 => 101,  196 => 100,  192 => 98,  190 => 97,  179 => 95,  176 => 94,  173 => 93,  168 => 91,  163 => 89,  155 => 88,  151 => 87,  148 => 86,  145 => 85,  142 => 84,  139 => 83,  135 => 82,  130 => 79,  124 => 78,  119 => 77,  114 => 76,  112 => 75,  72 => 40,  68 => 39,  55 => 29,  42 => 18,  40 => 17,  22 => 1,);
     }
 }

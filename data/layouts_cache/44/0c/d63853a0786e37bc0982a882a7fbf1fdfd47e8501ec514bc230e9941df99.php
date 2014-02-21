@@ -69,18 +69,16 @@ class __TwigTemplate_440cd63853a0786e37bc0982a882a7fbf1fdfd47e8501ec514bc230e994
     public function block_project($context, array $blocks = array())
     {
         // line 23
-        $this->env->loadTemplate("/source/crumbs.html")->display($context);
-        // line 24
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "project_menu.html"), "method"));
         $template->display($context);
-        // line 25
+        // line 24
         echo \layout::func_from_text("    ");
         $this->displayBlock('project_data', $context, $blocks);
     }
 
     public function block_project_data($context, array $blocks = array())
     {
-        // line 26
+        // line 25
         echo \layout::func_from_text("    ");
     }
 
@@ -96,6 +94,6 @@ class __TwigTemplate_440cd63853a0786e37bc0982a882a7fbf1fdfd47e8501ec514bc230e994
 
     public function getDebugInfo()
     {
-        return array (  84 => 26,  77 => 25,  74 => 24,  72 => 23,  69 => 22,  63 => 19,  54 => 13,  51 => 12,  43 => 8,  40 => 7,  33 => 4,  30 => 3,);
+        return array (  82 => 25,  75 => 24,  72 => 23,  69 => 22,  63 => 19,  54 => 13,  51 => 12,  43 => 8,  40 => 7,  33 => 4,  30 => 3,);
     }
 }
