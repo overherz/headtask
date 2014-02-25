@@ -56,68 +56,72 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
         $this->env->loadTemplate("/source/crumbs.html")->display($context);
         // line 13
         echo \layout::func_from_text("<div class=\"content\">
-    <form class=\"form-horizontal span6\" id=\"edit_profile\" method=\"POST\">
+<div class=\"col-xs-8\">
+    <div class=\"panel panel-default\">
+    <div class=\"panel-heading\">Информация</div>
+    <div class=\"panel-body\">
+    <form class=\"form-horizontal\" id=\"edit_profile\" method=\"POST\">
         <input type=\"hidden\" name=\"act\" value=\"save_profile\">
         <input type=\"hidden\" name=\"id\" value=\"");
-        // line 16
+        // line 20
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "id_user"), "html", null, true));
         echo \layout::func_from_text("\">
-        <div class=\"control-group\">
-            <label class=\"control-label\" for=\"fio\">ФИО</label>
-            <div class=\"controls\">
+        <div class=\"form-group\">
+            <label class=\"col-lg-2 control-label\" for=\"fio\">ФИО</label>
+            <div class=\"col-lg-10\">
                 <input type=\"text\" name=\"fio\" id=\"fio\" value=\"");
-        // line 20
+        // line 24
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "fio"), "html", null, true));
-        echo \layout::func_from_text("\" class=\"span12\" />
+        echo \layout::func_from_text("\" class=\"form-control\" />
              </div>
         </div>
-        <div class=\"control-group\">
-            <label class=\"control-label\" for=\"nickname\">Ник</label>
-            <div class=\"controls\">
+        <div class=\"form-group\">
+            <label class=\"col-lg-2 control-label\" for=\"nickname\">Ник</label>
+            <div class=\"col-lg-10\">
                 <input type=\"text\" name=\"nickname\" id=\"nickname\" value=\"");
-        // line 26
+        // line 30
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "nickname"), "html", null, true));
-        echo \layout::func_from_text("\" class=\"span12\" />
+        echo \layout::func_from_text("\" class=\"form-control\" />
             </div>
         </div>
-        <div class=\"control-group\">
-            <label class=\"control-label\" for=\"birthday\">Дата Рождения:</label>
-            <div class=\"controls\">
+        <div class=\"form-group\">
+            <label class=\"col-lg-2 control-label\" for=\"birthday\">Дата Рождения:</label>
+            <div class=\"col-lg-10\">
                 <input type=\"text\" name=\"birthday\" id=\"birthday\" value=\"");
-        // line 32
+        // line 36
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "birthday"), "html", null, true));
         echo \layout::func_from_text("\" readonly />
             </div>
         </div>
         ");
-        // line 35
+        // line 39
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "profile"));
         foreach ($context['_seq'] as $context["_key"] => $context["p"]) {
-            // line 36
-            echo \layout::func_from_text("        <div class=\"control-group\">
-            <label class=\"control-label\" for=\"");
-            // line 37
+            // line 40
+            echo \layout::func_from_text("        <div class=\"form-group\">
+            <label class=\"col-lg-2 control-label\" for=\"");
+            // line 41
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "alias"), "html", null, true));
             echo \layout::func_from_text(":</label>
-            <div class=\"controls\">
+            <div class=\"col-lg-10\">
                 ");
-            // line 39
+            // line 43
             if (($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "type") == "text")) {
-                // line 40
+                // line 44
                 echo \layout::func_from_text("                    <input type=\"text\" name=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name"), "html", null, true));
                 echo \layout::func_from_text("\" id=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name"), "html", null, true));
                 echo \layout::func_from_text("\" value=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "value"), "html", null, true));
-                echo \layout::func_from_text("\" class=\"span12\" />
+                echo \layout::func_from_text("\" class=\"form-control\" />
                 ");
             } elseif (($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "type") == "textarea")) {
-                // line 42
-                echo \layout::func_from_text("                    <textarea class=\"span12\" name=\"");
+                // line 46
+                echo \layout::func_from_text("                    <textarea class=\"form-control\" name=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name"), "html", null, true));
                 echo \layout::func_from_text("\" rows=\"10\" id=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name"), "html", null, true));
@@ -126,7 +130,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                 echo \layout::func_from_text("</textarea>
                 ");
             }
-            // line 44
+            // line 48
             echo \layout::func_from_text("            </div>
         </div>
         ");
@@ -134,14 +138,14 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['p'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 47
-        echo \layout::func_from_text("        <div class=\"control-group\">
-            <label class=\"control-label\" for=\"tz\">Часовой пояс:</label>
-            <div class=\"controls\">
-                <select id=\"tz\" name=\"tz\">
+        // line 51
+        echo \layout::func_from_text("        <div class=\"form-group\">
+            <label class=\"col-lg-2 control-label\" for=\"tz\">Часовой пояс:</label>
+            <div class=\"col-lg-10\">
+                <select id=\"tz\" name=\"tz\" class=\"form-control\">
                     <option
                     ");
-        // line 52
+        // line 56
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-39600")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -149,7 +153,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Самоа\" value=\"-39600\">[UTC − 11:00] о. Мидуэй, Самоа</option>
                     <option
                     ");
-        // line 55
+        // line 59
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-36000")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -157,7 +161,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     value=\"-36000\">[UTC − 10:00] Гавайи</option>
                     <option
                     ");
-        // line 58
+        // line 62
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-34200")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -165,7 +169,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     острова\" value=\"-34200\">[UTC − 09:30] Маркизские острова</option>
                     <option
                     ");
-        // line 61
+        // line 65
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-32400")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -173,7 +177,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     value=\"-32400\">[UTC − 09:00] Аляска</option>
                     <option
                     ");
-        // line 64
+        // line 68
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-28800")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -182,7 +186,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Североамерик. тихоокеанское время (США и Канада) и Тихуана</option>
                     <option
                     ");
-        // line 68
+        // line 72
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-25200")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -191,7 +195,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     (Чиуауа, Ла-Пас, Масатлан)</option>
                     <option
                     ");
-        // line 72
+        // line 76
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-21600")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -201,7 +205,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     время (США и Канада)</option>
                     <option
                     ");
-        // line 77
+        // line 81
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-18000")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -210,7 +214,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Кито)\" value=\"-18000\">[UTC − 05:00] Североамерик. восточное время (США и Канада), Южноамерик. тихоокеанское время (Богота, Лима, Кито)</option>
                     <option
                     ");
-        // line 81
+        // line 85
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-16200")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -218,7 +222,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     value=\"-16200\">[UTC − 04:30] Венесуэла</option>
                     <option
                     ");
-        // line 84
+        // line 88
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-14400")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -227,7 +231,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     (Канада)</option>
                     <option
                     ");
-        // line 88
+        // line 92
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-10800")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -235,7 +239,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Гренландия\" value=\"-10800\">[UTC − 03:00] Бразилия, Гренландия</option>
                     <option
                     ");
-        // line 91
+        // line 95
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-7200")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -243,7 +247,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Среднеатлантическое время\" value=\"-7200\">[UTC − 02:00] Среднеатлантическое время</option>
                     <option
                     ");
-        // line 94
+        // line 98
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "-3600")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -252,7 +256,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     мыса</option>
                     <option
                     ");
-        // line 98
+        // line 102
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "0")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -261,7 +265,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Эдинбург</option>
                     <option
                     ");
-        // line 102
+        // line 106
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "3600")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -270,7 +274,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Центральная Африка</option>
                     <option
                     ");
-        // line 106
+        // line 110
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "7200")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -279,7 +283,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Рига, Таллин, Центральная Африка</option>
                     <option
                     ");
-        // line 110
+        // line 114
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "10800")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -287,7 +291,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Калининград, Минск, Восточноафриканское время</option>
                     <option
                     ");
-        // line 113
+        // line 117
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "14400")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -295,7 +299,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                      страны Закавказья, Объединённые Арабские Эмираты, Оман\" value=\"14400\">[UTC + 04:00] Москва, страны Закавказья, Объединённые Арабские Эмираты, Оман</option>
                     <option
                     ");
-        // line 116
+        // line 120
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "16200")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -303,7 +307,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     value=\"16200\">[UTC + 04:30] Кабул</option>
                     <option
                     ");
-        // line 119
+        // line 123
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "18000")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -312,7 +316,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Пакистан, Таджикистан, Туркмения, Узбекистан</option>
                     <option
                     ");
-        // line 123
+        // line 127
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "19800")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -320,7 +324,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Калькутта, Мадрас, Нью-Дели\" value=\"19800\">[UTC + 05:30] Бомбей, Калькутта, Мадрас, Нью-Дели</option>
                     <option
                     ");
-        // line 126
+        // line 130
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "20700")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -328,7 +332,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     value=\"20700\">[UTC + 05:45] Катманду</option>
                     <option
                     ");
-        // line 129
+        // line 133
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "21600")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -338,7 +342,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Бангладеш, Бутанское время</option>
                     <option
                     ");
-        // line 134
+        // line 138
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "23400")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -346,7 +350,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     value=\"23400\">[UTC + 06:30] Рангун</option>
                     <option
                     ");
-        // line 137
+        // line 141
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "25200")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -354,7 +358,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Новосибирск, Кемерово, Юго-Восточная Азия (Бангкок, Джакарта, Ханой)\" value=\"25200\">[UTC + 07:00] Омск, Новосибирск, Кемерово, Юго-Восточная Азия (Бангкок, Джакарта, Ханой)</option>
                     <option
                     ");
-        // line 140
+        // line 144
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "28800")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -363,7 +367,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Тайвань, западноавстралийское время</option>
                     <option
                     ");
-        // line 144
+        // line 148
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "31500")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -371,7 +375,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Юго-восточная Западная Австралия\" value=\"31500\">[UTC + 08:45] Юго-восточная Западная Австралия</option>
                     <option
                     ");
-        // line 147
+        // line 151
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "32400")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -379,7 +383,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     время, Корея, Япония\" value=\"32400\">[UTC + 09:00] Иркутское время, Корея, Япония</option>
                     <option
                     ");
-        // line 150
+        // line 154
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "34200")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -387,7 +391,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Центральноавстралийское время\" value=\"34200\">[UTC + 09:30] Центральноавстралийское время</option>
                     <option
                     ");
-        // line 153
+        // line 157
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "36000")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -396,7 +400,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     (Брисбен, Канберра, Мельбурн, Сидней), Западно-тихоокеанское время</option>
                     <option
                     ");
-        // line 157
+        // line 161
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "37800")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -404,7 +408,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     value=\"37800\">[UTC + 10:30] Лорд-Хау</option>
                     <option
                     ");
-        // line 160
+        // line 164
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "39600")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -414,7 +418,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Новая Каледония)</option>
                     <option
                     ");
-        // line 165
+        // line 169
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "41400")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -422,7 +426,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Норфолк\" value=\"41400\">[UTC + 11:30] Остров Норфолк</option>
                     <option
                     ");
-        // line 168
+        // line 172
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "43200")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -431,7 +435,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Маршалловы Острова, Фиджи, Новая Зеландия</option>
                     <option
                     ");
-        // line 172
+        // line 176
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "46800")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -439,7 +443,7 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     Феникс, Тонга\" value=\"46800\">[UTC + 13:00] Острова Феникс, Тонга</option>
                     <option
                     ");
-        // line 175
+        // line 179
         if (($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "tzOffset") == "50400")) {
             echo \layout::func_from_text("selected='selected'");
         }
@@ -447,69 +451,81 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                     value=\"50400\">[UTC + 14:00] Остров Лайн</option>
                 </select>
                 <div style=\"white-space: nowrap;\">Часовой пояс на вашем компьютере: <span id=\"localTZ\"></span></div>
-                <a href=\"\" class=\"btn btn-primary\" id=\"save_profile\">Сохранить профиль</a>
+                <a href=\"\" class=\"btn btn-primary\" id=\"save_profile\" style=\"margin-top: 20px;\">Сохранить профиль</a>
             </div>
         </div>
     </form>
+    </div>
+</div>
+</div>
     ");
-        // line 183
+        // line 190
         if ((!$this->getAttribute((isset($context["user"]) ? $context["user"] : null), "new"))) {
-            // line 184
+            // line 191
             echo \layout::func_from_text("
-    <div class=\"span6\">
-        <form id=\"change_pwd\" enctype=\"multipart/form-data\" method=\"POST\" action=\"/users/\" class=\"form-horizontal\">
-            <input type=\"hidden\" name=\"act\" value=\"change_pwd\">
-            <input type=\"hidden\" name=\"id\" value=\"");
-            // line 188
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "id_user"), "html", null, true));
-            echo \layout::func_from_text("\">
-            <div class=\"control-group\">
-                <label class=\"control-label\">Смена пароля:</label>
-                <div class=\"controls\">
-                    <div style=\"margin-bottom: 5px;\"><input type=\"password\" name=\"oldpwd\" value=\"\" placeholder=\"Текущий пароль\" /></div>
-                    <div style=\"margin-bottom: 5px;\"><input type=\"password\" name=\"newpwd\" value=\"\" placeholder=\"Новый пароль\" /></div>
-                    <div><input type=\"password\" name=\"rptpwd\" value=\"\" placeholder=\"Повтор пароля\" /></div>
-                    <a class=\"btn btn-primary\" href=\"\" change_pwd style=\"margin-top: 10px;\">Сменить пароль</a>
-                </div>
+    <div class=\"col-xs-4\">
+        <div class=\"panel panel-default\">
+            <div class=\"panel-heading\">Смена пароля</div>
+            <div class=\"panel-body\">
+                <form id=\"change_password_form\" class=\"form-horizontal\">
+                    <input type=\"hidden\" name=\"act\" value=\"change_password\">
+                    <div class=\"form-group\">
+                        <div class=\"col-lg-10\">
+                            <div><input type=\"password\" class=\"form-control\" name=\"old_pass\" placeholder=\"Текущий пароль\" /></div>
+                        </div>
+                    </div>
+                    <div class=\"form-group\">
+                        <div class=\"col-lg-10\">
+                            <div><input type=\"password\" class=\"form-control\" name=\"new_pass\" placeholder=\"Новый пароль\" /></div>
+                        </div>
+                    </div>
+                    <div class=\"form-group\">
+                        <div class=\"col-lg-10\">
+                            <div><input type=\"password\" class=\"form-control\" name=\"repeat_pass\" placeholder=\"Повтор пароля\" /></div>
+                            <a class=\"btn btn-primary\" href=\"\" id=\"change_password\" style=\"margin-top: 10px;\">Сменить пароль</a>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
 
-        <form ");
-            // line 200
+        <div class=\"panel panel-default\">
+            <div class=\"panel-heading\">Смена адреса электронной почты</div>
+            <div class=\"panel-body\">
+                <form ");
+            // line 221
             if ($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "changemail")) {
                 echo \layout::func_from_text("style=\"display: none;\"");
             }
-            echo \layout::func_from_text(" id=\"change_mail\" enctype=\"multipart/form-data\" method=\"POST\" action=\"/users/\" class=\"form-horizontal\">
-            <input type=\"hidden\" name=\"act\" value=\"change_mail\">
-            <input type=\"hidden\" name=\"id\" value=\"");
-            // line 202
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "id_user"), "html", null, true));
-            echo \layout::func_from_text("\">
-            <div class=\"control-group\">
-                <label class=\"control-label\">Смена адреса электронной почты:</label>
-                <div class=\"controls\">
-                    <div style=\"margin-bottom: 5px;\"><input type=\"text\" readonly=\"readonly\" style=\"color:gray;\" name=\"oldmail\" value=\"");
-            // line 206
+            echo \layout::func_from_text(" id=\"change_email_form\" class=\"form-horizontal\">
+                    <input type=\"hidden\" name=\"act\" value=\"change_email\">
+                    <div class=\"form-group\">
+                        <div class=\"col-lg-10\">
+                            <div><input type=\"text\" class=\"form-control\" readonly=\"readonly\" name=\"old_email\" value=\"");
+            // line 225
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "email"), "html", null, true));
             echo \layout::func_from_text("\" placeholder=\"Текущий e-mail\" /></div>
-                    <div><input type=\"text\" name=\"newmail\" value=\"\" placeholder=\"Новый email\" rel=\"popover\" data-content=\"Вам необходимо иметь
-                        доступ к обоим почтовым ящикам, на них будет выслано два уникальных кода подтверждения операции\" /></div>
-                    <a class=\"btn btn-primary\" href=\"\" change_mail style=\"margin-top: 10px;\">Сменить адрес</a>
-                </div>
-            </div>
-        </form>
-
-            <div id=\"notchange_mail\" ");
-            // line 214
+                        </div>
+                    </div>
+                    <div class=\"form-group\">
+                        <div class=\"col-lg-10\">
+                            <div><input type=\"text\" class=\"form-control\" name=\"new_email\" value=\"\" placeholder=\"Новый email\"></div>
+                            <div>Вам необходимо иметь доступ к обоим почтовым ящикам, на них будет выслано два уникальных кода подтверждения операции</div>
+                            <a class=\"btn btn-primary\" href=\"\" id=\"change_email\" style=\"margin-top: 10px;\">Сменить адрес</a>
+                        </div>
+                    </div>
+                </form>
+                <div id=\"not_change_email\" ");
+            // line 236
             if ((!$this->getAttribute((isset($context["user"]) ? $context["user"] : null), "changemail"))) {
                 echo \layout::func_from_text("style=\"display: none;\"");
             }
             echo \layout::func_from_text(">
-            <div class=\"edpr-feild-name\" style=\"text-align: justify;padding-right: 40px;\">
-                На данный момент вы находитесь в процессе смены адреса электронной почты. Вам необходимо подтвердить
-                <span id=\"emails\">
-                ");
-            // line 218
+                    <div>
+                        На данный момент вы находитесь в процессе смены адреса электронной почты. Вам необходимо подтвердить
+                        <span id=\"emails\">
+                        ");
+            // line 240
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "changemail"));
             $context['loop'] = array(
@@ -526,8 +542,8 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["k"] => $context["v"]) {
-                // line 219
-                echo \layout::func_from_text("                <span style=\"color:#FF5400;\">");
+                // line 241
+                echo \layout::func_from_text("                            <span style=\"color:#FF5400;\">");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["v"]) ? $context["v"] : null), "email"), "html", null, true));
                 echo \layout::func_from_text("</span>");
                 if ((!$this->getAttribute((isset($context["loop"]) ? $context["loop"] : null), "last"))) {
@@ -545,18 +561,18 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['k'], $context['v'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            echo \layout::func_from_text(".
-                </span>
-
-                Вы так же можете отменить процесс смены адреса электронной почты, нажав на кнопку ниже.
+            // line 242
+            echo \layout::func_from_text("                        </span>
+                    </div>
+                    <a class=\"btn btn-danger\" href=\"#\" id=\"cancel_change_email\" style=\"margin-top: 10px;\">Отменить</a>
+                </div>
             </div>
-            <a class=\"btn\" href=\"#\" cancel_chmail>Отменить смену e-mail</a>
-            </div>
+        </div>
     </div>
     <div class=\"clearfix\"></div>
 ");
         }
-        // line 229
+        // line 251
         echo \layout::func_from_text("</div>
 ");
     }
@@ -573,6 +589,6 @@ class __TwigTemplate_b8289e4673bfe5ec57a53ec2d0430dfee888c68364917138c269ccc820c
 
     public function getDebugInfo()
     {
-        return array (  560 => 229,  530 => 219,  513 => 218,  504 => 214,  493 => 206,  486 => 202,  479 => 200,  464 => 188,  458 => 184,  456 => 183,  443 => 175,  435 => 172,  426 => 168,  418 => 165,  408 => 160,  400 => 157,  391 => 153,  383 => 150,  375 => 147,  367 => 144,  358 => 140,  350 => 137,  342 => 134,  332 => 129,  324 => 126,  316 => 123,  307 => 119,  299 => 116,  291 => 113,  283 => 110,  274 => 106,  265 => 102,  256 => 98,  247 => 94,  239 => 91,  231 => 88,  222 => 84,  214 => 81,  205 => 77,  195 => 72,  186 => 68,  177 => 64,  169 => 61,  161 => 58,  153 => 55,  145 => 52,  138 => 47,  130 => 44,  120 => 42,  110 => 40,  108 => 39,  101 => 37,  98 => 36,  94 => 35,  88 => 32,  79 => 26,  70 => 20,  63 => 16,  58 => 13,  56 => 12,  53 => 11,  47 => 8,  44 => 7,  41 => 6,  33 => 3,  30 => 2,);
+        return array (  576 => 251,  565 => 242,  546 => 241,  529 => 240,  520 => 236,  506 => 225,  497 => 221,  465 => 191,  463 => 190,  447 => 179,  439 => 176,  430 => 172,  422 => 169,  412 => 164,  404 => 161,  395 => 157,  387 => 154,  379 => 151,  371 => 148,  362 => 144,  354 => 141,  346 => 138,  336 => 133,  328 => 130,  320 => 127,  311 => 123,  303 => 120,  295 => 117,  287 => 114,  278 => 110,  269 => 106,  260 => 102,  251 => 98,  243 => 95,  235 => 92,  226 => 88,  218 => 85,  209 => 81,  199 => 76,  190 => 72,  181 => 68,  173 => 65,  165 => 62,  157 => 59,  149 => 56,  142 => 51,  134 => 48,  124 => 46,  114 => 44,  112 => 43,  105 => 41,  102 => 40,  98 => 39,  92 => 36,  83 => 30,  74 => 24,  67 => 20,  58 => 13,  56 => 12,  53 => 11,  47 => 8,  44 => 7,  41 => 6,  33 => 3,  30 => 2,);
     }
 }

@@ -1,0 +1,9 @@
+<div>Здравствуйте, <b>{{new_comments.fio}}</b></div>
+
+<div>У Вас на форумах Таскера накопились непрочитанные комментарии</div>
+
+<br><br>
+{% for n in new_comments.tasks %}
+    <div>Задача <a href="http://{{server_name}}/projects/tasks/show/{{ n.id_task }}/"><b>{{ n.name }}</b></a>. Новых комментариев - {{ n.count }}</div>
+{% endfor %}
+

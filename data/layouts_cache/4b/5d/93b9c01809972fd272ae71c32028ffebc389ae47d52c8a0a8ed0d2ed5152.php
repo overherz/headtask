@@ -64,14 +64,54 @@ class __TwigTemplate_4b5d93b9c01809972fd272ae71c32028ffebc389ae47d52c8a0a8ed0d2e
                     echo \layout::func_from_text("style='background:#fff;'");
                 }
                 echo \layout::func_from_text(">
-    <div class=\"backtrace\"><span>file</span>: ");
-                // line 8
-                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["qu"]) ? $context["qu"] : null), "file"), "html", null, true));
-                echo \layout::func_from_text(" <span style=\"text-decoration: underline\">line</span>: ");
-                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["qu"]) ? $context["qu"] : null), "line"), "html", null, true));
-                echo \layout::func_from_text("</div>
-    <div style=\"clear: both;\">");
+    <div class=\"backtrace\">
+        ");
                 // line 9
+                $context['_parent'] = (array) $context;
+                $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["qu"]) ? $context["qu"] : null), "trace"));
+                $context['loop'] = array(
+                  'parent' => $context['_parent'],
+                  'index0' => 0,
+                  'index'  => 1,
+                  'first'  => true,
+                );
+                if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+                    $length = count($context['_seq']);
+                    $context['loop']['revindex0'] = $length - 1;
+                    $context['loop']['revindex'] = $length;
+                    $context['loop']['length'] = $length;
+                    $context['loop']['last'] = 1 === $length;
+                }
+                foreach ($context['_seq'] as $context["_key"] => $context["t"]) {
+                    // line 10
+                    echo \layout::func_from_text("            <span>file</span>: ");
+                    echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["t"]) ? $context["t"] : null), "file"), "html", null, true));
+                    echo \layout::func_from_text(" <span style=\"text-decoration: underline\">line</span>: ");
+                    echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["t"]) ? $context["t"] : null), "line"), "html", null, true));
+                    echo \layout::func_from_text("
+            ");
+                    // line 11
+                    if ((!$this->getAttribute((isset($context["loop"]) ? $context["loop"] : null), "last"))) {
+                        echo \layout::func_from_text(" | ");
+                    }
+                    // line 12
+                    echo \layout::func_from_text("        ");
+                    ++$context['loop']['index0'];
+                    ++$context['loop']['index'];
+                    $context['loop']['first'] = false;
+                    if (isset($context['loop']['length'])) {
+                        --$context['loop']['revindex0'];
+                        --$context['loop']['revindex'];
+                        $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                    }
+                }
+                $_parent = $context['_parent'];
+                unset($context['_seq'], $context['_iterated'], $context['_key'], $context['t'], $context['_parent'], $context['loop']);
+                $context = array_intersect_key($context, $_parent) + $_parent;
+                // line 13
+                echo \layout::func_from_text("    </div>
+    <div style=\"clear: both;\">");
+                // line 14
                 echo \layout::func_from_text($this->getAttribute((isset($context["qu"]) ? $context["qu"] : null), "query"));
                 if (($this->getAttribute($this->getAttribute((isset($context["qu"]) ? $context["qu"] : null), "error"), 2) != "")) {
                     echo \layout::func_from_text(" <div style='color:red;'>");
@@ -94,12 +134,12 @@ class __TwigTemplate_4b5d93b9c01809972fd272ae71c32028ffebc389ae47d52c8a0a8ed0d2e
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['qu'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 12
+            // line 17
             echo \layout::func_from_text("    
     </table>
 ");
         } else {
-            // line 15
+            // line 20
             echo \layout::func_from_text("<b>Запросы отсутствуют</b>
 ");
         }
@@ -117,6 +157,6 @@ class __TwigTemplate_4b5d93b9c01809972fd272ae71c32028ffebc389ae47d52c8a0a8ed0d2e
 
     public function getDebugInfo()
     {
-        return array (  103 => 15,  98 => 12,  69 => 8,  50 => 6,  44 => 5,  24 => 3,  21 => 2,  147 => 62,  144 => 61,  133 => 58,  129 => 57,  116 => 56,  112 => 55,  108 => 53,  101 => 48,  99 => 47,  95 => 45,  84 => 37,  79 => 35,  75 => 9,  71 => 33,  67 => 32,  63 => 7,  58 => 28,  41 => 4,  39 => 12,  26 => 6,  19 => 1,);
+        return array (  143 => 20,  138 => 17,  115 => 14,  98 => 12,  94 => 11,  87 => 10,  70 => 9,  50 => 6,  44 => 5,  24 => 3,  21 => 2,  147 => 62,  144 => 61,  133 => 58,  129 => 57,  116 => 56,  112 => 13,  108 => 53,  101 => 48,  99 => 47,  95 => 45,  84 => 37,  79 => 35,  75 => 34,  71 => 33,  67 => 32,  63 => 7,  58 => 28,  41 => 4,  39 => 12,  26 => 6,  19 => 1,);
     }
 }

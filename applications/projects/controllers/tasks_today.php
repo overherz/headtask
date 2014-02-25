@@ -19,20 +19,20 @@ class tasks_today extends \Controller {
             'manager' => $info['manager']
         );
 
-        if ($ids = array_keys($tasks))
+        if ($tasks)
         {
-            $query = $this->db->prepare("SELECT count(c.id) as count,c.id_task
-                FROM projects_tasks_comments as c
-                LEFT JOIN projects_tasks_last_visit as ls ON c.id_task=ls.id_task and ls.id_user=?
-                WHERE ((ls.last_visit < c.created) or ls.id_user IS NULL) and c.id_task IN (".implode(",",$ids).")
-                group by c.id_task
-            ");
-            $query->execute(array($_SESSION['user']['id_user']));
-            while($row = $query->fetch())
+            $ids = array_keys($tasks);
+
+/*
+            if ($_SESSION['user']['id_user'] == "1")
             {
-                $co[$row['id_task']] = $row;
+                  $query = $this->db->query("select * from tasks where controller='new_comments'");
+                  $task1 = $query->fetch();
+                   if ($new_comments = $task->get_count_new_comments_mail($task1['completed']))
+                   pr($new_comments);
             }
-            $data['comment_count'] = $co;
+*/
+            $data['comment_count'] = $task->get_count_new_comments($ids);
         }
 
         $data['new_posts'] = $this->get_controller("projects","forum")->get_new_posts_statistic($_SESSION['user']['id_user']);

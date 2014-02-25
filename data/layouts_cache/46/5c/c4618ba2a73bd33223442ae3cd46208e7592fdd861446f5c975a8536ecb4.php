@@ -108,54 +108,47 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
         \$(document).ready(function(\$) {
             \$('#wrap input, #wrap select').styler();
 
-            var randomColor = \"#000000\".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+           // var randomColor = \"#000000\".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
            // \$(\"a\").css(\"color\",randomColor);
-            var setSectionHeights = function() {
-                setTimeout( function() {
-                    var w = \$(window).innerHeight();
-                    var psp = \$(\"#projects_second_panel\").innerHeight();
+            setInterval( function() {
+                var w = \$(window).innerHeight();
+                var psp = \$(\"#projects_second_panel\").innerHeight();
 
-                    if (w < psp) innerHeight = psp;
-                    else
-                    {
-                        var innerHeight = w - \$('.navbar').outerHeight(true) - \$('#footer').outerHeight(true);
-                    }
+                if (w < psp) innerHeight = psp;
+                else
+                {
+                    var innerHeight = w - \$('.navbar').outerHeight(true) - \$('#footer').outerHeight(true);
+                }
 
-                    \$('#sidebar .well,#projects_second_panel .jumbotron').css({
-                        'min-height': innerHeight - 20
-                    });
-                }, 100);
-            };
-            setSectionHeights();
-
-            \$(window).resize( function() {
-                setSectionHeights();
-            });
+                \$('#sidebar .well,#projects_second_panel .jumbotron').css({
+                    'min-height': innerHeight - 20
+                });
+            }, 100);
         });
     </script>
     ");
-        // line 67
+        // line 60
         $this->displayBlock('js', $context, $blocks);
-        // line 69
+        // line 62
         echo \layout::func_from_text("</head>
 <body>
 <div id=\"wrap\">
     ");
-        // line 72
+        // line 65
         if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user")) {
             $this->env->loadTemplate("/source/menu.html")->display($context);
         }
-        // line 73
+        // line 66
         echo \layout::func_from_text("    <div class=\"from_top\"></div>
     ");
-        // line 74
+        // line 67
         $this->displayBlock('body', $context, $blocks);
-        // line 75
+        // line 68
         echo \layout::func_from_text("</div>
 ");
-        // line 76
+        // line 69
         $this->env->loadTemplate("/source/footer.html")->display($context);
-        // line 77
+        // line 70
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -172,14 +165,14 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
         echo \layout::func_from_text("    ");
     }
 
-    // line 67
+    // line 60
     public function block_js($context, array $blocks = array())
     {
-        // line 68
+        // line 61
         echo \layout::func_from_text("    ");
     }
 
-    // line 74
+    // line 67
     public function block_body($context, array $blocks = array())
     {
     }
@@ -196,6 +189,6 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
 
     public function getDebugInfo()
     {
-        return array (  183 => 74,  179 => 68,  176 => 67,  172 => 30,  169 => 29,  164 => 4,  159 => 77,  157 => 76,  154 => 75,  152 => 74,  149 => 73,  145 => 72,  140 => 69,  138 => 67,  100 => 31,  97 => 29,  88 => 25,  82 => 24,  76 => 23,  70 => 22,  64 => 21,  58 => 20,  52 => 19,  48 => 18,  44 => 16,  42 => 15,  28 => 4,  23 => 1,);
+        return array (  176 => 67,  172 => 61,  169 => 60,  165 => 30,  162 => 29,  157 => 4,  152 => 70,  150 => 69,  147 => 68,  145 => 67,  142 => 66,  138 => 65,  133 => 62,  131 => 60,  100 => 31,  97 => 29,  88 => 25,  82 => 24,  76 => 23,  70 => 22,  64 => 21,  58 => 20,  52 => 19,  48 => 18,  44 => 16,  42 => 15,  28 => 4,  23 => 1,);
     }
 }

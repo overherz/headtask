@@ -50,7 +50,7 @@ class mailconfirm extends \Controller {
                  $success = false;
                  $error = "Ошибка базы данных";
              }
-             $this->layout_show('mailconfirm.html', array('success' => $success, 'error' => $error, 'msg'=>$msg));
+             $this->layout_show('elements/mailconfirm.html', array('success' => $success, 'error' => $error, 'msg'=>$msg));
         }
     }
 }

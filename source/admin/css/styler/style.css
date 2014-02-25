@@ -14,7 +14,7 @@
   background-size: cover;
 }
 body {
-  background-color: #ffffff;
+  background: #fff;
   color: #333333;
   font-size: 12px;
   min-width: 720px;
@@ -830,13 +830,12 @@ fieldset legend {
   border-radius: 10px;
   -webkit-border-radius: 10px;
 }
-body {
-  background-color: #25272d;
-}
+
 #sidebar {
   position: absolute;
   width: 220px;
-    border-top: 1px solid #444;
+  border-top: 1px solid #444;
+  background: url(/source/images/admin/login_back.jpg) no-repeat #0c0701;
 }
 #sidebar .inner .user-notification {
   padding: 5px 0 0;
@@ -2086,23 +2085,24 @@ input,textarea {
 }
 
 .form-signin {
-    margin: 0px auto;
-    margin-top: 50px;
-    max-width: 700px;
-    padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: #fff;
+    max-width: 350px;
+    padding: 19px 29px 29px;
+    margin: 100px auto 20px;
 }
-
-.form-signin input, .form-signin button {
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
     margin-bottom: 10px;
-    height: 60px;
-    font-size: 30px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
 }
 
-.form-signin-heading {
-    font-size: 40px;
-    margin-bottom: 50px;
+.form-signin .panel .panel-heading {
+    padding: 10px 15px;
 }
 
 @media (max-width: 768px) {
@@ -2231,4 +2231,8 @@ input.edit-btn {
 
 .nav.nav-tabs {
     margin-bottom: 10px !important;
+}
+
+* {
+    border-radius: 0 !important;
 }

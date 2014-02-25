@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="/source/css/jquery.jgrowl.css" type="text/css" media="screen, projection" />
         <link href="/source/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="/source/admin/css/styler/style.css" rel="stylesheet" type="text/css">
+        <link href="{{ app.path("index","login.css") }}" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="/source/css/notifications.css" type="text/css">
         <script src="/source/js/jquery.min.js"></script>
         <script>
@@ -17,18 +18,27 @@
              "/applications/index/source/js/login.js"
              );
         </script>
+        <style>
+            body {
+                background: url(/source/images/admin/login_back.jpg) no-repeat #ffffff;
+            }
+        </style>
     </head>
     <body>
         <div class="top_div">Панель управления сайтом <a href="/" target="_blank">{{ settings.site_name.value }}</a></div>
+
         <div class="container">
             <form class="form-signin" id="login_form">
-                <h2 class="form-signin-heading">Пожалуйста, авторизуйтесь</h2>
-                <input type="hidden" name="act" value="login">
-                <input type="text" placeholder="Email" autofocus name="login" style="display: block;width: 100%;">
-                <input type="password" placeholder="Password" name="password" style="display: block;width: 100%;">
-                <button class="btn btn-primary btn-block" id="login">Войти</button>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Авторизация</b></div>
+                    <div class="panel-body">
+                        <input type="hidden" name="act" value="login">
+                        <input type="text" name="login" placeholder="Email">
+                        <input type="password" name="password" placeholder="Password">
+                        <button class="btn btn-success" id="login" type="button" style="background-color: #ff9600 !important;border-color: #ff9600 !important;">Войти</button>
+                    </div>
+                </div>
             </form>
-
         </div>
     </body>
 </html>

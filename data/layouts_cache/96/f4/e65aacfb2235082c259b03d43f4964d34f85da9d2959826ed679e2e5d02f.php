@@ -69,7 +69,7 @@ class __TwigTemplate_96f4e65aacfb2235082c259b03d43f4964d34f85da9d2959826ed679e2e
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["o"]) ? $context["o"] : null), "description"), "html", null, true));
                     echo \layout::func_from_text("</div>
         </td>
-        <td style=\"padding:5px;\">
+        <td style=\"padding:5px;width: 4000px;\">
             <form>
             ");
                     // line 21
@@ -81,13 +81,13 @@ class __TwigTemplate_96f4e65aacfb2235082c259b03d43f4964d34f85da9d2959826ed679e2e
                         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["o"]) ? $context["o"] : null), "value"), "html", null, true));
                         echo \layout::func_from_text("\" oname=\"");
                         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["o"]) ? $context["o"] : null), "name"), "html", null, true));
-                        echo \layout::func_from_text("\" style=\"width: 300px;\">
+                        echo \layout::func_from_text("\" style=\"width: 100%;\">
             ");
                     } elseif (($this->getAttribute((isset($context["o"]) ? $context["o"] : null), "type") == "textarea")) {
                         // line 24
                         echo \layout::func_from_text("            <textarea name='");
                         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["o"]) ? $context["o"] : null), "key_name"), "html", null, true));
-                        echo \layout::func_from_text("' class=\"input_text\" style=\"height:150px;width: 300px;\" oname=\"");
+                        echo \layout::func_from_text("' class=\"input_text\" style=\"height:150px;width: 100%;\" oname=\"");
                         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["o"]) ? $context["o"] : null), "name"), "html", null, true));
                         echo \layout::func_from_text("\">");
                         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["o"]) ? $context["o"] : null), "value"), "html", null, true));

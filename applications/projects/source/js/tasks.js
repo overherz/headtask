@@ -214,22 +214,30 @@ $(document).ready(function ($) {
             $(this).css('display', 'none');
         }
         $("[name='parent']").val(id);
+        $("[name='comment']").focus();
         return false;
     });
 
-    $(document).on("click",".add_comment",function(){
+    $(document).on("click",".comment_form_clone .add_comment",function(){
         var request = $(".comment_form_clone").serialize();
         var parent = $(".comment_form_clone").find("[name='parent']").val();
         var th = this;
+
         user_api(request,function(data){
             if (parent > 0) $(".comment[id='"+parent+"']").parent().append(data);
             else $(".all_comments").append(data);
             $(th).parent().remove();
             show_message("success","Комментарий добавлен");
             $("#botnewcomm").css('display', 'inline-block');
-            $(".all_comm_header").show();
         });
+
         return false;
+    });
+
+    $(document).on("keydown",".comment_form_clone [name='comment']",function(e){
+        if (e.ctrlKey && e.keyCode == 13) {
+            $(".comment_form_clone .add_comment").trigger("click")
+        }
     });
 
     $(document).on("click",".canc_comm",function(){

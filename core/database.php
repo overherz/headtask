@@ -14,7 +14,8 @@ class MyPDO extends PDO
     public function query($query,$no_debug=false)
     {
         $start = microtime(true);
-        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,1);
+        $trace = MyPDO::clear_trace(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,5));
+
         try
         {
             $result = parent::query($query);
@@ -22,9 +23,8 @@ class MyPDO extends PDO
             if (!$no_debug)
             {
                 $GLOBALS['dev']['queries'][] = array('query' => $query,
-                    'time' => round($time * 1000, 3),
-                    'line' => $trace[0]['line'],
-                    'file' => DS.str_replace(ROOT,"",$trace[0]['file'])
+                    'time' => str_replace(".001","",round($time * 1000, 3)),
+                    'trace' => $trace
                 );
                 return $result;
             }
@@ -34,9 +34,7 @@ class MyPDO extends PDO
             $GLOBALS['dev']['queries'][] = array(
                 'query' => $query,
                 'error' => array('2' => $e->getMessage()),
-                'line' => $trace[0]['line'],
-                'file' => DS.str_replace(ROOT,"",$trace[0]['file']
-                )
+                'trace' => $trace
             );
         }
     }
@@ -44,15 +42,14 @@ class MyPDO extends PDO
     public function exec($query, $line = null, $file = null)
     {
         $start = microtime(true);
-        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,1);
+        $trace = MyPDO::clear_trace(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,5));
         try
         {
             $result = parent::exec($query);
             $time = microtime(true) - $start;
             $GLOBALS['dev']['queries'][] = array('query' => $query,
-                'time' => round($time * 1000, 3),
-                'line' => $trace[0]['line'],
-                'file' => DS.str_replace(ROOT,"",$trace[0]['file'])
+                'time' => str_replace(".001","",round($time * 1000, 3)),
+                'trace' => $trace
             );
             return $result;
         }
@@ -61,8 +58,7 @@ class MyPDO extends PDO
             $GLOBALS['dev']['queries'][] = array(
                 'query' => $query,
                 'error' => array('2' => $e->getMessage()),
-                'line' => $trace[0]['line'],
-                'file' => DS.str_replace(ROOT,"",$trace[0]['file'])
+                'trace' => $trace
             );
         }
     }
@@ -110,6 +106,19 @@ class MyPDO extends PDO
         }
         return self::$Instance;
     }
+
+    public static function clear_trace(array $trace)
+    {
+        if ($trace)
+        {
+            foreach ($trace as &$t)
+            {
+                $t['file'] = DS.str_replace(ROOT,"",$t['file']);
+            }
+            return array_reverse($trace);
+        }
+    }
+
 }
 
 class MyPDOStatement extends PDOStatement
@@ -127,15 +136,14 @@ class MyPDOStatement extends PDOStatement
     {
 
         $start = microtime(true);
-        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,1);
+        $trace = MyPDO::clear_trace(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,5));
         try
         {
             $result = parent::execute($input_parameters);
             $time = microtime(true) - $start;
             $GLOBALS['dev']['queries'][] = array('query' => $this->getSQL($input_parameters),
-                'time' => round($time * 1000, 3),
-                'line' => $trace[0]['line'],
-                'file' => DS.str_replace(ROOT,"",$trace[0]['file']),
+                'time' => str_replace(".001","",round($time * 1000, 3)),
+                'trace' => $trace
             );
             return $result;
         }
@@ -144,8 +152,7 @@ class MyPDOStatement extends PDOStatement
             $GLOBALS['dev']['queries'][] = array(
                 'query' => $this->getSQL($input_parameters),
                 'error' => array('2' => $e->getMessage()),
-                'line' => $trace[0]['line'],
-                'file' => DS.str_replace(ROOT,"",$trace[0]['file'])
+                'trace' => $trace
             );
         }
     }

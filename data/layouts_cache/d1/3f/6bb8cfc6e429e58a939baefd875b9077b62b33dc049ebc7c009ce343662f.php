@@ -91,8 +91,8 @@ class __TwigTemplate_d13f6bb8cfc6e429e58a939baefd875b9077b62b33dc049ebc7c009ce34
         // line 25
         if (($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user") && ($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "id_user") == $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user")))) {
             // line 26
-            echo \layout::func_from_text("                <div><a href=\"\" change_avatar>Редактировать фотографию</a></div>
-                <div><a href=\"/users/edit/\">Редактировать профиль</a></div>
+            echo \layout::func_from_text("                <div style=\"margin: 5px 0;\"><a href=\"\" change_avatar class=\"btn btn-primary\">Редактировать фотографию</a></div>
+                <div style=\"margin: 5px 0;\"><a href=\"/users/edit/\" class=\"btn btn-primary\">Редактировать профиль</a></div>
             ");
         }
         // line 29

@@ -790,9 +790,10 @@ class forum extends \Admin {
         echo json_encode($res);
     }
 
-    function get_new_posts_statistic($id_user=false)
+    function get_new_posts_statistic($id_user=false,$last_send=false)
     {
         if ($id_user) $search_for_one_user = " and s.id_user=".$this->db->quote($id_user);
+        $last_send_text = $last_send ? $last_send : "s.last_action";
         $query = $this->db->prepare("SELECT s.id_user,pr.name,count(p.id) as count,pr.id,u.fio,u.email
             from projects_posts as p
             LEFT JOIN projects_topics as t ON p.id_topic=t.id
@@ -800,7 +801,7 @@ class forum extends \Admin {
             LEFT JOIN projects_forums as f ON t.id_forum=f.id
             LEFT JOIN projects as pr ON f.id_project=pr.id
             LEFT JOIN users as u ON s.id_user=u.id_user
-            WHERE p.created > s.last_action and s.id_user IN (select id_user from projects_users where id_project=pr.id) {$search_for_one_user}
+            WHERE p.created > {$last_send_text} and s.id_user IN (select id_user from projects_users where id_project=pr.id) {$search_for_one_user}
             group by s.id_user,pr.id
             order by s.id_user ASC
         ");
@@ -813,12 +814,14 @@ class forum extends \Admin {
 
     function new_posts_to_mail()
     {
-        if ($new_posts = $this->get_new_posts_statistic())
+        $query = $this->db->query("select * from tasks where controller='new_posts'");
+        $task = $query->fetch();
+        if ($new_posts = $this->get_new_posts_statistic(false,$task['completed']))
         {
             $from = get_setting('email');
             foreach($new_posts as $n)
             {
-                $html = $this->layout_get("forum/mail_text.html",array('new_posts' => $n));
+                $html = $this->layout_get("forum/mail_text.html",array('new_posts' => $n,'server_name' => DOMEN_FOR_CLI));
                 if (!send_mail($from, $n[0]['email'], "Новые сообщения на форумах", $html, "Task me!")) echo "error {$n['email']}\n\r";
             }
         }

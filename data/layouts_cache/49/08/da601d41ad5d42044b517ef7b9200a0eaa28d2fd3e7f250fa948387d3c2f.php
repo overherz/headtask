@@ -112,30 +112,27 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
         echo \layout::func_from_text("<ul class=\"breadcrumb second\">
     <li>Форумы</li>
 </ul>
-<table class=\"table table-hover table-condensed\">
-    <thead>
+<table class=\"table table-hover table-bordered table-condensed\">
     <tr>
         <th>Проект</th>
         <th style=\"width: 350px;\">Количество новых сообщений</th>
     </tr>
-    </thead>
-    <tbody>
     ");
-        // line 45
+        // line 42
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["new_posts"]) ? $context["new_posts"] : null));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["n"]) {
-            // line 46
+            // line 43
             echo \layout::func_from_text("        <tr>
             <td><a href=\"/projects/forum/new_posts/");
-            // line 47
+            // line 44
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["n"]) ? $context["n"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("/\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["n"]) ? $context["n"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("</a></td>
             <td>");
-            // line 48
+            // line 45
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["n"]) ? $context["n"] : null), "count"), "html", null, true));
             echo \layout::func_from_text("</td>
         </tr>
@@ -143,7 +140,7 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 51
+            // line 48
             echo \layout::func_from_text("        <tr>
             <td colspan=\"2\">Новых сообщений на форумах нет</td>
         </tr>
@@ -152,9 +149,8 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['n'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 55
-        echo \layout::func_from_text("    </tbody>
-</table>
+        // line 52
+        echo \layout::func_from_text("</table>
 ");
     }
 
@@ -170,6 +166,6 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
 
     public function getDebugInfo()
     {
-        return array (  156 => 55,  147 => 51,  139 => 48,  133 => 47,  130 => 46,  125 => 45,  112 => 34,  109 => 33,  100 => 29,  94 => 28,  88 => 27,  82 => 26,  74 => 23,  68 => 22,  63 => 19,  60 => 18,  55 => 15,  52 => 14,  40 => 6,  37 => 5,  31 => 3,);
+        return array (  153 => 52,  144 => 48,  136 => 45,  130 => 44,  127 => 43,  122 => 42,  112 => 34,  109 => 33,  100 => 29,  94 => 28,  88 => 27,  82 => 26,  74 => 23,  68 => 22,  63 => 19,  60 => 18,  55 => 15,  52 => 14,  40 => 6,  37 => 5,  31 => 3,);
     }
 }

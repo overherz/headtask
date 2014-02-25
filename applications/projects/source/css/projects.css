@@ -75,10 +75,10 @@
     width: 100%;
 }
 .all_comments .comment_tbl .comm_ava_td{
-    width: 40px;
+    width: 25px;
     vertical-align: top;
     text-align: center;
-    padding-top: 2px;
+    padding-right: 5px;
 }
 .all_comments .comment_tbl .comm_td {
     padding-right: 10px;
@@ -135,4 +135,9 @@
     right: 1px;
     top: 15px;
     width: 500px;
+    z-index: 1;
+}
+
+.all_comments .comment .comment_body {
+    margin-top: 5px;
 }

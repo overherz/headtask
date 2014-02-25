@@ -5,6 +5,8 @@ require_once(__DIR__ .'../../../../core/initdata.php');
 
 class tasks extends \Controller {
 
+    private $php_path = "D:\OpenServer\modules\php\PHP-5.4.20\php.exe -c D:\OpenServer\userdata\php_for_cli.ini";
+
     function __construct($key,$act=false)
     {
         parent::__construct("tasks","tasks");
@@ -26,7 +28,8 @@ class tasks extends \Controller {
                     if (!file_exists($script)) continue;
                     else
                     {
-                        $command = $this->getPHPExecutableFromPath()." ".$script." {$row['id']} ".get_setting('cron_key')." > /dev/null 2>&1 &";
+                        $php_path = $this->getPHPExecutableFromPath();
+                        $command = $php_path." ".$script." {$row['id']} ".get_setting('cron_key')." {$this->get_dev_null()}";
                         exec($command);
                     }
                 }
@@ -80,7 +83,15 @@ class tasks extends \Controller {
                 }
             }
         }
-        return FALSE; // not found
+        return $this->php_path;
+    }
+
+    function get_dev_null()
+    {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') $dev_null = "> NUL";
+        else $dev_null = "> /dev/null 2>&1 &";
+
+        return $dev_null;
     }
 
     function get_options()
@@ -89,5 +100,5 @@ class tasks extends \Controller {
     }
 }
 
-new tasks($argv[1],$argv[2]);
+new tasks($argv[1],$argv[2],$argv[3]);
 

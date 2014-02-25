@@ -8,6 +8,7 @@ $INFO['sql_pass'] = 'jckjck';
 $INFO['dev_mode'] = '1';
 $INFO['error_to_mail'] = '1';
 $INFO['antiddos'] = '0';
+$INFO['domen_for_cli'] = "overherz.dyndns.org";
 
 
 $INFO['subdomains'] = '0';

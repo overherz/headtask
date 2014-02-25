@@ -5,7 +5,12 @@
     <td style='width:1px;white-space:nowrap !important;{% if loop.index % 2 == 0 %}background:#fff;{% endif %}' valign='top'>
         <b {% if qu.time > 10 %}class='dev_panel_red'{% endif %}>{% if qu.error.2 != '' %}<div style='color:red;'>Error</div>{% else %}{{qu.time}}&nbsp;<span style="color:#555;padding-right:5px; ">мс</span>{% endif %}</b></td>
     <td {% if loop.index % 2 == 0 %}style='background:#fff;'{% endif %}>
-    <div class="backtrace"><span>file</span>: {{qu.file}} <span style="text-decoration: underline">line</span>: {{qu.line}}</div>
+    <div class="backtrace">
+        {% for t in qu.trace %}
+            <span>file</span>: {{t.file}} <span style="text-decoration: underline">line</span>: {{t.line}}
+            {% if not loop.last %} | {% endif %}
+        {% endfor %}
+    </div>
     <div style="clear: both;">{{qu.query|raw}}{% if qu.error.2 != '' %} <div style='color:red;'>{{qu.error.2}}</div>{% endif %}</div>
     </td>
 </tr>

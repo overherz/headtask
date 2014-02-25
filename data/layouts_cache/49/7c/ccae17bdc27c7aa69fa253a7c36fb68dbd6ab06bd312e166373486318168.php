@@ -25,6 +25,10 @@ class __TwigTemplate_497cccae17bdc27c7aa69fa253a7c36fb68dbd6ab06bd312e1663734863
         <link rel=\"stylesheet\" href=\"/source/css/jquery.jgrowl.css\" type=\"text/css\" media=\"screen, projection\" />
         <link href=\"/source/admin/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">
         <link href=\"/source/admin/css/styler/style.css\" rel=\"stylesheet\" type=\"text/css\">
+        <link href=\"");
+        // line 10
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "index", 1 => "login.css"), "method"), "html", null, true));
+        echo \layout::func_from_text("\" rel=\"stylesheet\" type=\"text/css\">
         <link rel=\"stylesheet\" href=\"/source/css/notifications.css\" type=\"text/css\">
         <script src=\"/source/js/jquery.min.js\"></script>
         <script>
@@ -35,21 +39,30 @@ class __TwigTemplate_497cccae17bdc27c7aa69fa253a7c36fb68dbd6ab06bd312e1663734863
              \"/applications/index/source/js/login.js\"
              );
         </script>
+        <style>
+            body {
+                background: url(/source/images/admin/login_back.jpg) no-repeat #ffffff;
+            }
+        </style>
     </head>
     <body>
         <div class=\"top_div\">Панель управления сайтом <a href=\"/\" target=\"_blank\">");
-        // line 22
+        // line 28
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["settings"]) ? $context["settings"] : null), "site_name"), "value"), "html", null, true));
         echo \layout::func_from_text("</a></div>
+
         <div class=\"container\">
             <form class=\"form-signin\" id=\"login_form\">
-                <h2 class=\"form-signin-heading\">Пожалуйста, авторизуйтесь</h2>
-                <input type=\"hidden\" name=\"act\" value=\"login\">
-                <input type=\"text\" placeholder=\"Email\" autofocus name=\"login\" style=\"display: block;width: 100%;\">
-                <input type=\"password\" placeholder=\"Password\" name=\"password\" style=\"display: block;width: 100%;\">
-                <button class=\"btn btn-primary btn-block\" id=\"login\">Войти</button>
+                <div class=\"panel panel-default\">
+                    <div class=\"panel-heading\"><b>Авторизация</b></div>
+                    <div class=\"panel-body\">
+                        <input type=\"hidden\" name=\"act\" value=\"login\">
+                        <input type=\"text\" name=\"login\" placeholder=\"Email\">
+                        <input type=\"password\" name=\"password\" placeholder=\"Password\">
+                        <button class=\"btn btn-success\" id=\"login\" type=\"button\" style=\"background-color: #ff9600 !important;border-color: #ff9600 !important;\">Войти</button>
+                    </div>
+                </div>
             </form>
-
         </div>
     </body>
 </html>
@@ -70,6 +83,6 @@ class __TwigTemplate_497cccae17bdc27c7aa69fa253a7c36fb68dbd6ab06bd312e1663734863
 
     public function getDebugInfo()
     {
-        return array (  42 => 22,  19 => 1,);
+        return array (  51 => 28,  30 => 10,  19 => 1,);
     }
 }

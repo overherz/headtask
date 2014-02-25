@@ -4,6 +4,6 @@
 
 <br><br>
 {% for n in new_posts %}
-    <div>Проект <a href="http://tasker.cube-in-cube.ru/projects/forum/new_posts/{{ n.id }}/"><b>"{{ n.name }}"</b></a>. Новых сообщений - {{ n.count }}</div>
+    <div>Проект <a href="http://{{server_name}}/projects/forum/new_posts/{{ n.id }}/"><b>{{ n.name }}</b></a>. Новых сообщений - {{ n.count }}</div>
 {% endfor %}
 

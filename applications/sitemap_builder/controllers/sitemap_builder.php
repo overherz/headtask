@@ -18,10 +18,11 @@ class sitemap_builder extends \Controller {
 
 //ссылка Вашего сайта:
         $this->get_links(get_setting("sitemap"));
+        //pr($this->sitemap_urls);
 
 //если нужно вернуть просто массив с данными:
 //$arr = $this->get_array();
-//        pr($arr);
+//       pr($arr);
 //echo "<pre>";
 //print_r($arr);
 //echo "</pre>";
@@ -149,7 +150,7 @@ class sitemap_builder extends \Controller {
     private function parse_content($page,$from)
     {
         //getting all links from href attributes
-        preg_match_all("/<[Aa][\s]{1}[^>]*[Hh][Rr][Ee][Ff][^=]*=[ '\"\s]*([^ \"'>\s#]+)[^>]*>/", $page, $match);
+        preg_match_all("/<[Aa][\s]{1}[^>]*[Hh][Rr][Ee][Ff][^=]*=['\"\s]?([^ \"'>\s#]+)[^>]*>/", $page, $match);
         //storing new links
         $new_links = array();
         $size = sizeof($match);

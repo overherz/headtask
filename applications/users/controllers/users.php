@@ -9,18 +9,9 @@ class users extends \Controller {
     {
         switch($_POST['act'])
         {
-            case "change_pwd":
-                $this->change_pwd();
-                break;
             case "get_authorization_form":
                 $res['success'] = $this->layout_get("elements/authorization_form.html");
                 echo json_encode($res);
-                break;
-            case "change_mail":
-                $this->change_mail();
-                break;
-            case "cancel_chmail":
-                $this->cancel_chmail();
                 break;
             case "change_nick":
                 $this->change_nick();
@@ -34,7 +25,6 @@ class users extends \Controller {
 
     function default_show($id = false)
     {
-//        $this->testTz();
         if ($id) $this->id = $id;
         $this->limit = get_setting('users_count_on_page',$this->limit);
 
@@ -124,64 +114,6 @@ class users extends \Controller {
             else return $this->error_page();
         }
     }
-    function change_mail() {
-        $id = $_SESSION['user']['id_user'];
-        if ($_POST['newmail']==$_POST['oldmail']) $res['error'] = "Новый e-mail не может совпадать со старым!";
-        else if ($_POST['newmail']=="") $res['error'] = "Введите новый e-mail!";
-        else if (!preg_match(iconv("utf-8","windows-1251",'/^[а-яa-z0-9]{1}[а-яa-z0-9_\-\.]{1,30}@([а-яa-z0-9\-]{1,30}\.{0,1}[а-яa-z0-9\-]{1,5}){1,3}\.[а-яa-z]{2,5}$/i'),mb_strtolower(iconv("utf-8","windows-1251",$_POST['newmail'])))) $res['error'] = "Адрес почты неверен";
-        else {
-            $query = $this->db->prepare("select * from users where email = ?");
-            if ($query->execute(array($_POST['newmail']))){
-                if ($another = $query->fetch()) $res['error'] = $_POST['newmail']." уже зарегистрирован в системе.";
-            } else $res['error'] = "Ошибка базы данных";
-        }
-        //$res['error'] = $_POST['oldmail'];
-        if (!$res['error']) {
-            $salt = $this->db->query("select u.salt from users as u WHERE u.id_user = ".$this->db->quote($id)." LIMIT 1")->fetch();
-            $subject = "Смена адреса электронной почты";
-            $this->db->beginTransaction();
-            $code = md5(md5(time()).md5($salt));
-            $message_old = "Вы запросили смену адреса электронной почты для сайта \"В стране\" (<a href='http://".$_SERVER["SERVER_NAME"]."'>http://".$_SERVER["SERVER_NAME"]."</a>). Для этого необходимо подтвердить свои действия, перейдя по <a href='http://".$_SERVER["SERVER_NAME"]."/users/mailconfirm/{$code}/'>этой ссылке</a>";
-            $query = $this->db->prepare("insert into recovery(uid,email,hash,date,type, newmail) values(?,?,?,?,?,?) ON DUPLICATE KEY UPDATE hash=?, newmail=?");
-            if ($query->execute(array($id,$_POST['oldmail'],$code,strtotime("now"),'change_mail',$_POST['newmail'], $code, $_POST['newmail'])))
-            {
-                $code = md5(md5(time()).md5($salt."j"));
-                $message_new = "Вы запросили смену адреса электронной почты для сайта \"В стране\" (<a href='http://".$_SERVER["SERVER_NAME"]."'>http://".$_SERVER["SERVER_NAME"]."</a>). Для этого необходимо подтвердить свои действия, перейдя по <a href='http://".$_SERVER["SERVER_NAME"]."/users/mailconfirm/{$code}/'>этой ссылке</a>";
-                $query2 = $this->db->prepare("insert into recovery(uid,email,hash,date,type, newmail) values(?,?,?,?,?,?) ON DUPLICATE KEY UPDATE email=?, hash=?, newmail=?");
-                if ($query2->execute(array($id,$_POST['newmail'],$code,strtotime("now"),'change_mail',$_POST['newmail'], $_POST['newmail'], $code, $_POST['newmail']))) {
-                    if (!send_mail(EMAIL, $_POST['oldmail'], $subject, $message_old,"drewwo.ru"))
-                    {
-                        $res['error'] = "Ошибка при отправке письма на старый ящик";
-                        $this->db->rollBack();
-                    } else {
-                        if (!send_mail(EMAIL, $_POST['newmail'], $subject, $message_new,"drewwo.ru"))
-                        {
-                            $res['error'] = "Ошибка при отправке письма на новый ящик";
-                            $this->db->rollBack();
-                        } else {
-                            $res['success']['oldmail'] = $_POST['oldmail'];
-                            $res['success']['newmail'] = $_POST['newmail'];
-                            $this->db->commit();
-                        }
-                    }
-                } else {
-                    $res['error']['global'] = "Ошибка базы данных";
-                    $this->db->rollBack();
-                }
-            }
-            else $res['error']['global'] = "Ошибка базы данных";
-        }
-        echo json_encode($res);
-    }
-
-    function cancel_chmail()
-    {
-        $id = $_SESSION['user']['id_user'];
-        if ($this->db->query("delete from recovery where uid = ".$this->db->quote($id)." and type='change_mail'")){
-            $res['success'] = true;
-        } else $res['error'] = "Ошибка базы данных";
-        echo json_encode($res);
-    }
 
     function inCL($id_owner, $id_contact)
     {
@@ -191,66 +123,6 @@ class users extends \Controller {
             $found_relation = $this->db->query("SELECT id_owner FROM contact_list where id_owner = ".$this->db->quote($id_owner)." AND id_contact = ".$this->db->quote($id_contact))->fetch();
             else $found_relation = false;
         return $found_relation;
-    }
-
-    function change_nick()
-    {
-        $id = $_SESSION['user']['id_user'];
-
-        if ($_POST['newnick']=="") $res['error'] = "Введите новый псевдоним!";
-        else if (!preg_match(iconv("utf-8","windows-1251",'/^[a-zA-Z0-9]{3,16}$/i'),iconv("utf-8","windows-1251",$_POST['newnick']))) $res['error'] = "Псевдоним должен состоять из латинских букв и цифр и содержать от 3 до 16 символов";
-         else {
-            $query = $this->db->prepare("select u.* from users as u WHERE u.nickname = ? LIMIT 1");
-            $query->execute(array($_POST['newnick']));
-            if ($anotheru = $query->fetch()) {
-            $res['error'] = "Данный псевдоним занят";
-         }
-        }
-        if (!$res['error']) {
-            $query = $this->db->prepare("update users set nickname = ?  WHERE id_user = ?");
-            if ($query->execute(array($_POST['newnick'], $id))) {
-                $res['success']['nickname']=$_POST['newnick'];
-                $_SESSION['user']['nickname'] = $_POST['newnick'];
-            }
-        }
-        echo json_encode($res);
-    }
-
-    function change_pwd()
-    {
-        $id_user = intval($_POST['id']);
-        $oldpwd = $_POST['oldpwd'];
-        $newpwd = $_POST['newpwd'];
-        $rptpwd = $_POST['rptpwd'];
-        if ($_SESSION['user']['id_user'] == $id_user) {
-            if ($oldpwd!='' && $newpwd!='' && $rptpwd!='') {
-                $query = $this->db->prepare("select u.pass, u.salt, u.email FROM users as u WHERE id_user = ?");
-                $query->execute(array($id_user));
-                if ($u = $query->fetch())
-                {
-                    $hash = md5(md5($oldpwd).md5($u['salt']));
-                    if ($hash !== $u['pass'])
-                        $res['error']['oldpwd'] = "Старый пароль неверен";
-
-                    if ($newpwd !== $rptpwd)
-                        $res['error']['rptpwd'] = "Новый пароль не совпадает с повторным";
-                    if (!$res['error']) {
-                        $get_pass = get_pass($newpwd);
-                        $query = $this->db->prepare("update users set pass = ?, salt = ?, uniq_key = ? WHERE id_user = ?");
-                        if ($query->execute(array($get_pass['password'], $get_pass['salt'], $get_pass['uniq_key'], $id_user))) {
-                            setcookie('login', $u['email'], time()+60*60*24*30,"/");
-                            setcookie('password', $get_pass['password'], time()+60*60*24*30,"/");
-                            $res['success'] = true;
-                        } else $res['error']['mysql'] = "Ошибка базы данных";
-                    }
-
-                } else $res['error']['denied'] = "данные неверны";
-            } else $res['error'] = "Ни одно из полей формы смены пароля не должно быть пустым!";
-        } else {
-            $res['error'] = "У вас нет на это прав!";
-        }
-        //$res['error'] = "Чот не то о_О";
-        echo json_encode($res);
     }
 
     function get_user_notes($id=false,$limit=false)

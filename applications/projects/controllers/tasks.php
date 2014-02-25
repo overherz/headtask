@@ -86,10 +86,11 @@ class tasks extends \Controller {
         }
         else if ($this->id == "edit") $to_task = true;
 
-        if ($task = $this->get_task($this->_0))
+        if ($this->_0)
         {
-            $access = $this->get_controller("projects","users")->get_access($task['id_project'],false,$task['id']);
+            $access = $this->get_controller("projects","users")->get_access(false,false,$this->_0);
             if (!$project = $access['project']) $this->error_page();
+            $task = $access['task'];
 
             if ($project['owner']) crumbs("Личные проекты","/projects/",true);
             crumbs($project['name'],"/projects/~{$project['id']}");
@@ -742,7 +743,11 @@ class tasks extends \Controller {
             {
                 $insert_id = $this->db->lastInsertId();
                 $_SESSION['last_comment'] = $created;
-                $query = $this->db->prepare("select c.*,u.nickname,u.fio,u.avatar,u.id_group,gr.name as group_name from projects_tasks_comments as c LEFT JOIN users as u ON u.id_user=c.id_user LEFT JOIN groups as gr ON gr.id=u.id_group where c.id = ? LIMIT 1");
+                $query = $this->db->prepare("select c.*,u.nickname,u.fio,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
+                    from projects_tasks_comments as c
+                    LEFT JOIN users as u ON u.id_user=c.id_user
+                    LEFT JOIN groups as gr ON gr.id=u.id_group where c.id = ? LIMIT 1
+                ");
                 $query->execute(array($insert_id));
                 $com = $query->fetch();
 
@@ -785,7 +790,7 @@ class tasks extends \Controller {
     function generate_comments($id)
     {
         $comments = array();
-        $query = $this->db->prepare("SELECT c.*,u.nickname,u.fio,u.avatar,u.id_group,gr.name as group_name
+        $query = $this->db->prepare("SELECT c.*,u.nickname,u.fio,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
                 from projects_tasks_comments as c
                 LEFT JOIN users as u ON u.id_user=c.id_user
                 LEFT JOIN groups as gr ON gr.id=u.id_group
@@ -816,5 +821,79 @@ class tasks extends \Controller {
 
         foreach ($to_delete as $v) unset($final[$v]);
         return $final;
+    }
+
+    function get_count_new_comments(array $ids,$last_action=false)
+    {
+        if (count($ids) > 0)
+        {
+            $last_action_text = $last_action ? $last_action : "";
+            $query = $this->db->prepare("SELECT count(c.id) as count,c.id_task
+                FROM projects_tasks_comments as c
+                LEFT JOIN projects_tasks_last_visit as ls ON c.id_task=ls.id_task and ls.id_user=?
+                WHERE ((c.created > ls.last_visit ) or ls.id_user IS NULL) and c.id_task IN (".implode(",",$ids).") and c.id_user !=?
+                group by c.id_task
+            ");
+            $query->execute(array($_SESSION['user']['id_user'],$_SESSION['user']['id_user']));
+            while($row = $query->fetch())
+            {
+                $co[$row['id_task']] = $row;
+            }
+            return $co;
+        }
+    }
+
+    function get_count_new_comments_mail($last_action)
+    {
+        $year = date("Y");
+        $month = date("m");
+        $day = date("d");
+
+        $last_action_text = $last_action ? $last_action : "ls.last_visit";
+        $query = $this->db->query("select id_user,email,fio from users");
+
+        if ($users = $query->fetchAll())
+        {
+            foreach ($users as $u)
+            {
+                if ($info = $this->get_controller("projects","calendar")->get_calendar_tasks("{$year}-{$month}-{$day}",$u['id_user'])) $tasks = $info['tasks'];
+
+                if ($tasks)
+                {
+                    $ids = array_keys($tasks);
+                    $query_c = $this->db->prepare("SELECT count(c.id) as count,c.id_task,t.name
+                        FROM projects_tasks_comments as c
+                        LEFT JOIN projects_tasks_last_visit as ls ON c.id_task=ls.id_task and ls.id_user=?
+                        LEFT JOIN projects_tasks as t ON c.id_task=t.id
+                        WHERE ((c.created > {$last_action_text} ) or ls.id_user IS NULL) and c.id_task IN (".implode(",",$ids).") and c.id_user !=?
+                        group by c.id_task
+                    ");
+                    $query_c->execute(array($u['id_user'],$u['id_user']));
+                    while($row = $query_c->fetch())
+                    {
+                        $co[$u['id_user']]['email'] = $u['email'];
+                        $co[$u['id_user']]['fio'] = $u['fio'];
+                        $co[$u['id_user']]['tasks'][$row['id_task']] = $row;
+                    }
+                }
+            }
+            return $co;
+        }
+    }
+
+    function new_comments_to_mail()
+    {
+        $query = $this->db->query("select * from tasks where controller='new_comments'");
+        $task = $query->fetch();
+
+        if ($new_comments = $this->get_count_new_comments_mail($task['completed']))
+        {
+            $from = get_setting('email');
+            foreach($new_comments as $n)
+            {
+                $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n,'server_name' => DOMEN_FOR_CLI));
+                if (!send_mail($from, $n['email'], "Новые комментарии в задачах", $html, "Task me!")) echo "error {$n['email']}\n\r";
+            }
+        }
     }
 }

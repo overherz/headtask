@@ -146,59 +146,34 @@ $(document).ready(function($)
 
         return false;
     });
-    $(document).on("keypress","#change_pwd",function(e){
-          if(e.which == 13){
-                ii = $('[change_pwd]').click();
-                return false;
-          }
-    });
-    $(document).on("click","[change_pwd]",function(){
-        var request = $("#change_pwd").serialize();
+
+    $(document).on("click","#change_password",function(){
+        var request = $("#change_password_form").serialize();
         user_api(request,function(data){
-            $("#change_pwd [type='password']").val('');
-            show_message("success", "Пароль изменен!");
-        },false, '/users/');
+            $("#change_password_form").trigger('reset')
+            show_message("success", "Пароль изменен");
+        });
         return false;
     })
-    $(document).on("keypress","#change_mail",function(e){
-          if(e.which == 13){
-                ii = $('[change_mail]').click();
-                return false;
-          }
-    });
-    $(document).on("click","[change_mail]",function(){
-        var request = $("#change_mail").serialize();
+
+    $(document).on("click","#change_email",function(){
+        var request = $("#change_email_form").serialize();
         user_api(request,function(data){
-            show_message("success", "На оба почтовых адреса высланы коды подтверждения опперации!");
-            $('#emails').html("<span style=\"color:#FF5400;\">"+data.oldmail+"</span>, <span style=\"color:#FF5400;\">"+data.newmail+"</span>.");
-            $('#change_mail').fadeOut(500, function (){
-                $('#notchange_mail').fadeIn(1000);
+            show_message("success", "На оба почтовых адреса высланы коды подтверждения операции");
+            $('#emails').html("<span style=\"color:#FF5400;\">"+data.old_email+"</span>, <span style=\"color:#FF5400;\">"+data.new_email+"</span>.");
+            $('#change_email_form').fadeOut(500, function (){
+                $('#not_change_email').fadeIn(1000);
             });
-        },false, '/users/');
+        });
         return false;
     })
-    $(document).on("click","[cancel_chmail]",function(){
-        user_api({act:'cancel_chmail'},function(data){
+    $(document).on("click","#cancel_change_email",function(){
+        user_api({act:'cancel_change_email'},function(data){
             show_message("success", "Процесс смены адреса электронной почты отменен!");
-            $('#notchange_mail').fadeOut(500, function (){
-                $('#change_mail').fadeIn(1000);
+            $('#not_change_email').fadeOut(500, function (){
+                $('#change_email_form').fadeIn(1000);
             });
-        },false,'/users/');
-        return false;
-    })
-    $(document).on("keypress","#change_nick",function(e){
-      if(e.which == 13){
-            ii = $('[change_nick]').click();
-            return false;
-      }
-    });
-    $(document).on("click","[change_nick]",function(){
-        var request = $("#change_nick").serialize();
-        user_api(request,function(data){
-            show_message("success", "Псевдоним изменен!");
-            $("input[name='oldnick']").val(data.nickname);
-            $("input[name='newnick']").val('');
-        },false, '/users/');
+        });
         return false;
     })
 

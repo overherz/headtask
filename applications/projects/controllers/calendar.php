@@ -69,8 +69,9 @@ class calendar extends \Controller {
         echo json_encode($res);
     }
 
-    function get_calendar_tasks($date)
+    function get_calendar_tasks($date,$id_user=false)
     {
+        if (!$id_user) $id_user = $_SESSION['user']['id_user'];
         $datetime1 = date_create(date("Y-m-d"));
 
         $query = $this->db->prepare("select pt.id,pt.message,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
@@ -81,7 +82,7 @@ class calendar extends \Controller {
             where (pt.assigned=? OR pt.assigned IS NULL or pt.id_user=?) and pt.id_project IN( SELECT id_project from projects_users where id_user=? and role='user') and pt.start <= ? and pt.status IN ('new','in_progress','rejected')
             order by pt.created DESC
         ");
-        $query->execute(array($_SESSION['user']['id_user'],$_SESSION['user']['id_user'],$_SESSION['user']['id_user'],$date));
+        $query->execute(array($id_user,$id_user,$id_user,$date));
         while ($row = $query->fetch())
         {
             if ($row['end'] != "")
@@ -102,7 +103,7 @@ class calendar extends \Controller {
             where pt.id_project IN( SELECT id_project from projects_users where id_user=? and role='manager') and pt.start <= ? and pt.status IN ('new','in_progress','rejected')
             order by field(pt.assigned,?) DESC, pt.created DESC
         ");
-        $query->execute(array($_SESSION['user']['id_user'],$date,$_SESSION['user']['id_user']));
+        $query->execute(array($id_user,$date,$id_user));
         while ($row = $query->fetch())
         {
             if ($row['end'] != "")

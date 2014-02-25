@@ -1,0 +1,11 @@
+{% extends "/source/wrapper_index.html" %}
+
+{% block body %}
+{% if success %}
+Ваш адрес электронной почты подтвержден<br>
+{% else %}
+Ваш адрес скорее всего уже подтвержден, или у нас нет информации об этом коде.<br>
+{% endif %}
+{{msg}}<br>
+{{error}}
+{% endblock %}

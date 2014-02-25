@@ -23,8 +23,8 @@
         <td style="width: 1px;padding: 0px;vertical-align: top !important;border-top:none;">
             <img id="avatar" style="margin-top: -15px;" src="{% if user.avatar %}/uploads/users/ava_profile/{{user.avatar|real_path}}{% else %}/source/images/no-ava-profile{% if user.gender == "f" %}_f{% endif %}.jpg{% endif %}"/>
             {% if globals.user and user.id_user == globals.user.id_user %}
-                <div><a href="" change_avatar>Редактировать фотографию</a></div>
-                <div><a href="/users/edit/">Редактировать профиль</a></div>
+                <div style="margin: 5px 0;"><a href="" change_avatar class="btn btn-primary">Редактировать фотографию</a></div>
+                <div style="margin: 5px 0;"><a href="/users/edit/" class="btn btn-primary">Редактировать профиль</a></div>
             {% endif %}
         </td>
         <td style="border-top:none;vertical-align: top !important;">

@@ -438,3 +438,8 @@ fieldset[disabled] .btn-oscar.active {
     background: #fff;
     padding: 10px 5px;
 }
+
+.jqselect.form-control {
+    border: none;
+    padding: 0;
+}

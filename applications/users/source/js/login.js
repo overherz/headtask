@@ -1,17 +1,4 @@
 $(document).ready(function($) {
-    $(".main_checkbox,.main_checkbox_text").click(function(){
-        if ($(".main_checkbox").is(".active"))
-        {
-            $("[name='cookie']").attr("checked",false);
-            $(".main_checkbox").removeClass("active");
-        }
-        else
-        {
-            $("[name='cookie']").attr("checked",true);
-            $(".main_checkbox").addClass("active");
-        }
-    });
-
     $(".login").click(function(){
         var request = $("#login_form").serialize();
         hide_message_login();
@@ -43,7 +30,7 @@ $(document).ready(function($) {
 
 function hide_message_login()
 {
-    $(".alert-error").html('').hide();
+    $(".alert-danger").html('').hide();
 }
 
 function show_message_login(text)
@@ -58,5 +45,5 @@ function show_message_login(text)
     }
     else message = text;
 
-    $(".alert-error").html(message).show();
+    $(".alert-danger").html(message).show();
 }

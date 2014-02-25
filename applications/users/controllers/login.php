@@ -29,7 +29,7 @@ class login extends \Controller {
 
             if ($u = $query->fetch())
             {
-                if ($post) $hash = md5(md5($pass).md5($u['salt']));
+                if ($post) $hash = $this->get_hash($pass,$u['salt']);
                 else $hash = $pass;
 
                 if ($hash == $u['pass'])
@@ -84,6 +84,11 @@ class login extends \Controller {
             $_SESSION['user']['id_group'] = $data['id'];
             $_SESSION['user']['uniq_key'] = $data['uniq_key'];
         }
+    }
+
+    function get_hash($pass,$salt)
+    {
+        return md5(md5($pass).md5($salt));
     }
 }
 

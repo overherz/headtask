@@ -57,16 +57,12 @@ class tasks extends \Admin {
 
         if (function_exists('posix_getpwuid')) $user_info=posix_getpwuid(posix_getuid());
         else $user_info['name'] = get_current_user();
-       // set_time_limit(0);
-        //$max_time = ini_get("max_execution_time");
 
         if(function_exists('exec')) $exec = true;
 
-        //$cron_string[] = "*/1 * * * * {$user_info['name']} /usr/bin/wget -q -O /dev/null \"http://{$_SERVER['SERVER_NAME']}:{$_SERVER['SERVER_PORT']}/tasks?dev_mode=off&key=".get_setting('cron_key')."\"";
-        //$cron_string[] = "@reboot {$user_info['name']} sleep 60 && /usr/bin/wget -q -O /dev/null \"http://{$_SERVER['SERVER_NAME']}:{$_SERVER['SERVER_PORT']}/tasks?dev_mode=off&act=clear&key=".get_setting('cron_key')."\"";
-
-        $cron_string[] = "*/1 * * * * {$user_info['name']} ".$this->get_controller("tasks")->getPHPExecutableFromPath()." ".dirname(__DIR__)."/tasks.php ".get_setting('cron_key')." > /dev/null 2>&1 &";
-        $cron_string[] = "@reboot {$user_info['name']} sleep 60 && ".$this->get_controller("tasks")->getPHPExecutableFromPath()." ".dirname(__DIR__)."/tasks.php ".get_setting('cron_key')." clear > /dev/null 2>&1 &";
+        $c_t = $this->get_controller("tasks");
+        $cron_string[] = "*/1 * * * * {$user_info['name']} ".$c_t->getPHPExecutableFromPath()." ".dirname(__DIR__)."/tasks.php ".get_setting('cron_key')." {$c_t->get_dev_null()}";
+        $cron_string[] = "@reboot {$user_info['name']} sleep 60 && ".$this->get_controller("tasks")->getPHPExecutableFromPath()." ".dirname(__DIR__)."/tasks.php ".get_setting('cron_key')." clear {$c_t->get_dev_null()}";
 
         $data = array('tasks'=>$tasks, 'total'=>$total,'paginator' => $paginator,'form' => $form,'cron_string' => $cron_string,'exec' => $exec);
         if (!isset($_POST['page']))
@@ -212,7 +208,8 @@ class tasks extends \Admin {
                 if (!file_exists($script)) $res['error'] = "Скрипт не найден";
                 else
                 {
-                    $command = $this->get_controller("tasks")->getPHPExecutableFromPath()." ".$script." {$row['id']} ".get_setting('cron_key')." > /dev/null 2>&1 &";
+                    $c_t = $this->get_controller("tasks");
+                    $command = $c_t->getPHPExecutableFromPath()." ".$script." {$row['id']} ".get_setting('cron_key')." {$c_t->get_dev_null()}";
                     exec($command,$output, $return);
                     if (!$return) $res['success'] = true;
                     else $res['error'] = "Возникла ошибка";

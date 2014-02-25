@@ -52,19 +52,23 @@ class __TwigTemplate_bb70ec8ff1c2f9319c679986f2d3d43094a0df4b21ab1b9d48741952931
         // line 10
         echo \layout::func_from_text("<div class=\"container\">
     <form class=\"form-signin\" id=\"login_form\">
-        <input type=\"hidden\" name=\"act\" value=\"login\">
-        <div class=\"alert alert-error\" style=\"display: none;\"></div>
-        <h2 class=\"form-signin-heading\">Авторизация</h2>
-        <input type=\"text\" name=\"login\" placeholder=\"Email\">
-        <input type=\"password\" name=\"password\" placeholder=\"Password\">
-        <div class=\"checkbox\" style=\"padding-left: 0px;\">
-        <label>
-            <input type=\"checkbox\" name=\"cookie\"> запомнить
-        </label>
+        <div class=\"panel panel-default\">
+            <div class=\"panel-heading\"><b>Авторизация</b></div>
+            <div class=\"panel-body\">
+                <input type=\"hidden\" name=\"act\" value=\"login\">
+                <input type=\"text\" name=\"login\" placeholder=\"Email\">
+                <input type=\"password\" name=\"password\" placeholder=\"Password\">
+                <div class=\"checkbox\" style=\"padding-left: 0px;\">
+                    <label>
+                        <input type=\"checkbox\" name=\"cookie\"> запомнить
+                    </label>
+                </div>
+                <button class=\"btn btn-success login\" type=\"button\">Войти</button>
+                <div class=\"alert alert-danger\" style=\"display: none;\"></div>
+            </div>
         </div>
-        <button class=\"btn btn-primary login\" type=\"button\">Войти</button>
     </form>
-</div> <!-- /container -->
+</div>
 ");
     }
 

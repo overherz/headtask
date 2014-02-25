@@ -1,20 +1,17 @@
-
-var setSectionHeights = function() {
-
-	setTimeout( function() {
-		var innerHeight = $(window).innerHeight() - $('.top_div').outerHeight(true);
-
-		$('#middle').css({
-			'min-height': innerHeight
-		});
-
-		$('#sidebar').css({
-			'min-height': innerHeight
-		});
-	}, 100);
-};
-
 $(document).ready(function(){
+
+    setInterval( function() {
+        var innerHeight = $(document).innerHeight() - $('.top_div').outerHeight(true);
+
+        $('#middle').css({
+            'min-height': innerHeight
+        });
+
+        $('#sidebar').css({
+            'min-height': innerHeight
+        });
+    }, 100);
+
 	$('.navbar-toggle[data-toggle="side-menu"]').click( function() {
 		var target = $(this).attr('data-target');
 
@@ -51,12 +48,6 @@ $(document).ready(function(){
             $("#topnav").removeClass("in").addClass("collapse").css("height","0px");
         }
     });
-
-	setSectionHeights();
-
-	$(window).resize( function() {
-		setSectionHeights();
-	});
 
 	$(".scroll-viewport").niceScroll(".scroll-area", {
 		touchbehavior: true
