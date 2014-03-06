@@ -63,7 +63,7 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
         echo \layout::func_from_text("    </div>
     <div class=\"row row-offcanvas row-offcanvas-left\">
         <div class=\"col-xs-6 col-md-2 sidebar-offcanvas\" id=\"sidebar\" role=\"navigation\" style=\"padding-right: 0;z-index: 2;\">
-            <div class=\"well well-sm\" style=\"background: #222;border: 0;margin-bottom: 20px\">
+            <div class=\"well well-sm\" style=\"border: 0;margin-bottom: 0\">
                 <div class=\"btn-group\">
                     ");
         // line 19
@@ -100,7 +100,7 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
             </div>
         </div><!--/span-->
         <div class=\"col-xs-12 col-sm-12 col-md-10\" id=\"projects_second_panel\" style=\"padding-left: 0;\">
-            <div class=\"jumbotron\" style=\"padding: 10px;margin-bottom: 20px;\">
+            <div class=\"jumbotron\" style=\"padding: 10px;margin-bottom: 0;\">
                 <p class=\"hidden-md hidden-lg\" style=\"margin-left: -10px;margin-top: -17px;\">
                     <button type=\"button\" class=\"btn btn-primary btn-xs\" data-toggle=\"offcanvas\">Панель проектов</button>
                 </p>
@@ -133,6 +133,6 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
 
     public function getDebugInfo()
     {
-        return array (  111 => 39,  109 => 38,  97 => 29,  88 => 24,  80 => 22,  70 => 19,  61 => 13,  44 => 6,  34 => 3,  82 => 25,  75 => 24,  72 => 20,  43 => 8,  40 => 7,  33 => 4,  30 => 3,  272 => 98,  268 => 96,  264 => 94,  260 => 92,  250 => 90,  246 => 89,  243 => 88,  239 => 87,  236 => 86,  234 => 85,  231 => 84,  229 => 83,  225 => 81,  216 => 77,  210 => 76,  204 => 75,  199 => 72,  197 => 71,  189 => 68,  184 => 65,  175 => 61,  170 => 58,  168 => 57,  164 => 55,  155 => 54,  150 => 51,  141 => 47,  136 => 44,  134 => 43,  126 => 40,  120 => 38,  114 => 38,  108 => 37,  102 => 36,  93 => 29,  89 => 28,  83 => 24,  78 => 21,  69 => 22,  63 => 14,  56 => 14,  54 => 10,  51 => 9,  45 => 9,  41 => 5,  38 => 7,  31 => 2,  28 => 3,);
+        return array (  120 => 38,  111 => 39,  109 => 38,  97 => 29,  88 => 24,  80 => 22,  72 => 20,  70 => 19,  63 => 14,  61 => 13,  54 => 10,  51 => 9,  44 => 6,  41 => 5,  34 => 3,  31 => 2,);
     }
 }

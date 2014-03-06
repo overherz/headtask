@@ -18,7 +18,7 @@ class __TwigTemplate_8bcc8199fe984018c0b057e395953dee8245621da40c8edfe57d4cc3a93
         // line 1
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("<table class=\"table table-bordered table-hover table-condensed\">
+        echo \layout::func_from_text("<table class=\"table table-border table-hover table-condensed\">
     <tr>
         <th style=\"width: 100px;\"></th>
         <th>Имя</th>
@@ -177,15 +177,15 @@ class __TwigTemplate_8bcc8199fe984018c0b057e395953dee8245621da40c8edfe57d4cc3a93
             // line 47
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "users")) {
                 // line 48
-                echo \layout::func_from_text("            <td style=\"width: 1px;\">
+                echo \layout::func_from_text("            <td style=\"width: 80px;\">
                 <div class=\"btn-group\">
-                    <a class=\"btn btn-primary btn-small\" href=\"/projects/users/edit/");
+                    <a class=\"btn btn-primary btn-sm\" href=\"/projects/users/edit/");
                 // line 50
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("/");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
                 echo \layout::func_from_text("/\"><i class=\"fa fa-pencil\"></i></a>
-                    <a class=\"btn btn-primary btn-small\" href=\"\" delete_project_user=\"");
+                    <a class=\"btn btn-primary btn-sm\" href=\"\" delete_project_user=\"");
                 // line 51
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
                 echo \layout::func_from_text("\"><i class=\"fa fa-trash-o\"></i></a>
@@ -219,6 +219,6 @@ class __TwigTemplate_8bcc8199fe984018c0b057e395953dee8245621da40c8edfe57d4cc3a93
 
     public function getDebugInfo()
     {
-        return array (  207 => 58,  204 => 57,  197 => 55,  190 => 51,  184 => 50,  180 => 48,  178 => 47,  175 => 46,  171 => 44,  165 => 43,  161 => 41,  157 => 40,  150 => 39,  140 => 38,  136 => 36,  132 => 34,  128 => 32,  126 => 31,  118 => 28,  112 => 27,  106 => 26,  100 => 25,  94 => 24,  87 => 21,  83 => 19,  78 => 18,  74 => 17,  64 => 16,  51 => 14,  42 => 13,  35 => 11,  21 => 2,  19 => 1,  65 => 20,  62 => 19,  55 => 14,  52 => 13,  46 => 10,  41 => 8,  38 => 12,  31 => 10,  28 => 3,);
+        return array (  207 => 58,  204 => 57,  197 => 55,  190 => 51,  184 => 50,  180 => 48,  178 => 47,  175 => 46,  171 => 44,  165 => 43,  161 => 41,  157 => 40,  150 => 39,  140 => 38,  136 => 36,  132 => 34,  128 => 32,  126 => 31,  118 => 28,  112 => 27,  106 => 26,  100 => 25,  94 => 24,  87 => 21,  83 => 19,  78 => 18,  74 => 17,  64 => 16,  51 => 14,  42 => 13,  38 => 12,  35 => 11,  31 => 10,  21 => 2,  19 => 1,);
     }
 }

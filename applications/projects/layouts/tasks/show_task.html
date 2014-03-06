@@ -29,31 +29,19 @@
 
 <ul class="nav nav-tabs" id="form_tabs">
     <li class="active"><a href="#tabs-1">Описание</a></li>
-    <li><a href="#tabs-2">Статус</a></li>
     <li><a href="#tabs-3">Логи</a></li>
 </ul>
 
 <div class="tab-content">
     <div id="tabs-1" class="tab-pane fade in active">
-        {% if files %}
-            {% include app.path('projects','files/files_table.html') %}
-        {% endif %}
-        <div class="wysiwyg" style="padding-bottom: 20px;">{{task.description|raw}}</div>
-    </div>
-    <div id="tabs-2" class="tab-pane fade">
-        <table class="table" style="margin-bottom: 0px;">
-            <tr>
-                <td style="border-top: none;width: 1%;white-space: nowrap;padding:0px;">Статус выполнения</td>
-                <td style="border-top: none;padding:0px;padding-left: 10px;">
+Статус выполнения
                     <div class="progress progress-striped {% if task.status == "in_progress" %}active{% endif %}">
                         <div class="progress-bar {% if undate %}progress-bar-danger{% endif %}" role="progressbar" aria-valuenow="{{task.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {% if task.percent > 0 %}{{task.percent}}%;{% else %}30px;{% endif %}">
                             <span>{{ task.percent }} %</span>
                         </div>
                     </div>
-                </td>
-            </tr>
-        </table>
-        <table class="table" style="margin-top:20px;" id="tasks_table">
+
+        <table class="table table-hover table-condensed table-border" style="margin-top:20px;" id="tasks_table">
             <thead>
             <tr>
                 <th></th>
@@ -69,13 +57,17 @@
             </tr>
             </thead>
             <tbody>
-                {% include app.path('projects','tasks/task.html') %}
+            {% include app.path('projects','tasks/task.html') %}
             </tbody>
         </table>
+        {% if files %}
+            {% include app.path('projects','files/files_table.html') %}
+        {% endif %}
+        <div class="wysiwyg" style="padding-bottom: 20px;">{{task.description|raw}}</div>
     </div>
     <div id="tabs-3" class="tab-pane fade">
     {% if logs %}
-        <table class="table table-hover table-condensed">
+        <table class="table table-hover table-condensed table-border">
             <thead>
             <tr>
                 <th>Пользователь</th>
@@ -99,8 +91,8 @@
     </div>
 </div>
 
-<ul class="breadcrumb second">
-    <li>Комментарии</li>
+<ul class="breadcrumbs-one second">
+    <li><a class="current">Комментарии</a></li>
 </ul>
 
 <div class="all_comments">

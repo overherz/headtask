@@ -849,7 +849,6 @@ class tasks extends \Controller {
         $month = date("m");
         $day = date("d");
 
-        $last_action_text = $last_action ? $last_action : "ls.last_visit";
         $query = $this->db->query("select id_user,email,fio from users");
 
         if ($users = $query->fetchAll())
@@ -865,7 +864,7 @@ class tasks extends \Controller {
                         FROM projects_tasks_comments as c
                         LEFT JOIN projects_tasks_last_visit as ls ON c.id_task=ls.id_task and ls.id_user=?
                         LEFT JOIN projects_tasks as t ON c.id_task=t.id
-                        WHERE ((c.created > {$last_action_text} ) or ls.id_user IS NULL) and c.id_task IN (".implode(",",$ids).") and c.id_user !=?
+                        WHERE ((c.created > IF(ls.last_visit > {$last_action}, ls.last_visit, {$last_action})) or ls.id_user IS NULL) and c.id_task IN (".implode(",",$ids).") and c.id_user !=?
                         group by c.id_task
                     ");
                     $query_c->execute(array($u['id_user'],$u['id_user']));

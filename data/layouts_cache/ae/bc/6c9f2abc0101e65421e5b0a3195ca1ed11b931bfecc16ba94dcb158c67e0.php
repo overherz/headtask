@@ -16,7 +16,7 @@ class __TwigTemplate_aebc6c9f2abc0101e65421e5b0a3195ca1ed11b931bfecc16ba94dcb158
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<ul class=\"breadcrumb\">
+        echo \layout::func_from_text("<ul class=\"breadcrumbs-one\">
     ");
         // line 2
         if ($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "crumbs"), "name")) {
@@ -53,13 +53,9 @@ class __TwigTemplate_aebc6c9f2abc0101e65421e5b0a3195ca1ed11b931bfecc16ba94dcb158
                     echo \layout::func_from_text($this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "name"));
                     echo \layout::func_from_text("</a></li>");
                 } else {
-                    echo \layout::func_from_text("<li class=\"active\">");
+                    echo \layout::func_from_text("<li><a class=\"current\">");
                     echo \layout::func_from_text($this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "name"));
-                    echo \layout::func_from_text("</li>");
-                }
-                echo \layout::func_from_text(" ");
-                if ((!$this->getAttribute((isset($context["loop"]) ? $context["loop"] : null), "last"))) {
-                    echo \layout::func_from_text("<span class=\"fa fa-angle-double-right\" style=\"margin: 0 5px;\"></span>");
+                    echo \layout::func_from_text("</a></li>");
                 }
                 // line 7
                 echo \layout::func_from_text("    ");
@@ -94,6 +90,6 @@ class __TwigTemplate_aebc6c9f2abc0101e65421e5b0a3195ca1ed11b931bfecc16ba94dcb158
 
     public function getDebugInfo()
     {
-        return array (  79 => 8,  65 => 7,  48 => 6,  24 => 3,  22 => 2,  19 => 1,  111 => 39,  109 => 38,  97 => 29,  88 => 24,  80 => 22,  70 => 19,  61 => 13,  44 => 6,  34 => 3,  82 => 9,  75 => 24,  72 => 20,  43 => 8,  40 => 7,  33 => 4,  30 => 5,  272 => 98,  268 => 96,  264 => 94,  260 => 92,  250 => 90,  246 => 89,  243 => 88,  239 => 87,  236 => 86,  234 => 85,  231 => 84,  229 => 83,  225 => 81,  216 => 77,  210 => 76,  204 => 75,  199 => 72,  197 => 71,  189 => 68,  184 => 65,  175 => 61,  170 => 58,  168 => 57,  164 => 55,  155 => 54,  150 => 51,  141 => 47,  136 => 44,  134 => 43,  126 => 40,  120 => 38,  114 => 38,  108 => 37,  102 => 36,  93 => 29,  89 => 28,  83 => 24,  78 => 21,  69 => 22,  63 => 14,  56 => 14,  54 => 10,  51 => 9,  45 => 9,  41 => 5,  38 => 7,  31 => 2,  28 => 3,);
+        return array (  78 => 9,  75 => 8,  61 => 7,  48 => 6,  30 => 5,  24 => 3,  22 => 2,  19 => 1,);
     }
 }

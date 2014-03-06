@@ -81,7 +81,7 @@ class __TwigTemplate_e959c1adc18ae4c4afe45b42454544998c7c028ab756722003e019c9eb0
         }
         // line 24
         echo \layout::func_from_text("
-<table class=\"table review_table table-condensed\">
+<table class=\"table review_table table-condensed table-border\">
     <tr>
         <th class=\"left_column\">Статистика</th>
         ");
@@ -93,7 +93,7 @@ class __TwigTemplate_e959c1adc18ae4c4afe45b42454544998c7c028ab756722003e019c9eb0
         echo \layout::func_from_text("    </tr>
     <tr>
         <td class=\"left_column\" style=\"vertical-align: top !important;padding: 0;width: 50%;\">
-            <table class=\"table table-condensed table_statistic\">
+            <table class=\"table-condensed table_statistic\">
                 <tr>
                     <td class=\"first\">Задачи</td>
                     <td>

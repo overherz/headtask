@@ -16,9 +16,9 @@
 {% endblock %}
 
 {% block context %}
-<ul class="breadcrumb">
-    <li>Общая статистика: </li>
-    <li>
+<ul class="breadcrumbs-one">
+    <li><a>Общая статистика</a></li>
+    <li><a class="current">
         <span class="label label-info">{{count_project|default(0)}}</span> {{ "stats_projects"|lang(count_project|default(0)) }}
         <span class="label label-info">{{count_personal_tasks|default(0)}}</span> {{ "stats_personal_tasks"|lang(count_personal_tasks|default(0)) }}
 
@@ -27,18 +27,24 @@
         <span class="label label-info">{{manager_stats.in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}
         <span class="label label-info">{{manager_stats.closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(manager_stats.closed|default(0)) }}
         <span class="label label-info">{{manager_stats.rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(manager_stats.rejected|default(0)) }}
+        </a>
     </li>
 </ul>
 
 {% include app.path('projects','calendar/task_today.html') %}
-<ul class="breadcrumb second">
-    <li>Форумы</li>
+
+<ul class="breadcrumbs-one second">
+    <li><a class="current">Форумы</a></li>
 </ul>
-<table class="table table-hover table-bordered table-condensed">
+
+<table class="table table-hover table-condensed table-border">
+    <thead>
     <tr>
         <th>Проект</th>
         <th style="width: 350px;">Количество новых сообщений</th>
     </tr>
+    </thead>
+    <tbody>
     {% for n in new_posts %}
         <tr>
             <td><a href="/projects/forum/new_posts/{{ n.id }}/">{{ n.name }}</a></td>
@@ -49,5 +55,7 @@
             <td colspan="2">Новых сообщений на форумах нет</td>
         </tr>
     {% endfor %}
+    </tbody>
 </table>
+
 {% endblock %}

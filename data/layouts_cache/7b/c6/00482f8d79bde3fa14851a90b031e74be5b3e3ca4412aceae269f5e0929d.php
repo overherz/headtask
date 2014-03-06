@@ -18,11 +18,11 @@ class __TwigTemplate_7bc600482f8d79bde3fa14851a90b031e74be5b3e3ca4412aceae269f5e
         // line 1
         if ((isset($context["logs_projects"]) ? $context["logs_projects"] : null)) {
             // line 2
-            echo \layout::func_from_text("<ul class=\"breadcrumb second\"><a href=\"\" plus=\"project\"><i class=\"fa fa-minus\" style=\"position: absolute;top:7px;right:7px;\"></i></a>
-    <li>Проекты</li>
+            echo \layout::func_from_text("<ul class=\"breadcrumbs-one second\"><span href=\"\" plus=\"project\"><i class=\"fa fa-minus\" style=\"position: absolute;top:7px;right:7px;cursor: pointer;\"></i></span>
+    <li><a class=\"current\">Проекты</a></li>
 </ul>
 <div block=\"project\">
-    <table class=\"table table-hover table-bordered table-condensed\">
+    <table class=\"table table-hover table-border table-condensed\">
         <tr>
             <th>Проект</th>
             <th>Описание</th>
@@ -80,11 +80,11 @@ class __TwigTemplate_7bc600482f8d79bde3fa14851a90b031e74be5b3e3ca4412aceae269f5e
         // line 27
         if ((isset($context["logs_tasks"]) ? $context["logs_tasks"] : null)) {
             // line 28
-            echo \layout::func_from_text("<ul class=\"breadcrumb second\"><a href=\"\" plus=\"task\"><i class=\"fa fa-minus\" style=\"position: absolute;top:7px;right:7px;\"></i></a>
-    <li>Личные задачи</li>
+            echo \layout::func_from_text("<ul class=\"breadcrumbs-one second\"><span href=\"\" plus=\"task\"><i class=\"fa fa-minus\" style=\"position: absolute;top:7px;right:7px;cursor: pointer;\"></i></span>
+    <li><a class=\"current\">Личные задачи</a></li>
 </ul>
 <div block=\"task\">
-    <table class=\"table table-hover table-bordered table-condensed\">
+    <table class=\"table table-hover table-border table-condensed\">
         <tr>
             <th>Проект</th>
             <th>Задача</th>
@@ -149,11 +149,11 @@ class __TwigTemplate_7bc600482f8d79bde3fa14851a90b031e74be5b3e3ca4412aceae269f5e
         // line 55
         if ((isset($context["manager_logs"]) ? $context["manager_logs"] : null)) {
             // line 56
-            echo \layout::func_from_text("<ul class=\"breadcrumb second\"><a href=\"\" plus=\"manager\"><i class=\"fa fa-minus\" style=\"position: absolute;top:7px;right:7px;\"></i></a>
-    <li>Блок менеджера</li>
+            echo \layout::func_from_text("<ul class=\"breadcrumbs-one second\"><span plus=\"manager\"><i class=\"fa fa-minus\" style=\"position: absolute;top:7px;right:7px;cursor: pointer;\"></i></span>
+    <li><a class=\"current\">Блок менеджера</a></li>
 </ul>
 <div block=\"manager\">
-    <table class=\"table table-hover table-bordered table-condensed\">
+    <table class=\"table table-hover table-border table-condensed\">
         <tr>
             <th>Проект</th>
             <th>Задача</th>
@@ -229,6 +229,6 @@ class __TwigTemplate_7bc600482f8d79bde3fa14851a90b031e74be5b3e3ca4412aceae269f5e
 
     public function getDebugInfo()
     {
-        return array (  214 => 80,  204 => 76,  194 => 75,  189 => 73,  185 => 72,  179 => 71,  173 => 70,  170 => 69,  166 => 68,  152 => 56,  150 => 55,  145 => 52,  135 => 48,  125 => 47,  120 => 45,  116 => 44,  110 => 43,  104 => 42,  101 => 41,  97 => 40,  83 => 28,  81 => 27,  76 => 24,  66 => 20,  56 => 19,  51 => 17,  47 => 16,  41 => 15,  38 => 14,  34 => 13,  21 => 2,  19 => 1,  57 => 14,  54 => 13,  46 => 10,  43 => 9,  40 => 8,  32 => 4,  29 => 3,);
+        return array (  214 => 80,  204 => 76,  194 => 75,  189 => 73,  185 => 72,  179 => 71,  173 => 70,  170 => 69,  166 => 68,  152 => 56,  150 => 55,  145 => 52,  135 => 48,  125 => 47,  120 => 45,  116 => 44,  110 => 43,  104 => 42,  101 => 41,  97 => 40,  83 => 28,  81 => 27,  76 => 24,  66 => 20,  56 => 19,  51 => 17,  47 => 16,  41 => 15,  38 => 14,  34 => 13,  21 => 2,  19 => 1,);
     }
 }

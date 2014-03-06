@@ -1,9 +1,9 @@
 {% if logs_projects %}
-<ul class="breadcrumb second"><a href="" plus="project"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;"></i></a>
-    <li>Проекты</li>
+<ul class="breadcrumbs-one second"><span href="" plus="project"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;cursor: pointer;"></i></span>
+    <li><a class="current">Проекты</a></li>
 </ul>
 <div block="project">
-    <table class="table table-hover table-bordered table-condensed">
+    <table class="table table-hover table-border table-condensed">
         <tr>
             <th>Проект</th>
             <th>Описание</th>
@@ -25,11 +25,11 @@
 </div>
 {% endif %}
 {% if logs_tasks %}
-<ul class="breadcrumb second"><a href="" plus="task"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;"></i></a>
-    <li>Личные задачи</li>
+<ul class="breadcrumbs-one second"><span href="" plus="task"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;cursor: pointer;"></i></span>
+    <li><a class="current">Личные задачи</a></li>
 </ul>
 <div block="task">
-    <table class="table table-hover table-bordered table-condensed">
+    <table class="table table-hover table-border table-condensed">
         <tr>
             <th>Проект</th>
             <th>Задача</th>
@@ -53,11 +53,11 @@
 </div>
 {% endif %}
 {% if manager_logs %}
-<ul class="breadcrumb second"><a href="" plus="manager"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;"></i></a>
-    <li>Блок менеджера</li>
+<ul class="breadcrumbs-one second"><span plus="manager"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;cursor: pointer;"></i></span>
+    <li><a class="current">Блок менеджера</a></li>
 </ul>
 <div block="manager">
-    <table class="table table-hover table-bordered table-condensed">
+    <table class="table table-hover table-border table-condensed">
         <tr>
             <th>Проект</th>
             <th>Задача</th>

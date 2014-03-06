@@ -9,7 +9,7 @@
         {% endif%}
         {% if not get_popup_files and not post_data.get_popup_files %}<input type="hidden" name="files[]" value="{{file.id}}">{% endif %}
     </td>
-    <td>
+    <td style="max-width: 200px;overflow: hidden;">
         {% if file.type == "image" %}
         <a href="/uploads/projects/projects_big/{{file.file|real_path}}">{{file.name}}</a>
         {% else %}
@@ -23,13 +23,13 @@
     {% if access.delete_files and not to_task %}
     <td style="width: 1px;">
         <div class="btn-group">
-            <a class="btn btn-info btn-small" delete_file={{file.id}} href=""><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-info btn-sm" delete_file={{file.id}} href=""><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
     {% elseif not get_popup_files and not post_data.get_popup_files and to_task %}
     <td style="width: 1px;">
         <div class="btn-group">
-            <a class="btn btn-info btn-small" {% if to_task %}delete_file_from_task={{file.id}}{% endif %} href=""><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-info btn-sm" {% if to_task %}delete_file_from_task={{file.id}}{% endif %} href=""><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
     {% endif %}

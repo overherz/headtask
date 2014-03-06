@@ -19,9 +19,9 @@ class __TwigTemplate_7bbee2e7b851869598ae57e782ee20503b1fb6a86a352d4269c4ce17d1b
         echo \layout::func_from_text("<div style=\"position: relative;margin-top: 10px;\">");
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("    <div style=\"position: absolute;right:0;bottom:0;\"><a href=\"\" id=\"show_filter\">Фильтр</a></div>
+        echo \layout::func_from_text("    <div style=\"position: absolute;left:0;bottom:0;\"><a href=\"\" id=\"show_filter\">Фильтр</a></div>
 </div>
-<table class=\"table table-hover table-condensed\" id=\"tasks_table\">
+<table class=\"table table-hover table-condensed table-border\" id=\"tasks_table\">
     <thead>
     <tr>
         <th></th>
@@ -100,6 +100,6 @@ class __TwigTemplate_7bbee2e7b851869598ae57e782ee20503b1fb6a86a352d4269c4ce17d1b
 
     public function getDebugInfo()
     {
-        return array (  88 => 26,  77 => 21,  63 => 20,  59 => 19,  41 => 18,  22 => 2,  19 => 1,  84 => 24,  80 => 22,  65 => 6,  61 => 5,  43 => 4,  40 => 3,  34 => 2,  21 => 1,  108 => 44,  105 => 43,  95 => 36,  89 => 33,  85 => 32,  81 => 31,  69 => 21,  67 => 20,  64 => 19,  57 => 15,  52 => 13,  49 => 12,  42 => 8,  39 => 17,  32 => 4,  29 => 3,);
+        return array (  88 => 26,  84 => 24,  80 => 22,  77 => 21,  63 => 20,  59 => 19,  41 => 18,  39 => 17,  22 => 2,  19 => 1,);
     }
 }

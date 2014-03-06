@@ -1,0 +1,92 @@
+{% extends "/source/wrapper_index.html" %}
+
+{% block title %}Календарь{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{app.path('projects','calendar.js')}}"></script>
+<script src="/source/admin/js/libs/moment.min.js"></script>
+<script src="/source/admin/js/libs/fullcalendar.min.js"></script>
+<script src="/source/admin/js/libs/gcal.js"></script>
+<script>
+    $(document).ready(function(){
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    $('.fullcalendar').fullCalendar({
+        firstDay: 1,
+        height: 350,
+        editable: true,
+        events: [
+            {% for t in tasks %}
+            {
+                title: "{{ t.name }}",
+                allDay: true,
+            {% if t.type == "error" %}color: "#860000",{% endif %}
+                start: new Date("{{ t.start }}")
+                {% if t.end %},end: new Date("{{ t.end }}"){% endif %}
+            }
+            {% if not loop.last %},{% endif %}
+            {% endfor %}
+        ],
+        header: {
+            left: '',
+            right: 'title'
+        }
+    });
+
+    $('.calendar .view-options li a').click( function() {
+        $('.calendar .view-options li').removeClass('active');
+        $(this).parent('li').addClass('active');
+        $(this).parents('.panel').find('.fullCalendar').fullCalendar('changeView', $(this).attr('data-view'));
+        return false;
+    });
+
+    $('.calendar .navigator li a').click( function() {
+        $(this).parents('.panel').find('.fullCalendar').fullCalendar($(this).attr('data-view'));
+        return false;
+    });
+    });
+</script>
+{% endblock %}
+
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/libraries/calendar/calendar.css">
+    <link href="/source/admin/css/libs/fullcalendar.css" rel="stylesheet">
+    <link href="{{ app.path('projects','calendar.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div id="content">
+        <div class="container_fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary calendar">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Activity Calendar</h3>
+                            <div class="panel-utility pull-right">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-pills navigator">
+                                    <li><a href="#" data-view="prev"><i class="fa fa-arrow-left"></i></a></li>
+                                    <li><a href="#" data-view="today">Today</a></li>
+                                    <li><a href="#" data-view="next"><i class="fa fa-arrow-right"></i></a></li>
+                                </ul>
+
+                                <ul class="nav nav-pills view-options">
+                                    <li class="active"><a href="#" data-view="month">Month</a></li>
+                                    <li><a href="#" data-view="agendaWeek">Week</a></li>
+                                    <li><a href="#" data-view="agendaDay">Day</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="fullcalendar" class="fullcalendar fullCalendar"></div>
+                        </div><!-- /.panel-body -->
+                    </div><!-- /.panel-primary -->
+                </div><!-- /.col-lg-8 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div>
+{% endblock %}

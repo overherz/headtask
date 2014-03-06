@@ -40,11 +40,11 @@ class __TwigTemplate_978c8bb94e827ee5c0934c406780828e78db7e91fffcce1f9c504a46ae9
     public function block_context($context, array $blocks = array())
     {
         // line 9
-        echo \layout::func_from_text("<div style=\"text-align: center;\">
-    <input type=\"text\" name=\"start\" value=\"");
+        echo \layout::func_from_text("<div>
+    <i class=\"fa fa-calendar\"></i> <input type=\"text\" name=\"start\" value=\"");
         // line 10
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["start"]) ? $context["start"] : null), "html", null, true));
-        echo \layout::func_from_text("\" class=\"input-small\" readonly> <i class=\"fa fa-arrows-h\" style=\"font-size: 20px;\"></i> <input type=\"text\" name=\"end\" value=\"");
+        echo \layout::func_from_text("\" class=\"input-small\" readonly> <i class=\"fa fa-arrow-right\"></i> <input type=\"text\" name=\"end\" value=\"");
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["end"]) ? $context["end"] : null), "html", null, true));
         echo \layout::func_from_text("\" class=\"input-small\" readonly>
 </div>

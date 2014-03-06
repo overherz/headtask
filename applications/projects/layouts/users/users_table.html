@@ -1,5 +1,5 @@
 {% include '/source/jpaginator_boot.html' %}
-<table class="table table-bordered table-hover table-condensed">
+<table class="table table-border table-hover table-condensed">
     <tr>
         <th style="width: 100px;"></th>
         <th>Имя</th>
@@ -45,10 +45,10 @@
                 {% endif %}
             </td>
             {% if access.users %}
-            <td style="width: 1px;">
+            <td style="width: 80px;">
                 <div class="btn-group">
-                    <a class="btn btn-primary btn-small" href="/projects/users/edit/{{ project.id }}/{{ u.id_user }}/"><i class="fa fa-pencil"></i></a>
-                    <a class="btn btn-primary btn-small" href="" delete_project_user="{{ u.id_user }}"><i class="fa fa-trash-o"></i></a>
+                    <a class="btn btn-primary btn-sm" href="/projects/users/edit/{{ project.id }}/{{ u.id_user }}/"><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-primary btn-sm" href="" delete_project_user="{{ u.id_user }}"><i class="fa fa-trash-o"></i></a>
                 </div>
             </td>
             {% endif %}

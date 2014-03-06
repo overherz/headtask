@@ -12,20 +12,6 @@
     <link rel="stylesheet" href="/source/css/popup.css" type="text/css" />
     <link rel="stylesheet" href="/source/css/content.css" type="text/css" />
     <link rel="stylesheet" href="/source/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
-    {% if globals.user.background and globals.user.background2 %}
-    <style>
-        #wrap,body {
-            background-color: {{globals.user.background}};
-            background-image: -khtml-gradient(linear, left top, left bottom, from({{globals.user.background}}), to({{globals.user.background2}}));
-            background-image: -moz-linear-gradient(top, {{globals.user.background}}, {{globals.user.background2}});
-            background-image: -ms-linear-gradient(top, {{globals.user.background}}, {{globals.user.background2}});
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, {{globals.user.background}}), color-stop(100%, {{globals.user.background2}}));
-            background-image: -webkit-linear-gradient(top, {{globals.user.background}}, {{globals.user.background2}});
-            background-image: -o-linear-gradient(top, {{globals.user.background}}, {{globals.user.background2}});
-            background-image: linear-gradient({{globals.user.background}}, {{globals.user.background2}});
-        }
-    </style>
-    {% endif %}
     {% block css %}
     {% endblock %}
     <script src="/source/js/jquery.min.js"></script>
@@ -42,17 +28,16 @@
            // var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
            // $("a").css("color",randomColor);
             setInterval( function() {
-                var w = $(window).innerHeight();
+                var height = 0;
                 var psp = $("#projects_second_panel").innerHeight();
+                var pmp = $("#sidebar").innerHeight();
+                console.log(psp+" - "+pmp);
 
-                if (w < psp) innerHeight = psp;
-                else
-                {
-                    var innerHeight = w - $('.navbar').outerHeight(true) - $('#footer').outerHeight(true);
-                }
+                if (psp >= pmp) height = psp;
+                else height = pmp;
 
                 $('#sidebar .well,#projects_second_panel .jumbotron').css({
-                    'min-height': innerHeight - 20
+                    'min-height': height
                 });
             }, 100);
         });

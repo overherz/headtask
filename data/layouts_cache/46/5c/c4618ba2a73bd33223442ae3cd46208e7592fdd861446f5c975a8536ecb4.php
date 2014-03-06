@@ -39,64 +39,8 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
     <link rel=\"stylesheet\" href=\"/source/css/ui-lightness/jquery-ui-1.10.3.custom.min.css\" />
     ");
         // line 15
-        if (($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background") && $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background2"))) {
-            // line 16
-            echo \layout::func_from_text("    <style>
-        #wrap,body {
-            background-color: ");
-            // line 18
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background"), "html", null, true));
-            echo \layout::func_from_text(";
-            background-image: -khtml-gradient(linear, left top, left bottom, from(");
-            // line 19
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background"), "html", null, true));
-            echo \layout::func_from_text("), to(");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background2"), "html", null, true));
-            echo \layout::func_from_text("));
-            background-image: -moz-linear-gradient(top, ");
-            // line 20
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background"), "html", null, true));
-            echo \layout::func_from_text(", ");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background2"), "html", null, true));
-            echo \layout::func_from_text(");
-            background-image: -ms-linear-gradient(top, ");
-            // line 21
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background"), "html", null, true));
-            echo \layout::func_from_text(", ");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background2"), "html", null, true));
-            echo \layout::func_from_text(");
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, ");
-            // line 22
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background"), "html", null, true));
-            echo \layout::func_from_text("), color-stop(100%, ");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background2"), "html", null, true));
-            echo \layout::func_from_text("));
-            background-image: -webkit-linear-gradient(top, ");
-            // line 23
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background"), "html", null, true));
-            echo \layout::func_from_text(", ");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background2"), "html", null, true));
-            echo \layout::func_from_text(");
-            background-image: -o-linear-gradient(top, ");
-            // line 24
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background"), "html", null, true));
-            echo \layout::func_from_text(", ");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background2"), "html", null, true));
-            echo \layout::func_from_text(");
-            background-image: linear-gradient(");
-            // line 25
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background"), "html", null, true));
-            echo \layout::func_from_text(", ");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "background2"), "html", null, true));
-            echo \layout::func_from_text(");
-        }
-    </style>
-    ");
-        }
-        // line 29
-        echo \layout::func_from_text("    ");
         $this->displayBlock('css', $context, $blocks);
-        // line 31
+        // line 17
         echo \layout::func_from_text("    <script src=\"/source/js/jquery.min.js\"></script>
     <script src=\"/source/js/jquery-ui-1.10.3.custom.min.js\"></script>
     <script src=\"/source/js/jquery.jgrowl_minimized.js\"></script>
@@ -111,44 +55,43 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
            // var randomColor = \"#000000\".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
            // \$(\"a\").css(\"color\",randomColor);
             setInterval( function() {
-                var w = \$(window).innerHeight();
+                var height = 0;
                 var psp = \$(\"#projects_second_panel\").innerHeight();
+                var pmp = \$(\"#sidebar\").innerHeight();
+                console.log(psp+\" - \"+pmp);
 
-                if (w < psp) innerHeight = psp;
-                else
-                {
-                    var innerHeight = w - \$('.navbar').outerHeight(true) - \$('#footer').outerHeight(true);
-                }
+                if (psp >= pmp) height = psp;
+                else height = pmp;
 
                 \$('#sidebar .well,#projects_second_panel .jumbotron').css({
-                    'min-height': innerHeight - 20
+                    'min-height': height
                 });
             }, 100);
         });
     </script>
     ");
-        // line 60
+        // line 45
         $this->displayBlock('js', $context, $blocks);
-        // line 62
+        // line 47
         echo \layout::func_from_text("</head>
 <body>
 <div id=\"wrap\">
     ");
-        // line 65
+        // line 50
         if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user")) {
             $this->env->loadTemplate("/source/menu.html")->display($context);
         }
-        // line 66
+        // line 51
         echo \layout::func_from_text("    <div class=\"from_top\"></div>
     ");
-        // line 67
+        // line 52
         $this->displayBlock('body', $context, $blocks);
-        // line 68
+        // line 53
         echo \layout::func_from_text("</div>
 ");
-        // line 69
+        // line 54
         $this->env->loadTemplate("/source/footer.html")->display($context);
-        // line 70
+        // line 55
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -158,21 +101,21 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
     {
     }
 
-    // line 29
+    // line 15
     public function block_css($context, array $blocks = array())
     {
-        // line 30
+        // line 16
         echo \layout::func_from_text("    ");
     }
 
-    // line 60
+    // line 45
     public function block_js($context, array $blocks = array())
     {
-        // line 61
+        // line 46
         echo \layout::func_from_text("    ");
     }
 
-    // line 67
+    // line 52
     public function block_body($context, array $blocks = array())
     {
     }
@@ -189,6 +132,6 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
 
     public function getDebugInfo()
     {
-        return array (  176 => 67,  172 => 61,  169 => 60,  165 => 30,  162 => 29,  157 => 4,  152 => 70,  150 => 69,  147 => 68,  145 => 67,  142 => 66,  138 => 65,  133 => 62,  131 => 60,  100 => 31,  97 => 29,  88 => 25,  82 => 24,  76 => 23,  70 => 22,  64 => 21,  58 => 20,  52 => 19,  48 => 18,  44 => 16,  42 => 15,  28 => 4,  23 => 1,);
+        return array (  119 => 52,  115 => 46,  112 => 45,  108 => 16,  105 => 15,  100 => 4,  95 => 55,  93 => 54,  90 => 53,  88 => 52,  85 => 51,  81 => 50,  76 => 47,  74 => 45,  44 => 17,  42 => 15,  28 => 4,  23 => 1,);
     }
 }
