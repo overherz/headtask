@@ -47,11 +47,9 @@ class __TwigTemplate_aed89a206dff21be3ebd8c6c1f73888241d3548b60b26dc7fd19739c093
     public function block_project($context, array $blocks = array())
     {
         // line 13
-        $this->env->loadTemplate("/source/crumbs.html")->display($context);
-        // line 14
         echo \layout::func_from_text("    ");
         $this->env->loadTemplate("/source/search_form.html")->display($context);
-        // line 15
+        // line 14
         echo \layout::func_from_text("<div id=\"search_result\">");
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "all_projects_table.html"), "method"));
         $template->display($context);
@@ -71,6 +69,6 @@ class __TwigTemplate_aed89a206dff21be3ebd8c6c1f73888241d3548b60b26dc7fd19739c093
 
     public function getDebugInfo()
     {
-        return array (  55 => 15,  52 => 14,  50 => 13,  47 => 12,  39 => 8,  36 => 7,  31 => 4,  28 => 3,);
+        return array (  53 => 14,  50 => 13,  47 => 12,  39 => 8,  36 => 7,  31 => 4,  28 => 3,);
     }
 }

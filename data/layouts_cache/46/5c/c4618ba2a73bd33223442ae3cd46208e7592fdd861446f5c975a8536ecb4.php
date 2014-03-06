@@ -31,7 +31,7 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
     <link rel=\"shortcut icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
     <link rel=\"stylesheet\" href=\"/source/js/styler/jquery.formstyler.css\" type=\"text/css\" />
-    <link href=\"/source/admin/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">
+    <link href=\"http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css\" rel=\"stylesheet\">
     <link href=\"/source/admin/fonts/font-awesome/css/font-awesome.minba72.css?v=4.0.3\" rel=\"stylesheet\">
     <link rel=\"stylesheet\" href=\"/source/css/jquery.jgrowl.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/source/css/popup.css\" type=\"text/css\" />
@@ -41,12 +41,12 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
         // line 15
         $this->displayBlock('css', $context, $blocks);
         // line 17
-        echo \layout::func_from_text("    <script src=\"/source/js/jquery.min.js\"></script>
+        echo \layout::func_from_text("    <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>
     <script src=\"/source/js/jquery-ui-1.10.3.custom.min.js\"></script>
     <script src=\"/source/js/jquery.jgrowl_minimized.js\"></script>
     <script src=\"/source/js/functions.js\"></script>
     <script src=\"/source/js/message.js\"></script>
-    <script src=\"/source/admin/bootstrap/js/bootstrap.min.js\"></script>
+    <script src=\"http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js\"></script>
     <script src=\"/source/js/styler/jquery.formstyler.js\"></script>
     <script>
         \$(document).ready(function(\$) {
