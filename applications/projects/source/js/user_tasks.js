@@ -22,14 +22,3 @@ $(document).ready(function($) {
         }
     });
 })
-
-function animate_progress_bars()
-{
-    $.each($(".bar"),function(k,v){
-        var width = $(v).attr("data-width");
-        if (width == 10)
-            $(v).animate({width: "35px"},100);
-        else
-            $(v).animate({width: width+"%"},100);
-    });
-}

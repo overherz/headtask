@@ -266,19 +266,12 @@ $(document).ready(function ($) {
         return false;
     });
 
-});
-
-function animate_progress_bars()
-{
-    return false;
-    $.each($(".progress-bar"),function(k,v){
-        $(v).css({width: "0%"});
-        var width = $(v).attr("aria-valuenow");
-        if (width == 10)
-            $(v).animate({width: "35px"},100);
-        else
-            $(v).animate({width: width+"%"},100);
+    $(document).on("change","input.dashboard_option",function(){
+        var id = $(this).attr('id');
+        if($(this).is(':checked')) $.cookie('dashboard_'+id, 'show', { expires: 30, path: '/' });
+        else $.cookie('dashboard_'+id, 'hide', { expires: 30, path: '/' });
+        redirect();
     });
-}
+});
 
 

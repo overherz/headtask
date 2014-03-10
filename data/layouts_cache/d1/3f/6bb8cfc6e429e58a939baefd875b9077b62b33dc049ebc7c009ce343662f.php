@@ -71,10 +71,10 @@ class __TwigTemplate_d13f6bb8cfc6e429e58a939baefd875b9077b62b33dc049ebc7c009ce34
     public function block_context($context, array $blocks = array())
     {
         // line 21
-        echo \layout::func_from_text("<table class=\"table\" style=\"margin-top: -10px;background: transparent;\">
+        echo \layout::func_from_text("<table class=\"table\" style=\"margin-top: -10px;\">
     <tr>
         <td style=\"width: 1px;padding: 0px;vertical-align: top !important;border-top:none;\">
-            <img id=\"avatar\" style=\"margin-top: -15px;\" src=\"");
+            <img id=\"avatar\" style=\"margin-left: -10px;\" src=\"");
         // line 24
         if ($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "avatar")) {
             echo \layout::func_from_text("/uploads/users/ava_profile/");
@@ -91,8 +91,8 @@ class __TwigTemplate_d13f6bb8cfc6e429e58a939baefd875b9077b62b33dc049ebc7c009ce34
         // line 25
         if (($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user") && ($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "id_user") == $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user")))) {
             // line 26
-            echo \layout::func_from_text("                <div style=\"margin: 5px 0;\"><a href=\"\" change_avatar class=\"btn btn-primary\">Редактировать фотографию</a></div>
-                <div style=\"margin: 5px 0;\"><a href=\"/users/edit/\" class=\"btn btn-primary\">Редактировать профиль</a></div>
+            echo \layout::func_from_text("                <div style=\"margin: 5px 0;display: inline-block;\"><a href=\"\" change_avatar class=\"btn btn-primary\">Фотография</a></div>
+                <div style=\"margin: 5px 0;display: inline-block;\"><a href=\"/users/edit/\" class=\"btn btn-primary\">Профиль</a></div>
             ");
         }
         // line 29
@@ -117,7 +117,7 @@ class __TwigTemplate_d13f6bb8cfc6e429e58a939baefd875b9077b62b33dc049ebc7c009ce34
         echo \layout::func_from_text("            <div class=\"nickname\" style=\"font-size: 14px;\">");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "nickname"), "html", null, true));
         echo \layout::func_from_text("</div>
-            <table class=\"table table-striped\" style=\"margin-top: 20px;\">
+            <table class=\"table table-striped table-border\" style=\"margin-top: 20px;\">
                 <tr>
                     <td style=\"width:1px;white-space: nowrap;font-weight: bold;border-top: none;\">Группа:</td>
                     <td style=\"text-align: justify;border-top:none;color:");
@@ -195,6 +195,10 @@ class __TwigTemplate_d13f6bb8cfc6e429e58a939baefd875b9077b62b33dc049ebc7c009ce34
     </tr>
 </table>
 ");
+        // line 70
+        echo \layout::func_from_text((isset($context["user_tasks"]) ? $context["user_tasks"] : null));
+        echo \layout::func_from_text("
+");
     }
 
     public function getTemplateName()
@@ -209,6 +213,6 @@ class __TwigTemplate_d13f6bb8cfc6e429e58a939baefd875b9077b62b33dc049ebc7c009ce34
 
     public function getDebugInfo()
     {
-        return array (  191 => 64,  187 => 62,  181 => 61,  176 => 58,  170 => 57,  165 => 54,  159 => 52,  152 => 50,  149 => 49,  147 => 48,  142 => 46,  139 => 45,  136 => 44,  132 => 43,  125 => 41,  117 => 37,  113 => 35,  109 => 33,  107 => 32,  103 => 31,  99 => 29,  94 => 26,  92 => 25,  79 => 24,  74 => 21,  71 => 20,  57 => 9,  54 => 8,  51 => 7,  45 => 5,  42 => 4,  39 => 3,  31 => 2,);
+        return array (  199 => 70,  191 => 64,  187 => 62,  181 => 61,  176 => 58,  170 => 57,  165 => 54,  159 => 52,  152 => 50,  149 => 49,  147 => 48,  142 => 46,  139 => 45,  136 => 44,  132 => 43,  125 => 41,  117 => 37,  113 => 35,  109 => 33,  107 => 32,  103 => 31,  99 => 29,  94 => 26,  92 => 25,  79 => 24,  74 => 21,  71 => 20,  57 => 9,  54 => 8,  51 => 7,  45 => 5,  42 => 4,  39 => 3,  31 => 2,);
     }
 }

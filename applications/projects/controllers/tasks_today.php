@@ -22,7 +22,6 @@ class tasks_today extends \Controller {
         if ($tasks)
         {
             $ids = array_keys($tasks);
-
 /*
             if ($_SESSION['user']['id_user'] == "1")
             {

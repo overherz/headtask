@@ -108,7 +108,8 @@ class users extends \Controller {
                 }
 
                 $this->layout_show('user.html', array(
-                    'user'=>$user
+                    'user'=>$user,
+                    'user_tasks' => $this->get_controller("projects","user_tasks")->default_method($id)
                 ));
             }
             else return $this->error_page();
@@ -234,80 +235,6 @@ class users extends \Controller {
                     }
                 }
 
-            }
-        }
-
-    }
-
-    function testTz()
-    {
-        $offset = array(
-        '-43200',
-        '-39600',
-        '-36000',
-        '-34200',
-        '-32400',
-        '-28800',
-        '-25200',
-        '-21600',
-        '-18000',
-        '-16200',
-        '-14400',
-        '-12600',
-        '-10800',
-        '-7200',
-        '-3600',
-        '0',
-        '3600',
-        '7200',
-        '10800',
-        '12600',
-        '14400',
-        '16200',
-        '18000',
-        '19800',
-        '21600',
-        '23400',
-        '25200',
-        '28800',
-        '31500',
-        '32400',
-        '34200',
-        '36000',
-        '37800',
-        '39600',
-        '41400',
-        '43200',
-        '45900',
-        '46800',
-        '50400'
-    );
-
-    $offset_value = "14400";
-    $time_zone = false;
-
-        $n = \DateTimeZone::listAbbreviations();
-        foreach ($offset as $o)
-        {
-          date_default_timezone_set('UTC');
-          $now = time() + $o;
-          $date = date("d.m.y H:i",$now);
-
-            foreach($n as $k)
-            {
-                foreach ($k as $a)
-                {
-                    if (@date_default_timezone_set($a['timezone_id']))
-                    {
-                        $new_date = date("d.m.y H:i");
-                        if ($date === $new_date)
-                        {
-                            $time_zone = $a['timezone_id'];
-                            echo "<div>{$o} - {$time_zone} | <span style='color:red;'>{$date}</span> = {$new_date}</div>";
-                            break(2);
-                        }
-                    }
-                }
             }
         }
     }

@@ -3,12 +3,8 @@
 {% block title %}Календарь. Задачи сегодня{% endblock %}
 
 {% block js %}
+    <script src="/source/js/jquery.cookie.js"></script>
     <script src="{{app.path('projects','tasks.js')}}"></script>
-    <script>
-        $(document).ready(function ($) {
-            animate_progress_bars();
-        });
-    </script>
 {% endblock %}
 
 {% block css %}
@@ -30,7 +26,16 @@
         </a>
     </li>
 </ul>
-
+    <div class="checkbox" style="padding-left: 0;display: inline-block;margin-right: 10px;">
+        <label for="own">Только свои
+            <input type="checkbox" id="own" name="own" class="dashboard_option" {% if cookie_data.dashboard_own == "show" %}checked{% endif %}>
+        </label>
+    </div>
+    <div class="checkbox" style="padding-left: 0;display: inline-block;">
+        <label for="not_assigned">Ничьи
+            <input type="checkbox" id="not_assigned" name="not_assigned" {% if not cookie_data.dashboard_not_assigned or cookie_data.dashboard_not_assigned == "show" %}checked{% endif %} class="dashboard_option">
+        </label>
+    </div>
 {% include app.path('projects','calendar/task_today.html') %}
 
 <ul class="breadcrumbs-one second">

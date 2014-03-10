@@ -163,7 +163,6 @@ a {
 .jq-checkbox,.jq-radio {
     box-sizing: content-box;
     -moz-box-sizing: content-box;
-    margin-top: -2px;
 }
 
 .jq-selectbox__select,input[type=text],input[type=password] {
@@ -270,6 +269,10 @@ input,textarea {
     z-index: 100 !important;
 }
 
+.user_tasks td {
+    vertical-align: top !important;
+}
+
 #filter_table {
     display: none;
     width: auto;
@@ -297,17 +300,17 @@ input,textarea {
 }
 
 .btn-india {
-    background-color: #8500c6;
-    border-color: #8500c6;
-    color: #fff;
+    background-color: #8500c6 !important;
+    border-color: #8500c6 !important;
+    color: #fff !important;
 }
 .btn-india:hover,
 .btn-india:focus,
 .btn-india:active,
 .btn-india.active {
-    background-color: #7400ad;
-    border-color: #630093;
-    color: #fff;
+    background-color: #7400ad !important;
+    border-color: #630093 !important;
+    color: #fff !important;
 }
 .btn-india.disabled:hover,
 .btn-india.disabled:focus,
@@ -321,22 +324,22 @@ fieldset[disabled] .btn-india:hover,
 fieldset[disabled] .btn-india:focus,
 fieldset[disabled] .btn-india:active,
 fieldset[disabled] .btn-india.active {
-    background-color: #8500c6;
-    border-color: #8500c6;
+    background-color: #8500c6 !important;
+    border-color: #8500c6 !important;
 }
 
 .btn-black {
-    background-color: #544242;
-    border-color: #544242;
-    color: #fff;
+    background-color: #544242 !important;
+    border-color: #544242 !important;
+    color: #fff !important;
 }
 .btn-black:hover,
 .btn-black:focus,
 .btn-black:active,
 .btn-black.active {
-    background-color: #463737;
-    border-color: #372c2c;
-    color: #fff;
+    background-color: #463737 !important;
+    border-color: #372c2c !important;
+    color: #fff !important;
 }
 .btn-black.disabled:hover,
 .btn-black.disabled:focus,
@@ -350,22 +353,22 @@ fieldset[disabled] .btn-black:hover,
 fieldset[disabled] .btn-black:focus,
 fieldset[disabled] .btn-black:active,
 fieldset[disabled] .btn-black.active {
-    background-color: #544242;
-    border-color: #544242;
+    background-color: #544242 !important;
+    border-color: #544242 !important;
 }
 
 .btn-foxtrot {
-    background-color: #a80000;
-    border-color: #a80000;
-    color: #fff;
+    background-color: #a80000 !important;
+    border-color: #a80000 !important;
+    color: #fff !important;
 }
 .btn-foxtrot:hover,
 .btn-foxtrot:focus,
 .btn-foxtrot:active,
 .btn-foxtrot.active {
-    background-color: #8f0000;
-    border-color: #750000;
-    color: #fff;
+    background-color: #8f0000 !important;
+    border-color: #750000 !important;
+    color: #fff !important;
 }
 .btn-foxtrot.disabled:hover,
 .btn-foxtrot.disabled:focus,
@@ -379,22 +382,22 @@ fieldset[disabled] .btn-foxtrot:hover,
 fieldset[disabled] .btn-foxtrot:focus,
 fieldset[disabled] .btn-foxtrot:active,
 fieldset[disabled] .btn-foxtrot.active {
-    background-color: #a80000;
-    border-color: #a80000;
+    background-color: #a80000 !important;
+    border-color: #a80000 !important;
 }
 
 .btn-oscar {
-    background-color: #00720a;
-    border-color: #00720a;
-    color: #fff;
+    background-color: #00720a !important;
+    border-color: #00720a !important;
+    color: #fff !important;
 }
 .btn-oscar:hover,
 .btn-oscar:focus,
 .btn-oscar:active,
 .btn-oscar.active {
-    background-color: #005908;
-    border-color: #003f06;
-    color: #fff;
+    background-color: #005908 !important;
+    border-color: #003f06 !important;
+    color: #fff !important;
 }
 .btn-oscar.disabled:hover,
 .btn-oscar.disabled:focus,
@@ -408,8 +411,8 @@ fieldset[disabled] .btn-oscar:hover,
 fieldset[disabled] .btn-oscar:focus,
 fieldset[disabled] .btn-oscar:active,
 fieldset[disabled] .btn-oscar.active {
-    background-color: #00720a;
-    border-color: #00720a;
+    background-color: #00720a !important;
+    border-color: #00720a !important;
 }
 
 #sidebar {
@@ -460,7 +463,7 @@ fieldset[disabled] .btn-oscar.active {
     border-top: 1px solid #ccc;
 }
 
-.breadcrumbs-one a{
+.breadcrumbs-one li > a{
     padding: .4em 1em .4em 2em;
     float: left;
     text-decoration: none;
@@ -526,4 +529,8 @@ fieldset[disabled] .btn-oscar.active {
 
 .ui-datepicker-month {
     color: #000;
+}
+
+#skypedetectionswf {
+    display: none;
 }

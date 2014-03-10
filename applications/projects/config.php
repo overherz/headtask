@@ -13,4 +13,7 @@ $router = array(
 $router_admin = array(
 //    'fake_controller' => array('application' => 'portfolio', 'controller' => 'real_controller'),
 );
-?>
+
+$func_from_text = array(
+    'get_user_tasks' => array('application' => 'projects','controller' => 'user_tasks','function' => 'default_method'),
+);

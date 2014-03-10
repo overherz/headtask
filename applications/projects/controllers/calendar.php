@@ -74,13 +74,17 @@ class calendar extends \Controller {
         if (!$id_user) $id_user = $_SESSION['user']['id_user'];
         $datetime1 = date_create(date("Y-m-d"));
 
-        $query = $this->db->prepare("select pt.id,pt.message,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
+        if ($_COOKIE['dashboard_not_assigned'] == "hide") $not_assigned = "and pt.assigned IS NOT NULL";
+        if ($_COOKIE['dashboard_own'] == "show") $own = "and pt.assigned=".$this->db->quote($id_user);
+
+        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
             where (pt.assigned=? OR pt.assigned IS NULL or pt.id_user=?) and pt.id_project IN( SELECT id_project from projects_users where id_user=? and role='user') and pt.start <= ? and pt.status IN ('new','in_progress','rejected')
-            order by pt.created DESC
+            {$not_assigned} {$own}
+            order by pt.updated DESC
         ");
         $query->execute(array($id_user,$id_user,$id_user,$date));
         while ($row = $query->fetch())
@@ -95,13 +99,14 @@ class calendar extends \Controller {
             $tasks[$row['id']] = $row;
         }
 
-        $query = $this->db->prepare("select pt.id,pt.message,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
+        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
             where pt.id_project IN( SELECT id_project from projects_users where id_user=? and role='manager') and pt.start <= ? and pt.status IN ('new','in_progress','rejected')
-            order by field(pt.assigned,?) DESC, pt.created DESC
+            {$not_assigned} {$own}
+            order by field(pt.assigned,?) DESC, pt.updated DESC
         ");
         $query->execute(array($id_user,$date,$id_user));
         while ($row = $query->fetch())
@@ -116,6 +121,12 @@ class calendar extends \Controller {
             $tasks[$row['id']] = $row;
             $manager = true;
         }
+        usort($tasks, array($this,"sort_tasks"));
         return array('tasks' => $tasks,'manager' => $manager);
+    }
+
+    function sort_tasks($a, $b)
+    {
+        return $b['updated'] - $a['updated'];
     }
 }

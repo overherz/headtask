@@ -45,13 +45,13 @@ class __TwigTemplate_ac2b081de82e63068e827d91b59da2b6433b1d12cba58cbb30e71c518b2
         // line 5
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "news")) {
             // line 6
-            echo \layout::func_from_text("    <td style=\"width: 1px;\">
+            echo \layout::func_from_text("    <td style=\"width: 80px;\">
         <div class=\"btn-group\">
-            <a class=\"btn btn-purple btn-small\" href=\"/projects/news/edit/");
+            <a class=\"btn btn-black btn-sm\" href=\"/projects/news/edit/");
             // line 8
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["n"]) ? $context["n"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\"><i class=\"fa fa-pencil\"></i></a>
-            <a class=\"btn btn-purple btn-small\" delete_news=");
+            <a class=\"btn btn-black btn-sm\" delete_news=");
             // line 9
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["n"]) ? $context["n"] : null), "id"), "html", null, true));
             echo \layout::func_from_text(" href=\"\"><i class=\"fa fa-trash-o\"></i></a>

@@ -18,7 +18,7 @@ class __TwigTemplate_654d091c5c878f2f41d021e8b2457b54bf964325caf681e77fc1f66992e
         // line 1
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("<table class=\"table table-bordered table-hover table-condensed\" id=\"tasks_table\">
+        echo \layout::func_from_text("<table class=\"table table-border table-hover table-condensed\" id=\"tasks_table\">
     <tr>
         <th>Название</th>
         <th>Дата</th>
@@ -97,6 +97,6 @@ class __TwigTemplate_654d091c5c878f2f41d021e8b2457b54bf964325caf681e77fc1f66992e
 
     public function getDebugInfo()
     {
-        return array (  85 => 19,  81 => 17,  77 => 15,  74 => 14,  60 => 13,  56 => 12,  36 => 10,  32 => 8,  21 => 2,  19 => 1,  65 => 20,  62 => 19,  55 => 14,  52 => 13,  46 => 10,  41 => 8,  38 => 11,  31 => 4,  28 => 7,);
+        return array (  85 => 19,  81 => 17,  77 => 15,  74 => 14,  60 => 13,  56 => 12,  38 => 11,  36 => 10,  32 => 8,  28 => 7,  21 => 2,  19 => 1,);
     }
 }

@@ -134,7 +134,7 @@ function hide_overlay()
 function show_preloader()
 {
     window.loading_message = setTimeout(function(){
-        show_message("info","<div style='background:url(/source/images/admin/jgrowl_preloader.gif) no-repeat;height:20px;padding-left:35px;padding-top:8px;font-size:12px;'>Загрузка</div>",true,'loading');
+        show_message("info","<div style='background:url(/source/images/admin/jgrowl_preloader.gif) no-repeat;height:26px;padding-left:35px;padding-top:8px;font-size:12px;'>Загрузка</div>",true,'loading');
     },500);
 }
 
