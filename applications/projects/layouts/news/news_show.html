@@ -14,9 +14,9 @@
     <li><a class="current">{{news.created|date('d.m.Y H:i:s')}} |
     {{news.fio}} {{news.nickname}}</a></li>
     {% if access.news %}
-        <div class="btn-group" style="float: right;margin-right: 2px;">
+        <div class="btn-group" style="float: right;">
             <a class="btn btn-black btn-sm current" href="/projects/news/edit/{{news.id}}"><i class="fa fa-pencil"></i></a>
-            <a class="btn btn-black btn-sm current" delete_news={{news.id}} href="" mode='inside'><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-black btn-sm current" delete_news="{{news.id}}" href="" mode='inside'><i class="fa fa-trash-o"></i></a>
         </div>
     {% endif %}
 </ul>

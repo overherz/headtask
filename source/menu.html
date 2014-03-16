@@ -30,7 +30,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if globals.user %}
-                    <li><a href="/users/profile/" class="username_in_top" title="Профиль">{{globals.user.fio}}</a></li>
+                    <li><a href="/users/profile/" class="username_in_top" title="Профиль"><i class="fa fa-user"></i><span>{{globals.user.fio}}</span></a></li>
                 {% endif %}
                 {% if globals.user %}
                     <li><a href="/users/logout/" id="logout"><i class="fa fa-power-off"></i></a></li>

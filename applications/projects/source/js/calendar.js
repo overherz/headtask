@@ -48,7 +48,17 @@ $(document).ready(function ($) {
     });
 
     $(document).on("click","[show_hide_tasks]",function(){
-        $(this).parent().parent().nextAll("tr").show();
+        var values = $(this).data('values').split(',');
+        var day = $(this).data('day');
+        console.log(values);
+        $.each(values,function(k,v){
+            $("#day"+day).append("<tr class='"+arr[v].class+"'>" +
+                "<td style='width: 18px;border-left:none;padding-right: 0;'></td>" +
+                "<td style='border-left: none;padding-left: 3px;'>" +
+                "<a href='/projects/tasks/show/"+v+"/' style='color:"+arr[v].color+"' title='"+arr[v].title+"'><div>"+arr[v].name+"</div></a></td></tr>")
+        });
+
+        //$(this).parent().parent().prevAll("tr").show();
         $(this).parent().parent().remove();
         return false;
     });

@@ -64,15 +64,15 @@ class __TwigTemplate_e5bff5b06de61746c08caeba6d356f0381def4d6a42e5eacafe2c5749c6
         // line 16
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "news")) {
             // line 17
-            echo \layout::func_from_text("        <div class=\"btn-group\" style=\"float: right;margin-right: 2px;\">
+            echo \layout::func_from_text("        <div class=\"btn-group\" style=\"float: right;\">
             <a class=\"btn btn-black btn-sm current\" href=\"/projects/news/edit/");
             // line 18
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["news"]) ? $context["news"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\"><i class=\"fa fa-pencil\"></i></a>
-            <a class=\"btn btn-black btn-sm current\" delete_news=");
+            <a class=\"btn btn-black btn-sm current\" delete_news=\"");
             // line 19
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["news"]) ? $context["news"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text(" href=\"\" mode='inside'><i class=\"fa fa-trash-o\"></i></a>
+            echo \layout::func_from_text("\" href=\"\" mode='inside'><i class=\"fa fa-trash-o\"></i></a>
         </div>
     ");
         }

@@ -69,13 +69,16 @@ class calendar extends \Controller {
         echo json_encode($res);
     }
 
-    function get_calendar_tasks($date,$id_user=false)
+    function get_calendar_tasks($date,$id_user=false,$cookie=false)
     {
         if (!$id_user) $id_user = $_SESSION['user']['id_user'];
         $datetime1 = date_create(date("Y-m-d"));
 
-        if ($_COOKIE['dashboard_not_assigned'] == "hide") $not_assigned = "and pt.assigned IS NOT NULL";
-        if ($_COOKIE['dashboard_own'] == "show") $own = "and pt.assigned=".$this->db->quote($id_user);
+        if ($cookie)
+        {
+            if ($_COOKIE['dashboard_not_assigned'] == "hide") $not_assigned = "and pt.assigned IS NOT NULL";
+            if ($_COOKIE['dashboard_own'] == "show") $own = "and pt.assigned=".$this->db->quote($id_user);
+        }
 
         $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
             from projects_tasks as pt
@@ -93,7 +96,7 @@ class calendar extends \Controller {
             {
                 $datetime2 = date_create($row['end']);
                 $interval = date_diff($datetime1, $datetime2);
-                $row['diff'] = $interval->format('%d');
+                $row['diff'] = $interval->format('%R%a');
             }
             else $row['diff'] = "inf";
             $tasks[$row['id']] = $row;
@@ -115,7 +118,7 @@ class calendar extends \Controller {
             {
                 $datetime2 = date_create($row['end']);
                 $interval = date_diff($datetime1, $datetime2);
-                $row['diff'] = $interval->format('%d');
+                $row['diff'] = $interval->format('%R%a');
             }
             else $row['diff'] = "inf";
             $tasks[$row['id']] = $row;

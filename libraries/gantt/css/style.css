@@ -66,7 +66,7 @@
 }
 .fn-gantt .leftPanel .name, .fn-gantt .leftPanel .desc {
     float: left;
-    height: 23px;
+    height: 24px;
     margin: 0;
     border-bottom: 1px solid #DDD;
     background-color: #f9f9f9;
@@ -114,7 +114,7 @@
     text-align: center;
     border-left: 1px solid #DDD;
     border-bottom: 1px solid #DDD;
-    margin: -1px 0 0 -1px;
+    margin: -1px 1px 1px -1px !important;
     font-size: 11px;
     color: #484a4d;
     text-align: center;
@@ -135,8 +135,8 @@
 }
 
 .fn-gantt .sa, .fn-gantt .sn, .fn-gantt .wd {
-    height: 23px;
-    margin: 0 0 0 -1px;
+    height: 24px;
+    margin: 0 0 0 0;
     text-align: center;
 }
 

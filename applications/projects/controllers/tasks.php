@@ -726,6 +726,7 @@ class tasks extends \Controller {
         $created = time();
 //        $created_test = $created-$this->time_limit;
 
+        if ($access['task']['status'] == "closed") $res['error'] = "Закрытые задачи нельзя комментировать";
         if ($comment == "") $res['error'] = "Комментарий не может быть пустым";
 //        if ($_SESSION['last_comment'] > $created_test && $_SESSION['user']['id_group'] != 1) $res['error'] = "Комментарий можно добавлять каждые {$this->time_limit} секунд";
 

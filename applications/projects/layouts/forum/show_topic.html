@@ -24,7 +24,8 @@
 {% if topic.fixed %}
     <i class="fa-thumb-tack " style="float: left;font-size: 40px;" title="Закрепленная тема"></i>
 {% endif %}
-<table class="table table-bordered" id="posts_table">
+<table class="table table-border" id="posts_table">
+    <tbody>
     {% for p in posts %}
     <tr>
         <td class="forum_fio">
@@ -35,8 +36,8 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align: center;vertical-align: top !important;">
-            {% if p.avatar %}<img src="/uploads/users/ava_small/{{p.avatar|real_path}}" class="img-polaroid">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}
+        <td style="text-align: center;vertical-align: top !important;border-right: 1px solid #ddd;width: 180px;">
+            {% if p.avatar %}<img src="/uploads/users/ava_small/{{p.avatar|real_path}}">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}
             <div class="nickname" style="margin-top: 3px;">{{p.nickname}}</div>
             <div class="nickname" style="color:{{ p.color }};font-weight: bold;">{{p.group_name}}</div>
             {% if p.last_user_action >= globals.time %}
@@ -51,14 +52,14 @@
     </tr>
     <tr>
         <td class="forum_post_footer" colspan="2">
-            <a href="" class="btn btn-oscar btn-mini quote_post" data-id="{{p.id}}"><i class="fa fa-quote-right"></i></a>
-            <div class="forum_post_action">
+            <a href="" class="btn btn-oscar btn-xs quote_post" data-id="{{p.id}}"><i class="fa fa-quote-right"></i></a>
+            <div class="forum_post_action" style="display: inline-block;">
                 <div class="btn-group">
                     {% if access.forum or p.author == globals.user.id_user %}
-                        <a href="" class="btn btn-oscar btn-mini edit_post" data-id="{{p.id}}"><i class="fa fa-pencil"></i></a>
+                        <a href="" class="btn btn-xs btn-oscar edit_post" data-id="{{p.id}}"><i class="fa fa-pencil"></i></a>
                     {% endif %}
                     {% if access.forum and first_post != p.id %}
-                        <a href="" class="btn btn-oscar btn-mini delete_post" data-id="{{p.id}}"><i class="fa fa-trash-o"></i></a>
+                        <a href="" class="btn btn-xs btn-oscar delete_post" data-id="{{p.id}}"><i class="fa fa-trash-o"></i></a>
                     {% endif %}
                 </div>
             </div>
@@ -66,10 +67,11 @@
     </tr>
     {% if not loop.last %}
     <tr>
-        <td colspan="3" style="background: #e2e2e2;padding: 5px;"></td>
+        <td colspan="3" style="background: #f5f5f5;padding: 5px;"></td>
     </tr>
     {% endif %}
     {% endfor %}
+    </tbody>
 </table>
 
 {% if not topic.closed %}

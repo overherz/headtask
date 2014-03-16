@@ -15,34 +15,32 @@
 <form id="topic_form" class="form-horizontal">
     <input type="hidden" name="act" value="save_topic">
     {% if topic.id %}<input type="hidden" name="id" value="{{topic.id}}">{% endif %}
-    <div class="docs-input-sizes">
-        <div class="control-group">
-            <label class="control-label" for="name">Название темы</label>
-            <div class="controls">
-                <input type="text" name="name" id="name" class="input-xxlarge" value="{{topic.name}}">
-            </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label" for="name">Название темы</label>
+        <div class="col-lg-10">
+            <input type="text" name="name" id="name" class="form-control" value="{{topic.name}}">
         </div>
-        <div class="control-group">
-            <label class="control-label" for="text">Текст</label>
-            <div class="controls">
-                <div class="wysiwyg"><textarea name='text' id='text'>{{topic.text}}</textarea></div>
-            </div>
-        </div>
-        {% if access.forum %}
-        <div class="control-group">
-            <label class="control-label" for="text">Закрепленная</label>
-            <div class="controls">
-                <input type="checkbox" name="fixed" value="1" {% if topic.fixed %}checked{% endif %}>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="text">Закрытая</label>
-            <div class="controls">
-                <input type="checkbox" name="closed" value="1" {% if topic.closed %}checked{% endif %}>
-            </div>
-        </div>
-        {% endif %}
     </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label" for="text">Текст</label>
+        <div class="col-lg-10">
+            <div class="wysiwyg"><textarea name='text' id='text'>{{topic.text}}</textarea></div>
+        </div>
+    </div>
+    {% if access.forum %}
+    <div class="form-group">
+        <label class="col-lg-2 control-label" for="text">Закрепленная</label>
+        <div class="col-lg-10 checkbox">
+            <input type="checkbox" name="fixed" value="1" {% if topic.fixed %}checked{% endif %}>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label" for="text">Закрытая</label>
+        <div class="col-lg-10 checkbox">
+            <input type="checkbox" name="closed" value="1" {% if topic.closed %}checked{% endif %}>
+        </div>
+    </div>
+    {% endif %}
     <div style="text-align: center;">
         <button class="btn btn-large btn-primary save_topic" type="button">{% if topic.id %}Сохранить{% else %}Создать{% endif %}</button>
     </div>

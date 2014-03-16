@@ -12,11 +12,11 @@
         <a href="/users/~{{t.id_user}}/" style="color:{{ t.color }};font-weight: bold;" title="{{ t.group_name }}">{{t.fio}}</a><div class="nickname">{{t.nickname}}</div>
         {{t.created|date('d.m.Y H:i:s')}}
     </td>
-    <td style="width: 1px;">
+    <td style="width: 80px;">
         {% if access.forum %}
             <div class="btn-group">
-                <a class="btn btn-oscar btn-small" href="/projects/forum/edit_topic/{{t.id}}"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-oscar btn-small" delete_topic={{t.id}} href=""><i class="fa fa-trash-o"></i></a>
+                <a class="btn btn-oscar btn-sm" href="/projects/forum/edit_topic/{{t.id}}"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-oscar btn-sm" delete_topic={{t.id}} href=""><i class="fa fa-trash-o"></i></a>
             </div>
         {% else %}&nbsp;
         {% endif %}

@@ -10,15 +10,14 @@
 {% endblock %}
 
 {% block project_data %}
-<ul class="breadcrumb second">
-    <li><span style="font-weight: bold;">Дата:</span> {{documents.created|date('d.m.Y H:i:s')}}</li>
-    <li><span style="font-weight: bold;margin-left: 20px;">Автор:</span> {{documents.fio}} <span style="color:silver;">{{documents.nickname}}</span> </li>
-
+<ul class="breadcrumbs-one second">
+    <li><a class="current">{{documents.created|date('d.m.Y H:i:s')}} |
+            {{documents.fio}} {{documents.nickname}}</a></li>
     {% if access.documents %}
-    <div class="btn-group" style="float: right;margin-right: 2px;">
-        <a class="btn btn-foxtrot btn-small" href="/projects/documents/edit/{{documents.id}}"><i class="fa fa-pencil"></i></a>
-        <a class="btn btn-foxtrot btn-small" delete_documents={{documents.id}} href="" mode='inside'><i class="fa fa-trash-o"></i></a>
-    </div>
+        <div class="btn-group" style="float: right;">
+            <a class="btn btn-foxtrot btn-sm current" href="/projects/documents/edit/{{documents.id}}"><i class="fa fa-pencil"></i></a>
+            <a class="btn btn-foxtrot btn-sm current" delete_documents="{{documents.id}}" href="" mode='inside'><i class="fa fa-trash-o"></i></a>
+        </div>
     {% endif %}
 </ul>
 <div class="wysiwyg">{{documents.description|raw}}</div>

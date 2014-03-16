@@ -12,7 +12,7 @@ class tasks_today extends \Controller {
         $day = date("d");
 
         $task = $this->get_controller("projects","tasks");
-        if ($info = $this->get_controller("projects","calendar")->get_calendar_tasks("{$year}-{$month}-{$day}")) $tasks = $info['tasks'];
+        if ($info = $this->get_controller("projects","calendar")->get_calendar_tasks("{$year}-{$month}-{$day}",false,true)) $tasks = $info['tasks'];
 
         $data = array(
             'tasks' => $tasks,

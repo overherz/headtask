@@ -3,10 +3,10 @@
     <td>{{n.created|date('d.m.Y H:i:s')}}</td>
     <td><a href="/users/~{{n.author}}/" style="color:{{ n.color }};font-weight: bold;" title="{{ n.group_name }}">{{n.fio}}</a><div class="nickname">{{n.nickname}}</div></td>
     {% if access.documents %}
-    <td style="width: 1px;">
+    <td style="width: 80px;">
         <div class="btn-group">
-            <a class="btn btn-foxtrot btn-small" href="/projects/documents/edit/{{n.id}}"><i class="fa fa-pencil"></i></a>
-            <a class="btn btn-foxtrot btn-small" delete_documents={{n.id}} href=""><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-foxtrot btn-sm" href="/projects/documents/edit/{{n.id}}"><i class="fa fa-pencil"></i></a>
+            <a class="btn btn-foxtrot btn-sm" delete_documents={{n.id}} href=""><i class="fa fa-trash-o"></i></a>
         </div>
     </td>
     {% endif %}

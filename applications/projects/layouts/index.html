@@ -4,6 +4,22 @@
 {% endblock %}
 {% block js %}
     <script type="text/javascript" src="{{app.path('projects','projects.js')}}"></script>
+    <script>
+        $(document).ready(function ($) {
+            setInterval( function() {
+                var height = 0;
+                var psp = $("#projects_second_panel").innerHeight();
+                var pmp = $("#sidebar").innerHeight();
+
+                if (psp >= pmp) height = psp;
+                else height = pmp;
+
+                $('#sidebar .well,#projects_second_panel .jumbotron').css({
+                    'min-height': height
+                });
+            }, 100);
+        });
+    </script>
 {% endblock %}
 
 {% block body %}

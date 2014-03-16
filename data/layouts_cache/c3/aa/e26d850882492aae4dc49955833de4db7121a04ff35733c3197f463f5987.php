@@ -92,12 +92,15 @@ class __TwigTemplate_c3aae26d850882492aae4dc49955833de4db7121a04ff35733c3197f463
         }
         // line 17
         echo \layout::func_from_text("
-                    <div style=\"float:right;\"><a href=\"\" class=\"comment_to_comment\" to_comment=\"");
-        // line 18
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id"), "html", null, true));
-        echo \layout::func_from_text("\">ответить</a></div>
                     ");
+        // line 18
+        if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "closed")) {
+            echo \layout::func_from_text("<div style=\"float:right;\"><a href=\"\" class=\"comment_to_comment\" to_comment=\"");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id"), "html", null, true));
+            echo \layout::func_from_text("\">ответить</a></div>");
+        }
         // line 19
+        echo \layout::func_from_text("                    ");
         if (($this->getAttribute((isset($context["access_article"]) ? $context["access_article"] : null), "comment") && $this->getAttribute((isset($context["access_article"]) ? $context["access_article"] : null), "delete_comment"))) {
             echo \layout::func_from_text("<div style=\"float:right;margin-left: 5px;\">|&nbsp;</div>");
         }
@@ -181,6 +184,6 @@ class __TwigTemplate_c3aae26d850882492aae4dc49955833de4db7121a04ff35733c3197f463
 
     public function getDebugInfo()
     {
-        return array (  167 => 37,  148 => 34,  130 => 33,  128 => 32,  119 => 26,  112 => 21,  105 => 20,  101 => 19,  97 => 18,  94 => 17,  89 => 16,  77 => 14,  73 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,  270 => 111,  261 => 104,  258 => 103,  244 => 102,  240 => 101,  222 => 100,  220 => 99,  208 => 89,  199 => 86,  195 => 85,  190 => 83,  180 => 82,  176 => 80,  172 => 79,  161 => 70,  159 => 69,  152 => 35,  149 => 65,  145 => 64,  143 => 63,  139 => 61,  136 => 60,  113 => 40,  98 => 39,  92 => 38,  81 => 15,  78 => 27,  76 => 26,  74 => 25,  71 => 24,  68 => 23,  57 => 15,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  170 => 37,  155 => 35,  151 => 34,  133 => 33,  131 => 32,  122 => 26,  115 => 21,  108 => 20,  103 => 19,  97 => 18,  94 => 17,  89 => 16,  81 => 15,  77 => 14,  73 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
     }
 }

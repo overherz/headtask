@@ -14,16 +14,14 @@
 <form id="forum_form" class="form-horizontal form-small">
     <input type="hidden" name="act" value="save_forum">
     {% if forum.id %}<input type="hidden" name="id" value="{{forum.id}}">{% endif %}
-    <div class="docs-input-sizes">
-        <div class="control-group">
-            <label class="control-label" for="name">Название</label>
-            <div class="controls">
-                <input type="text" name="name" id="name" class="input-xxlarge" value="{{forum.name}}" style="display: inline-block;">
-             </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label" for="name">Название</label>
+        <div class="col-lg-10">
+            <input type="text" name="name" id="name" class="form-control" value="{{forum.name}}" style="display: inline-block;">
          </div>
-        <div style="text-align: center;margin-top: 50px;">
-            <button class="btn btn-large btn-primary save_forum" type="button">{% if project.id %}Сохранить{% else %}Создать{% endif %}</button>
-        </div>
+     </div>
+    <div style="text-align: center;margin-top: 50px;">
+        <button class="btn btn-large btn-primary save_forum" type="button">{% if project.id %}Сохранить{% else %}Создать{% endif %}</button>
     </div>
 </form>
 <div class="clearfix"></div>

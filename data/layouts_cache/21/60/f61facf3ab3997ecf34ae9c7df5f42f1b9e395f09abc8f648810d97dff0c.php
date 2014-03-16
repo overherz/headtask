@@ -68,7 +68,7 @@ class __TwigTemplate_2160f61facf3ab3997ecf34ae9c7df5f42f1b9e395f09abc8f648810d97
         // line 21
         echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin-bottom:0px;\">
     <input type=\"hidden\" name=\"page\" value=\"\">
-    <table class=\"table table-condensed\" id=\"filter_table\">
+    <table class=\"table table-condensed table-border\" id=\"filter_table\">
         <tr>
             <th>Статус</th>
             <th>Приоритет</th>

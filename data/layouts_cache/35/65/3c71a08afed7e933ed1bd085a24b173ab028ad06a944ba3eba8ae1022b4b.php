@@ -202,18 +202,25 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
             // line 84
             echo \layout::func_from_text("            </tbody>
         </table>
-    </div>
+    ");
+        }
+        // line 87
+        echo \layout::func_from_text("    </div>
 </div>
 
-<ul class=\"breadcrumbs-one second\">
+");
+        // line 90
+        if ((($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "closed") || (isset($context["comments"]) ? $context["comments"] : null))) {
+            // line 91
+            echo \layout::func_from_text("<ul class=\"breadcrumbs-one second\">
     <li><a class=\"current\">Комментарии</a></li>
 </ul>
 
 <div class=\"all_comments\">
     ");
-            // line 94
+            // line 96
             if ((isset($context["comments"]) ? $context["comments"] : null)) {
-                // line 95
+                // line 97
                 echo \layout::func_from_text("        ");
                 $context['_parent'] = (array) $context;
                 $context['_seq'] = twig_ensure_traversable((isset($context["comments"]) ? $context["comments"] : null));
@@ -231,11 +238,11 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
                     $context['loop']['last'] = 1 === $length;
                 }
                 foreach ($context['_seq'] as $context["_key"] => $context["com"]) {
-                    // line 96
+                    // line 98
                     echo \layout::func_from_text("            ");
                     $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/comment.html"), "method"));
                     $template->display($context);
-                    // line 97
+                    // line 99
                     echo \layout::func_from_text("        ");
                     ++$context['loop']['index0'];
                     ++$context['loop']['index'];
@@ -249,19 +256,26 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['com'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 98
+                // line 100
                 echo \layout::func_from_text("    ");
             }
-            // line 99
+            // line 101
             echo \layout::func_from_text("</div>
-
-<div>
+");
+        }
+        // line 103
+        echo \layout::func_from_text("
+");
+        // line 104
+        if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "closed")) {
+            // line 105
+            echo \layout::func_from_text("<div>
     <a href=\"#\" id=\"botnewcomm\" style=\"margin-top: 10px;\" class=\"btn btn-primary comment_to_comment\" to_comment=\"0\">Добавить комментарий</a>
     <form class=\"comment_form\" style=\"display: none;\">
         <input type=\"hidden\" name=\"act\" value=\"add_comment\">
         <input type=\"hidden\" name=\"parent\" value=\"0\">
         <input type=\"hidden\" name=\"id\" value=\"");
-            // line 106
+            // line 110
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\">
 
@@ -271,7 +285,6 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
         <div class=\"cl\"></div>
     </form>
 </div>
-
 ");
         }
     }
@@ -288,6 +301,6 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
 
     public function getDebugInfo()
     {
-        return array (  265 => 106,  256 => 99,  253 => 98,  239 => 97,  235 => 96,  217 => 95,  215 => 94,  203 => 84,  194 => 81,  190 => 80,  185 => 78,  175 => 77,  171 => 75,  167 => 74,  156 => 65,  154 => 64,  147 => 61,  144 => 60,  140 => 59,  138 => 58,  134 => 56,  131 => 55,  108 => 35,  93 => 34,  87 => 33,  76 => 24,  73 => 22,  71 => 21,  69 => 20,  66 => 19,  63 => 18,  57 => 15,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  279 => 110,  272 => 105,  270 => 104,  267 => 103,  263 => 101,  260 => 100,  246 => 99,  242 => 98,  224 => 97,  222 => 96,  215 => 91,  213 => 90,  208 => 87,  203 => 84,  194 => 81,  190 => 80,  185 => 78,  175 => 77,  171 => 75,  167 => 74,  156 => 65,  154 => 64,  147 => 61,  144 => 60,  140 => 59,  138 => 58,  134 => 56,  131 => 55,  108 => 35,  93 => 34,  87 => 33,  76 => 24,  73 => 22,  71 => 21,  69 => 20,  66 => 19,  63 => 18,  57 => 15,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
     }
 }

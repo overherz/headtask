@@ -19,8 +19,7 @@ class __TwigTemplate_7bbee2e7b851869598ae57e782ee20503b1fb6a86a352d4269c4ce17d1b
         echo \layout::func_from_text("<div style=\"position: relative;margin-top: 10px;\">");
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("    <div style=\"position: absolute;left:0;bottom:0;\"><a href=\"\" id=\"show_filter\">Фильтр</a></div>
-</div>
+        echo \layout::func_from_text("</div>
 <table class=\"table table-hover table-condensed table-border\" id=\"tasks_table\">
     <thead>
     <tr>
@@ -35,9 +34,9 @@ class __TwigTemplate_7bbee2e7b851869598ae57e782ee20503b1fb6a86a352d4269c4ce17d1b
     </thead>
     <tbody>
     ");
-        // line 17
+        // line 16
         if ((isset($context["tasks"]) ? $context["tasks"] : null)) {
-            // line 18
+            // line 17
             echo \layout::func_from_text("    ");
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["tasks"]) ? $context["tasks"] : null));
@@ -55,11 +54,11 @@ class __TwigTemplate_7bbee2e7b851869598ae57e782ee20503b1fb6a86a352d4269c4ce17d1b
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["_key"] => $context["task"]) {
-                // line 19
+                // line 18
                 echo \layout::func_from_text("        ");
                 $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/task.html"), "method"));
                 $template->display($context);
-                // line 20
+                // line 19
                 echo \layout::func_from_text("    ");
                 ++$context['loop']['index0'];
                 ++$context['loop']['index'];
@@ -73,18 +72,18 @@ class __TwigTemplate_7bbee2e7b851869598ae57e782ee20503b1fb6a86a352d4269c4ce17d1b
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['task'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 21
+            // line 20
             echo \layout::func_from_text("    ");
         } else {
-            // line 22
+            // line 21
             echo \layout::func_from_text("    <td colspan=\"6\" id=\"no_file\">задач нет</td>
     ");
         }
-        // line 24
+        // line 23
         echo \layout::func_from_text("    </tbody>
 </table>
 ");
-        // line 26
+        // line 25
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
     }
 
@@ -100,6 +99,6 @@ class __TwigTemplate_7bbee2e7b851869598ae57e782ee20503b1fb6a86a352d4269c4ce17d1b
 
     public function getDebugInfo()
     {
-        return array (  88 => 26,  84 => 24,  80 => 22,  77 => 21,  63 => 20,  59 => 19,  41 => 18,  22 => 2,  19 => 1,  108 => 44,  105 => 43,  95 => 36,  89 => 33,  85 => 32,  81 => 31,  69 => 21,  67 => 20,  64 => 19,  57 => 15,  52 => 13,  49 => 12,  42 => 8,  39 => 17,  32 => 4,  29 => 3,);
+        return array (  87 => 25,  83 => 23,  79 => 21,  76 => 20,  62 => 19,  58 => 18,  40 => 17,  38 => 16,  22 => 2,  19 => 1,);
     }
 }

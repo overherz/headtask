@@ -61,7 +61,7 @@
     background: #3A87AD;
 }
 .month td {
-  height: 120px;
+  height: 60px;
   vertical-align: top !important;
 }
 .month td.inactive {
@@ -113,11 +113,9 @@
     float: right;
     margin-bottom: 0px;
     text-align: center;
-    color: #fff;
     height: 20px;
-    padding-top: 2px;
-    font-size: 12px;
-    background: #3A87AD;
+    padding: 2px;
+    font-size: 14px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -135,6 +133,7 @@
     height: inherit;
     line-height: 12px;
     font-size: 12px;
+    border: none !important;
 }
 
 .tasks_table td div {
@@ -152,13 +151,4 @@
 
 .weekend.weekend_hide {
     display: none;
-}
-
-.calendar_table {
-    border-spacing: 3px;
-    background: #3A87AD;
-}
-
-.calendar_table td,.calendar_table th {
-    border: none;
 }

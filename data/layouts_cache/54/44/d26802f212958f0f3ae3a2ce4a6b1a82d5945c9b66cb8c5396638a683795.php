@@ -63,7 +63,7 @@ class __TwigTemplate_5444d26802f212958f0f3ae3a2ce4a6b1a82d5945c9b66cb8c5396638a6
                 echo \layout::func_from_text("<i class=\"fa fa-user\" style=\"font-size: 20px;\"></i>");
             }
             echo \layout::func_from_text("</td>
-            <td><a href=\"/projects/~");
+            <td style=\"width: 1px;white-space: nowrap;\"><a href=\"/projects/~");
             // line 20
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id_project"), "html", null, true));
             echo \layout::func_from_text("/\">");
@@ -78,12 +78,12 @@ class __TwigTemplate_5444d26802f212958f0f3ae3a2ce4a6b1a82d5945c9b66cb8c5396638a6
             ");
             // line 22
             if ((!(isset($context["show_user"]) ? $context["show_user"] : null))) {
-                echo \layout::func_from_text("<td style=\"font-weight: bold;\">");
+                echo \layout::func_from_text("<td style=\"font-weight: bold;width: 1px;\">");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["comment_count"]) ? $context["comment_count"] : null), $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), array(), "array"), "count"), "html", null, true));
                 echo \layout::func_from_text("</td>");
             }
             // line 23
-            echo \layout::func_from_text("            <td>
+            echo \layout::func_from_text("            <td style=\"width: 100px;\">
                 ");
             // line 24
             if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") == "new")) {
@@ -108,7 +108,7 @@ class __TwigTemplate_5444d26802f212958f0f3ae3a2ce4a6b1a82d5945c9b66cb8c5396638a6
             }
             // line 30
             echo \layout::func_from_text("            </td>
-            <td>
+            <td style=\"width: 1px;\">
                 ");
             // line 32
             if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "priority") == "1")) {
@@ -124,12 +124,12 @@ class __TwigTemplate_5444d26802f212958f0f3ae3a2ce4a6b1a82d5945c9b66cb8c5396638a6
                 ");
             } elseif (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "priority") == "4")) {
                 // line 35
-                echo \layout::func_from_text("<span class=\"label label-important\">критический</span>
+                echo \layout::func_from_text("<span class=\"label label-danger\">критический</span>
                 ");
             }
             // line 37
             echo \layout::func_from_text("            </td>
-            <td style=\"width: 100px;\">
+            <td style=\"width: 120px;\">
                 ");
             // line 39
             $context["undate"] = false;
@@ -158,11 +158,11 @@ class __TwigTemplate_5444d26802f212958f0f3ae3a2ce4a6b1a82d5945c9b66cb8c5396638a6
             echo \layout::func_from_text("\" role=\"progressbar\" aria-valuenow=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "percent"), "html", null, true));
             echo \layout::func_from_text("\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: ");
-            if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "percent") > 0)) {
+            if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "percent") > 10)) {
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "percent"), "html", null, true));
                 echo \layout::func_from_text("%;");
             } else {
-                echo \layout::func_from_text("15px;");
+                echo \layout::func_from_text("20px;");
             }
             echo \layout::func_from_text("\">
                         <span>");
@@ -176,7 +176,7 @@ class __TwigTemplate_5444d26802f212958f0f3ae3a2ce4a6b1a82d5945c9b66cb8c5396638a6
             // line 50
             if ((!(isset($context["show_user"]) ? $context["show_user"] : null))) {
                 // line 51
-                echo \layout::func_from_text("            <td>
+                echo \layout::func_from_text("            <td style=\"width: 1px;white-space: nowrap;\">
                 <a href=\"/users/~");
                 // line 52
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "assigned"), "html", null, true));
@@ -201,10 +201,6 @@ class __TwigTemplate_5444d26802f212958f0f3ae3a2ce4a6b1a82d5945c9b66cb8c5396638a6
             if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "closed")) {
                 // line 58
                 echo \layout::func_from_text("                    ");
-                if ((isset($context["undate"]) ? $context["undate"] : null)) {
-                    echo \layout::func_from_text("-");
-                }
-                echo \layout::func_from_text(" ");
                 if ((($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "diff") != "0") && ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "diff") != "inf"))) {
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "diff"), "html", null, true));
                     echo \layout::func_from_text(" ");
@@ -235,16 +231,7 @@ class __TwigTemplate_5444d26802f212958f0f3ae3a2ce4a6b1a82d5945c9b66cb8c5396638a6
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 67
         echo \layout::func_from_text("    </tbody>
-</table>
-");
-        // line 69
-        $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
-        // line 70
-        echo \layout::func_from_text("<script>
-    \$(document).ready(function (\$) {
-        animate_progress_bars();
-    });
-</script>");
+</table>");
     }
 
     public function getTemplateName()
@@ -259,6 +246,6 @@ class __TwigTemplate_5444d26802f212958f0f3ae3a2ce4a6b1a82d5945c9b66cb8c5396638a6
 
     public function getDebugInfo()
     {
-        return array (  243 => 70,  241 => 69,  237 => 67,  228 => 63,  221 => 60,  218 => 59,  203 => 58,  201 => 57,  198 => 56,  192 => 53,  182 => 52,  179 => 51,  177 => 50,  170 => 46,  155 => 45,  149 => 44,  146 => 43,  143 => 42,  140 => 41,  137 => 40,  135 => 39,  131 => 37,  127 => 35,  123 => 34,  119 => 33,  114 => 32,  110 => 30,  105 => 28,  102 => 27,  98 => 26,  94 => 25,  89 => 24,  86 => 23,  80 => 22,  74 => 21,  68 => 20,  62 => 19,  53 => 18,  48 => 17,  42 => 13,  38 => 12,  33 => 9,  29 => 8,  21 => 2,  19 => 1,);
+        return array (  233 => 67,  224 => 63,  217 => 60,  214 => 59,  203 => 58,  201 => 57,  198 => 56,  192 => 53,  182 => 52,  179 => 51,  177 => 50,  170 => 46,  155 => 45,  149 => 44,  146 => 43,  143 => 42,  140 => 41,  137 => 40,  135 => 39,  131 => 37,  127 => 35,  123 => 34,  119 => 33,  114 => 32,  110 => 30,  105 => 28,  102 => 27,  98 => 26,  94 => 25,  89 => 24,  86 => 23,  80 => 22,  74 => 21,  68 => 20,  62 => 19,  53 => 18,  48 => 17,  42 => 13,  38 => 12,  33 => 9,  29 => 8,  21 => 2,  19 => 1,);
     }
 }

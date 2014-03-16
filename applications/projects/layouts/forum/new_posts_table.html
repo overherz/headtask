@@ -1,12 +1,14 @@
 {% include '/source/jpaginator_boot.html' %}
 
 {% if new_posts %}<div class="new_post_count"><a href='' class="set_all_read">Отметить все прочитанным</a></div>{% endif %}
-<table class="table table-bordered table-hover vert_middle table-condensed" style="background: #fff;" id="tasks_table">
+<table class="table table-border table-hover vert_middle table-condensed" style="background: #fff;" id="tasks_table">
+    <thead>
     <tr>
         <th>Название форума</th>
         <th>Название темы</th>
         <th style="width: 1px;white-space: nowrap;">Количество новых сообщений</th>
     </tr>
+    </thead>
     <tbody>
     {% if new_posts %}
         {% for n in new_posts %}

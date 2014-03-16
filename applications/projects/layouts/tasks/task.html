@@ -15,7 +15,7 @@
         {% if task.priority == "1" %}<span class="label label-default">низкий</span>
         {% elseif task.priority == "2" %}<span class="label label-success">обычный</span>
         {% elseif task.priority == "3" %}<span class="label label-warning">высокий</span>
-        {% elseif task.priority == "4" %}<span class="label label-important">критический</span>
+        {% elseif task.priority == "4" %}<span class="label label-danger">критический</span>
         {% endif %}
     </td>
     <td><a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a><div class="nickname">{{task.assigned_nickname}}</div></td>

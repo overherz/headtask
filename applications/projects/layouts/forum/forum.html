@@ -12,13 +12,15 @@
 
 {% block project_data %}
 <div class="new_post_count"><a href='/projects/forum/new_posts/{{project.id}}'>Новый сообщений: {{new_post_count}}</a></div>
-<table class="table table-bordered table-hover table-condensed" id="tasks_table">
+<table class="table table-border table-hover table-condensed" id="tasks_table">
+    <thead>
     <tr>
         <th>Название раздела</th>
         <th>Статистика</th>
         <th>Последнее сообщение</th>
         {% if access.forum %}<th></th>{% endif %}
     </tr>
+    </thead>
     <tbody>
     {% if forums %}
     {% for f in forums %}
@@ -38,10 +40,10 @@
             {% endif %}
         </td>
         {% if access.forum %}
-        <td style="width: 1px;">
+        <td style="width: 80px;">
             <div class="btn-group">
-                <a class="btn btn-oscar btn-small" href="/projects/forum/edit/{{f.id}}"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-oscar btn-small" delete_forum={{f.id}} href=""><i class="fa fa-trash-o"></i></a>
+                <a class="btn btn-oscar btn-sm" href="/projects/forum/edit/{{f.id}}"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-oscar btn-sm" delete_forum={{f.id}} href=""><i class="fa fa-trash-o"></i></a>
             </div>
         </td>
         {% endif %}

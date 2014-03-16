@@ -83,9 +83,11 @@
             {% endfor %}
             </tbody>
         </table>
+    {% endif %}
     </div>
 </div>
 
+{% if task.status != 'closed' or comments %}
 <ul class="breadcrumbs-one second">
     <li><a class="current">Комментарии</a></li>
 </ul>
@@ -97,7 +99,9 @@
         {% endfor %}
     {% endif %}
 </div>
+{% endif %}
 
+{% if task.status != 'closed' %}
 <div>
     <a href="#" id="botnewcomm" style="margin-top: 10px;" class="btn btn-primary comment_to_comment" to_comment="0">Добавить комментарий</a>
     <form class="comment_form" style="display: none;">
@@ -111,6 +115,5 @@
         <div class="cl"></div>
     </form>
 </div>
-
 {% endif %}
 {% endblock %}
