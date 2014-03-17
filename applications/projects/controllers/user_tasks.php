@@ -110,7 +110,7 @@ class user_tasks extends \Controller {
             {
                 $datetime2 = date_create($row['end']);
                 $interval = date_diff($datetime1, $datetime2);
-                $row['diff'] = $interval->format('%d');
+                $row['diff'] = $interval->format('%R%a');
             }
             else $row['diff'] = "inf";
             $tasks[] = $row;
