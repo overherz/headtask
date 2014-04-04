@@ -302,7 +302,6 @@ class tasks extends \Controller {
             {
                 $_POST['end'] = convert_date($_POST['end'],true);
                 if (strtotime($_POST['end']) < strtotime($_POST['start'])) $res['error'][] = "Дата окончания не может быть меньше даты начала";
-                else if (strtotime(date('d.m.Y',time())) > strtotime($_POST['end'])) $res['error'][] = "Дата окончания не может меньше текущей";
             }
         }
         else $_POST['end'] = null;

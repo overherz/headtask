@@ -111,7 +111,7 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
         echo \layout::func_from_text(">
         </label>
     </div>
-    <div class=\"checkbox\" style=\"padding-left: 0;display: inline-block;\">
+    <div class=\"checkbox\" style=\"padding-left: 0;display: inline-block;margin-right: 10px;\">
         <label for=\"not_assigned\">Ничьи
             <input type=\"checkbox\" id=\"not_assigned\" name=\"not_assigned\" ");
         // line 36
@@ -121,11 +121,21 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
         echo \layout::func_from_text(" class=\"dashboard_option\">
         </label>
     </div>
+    <div class=\"checkbox\" style=\"padding-left: 0;display: inline-block;\">
+        <label for=\"closed\">Закрытые
+            <input type=\"checkbox\" id=\"closed\" name=\"closed\" ");
+        // line 41
+        if (($this->getAttribute((isset($context["cookie_data"]) ? $context["cookie_data"] : null), "dashboard_closed") == "show")) {
+            echo \layout::func_from_text("checked");
+        }
+        echo \layout::func_from_text(" class=\"dashboard_option\">
+        </label>
+    </div>
 ");
-        // line 39
+        // line 44
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "calendar/task_today.html"), "method"));
         $template->display($context);
-        // line 40
+        // line 45
         echo \layout::func_from_text("
 <ul class=\"breadcrumbs-one second\">
     <li><a class=\"current\">Форумы</a></li>
@@ -140,21 +150,21 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
     </thead>
     <tbody>
     ");
-        // line 53
+        // line 58
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["new_posts"]) ? $context["new_posts"] : null));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["n"]) {
-            // line 54
+            // line 59
             echo \layout::func_from_text("        <tr>
             <td><a href=\"/projects/forum/new_posts/");
-            // line 55
+            // line 60
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["n"]) ? $context["n"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("/\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["n"]) ? $context["n"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("</a></td>
             <td>");
-            // line 56
+            // line 61
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["n"]) ? $context["n"] : null), "count"), "html", null, true));
             echo \layout::func_from_text("</td>
         </tr>
@@ -162,7 +172,7 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 59
+            // line 64
             echo \layout::func_from_text("        <tr>
             <td colspan=\"2\">Новых сообщений на форумах нет</td>
         </tr>
@@ -171,7 +181,7 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['n'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 63
+        // line 68
         echo \layout::func_from_text("    </tbody>
 </table>
 
@@ -190,6 +200,6 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
 
     public function getDebugInfo()
     {
-        return array (  175 => 63,  166 => 59,  158 => 56,  152 => 55,  149 => 54,  144 => 53,  129 => 40,  126 => 39,  118 => 36,  108 => 31,  97 => 25,  91 => 24,  85 => 23,  79 => 22,  71 => 19,  65 => 18,  60 => 15,  57 => 14,  52 => 11,  49 => 10,  43 => 7,  40 => 6,  37 => 5,  31 => 3,);
+        return array (  185 => 68,  176 => 64,  168 => 61,  162 => 60,  159 => 59,  154 => 58,  139 => 45,  136 => 44,  128 => 41,  118 => 36,  108 => 31,  97 => 25,  91 => 24,  85 => 23,  79 => 22,  71 => 19,  65 => 18,  60 => 15,  57 => 14,  52 => 11,  49 => 10,  43 => 7,  40 => 6,  37 => 5,  31 => 3,);
     }
 }
