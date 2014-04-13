@@ -2000,20 +2000,29 @@ fieldset legend {
     margin-top: -2px;
 }
 
-.jq-checkbox,.jq-radio {
+.jq-radio {
     box-sizing: content-box;
     -moz-box-sizing: content-box;
-    margin-top: -2px;
+    border-radius: 50% !important;
+}
+
+.jq-radio.checked .jq-radio__div {
+    border-radius: 50% !important;
 }
 
 .jq-selectbox__select,input[type=text],input[type=password] {
     border-bottom-color: #CCC;
-    border-radius: 0 !important;
 }
 .jq-selectbox__select {
     padding-left: 6px;
 }
 
+.jq-checkbox {
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    top: 0;
+    border-radius: 0 !important;
+}
 
 .jq-selectbox__select:hover {
     background-color: #fff;
@@ -2093,7 +2102,7 @@ input,textarea {
 .form-signin .checkbox {
     margin-bottom: 10px;
 }
-.form-signin input[type="text"],
+.form-signin input[type="text"],#lost_pass_form input[type="text"],
 .form-signin input[type="password"] {
     font-size: 16px;
     height: auto;

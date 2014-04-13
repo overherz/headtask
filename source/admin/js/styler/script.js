@@ -75,6 +75,11 @@ $(document).ready(function(){
 	$('#flotTip').remove();
 });
 
-jQuery.ajaxSetup({complete: function(){jQuery("select").styler().trigger('refresh'); }});
+jQuery.ajaxSetup({complete: function(){
+        if(jQuery().styler) {
+            jQuery("input,select").styler();
+        }
+    }}
+);
 
 

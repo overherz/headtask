@@ -81,7 +81,7 @@ class calendar extends \Controller {
             if ($_COOKIE['dashboard_closed'] == "show") $closed = "or (pt.end='{$date}' and pt.status = 'closed')";
         }
 
-        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
+        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
@@ -103,7 +103,7 @@ class calendar extends \Controller {
             $tasks[$row['id']] = $row;
         }
 
-        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,pt.type,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
+        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
@@ -125,7 +125,7 @@ class calendar extends \Controller {
             $tasks[$row['id']] = $row;
             $manager = true;
         }
-        if ($tasks) usort($tasks, array($this,"sort_tasks"));
+        if ($tasks) uasort($tasks, array($this,"sort_tasks"));
         return array('tasks' => $tasks,'manager' => $manager);
     }
 

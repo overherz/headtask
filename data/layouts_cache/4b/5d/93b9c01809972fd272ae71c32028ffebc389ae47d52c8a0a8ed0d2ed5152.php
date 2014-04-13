@@ -84,15 +84,15 @@ class __TwigTemplate_4b5d93b9c01809972fd272ae71c32028ffebc389ae47d52c8a0a8ed0d2e
                 }
                 foreach ($context['_seq'] as $context["_key"] => $context["t"]) {
                     // line 10
-                    echo \layout::func_from_text("            <span>file</span>: ");
+                    echo \layout::func_from_text("            ");
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["t"]) ? $context["t"] : null), "file"), "html", null, true));
-                    echo \layout::func_from_text(" <span style=\"text-decoration: underline\">line</span>: ");
+                    echo \layout::func_from_text(" (");
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["t"]) ? $context["t"] : null), "line"), "html", null, true));
-                    echo \layout::func_from_text("
+                    echo \layout::func_from_text(")
             ");
                     // line 11
                     if ((!$this->getAttribute((isset($context["loop"]) ? $context["loop"] : null), "last"))) {
-                        echo \layout::func_from_text(" | ");
+                        echo \layout::func_from_text(" &larr; ");
                     }
                     // line 12
                     echo \layout::func_from_text("        ");
@@ -157,6 +157,6 @@ class __TwigTemplate_4b5d93b9c01809972fd272ae71c32028ffebc389ae47d52c8a0a8ed0d2e
 
     public function getDebugInfo()
     {
-        return array (  143 => 20,  138 => 17,  115 => 14,  98 => 12,  94 => 11,  87 => 10,  70 => 9,  50 => 6,  44 => 5,  24 => 3,  21 => 2,  147 => 62,  144 => 61,  133 => 58,  129 => 57,  116 => 56,  112 => 13,  108 => 53,  101 => 48,  99 => 47,  95 => 45,  84 => 37,  79 => 35,  75 => 34,  71 => 33,  67 => 32,  63 => 7,  58 => 28,  41 => 4,  39 => 12,  26 => 6,  19 => 1,);
+        return array (  143 => 20,  138 => 17,  115 => 14,  112 => 13,  98 => 12,  94 => 11,  87 => 10,  70 => 9,  63 => 7,  50 => 6,  44 => 5,  41 => 4,  24 => 3,  21 => 2,  19 => 1,);
     }
 }

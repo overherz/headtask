@@ -38,9 +38,14 @@ class menu extends \Controller {
     }
 
     function generate_menu($application,$controller,$id,$target='top'){
-        $query = $this->db->prepare("select * from menu where invisible IS NULL and target=? order by position");
-        $query->execute(array($target));
-        while ($row = $query->fetch()) $menu[$row['id']] = $row;
+        if (!$this->cache->get('menu'))
+        {
+            $query = $this->db->prepare("select * from menu where invisible IS NULL and target=? order by position");
+            $query->execute(array($target));
+            while ($row = $query->fetch()) $menu[$row['id']] = $row;
+            $this->cache->set('menu',$menu,300);
+        }
+        else $menu = $this->cache->get('menu');
 
         $arr = false;
         if($menu)

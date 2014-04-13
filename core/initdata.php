@@ -24,14 +24,17 @@ if ($INFO['antiddos'] && php_sapi_name() != "cli")
 
 foreach ($INFO as $key => $value)
 {
-    if ($key == "dev_mode")
+    if (!is_array($value))
     {
-        define(strtoupper('true_dev_mode'),$value);
-        if ((array_key_exists('secret_dev_mode',$_COOKIE) && $_COOKIE['secret_dev_mode'] == "15071965") || $value) define(strtoupper('secret_dev_mode'),true);
-        if ((php_sapi_name() == "cli" || (array_key_exists('dev_mode',$_GET) && $_GET['dev_mode'] == "off") || (array_key_exists('dev_mode',$_POST) && $_POST['dev_mode'] == "off") ) && !array_key_exists('get_ajax_queries',$_GET)) $value = false;
-        else if (array_key_exists('secret_dev_mode',$_COOKIE) && $_COOKIE['secret_dev_mode'] == "15071965") $value = true;
+        if ($key == "dev_mode")
+        {
+            define(strtoupper('true_dev_mode'),$value);
+            if ((array_key_exists('secret_dev_mode',$_COOKIE) && $_COOKIE['secret_dev_mode'] == "15071965") || $value) define(strtoupper('secret_dev_mode'),true);
+            if ((php_sapi_name() == "cli" || (array_key_exists('dev_mode',$_GET) && $_GET['dev_mode'] == "off") || (array_key_exists('dev_mode',$_POST) && $_POST['dev_mode'] == "off") ) && !array_key_exists('get_ajax_queries',$_GET)) $value = false;
+            else if (array_key_exists('secret_dev_mode',$_COOKIE) && $_COOKIE['secret_dev_mode'] == "15071965") $value = true;
+        }
+        define(strtoupper($key),$value);
     }
-    define(strtoupper($key),$value);
 }
 
 if ($INFO['dev_mode'] || (defined('SECRET_DEV_MODE') && SECRET_DEV_MODE)) error_reporting(E_ALL & ~E_NOTICE);
@@ -45,11 +48,16 @@ if ($_GET['get_ajax_queries'] && defined('DEV_MODE') && DEV_MODE) get_resources(
 
 require_once(ROOT.'core/database.php');
 require_once(ROOT.'core/router.php');
+require_once(ROOT.'core/cache.php');
+if (CACHE)
+{
+    phpFastCache::setup("storage",CACHE_STORAGE);
+    if (in_array(CACHE_STORAGE,array('memcache','memcached'))) phpFastCache::setup("server",$INFO['cache_server']);
+}
+
 if(php_sapi_name() != "cli") new Router();
 
 set_end_statistic();
 
 if(defined('DEV_MODE') && DEV_MODE) get_resources();
 if ($_GET['ajax'] && ($INFO['dev_mode'] || (defined('SECRET_DEV_MODE') && SECRET_DEV_MODE))) $_SESSION['dev'] = $GLOBALS['dev'];
-
-?>

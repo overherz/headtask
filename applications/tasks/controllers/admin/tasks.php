@@ -62,7 +62,6 @@ class tasks extends \Admin {
 
         $c_t = $this->get_controller("tasks");
         $cron_string[] = "*/1 * * * * {$user_info['name']} ".$c_t->getPHPExecutableFromPath()." ".dirname(__DIR__)."/tasks.php ".get_setting('cron_key')." {$c_t->get_dev_null()}";
-        $cron_string[] = "@reboot {$user_info['name']} sleep 60 && ".$this->get_controller("tasks")->getPHPExecutableFromPath()." ".dirname(__DIR__)."/tasks.php ".get_setting('cron_key')." clear {$c_t->get_dev_null()}";
 
         $data = array('tasks'=>$tasks, 'total'=>$total,'paginator' => $paginator,'form' => $form,'cron_string' => $cron_string,'exec' => $exec);
         if (!isset($_POST['page']))

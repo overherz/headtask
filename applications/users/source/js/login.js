@@ -26,6 +26,8 @@ $(document).ready(function($) {
             return false;
         }
     });
+
+    $("[name='login']").focus();
 });
 
 function hide_message_login()

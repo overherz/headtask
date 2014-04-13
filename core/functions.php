@@ -244,7 +244,14 @@ function shutdown()
         }
     }
 
-    if ($isError) debug($error,true,true);
+    if ($isError)
+    {
+        if ($GLOBALS['cli_task_id'])
+        {
+            \Controller::get_controller("tasks","error")->set_error($error['message']."\n file: ".$error['file']."\n line:  ".$error['line'],$GLOBALS['cli_task_id']);
+        }
+        else debug($error,true,true);
+    }
 }
 
 

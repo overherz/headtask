@@ -1,0 +1,30 @@
+<form style="width: 500px;" id="percent_form">
+<b>Статус выполнения</b>
+<div id="task_percent"></div>
+<input type="hidden" name="act" value="forward_task">
+<input type="hidden" name="id" value="{{ task.id }}">
+<input type="hidden" id="current_percent" name="current_percent" value="{{ task.percent }}">
+<input type="hidden" id="new_current_percent" name="new_current_percent" value="{{ task.percent }}">
+<input type="hidden" id="spent_time" name="spent_time" value="0">
+<input type="hidden" id="time1_val" name="time1" value="0">
+<input type="hidden" id="time2_val" name="time2" value="0">
+
+
+<div style="margin-top: 10px;">
+    <div>Текущий: <b>{{ task.percent }}</b> %</div>
+    <div>Выбранный: <b><span id="new_percent">{{ task.percent }}</span></b> %</div>
+</div>
+
+<div style="height: 30px;">
+    <div id="percent_close" style="color: red;display: none;">Задача будет закрыта</div>
+</div>
+
+<div style="margin-top: 10px;"><b>Затраченное время</b></div>
+<div id="time1"></div>
+<div id="time2" style="margin-top: 15px;"></div>
+
+<div style="margin-top: 10px;">
+    <div>Текущее: <b>{{ task.spent_time }}</b> ч</div>
+    <div>Выбранное: <b>+ <span id="new_time">0</span></b> ч.</div>
+</div>
+</form>

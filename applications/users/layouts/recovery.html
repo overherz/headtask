@@ -1,0 +1,30 @@
+{% extends "/source/index.html" %}
+
+{% block js %}
+<script>
+    $(document).ready(function($)
+    {
+        $(".menu a").removeClass("active");
+    });
+</script>
+{% endblock  %}
+{% block body %}
+<div class="content">
+{% if id %}
+    {% if error %}<span style="color:red;">{{error}}</span>
+    {% elseif change %}
+        <div style="color:green;">Вам отправлено письмо с новым паролем</div>    
+    {% endif %}
+{% else %}
+    {% if success %}
+    <div style="color:green;">Вам отправлено письмо с инструкцией</div>
+    {% else %}
+    <form method="post">
+        Логин <span style="color:red;">{{error}}</span><br>
+        <input type="text" name="email" maxlength="60" class="input"/><br><br>
+        <a class="newbtn" href="" onclick="$(this).parent().submit();return false;"><span>Запросить восстановление</span></a>
+    </form>
+    {% endif %}
+{% endif %}
+</div>
+{% endblock %}

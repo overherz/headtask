@@ -9,11 +9,17 @@ class projects extends \Controller {
     {
         switch($_POST['act'])
         {
+            case "get_delete_project":
+                $this->get_delete_project();
+                break;
             case "delete_project":
                 $this->delete_project();
                 break;
             case "get_panel_page_projects":
                 $this->get_projects();
+                break;
+            case "get_category_form":
+                $this->get_category_form();
                 break;
             default:
                 $this->default_for_this();
@@ -147,46 +153,65 @@ class projects extends \Controller {
         return $project;
     }
 
-    function delete_project()
+    function get_delete_project()
     {
         $access = $this->get_controller("projects","users")->get_access($_POST['id']);
         if ($access['access']['delete_project'])
         {
-            $this->db->beginTransaction();
-
-            $query = $this->db->prepare("select * from projects_files where id_project=?");
-            if (!$query->execute(array($_POST['id']))) $res['error'] = "Ошибка базы данных";
-            else $files = $query->fetchAll();
-
-            $query = $this->db->prepare("delete from projects where id=?");
-            if (!$query->execute(array($_POST['id']))) $res['error'] = "Возникла ошибка при попытке удалить проект";
+            $captcha = $this->get_controller("captcha")->get_captcha(6);
+            $res['success'] = $this->layout_get("get_delete_project.html",array('captcha' => $captcha,'project' => $access['project']));
         }
         else $res['error'] = "У Вас недостаточно прав";
 
+        echo json_encode($res);
+    }
+
+    function delete_project()
+    {
+        $access = $this->get_controller("projects","users")->get_access($_POST['id']);
+
+        if ($_SESSION['captcha'][$_POST['id_captcha']] != $_POST['captcha'] || $_POST['captcha'] == "" || $_SESSION['captcha'][$_POST['id_captcha']] == "") $res['error']['text'] = "Неверная картинка";
+
         if (!$res['error'])
         {
-            $res['success'] = true;
-            $this->db->commit();
-
-            if ($files)
+            if ($access['access']['delete_project'])
             {
-                require_once(ROOT.'libraries/imaginator/imaginator.php');
-                foreach ($files as $v)
+                $query = $this->db->prepare("select * from projects_files where id_project=?");
+                if (!$query->execute(array($_POST['id']))) $res['error'] = "Ошибка базы данных";
+                else $files = $query->fetchAll();
+
+                $query = $this->db->prepare("delete from projects where id=?");
+                if (!$query->execute(array($_POST['id']))) $res['error'] = "Возникла ошибка при попытке удалить проект";
+                else
                 {
-                    if ($v['type'] == "other")
+                    $res['success'] = true;
+
+                    if ($files)
                     {
-                        $folder = "uploads/projects";
-                        $path = $folder."/".real_path($v['file']);
-                        unlink ($path);
-                    }
-                    else if ($v['type'] == "image")
-                    {
-                        \imaginator::unlink_images($v['file'],"projects");
+                        require_once(ROOT.'libraries/imaginator/imaginator.php');
+                        foreach ($files as $v)
+                        {
+                            if ($v['type'] == "other")
+                            {
+                                $folder = "uploads/projects";
+                                $path = $folder."/".real_path($v['file']);
+                                unlink ($path);
+                            }
+                            else if ($v['type'] == "image")
+                            {
+                                \imaginator::unlink_images($v['file'],"projects");
+                            }
+                        }
                     }
                 }
             }
+            else $res['error']['text'] = "У Вас недостаточно прав";
         }
-        else $this->db->rollBack();
+        else
+        {
+            $captcha = $this->get_controller("captcha")->get_captcha(6);
+            $res['error']['captcha_html'] = $captcha;
+        }
         echo json_encode($res);
     }
 }

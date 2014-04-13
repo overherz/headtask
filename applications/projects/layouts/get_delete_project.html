@@ -1,0 +1,5 @@
+<form id="delete_project"><div style='text-align:center;'>Вы действительно хотите удалить проект <b>{{ project.name }}</b> ?</div>
+    <div id="captcha_div" style="margin-top: 20px;">{{ captcha|raw }}</div>
+    <input type="hidden" name="id" value="{{ project.id }}">
+    <input type="hidden" name="act" value="delete_project">
+</form>

@@ -1,0 +1,14 @@
+<div>Здравствуйте, <b>{{new_topics.fio}}</b></div>
+
+<div>На форумах Таскера появились новые темы</div>
+
+<br><br>
+{% for n in new_topics.topics %}
+    {% for nn in n  %}
+        {% if project_id != nn.id %}
+            {% set project_id = nn.id  %}
+            На форумах проекта {{ nn.name }}
+        {% endif %}
+        <div> <a href="http://{{server_name}}/projects/forum/show_topic/{{ nn.topic_id }}/"><b>{{ nn.topic_name }}</b></a>
+    {% endfor %}
+{% endfor %}

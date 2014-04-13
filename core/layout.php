@@ -3,7 +3,8 @@ require_once(ROOT.'libraries/Twig/Autoloader.php');
 
 class layout {
 
-    static $func_from_text = true;
+    static $func_from_text =false;
+    static $twig = false;
 
     static private function pre_render($path)
     {
@@ -27,7 +28,7 @@ class layout {
 
     static function func_from_text($text)
     {
-        if ($text != "" && \layout::$func_from_text)
+        if (\layout::$func_from_text && $text != "")
         {
             preg_match_all("/\[\[(.*)\]\]/",$text, $data);
             if (count($data) > 0 && $data[1])
@@ -54,28 +55,31 @@ class layout {
 
     static private function run($path)
     {
-        $settings = array();
-        $settings['cache'] = ROOT.'data'.DS.'layouts_cache';
-        $settings['autoescape'] = true;
-        $settings['auto_reload'] = true;
+        if (!self::$twig)
+        {
+            $settings = array();
+            $settings['cache'] = ROOT.'data'.DS.'layouts_cache';
+            $settings['autoescape'] = true;
+            $settings['auto_reload'] = true;
 
-        Twig_Autoloader::register();
-        $loader=new Twig_Loader_Filesystem(ROOT);
+            Twig_Autoloader::register();
+            $loader=new Twig_Loader_Filesystem(ROOT);
 
-        $twig=new Twig_Environment($loader,$settings);
+            self::$twig=new Twig_Environment($loader,$settings);
 
-        // self functions
-        $twig->addFilter('lang', new Twig_Filter_Function('lang'));
-        $twig->addFilter('cut', new Twig_Filter_Function('cut'));
-        $twig->addFilter('real_path', new Twig_Filter_Function('real_path'));
-        $twig->addFilter('source_path', new Twig_Filter_Function('source_path'));
-        $twig->addFilter('long_word', new Twig_Filter_Function('long_word',array('is_escaper' => true,'is_safe' => array('all'))));
+            // self functions
+            self::$twig->addFilter('lang', new Twig_Filter_Function('lang'));
+            self::$twig->addFilter('cut', new Twig_Filter_Function('cut'));
+            self::$twig->addFilter('real_path', new Twig_Filter_Function('real_path'));
+            self::$twig->addFilter('source_path', new Twig_Filter_Function('source_path'));
+            self::$twig->addFilter('long_word', new Twig_Filter_Function('long_word',array('is_escaper' => true,'is_safe' => array('all'))));
 
-        $twig->addExtension(new Twig_Extension_Optimizer());
-       // $twig->addExtension(new Twig_Extension_I18n());
+            self::$twig->addExtension(new Twig_Extension_Optimizer());
+            // $twig->addExtension(new Twig_Extension_I18n());
+        }
 
         try {
-            return $twig->loadTemplate($path);
+            return self::$twig->loadTemplate($path);
         }
         catch (Exception $e) {
             if(defined('DEV_MODE') && DEV_MODE) pr($e->getMessage());

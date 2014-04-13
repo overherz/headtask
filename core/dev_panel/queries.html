@@ -7,8 +7,8 @@
     <td {% if loop.index % 2 == 0 %}style='background:#fff;'{% endif %}>
     <div class="backtrace">
         {% for t in qu.trace %}
-            <span>file</span>: {{t.file}} <span style="text-decoration: underline">line</span>: {{t.line}}
-            {% if not loop.last %} | {% endif %}
+            {{t.file}} ({{t.line}})
+            {% if not loop.last %} &larr; {% endif %}
         {% endfor %}
     </div>
     <div style="clear: both;">{{qu.query|raw}}{% if qu.error.2 != '' %} <div style='color:red;'>{{qu.error.2}}</div>{% endif %}</div>

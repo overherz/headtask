@@ -16,6 +16,7 @@ class sitemap_builder extends \Controller {
             if ($key == get_setting('cron_key'))
             {
                 $this->id = $task['id'];
+                $GLOBALS['cli_task_id'] = $this->id;
                 $task_cr->set_status($id,"run",$task['period']);
                 $this->get_controller("sitemap_builder")->create_sitemap();
                 $task_cr->set_status($id,"stand");

@@ -16,6 +16,7 @@ class new_posts extends \Controller {
             if ($key == get_setting('cron_key'))
             {
                 $this->id = $task['id'];
+                $GLOBALS['cli_task_id'] = $this->id;
                 $task_cr->set_status($id,"run",$task['period']);
                 $this->get_controller("projects","forum")->new_posts_to_mail();
                 $task_cr->set_status($id,"stand");

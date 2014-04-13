@@ -22,6 +22,7 @@ class captcha extends \Controller {
 
     function get_captcha($count=3)
     {
+        session_start();
         require_once(ROOT.'/libraries/AES_class.php');
         $this->aes = new \AESCrypt($this->key);
 
@@ -44,8 +45,8 @@ class captcha extends \Controller {
                 $captcha_id = rand(1,10000);
                 $_SESSION['captcha'][$captcha_id] = $i;
             }
-            $captcha_html .= "<td align='center' style='vertical-align:top;padding: 0px;'><label for='capt{$i}'><img src='/captcha/?image={$row['image']}' style='margin-right:5px;border:none;cursor:pointer;width: 30px;'></label></td>";
-            $radio .= "<td align='center' width='1'><input type='radio' id ='capt{$i}' name='captcha' value='{$i}' class='radio' style='border:none;'></td>";
+            $captcha_html .= "<td style='vertical-align:top;height:30px;text-align:center;padding: 0;'><label for='capt{$i}' style='margin-bottom: 0;'><img src='/captcha/?image={$row['image']}' style='background:#fff;border:none;cursor:pointer;width: 30px;' alt='image'></label></td>";
+            $radio .= "<td style='text-align: center;' width='1'><input type='radio' id ='capt{$i}' name='captcha' value='{$i}' style='border:none;'></td>";
             $i++;
         }
 

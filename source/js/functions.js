@@ -14,6 +14,45 @@
 
 (function($){$.InFieldLabels=function(b,c,d){var f=this;f.$label=$(b);f.label=b;f.$field=$(c);f.field=c;f.$label.data("InFieldLabels",f);f.showing=true;f.init=function(){f.options=$.extend({},$.InFieldLabels.defaultOptions,d);if(f.$field.val()!=""){f.$label.hide();f.showing=false}else{f.$label.show()};f.$field.focus(function(){f.fadeOnFocus()}).blur(function(){f.checkForEmpty(true)}).bind('keydown.infieldlabel',function(e){f.hideOnChange(e)}).change(function(e){f.checkForEmpty()}).bind('onPropertyChange',function(){f.checkForEmpty()})};f.fadeOnFocus=function(){if(f.showing){f.setOpacity(f.options.fadeOpacity)}};f.setOpacity=function(a){f.$label.stop().animate({opacity:a},f.options.fadeDuration);f.showing=(a>0.0)};f.checkForEmpty=function(a){if(f.$field.val()==""){f.prepForShow();f.setOpacity(a?1.0:f.options.fadeOpacity)}else{f.setOpacity(0.0)}};f.prepForShow=function(e){if(!f.showing){f.$label.css({opacity:0.0}).show();f.$field.bind('keydown.infieldlabel',function(e){f.hideOnChange(e)})}};f.hideOnChange=function(e){if((e.keyCode==16)||(e.keyCode==9))return;if(f.showing){f.$label.hide();f.showing=false};f.$field.unbind('keydown.infieldlabel')};f.init()};$.InFieldLabels.defaultOptions={fadeOpacity:0.5,fadeDuration:300};$.fn.inFieldLabels=function(c){return this.each(function(){var a=$(this).attr('for');if(!a)return;var b=$("input#"+a+"[type='text'],"+"input#"+a+"[type='password'],"+"textarea#"+a);if(b.length==0)return;(new $.InFieldLabels(this,b[0],c))})}})(jQuery);
 
+(function() {
+    /*
+     arguments: attributes
+     attributes can be a string: then it goes directly inside the href attribute.
+     e.g.: $.getCSS("fresh.css")
+
+     attributes can also be an objcet.
+     e.g.: $.getCSS({href:"cool.css", media:"print"})
+     or:	$.getCSS({href:"/styles/forest.css", media:"screen"})
+     */
+    var getCSS = function(attributes) {
+        // setting default attributes
+        if(typeof attributes === "string") {
+            var href = attributes;
+            attributes = {
+                href: href
+            };
+        }
+        if(!attributes.rel) {
+            attributes.rel = "stylesheet"
+        }
+        // appending the stylesheet
+        // no jQuery stuff here, just plain dom manipulations
+        var styleSheet = document.createElement("link");
+        for(var key in attributes) {
+            styleSheet.setAttribute(key, attributes[key]);
+        }
+        var head = document.getElementsByTagName("head")[0];
+        head.appendChild(styleSheet);
+    };
+
+    if(typeof jQuery === "undefined") {
+        window.getCSS = getCSS;
+    } else {
+        jQuery.getCSS = getCSS;
+    }
+
+})();
+
 $(document).ready(function($) {
     var offset = 120;
     var duration = 500;
@@ -69,7 +108,7 @@ function show_popup(html,title,callback1,callback2){
     $(".popup_bottom").html(default_bottom);
     if ($(".popup_body #tabs").length > 0) $(".popup_body #tabs" ).tabs();
 
-    $("body").css({"overflow":"hidden","margin-right": scrollbarWidth()});
+    $("body").css({"overflow":"hidden","marginRight": scrollbarWidth()});
     $('.popup').css({'marginTop':get_top_offset(),'display':'inline-block'})
     window.popup = setInterval(function(){
         $('.popup').css({'marginTop':get_top_offset()})
@@ -117,7 +156,7 @@ function hide_popup(callback)
     hide_overlay();
     clearInterval(window.popup);
     $('.popup_wrap').remove();
-    $("body").css({"overflow":"","margin-right": ""});
+    $("body").css({"overflow":"","marginRight": "","paddingRight": ""});
 }
 
 function show_overlay()
@@ -212,19 +251,34 @@ function user_api(request,func,func1,path)
     });
 }
 
-function scrollbarWidth() {
-    var $inner = jQuery('<div style="width: 100%; height:200px;">test</div>'),
-        $outer = jQuery('<div style="width:200px;height:150px; position: absolute; top: 0; left: 0; visibility: hidden; overflow:hidden;"></div>').append($inner),
-        inner = $inner[0],
-        outer = $outer[0];
+function scrollbarWidth(minus) {
+    if (!isMyStuffScrolling())
+    {
+        var $inner = jQuery('<div style="width: 100%; height:200px;">test</div>'),
+            $outer = jQuery('<div style="width:200px;height:150px; position: absolute; top: 0; left: 0; visibility: hidden; overflow:hidden;"></div>').append($inner),
+            inner = $inner[0],
+            outer = $outer[0];
 
-    jQuery('body').append(outer);
-    var width1 = inner.offsetWidth;
-    $outer.css('overflow', 'scroll');
-    var width2 = outer.clientWidth;
-    $outer.remove();
+        jQuery('body').append(outer);
+        var width1 = inner.offsetWidth;
+        $outer.css('overflow', 'scroll');
+        var width2 = outer.clientWidth;
+        $outer.remove();
 
-    return (width1 - width2) + "px";
+        if (minus) return -1 * (width1 - width2) + "px";
+        else return (width1 - width2) + "px";
+    }
+    else return false;
+}
+
+function isMyStuffScrolling() {
+    if ($("body").css('overflowY') == "scroll") return false;
+    else
+    {
+        var docHeight = $(document).height();
+        var scroll    = $(window).height() + $(window).scrollTop();
+    }
+    return (docHeight == scroll);
 }
 
 $(document).ready(function ($) {

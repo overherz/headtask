@@ -33,6 +33,7 @@ td.popup_close {
     padding:0;
     margin: 10px auto 10px auto;
     text-align: left;
+    display: inline-block;
 }
 
 .popup_title {

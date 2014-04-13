@@ -2,24 +2,6 @@ $(document).ready(function($)
 {
     $(".menu a").removeClass("active");
     $(".menu a.menu_users_profile_").addClass("active");
-    if ($("[name='background']").length > 0 )
-        $("[name='background'],[name='background2']").miniColors(
-        {
-            change: function(){
-                var color = $("[name='background']").val();
-                var color2 = $("[name='background2']").val();
-                $("#wrap,body").css({
-                    "backgroundColor" : color,
-                    "backgroundImage" : "-khtml-gradient(linear, left top, left bottom, from("+color+"), to("+color2+"))",
-                    "backgroundImage" : "-moz-linear-gradient(top, "+color+", "+color2+")",
-                    "backgroundImage" : "-ms-linear-gradient(top, "+color+", "+color2+")",
-                    "backgroundImage" : "-webkit-gradient(linear, left top, left bottom, color-stop(0%, "+color+"), color-stop(100%, "+color2+"))",
-                    "backgroundImage" : "-webkit-linear-gradient(top, "+color+", "+color2+")",
-                    "backgroundImage" : "-o-linear-gradient(top, "+color+", "+color2+")",
-                    "backgroundImage" : "linear-gradient("+color+", "+color2+")"
-                });
-            }
-        });
 
     $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
     $("[name='birthday']").datepicker({

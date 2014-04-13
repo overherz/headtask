@@ -12,8 +12,11 @@ class tasks extends \Controller {
             case "save_task":
                 $this->save_task();
                 break;
-            case "close_task":
-                $this->close_task();
+            case "get_forward_task":
+                $this->get_forward_tasks();
+                break;
+            case "forward_task":
+                $this->forward_tasks();
                 break;
             case "add_file_to_task":
                 $this->add_file_to_task();
@@ -55,7 +58,7 @@ class tasks extends \Controller {
     {
         $access = $this->get_controller("projects","users")->get_access($this->_0);
 
-        if ($access['access']['add_task'] || $access['access']['add_error'])
+        if ($access['access']['add_task'])
         {
             if (!$project = $access['project']) $this->error_page();
 
@@ -70,8 +73,7 @@ class tasks extends \Controller {
                 'project' => $project,
                 'users' => $users,
                 'manager' => true,
-                'access' => $access['access'],
-                'types_tasks' => $access['types_tasks']
+                'access' => $access['access']
             ));
         }
         else $this->error_page("denied");
@@ -90,7 +92,9 @@ class tasks extends \Controller {
         {
             $access = $this->get_controller("projects","users")->get_access(false,false,$this->_0);
             if (!$project = $access['project']) $this->error_page();
+            if (!$access['access']['edit_task'] && !$access['access']['edit_tasks'] && $this->id == "edit") $this->error_page('denied');
             $task = $access['task'];
+            if (intval($task['spent_time']) == $task['spent_time']) $task['spent_time'] = (int) $task['spent_time'];
 
             if ($project['owner']) crumbs("Личные проекты","/projects/",true);
             crumbs($project['name'],"/projects/~{$project['id']}");
@@ -116,7 +120,7 @@ class tasks extends \Controller {
                 $users = $this->get_controller("projects","users")->get_users_project($task['id_project']);
                 crumbs("Редактирование");
                 $layout = "tasks/add_task.html";
-                if (!$access['access']['edit_tasks'] && !$access['access']['edit_task'] && !$access['access']['save_task']) $this->error_page("denied");
+                if (!$access['access']['edit_tasks'] && !$access['access']['edit_task']) $this->error_page("denied");
             }
             else $layout = "tasks/show_task.html";
 
@@ -143,7 +147,6 @@ class tasks extends \Controller {
                 'to_task' => $to_task,
                 'access' => $access['access'],
                 'logs' => $logs,
-                'types_tasks' => $access['types_tasks'],
                 'comments'=> $comments
             ));
         }
@@ -188,11 +191,13 @@ class tasks extends \Controller {
             $where[] = "t.priority IN (".implode(",",$_POST['priority']).")";
         }
 
+        /*
         if (isset($_POST['type']) && $_POST['type'] != '')
         {
             foreach ($_POST['type'] as &$s) $s = $this->db->quote($s);
             $where[] = "t.type IN (".implode(",",$_POST['type']).")";
         }
+        */
 
         $where[] = "t.id_project={$this->db->quote($this->id)}";
 
@@ -204,7 +209,7 @@ class tasks extends \Controller {
         $paginator = new \Paginator($total, $_POST['page'], $this->limit);
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-        $query = $this->db->prepare("select t.id,t.type,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
+        $query = $this->db->prepare("select t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
                 a.fio as assigned_name,a.nickname as assigned_nickname,
                 u.fio as user_name,u.nickname as user_nickname,g.color,g.name as group_name,
                 gt.color as assigned_color,gt.name as assigned_group_name
@@ -232,11 +237,13 @@ class tasks extends \Controller {
                 'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический'),
                 'selected' => array('1','2','3','4')
             ),
+            /*
             'type' => array('label' => 'Тип задачи',
                 'type' => 'multy_select',
                 'options' => array('task' => 'улучшение','error' => 'ошибка'),
                 'selected' => array('task','error')
             ),
+            */
             'percent' => array('label' => 'Только просроченные',
                 'type' => 'checkbox'
             ),
@@ -324,9 +331,8 @@ class tasks extends \Controller {
             'rejected' => 'отклоненная'
         );
 
-        if ($project['owner'] != "") $_POST['type'] = "task";
-        else if ($_POST['type'] == "") $_POST['type'] = $task['type'];
         if ($project['owner']) $_POST['assigned'] = $_SESSION['user']['id_user'];
+        if ($_POST['percent'] == 100) $_POST['status'] = "closed";
 
         if (!$res['error'])
         {
@@ -334,58 +340,41 @@ class tasks extends \Controller {
             $this->db->beginTransaction();
             if ($_POST['id'])
             {
-                if (($access['access']['edit_task'] && in_array($_POST['type'],$access['types_tasks'])) || $access['access']['edit_tasks'] || $access['access']['save_task'])
+                if ($access['access']['edit_task'] || $access['access']['edit_tasks'])
                 {
                     $text_log = "";
                     if ($task['status'] != $_POST['status']) $text_log .= ". Статус изменен с '{$sta[$task['status']]}' на '{$sta[$_POST['status']]}'";
                     if ($task['percent'] != $_POST['percent']) $text_log .= ". Статус выполнения изменен с {$task['percent']}% на {$_POST['percent']}%";
 
-                    if (!$access['access']['edit_tasks'] && !$access['access']['edit_task'])
+                    if ($task['priority'] != $_POST['priority']) $text_log .= ". Приоритет изменен с {$pri[$task['priority']]} на {$pri[$_POST['priority']]}";
+
+                    $query = $this->db->prepare("
+                        update projects_tasks
+                        set name=?,status=?,percent=?,message=?,description=?,priority=?,start=?,end=?,assigned=?,estimated_time=?,updated=?
+                        where id=?
+                    ");
+
+                    require_once(ROOT.'libraries/simple_html_dom.php');
+                    $html = str_get_html($_POST['description']);
+                    if ($html)
                     {
-                        $query = $this->db->prepare("
-                            update projects_tasks
-                            set status=?,percent=?,message=?,assigned=?,updated=?
-                            where id=?
-                        ");
-                        if ($query->execute(array($_POST['status'],$_POST['percent'],$_POST['message'],
-                            $_SESSION['user']['id_user'],time(),$_POST['id'])))
+                        foreach($html->find('script') as $element)
                         {
-                            $res['success'] = $_POST['id'];
-                            $log->set_logs("task",$task['id'],"Изменил{$text_log}");
+                            $element->outertext = (string)$element->innertext;
                         }
-                        else $res['error'] = "Ошибка сохранения задачи";
+                        $_POST['description'] = $html->save();
                     }
-                    else
+
+                    if ($query->execute(array($_POST['name'],$_POST['status'],$_POST['percent'],$_POST['message'],
+                        $_POST['description'],$_POST['priority'],$_POST['start'],$_POST['end'],
+                        $_POST['assigned'],$_POST['estimated_time'],time(),$_POST['id']
+                    )))
                     {
-                        if ($task['priority'] != $_POST['priority']) $text_log .= ". Приоритет изменен с {$pri[$task['priority']]} на {$pri[$_POST['priority']]}";
-
-                        $query = $this->db->prepare("
-                            update projects_tasks
-                            set name=?,status=?,percent=?,message=?,description=?,priority=?,start=?,end=?,assigned=?,estimated_time=?,type=?,updated=?
-                            where id=?
-                        ");
-
-                        require_once(ROOT.'libraries/simple_html_dom.php');
-                        $html = str_get_html($_POST['description']);
-                        if ($html)
-                        {
-                            foreach($html->find('script') as $element)
-                            {
-                                $element->outertext = (string)$element->innertext;
-                            }
-                            $_POST['description'] = $html->save();
-                        }
-
-                        if ($query->execute(array($_POST['name'],$_POST['status'],$_POST['percent'],$_POST['message'],
-                            $_POST['description'],$_POST['priority'],$_POST['start'],$_POST['end'],
-                            $_POST['assigned'],$_POST['estimated_time'],$_POST['type'],time(),$_POST['id']
-                        )))
-                        {
-                            $res['success'] = $_POST['id'];
-                            $log->set_logs("task",$task['id'],"Изменил{$text_log}");
-                        }
-                        else $res['error'] = "Ошибка сохранения задачи";
+                        $res['success'] = $_POST['id'];
+                        $log->set_logs("task",$task['id'],"Изменил{$text_log}");
                     }
+                    else $res['error'] = "Ошибка сохранения задачи";
+
                     $notif = "Задача \"{$_POST['name']}\" в проекте \"{$project['name']}\" была отредактирована";
                     $edit = true;
                 }
@@ -393,17 +382,17 @@ class tasks extends \Controller {
             }
             else
             {
-                if (($access['access']['add_task'] && $_POST['type'] == "task") || ($access['access']['add_error'] && $_POST['type'] == "error"))
+                if ($access['access']['add_task'])
                 {
                     $query = $this->db->prepare("
-                      insert into projects_tasks(name,status,percent,description,priority,start,end,assigned,estimated_time,id_project,id_user,type,created,updated)
-                      values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                      insert into projects_tasks(name,status,percent,description,priority,start,end,assigned,estimated_time,id_project,id_user,created,updated)
+                      values(?,?,?,?,?,?,?,?,?,?,?,?,?)
                     ");
                     $time = time();
                     if ($query->execute(array($_POST['name'],$_POST['status'],
                         $_POST['percent'],$_POST['description'],
                         $_POST['priority'],$_POST['start'],$_POST['end'],$_POST['assigned'],
-                        $_POST['estimated_time'],$_POST['project'],$_SESSION['user']['id_user'],$_POST['type'],$time,$time
+                        $_POST['estimated_time'],$_POST['project'],$_SESSION['user']['id_user'],$time,$time
                     )))
                     {
                         $last_id = $this->db->lastInsertId();
@@ -417,10 +406,7 @@ class tasks extends \Controller {
                 else $res['error'] = "У Вас недостаточно прав";
             }
 
-            if (($access['access']['add_task'] && $_POST['type'] == "task") ||
-                ($access['access']['add_error'] && $_POST['type'] == "error") ||
-                 $access['access']['edit_task'] || $access['access']['edit_tasks']
-            )
+            if ($access['access']['add_task'] || $access['access']['edit_task'] || $access['access']['edit_tasks'])
             {
                 $query = $this->db->prepare("delete from files_to_tasks where id_task=?");
                 if (!$query->execute(array($_POST['id']))) $res['error'] = "Ошибка базы данных";
@@ -461,33 +447,55 @@ class tasks extends \Controller {
         echo json_encode($res);
     }
 
-    function close_task()
+    function get_forward_tasks()
     {
-        $access = $this->get_controller("projects","users")->get_access(false,false,$_POST['id']);
-        $task = $access['task'];
-        $spent_time = (int) $_POST['spent_time'];
-        if ($spent_time < 1) $res['error'] = "Укажите время отличное от нуля";
-        if ($task['status'] == "closed") $res['error'] = "Задача уже закрыта";
-
-        if (!$res['error'])
+        if ($task = $this->get_task($_POST['id']))
         {
-            if ($access['edit_task'] || $access['access']['edit_tasks'] || $access['access']['save_task'])
+            $res['success'] = $this->layout_get("tasks/forward_task.html",array('task' => $task));
+        }
+        else $res['error'] = "Задача не найдена";
+        echo json_encode($res);
+    }
+
+    function forward_tasks()
+    {
+        if ($task = $this->get_task($_POST['id']))
+        {
+            if ($_POST['new_current_percent'] != 0)
             {
+                if ($_POST['new_current_percent'] < $task['percent']) $res['error'] = "Новый статус выполнения не может быть меньше текущего";
+                if ($_POST['new_current_percent'] == $task['percent']) $res['error'] = "Текущий и новый статус выполнения совпадают";
+                if ($task['status'] == "closed") $res['error'] = "Задача уже закрыта";
+            }
+
+            if (!$res['error'])
+            {
+                if ($_POST['new_current_percent'] == 100) $task['status'] = "closed";
+                else $task['status'] = "in_progress";
+
+                if ($_POST['new_current_percent'] == 0) $_POST['spent_time'] = 0;
+                $spent_time = (float) $_POST['spent_time'];
+
                 $now = date("Y-m-d");
                 if ($now < $task['start']) $task['start'] = $now;
                 if ($task['assigned'] == "") $task['assigned'] = $_SESSION['user']['id_user'];
 
                 $query = $this->db->prepare("update projects_tasks set status=?,start=?,end=?,assigned=?,spent_time=spent_time+{$spent_time},percent=?,updated=? where id=? LIMIT 1");
-                if ($query->execute(array('closed',$task['start'],$now,$task['assigned'],100,time(),$_POST['id'])))
+                if ($query->execute(array($task['status'],$task['start'],$now,$task['assigned'],$_POST['new_current_percent'],time(),$_POST['id'])))
                 {
                     $res['success']['project'] = $task['id_project'];
                     $log = $this->get_controller("projects","logs");
-                    $log->set_logs("task",$task['id'],"Закрыл");
+
+                    if ($task['status'] == "closed") $message = "Закрыл";
+                    else if ($_POST['new_current_percent'] > 0) $message = "Изменил статус выполнения ({$_POST['new_current_percent']} %)";
+                    else $message = "Начата";
+
+                    $log->set_logs("task",$task['id'],$message);
                 }
                 else $res['error'] = "Ошибка базы данных";
             }
-            else $res['error'] = "У Вас недостаточно прав";
         }
+        else $res['error'] = "Задача не найдена";
         echo json_encode($res);
     }
 
@@ -823,11 +831,10 @@ class tasks extends \Controller {
         return $final;
     }
 
-    function get_count_new_comments(array $ids,$last_action=false)
+    function get_count_new_comments(array $ids)
     {
         if (count($ids) > 0)
         {
-            $last_action_text = $last_action ? $last_action : "";
             $query = $this->db->prepare("SELECT count(c.id) as count,c.id_task
                 FROM projects_tasks_comments as c
                 LEFT JOIN projects_tasks_last_visit as ls ON c.id_task=ls.id_task and ls.id_user=?
@@ -845,6 +852,7 @@ class tasks extends \Controller {
 
     function get_count_new_comments_mail($last_action)
     {
+        $last_action = (int) $last_action;
         $year = date("Y");
         $month = date("m");
         $day = date("d");
@@ -864,7 +872,7 @@ class tasks extends \Controller {
                         FROM projects_tasks_comments as c
                         LEFT JOIN projects_tasks_last_visit as ls ON c.id_task=ls.id_task and ls.id_user=?
                         LEFT JOIN projects_tasks as t ON c.id_task=t.id
-                        WHERE ((c.created > IF(ls.last_visit > {$last_action}, ls.last_visit, {$last_action})) or ls.id_user IS NULL) and c.id_task IN (".implode(",",$ids).") and c.id_user !=?
+                        WHERE (c.created > IF(ls.last_visit > {$last_action}, ls.last_visit, {$last_action})) and c.id_task IN (".implode(",",$ids).") and c.id_user !=?
                         group by c.id_task
                     ");
                     $query_c->execute(array($u['id_user'],$u['id_user']));
@@ -891,7 +899,7 @@ class tasks extends \Controller {
             foreach($new_comments as $n)
             {
                 $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n,'server_name' => DOMEN_FOR_CLI));
-                if (!send_mail($from, $n['email'], "Новые комментарии в задачах", $html, "Task me!")) echo "error {$n['email']}\n\r";
+                if (!send_mail($from, $n['email'], "Новые комментарии в задачах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }
     }

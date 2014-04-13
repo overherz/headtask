@@ -189,42 +189,61 @@ class __TwigTemplate_7f4ce7a7f82fe260dcde1abf7e6ff35351a7b785a4721233705c6b5cf9c
     ");
         }
         // line 43
-        echo \layout::func_from_text("    <td style=\"width: 115px;\">
+        echo \layout::func_from_text("    <td style=\"width: 1px;text-align: right;\">
         <div class=\"btn-group\">
             ");
         // line 45
         if (((($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "edit_tasks") || ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "assigned") == $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user"))) || ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id_user") == $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user"))) || (!$this->getAttribute((isset($context["task"]) ? $context["task"] : null), "assigned")))) {
             // line 46
-            echo \layout::func_from_text("            ");
+            echo \layout::func_from_text("                <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" style=\"padding: 3px 6px;\">
+                    <i class=\"fa fa-gear fa-2x\"></i>
+                </button>
+                <ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 10px;padding: 0;\">
+                ");
+            // line 50
             if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "closed")) {
-                echo \layout::func_from_text("<a class=\"btn btn-success btn-sm\" close_task=\"");
+                // line 51
+                echo \layout::func_from_text("                    <li><a class=\"btn btn-success btn-lg\" forward_task=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("\" from='");
                 if ((isset($context["show_task"]) ? $context["show_task"] : null)) {
                     echo \layout::func_from_text("show_task");
                 }
-                echo \layout::func_from_text("'><i class=\"fa fa-power-off\"></i></a>");
+                echo \layout::func_from_text("' style=\"padding: 5px 10px !important;\"><i class=\"fa fa-forward\"></i></a></li>
+                ");
             }
-            // line 47
-            echo \layout::func_from_text("            <a class=\"btn btn-info btn-sm\" href=\"/projects/tasks/edit/");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("\"><i class=\"fa fa-pencil\"></i></a>
-            ");
-            // line 48
+            // line 53
+            echo \layout::func_from_text("
+                ");
+            // line 54
+            if (($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "edit_tasks") || ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id_user") == $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user")))) {
+                // line 55
+                echo \layout::func_from_text("                    <li><a class=\"btn btn-info btn-lg\" href=\"/projects/tasks/edit/");
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), "html", null, true));
+                echo \layout::func_from_text("\" style=\"padding: 5px 10px !important;\"><i class=\"fa fa-pencil\"></i></a></li>
+                ");
+            }
+            // line 57
+            echo \layout::func_from_text("
+                ");
+            // line 58
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "delete_tasks")) {
-                echo \layout::func_from_text("<a class=\"btn btn-danger btn-sm\" delete_task=");
+                // line 59
+                echo \layout::func_from_text("                    <li><a class=\"btn btn-danger btn-lg\" delete_task=");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text(" from='");
                 if ((isset($context["show_task"]) ? $context["show_task"] : null)) {
                     echo \layout::func_from_text("show_task");
                 }
-                echo \layout::func_from_text("' href=\"\"><i class=\"fa fa-trash-o\"></i></a>");
+                echo \layout::func_from_text("' href=\"\" style=\"padding: 5px 10px !important;\"><i class=\"fa fa-trash-o\"></i></a></li>
+                ");
             }
-            // line 49
+            // line 61
             echo \layout::func_from_text("            ");
         }
-        // line 50
-        echo \layout::func_from_text("        </div>
+        // line 62
+        echo \layout::func_from_text("            </ul>
+        </div>
     </td>
 </tr>");
     }
@@ -241,6 +260,6 @@ class __TwigTemplate_7f4ce7a7f82fe260dcde1abf7e6ff35351a7b785a4721233705c6b5cf9c
 
     public function getDebugInfo()
     {
-        return array (  227 => 50,  224 => 49,  214 => 48,  209 => 47,  198 => 46,  196 => 45,  192 => 43,  179 => 41,  175 => 40,  166 => 39,  160 => 38,  155 => 37,  152 => 36,  144 => 31,  129 => 30,  123 => 29,  120 => 28,  117 => 27,  114 => 26,  111 => 25,  109 => 24,  106 => 23,  104 => 22,  92 => 21,  89 => 20,  85 => 18,  81 => 17,  77 => 16,  72 => 15,  68 => 13,  63 => 11,  60 => 10,  56 => 9,  52 => 8,  47 => 7,  44 => 6,  36 => 4,  34 => 3,  28 => 2,  19 => 1,);
+        return array (  245 => 62,  242 => 61,  232 => 59,  230 => 58,  227 => 57,  221 => 55,  219 => 54,  216 => 53,  206 => 51,  204 => 50,  198 => 46,  196 => 45,  192 => 43,  179 => 41,  175 => 40,  166 => 39,  160 => 38,  155 => 37,  152 => 36,  144 => 31,  129 => 30,  123 => 29,  120 => 28,  117 => 27,  114 => 26,  111 => 25,  109 => 24,  106 => 23,  104 => 22,  92 => 21,  89 => 20,  85 => 18,  81 => 17,  77 => 16,  72 => 15,  68 => 13,  63 => 11,  60 => 10,  56 => 9,  52 => 8,  47 => 7,  44 => 6,  36 => 4,  34 => 3,  28 => 2,  19 => 1,);
     }
 }

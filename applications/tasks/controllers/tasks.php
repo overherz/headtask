@@ -63,12 +63,6 @@ class tasks extends \Controller {
         return $query->fetch();
     }
 
-    function set_error($message,$id)
-    {
-        $query = $this->db->prepare("update tasks set status=?,error_message=? where id=? LIMIT 1");
-        $query->execute(array('stand',$message,$id));
-    }
-
     function getPHPExecutableFromPath() {
         $paths = explode(PATH_SEPARATOR, getenv('PATH'));
         foreach ($paths as $path) {

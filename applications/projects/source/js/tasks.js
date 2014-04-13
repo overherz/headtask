@@ -128,23 +128,84 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click","[close_task]",function(){
-        show_popup("<table><tr><td style='padding-bottom: 6px;'>Затраченное время:&nbsp;</td> \n\
-        <td><div class='input-append'> \n\
-            <input id='spent_time' class='input-small' type='text' name='spent_time'> \n\
-                <span class='add-on'>ч.</span> \n\
-        </div></td></tr></table>","Подтверждение закрытия задачи");
-        var id = $(this).attr("close_task");
+    $(document).on("click","[forward_task]",function(){
+        var id = $(this).attr("forward_task");
         var from = $(this).attr("from");
-        add_popup_button("Закрыть задачу",'Yes', {id:id}, function(vars){
-            user_api({act:'close_task',id:vars.id,spent_time:$("#spent_time").val()},function(res){
-                show_message("success","Задача успешно закрыта");
-                hide_popup();
-                if (from == "show_task") redirect("/projects/tasks/"+res.project+"/");
-                else $('#search_form').submit();
+        user_api({act:'get_forward_task',id:id},function(res){
+            show_popup(res,'Редактирование статуса выполнения');
+            add_popup_button("Сохранить",'save_forward', false, function(vars){
+                var request = $("#percent_form").serialize();
+                user_api(request,function(res){
+                    show_message("success","Статус выполнения успешно сохранен");
+                    hide_popup();
+                    if (from == "show_task") redirect("/projects/tasks/"+res.project+"/",2);
+                    else $('#search_form').submit();
+                });
+            });
+
+            $("#time1").slider({
+                range: "min",
+                value: 0,
+                min: 0,
+                max: 90,
+                disabled: true,
+                step: 10,
+                slide: function(event, ui) {
+                    $("#time1_val").val(ui.value)
+                    var new_time = parseInt(ui.value) + parseFloat($("#time2_val").val());
+                    $("#new_time").text(new_time);
+                    $("#spent_time").val(new_time);
+                }
+            });
+
+            $("#time2").slider({
+                range: "min",
+                value: 0,
+                min: 0,
+                max: 10,
+                disabled: true,
+                step: 0.5,
+                slide: function(event, ui) {
+                    $("#time2_val").val(ui.value)
+                    var new_time = parseInt($("#time1_val").val()) + parseFloat(ui.value);
+                    $("#new_time").text(new_time);
+                    $("#spent_time").val(new_time);
+                }
+            });
+
+            $("#task_percent").slider({
+                range: "min",
+                value: $("#current_percent").val(),
+                min: 0,
+                max: 100,
+                step: 10,
+                slide: function(event, ui) {
+                    var current_percent = parseInt($("#current_percent").val());
+                    if (ui.value < current_percent) {
+                        return false;
+                    }
+                },
+                stop: function(event,ui) {
+                    var current_percent = parseInt($("#current_percent").val());
+                    $("#new_percent").text(ui.value);
+                    $("#new_current_percent").val(ui.value);
+                    if (ui.value == 100) $("#percent_close").show();
+                    else $("#percent_close").hide();
+
+                    if (current_percent < ui.value)
+                    {
+                        $("#time1").slider('enable');
+                        $("#time2").slider('enable');
+                    }
+                    else
+                    {
+                        $("#time1").slider('disable');
+                        $("#time2").slider('disable');
+                    }
+                }
+
             });
         });
-        return false;
     });
 
     $(document).on("click","[delete_news]",function(){

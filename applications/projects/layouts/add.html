@@ -4,48 +4,79 @@
     {% if project %}Редактирование проекта{% else %}Создание проекта{% endif %}
 {% endblock %}
 
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="/source/js/miniColors/jquery.miniColors.css">
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="/source/js/miniColors/jquery.miniColors.min.js"></script>
+    {{ parent() }}
+{% endblock %}
+
 {% block project %}
-    {% if project.id %}{% include app.path('projects','project_menu.html') %}{% endif %}
-    <form id="project_form" class="form-horizontal">
-        <input type="hidden" name="act" value="save_project">
-        {% if project.id %}<input type="hidden" name="id" value="{{project.id}}">{% endif %}
-            <div class="form-group">
-                <label class="col-lg-2 control-label" for="name">Название проекта</label>
-                <div class="col-lg-10">
-                    <input type="text" name="name" id="name" class="form-control" value="{{project.name}}">
+    {% if project.id %}
+        {% include app.path('projects','project_menu.html') %}
+
+    <ul class="nav nav-tabs" id="form_tabs">
+        <li class="active"><a href="#tabs-1">Описание</a></li>
+        <li><a href="#tabs-2">Категории</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="tabs-1" class="tab-pane fade in active">
+    {% endif %}
+            <form id="project_form" class="form-horizontal">
+                <input type="hidden" name="act" value="save_project">
+                {% if project.id %}<input type="hidden" name="id" value="{{project.id}}">{% endif %}
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="name">Название проекта</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="name" id="name" class="form-control" value="{{project.name}}">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-2 control-label" for="description">Описание проекта</label>
-                <div class="col-lg-10">
-                    <textarea rows="5" class="form-control" name="description" id="description">{{project.description}}</textarea>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="description">Описание проекта</label>
+                    <div class="col-lg-10">
+                        <textarea rows="5" class="form-control" name="description" id="description">{{project.description}}</textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-2 control-label" for="url">Ссылка</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" name="url" id="url" value="{{project.url}}">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="url">Ссылка</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="url" id="url" value="{{project.url}}">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-2 control-label" for="archive">Архивный</label>
-                <div class="col-lg-10 checkbox">
-                    <input type="checkbox" name="archive" id="archive" value="1" {% if project.archive %}checked{% endif %} />
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="archive">Архивный</label>
+                    <div class="col-lg-10 checkbox">
+                        <input type="checkbox" name="archive" id="archive" value="1" {% if project.archive %}checked{% endif %} />
+                    </div>
                 </div>
-            </div>
-            {% if not project.id and access.add_project %}
-            <div class="form-group">
-                <label class="col-lg-2 control-label" for="owner">Личный</label>
-                <div class="col-lg-10 checkbox">
-                    <input type="checkbox" name="owner" id="owner" value="1" />
+                {% if not project.id and access.add_project %}
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" for="owner">Личный</label>
+                        <div class="col-lg-10 checkbox">
+                            <input type="checkbox" name="owner" id="owner" value="1" />
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button class="btn btn-primary save_project" type="button">{% if project.id %}Сохранить{% else %}Создать{% endif %}</button>
+                    </div>
                 </div>
+            </form>
+    {% if project.id %}</div>{% endif %}
+
+{% if project %}
+        <div id="tabs-2" class="tab-pane">
+            <div style="text-align: right;">
+                <a class="btn btn-success btn-sm" id="add_category" data-project_id="{{ project.id }}">Добавить категорию</a>
             </div>
-            {% endif %}
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                    <button class="btn btn-primary save_project" type="button">{% if project.id %}Сохранить{% else %}Создать{% endif %}</button>
-                </div>
-            </div>
-    </form>
-<div class="clearfix"></div>
+        <div id="category_div">
+            {% include app.path('projects','category_table.html') %}
+        </div>
+         </div>
+{% endif %}
+    {% if project.id %}</div>{% endif %}
 {% endblock %}

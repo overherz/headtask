@@ -483,7 +483,9 @@ class __TwigTemplate_69ad7e07667abb1f2820e468c5a4f7d24bf430ae21c802ae366707939ab
         <script src=\"/source/js/styler/jquery.formstyler.js\"></script>
         <script>
             \$(document).ready(function(\$) {
-                \$('#middle input, #middle select').styler();
+                if(jQuery().styler) {
+                    \$('#middle input, #middle select').styler();
+                }
 
                 var randomColor = \"#000000\".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
                 //\$(\".navbar-nav .active a\").css(\"background\",randomColor);
@@ -498,9 +500,9 @@ class __TwigTemplate_69ad7e07667abb1f2820e468c5a4f7d24bf430ae21c802ae366707939ab
                     \"/source/js/message.js\",
                     \"/applications/index/source/js/index_admin.js\"
                     ");
-        // line 344
+        // line 346
         $this->displayBlock('js', $context, $blocks);
-        // line 345
+        // line 347
         echo \layout::func_from_text("            );
         </script>
 
@@ -520,7 +522,7 @@ class __TwigTemplate_69ad7e07667abb1f2820e468c5a4f7d24bf430ae21c802ae366707939ab
     {
     }
 
-    // line 344
+    // line 346
     public function block_js($context, array $blocks = array())
     {
     }
@@ -537,6 +539,6 @@ class __TwigTemplate_69ad7e07667abb1f2820e468c5a4f7d24bf430ae21c802ae366707939ab
 
     public function getDebugInfo()
     {
-        return array (  524 => 344,  519 => 289,  514 => 17,  504 => 345,  502 => 344,  444 => 289,  435 => 282,  416 => 279,  409 => 278,  405 => 277,  237 => 111,  231 => 110,  224 => 106,  216 => 105,  212 => 104,  205 => 103,  202 => 102,  199 => 101,  196 => 100,  192 => 98,  190 => 97,  179 => 95,  176 => 94,  173 => 93,  168 => 91,  163 => 89,  155 => 88,  151 => 87,  148 => 86,  145 => 85,  142 => 84,  139 => 83,  135 => 82,  130 => 79,  124 => 78,  119 => 77,  112 => 75,  68 => 39,  40 => 17,  22 => 1,  118 => 21,  114 => 76,  91 => 17,  72 => 40,  69 => 15,  67 => 14,  64 => 13,  61 => 12,  55 => 29,  52 => 9,  49 => 8,  42 => 18,  39 => 5,  34 => 3,  31 => 2,);
+        return array (  526 => 346,  521 => 289,  516 => 17,  506 => 347,  504 => 346,  444 => 289,  435 => 282,  416 => 279,  409 => 278,  405 => 277,  237 => 111,  231 => 110,  224 => 106,  216 => 105,  212 => 104,  205 => 103,  202 => 102,  199 => 101,  196 => 100,  192 => 98,  190 => 97,  179 => 95,  176 => 94,  173 => 93,  168 => 91,  163 => 89,  155 => 88,  151 => 87,  148 => 86,  145 => 85,  142 => 84,  139 => 83,  135 => 82,  130 => 79,  124 => 78,  119 => 77,  114 => 76,  112 => 75,  72 => 40,  68 => 39,  55 => 29,  42 => 18,  40 => 17,  22 => 1,);
     }
 }

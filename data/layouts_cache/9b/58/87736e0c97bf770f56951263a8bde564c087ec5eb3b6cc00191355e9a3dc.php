@@ -92,12 +92,15 @@ class __TwigTemplate_9b5887736e0c97bf770f56951263a8bde564c087ec5eb3b6cc00191355e
         }
         // line 17
         echo \layout::func_from_text("
-                    <div style=\"float:right;\"><a href=\"\" class=\"comment_to_comment\" to_comment=\"");
-        // line 18
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id"), "html", null, true));
-        echo \layout::func_from_text("\">ответить</a></div>
                     ");
+        // line 18
+        if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "closed")) {
+            echo \layout::func_from_text("<div style=\"float:right;\"><a href=\"\" class=\"comment_to_comment\" to_comment=\"");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id"), "html", null, true));
+            echo \layout::func_from_text("\">ответить</a></div>");
+        }
         // line 19
+        echo \layout::func_from_text("                    ");
         if (($this->getAttribute((isset($context["access_article"]) ? $context["access_article"] : null), "comment") && $this->getAttribute((isset($context["access_article"]) ? $context["access_article"] : null), "delete_comment"))) {
             echo \layout::func_from_text("<div style=\"float:right;margin-left: 5px;\">|&nbsp;</div>");
         }
@@ -181,6 +184,6 @@ class __TwigTemplate_9b5887736e0c97bf770f56951263a8bde564c087ec5eb3b6cc00191355e
 
     public function getDebugInfo()
     {
-        return array (  167 => 37,  152 => 35,  148 => 34,  130 => 33,  128 => 32,  119 => 26,  112 => 21,  105 => 20,  101 => 19,  97 => 18,  94 => 17,  89 => 16,  81 => 15,  77 => 14,  73 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
+        return array (  170 => 37,  155 => 35,  151 => 34,  133 => 33,  131 => 32,  122 => 26,  115 => 21,  108 => 20,  103 => 19,  97 => 18,  94 => 17,  89 => 16,  81 => 15,  77 => 14,  73 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
     }
 }

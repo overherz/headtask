@@ -327,7 +327,9 @@
         <script src="/source/js/styler/jquery.formstyler.js"></script>
         <script>
             $(document).ready(function($) {
-                $('#middle input, #middle select').styler();
+                if(jQuery().styler) {
+                    $('#middle input, #middle select').styler();
+                }
 
                 var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
                 //$(".navbar-nav .active a").css("background",randomColor);

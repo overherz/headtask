@@ -3,30 +3,36 @@ header('Content-Type: text/html; charset=utf-8');
 define('DS', DIRECTORY_SEPARATOR);
 define(strtoupper('root'),dirname(dirname(dirname(__FILE__))).DS);
 require_once(ROOT.'config.php');
+require_once(ROOT.'core/layout.php');
+require_once(ROOT.'core/database.php');
+
 if (!$INFO['dev_mode'])
 {
     echo "Доступно только из режима разработчика";
     exit();
 }
 
-if (@!$argv[1])
+
+if ($_GET['app_name'] != "")
 {
-    if (@$_GET['app_name'] != "") new_application(dirname(dirname(dirname(__FILE__)))."/applications/".$_GET['app_name'],$_GET['app_name'],true);    
+    layout::
+    //new_application(dirname(dirname(dirname(__FILE__)))."/applications/".$_GET['app_name'],$_GET['app_name'],true);
 }
-else new_application("/applications/".$argv[1],$argv[1],true);   
+
 
 function new_application($application,$app_name,$first,$mdir = false)
 {
     if (!$mdir) $mdir = "blank"; 
 
-    if(!is_dir($application)) 
+    if(!is_dir($application))
+    {
         if (!mkdir($application))
         {
             echo "Присвойте папке applications владельца www-data командой \"sudo chown www-data:www-data ".dirname(dirname(dirname(__FILE__)))."/applications\"<br>";
             exit();
         }
         else chmod($application, 0777);
-
+    }
     $dir = opendir($mdir);
     
     while(false !== ($check = readdir($dir)))
@@ -53,6 +59,5 @@ function new_application($application,$app_name,$first,$mdir = false)
             }
         } 
     }
+    header('Location: /'.$_GET['app_name']);
 }
-
-header('Location: /'.$_GET['app_name']);

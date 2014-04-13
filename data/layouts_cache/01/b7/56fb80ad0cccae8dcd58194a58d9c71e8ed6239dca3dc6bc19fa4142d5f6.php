@@ -76,7 +76,7 @@ class __TwigTemplate_01b756fb80ad0cccae8dcd58194a58d9c71e8ed6239dca3dc6bc19fa414
         echo \layout::func_from_text("/\"><i class=\"fa fa-bar-chart-o\"></i></a>
         ");
         // line 15
-        if (($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_task") || $this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_error"))) {
+        if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_task")) {
             echo \layout::func_from_text("<a class=\"btn btn-success ");
             if ((isset($context["add_tasks_button"]) ? $context["add_tasks_button"] : null)) {
                 echo \layout::func_from_text("active");
@@ -224,6 +224,6 @@ class __TwigTemplate_01b756fb80ad0cccae8dcd58194a58d9c71e8ed6239dca3dc6bc19fa414
 
     public function getDebugInfo()
     {
-        return array (  211 => 41,  202 => 40,  192 => 39,  189 => 38,  182 => 35,  172 => 34,  164 => 33,  161 => 32,  159 => 31,  156 => 30,  146 => 29,  138 => 28,  135 => 27,  131 => 25,  113 => 23,  110 => 22,  108 => 21,  105 => 20,  101 => 19,  93 => 18,  89 => 16,  79 => 15,  71 => 14,  63 => 13,  60 => 12,  56 => 10,  46 => 9,  35 => 7,  33 => 6,  23 => 3,  140 => 38,  136 => 36,  133 => 35,  127 => 33,  125 => 32,  121 => 24,  115 => 29,  112 => 28,  107 => 25,  84 => 23,  80 => 22,  75 => 20,  72 => 19,  44 => 17,  41 => 16,  38 => 8,  34 => 14,  19 => 1,);
+        return array (  211 => 41,  202 => 40,  192 => 39,  189 => 38,  182 => 35,  172 => 34,  164 => 33,  161 => 32,  159 => 31,  156 => 30,  146 => 29,  138 => 28,  135 => 27,  131 => 25,  121 => 24,  113 => 23,  110 => 22,  108 => 21,  105 => 20,  101 => 19,  93 => 18,  89 => 16,  79 => 15,  71 => 14,  63 => 13,  60 => 12,  56 => 10,  46 => 9,  38 => 8,  35 => 7,  33 => 6,  23 => 3,  19 => 1,);
     }
 }

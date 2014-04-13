@@ -122,7 +122,7 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
         </label>
     </div>
     <div class=\"checkbox\" style=\"padding-left: 0;display: inline-block;\">
-        <label for=\"closed\">Закрытые
+        <label for=\"closed\">Закрытые сегодня
             <input type=\"checkbox\" id=\"closed\" name=\"closed\" ");
         // line 41
         if (($this->getAttribute((isset($context["cookie_data"]) ? $context["cookie_data"] : null), "dashboard_closed") == "show")) {

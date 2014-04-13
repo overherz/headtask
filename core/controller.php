@@ -7,10 +7,12 @@ class Controller {
     protected $db;
     static protected $redirect = false;
     protected $old_router;
+    protected $cache;
 
     function __construct($app,$controller,$id=false, $more=false,$real_application=false)
     {
         $this->db = MyPDO::connect();
+        $this->cache = Cache::connect();
         if($id) $this->id = $id;
         $this->set_layout_path("applications".DS.$real_application.DS."layouts".DS);
         $this->set_application($app);

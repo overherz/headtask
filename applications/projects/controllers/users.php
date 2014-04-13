@@ -388,10 +388,7 @@ class users extends \Controller {
             }
         }
 
-        if ($accesses['add_task'] || $accesses['edit_tasks']) $types_tasks[] = 'task';
-        if ($accesses['add_error'] || $accesses['edit_tasks']) $types_tasks[] = 'error';
-
-        return array('access' => $accesses,'project' => $project,'task' => $task,'types_tasks' => $types_tasks,'role' => $role);
+        return array('access' => $accesses,'project' => $project,'task' => $task,'role' => $role);
     }
 
     function is_manager($project,$user=false)

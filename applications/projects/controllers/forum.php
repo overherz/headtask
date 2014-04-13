@@ -792,8 +792,13 @@ class forum extends \Admin {
 
     function get_new_posts_statistic($id_user=false,$last_send=false)
     {
-        if ($id_user) $search_for_one_user = " and s.id_user=".$this->db->quote($id_user);
-        $last_send_text = $last_send ? $last_send : "s.last_action";
+        $last_send = (int) $last_send;
+        if ($id_user)
+        {
+            $search_for_one_user = " and s.id_user=".$this->db->quote($id_user);
+            $last_send = 0;
+        }
+
         $query = $this->db->prepare("SELECT s.id_user,pr.name,count(p.id) as count,pr.id,u.fio,u.email
             from projects_posts as p
             LEFT JOIN projects_topics as t ON p.id_topic=t.id
@@ -801,7 +806,8 @@ class forum extends \Admin {
             LEFT JOIN projects_forums as f ON t.id_forum=f.id
             LEFT JOIN projects as pr ON f.id_project=pr.id
             LEFT JOIN users as u ON s.id_user=u.id_user
-            WHERE p.created > {$last_send_text} and s.id_user IN (select id_user from projects_users where id_project=pr.id) {$search_for_one_user}
+            WHERE (p.created > IF(s.last_action > {$last_send}, s.last_action, {$last_send}))
+            and s.id_user IN (select id_user from projects_users where id_project=pr.id) {$search_for_one_user}
             group by s.id_user,pr.id
             order by s.id_user ASC
         ");
@@ -822,7 +828,93 @@ class forum extends \Admin {
             foreach($new_posts as $n)
             {
                 $html = $this->layout_get("forum/mail_text.html",array('new_posts' => $n,'server_name' => DOMEN_FOR_CLI));
-                if (!send_mail($from, $n[0]['email'], "Новые сообщения на форумах", $html, "Task me!")) echo "error {$n['email']}\n\r";
+                if (!send_mail($from, $n[0]['email'], "Новые сообщения на форумах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
+            }
+        }
+    }
+
+    function get_new_topics_statistic1($id_user=false,$last_send=false)
+    {
+        $last_send = (int) $last_send;
+        if ($id_user)
+        {
+            $search_for_one_user = " and s.id_user=".$this->db->quote($id_user);
+            $last_send = 0;
+        }
+        $query = $this->db->prepare("SELECT s.id_user,pr.name,pr.id,u.fio,u.email
+            from projects_topics as t
+            LEFT JOIN projects_forums_subscribes as s ON t.id=s.id_topic
+            LEFT JOIN projects_forums as f ON t.id_forum=f.id
+            LEFT JOIN projects as pr ON f.id_project=pr.id
+            LEFT JOIN users as u ON s.id_user=u.id_user
+            WHERE (t.created > IF(s.last_action > {$last_send}, s.last_action, {$last_send}))
+            and s.id_user IN (select id_user from projects_users where id_project=pr.id) {$search_for_one_user}
+            group by s.id_user,pr.id
+            order by s.id_user ASC
+        ");
+
+        $query->execute();
+        if (!$id_user) while ($row = $query->fetch()) $new_posts[$row['id_user']][] = $row;
+        else $new_posts = $query->fetchAll();
+        return $new_posts;
+    }
+
+    function new_topics_to_mail1()
+    {
+        $query = $this->db->query("select * from tasks where controller='new_posts'");
+        $task = $query->fetch();
+        if ($new_posts = $this->get_new_posts_statistic(false,$task['completed']))
+        {
+            $from = get_setting('email');
+            foreach($new_posts as $n)
+            {
+                $html = $this->layout_get("forum/mail_text.html",array('new_posts' => $n,'server_name' => DOMEN_FOR_CLI));
+                if (!send_mail($from, $n[0]['email'], "Новые сообщения на форумах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
+            }
+        }
+    }
+
+    function get_new_topics_statistic($last_action)
+    {
+        $last_action = (int) $last_action;
+        $query = $this->db->query("select id_user,email,fio from users");
+
+        if ($users = $query->fetchAll())
+        {
+            foreach ($users as $u)
+            {
+                $query_c = $this->db->prepare("SELECT u.id_user,pr.name,pr.id,u.fio,u.email,t.id as topic_id,t.name as topic_name
+                    from projects_topics as t
+                    LEFT JOIN projects_forums_subscribes as s ON t.id=s.id_topic and s.id_user=?
+                    LEFT JOIN projects_forums as f ON t.id_forum=f.id
+                    LEFT JOIN projects as pr ON f.id_project=pr.id
+                    LEFT JOIN users as u ON u.id_user=?
+                    WHERE (t.created > IF(s.last_action > {$last_action}, s.last_action, {$last_action})) and t.author !=?
+                ");
+                $query_c->execute(array($u['id_user'],$u['id_user'],$u['id_user']));
+                while($row = $query_c->fetch())
+                {
+                    $co[$u['id_user']]['email'] = $u['email'];
+                    $co[$u['id_user']]['fio'] = $u['fio'];
+                    $co[$u['id_user']]['topics'][$row['id']][] = $row;
+                }
+            }
+            return $co;
+        }
+    }
+
+    function new_topics_to_mail()
+    {
+        $query = $this->db->query("select * from tasks where controller='new_topics'");
+        $task = $query->fetch();
+
+        if ($new_topics = $this->get_new_topics_statistic($task['completed']))
+        {
+            $from = get_setting('email');
+            foreach($new_topics as $n)
+            {
+                $html = $this->layout_get("forum/topics_mail.html",array('new_topics' => $n,'server_name' => DOMEN_FOR_CLI));
+                if (!send_mail($from, $n['email'], "Новые темы на форумах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }
     }

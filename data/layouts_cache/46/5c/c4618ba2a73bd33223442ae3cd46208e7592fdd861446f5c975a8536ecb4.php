@@ -36,13 +36,13 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
     <link rel=\"stylesheet\" href=\"/source/css/jquery.jgrowl.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/source/css/popup.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/source/css/content.css\" type=\"text/css\" />
-    <link rel=\"stylesheet\" href=\"/source/css/ui-lightness/jquery-ui-1.10.3.custom.min.css\" />
+    <link rel=\"stylesheet\" href=\"/source/css/ui-lightness/jquery-ui-1.10.4.custom.min.css\" />
     ");
         // line 15
         $this->displayBlock('css', $context, $blocks);
         // line 17
         echo \layout::func_from_text("    <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>
-    <script src=\"/source/js/jquery-ui-1.10.3.custom.min.js\"></script>
+    <script src=\"/source/js/jquery-ui-1.10.4.custom.min.js\"></script>
     <script src=\"/source/js/jquery.jgrowl_minimized.js\"></script>
     <script src=\"/source/js/functions.js\"></script>
     <script src=\"/source/js/message.js\"></script>

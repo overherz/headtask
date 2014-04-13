@@ -10,6 +10,12 @@ $INFO['error_to_mail'] = '1';
 $INFO['antiddos'] = '0';
 $INFO['domen_for_cli'] = "overherz.dyndns.org";
 
+$INFO['cache'] = "1";
+$INFO['cache_storage'] = "memcache"; // files, sqlite, auto, apc, wincache, xcache, memcache, memcached
+$INFO['cache_server'] = array(
+                            array("localhost",11211),
+                            //array("localhost",11211,70)
+                        );
 
 $INFO['subdomains'] = '0';
 $INFO['subdomain_default'] = '';
