@@ -1,6 +1,6 @@
 <?php
 
-/* applications\projects\layouts\tasks//task_mail.html */
+/* applications\projects\layouts\tasks/task_mail.html */
 class __TwigTemplate_2c27db5e84a8ee42d18d94a561ae7953c9ab69f5ca0a8754856bafdaadc93607 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -18,8 +18,11 @@ class __TwigTemplate_2c27db5e84a8ee42d18d94a561ae7953c9ab69f5ca0a8754856bafdaadc
         // line 1
         if ((isset($context["edit"]) ? $context["edit"] : null)) {
             // line 2
-            echo \layout::func_from_text("Изменена задача в проекте
-");
+            echo \layout::func_from_text("Изменена задача в проекте");
+            if ((isset($context["message"]) ? $context["message"] : null)) {
+                echo \layout::func_from_text(". ");
+                echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : null), "html", null, true));
+            }
         } else {
             // line 4
             echo \layout::func_from_text("Добавлена задача в проект
@@ -41,7 +44,7 @@ class __TwigTemplate_2c27db5e84a8ee42d18d94a561ae7953c9ab69f5ca0a8754856bafdaadc
 
     public function getTemplateName()
     {
-        return "applications\\projects\\layouts\\tasks//task_mail.html";
+        return "applications\\projects\\layouts\\tasks/task_mail.html";
     }
 
     public function isTraitable()
@@ -51,6 +54,6 @@ class __TwigTemplate_2c27db5e84a8ee42d18d94a561ae7953c9ab69f5ca0a8754856bafdaadc
 
     public function getDebugInfo()
     {
-        return array (  29 => 6,  25 => 4,  21 => 2,  19 => 1,);
+        return array (  32 => 6,  28 => 4,  21 => 2,  19 => 1,);
     }
 }

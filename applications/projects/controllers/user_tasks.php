@@ -16,13 +16,7 @@ class user_tasks extends \Controller {
             ),
             'priority' => array('label' => 'Приоритет',
                 'type' => 'multy_select',
-                'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический'),
-                'selected' => array('1','2','3','4')
-            ),
-            'type' => array('label' => 'Тип задачи',
-                'type' => 'multy_select',
-                'options' => array('task' => 'улучшение','error' => 'ошибка'),
-                'selected' => array('task','error')
+                'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический')
             ),
             'percent' => array('label' => 'Только просроченные',
                 'type' => 'checkbox'
@@ -75,12 +69,6 @@ class user_tasks extends \Controller {
             $where[] = "t.priority IN (".implode(",",$_POST['priority']).")";
         }
 
-        if (isset($_POST['type']) && $_POST['type'] != '')
-        {
-            foreach ($_POST['type'] as &$s) $s = $this->db->quote($s);
-            $where[] = "t.type IN (".implode(",",$_POST['type']).")";
-        }
-
         $where[] = "p.owner IS NULL";
         //$where[] = "(t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='manager') or ((t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='user') and t.assigned='{$_SESSION['user']['id_user']}')))";
 
@@ -94,7 +82,7 @@ class user_tasks extends \Controller {
 
         $datetime1 = date_create(date("Y-m-d"));
 
-        $query = $this->db->prepare("select t.id,t.type,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
+        $query = $this->db->prepare("select t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
             p.name as project_name
             from projects_tasks as t
             LEFT JOIN projects as p ON t.id_project = p.id

@@ -13,11 +13,13 @@ class new_posts extends \Controller {
         if ($task = $task_cr->get_task($id))
         {
             $task_cr->get_options();
-            if ($key == get_setting('cron_key'))
+            $pid = getmypid();
+
+            if ($key == get_setting('cron_key') && !$task_cr->is_process_running($task['pid']))
             {
                 $this->id = $task['id'];
                 $GLOBALS['cli_task_id'] = $this->id;
-                $task_cr->set_status($id,"run",$task['period']);
+                $task_cr->set_status($id,"run",$task['period'],$pid);
                 $this->get_controller("projects","forum")->new_posts_to_mail();
                 $task_cr->set_status($id,"stand");
             }

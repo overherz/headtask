@@ -45,9 +45,11 @@ class tasks extends \Admin {
         $paginator = new \Paginator($total, $_POST['page'], $on_page);
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $on_page);
 
+        $c_t = $this->get_controller("tasks");
         $query = $this->db->query("select * from tasks {$sql} ORDER BY name LIMIT {$on_page} OFFSET {$paginator->get_range('from')}");
         while ($row = $query->fetch())
         {
+            $row['status'] = $c_t->is_process_running($row['pid']);
             $tasks[$row['id']] = $row;
         }
 
@@ -60,7 +62,6 @@ class tasks extends \Admin {
 
         if(function_exists('exec')) $exec = true;
 
-        $c_t = $this->get_controller("tasks");
         $cron_string[] = "*/1 * * * * {$user_info['name']} ".$c_t->getPHPExecutableFromPath()." ".dirname(__DIR__)."/tasks.php ".get_setting('cron_key')." {$c_t->get_dev_null()}";
 
         $data = array('tasks'=>$tasks, 'total'=>$total,'paginator' => $paginator,'form' => $form,'cron_string' => $cron_string,'exec' => $exec);
@@ -199,19 +200,22 @@ class tasks extends \Admin {
     {
         $query = $this->db->prepare("select * from tasks where id=?");
         $query->execute(array($_POST['id']));
+        $task_cr = $this->get_controller("tasks");
         if ($row = $query->fetch())
         {
-            if ($row['status'] == "stand")
+            if (!$task_cr->is_process_running($row['pid']))
             {
                 $script = ROOT."applications".DS."tasks".DS."controllers".DS.$row['controller'].".php";
                 if (!file_exists($script)) $res['error'] = "Скрипт не найден";
                 else
                 {
-                    $c_t = $this->get_controller("tasks");
-                    $command = $c_t->getPHPExecutableFromPath()." ".$script." {$row['id']} ".get_setting('cron_key')." {$c_t->get_dev_null()}";
-                    exec($command,$output, $return);
-                    if (!$return) $res['success'] = true;
-                    else $res['error'] = "Возникла ошибка";
+                    $command = $task_cr->getPHPExecutableFromPath()." ".$script." {$row['id']} ".get_setting('cron_key')." {$task_cr->get_dev_null()}";
+                    if ($task_cr->get_os() == "windows")
+                    {
+                        pclose(popen("start /B cmd /C \"{$command} >NUL 2>NUL\"", 'r'));
+                    }
+                    else exec($command);
+                    $res['success'] = true;
                 }
             }
             else $res['error'] = "Задача уже запущена";

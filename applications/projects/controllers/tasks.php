@@ -73,7 +73,8 @@ class tasks extends \Controller {
                 'project' => $project,
                 'users' => $users,
                 'manager' => true,
-                'access' => $access['access']
+                'access' => $access['access'],
+                'categories' => $this->get_controller("projects")->get_categories($project['id'])
             ));
         }
         else $this->error_page("denied");
@@ -115,12 +116,24 @@ class tasks extends \Controller {
                 $files[] = $row;
             }
 
+            $query = $this->db->prepare("select c.*
+                from projects_tasks_to_categories as tc
+                LEFT JOIN projects_tasks_categories as c ON tc.id_category=c.id
+                where id_task=?
+            ");
+            $query->execute(array($task['id']));
+            while ($row = $query->fetch())
+            {
+                $task_categories[$row['id']] = $row;;
+            }
+
             if ($this->id == "edit")
             {
                 $users = $this->get_controller("projects","users")->get_users_project($task['id_project']);
                 crumbs("Редактирование");
                 $layout = "tasks/add_task.html";
                 if (!$access['access']['edit_tasks'] && !$access['access']['edit_task']) $this->error_page("denied");
+                $categories = $this->get_controller("projects")->get_categories($task['id_project']);
             }
             else $layout = "tasks/show_task.html";
 
@@ -147,7 +160,9 @@ class tasks extends \Controller {
                 'to_task' => $to_task,
                 'access' => $access['access'],
                 'logs' => $logs,
-                'comments'=> $comments
+                'comments'=> $comments,
+                'categories' => $categories,
+                'task_categories' => $task_categories
             ));
         }
         else $this->error_page();
@@ -173,6 +188,27 @@ class tasks extends \Controller {
             $where[] = "(".implode("OR ",$search_ar).")";
         }
 
+        $form = array(
+            'status' => array('label' => 'Статус',
+                'type' => 'multy_select',
+                'options' => array('new' => 'новая','in_progress' => 'в процессе','closed' => 'закрытая','rejected' => 'отклоненная'),
+                'selected' => array('new','in_progress','rejected')
+            ),
+            'priority' => array('label' => 'Приоритет',
+                'type' => 'multy_select',
+                'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический')
+            ),
+            'category' => array('label' => 'Категории',
+                'type' => 'multy_select',
+                'options' => $categories,
+                'selected' => array(intval($_GET['cat']))
+            ),
+            'percent' => array('label' => 'Только просроченные',
+                'type' => 'checkbox'
+            ),
+        );
+
+        if ($_POST['status'] == "") $_POST['status'] = $form['status']['selected'];
         if (isset($_POST['status']) && $_POST['status'] != '')
         {
             foreach ($_POST['status'] as &$s) $s = $this->db->quote($s);
@@ -191,25 +227,27 @@ class tasks extends \Controller {
             $where[] = "t.priority IN (".implode(",",$_POST['priority']).")";
         }
 
-        /*
-        if (isset($_POST['type']) && $_POST['type'] != '')
+        if (isset($_POST['category']) && $_POST['category'] != '')
         {
-            foreach ($_POST['type'] as &$s) $s = $this->db->quote($s);
-            $where[] = "t.type IN (".implode(",",$_POST['type']).")";
+            foreach ($_POST['category'] as &$s) $s = (int) $s;
+            $where[] = "c.id_category IN (".implode(",",$_POST['category']).")";
         }
-        */
+        else if ($_GET['cat'])
+        {
+            $where[] = "c.id_category = ".intval($_GET['cat']);
+        }
 
         $where[] = "t.id_project={$this->db->quote($this->id)}";
 
         if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
 
-        $total = $this->db->num_rows("projects_tasks as t LEFT JOIN users as a ON t.assigned = a.id_user {$where}");
+        $total = $this->db->num_rows("projects_tasks as t LEFT JOIN users as a ON t.assigned = a.id_user LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id {$where}");
 
         require_once(ROOT.'libraries/paginator/paginator.php');
         $paginator = new \Paginator($total, $_POST['page'], $this->limit);
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-        $query = $this->db->prepare("select t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
+        $query = $this->db->prepare("select distinct t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
                 a.fio as assigned_name,a.nickname as assigned_nickname,
                 u.fio as user_name,u.nickname as user_nickname,g.color,g.name as group_name,
                 gt.color as assigned_color,gt.name as assigned_group_name
@@ -218,6 +256,7 @@ class tasks extends \Controller {
                 LEFT JOIN users as u ON t.id_user = u.id_user
                 LEFT JOIN groups as g ON u.id_group = g.id
                 LEFT JOIN groups as gt ON a.id_group = gt.id
+                LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id
                 {$where}
                 order by t.updated DESC,t.name ASC
                 LIMIT {$this->limit}
@@ -226,28 +265,7 @@ class tasks extends \Controller {
         $query->execute();
         $tasks = $query->fetchAll();
 
-        $form = array(
-            'status' => array('label' => 'Статус',
-                'type' => 'multy_select',
-                'options' => array('new' => 'новая','in_progress' => 'в процессе','closed' => 'закрытая','rejected' => 'отклоненная'),
-                'selected' => array('new','in_progress','closed','rejected')
-            ),
-            'priority' => array('label' => 'Приоритет',
-                'type' => 'multy_select',
-                'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический'),
-                'selected' => array('1','2','3','4')
-            ),
-            /*
-            'type' => array('label' => 'Тип задачи',
-                'type' => 'multy_select',
-                'options' => array('task' => 'улучшение','error' => 'ошибка'),
-                'selected' => array('task','error')
-            ),
-            */
-            'percent' => array('label' => 'Только просроченные',
-                'type' => 'checkbox'
-            ),
-        );
+        $categories = $this->get_controller("projects")->get_categories($this->id,true);
 
         $data = array(
             'tasks' => $tasks,
@@ -260,7 +278,7 @@ class tasks extends \Controller {
             'all' => true
         );
 
-        if ($_POST)
+        if ($_POST && $_GET['ajax'])
         {
             if ($text = $this->layout_get('tasks/tasks_table.html',$data)) $result['success'] = $text;
             else $result['error'] = "Ничего не найдено";
@@ -414,8 +432,19 @@ class tasks extends \Controller {
                 if (count($_POST['files']) > 0)
                 {
                     $query = $this->db->prepare("insert into files_to_tasks(id_file,id_task) values(?,?)");
-
                     foreach($_POST['files'] as $k => $v)
+                    {
+                        if (!$query->execute(array($v,$res['success']))) $res['error'] = "Ошибка базы данных";
+                    }
+                }
+
+                $query = $this->db->prepare("delete from projects_tasks_to_categories where id_task=?");
+                if (!$query->execute(array($_POST['id']))) $res['error'] = "Ошибка базы данных";
+
+                if (count($_POST['category']) > 0)
+                {
+                    $query = $this->db->prepare("insert into projects_tasks_to_categories(id_category,id_task) values(?,?)");
+                    foreach($_POST['category'] as $k => $v)
                     {
                         if (!$query->execute(array($v,$res['success']))) $res['error'] = "Ошибка базы данных";
                     }
@@ -427,19 +456,20 @@ class tasks extends \Controller {
             {
                 $this->db->commit();
 
-                $notif_cr = $this->get_controller("projects","tasks");
-                $message = $this->layout_get("tasks//task_mail.html",array(
+                $message = $this->layout_get("tasks/task_mail.html",array(
                     'server_name' => $_SERVER["SERVER_NAME"],
                     'name' => $project['name'],
                     'edit' => $edit,
                     'task' => $res['success']
                 ));
 
-                if ($_POST['assigned'] != "" && $_POST['assigned'] != $_SESSION['user']['id_user'])
-                    $notif_cr->send_notification($_POST['assigned'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
+                if ($_POST['assigned'] != "")
+                    $this->send_notification($_POST['assigned'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
 
                 if ($task['assigned'] != "" && $_POST['assigned'] != $task['assigned'])
-                    $notif_cr->send_notification($task['assigned'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
+                    $this->send_notification($task['assigned'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
+
+                if ($edit) $this->send_notification($task['id_user'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
 
             }
         }
@@ -451,6 +481,7 @@ class tasks extends \Controller {
     {
         if ($task = $this->get_task($_POST['id']))
         {
+            if (intval($task['spent_time']) == $task['spent_time']) $task['spent_time'] = (int) $task['spent_time'];
             $res['success'] = $this->layout_get("tasks/forward_task.html",array('task' => $task));
         }
         else $res['error'] = "Задача не найдена";
@@ -459,43 +490,62 @@ class tasks extends \Controller {
 
     function forward_tasks()
     {
-        if ($task = $this->get_task($_POST['id']))
+        $access = $this->get_controller("projects","users")->get_access(false,false,$_POST['id']);
+        if ($access['access']['edit_task'] || $access['access']['edit_tasks'])
         {
-            if ($_POST['new_current_percent'] != 0)
+            if ($task = $access['task'])
             {
-                if ($_POST['new_current_percent'] < $task['percent']) $res['error'] = "Новый статус выполнения не может быть меньше текущего";
-                if ($_POST['new_current_percent'] == $task['percent']) $res['error'] = "Текущий и новый статус выполнения совпадают";
-                if ($task['status'] == "closed") $res['error'] = "Задача уже закрыта";
-            }
-
-            if (!$res['error'])
-            {
-                if ($_POST['new_current_percent'] == 100) $task['status'] = "closed";
-                else $task['status'] = "in_progress";
-
-                if ($_POST['new_current_percent'] == 0) $_POST['spent_time'] = 0;
-                $spent_time = (float) $_POST['spent_time'];
-
-                $now = date("Y-m-d");
-                if ($now < $task['start']) $task['start'] = $now;
-                if ($task['assigned'] == "") $task['assigned'] = $_SESSION['user']['id_user'];
-
-                $query = $this->db->prepare("update projects_tasks set status=?,start=?,end=?,assigned=?,spent_time=spent_time+{$spent_time},percent=?,updated=? where id=? LIMIT 1");
-                if ($query->execute(array($task['status'],$task['start'],$now,$task['assigned'],$_POST['new_current_percent'],time(),$_POST['id'])))
+                if ($_POST['new_current_percent'] != 0)
                 {
-                    $res['success']['project'] = $task['id_project'];
-                    $log = $this->get_controller("projects","logs");
-
-                    if ($task['status'] == "closed") $message = "Закрыл";
-                    else if ($_POST['new_current_percent'] > 0) $message = "Изменил статус выполнения ({$_POST['new_current_percent']} %)";
-                    else $message = "Начата";
-
-                    $log->set_logs("task",$task['id'],$message);
+                    if ($_POST['new_current_percent'] < $task['percent']) $res['error'] = "Новый статус выполнения не может быть меньше текущего";
+                    if ($_POST['new_current_percent'] == $task['percent']) $res['error'] = "Текущий и новый статус выполнения совпадают";
+                    if ($task['status'] == "closed") $res['error'] = "Задача уже закрыта";
                 }
-                else $res['error'] = "Ошибка базы данных";
+
+                if (!$res['error'])
+                {
+                    if ($_POST['new_current_percent'] == 100) $task['status'] = "closed";
+                    else $task['status'] = "in_progress";
+
+                    if ($_POST['new_current_percent'] == 0) $_POST['spent_time'] = 0;
+                    $spent_time = (float) $_POST['spent_time'];
+
+                    $now = date("Y-m-d");
+                    if ($now < $task['start']) $task['start'] = $now;
+                    if ($task['assigned'] == "") $task['assigned'] = $_SESSION['user']['id_user'];
+
+                    $query = $this->db->prepare("update projects_tasks set status=?,start=?,end=?,assigned=?,spent_time=spent_time+{$spent_time},percent=?,updated=? where id=? LIMIT 1");
+                    if ($query->execute(array($task['status'],$task['start'],$now,$task['assigned'],$_POST['new_current_percent'],time(),$_POST['id'])))
+                    {
+                        $res['success']['project'] = $task['id_project'];
+                        $log = $this->get_controller("projects","logs");
+
+                        if ($task['status'] == "closed") $message = "Закрыта";
+                        else if ($_POST['new_current_percent'] > 0) $message = "Изменен статус выполнения ({$_POST['new_current_percent']} %)";
+                        else $message = "Начата";
+
+                        $log->set_logs("task",$task['id'],$message);
+
+                        $message = $this->layout_get("tasks/task_mail.html",array(
+                            'server_name' => $_SERVER["SERVER_NAME"],
+                            'name' => $access['project']['name'],
+                            'edit' => true,
+                            'task' => $task['id'],
+                            'message' => $message
+                        ));
+
+                        $notif = "В Задаче \"{$task['name']}\" в проекте \"{$access['project']['name']}\" изменен статус выполнения";
+
+                        $this->send_notification($task['assigned'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
+                        $this->send_notification($task['id_user'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
+                    }
+                    else $res['error'] = "Ошибка базы данных";
+                }
             }
+            else $res['error'] = "Задача не найдена";
         }
-        else $res['error'] = "Задача не найдена";
+        else $res['error'] = "У Вас недостаточно прав";
+
         echo json_encode($res);
     }
 
@@ -606,9 +656,9 @@ class tasks extends \Controller {
 
     function send_notification($id,$text,$full_text,$email=false,$phone=false)
     {
-        if ($id && $id != $_SESSION['user']['id_user'] && get_setting("send_sms"))
+        if ($id && $id != $_SESSION['user']['id_user'])
         {
-            if ($phone)
+            if ($phone && get_setting("send_sms"))
             {
                 $query = $this->db->prepare("select * from profile as pr
                             LEFT JOIN userprofiles as up ON pr.id = up.idprof
@@ -628,7 +678,7 @@ class tasks extends \Controller {
                 $query = $this->db->prepare("select email from users where id_user=?");
                 $query->execute(array($id));
                 $email_value = $query->fetch();
-                send_mail(get_setting('email'), $email_value['email'], $text, $full_text, "Task me!");
+                send_mail(get_setting('email'), $email_value['email'], $text, $full_text, get_setting('site_name'));
             }
         }
     }
@@ -691,8 +741,11 @@ class tasks extends \Controller {
 
     function get_stats($id_project)
     {
-        $query = $this->db->prepare("select status from projects_tasks
+        $query = $this->db->prepare("select distinct t.id,t.status,GROUP_CONCAT(c.id_category SEPARATOR ',') as cats
+            from projects_tasks as t
+            LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id
             where id_project=?
+            group by t.id
         ");
         $query->execute(array($id_project));
 
@@ -701,8 +754,16 @@ class tasks extends \Controller {
         {
             $stats[$row['status']]++;
             $stats['all']++;
-        }
 
+            if ($row['status'] != "closed" && $row['cats'] != "")
+            {
+                $cats = explode(",",$row['cats']);
+                foreach ($cats as $c)
+                {
+                    $stats['cats'][$c]++;
+                }
+            }
+        }
         return $stats;
     }
 

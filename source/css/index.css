@@ -618,3 +618,24 @@ fieldset[disabled] .btn-oscar.active {
 .dropdown-menu li a:hover i {
     color: #000 !important;
 }
+
+.list-group-item {
+    padding: 7px 10px;
+}
+
+blockquote {
+    background: #eee;
+    border: 1px solid #41764E;
+    padding:10px;
+    font-size: 14px;
+}
+
+blockquote:before {
+    content: "Цитата";
+    color: #fff;
+    background: #41764E;
+    display: block;
+    padding: 2px 5px;
+    font-weight: bold;
+    margin: -10px -10px 10px -10px;
+}

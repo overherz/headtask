@@ -76,6 +76,16 @@ $(document).ready(function ($) {
         });
         return false;
     });
+
+    $(document).on("click",".list_group_categories",function(){
+        var id = $(this).data('id');
+        var div = $(this).parent().parent().find(".categories");
+        user_api({act:'get_project_categories_stat',id:id}, function (data) {
+            div.html(data);
+            div.show();
+        },false,'/projects/tasks/');
+        return false;
+    });
 });
 
 function get_project_panel_page(page){

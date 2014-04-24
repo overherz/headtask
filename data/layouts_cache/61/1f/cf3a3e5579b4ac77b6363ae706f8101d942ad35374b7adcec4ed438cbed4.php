@@ -325,44 +325,90 @@ class __TwigTemplate_611fcf3a3e5579b4ac77b6363ae706f8101d942ad35374b7adcec4ed438
     </div>
     ");
         // line 127
-        if ((isset($context["full_edit"]) ? $context["full_edit"] : null)) {
+        if ((isset($context["categories"]) ? $context["categories"] : null)) {
             // line 128
+            echo \layout::func_from_text("    <div class=\"form-group\">
+        <label class=\"col-lg-2 control-label\" for=\"category\">Категория</label>
+        <div class=\"col-lg-2\">
+            <table>
+                ");
+            // line 132
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["categories"]) ? $context["categories"] : null));
+            foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
+                // line 133
+                echo \layout::func_from_text("                    <tr>
+                        <td style=\"padding: 3px;\">
+                            <span class=\"label\" style=\"background: ");
+                // line 135
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color"), "html", null, true));
+                echo \layout::func_from_text(";color: ");
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color_text"), "html", null, true));
+                echo \layout::func_from_text("\">
+                                <input type=\"checkbox\" style=\"margin-top: -2px;\" name=\"category[]\" value=\"");
+                // line 136
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "id"), "html", null, true));
+                echo \layout::func_from_text("\" ");
+                if ($this->getAttribute((isset($context["task_categories"]) ? $context["task_categories"] : null), $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "id"), array(), "array")) {
+                    echo \layout::func_from_text("checked");
+                }
+                echo \layout::func_from_text("> ");
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "name"), "html", null, true));
+                echo \layout::func_from_text("
+                            </span>
+                        </td>
+                    </tr>
+                ");
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 141
+            echo \layout::func_from_text("            </table>
+        </div>
+    </div>
+    ");
+        }
+        // line 145
+        echo \layout::func_from_text("    ");
+        if ((isset($context["full_edit"]) ? $context["full_edit"] : null)) {
+            // line 146
             echo \layout::func_from_text("        <center>
             <a class=\"btn btn-warning\" href=\"\" add_file_to_task style=\"margin: 20px 0 20px 0;\">Прикрепить файлы</a>
             ");
-            // line 130
+            // line 148
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_files")) {
                 echo \layout::func_from_text("<a class=\"btn btn-info upload_files\" style=\"margin: 20px 0 20px 0;\" href=\"\">Загрузить файлы</a>");
             }
-            // line 131
+            // line 149
             echo \layout::func_from_text("        </center>
         ");
-            // line 132
+            // line 150
             $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "files/files_table.html"), "method"));
             $template->display($context);
-            // line 133
+            // line 151
             echo \layout::func_from_text("    ");
         }
-        // line 134
+        // line 152
         echo \layout::func_from_text("
     <div style=\"text-align: center;\">
         ");
-        // line 136
+        // line 154
         if (((isset($context["full_edit"]) ? $context["full_edit"] : null) && (!$this->getAttribute((isset($context["project"]) ? $context["project"] : null), "owner")))) {
-            // line 137
+            // line 155
             echo \layout::func_from_text("        <div style=\"margin-bottom: 10px;\">
         Послать уведомление&nbsp;&nbsp;
             <input type=\"checkbox\" name=\"email\" checked> по email&nbsp;&nbsp;
             ");
-            // line 140
+            // line 158
             if (($this->getAttribute($this->getAttribute((isset($context["settings"]) ? $context["settings"] : null), "send_sms"), "value") == 1)) {
                 echo \layout::func_from_text("<input type=\"checkbox\" name=\"sms\"> по смс");
             }
-            // line 141
+            // line 159
             echo \layout::func_from_text("        </div>
         ");
         }
-        // line 143
+        // line 161
         echo \layout::func_from_text("        <button class=\"btn btn-large btn-primary save_task\" type=\"button\">");
         if ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id")) {
             echo \layout::func_from_text("Сохранить");
@@ -388,6 +434,6 @@ class __TwigTemplate_611fcf3a3e5579b4ac77b6363ae706f8101d942ad35374b7adcec4ed438
 
     public function getDebugInfo()
     {
-        return array (  366 => 143,  362 => 141,  358 => 140,  353 => 137,  351 => 136,  347 => 134,  344 => 133,  341 => 132,  338 => 131,  334 => 130,  330 => 128,  328 => 127,  323 => 124,  308 => 122,  304 => 121,  298 => 117,  289 => 113,  280 => 107,  275 => 104,  269 => 100,  248 => 98,  244 => 97,  237 => 92,  234 => 91,  232 => 90,  229 => 89,  220 => 83,  207 => 75,  201 => 74,  195 => 73,  189 => 72,  183 => 68,  181 => 67,  175 => 64,  167 => 61,  162 => 58,  155 => 56,  148 => 55,  146 => 54,  139 => 53,  135 => 52,  129 => 48,  122 => 44,  113 => 38,  108 => 35,  105 => 34,  99 => 33,  94 => 30,  88 => 28,  82 => 26,  80 => 25,  77 => 24,  74 => 23,  67 => 20,  63 => 18,  61 => 17,  53 => 13,  50 => 12,  43 => 8,  40 => 7,  32 => 4,  29 => 3,);
+        return array (  412 => 161,  408 => 159,  404 => 158,  399 => 155,  397 => 154,  393 => 152,  390 => 151,  387 => 150,  384 => 149,  380 => 148,  376 => 146,  373 => 145,  367 => 141,  350 => 136,  344 => 135,  340 => 133,  336 => 132,  330 => 128,  328 => 127,  323 => 124,  308 => 122,  304 => 121,  298 => 117,  289 => 113,  280 => 107,  275 => 104,  269 => 100,  248 => 98,  244 => 97,  237 => 92,  234 => 91,  232 => 90,  229 => 89,  220 => 83,  207 => 75,  201 => 74,  195 => 73,  189 => 72,  183 => 68,  181 => 67,  175 => 64,  167 => 61,  162 => 58,  155 => 56,  148 => 55,  146 => 54,  139 => 53,  135 => 52,  129 => 48,  122 => 44,  113 => 38,  108 => 35,  105 => 34,  99 => 33,  94 => 30,  88 => 28,  82 => 26,  80 => 25,  77 => 24,  74 => 23,  67 => 20,  63 => 18,  61 => 17,  53 => 13,  50 => 12,  43 => 8,  40 => 7,  32 => 4,  29 => 3,);
     }
 }

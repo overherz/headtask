@@ -72,14 +72,6 @@ class login extends \Controller {
                     where u.id_user='{$_SESSION['user']['id_user']}'
             ")->fetch();
 
-            $query = $this->db->prepare("select up.*, pr.* FROM userprofiles as up
-                LEFT JOIN profile as pr ON up.idprof=pr.id
-                WHERE up.iduser = ? and (pr.name='email_login' or pr.name='email_password' or pr.name='background' or pr.name='background2')");
-            $query->execute(array($_SESSION['user']['id_user']));
-            while ($row = $query->fetch())
-            {
-                $_SESSION['user'][$row['name']] = $row['value'];
-            }
             $_SESSION['user']['access'] = (array) json_decode($data['access_site']);
             $_SESSION['user']['id_group'] = $data['id'];
             $_SESSION['user']['uniq_key'] = $data['uniq_key'];

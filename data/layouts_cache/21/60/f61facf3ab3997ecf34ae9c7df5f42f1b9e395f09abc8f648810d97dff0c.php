@@ -72,8 +72,13 @@ class __TwigTemplate_2160f61facf3ab3997ecf34ae9c7df5f42f1b9e395f09abc8f648810d97
         <tr>
             <th>Статус</th>
             <th>Приоритет</th>
-            <th>Тип</th>
-            <th>Другое</th>
+            ");
+        // line 27
+        if ($this->getAttribute($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "options")) {
+            echo \layout::func_from_text("<th>Категория</th>");
+        }
+        // line 28
+        echo \layout::func_from_text("            <th>Другое</th>
         </tr>
         <tr>
             <td>");
@@ -84,14 +89,20 @@ class __TwigTemplate_2160f61facf3ab3997ecf34ae9c7df5f42f1b9e395f09abc8f648810d97
         // line 32
         echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "priority"), "priority"));
         echo \layout::func_from_text("</td>
-            <td>");
+            ");
         // line 33
-        echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "type"), "type"));
-        echo \layout::func_from_text("</td>
-            <td>
+        if ($this->getAttribute($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "options")) {
+            // line 34
+            echo \layout::func_from_text("                <td>");
+            echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "category"));
+            echo \layout::func_from_text("</td>
+            ");
+        }
+        // line 36
+        echo \layout::func_from_text("            <td>
                 <input type=\"text\" name=\"search\" id=\"search_label\" class=\"input-large\" placeholder=\"Поиск\"><br/><br/>
                 ");
-        // line 36
+        // line 38
         echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "percent"), "percent", true));
         echo \layout::func_from_text("
             </td>
@@ -101,10 +112,10 @@ class __TwigTemplate_2160f61facf3ab3997ecf34ae9c7df5f42f1b9e395f09abc8f648810d97
 <div class=\"clearfix\"></div>
 <div id=\"search_result\">
     ");
-        // line 43
+        // line 45
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/tasks_table.html"), "method"));
         $template->display($context);
-        // line 44
+        // line 46
         echo \layout::func_from_text("</div>
 ");
     }
@@ -121,6 +132,6 @@ class __TwigTemplate_2160f61facf3ab3997ecf34ae9c7df5f42f1b9e395f09abc8f648810d97
 
     public function getDebugInfo()
     {
-        return array (  108 => 44,  105 => 43,  95 => 36,  89 => 33,  85 => 32,  81 => 31,  69 => 21,  67 => 20,  64 => 19,  57 => 15,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  119 => 46,  116 => 45,  106 => 38,  102 => 36,  96 => 34,  94 => 33,  90 => 32,  86 => 31,  81 => 28,  77 => 27,  69 => 21,  67 => 20,  64 => 19,  57 => 15,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
     }
 }

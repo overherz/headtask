@@ -91,9 +91,11 @@ class edit extends \Controller {
                 if (!$res['error'])
                 {
                     $this->db->commit();
-                    $_SESSION['user']['fio'] = $user['fio'];
-                    $_SESSION['user']['nickname'] = $user['nickname'];
-                    $_SESSION['user']['tzOffset'] = $user['tz'];
+                    $query = $this->db->prepare("select u.*,g.access_site,g.name as group_name from users as u LEFT JOIN groups as g ON g.id=u.id_group where id_user=?");
+                    $query->execute(array($_POST['id']));
+                    $u = $query->fetch();
+
+                    $_SESSION['user'] = $u;
                     $_SESSION['user']['timezone'] = $u_ctr->get_user_timezone($user['tz']);
                     $res['success'] = $_POST['id'];
                 }

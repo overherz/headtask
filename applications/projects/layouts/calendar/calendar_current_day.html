@@ -7,40 +7,22 @@
     <script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
 
-{% block css %}
-    <link rel="stylesheet" type="text/css" href="/libraries/calendar/calendar.css">
-{% endblock %}
-
 {% block context %}
 <ul class="breadcrumbs-one">
-    <li><a>Общая статистика</a></li>
-    <li><a class="current">
-        <span class="label label-info">{{count_project|default(0)}}</span> {{ "stats_projects"|lang(count_project|default(0)) }}
-        <span class="label label-info">{{count_personal_tasks|default(0)}}</span> {{ "stats_personal_tasks"|lang(count_personal_tasks|default(0)) }}
-
-        <span style="margin-left: 20px;font-weight: bold;" title='У участника с ролью "Менеджер" учитываются все задачи в проекте. У просто участника только задачи, которые создавал он'>Менеджер: </span>
-        <span class="label label-info">{{manager_stats.new|default(0)}}</span> {{ "stats_tasks_new"|lang(manager_stats.new|default(0)) }}
-        <span class="label label-info">{{manager_stats.in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}
-        <span class="label label-info">{{manager_stats.closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(manager_stats.closed|default(0)) }}
-        <span class="label label-info">{{manager_stats.rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(manager_stats.rejected|default(0)) }}
+    <li><a>Задачи</a></li>
+    <li>
+        <a class="current">
+            <span style="margin-right: 5px;"><input type="checkbox" name="d1" class="dashboard_option" value="1" {% if mask b-and 1 %}checked{% endif %}> Создатель</span>
+            <span style="margin-right: 5px;"><input type="checkbox" name="d2" class="dashboard_option" value="2" {% if mask b-and 2 %}checked{% endif %}> Делегированные</span>
+            <span style="margin-right: 5px;"><input type="checkbox" name="d4" class="dashboard_option" value="4" {% if mask b-and 4 %}checked{% endif %}> Ничьи</span>
+            <span style="margin-right: 5px;"><input type="checkbox" name="d8" class="dashboard_option" value="8" {% if mask b-and 8 %}checked{% endif %}> Чужие</span>
+            <span style="margin-right: 5px;"><input type="checkbox" name="d16" class="dashboard_option" value="16" {% if mask b-and 16 %}checked{% endif %}> Закрытые сегодня</span>
         </a>
     </li>
 </ul>
-    <div class="checkbox" style="padding-left: 0;display: inline-block;margin-right: 10px;">
-        <label for="own">Только свои
-            <input type="checkbox" id="own" name="own" class="dashboard_option" {% if cookie_data.dashboard_own == "show" %}checked{% endif %}>
-        </label>
-    </div>
-    <div class="checkbox" style="padding-left: 0;display: inline-block;margin-right: 10px;">
-        <label for="not_assigned">Ничьи
-            <input type="checkbox" id="not_assigned" name="not_assigned" {% if not cookie_data.dashboard_not_assigned or cookie_data.dashboard_not_assigned == "show" %}checked{% endif %} class="dashboard_option">
-        </label>
-    </div>
-    <div class="checkbox" style="padding-left: 0;display: inline-block;">
-        <label for="closed">Закрытые сегодня
-            <input type="checkbox" id="closed" name="closed" {% if cookie_data.dashboard_closed == "show" %}checked{% endif %} class="dashboard_option">
-        </label>
-    </div>
+
+
+<div style="margin-bottom: 10px;">Всего задач: <span class="label label-info" style="margin-right: 10px;">{{ count }}</span>Показано задач: <span class="label label-info">{{ count_show }}</span></div>
 {% include app.path('projects','calendar/task_today.html') %}
 
 <ul class="breadcrumbs-one second">

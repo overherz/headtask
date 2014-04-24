@@ -34,7 +34,8 @@ class projects extends \Controller {
             if ($projects_ar)
             {
                 $projects = $projects_ar['projects'];
-                $this->redirect("/projects/~{$projects[0]['id']}/");
+                $redirect = current($projects_ar['projects']);
+                $this->redirect("/projects/~{$redirect['id']}/");
             }
             else $this->redirect("/projects/all/");
         }
@@ -64,7 +65,8 @@ class projects extends \Controller {
                 'review_button' => true,
                 'stats' => $this->get_controller("projects","tasks")->get_stats($this->id),
                 'stats_other' => $stats_other,
-                'news' => $this->get_controller("projects","news")->get_last_news($this->id)
+                'news' => $this->get_controller("projects","news")->get_last_news($this->id),
+                'categories' => $this->get_categories($this->id)
             ));
         }
     }
@@ -118,6 +120,7 @@ class projects extends \Controller {
 
         $query = $this->db->query("select p.* from projects as p
             LEFT JOIN projects_users as u ON p.id = u.id_project
+            LEFT JOIN projects_tasks_categories as c ON c.id_project = p.id
             {$where}
             group by p.id
             order by p.owner DESC,p.name
@@ -125,7 +128,12 @@ class projects extends \Controller {
             OFFSET {$paginator->get_range('from')}
         ");
 
-        if ($projects = $query->fetchAll())
+        while ($row = $query->fetch())
+        {
+            $projects[$row['id']] = $row;
+        }
+
+        if ($projects)
         {
             if ($_POST['project_panel_page'])
             {
@@ -213,5 +221,20 @@ class projects extends \Controller {
             $res['error']['captcha_html'] = $captcha;
         }
         echo json_encode($res);
+    }
+
+    function get_categories($id_project,$for_filter=false)
+    {
+        $query = $this->db->prepare("select * from projects_tasks_categories where id_project=?");
+        $query->execute(array($id_project));
+        if ($for_filter)
+        {
+            while ($row = $query->fetch())
+            {
+                $cats[$row['id']] = $row['name'];
+            }
+            return $cats;
+        }
+        else return $query->fetchAll();
     }
 }

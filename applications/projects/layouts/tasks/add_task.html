@@ -124,6 +124,24 @@
             </select>
         </div>
     </div>
+    {% if categories %}
+    <div class="form-group">
+        <label class="col-lg-2 control-label" for="category">Категория</label>
+        <div class="col-lg-2">
+            <table>
+                {% for cat in categories %}
+                    <tr>
+                        <td style="padding: 3px;">
+                            <span class="label" style="background: {{ cat.color }};color: {{ cat.color_text }}">
+                                <input type="checkbox" style="margin-top: -2px;" name="category[]" value="{{ cat.id }}" {% if task_categories[cat.id] %}checked{% endif %}> {{ cat.name }}
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% endif %}
     {% if full_edit %}
         <center>
             <a class="btn btn-warning" href="" add_file_to_task style="margin: 20px 0 20px 0;">Прикрепить файлы</a>

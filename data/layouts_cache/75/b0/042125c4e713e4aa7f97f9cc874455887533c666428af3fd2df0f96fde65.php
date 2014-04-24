@@ -63,6 +63,17 @@ class __TwigTemplate_75b0042125c4e713e4aa7f97f9cc874455887533c666428af3fd2df0f96
         echo \layout::func_from_text("</b> ч</div>
     <div>Выбранное: <b>+ <span id=\"new_time\">0</span></b> ч.</div>
 </div>
+
+<div style=\"margin-top: 10px;\">
+    Послать уведомление&nbsp;&nbsp;
+    <input type=\"checkbox\" name=\"email\" checked> по email&nbsp;&nbsp;
+    ");
+        // line 34
+        if (($this->getAttribute($this->getAttribute((isset($context["settings"]) ? $context["settings"] : null), "send_sms"), "value") == 1)) {
+            echo \layout::func_from_text("<input type=\"checkbox\" name=\"sms\"> по смс");
+        }
+        // line 35
+        echo \layout::func_from_text("</div>
 </form>");
     }
 
@@ -78,6 +89,6 @@ class __TwigTemplate_75b0042125c4e713e4aa7f97f9cc874455887533c666428af3fd2df0f96
 
     public function getDebugInfo()
     {
-        return array (  62 => 27,  47 => 15,  43 => 14,  33 => 7,  29 => 6,  25 => 5,  19 => 1,);
+        return array (  76 => 35,  72 => 34,  62 => 27,  47 => 15,  43 => 14,  33 => 7,  29 => 6,  25 => 5,  19 => 1,);
     }
 }

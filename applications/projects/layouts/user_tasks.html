@@ -14,7 +14,6 @@
                 <th>Дата</th>
                 <th>Статус</th>
                 <th>Приоритет</th>
-                <th>Тип</th>
                 <th>Другое</th>
             </tr>
             <tr>
@@ -22,7 +21,6 @@
                     До: <input type="text" name="end" value="{{end}}" class="input-small" readonly></td>
                 <td>{{ inputs.input(form.status,'status') }}</td>
                 <td>{{ inputs.input(form.priority,'priority') }}</td>
-                <td>{{ inputs.input(form.type,'type') }}</td>
                 <td>
                     <input type="text" name="search" id="search_label" class="input-large" placeholder="Поиск"><br/><br/>
                     {{ inputs.input(form.percent,'percent',true) }}

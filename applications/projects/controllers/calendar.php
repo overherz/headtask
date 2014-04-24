@@ -69,16 +69,22 @@ class calendar extends \Controller {
         echo json_encode($res);
     }
 
-    function get_calendar_tasks($date,$id_user=false,$cookie=false)
+    function get_calendar_tasks($date,$id_user=false,$dashboard=false)
     {
         if (!$id_user) $id_user = $_SESSION['user']['id_user'];
         $datetime1 = date_create(date("Y-m-d"));
 
-        if ($cookie)
+        if ($dashboard)
         {
-            if ($_COOKIE['dashboard_not_assigned'] == "hide") $not_assigned = "and pt.assigned IS NOT NULL";
-            if ($_COOKIE['dashboard_own'] == "show") $own = "and pt.assigned=".$this->db->quote($id_user);
-            if ($_COOKIE['dashboard_closed'] == "show") $closed = "or (pt.end='{$date}' and pt.status = 'closed')";
+            $own = 1 << 0;
+            $assigned = 1 << 1;
+            $not_assigned = 1 << 2;
+            $not_own = 1 << 3;
+            $closed = 1 << 4;
+
+            $mask = $_COOKIE['dashboard'] != "" ? $_COOKIE['dashboard'] : 0;
+           // pr(decbin($mask));
+
         }
 
         $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
@@ -86,47 +92,44 @@ class calendar extends \Controller {
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
-            where (pt.assigned=? OR pt.assigned IS NULL or pt.id_user=?) and pt.id_project IN( SELECT id_project from projects_users where id_user=? and role='user') and ((pt.start <= ? and pt.status IN ('new','in_progress','rejected')) {$closed})
-            {$not_assigned} {$own}
+            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL)))) and ((pt.start <= ? and pt.status IN ('new','in_progress','rejected')) or (pt.end=? and pt.status = 'closed'))
             order by pt.updated DESC
         ");
-        $query->execute(array($id_user,$id_user,$id_user,$date));
-        while ($row = $query->fetch())
-        {
-            if ($row['end'] != "")
-            {
-                $datetime2 = date_create($row['end']);
-                $interval = date_diff($datetime1, $datetime2);
-                $row['diff'] = $interval->format('%R%a');
-            }
-            else $row['diff'] = "inf";
-            $tasks[$row['id']] = $row;
-        }
 
-        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
-            from projects_tasks as pt
-            LEFT JOIN projects as p ON pt.id_project = p.id
-            LEFT JOIN users as u ON pt.assigned = u.id_user
-            LEFT JOIN groups as g ON u.id_group=g.id
-            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and role='manager') and ((pt.start <= ? and pt.status IN ('new','in_progress','rejected')) {$closed})
-            {$not_assigned} {$own}
-            order by field(pt.assigned,?) DESC, pt.updated DESC
-        ");
-        $query->execute(array($id_user,$date,$id_user));
+//            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL)))) and ((pt.start <= ?)
+        $query->execute(array($id_user,$id_user,$id_user,$date,$date));
         while ($row = $query->fetch())
         {
-            if ($row['end'] != "")
+            $bit = 0;
+
+            if ($row['task_creater'] == $_SESSION['user']['id_user']) $bit = $bit | $own;
+            if ($row['assigned'] == $_SESSION['user']['id_user']) $bit = $bit | $assigned;
+            if ($row['assigned'] == "") $bit = $bit | $not_assigned;
+            if ($row['status'] == "closed") $bit = $bit | $closed;
+            if ($row['assigned'] != $_SESSION['user']['id_user'] && $row['assigned'] != "") $bit = $bit | $not_own;
+
+            $count++;
+            $b[] = decbin($bit & $mask);
+            if (($dashboard && ($bit & $mask) == $mask) || !$dashboard)
             {
-                $datetime2 = date_create($row['end']);
-                $interval = date_diff($datetime1, $datetime2);
-                $row['diff'] = $interval->format('%R%a');
+                if ($row['end'] != "")
+                {
+                    $datetime2 = date_create($row['end']);
+                    $interval = date_diff($datetime1, $datetime2);
+                    $row['diff'] = $interval->format('%R%a');
+                }
+                else $row['diff'] = "inf";
+
+
+
+             //   $row['bit'] = $bit;
+             //   $row['bin'] = decbin($bit);
+                $tasks[$row['id']] = $row;
             }
-            else $row['diff'] = "inf";
-            $tasks[$row['id']] = $row;
-            $manager = true;
         }
+       // pr($b);
         if ($tasks) uasort($tasks, array($this,"sort_tasks"));
-        return array('tasks' => $tasks,'manager' => $manager);
+        return array('tasks' => $tasks,'count' => $count,'mask' => $mask);
     }
 
     function sort_tasks($a, $b)

@@ -162,11 +162,15 @@ $(document).ready(function ($) {
 
     $(document).on("click",".quote_post",function(){
         var text = getSelectionHtml();
+        var html = "";
         if (text != "")
         {
-            if (text.substr(0,5,text) == "<div>") var html = CKEDITOR.dom.element.createFromHtml("<blockquote>"+text+"</blockquote>");
-            else var html = CKEDITOR.dom.element.createFromHtml("<blockquote><div>"+text+"</div></blockquote>");
-            CKEDITOR.instances.text_bottom.insertElement(html);
+            //if (text.substr(0,5,text) == "<div>") html = CKEDITOR.dom.element.createFromHtml("<blockquote>"+text+"</blockquote>");
+            //else html = CKEDITOR.dom.element.createFromHtml("<blockquote><div>"+text+"</div></blockquote>");
+
+            if (text.substr(0,5,text) == "<div>") html = "<blockquote>"+text+"</blockquote>\n";
+            else html = "<blockquote><div>"+text+"</div></blockquote>\n";
+            CKEDITOR.instances.text_bottom.insertHtml(html);
             CKEDITOR.instances.text_bottom.focus();
         }
 

@@ -29,12 +29,20 @@
 
 <div class="tab-content">
     <div id="tabs-1" class="tab-pane fade in active">
-Статус выполнения
-                    <div class="progress progress-striped {% if task.status == "in_progress" %}active{% endif %}">
-                        <div class="progress-bar {% if undate %}progress-bar-danger{% endif %}" role="progressbar" aria-valuenow="{{task.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {% if task.percent > 0 %}{{task.percent}}%;{% else %}30px;{% endif %}">
-                            <span>{{ task.percent }} %</span>
-                        </div>
-                    </div>
+        {% if task_categories %}
+            <div style="margin-bottom: 10px;">
+                {% for cat in task_categories %}
+                    <div style="margin-bottom:5px;display: inline-block;"><span class="label" style="background: {{ cat.color }};color: {{ cat.color_text }}">{{ cat.name }}</span></div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+         Статус выполнения
+        <div class="progress progress-striped {% if task.status == "in_progress" %}active{% endif %}">
+            <div class="progress-bar {% if undate %}progress-bar-danger{% endif %}" role="progressbar" aria-valuenow="{{task.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {% if task.percent > 0 %}{{task.percent}}%;{% else %}30px;{% endif %}">
+                <span>{{ task.percent }} %</span>
+            </div>
+        </div>
 
         <table class="table table-hover table-condensed table-border" style="margin-top:20px;" id="tasks_table">
             <thead>

@@ -81,15 +81,44 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
 
 <div class=\"tab-content\">
     <div id=\"tabs-1\" class=\"tab-pane fade in active\">
-Статус выполнения
-                    <div class=\"progress progress-striped ");
-        // line 33
+        ");
+        // line 32
+        if ((isset($context["task_categories"]) ? $context["task_categories"] : null)) {
+            // line 33
+            echo \layout::func_from_text("            <div style=\"margin-bottom: 10px;\">
+                ");
+            // line 34
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["task_categories"]) ? $context["task_categories"] : null));
+            foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
+                // line 35
+                echo \layout::func_from_text("                    <div style=\"margin-bottom:5px;display: inline-block;\"><span class=\"label\" style=\"background: ");
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color"), "html", null, true));
+                echo \layout::func_from_text(";color: ");
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color_text"), "html", null, true));
+                echo \layout::func_from_text("\">");
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "name"), "html", null, true));
+                echo \layout::func_from_text("</span></div>
+                ");
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 37
+            echo \layout::func_from_text("            </div>
+        ");
+        }
+        // line 39
+        echo \layout::func_from_text("
+         Статус выполнения
+        <div class=\"progress progress-striped ");
+        // line 41
         if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") == "in_progress")) {
             echo \layout::func_from_text("active");
         }
         echo \layout::func_from_text("\">
-                        <div class=\"progress-bar ");
-        // line 34
+            <div class=\"progress-bar ");
+        // line 42
         if ((isset($context["undate"]) ? $context["undate"] : null)) {
             echo \layout::func_from_text("progress-bar-danger");
         }
@@ -103,12 +132,12 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
             echo \layout::func_from_text("30px;");
         }
         echo \layout::func_from_text("\">
-                            <span>");
-        // line 35
+                <span>");
+        // line 43
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "percent"), "html", null, true));
         echo \layout::func_from_text(" %</span>
-                        </div>
-                    </div>
+            </div>
+        </div>
 
         <table class=\"table table-hover table-condensed table-border\" style=\"margin-top:20px;\" id=\"tasks_table\">
             <thead>
@@ -127,32 +156,32 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
             </thead>
             <tbody>
             ");
-        // line 55
+        // line 63
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/task.html"), "method"));
         $template->display($context);
-        // line 56
+        // line 64
         echo \layout::func_from_text("            </tbody>
         </table>
         ");
-        // line 58
+        // line 66
         if ((isset($context["files"]) ? $context["files"] : null)) {
-            // line 59
+            // line 67
             echo \layout::func_from_text("            ");
             $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "files/files_table.html"), "method"));
             $template->display($context);
-            // line 60
+            // line 68
             echo \layout::func_from_text("        ");
         }
-        // line 61
+        // line 69
         echo \layout::func_from_text("        <div class=\"wysiwyg\" style=\"padding-bottom: 20px;\">");
         echo \layout::func_from_text($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "description"));
         echo \layout::func_from_text("</div>
     </div>
     <div id=\"tabs-3\" class=\"tab-pane fade\">
     ");
-        // line 64
+        // line 72
         if ((isset($context["logs"]) ? $context["logs"] : null)) {
-            // line 65
+            // line 73
             echo \layout::func_from_text("        <table class=\"table table-hover table-condensed table-border\">
             <thead>
             <tr>
@@ -163,15 +192,15 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
             </thead>
             <tbody>
             ");
-            // line 74
+            // line 82
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["logs"]) ? $context["logs"] : null));
             foreach ($context['_seq'] as $context["_key"] => $context["l"]) {
-                // line 75
+                // line 83
                 echo \layout::func_from_text("                <tr>
                     <td>
                         <a href=\"/users/~");
-                // line 77
+                // line 85
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "id_user"), "html", null, true));
                 echo \layout::func_from_text("/\" style=\"color:");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "color"), "html", null, true));
@@ -181,16 +210,16 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "fio"), "html", null, true));
                 echo \layout::func_from_text("</a>
                         <div class=\"nickname\">");
-                // line 78
+                // line 86
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "nickname"), "html", null, true));
                 echo \layout::func_from_text("</div>
                     </td>
                     <td>");
-                // line 80
+                // line 88
                 echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "created"), "d.m.Y H:i:s"), "html", null, true));
                 echo \layout::func_from_text("</td>
                     <td>");
-                // line 81
+                // line 89
                 echo \layout::func_from_text($this->getAttribute((isset($context["l"]) ? $context["l"] : null), "text"));
                 echo \layout::func_from_text("</td>
                 </tr>
@@ -199,28 +228,28 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['l'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 84
+            // line 92
             echo \layout::func_from_text("            </tbody>
         </table>
     ");
         }
-        // line 87
+        // line 95
         echo \layout::func_from_text("    </div>
 </div>
 
 ");
-        // line 90
+        // line 98
         if ((($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "closed") || (isset($context["comments"]) ? $context["comments"] : null))) {
-            // line 91
+            // line 99
             echo \layout::func_from_text("<ul class=\"breadcrumbs-one second\">
     <li><a class=\"current\">Комментарии</a></li>
 </ul>
 
 <div class=\"all_comments\">
     ");
-            // line 96
+            // line 104
             if ((isset($context["comments"]) ? $context["comments"] : null)) {
-                // line 97
+                // line 105
                 echo \layout::func_from_text("        ");
                 $context['_parent'] = (array) $context;
                 $context['_seq'] = twig_ensure_traversable((isset($context["comments"]) ? $context["comments"] : null));
@@ -238,11 +267,11 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
                     $context['loop']['last'] = 1 === $length;
                 }
                 foreach ($context['_seq'] as $context["_key"] => $context["com"]) {
-                    // line 98
+                    // line 106
                     echo \layout::func_from_text("            ");
                     $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/comment.html"), "method"));
                     $template->display($context);
-                    // line 99
+                    // line 107
                     echo \layout::func_from_text("        ");
                     ++$context['loop']['index0'];
                     ++$context['loop']['index'];
@@ -256,26 +285,26 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['com'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 100
+                // line 108
                 echo \layout::func_from_text("    ");
             }
-            // line 101
+            // line 109
             echo \layout::func_from_text("</div>
 ");
         }
-        // line 103
+        // line 111
         echo \layout::func_from_text("
 ");
-        // line 104
+        // line 112
         if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "closed")) {
-            // line 105
+            // line 113
             echo \layout::func_from_text("<div>
     <a href=\"#\" id=\"botnewcomm\" style=\"margin-top: 10px;\" class=\"btn btn-primary comment_to_comment\" to_comment=\"0\">Добавить комментарий</a>
     <form class=\"comment_form\" style=\"display: none;\">
         <input type=\"hidden\" name=\"act\" value=\"add_comment\">
         <input type=\"hidden\" name=\"parent\" value=\"0\">
         <input type=\"hidden\" name=\"id\" value=\"");
-            // line 110
+            // line 118
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\">
 
@@ -301,6 +330,6 @@ class __TwigTemplate_35653c71a08afed7e933ed1bd085a24b173ab028ad06a944ba3eba8ae10
 
     public function getDebugInfo()
     {
-        return array (  279 => 110,  272 => 105,  270 => 104,  267 => 103,  263 => 101,  260 => 100,  246 => 99,  242 => 98,  224 => 97,  222 => 96,  215 => 91,  213 => 90,  208 => 87,  203 => 84,  194 => 81,  190 => 80,  185 => 78,  175 => 77,  171 => 75,  167 => 74,  156 => 65,  154 => 64,  147 => 61,  144 => 60,  140 => 59,  138 => 58,  134 => 56,  131 => 55,  108 => 35,  93 => 34,  87 => 33,  76 => 24,  73 => 22,  71 => 21,  69 => 20,  66 => 19,  63 => 18,  57 => 15,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  308 => 118,  301 => 113,  299 => 112,  296 => 111,  292 => 109,  289 => 108,  275 => 107,  271 => 106,  253 => 105,  251 => 104,  244 => 99,  242 => 98,  237 => 95,  232 => 92,  223 => 89,  219 => 88,  214 => 86,  204 => 85,  200 => 83,  196 => 82,  185 => 73,  183 => 72,  176 => 69,  173 => 68,  169 => 67,  167 => 66,  163 => 64,  160 => 63,  137 => 43,  122 => 42,  116 => 41,  112 => 39,  108 => 37,  95 => 35,  91 => 34,  88 => 33,  86 => 32,  76 => 24,  73 => 22,  71 => 21,  69 => 20,  66 => 19,  63 => 18,  57 => 15,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
     }
 }

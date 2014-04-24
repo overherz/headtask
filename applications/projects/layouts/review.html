@@ -38,6 +38,20 @@
                         <span class="label label-info">{{stats.in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}
                         <span class="label label-info">{{stats.closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(stats.closed|default(0)) }}
                         <span class="label label-info">{{stats.rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats.rejected|default(0)) }}
+
+                        {% if categories %}
+                        <div style="margin-top: 15px;">
+                        <div style="font-weight:bold;margin-bottom: 10px;">Открытые задачи по категориям </div>
+                        {% for cat in categories %}
+                            <a href="/projects/tasks/{{project.id}}/?cat={{ cat.id }}" class="list-group-item">
+                                <span class="label" style="margin-right: 20px;background: {{ cat.color }};color: {{ cat.color_text }}">
+                                    {{ cat.name }}
+                                </span>
+                                <span class="label label-info pull-right" style="margin-top: 3px;">{{ stats.cats[cat.id]|default('0') }}</span>
+                            </a>
+                        {% endfor %}
+                        </div>
+                        {% endif %}
                     </td>
                 </tr>
                 {% if not project.owner %}

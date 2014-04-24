@@ -24,13 +24,15 @@
         <tr>
             <th>Статус</th>
             <th>Приоритет</th>
-            <th>Тип</th>
+            {% if form.category.options %}<th>Категория</th>{% endif %}
             <th>Другое</th>
         </tr>
         <tr>
             <td>{{ inputs.input(form.status,'status') }}</td>
             <td>{{ inputs.input(form.priority,'priority') }}</td>
-            <td>{{ inputs.input(form.type,'type') }}</td>
+            {% if form.category.options %}
+                <td>{{ inputs.input(form.category,'category') }}</td>
+            {% endif %}
             <td>
                 <input type="text" name="search" id="search_label" class="input-large" placeholder="Поиск"><br/><br/>
                 {{ inputs.input(form.percent,'percent',true) }}

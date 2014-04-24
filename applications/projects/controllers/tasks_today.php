@@ -24,40 +24,46 @@ class tasks_today extends \Controller {
             //pr($tasks);
             $ids = array_keys($tasks);
 
-
-            $query = $this->db->query("select * from tasks where controller='new_topics'");
-            $ta4 = $query->fetch();
-            if ($new_topics = $this->get_controller("projects","forum")->get_new_topics_statistic($ta4['completed']))
-            {
-                foreach($new_topics as $n)
-                {
-                    $html = $this->layout_get("forum/topics_mail.html",array('new_topics' => $n,'server_name' => DOMEN_FOR_CLI));
-                   // pr($html);
-                }
-            }
+            /*
+            $query = $this->db->query("select * from tasks where controller='new_comments'");
+            $task1 = $query->fetch();
+            if ($new_comments = $task->get_count_new_comments_mail($task1['completed']))
+                pr($new_comments);
 
             /*
-                        $query = $this->db->query("select * from tasks where controller='new_posts'");
-                        $ta3 = $query->fetch();
-                        if ($new_posts = $this->get_controller("projects","forum")->get_new_posts_statistic(false,$ta3['completed'])) pr($new_posts);
+                        $query = $this->db->query("select * from tasks where controller='new_topics'");
+                        $ta4 = $query->fetch();
+                        if ($new_topics = $this->get_controller("projects","forum")->get_new_topics_statistic($ta4['completed']))
+                        {
+                            foreach($new_topics as $n)
+                            {
+                                $html = $this->layout_get("forum/topics_mail.html",array('new_topics' => $n,'server_name' => DOMEN_FOR_CLI));
+                               // pr($html);
+                            }
+                        }
 
-                               // if ($_SESSION['user']['id_user'] == "1")
-                               // {
-                                      $query = $this->db->query("select * from tasks where controller='new_comments'");
-                                      $task1 = $query->fetch();
-                                       if ($new_comments = $task->get_count_new_comments_mail($task1['completed']))
-                                       pr($new_comments);
-                             //   }
+                        /*
+                                    $query = $this->db->query("select * from tasks where controller='new_posts'");
+                                    $ta3 = $query->fetch();
+                                    if ($new_posts = $this->get_controller("projects","forum")->get_new_posts_statistic(false,$ta3['completed'])) pr($new_posts);
 
-                               // pr($ids);
-*/
+                                           // if ($_SESSION['user']['id_user'] == "1")
+                                           // {
+
+                                         //   }
+
+                                           // pr($ids);
+            */
             $data['comment_count'] = $task->get_count_new_comments($ids);
         }
 
         $data['new_posts'] = $this->get_controller("projects","forum")->get_new_posts_statistic($_SESSION['user']['id_user']);
-        $data['manager_stats'] = $task->get_manager_stats();
-        $data['count_project'] = $task->get_count_project();
-        $data['count_personal_tasks'] = $task->get_count_personal_tasks();
+      //  $data['manager_stats'] = $task->get_manager_stats();
+    //    $data['count_project'] = $task->get_count_project();
+     //   $data['count_personal_tasks'] = $task->get_count_personal_tasks();
+        $data['count'] = $info['count'];
+        $data['mask'] = $info['mask'];
+        $data['count_show'] = count($tasks);
         $this->layout_show('calendar/calendar_current_day.html',$data);
     }
 }

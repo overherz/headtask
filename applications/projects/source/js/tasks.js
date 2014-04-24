@@ -150,6 +150,7 @@ $(document).ready(function ($) {
                 max: 90,
                 disabled: true,
                 step: 10,
+                animate: "normal",
                 slide: function(event, ui) {
                     $("#time1_val").val(ui.value)
                     var new_time = parseInt(ui.value) + parseFloat($("#time2_val").val());
@@ -165,6 +166,7 @@ $(document).ready(function ($) {
                 max: 10,
                 disabled: true,
                 step: 0.5,
+                animate: "normal",
                 slide: function(event, ui) {
                     $("#time2_val").val(ui.value)
                     var new_time = parseInt($("#time1_val").val()) + parseFloat(ui.value);
@@ -179,6 +181,7 @@ $(document).ready(function ($) {
                 min: 0,
                 max: 100,
                 step: 10,
+                animate: "normal",
                 slide: function(event, ui) {
                     var current_percent = parseInt($("#current_percent").val());
                     if (ui.value < current_percent) {
@@ -328,9 +331,13 @@ $(document).ready(function ($) {
     });
 
     $(document).on("change","input.dashboard_option",function(){
-        var id = $(this).attr('id');
-        if($(this).is(':checked')) $.cookie('dashboard_'+id, 'show', { expires: 30, path: '/' });
-        else $.cookie('dashboard_'+id, 'hide', { expires: 30, path: '/' });
+        var bit = 0;
+        $("input.dashboard_option:checked").each(function(k,v)
+        {
+            bit = bit | $(v).val();
+        });
+
+        $.cookie('dashboard', bit, { expires: 30, path: '/' });
         redirect();
     });
 });

@@ -13,11 +13,13 @@ class sitemap_builder extends \Controller {
         if ($task = $task_cr->get_task($id))
         {
             $task_cr->get_options();
-            if ($key == get_setting('cron_key'))
+            $pid = getmypid();
+
+            if ($key == get_setting('cron_key') && !$task_cr->is_process_running($task['pid']))
             {
                 $this->id = $task['id'];
                 $GLOBALS['cli_task_id'] = $this->id;
-                $task_cr->set_status($id,"run",$task['period']);
+                $task_cr->set_status($id,"run",$task['period'],$pid);
                 $this->get_controller("sitemap_builder")->create_sitemap();
                 $task_cr->set_status($id,"stand");
             }

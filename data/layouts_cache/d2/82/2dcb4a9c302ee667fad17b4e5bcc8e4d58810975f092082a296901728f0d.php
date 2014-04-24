@@ -53,9 +53,9 @@ class __TwigTemplate_d2822dcb4a9c302ee667fad17b4e5bcc8e4d58810975f092082a2969017
         echo \layout::func_from_text("</td>
     <td>");
         // line 8
-        if (($this->getAttribute((isset($context["i"]) ? $context["i"] : null), "status") == "stand")) {
+        if ((!$this->getAttribute((isset($context["i"]) ? $context["i"] : null), "status"))) {
             echo \layout::func_from_text("не запущен");
-        } elseif (($this->getAttribute((isset($context["i"]) ? $context["i"] : null), "status") == "run")) {
+        } else {
             echo \layout::func_from_text("<span style=\"color:green;\">запущен</span>");
         }
         echo \layout::func_from_text("</td>
@@ -91,6 +91,6 @@ class __TwigTemplate_d2822dcb4a9c302ee667fad17b4e5bcc8e4d58810975f092082a2969017
 
     public function getDebugInfo()
     {
-        return array (  76 => 12,  64 => 9,  52 => 7,  44 => 6,  36 => 5,  32 => 4,  28 => 3,  24 => 2,  79 => 22,  72 => 11,  38 => 17,  21 => 2,  19 => 1,  149 => 39,  146 => 38,  142 => 36,  138 => 34,  132 => 33,  128 => 31,  113 => 29,  109 => 28,  104 => 27,  102 => 26,  97 => 25,  93 => 24,  86 => 19,  77 => 17,  73 => 16,  70 => 15,  68 => 10,  65 => 13,  59 => 19,  56 => 8,  53 => 9,  47 => 7,  42 => 6,  39 => 5,  34 => 3,  31 => 2,);
+        return array (  76 => 12,  72 => 11,  68 => 10,  64 => 9,  56 => 8,  52 => 7,  44 => 6,  36 => 5,  32 => 4,  28 => 3,  24 => 2,  19 => 1,);
     }
 }
