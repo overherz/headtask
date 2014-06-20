@@ -114,80 +114,77 @@ class __TwigTemplate_d13f6bb8cfc6e429e58a939baefd875b9077b62b33dc049ebc7c009ce34
             ");
         }
         // line 37
-        echo \layout::func_from_text("            <div class=\"nickname\" style=\"font-size: 14px;\">");
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "nickname"), "html", null, true));
-        echo \layout::func_from_text("</div>
-            <table class=\"table table-striped table-border\" style=\"margin-top: 20px;\">
+        echo \layout::func_from_text("            <table class=\"table table-striped table-border\" style=\"margin-top: 20px;\">
                 <tr>
                     <td style=\"width:1px;white-space: nowrap;font-weight: bold;border-top: none;\">Группа:</td>
                     <td style=\"text-align: justify;border-top:none;color:");
-        // line 41
+        // line 40
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "color"), "html", null, true));
         echo \layout::func_from_text(";font-weight: bold;\">");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "group_name"), "html", null, true));
         echo \layout::func_from_text("</td>
                 </tr>
                 ");
-        // line 43
+        // line 42
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "profile"));
         foreach ($context['_seq'] as $context["_key"] => $context["p"]) {
-            // line 44
+            // line 43
             echo \layout::func_from_text("                ");
             if ((($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name") != "avatar") && ($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "value") != ""))) {
-                // line 45
+                // line 44
                 echo \layout::func_from_text("                <tr>
                     <td style=\"width:1px;white-space: nowrap;font-weight: bold;\">");
-                // line 46
+                // line 45
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "alias"), "html", null, true));
                 echo \layout::func_from_text(":</td>
                     <td style=\"text-align: justify;\">
                         ");
-                // line 48
+                // line 47
                 if (($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name") == "skypename")) {
-                    // line 49
+                    // line 48
                     echo \layout::func_from_text("                        <script type=\"text/javascript\" src=\"/source/js/skypeCheck.js\"></script>
                         <a href=\"skype:");
-                    // line 50
+                    // line 49
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "value"), "html", null, true));
                     echo \layout::func_from_text("?chat\">");
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "value"), "html", null, true));
                     echo \layout::func_from_text("</a>
                         ");
                 } else {
-                    // line 52
+                    // line 51
                     echo \layout::func_from_text("                        ");
                     echo \layout::func_from_text(nl2br(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "value"), "html", null, true)));
                     echo \layout::func_from_text("
                         ");
                 }
-                // line 54
+                // line 53
                 echo \layout::func_from_text("                    </td>
                 </tr>
                 ");
             }
-            // line 57
+            // line 56
             echo \layout::func_from_text("                ");
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['p'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 58
+        // line 57
         echo \layout::func_from_text("                <tr>
                     <td style=\"width:1px;white-space: nowrap;font-weight: bold;\">Последняя активность:</td>
                     <td style=\"text-align: justify;\">
                         ");
-        // line 61
+        // line 60
         if ($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "last_user_action")) {
             echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "last_user_action"), "d.m.Y H:i"), "html", null, true));
             echo \layout::func_from_text("
                         ");
         } else {
-            // line 62
+            // line 61
             echo \layout::func_from_text("дата неизвестна
                         ");
         }
-        // line 64
+        // line 63
         echo \layout::func_from_text("                    </td>
                 </tr>
             </table>
@@ -195,7 +192,7 @@ class __TwigTemplate_d13f6bb8cfc6e429e58a939baefd875b9077b62b33dc049ebc7c009ce34
     </tr>
 </table>
 ");
-        // line 70
+        // line 69
         echo \layout::func_from_text((isset($context["user_tasks"]) ? $context["user_tasks"] : null));
         echo \layout::func_from_text("
 ");
@@ -213,6 +210,6 @@ class __TwigTemplate_d13f6bb8cfc6e429e58a939baefd875b9077b62b33dc049ebc7c009ce34
 
     public function getDebugInfo()
     {
-        return array (  199 => 70,  191 => 64,  187 => 62,  181 => 61,  176 => 58,  170 => 57,  165 => 54,  159 => 52,  152 => 50,  149 => 49,  147 => 48,  142 => 46,  139 => 45,  136 => 44,  132 => 43,  125 => 41,  117 => 37,  113 => 35,  109 => 33,  107 => 32,  103 => 31,  99 => 29,  94 => 26,  92 => 25,  79 => 24,  74 => 21,  71 => 20,  57 => 9,  51 => 7,  45 => 5,  42 => 4,  39 => 3,  31 => 2,  84 => 10,  80 => 8,  65 => 6,  61 => 5,  43 => 4,  40 => 3,  34 => 2,  21 => 1,  81 => 34,  72 => 28,  66 => 25,  62 => 24,  58 => 23,  54 => 8,  50 => 21,  37 => 11,  32 => 8,  30 => 7,  23 => 3,  19 => 1,);
+        return array (  196 => 69,  188 => 63,  184 => 61,  178 => 60,  173 => 57,  167 => 56,  162 => 53,  156 => 51,  149 => 49,  146 => 48,  144 => 47,  139 => 45,  136 => 44,  133 => 43,  129 => 42,  122 => 40,  117 => 37,  113 => 35,  109 => 33,  107 => 32,  103 => 31,  99 => 29,  94 => 26,  92 => 25,  79 => 24,  74 => 21,  71 => 20,  54 => 8,  51 => 7,  45 => 5,  42 => 4,  39 => 3,  31 => 2,  76 => 32,  67 => 26,  61 => 23,  57 => 9,  53 => 21,  49 => 20,  37 => 11,  32 => 8,  30 => 7,  23 => 3,  19 => 1,);
     }
 }

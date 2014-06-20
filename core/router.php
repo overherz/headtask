@@ -97,7 +97,7 @@ class Router {
         {
             $c = \MyPDO::connect();
             if (self::$url == "/") self::$url = "/index/";
-            $query = $c->prepare("select id from pages where path=?");
+            $query = $c->prepare("select id,name from pages where path=?");
             $query->execute(array(self::$url));
             $result = $query->fetch();
 
@@ -106,6 +106,7 @@ class Router {
                 self::$id = $result['id'];
                 self::$application = "pages";
                 self::$controller = "pages";
+                \Controller::set_global('page_name',$result['name']);
             }
         }
     }

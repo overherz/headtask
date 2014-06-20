@@ -21,7 +21,7 @@ class logs extends \Admin {
         if (isset($_POST['search']) && $_POST['search'] != '')
         {
             $s = $this->db->quote("%{$_POST['search']}%");
-            $sql[] = "(l.message LIKE ".$s." OR l.ip LIKE ".$s." OR u.fio LIKE ".$s.")";
+            $sql[] = "(l.message LIKE ".$s." OR l.ip LIKE ".$s." OR u.first_name LIKE ".$s." OR u.last_name LIKE ".$s.")";
         }
 
         if ($_POST['type']) $sql[] = "l.title=".$this->db->quote($_POST['type']);
@@ -34,13 +34,14 @@ class logs extends \Admin {
         $paginator = new \Paginator($total, $_POST['page'], $on_page);
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $on_page);
 
-        $query = $this->db->query("select l.*,u.fio,g.color from logs as l
+        $query = $this->db->query("select l.*,u.first_name,u.last_name,g.color from logs as l
                 LEFT JOIN users as u ON l.user=u.id_user
                 LEFT JOIN groups as g ON g.id=u.id_group
                 where l.type='{$type}' {$sql}
                 ORDER BY date DESC,id DESC LIMIT {$on_page} OFFSET {$paginator->get_range('from')}");
         while ($row = $query->fetch())
         {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
             $row['GET'] = print_r(unserialize($row['GET']),true);
             $row['POST'] = print_r(unserialize($row['POST']),true);
             $logs[] = $row;

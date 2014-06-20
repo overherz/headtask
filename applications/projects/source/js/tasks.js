@@ -340,6 +340,26 @@ $(document).ready(function ($) {
         $.cookie('dashboard', bit, { expires: 30, path: '/' });
         redirect();
     });
+
+    var project_info;
+
+    $(document).on("mouseover",".get_info_project",function(){
+        var id = $(this).data('id');
+        clearTimeout(project_info);
+        project_info = setTimeout(function(){
+            user_api({id:id}, function (data) {
+                var scrollTop = $(document).scrollTop();
+                var offset = $(".jumbotron").offset();
+                offset_top = scrollTop-offset.top;
+                if (offset_top < 0) offset_top = 0;
+                $("#projects_info").html(data).stop(true,true).css('top',offset_top).show();
+            },false,"/projects/"+id+"/");
+        },700)
+        return false;
+    }).on("mouseleave",".get_info_project",function(){
+        clearTimeout(project_info);
+        $("#projects_info").fadeOut();
+    });
 });
 
 

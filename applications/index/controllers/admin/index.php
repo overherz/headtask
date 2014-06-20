@@ -16,6 +16,9 @@ class index extends \Admin {
             case "get_lost_pass":
                 $this->get_lost_pass();
                 break;
+            case "update_session":
+                $this->update_session();
+                break;
             default: $this->show();
         }
     }
@@ -62,6 +65,7 @@ class index extends \Admin {
                 if (md5(md5($_POST['password']).md5($u['salt'])) == $u['pass'])
                 {
                     unset($u['pass']);unset($u['salt']);
+                    $u['fio'] = build_user_name($u['first_name'],$u['last_name']);
                     $_SESSION['admin'] = $u;
                     $_SESSION['admin']['access'] = json_decode($u['access']);
                     $res['success'] = true;
@@ -96,6 +100,13 @@ class index extends \Admin {
         $u_cr = $this->get_controller("users","recovery");
         $res = $u_cr->add_recovery($_POST['email']);
 
+        echo json_encode($res);
+    }
+
+    function update_session()
+    {
+        $_SESSION['new_time'] = time();
+        $res['success'] = true;
         echo json_encode($res);
     }
 }

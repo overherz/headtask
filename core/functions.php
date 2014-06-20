@@ -113,14 +113,27 @@ function debug_mail($text=false)
 }
 
 //обрезание текста до нужного количества символов
-function cut($text,$size=256)
+function cut($text,$size=256,$dots=true,$lines=false)
 {
     $text=htmlspecialchars_decode($text);
-    $text=strip_tags(str_replace(array("\n","\t","\r"),"",$text));
+    if (!$lines) $text=strip_tags(str_replace(array("\n","\t","\r"),"",$text));
+    else $text=strip_tags($text);
     $length=mb_strlen($text);
     if ($length<=$size) return $text;
-    else return trim(mb_substr($text,0,$size-3)).'...';
+    else
+    {
+        if ($dots) return trim(mb_substr($text,0,$size-3))."...";
+        else return trim(mb_substr($text,0,$size));
+    }
 }
+
+function nl2p($value,$height=5)
+{
+    $value = str_replace("\n\n", "<p style='margin:0;margin-top: {$height}px;line-height: 1px;font-size: 1px;'>&nbsp;</p>", $value);
+    $value = str_replace("\n", "<p style='margin:0;line-height: 1px;font-size: 1px;'>&nbsp;</p>", $value);
+    return $value;
+}
+
 
 function make_path($path)
 {
@@ -295,7 +308,11 @@ function debug($error,$send_mail,$fatal)
 function crumbs($name,$url=false,$clear=false,$before=false)
 {
     $data = array('name' => $name,'url' => $url);
-    if (!$clear) $cr = \Controller::get_global("crumbs");
+    if (!$clear)
+    {
+        $cr = \Controller::get_global("crumbs");
+        if (!$cr) $cr = array();
+    }
 
     if (!$before) $cr[] = $data;
     else array_unshift($cr,$data);
@@ -472,4 +489,9 @@ function do_flush()
         @ob_flush();
     }
     flush();
+}
+
+function build_user_name($first_name,$last_name)
+{
+    if ($first_name != "" && $last_name != "") return $last_name." ".$first_name;
 }

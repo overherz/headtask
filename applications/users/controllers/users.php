@@ -5,6 +5,45 @@ class users extends \Controller {
 
     private $limit = 10;
 
+    public $tz = array(
+        '-39600' => '[UTC − 11:00] о. Мидуэй, Самоа',
+        '-36000' => '[UTC − 10:00] Гавайи',
+        '-34200' => '[UTC − 09:30] Маркизские острова',
+        '-32400' => '[UTC − 09:00] Аляска',
+        '-28800' => '[UTC − 08:00] Североамерик. тихоокеанское время (США и Канада) и Тихуана',
+        '-25200' => '[UTC − 07:00] Горное время (США), Мексика (Чиуауа, Ла-Пас, Масатлан)',
+        '-21600' => '[UTC − 06:00] Мексика (Гвадалахара, Мехико, Монтеррей), Центральная Америка, Центральное время (США и Канада)',
+        '-18000' => '[UTC − 05:00] Североамерик. восточное время (США и Канада), Южноамерик. тихоокеанское время (Богота, Лима, Кито)',
+        '-16200' => '[UTC − 04:30] Венесуэла',
+        '-14400' => '[UTC − 04:00] Сантьяго, Атлантическое время (Канада)',
+        '-10800' => '[UTC − 03:00] Бразилия, Гренландия',
+        '-7200'  => '[UTC − 02:00] Среднеатлантическое время',
+        '-3600'  => '[UTC − 01:00] Азорские острова, острова Зелёного мыса',
+        '0'      => '[UTC = 00:00] Время по Гринвичу: Дублин, Лондон, Лиссабон, Эдинбург',
+        '3600'   => '[UTC + 01:00] Берлин, Мадрид, Париж, Рим, Западная Центральная Африка',
+        '7200'   => '[UTC + 02:00] Афины, Вильнюс, Киев, Минск, Рига, Таллин, Центральная Африка',
+        '10800'  => '[UTC + 03:00] Калининград, Минск, Восточноафриканское время',
+        '14400'  => '[UTC + 04:00] Москва, страны Закавказья, Объединённые Арабские Эмираты, Оман',
+        '16200'  => '[UTC + 04:30] Кабул',
+        '18000'  => '[UTC + 05:00] Западный Казахстан, Пакистан, Таджикистан, Туркмения, Узбекистан',
+        '19800'  => '[UTC + 05:30] Бомбей, Калькутта, Мадрас, Нью-Дели',
+        '20700'  => '[UTC + 05:45] Катманду',
+        '21600'  => '[UTC + 06:00] Екатеринбург, центральная и восточная части Казахстана, Киргизия, Бангладеш, Бутанское время',
+        '23400'  => '[UTC + 06:30] Рангун',
+        '25200'  => '[UTC + 07:00] Омск, Новосибирск, Кемерово, Юго-Восточная Азия (Бангкок, Джакарта, Ханой)',
+        '28800'  => '[UTC + 08:00] Красноярск, Улан-Батор, Куала-Лумпур, Гонконг, Китай, Сингапур, Тайвань, западноавстралийское время',
+        '31500'  => '[UTC + 08:45] Юго-восточная Западная Австралия',
+        '32400'  => '[UTC + 09:00] Иркутское время, Корея, Япония',
+        '34200'  => '[UTC + 09:30] Центральноавстралийское время',
+        '36000'  => '[UTC + 10:00] Якутск, Восточноавстралийское время (Брисбен, Канберра, Мельбурн, Сидней), Западно-тихоокеанское время',
+        '37800'  => '[UTC + 10:30] Лорд-Хау',
+        '39600'  => '[UTC + 11:00] Владивостокское время, Центрально-тихоокеанское время (Соломоновы Острова, Новая Каледония)',
+        '41400'  => '[UTC + 11:30] Остров Норфолк',
+        '43200'  => '[UTC + 12:00] Магаданское время, Маршалловы Острова, Фиджи, Новая Зеландия',
+        '46800'  => '[UTC + 13:00] Острова Феникс, Тонга',
+        '50400'  => '[UTC + 14:00] Остров Лайн'
+    );
+
     function default_method()
     {
         switch($_POST['act'])
@@ -35,7 +74,7 @@ class users extends \Controller {
             {
                 $search = str_replace(" ","%",$_POST['search']);
                 $s = $this->db->quote("%{$search}%");
-                $where[] = "(u.fio LIKE {$s} OR u.nickname LIKE {$s} OR gr.name LIKE {$s})";
+                $where[] = "(u.first_name LIKE {$s} OR u.last_name LIKE {$s} OR u.nickname LIKE {$s} OR gr.name LIKE {$s})";
             }
 
             if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
@@ -50,17 +89,18 @@ class users extends \Controller {
 
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
-            $p = $this->db->prepare("select distinct u.fio,u.nickname,u.avatar,u.gender,u.id_user,gr.id as id_group,gr.name as group_name,gr.color as color,u.last_user_action
+            $p = $this->db->prepare("select distinct u.first_name,u.last_name,u.nickname,u.avatar,u.gender,u.id_user,gr.id as id_group,gr.name as group_name,gr.color as color,u.last_user_action
                     from users as u
                     LEFT JOIN groups as gr ON u.id_group=gr.id
                     {$where}
-                    ORDER BY u.fio ASC
+                    ORDER BY u.last_name ASC
                     LIMIT {$this->limit}
                     OFFSET {$paginator->get_range('from')}
             ");
             $p->execute();
             while ($row = $p->fetch()) {
                 $ids[] = $row['id_user'];
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
                 $users[$row['id_user']] = $row;
             }
 
@@ -92,7 +132,7 @@ class users extends \Controller {
             $id = intval($this->id);
             if($_SESSION['user']['id_user'] == $id) $this->set_global("user_menu", "profile");
 
-            $result = $this->db->prepare("select u.fio,u.nickname,u.gender,u.avatar,u.id_user,u.last_user_action,gr.id as id_group,gr.name as group_name,gr.color
+            $result = $this->db->prepare("select u.first_name,u.last_name,u.nickname,u.gender,u.avatar,u.id_user,u.last_user_action,gr.id as id_group,gr.name as group_name,gr.color
                 from users as u
                 LEFT JOIN groups as gr ON u.id_group=gr.id
                 WHERE id_user = ? and u.mailconfirm = '1' LIMIT 1
@@ -100,6 +140,7 @@ class users extends \Controller {
             $result->execute(array($id));
             if ($user = $result->fetch())
             {
+                $user['fio'] = build_user_name($user['first_name'],$user['last_name']);
                 $res2 = $this->db->prepare("select up.*, pr.* FROM userprofiles as up LEFT JOIN profile as pr ON up.idprof=pr.id WHERE up.iduser = ? and pr.share = '1'");
                 $res2->execute(array($id));
                 while ($row = $res2->fetch())
@@ -181,7 +222,7 @@ class users extends \Controller {
         if ($group)
         {
             $group = (int) $group;
-            $query = $this->db->query("select id_user,fio,nickname,avatar from users where id_group='{$group}' ORDER BY id_user DESC LIMIT {$limit}");
+            $query = $this->db->query("select id_user,first_name,last_name,nickname,avatar from users where id_group='{$group}' ORDER BY id_user DESC LIMIT {$limit}");
             while ($row = $query->fetch())
             {
                 $users[$row['id_user']] = $row;

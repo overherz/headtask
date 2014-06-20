@@ -72,12 +72,16 @@ class users extends \Controller {
             {
                 crumbs("Добавление участника");
 
-                $query = $this->db->prepare("select id_user,fio
+                $query = $this->db->prepare("select id_user,first_name,last_name
                     from users
                     where id_user NOT IN (select id_user from projects_users where id_project=?)
                 ");
                 $query->execute(array($this->_0));
-                $users = $query->fetchAll();
+                while ($row = $query->fetch())
+                {
+                    $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                    $users[] = $row;
+                }
             }
 
             $query = $this->db->query("select pr.*,pg.name as group_name
@@ -123,13 +127,14 @@ class users extends \Controller {
             LEFT JOIN users as u ON pu.id_user=u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
             where pu.id_project=?
-            order by fio ASC
+            order by last_name ASC
             LIMIT {$this->limit}
             OFFSET {$paginator->get_range('from')}
         ");
         $query->execute(array($this->id));
         while ($row = $query->fetch()) {
             $ids[] = $row['id_user'];
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
             $users[$row['id_user']] = $row;
         }
 
@@ -165,13 +170,15 @@ class users extends \Controller {
 
     function get_user_and_role($id_project,$id_user)
     {
-        $query = $this->db->prepare("select pu.role,u.fio,u.nickname,pu.id_user,pu.description
+        $query = $this->db->prepare("select pu.role,u.first_name,u.last_name,u.nickname,pu.id_user,pu.description
             from projects_users as pu
             LEFT JOIN users as u ON pu.id_user=u.id_user
             where pu.id_project=? and pu.id_user=?
         ");
         $query->execute(array($id_project,$id_user));
-        return $query->fetch();
+        $user = $query->fetch();
+        $user['fio'] = build_user_name($user['first_name'],$user['last_name']);
+        return $user;
     }
 
     function search_user()
@@ -179,13 +186,14 @@ class users extends \Controller {
         $res['success'] = array();
         $_POST['search'] = str_replace(" ","%",$_POST['search']);
         $search = "%{$_POST['search']}%";
-        $query = $this->db->prepare("select id_user,fio
+        $query = $this->db->prepare("select id_user,first_name,last_name
             from users
-            where fio LIKE ? and id_user NOT IN (select id_user from projects_users where id_project=?)
+            where (last_name LIKE ? OR first_name LIKE ?) and id_user NOT IN (select id_user from projects_users where id_project=?)
         ");
-        $query->execute(array($search,$_POST['id_project']));
+        $query->execute(array($search,$search,$_POST['id_project']));
         while ($row = $query->fetch())
         {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
             $res['success']['options'] .= "<option value='{$row['id_user']}'>{$row['fio']}</option>";
         }
 
@@ -296,13 +304,17 @@ class users extends \Controller {
 
     function delete_user_form()
     {
-        $query = $this->db->prepare("select u.id_user,u.fio,u.nickname
+        $query = $this->db->prepare("select u.id_user,u.first_name,u.last_name,u.nickname
             from projects_users as pu
             LEFT JOIN users as u ON u.id_user = pu.id_user
             where pu.id_project=? and pu.id_user !=?
         ");
         $query->execute(array($_POST['id_project'],$_POST['id_user']));
-        $users = $query->fetchAll();
+        while ($row = $query->fetch())
+        {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $users[] = $row;
+        }
 
         $res['success'] = $this->layout_get("users/delete_user_form.html",array('users' => $users));
         echo json_encode($res);
@@ -404,7 +416,7 @@ class users extends \Controller {
     function get_users_project($project,$without_me=false)
     {
         if ($without_me) $without_me_string = " and u.id_user != ?";
-        $query = $this->db->prepare("select distinct u.id_user,u.fio,u.nickname
+        $query = $this->db->prepare("select distinct u.id_user,u.first_name,u.last_name,u.nickname
             from users as u
             LEFT JOIN projects_users as pu ON pu.id_user = u.id_user
             where pu.id_project=? {$without_me_string}
@@ -414,7 +426,11 @@ class users extends \Controller {
         if ($without_me) $data[] = $_SESSION['user']['id_user'];
 
         $query->execute($data);
-        $users = $query->fetchAll();
+        while ($row = $query->fetch())
+        {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $users[] = $row;
+        }
         return $users;
     }
 

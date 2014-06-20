@@ -5,31 +5,6 @@ body {
     /* The html and body elements cannot have any padding or margin. */
 }
 
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans'), local('OpenSans'), url(/source/fonts/uYKcPVoh6c5R0NpdEY5A-Q.woff) format('woff');
-}
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 600;
-    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(/source/fonts/MTP_ySUJH_bn48VBG8sNShsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
-}
-@font-face {
-    font-family: 'Open Sans';
-    font-style: italic;
-    font-weight: 400;
-    src: local('Open Sans Italic'), local('OpenSans-Italic'), url(/source/fonts/O4NhV7_qs9r9seTo7fnsVD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
-}
-@font-face {
-    font-family: 'Open Sans';
-    font-style: italic;
-    font-weight: 600;
-    src: local('Open Sans Semibold Italic'), local('OpenSans-SemiboldItalic'), url(/source/fonts/PRmiXeptR36kaC0GEAetxsUW6j0fiq4_bYOAoMNnBhA.woff) format('woff');
-}
-
 body {
     overflow-y: scroll;
     background: url(/source/images/background.png);
@@ -153,7 +128,7 @@ a {
 }
 
 .jq-selectbox__select {
-    margin-top: -1px;
+    margin-top: -2px;
 }
 
 .jq-selectbox__select,.jq-checkbox {
@@ -577,6 +552,15 @@ fieldset[disabled] .btn-oscar.active {
     }
 }
 
+@media screen and (max-width: 768px) {
+    .username_in_top span {
+        display: inline;
+    }
+    .username_in_top i {
+        display: none;
+    }
+}
+
 .forum_fio {
     font-size:12px;
     width: 150px;
@@ -628,6 +612,7 @@ blockquote {
     border: 1px solid #41764E;
     padding:10px;
     font-size: 14px;
+    margin: 0;
 }
 
 blockquote:before {
@@ -638,4 +623,42 @@ blockquote:before {
     padding: 2px 5px;
     font-weight: bold;
     margin: -10px -10px 10px -10px;
+}
+
+.progress {
+    position: relative;
+    background: #444;
+    margin-top: 3px;
+}
+
+.progress-value {
+    position:absolute;
+    right:0;
+    left:0;
+    color: #fff;
+    font-size: 75%;
+    font-weight: bold;
+    white-space: nowrap;
+    padding: 0.2em 0.6em 0.3em;
+}
+
+.own_task {
+    color: #11b700;
+    font-weight: bold;
+}
+
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
+    padding: 5px 10px;
+}
+
+#projects_info {
+    position: absolute;
+    background: #eee;
+    z-index: 1000;
+    display: none;
+    right: 0;
+    max-width: 600px;
+    -webkit-box-shadow: 0px 0px 18px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 18px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 18px 0px rgba(50, 50, 50, 0.75);
 }

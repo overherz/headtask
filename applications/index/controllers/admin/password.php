@@ -40,7 +40,7 @@ class password extends \Admin {
             if ($query->execute(array($p['password'],$p['salt'],$p['uniq_key'],$_SESSION['admin']['id_user'])))
             {
                 $res['success'] = true;
-                if ($log) $log->save_into_log("admin","Пользователи",false,"Пользователь \"{$user['fio']}\" ({$user['nickname']}) сменил пароль",$_SESSION['admin']['id_user']);
+                if ($log) $log->save_into_log("admin","Пользователи",false,"Пользователь \"{$user['fio']}\" сменил пароль",$_SESSION['admin']['id_user']);
             }
             else $res['error'] = "Ошибка базы данных";
         }

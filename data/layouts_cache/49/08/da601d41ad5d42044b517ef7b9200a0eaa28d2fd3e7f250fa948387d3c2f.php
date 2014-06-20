@@ -48,44 +48,44 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
     public function block_context($context, array $blocks = array())
     {
         // line 11
-        echo \layout::func_from_text("<ul class=\"breadcrumbs-one\">
+        echo \layout::func_from_text("<div id=\"projects_info\"></div>
+<ul class=\"breadcrumbs-one\">
     <li><a>Задачи</a></li>
     <li>
         <a class=\"current\">
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d1\" class=\"dashboard_option\" value=\"1\" ");
-        // line 15
+            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d1\" id=\"d1\" class=\"dashboard_option\" value=\"1\" ");
+        // line 16
         if (((isset($context["mask"]) ? $context["mask"] : null) & 1)) {
             echo \layout::func_from_text("checked");
         }
-        echo \layout::func_from_text("> Создатель</span>
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d2\" class=\"dashboard_option\" value=\"2\" ");
-        // line 16
+        echo \layout::func_from_text("> <label for=\"d1\" style=\"margin-bottom: 0;\"> Создатель</label></span>
+            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d2\" id=\"d2\" class=\"dashboard_option\" value=\"2\" ");
+        // line 17
         if (((isset($context["mask"]) ? $context["mask"] : null) & 2)) {
             echo \layout::func_from_text("checked");
         }
-        echo \layout::func_from_text("> Делегированные</span>
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d4\" class=\"dashboard_option\" value=\"4\" ");
-        // line 17
+        echo \layout::func_from_text("> <label for=\"d2\" style=\"margin-bottom: 0;\">Делегированные</label></span>
+            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d4\" id=\"d4\" class=\"dashboard_option\" value=\"4\" ");
+        // line 18
         if (((isset($context["mask"]) ? $context["mask"] : null) & 4)) {
             echo \layout::func_from_text("checked");
         }
-        echo \layout::func_from_text("> Ничьи</span>
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d8\" class=\"dashboard_option\" value=\"8\" ");
-        // line 18
+        echo \layout::func_from_text("> <label for=\"d4\" style=\"margin-bottom: 0;\">Ничьи</label></span>
+            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d8\" id=\"d8\" class=\"dashboard_option\" value=\"8\" ");
+        // line 19
         if (((isset($context["mask"]) ? $context["mask"] : null) & 8)) {
             echo \layout::func_from_text("checked");
         }
-        echo \layout::func_from_text("> Чужие</span>
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d16\" class=\"dashboard_option\" value=\"16\" ");
-        // line 19
+        echo \layout::func_from_text("> <label for=\"d8\" style=\"margin-bottom: 0;\">Чужие</label></span>
+            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d16\" id=\"d16\" class=\"dashboard_option\" value=\"16\" ");
+        // line 20
         if (((isset($context["mask"]) ? $context["mask"] : null) & 16)) {
             echo \layout::func_from_text("checked");
         }
-        echo \layout::func_from_text("> Закрытые сегодня</span>
+        echo \layout::func_from_text("> <label for=\"d16\" style=\"margin-bottom: 0;\">Закрытые сегодня</label></span>
         </a>
     </li>
 </ul>
-
 
 <div style=\"margin-bottom: 10px;\">Всего задач: <span class=\"label label-info\" style=\"margin-right: 10px;\">");
         // line 25
@@ -162,6 +162,6 @@ class __TwigTemplate_4908da601d41ad5d42044b517ef7b9200a0eaa28d2fd3e7f250fa948387
 
     public function getDebugInfo()
     {
-        return array (  147 => 50,  138 => 46,  130 => 43,  124 => 42,  121 => 41,  116 => 40,  101 => 27,  98 => 26,  92 => 25,  81 => 19,  75 => 18,  69 => 17,  63 => 16,  57 => 15,  51 => 11,  48 => 10,  42 => 7,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  147 => 50,  138 => 46,  130 => 43,  124 => 42,  121 => 41,  116 => 40,  101 => 27,  98 => 26,  92 => 25,  82 => 20,  76 => 19,  70 => 18,  64 => 17,  58 => 16,  51 => 11,  48 => 10,  42 => 7,  39 => 6,  36 => 5,  30 => 3,);
     }
 }

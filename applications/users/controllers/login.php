@@ -46,6 +46,7 @@ class login extends \Controller {
                             }
 
                             unset($u['salt']);unset($u['access_site']); unset($u['pass']);
+                            $u['fio'] = build_user_name($u['first_name'],$u['last_name']);
                             $u['timezone'] = $this->get_controller("users")->get_user_timezone($u['tzOffset']);
                             $_SESSION['user'] = $u;
                             $res['success'] = true;

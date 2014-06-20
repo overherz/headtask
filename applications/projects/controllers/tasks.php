@@ -102,7 +102,7 @@ class tasks extends \Controller {
             crumbs("Задачи","/projects/tasks/{$project['id']}/");
             crumbs($task['name'],"/projects/tasks/show/{$task['id']}/");
 
-            $query = $this->db->prepare("select ft.*,f.*,u.fio,u.nickname,u.id_user,u.id_group,g.color,g.name as group_name
+            $query = $this->db->prepare("select ft.*,f.*,u.first_name,u.last_name,u.nickname,u.id_user,u.id_group,g.color,g.name as group_name
                     from files_to_tasks as ft
                     LEFT JOIN projects_files as f ON f.id = ft.id_file
                     LEFT JOIN users as u ON f.owner=u.id_user
@@ -112,6 +112,7 @@ class tasks extends \Controller {
             $f_ctr = $this->get_controller("projects","files");
             while ($row = $query->fetch())
             {
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
                 $row['size'] = $f_ctr->format_file_size($row['size']);
                 $files[] = $row;
             }
@@ -145,6 +146,7 @@ class tasks extends \Controller {
                 $last_visit = time();
                 $query = $this->db->prepare("insert into projects_tasks_last_visit (last_visit,id_task,id_user) values (?,?,?) ON DUPLICATE KEY UPDATE last_visit=?");
                 $query->execute(array($last_visit,$this->_0,$_SESSION['user']['id_user'],$last_visit));
+                $task['diff'] = $this->get_date_diff($task['end']);
 
                 $comments = $this->generate_comments($this->_0);
             }
@@ -183,10 +185,12 @@ class tasks extends \Controller {
             foreach ($search as $s)
             {
                 $s = $this->db->quote("%{$s}%");
-                $search_ar[] = "t.name LIKE ".$s." OR t.description LIKE ".$s." OR a.fio LIKE ".$s." OR a.nickname LIKE ".$s;
+                $search_ar[] = "t.name LIKE ".$s." OR t.description LIKE ".$s." OR a.first_name LIKE ".$s." OR a.last_name LIKE ".$s." OR a.nickname LIKE ".$s;
             }
             $where[] = "(".implode("OR ",$search_ar).")";
         }
+
+        $categories = $this->get_controller("projects")->get_categories($this->id,true);
 
         $form = array(
             'status' => array('label' => 'Статус',
@@ -208,7 +212,8 @@ class tasks extends \Controller {
             ),
         );
 
-        if ($_POST['status'] == "") $_POST['status'] = $form['status']['selected'];
+        if ($_POST['status'] == "" && !$_POST) $_POST['status'] = $form['status']['selected'];
+        else if ($_POST['status'] == "") $_POST['status'] = array_keys($form['status']['options']);
         if (isset($_POST['status']) && $_POST['status'] != '')
         {
             foreach ($_POST['status'] as &$s) $s = $this->db->quote($s);
@@ -248,8 +253,8 @@ class tasks extends \Controller {
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
         $query = $this->db->prepare("select distinct t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
-                a.fio as assigned_name,a.nickname as assigned_nickname,
-                u.fio as user_name,u.nickname as user_nickname,g.color,g.name as group_name,
+                a.first_name as assigned_first_name,a.last_name as assigned_last_name,a.nickname as assigned_nickname,
+                u.first_name as user_first_name,u.last_name as user_last_name,u.nickname as user_nickname,g.color,g.name as group_name,
                 gt.color as assigned_color,gt.name as assigned_group_name
                 from projects_tasks as t
                 LEFT JOIN users as a ON t.assigned = a.id_user
@@ -263,9 +268,13 @@ class tasks extends \Controller {
                 OFFSET {$paginator->get_range('from')}
             ");
         $query->execute();
-        $tasks = $query->fetchAll();
-
-        $categories = $this->get_controller("projects")->get_categories($this->id,true);
+        while ($row = $query->fetch())
+        {
+            $row['assigned_name'] = build_user_name($row['assigned_first_name'],$row['assigned_last_name']);
+            $row['user_name'] = build_user_name($row['user_first_name'],$row['user_last_name']);
+            $row['diff'] = $this->get_date_diff($row['end']);
+            $tasks[] = $row;
+        }
 
         $data = array(
             'tasks' => $tasks,
@@ -290,7 +299,8 @@ class tasks extends \Controller {
 
     function get_task($id)
     {
-        $query = $this->db->prepare("select t.*,a.fio as assigned_name,a.nickname as assigned_nickname,u.fio as user_name,u.nickname as user_nickname,
+        $query = $this->db->prepare("select t.*,a.first_name as assigned_first_name,a.last_name as assigned_last_name,a.nickname as assigned_nickname,
+                u.first_name as user_first_name,u.last_name as user_last_name,u.nickname as user_nickname,
                 g.color,g.name as group_name, gt.color as assigned_color,gt.name as assigned_group_name
                 from projects_tasks as t
                 LEFT JOIN users as a ON t.assigned = a.id_user
@@ -300,7 +310,10 @@ class tasks extends \Controller {
                 where t.id=?
             ");
         $query->execute(array($id));
-        return $query->fetch();
+        $task = $query->fetch();
+        $task['assigned_name'] = build_user_name($task['assigned_first_name'],$task['assigned_last_name']);
+        $task['user_name'] = build_user_name($task['user_first_name'],$task['user_last_name']);
+        return $task;
     }
 
     function save_task()
@@ -514,8 +527,8 @@ class tasks extends \Controller {
                     if ($now < $task['start']) $task['start'] = $now;
                     if ($task['assigned'] == "") $task['assigned'] = $_SESSION['user']['id_user'];
 
-                    $query = $this->db->prepare("update projects_tasks set status=?,start=?,end=?,assigned=?,spent_time=spent_time+{$spent_time},percent=?,updated=? where id=? LIMIT 1");
-                    if ($query->execute(array($task['status'],$task['start'],$now,$task['assigned'],$_POST['new_current_percent'],time(),$_POST['id'])))
+                    $query = $this->db->prepare("update projects_tasks set status=?,start=?,assigned=?,spent_time=spent_time+{$spent_time},percent=?,updated=? where id=? LIMIT 1");
+                    if ($query->execute(array($task['status'],$task['start'],$task['assigned'],$_POST['new_current_percent'],time(),$_POST['id'])))
                     {
                         $res['success']['project'] = $task['id_project'];
                         $log = $this->get_controller("projects","logs");
@@ -577,7 +590,7 @@ class tasks extends \Controller {
         $paginator = new \Paginator($total, $_POST['page'], $limit);
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $limit);
 
-        $query = $this->db->prepare("select p.*,u.fio,u.nickname,g.color,g.name as group_name
+        $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
                 from projects_files as p
                 LEFT JOIN users as u ON p.owner=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
@@ -590,6 +603,7 @@ class tasks extends \Controller {
         $f_ctr = $this->get_controller("projects","files");
         while ($row = $query->fetch())
         {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
             $row['size'] = $f_ctr->format_file_size($row['size']);
             $files[] = $row;
         }
@@ -610,22 +624,19 @@ class tasks extends \Controller {
         {
             foreach ($_POST['files'] as &$v) $v = (int) $v;
             $ids = implode(",",$_POST['files']);
-            $query = $this->db->query("select p.*,u.fio,u.nickname,g.color,g.name as group_name
+            $query = $this->db->query("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
                 from projects_files as p
                 LEFT JOIN users as u ON p.owner=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
                 where p.id IN(".$ids.")
             ");
-            $files = $query->fetchAll();
+            $res['success'] = "";
             $f_ctr = $this->get_controller("projects","files");
-            if ($files)
+            while ($row = $query->fetch())
             {
-                $res['success'] = "";
-                foreach ($files as $file)
-                {
-                    $file['size'] = $f_ctr->format_file_size($file['size']);
-                    $res['success'] .= $this->layout_get("files/file.html",array('file' => $file,'to_task' => true));
-                }
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                $row['size'] = $f_ctr->format_file_size($row['size']);
+                $res['success'] .= $this->layout_get("files/file.html",array('file' => $row,'to_task' => true));
             }
         }
         else $res['error'] = "Ничего не выбрано";
@@ -698,14 +709,19 @@ class tasks extends \Controller {
     function get_delayed_manager_tasks()
     {
         $now = date("Y-m-d");
-        $query = $this->db->prepare("select pt.name,pt.end,pt.id_project,pt.id,p.name as project_name,u.fio,u.nickname,pt.assigned
+        $query = $this->db->prepare("select pt.name,pt.end,pt.id_project,pt.id,p.name as project_name,u.first_name,u.last_name,u.nickname,pt.assigned
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
             where p.id IN( SELECT id_project from projects_users where id_user=? and role='manager') and end < ? and status IN ('new','in_progress')
         ");
         $query->execute(array($_SESSION['user']['id_user'],$now));
-        return $query->fetchAll();
+        while ($row = $query->fetch())
+        {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $tasks[] = $row;
+        }
+        return $tasks;
     }
 
     function get_count_project()
@@ -812,13 +828,14 @@ class tasks extends \Controller {
             {
                 $insert_id = $this->db->lastInsertId();
                 $_SESSION['last_comment'] = $created;
-                $query = $this->db->prepare("select c.*,u.nickname,u.fio,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
+                $query = $this->db->prepare("select c.*,u.nickname,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
                     from projects_tasks_comments as c
                     LEFT JOIN users as u ON u.id_user=c.id_user
                     LEFT JOIN groups as gr ON gr.id=u.id_group where c.id = ? LIMIT 1
                 ");
                 $query->execute(array($insert_id));
                 $com = $query->fetch();
+                $com['fio'] = build_user_name($com['first_name'],$com['last_name']);
 
                 $last_visit = strtotime("now");
                 $query = $this->db->prepare("insert into projects_tasks_last_visit(id_user,id_task,last_visit) values(?,?,?) ON DUPLICATE KEY UPDATE last_visit=?");
@@ -859,7 +876,7 @@ class tasks extends \Controller {
     function generate_comments($id)
     {
         $comments = array();
-        $query = $this->db->prepare("SELECT c.*,u.nickname,u.fio,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
+        $query = $this->db->prepare("SELECT c.*,u.nickname,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
                 from projects_tasks_comments as c
                 LEFT JOIN users as u ON u.id_user=c.id_user
                 LEFT JOIN groups as gr ON gr.id=u.id_group
@@ -868,7 +885,11 @@ class tasks extends \Controller {
         ");
         $query->execute(array($id));
 
-        while ($row = $query->fetch()) $comments[$row['id']] = $row;
+        while ($row = $query->fetch())
+        {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $comments[$row['id']] = $row;
+        }
         if($comments) $res = $this->generate_comments_foreach($comments);
 
         return $res;
@@ -918,7 +939,7 @@ class tasks extends \Controller {
         $month = date("m");
         $day = date("d");
 
-        $query = $this->db->query("select id_user,email,fio from users");
+        $query = $this->db->query("select id_user,email,first_name,last_name from users");
 
         if ($users = $query->fetchAll())
         {
@@ -940,7 +961,7 @@ class tasks extends \Controller {
                     while($row = $query_c->fetch())
                     {
                         $co[$u['id_user']]['email'] = $u['email'];
-                        $co[$u['id_user']]['fio'] = $u['fio'];
+                        $co[$u['id_user']]['fio'] = build_user_name($u['first_name'],$u['last_name']);
                         $co[$u['id_user']]['tasks'][$row['id_task']] = $row;
                     }
                 }
@@ -963,5 +984,19 @@ class tasks extends \Controller {
                 if (!send_mail($from, $n['email'], "Новые комментарии в задачах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }
+    }
+
+    function get_date_diff($end)
+    {
+        if ($end != "")
+        {
+            $datetime1 = date_create(date("Y-m-d"));
+            $datetime2 = date_create($end);
+            $interval = date_diff($datetime1, $datetime2);
+            $diff = str_replace("+","",$interval->format('%R%a'));
+        }
+        else $diff = "inf";
+
+        return $diff;
     }
 }

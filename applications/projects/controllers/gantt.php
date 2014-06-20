@@ -36,7 +36,7 @@ class gantt extends \Controller {
 
     function get_tasks($id_project)
     {
-        $query = $this->db->prepare("select t.id,t.name,t.start,t.end,t.priority,a.fio as assigned_name,a.nickname as assigned_nickname
+        $query = $this->db->prepare("select t.id,t.name,t.start,t.end,t.priority,a.first_name as assigned_first_name,a.last_name as assigned_last_name,a.nickname as assigned_nickname
                 from projects_tasks as t
                 LEFT JOIN users as a ON t.assigned = a.id_user
                 where t.id_project=? and t.status IN ('new', 'in_progress')
@@ -45,6 +45,7 @@ class gantt extends \Controller {
         $query->execute(array($id_project));
         while ($row = $tasks = $query->fetch())
         {
+            $row['assigned_name'] = build_user_name($row['assigned_first_name'],$row['assigned_last_name']);
             switch ($row['priority'])
             {
                 case "1": $color = "ganttSilver"; break;
@@ -53,7 +54,7 @@ class gantt extends \Controller {
                 case "4": $color = "ganttRed"; break;
             }
             if ($row['end'] == "") $row['end'] = date('Y-m-d', strtotime("+6 months", strtotime($row['start'])));
-            $assig = $row['assigned_name'] ? "<br>Ответственный: ".$row['assigned_nickname'] : "";
+            $assig = $row['assigned_name'] ? "<br>Ответственный: ".$row['assigned_name'] : "";
             $info[] = array(
 //                'name' => $row['user_nickname'],
                 'name' => "&nbsp;".$row['name'],

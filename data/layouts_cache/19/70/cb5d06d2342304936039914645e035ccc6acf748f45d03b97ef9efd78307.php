@@ -19,13 +19,13 @@ class __TwigTemplate_1970cb5d06d2342304936039914645e035ccc6acf748f45d03b97ef9efd
         echo \layout::func_from_text("<div class=\"navbar navbar-inverse\" role=\"navigation\">
     <div class=\"container-fluid\">
         <div class=\"navbar-header\">
-            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">
+            <span class=\"navbar-brand\">Task me!</span>
+            <button type=\"button\" class=\"navbar-toggle pull-left\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">
                 <span class=\"sr-only\">Toggle navigation</span>
                 <span class=\"icon-bar\"></span>
                 <span class=\"icon-bar\"></span>
                 <span class=\"icon-bar\"></span>
             </button>
-            <span class=\"navbar-brand\">Task me!</span>
         </div>
         <div class=\"navbar-collapse collapse\">
             <ul class=\"nav navbar-nav\">
@@ -155,6 +155,6 @@ class __TwigTemplate_1970cb5d06d2342304936039914645e035ccc6acf748f45d03b97ef9efd
 
     public function getDebugInfo()
     {
-        return array (  140 => 38,  136 => 36,  133 => 35,  127 => 33,  125 => 32,  115 => 29,  112 => 28,  107 => 25,  80 => 22,  41 => 16,  34 => 14,  19 => 1,  103 => 36,  99 => 30,  96 => 29,  89 => 15,  84 => 23,  79 => 39,  77 => 38,  74 => 37,  72 => 19,  65 => 34,  60 => 31,  58 => 29,  44 => 17,  28 => 4,  23 => 1,  40 => 8,  38 => 15,  32 => 3,  29 => 2,  147 => 50,  138 => 46,  130 => 43,  124 => 42,  121 => 30,  116 => 40,  101 => 27,  98 => 26,  92 => 16,  81 => 19,  75 => 20,  69 => 35,  63 => 16,  57 => 15,  51 => 11,  48 => 7,  42 => 15,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  140 => 38,  136 => 36,  133 => 35,  127 => 33,  125 => 32,  121 => 30,  115 => 29,  112 => 28,  107 => 25,  84 => 23,  80 => 22,  75 => 20,  72 => 19,  44 => 17,  41 => 16,  38 => 15,  34 => 14,  19 => 1,);
     }
 }

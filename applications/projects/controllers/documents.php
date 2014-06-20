@@ -127,7 +127,7 @@ class documents extends \Controller {
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
 
-            $documents = $this->db->query("select d.id,d.name,d.created,d.author,u.fio,u.nickname,g.color,g.name as group_name
+            $query = $this->db->query("select d.id,d.name,d.created,d.author,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
                 from projects_documents as d
                 LEFT JOIN users as u ON d.author=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
@@ -135,8 +135,12 @@ class documents extends \Controller {
                 order by created DESC
                 LIMIT {$this->limit}
                 OFFSET {$paginator->get_range('from')}
-            ")->fetchAll();
-
+            ");
+            while ($row = $query->fetch())
+            {
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                $documents[] = $row;
+            }
             $data = array(
                 'project' => $project,
                 'projects' => $this->get_controller("projects")->get_projects($project['id']),
@@ -160,11 +164,12 @@ class documents extends \Controller {
 
     function get_documents($id)
     {
-        $query = $this->db->prepare("select pd.*,u.id_user,u.fio,u.nickname from projects_documents as pd
+        $query = $this->db->prepare("select pd.*,u.id_user,u.first_name,u.last_name,u.nickname from projects_documents as pd
             LEFT JOIN users as u ON pd.author = u.id_user
             where pd.id=?");
         $query->execute(array($id));
         $documents = $query->fetch();
+        $documents['fio'] = build_user_name($documents['first_name'],$documents['last_name']);
 
         return $documents;
     }

@@ -6,14 +6,14 @@ class menu extends \Controller {
     function childs($id, $with_self=false, $a='', &$res=array()){
           if(!$a){
               $query = $this->db->query("select * from menu where invisible IS NULL order by position");
-              while ($row = $query->fetchObject()) $a[] = $row;
+              while ($row = $query->fetch()) $a[] = $row;
           }
           if($a){
             if($with_self && !in_array($id,$res)) $res[]=$id;
             foreach ($a as $val){
-                if($val->parent_id==$id){
-                    $res[]=$val->id;
-                    $this->childs($val->id, $with_self, $a, $res);
+                if($val['parent_id']==$id){
+                    $res[]=$val['id'];
+                    $this->childs($val['id'], $with_self, $a, $res);
                 }
             }
             return $res;
@@ -23,14 +23,14 @@ class menu extends \Controller {
     function parents($id, $with_self=false, $a='', &$res=array()){
           if(!$a){
               $query = $this->db->query("select * from menu where invisible IS NULL order by position");
-              while ($row = $query->fetchObject()) $a[] = $row;
+              while ($row = $query->fetch()) $a[] = $row;
           }
           if($a){
             if($with_self && !in_array($id,$res)) $res[]=$id;
             foreach ($a as $val){
-                if($val->id==$id && $val->parent_id){
-                    $res[]=$val->parent_id;
-                    $this->parents($val->parent_id, $with_self, $a, $res);
+                if($val['id']==$id && $val['parent_id']){
+                    $res[]=$val['parent_id'];
+                    $this->parents($val['parent_id'], $with_self, $a, $res);
                 }
             }
             return $res;
@@ -78,8 +78,7 @@ class menu extends \Controller {
             {
                 $menu[$found_active]['active'] = true;
                 if ($menu[$found_active]['parent_id']) $get_parents = $menu[$found_active]['id'];
-                crumbs($menu[$found_active]['name'],$menu[$found_active]['path'],true);
-
+                crumbs($menu[$found_active]['name'],$menu[$found_active]['path'],false,true);
                 if ($sub_controller)
                 {
                     foreach ($menu as $d => &$s)
@@ -88,13 +87,16 @@ class menu extends \Controller {
                     }
                 }
             }
-            else if ($application == "pages")
+            if ($application == "pages")
             {
+                $get_parents = false;
+                if (!$repath && !$found_active) crumbs(\Controller::get_global('page_name'));
                 if (!$arr) $arr = \Router::url_array();
                 if (count($arr) > 1)
                 {
                     array_pop($arr);
                     $r_path = "/".implode("/",$arr)."/";
+                    $repath = true;
                     goto a;
                 }
             }

@@ -68,8 +68,10 @@ class layout {
             self::$twig=new Twig_Environment($loader,$settings);
 
             // self functions
+            self::$twig->addExtension(new Twig_Extension_StringLoader());
             self::$twig->addFilter('lang', new Twig_Filter_Function('lang'));
             self::$twig->addFilter('cut', new Twig_Filter_Function('cut'));
+            self::$twig->addFilter('nl2p', new Twig_Filter_Function('nl2p',array('is_safe' => array('html'))));
             self::$twig->addFilter('real_path', new Twig_Filter_Function('real_path'));
             self::$twig->addFilter('source_path', new Twig_Filter_Function('source_path'));
             self::$twig->addFilter('long_word', new Twig_Filter_Function('long_word',array('is_escaper' => true,'is_safe' => array('all'))));

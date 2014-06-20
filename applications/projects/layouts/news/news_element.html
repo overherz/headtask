@@ -1,9 +1,9 @@
 <tr id="news{{n.id}}">
     <td><a href="/projects/news/show/{{n.id}}/">{{n.name}}</a></td>
     <td>{{n.created|date('d.m.Y H:i:s')}}</td>
-    <td><a href="/users/~{{n.author}}/" style="color:{{ n.color }};font-weight: bold;" title="{{ n.group_name }}">{{n.fio}}</a><div class="nickname">{{n.nickname}}</div></td>
+    <td><a href="/users/~{{n.author}}/" style="color:{{ n.color }};font-weight: bold;" title="{{ n.group_name }}">{{n.fio}}</a></td>
     {% if access.news %}
-    <td style="width: 80px;">
+    <td style="width: 85px;">
         <div class="btn-group">
             <a class="btn btn-black btn-sm" href="/projects/news/edit/{{n.id}}"><i class="fa fa-pencil"></i></a>
             <a class="btn btn-black btn-sm" delete_news={{n.id}} href=""><i class="fa fa-trash-o"></i></a>

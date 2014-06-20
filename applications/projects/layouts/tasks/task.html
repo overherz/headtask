@@ -1,46 +1,49 @@
 <tr id="task{{task.id}}" {% if task.type == "error" %}class='danger'{% endif %}>
-    <td style="text-align: center;width: 10px;">{% if task.id_user == globals.user.id_user %}<i class="fa fa-user" style="font-size: 20px;"></i>{% endif %}</td>
     {% if all %}
-    <td><a href="/projects/tasks/show/{{task.id}}/">{{task.name}}</a></td>
-    {% endif %}
-    <td>
-        {% if task.status == "new" %}новая
-        {% elseif task.status == "in_progress" %}в процессе
-        {% elseif task.status == "closed" %}закрытая
-        {% elseif task.status == "rejected" %}отклоненная
+    <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.id_user == globals.user.id_user %}class="own_task"{% endif %}">{{task.name}}</a>
+    {% if task.status == "rejected" %}
         <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
-        {% endif %}
+    {% endif %}
     </td>
-    <td>
-        {% if task.priority == "1" %}<span class="label label-default">низкий</span>
-        {% elseif task.priority == "2" %}<span class="label label-success">обычный</span>
-        {% elseif task.priority == "3" %}<span class="label label-warning">высокий</span>
-        {% elseif task.priority == "4" %}<span class="label label-danger">критический</span>
-        {% endif %}
-    </td>
-    <td><a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a><div class="nickname">{{task.assigned_nickname}}</div></td>
-    {% if all %}
-    <td>
+    {% endif %}
+    <td style="width: 110px;">
         {% set undate = false %}
         {% if task.end and ((now|date('Y-m-d') > task.end) and (task.status == 'new' or task.status == 'in_progress'))%}
             {% set undate = true %}
         {% endif %}
 
         <div class="progress progress-striped {% if task.status == "in_progress" %}active{% endif %}">
-            <div class="progress-bar {% if undate %}progress-bar-danger{% endif %}" role="progressbar" aria-valuenow="{{task.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {% if task.percent > 0 %}{{task.percent}}%;{% else %}30px;{% endif %}">
-                <span>{{ task.percent }} %</span>
+                    <span class="progress-value">
+                                            {% if task.status == "new" %}новая
+                                            {% elseif task.status == "in_progress" %}в процессе
+                                            {% elseif task.status == "closed" %}закрытая
+                                            {% elseif task.status == "rejected" %}отклоненная
+                                            {% endif %}
+                    </span>
+            <div class="progress-bar {% if undate %}progress-bar-danger{% endif %}" role="progressbar" aria-valuenow="{{task.percent}}" aria-valuemin="0" aria-valuemax="100" style="width:{{task.percent}}%;">
             </div>
         </div>
     </td>
-    {% endif %}
+    <td style="width: 1px;">
+        {% if task.priority == "1" %}<span class="label label-default">низкий</span>
+        {% elseif task.priority == "2" %}<span class="label label-success">обычный</span>
+        {% elseif task.priority == "3" %}<span class="label label-warning">высокий</span>
+        {% elseif task.priority == "4" %}<span class="label label-danger">критический</span>
+        {% endif %}
+    </td>
+    <td style="width: 1px;white-space: nowrap;"><a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a></td>
     {% if not all %}
-    <td>{{task.start|date('d.m.Y')}}</td>
-    <td>{% if task.end %}{{task.end|date('d.m.Y')}}{% endif %}</td>
+    <td>{{task.start|date('d.m.Y')}}{% if task.end %} - {{task.end|date('d.m.Y')}}{% endif %}</td>
     <td>{% if task.estimated_time %}{{task.estimated_time}} ч.{% else %}не указано{% endif %}</td>
     <td>{{task.spent_time|default(0)}} ч.</td>
-    <td><a href="/users/~{{task.id_user}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.user_name}}</a><div class="nickname">{{task.user_nickname}}</div></td>
+    <td><a href="/users/~{{task.id_user}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.user_name}}</a></td>
     {% endif %}
-    <td style="width: 115px;text-align: right;">
+    <td style="width: 1px;white-space: nowrap;">
+        {% if task.status != "closed" %}
+            {% if task.diff != "0" and task.diff != "inf" %}{{ task.diff }} {{ "days"|lang(task.diff) }}{% elseif task.diff == "inf" %}&infin;{% else %}сегодня{% endif %}
+        {% endif %}
+    </td>
+    <td style="width: 120px;text-align: right;">
         <div class="btn-group">
             {% if access.edit_tasks or task.assigned == globals.user.id_user or task.id_user == globals.user.id_user or not task.assigned %}
                 {% if task.status != "closed" %}<a class="btn btn-success btn-sm" forward_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}' style="padding: 5px 10px !important;"><i class="fa fa-forward"></i></a>{% endif %}

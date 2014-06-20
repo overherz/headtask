@@ -46,7 +46,7 @@ class user_tasks extends \Controller {
             foreach ($search as $s)
             {
                 $s = $this->db->quote("%{$s}%");
-                $search_ar[] = "t.name LIKE ".$s." OR t.description LIKE ".$s." OR a.fio LIKE ".$s." OR a.nickname LIKE ".$s;
+                $search_ar[] = "t.name LIKE ".$s." OR t.description LIKE ".$s;
             }
             $where[] = "(".implode("OR ",$search_ar).")";
         }
@@ -80,8 +80,7 @@ class user_tasks extends \Controller {
         $paginator = new \Paginator($total, $_POST['page'], $this->limit);
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-        $datetime1 = date_create(date("Y-m-d"));
-
+        $t_cr = $this->get_controller("projects","tasks");
         $query = $this->db->prepare("select t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
             p.name as project_name
             from projects_tasks as t
@@ -94,24 +93,12 @@ class user_tasks extends \Controller {
         $query->execute();
         while ($row = $query->fetch())
         {
-            if ($row['end'] != "")
-            {
-                $datetime2 = date_create($row['end']);
-                $interval = date_diff($datetime1, $datetime2);
-                $row['diff'] = $interval->format('%R%a');
-            }
-            else $row['diff'] = "inf";
+            $row['diff'] = $t_cr->get_date_diff($row['end']);
             $tasks[] = $row;
         }
 
-        $users= $this->db->query("select distinct u.id_user,u.fio
-                    from users as u
-                    LEFT JOIN groups as gr ON u.id_group=gr.id
-                    ")->fetchAll();
-
         $data = array(
             'form' => $form,
-            'users' => $users,
             'paginator' => $paginator,
             'tasks' => $tasks,
             'id_user' => $id_user,

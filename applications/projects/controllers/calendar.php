@@ -71,8 +71,8 @@ class calendar extends \Controller {
 
     function get_calendar_tasks($date,$id_user=false,$dashboard=false)
     {
+        $t_cr = $this->get_controller("projects","tasks");
         if (!$id_user) $id_user = $_SESSION['user']['id_user'];
-        $datetime1 = date_create(date("Y-m-d"));
 
         if ($dashboard)
         {
@@ -87,19 +87,25 @@ class calendar extends \Controller {
 
         }
 
-        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,p.name as project_name,pt.percent,u.fio as assigned_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
+        $begin_of_day = strtotime("midnight", time());
+        $end_of_day   = strtotime("tomorrow", $begin_of_day) - 1;
+
+        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,p.name as project_name,pt.percent,u.first_name,u.last_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
-            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL)))) and ((pt.start <= ? and pt.status IN ('new','in_progress','rejected')) or (pt.end=? and pt.status = 'closed'))
+            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL))))
+            and ((pt.start <= ? and pt.status IN ('new','in_progress','rejected'))
+            or (pt.updated >= ? and pt.updated <= ? and pt.status = 'closed'))
             order by pt.updated DESC
         ");
 
 //            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL)))) and ((pt.start <= ?)
-        $query->execute(array($id_user,$id_user,$id_user,$date,$date));
+        $query->execute(array($id_user,$id_user,$id_user,$date,$begin_of_day,$end_of_day));
         while ($row = $query->fetch())
         {
+            $row['assigned_name'] = build_user_name($row['first_name'],$row['last_name']);
             $bit = 0;
 
             if ($row['task_creater'] == $_SESSION['user']['id_user']) $bit = $bit | $own;
@@ -112,15 +118,7 @@ class calendar extends \Controller {
             $b[] = decbin($bit & $mask);
             if (($dashboard && ($bit & $mask) == $mask) || !$dashboard)
             {
-                if ($row['end'] != "")
-                {
-                    $datetime2 = date_create($row['end']);
-                    $interval = date_diff($datetime1, $datetime2);
-                    $row['diff'] = $interval->format('%R%a');
-                }
-                else $row['diff'] = "inf";
-
-
+                $row['diff'] = $t_cr->get_date_diff($row['end']);
 
              //   $row['bit'] = $bit;
              //   $row['bin'] = decbin($bit);

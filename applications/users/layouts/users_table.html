@@ -11,7 +11,7 @@
     {% for u in users %}
     <tr>
         <td style="text-align: center;"><a href="/users/~{{u.id_user}}/">{% if u.avatar %}<img src="/uploads/users/ava_small/{{u.avatar|real_path}}" class="img-polaroid">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}</a></td>
-        <td><a href="/users/~{{u.id_user}}/" style="font-weight: bold;">{{u.fio}}</a><div class="nickname">{{u.nickname}}</div></td>
+        <td><a href="/users/~{{u.id_user}}/" style="font-weight: bold;">{{u.fio}}</a></td>
         <td style="color:{{ u.color }};font-weight: bold;white-space: nowrap;width: 1px;">{{ u.group_name }}</td>
         <td style="text-align: center;">
             {% if u.last_user_action >= globals.time %}

@@ -21,7 +21,8 @@ $GLOBALS['lang'] = array(
     'stats_projects' => array('проект','проекта','проектов'),
     'stats_personal_tasks' => array('личная задача','личных задач','личных задач'),
 
-    'days' => array('день','дня','дней'),
+    //'days' => array('день','дня','дней'),
+    'days' => array('','',''),
 
     'January' => "Январь",
     'February' => "Февраль",

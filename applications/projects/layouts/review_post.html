@@ -1,0 +1,34 @@
+<table class="table review_table table-condensed">
+    <tr>
+        <th>Статистика {{ project.name }}</th>
+    </tr>
+    <tr>
+        <td>
+            <table class="table-condensed table_statistic">
+                <tr>
+                    <td>
+                        <span class="label label-info">{{stats.all|default(0)}}</span> {{ "stats_tasks_all"|lang }} :
+                        <span class="label label-info">{{stats.new|default(0)}}</span> {{ "stats_tasks_new"|lang(stats.new|default(0)) }}
+                        <span class="label label-info">{{stats.in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}
+                        <span class="label label-info">{{stats.closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(stats.closed|default(0)) }}
+                        <span class="label label-info">{{stats.rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats.rejected|default(0)) }}
+
+                        {% if categories %}
+                        <div style="margin-top: 15px;">
+                        <div style="font-weight:bold;margin-bottom: 10px;">Открытые задачи по категориям </div>
+                        {% for cat in categories %}
+                            <a href="/projects/tasks/{{project.id}}/?cat={{ cat.id }}" class="list-group-item">
+                                <span class="label" style="margin-right: 20px;background: {{ cat.color }};color: {{ cat.color_text }}">
+                                    {{ cat.name }}
+                                </span>
+                                <span class="label label-info pull-right" style="margin-top: 3px;">{{ stats.cats[cat.id]|default('0') }}</span>
+                            </a>
+                        {% endfor %}
+                        </div>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

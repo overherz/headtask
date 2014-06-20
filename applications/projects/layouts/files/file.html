@@ -18,7 +18,7 @@
     </td>
     <td>{{file.created|date('d.m.Y H:i:s')}}</td>
     <td>{{ file.size }}</td>
-    <td><a href="/users/~{{file.owner}}/" style="color:{{ file.color }};font-weight: bold;" title="{{ file.group_name }}">{{file.fio}}</a><div class="nickname">{{file.nickname}}</div></td>
+    <td><a href="/users/~{{file.owner}}/" style="color:{{ file.color }};font-weight: bold;" title="{{ file.group_name }}">{{file.fio}}</a></td>
     {% if not show_task %}
     {% if access.delete_files and not to_task %}
     <td style="width: 1px;">

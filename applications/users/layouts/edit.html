@@ -19,15 +19,15 @@
         <input type="hidden" name="act" value="save_profile">
         <input type="hidden" name="id" value="{{ user.id_user }}">
         <div class="form-group">
-            <label class="col-lg-2 control-label" for="fio">ФИО</label>
+            <label class="col-lg-2 control-label" for="fio">Имя</label>
             <div class="col-lg-10">
-                <input type="text" name="fio" id="fio" value="{{user.fio}}" class="form-control" />
+                <input type="text" name="first_name" id="first_name" value="{{user.first_name}}" class="form-control" />
              </div>
         </div>
         <div class="form-group">
-            <label class="col-lg-2 control-label" for="nickname">Ник</label>
+            <label class="col-lg-2 control-label" for="fio">Фамилия</label>
             <div class="col-lg-10">
-                <input type="text" name="nickname" id="nickname" value="{{user.nickname}}" class="form-control" />
+                <input type="text" name="last_name" id="last_name" value="{{user.last_name}}" class="form-control" />
             </div>
         </div>
         <div class="form-group">

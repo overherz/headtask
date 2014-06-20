@@ -16,6 +16,7 @@ class pages extends \Controller {
             $query->execute(array($this->id));
             if ($page = $query->fetch())
             {
+                $page['text'] = htmlspecialchars_decode(preg_replace('/<pre>.*?<code.*?>(.*)?<\/code>.*?<\/pre>/siu', '$1', $page['text']));
                 if ($get) return $page;
                 else
                 {

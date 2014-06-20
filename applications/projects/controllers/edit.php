@@ -32,7 +32,6 @@ class edit extends \Controller {
             $p_cr = $this->get_controller("projects");
             if ($project = $p_cr->get_project($this->id))
             {
-                $access = $this->get_controller("projects","users")->get_access($this->id);
                 if ($project['owner']) crumbs("Личные проекты","/projects/",true);
                 crumbs($project['name'],"/projects/~{$project['id']}");
                 crumbs("Редактирование проекта");
@@ -57,7 +56,7 @@ class edit extends \Controller {
 
     function get_categories($id_project)
     {
-        $query = $this->db->prepare("select * from projects_tasks_categories where $id_project=?");
+        $query = $this->db->prepare("select * from projects_tasks_categories where id_project=?");
         $query->execute(array($id_project));
         return $query->fetchAll();
     }

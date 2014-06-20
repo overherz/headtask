@@ -24,9 +24,11 @@ class __TwigTemplate_32cd3f3e3a4b8271a901a1da7896d185d8f38ded75d4d0f68667c6f2666
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["p"]) {
             // line 3
-            echo \layout::func_from_text("        <a href=\"/projects/~");
+            echo \layout::func_from_text("        <a href=\"/projects/tasks/");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("/\" class=\"list-group-item ");
+            echo \layout::func_from_text("/\" data-id=\"");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
+            echo \layout::func_from_text("\" class=\"list-group-item ");
             if ((($this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id") == $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id")) || ($this->getAttribute((isset($context["projects"]) ? $context["projects"] : null), "current_project") == $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id")))) {
                 echo \layout::func_from_text("active");
             }
@@ -71,6 +73,6 @@ class __TwigTemplate_32cd3f3e3a4b8271a901a1da7896d185d8f38ded75d4d0f68667c6f2666
 
     public function getDebugInfo()
     {
-        return array (  58 => 10,  47 => 6,  36 => 4,  27 => 3,  22 => 2,  19 => 1,  140 => 55,  131 => 56,  129 => 55,  117 => 46,  100 => 39,  92 => 37,  90 => 36,  83 => 31,  81 => 30,  74 => 27,  44 => 6,  41 => 5,  34 => 3,  31 => 2,  78 => 24,  68 => 22,  65 => 21,  54 => 8,  51 => 12,  43 => 8,  40 => 7,  33 => 4,  30 => 3,  308 => 118,  301 => 113,  299 => 112,  296 => 111,  292 => 109,  289 => 108,  275 => 107,  271 => 106,  253 => 105,  251 => 104,  244 => 99,  242 => 98,  237 => 95,  232 => 92,  223 => 89,  219 => 88,  214 => 86,  204 => 85,  200 => 83,  196 => 82,  185 => 73,  183 => 72,  176 => 69,  173 => 68,  169 => 67,  167 => 66,  163 => 64,  160 => 63,  137 => 43,  122 => 42,  116 => 41,  112 => 39,  108 => 41,  95 => 35,  91 => 34,  88 => 33,  86 => 32,  76 => 24,  73 => 22,  71 => 26,  69 => 20,  66 => 19,  63 => 18,  57 => 15,  52 => 13,  49 => 7,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  60 => 10,  56 => 8,  49 => 6,  38 => 4,  27 => 3,  22 => 2,  19 => 1,);
     }
 }

@@ -36,11 +36,15 @@ class logs extends \Controller {
             }
             else $type_text = "where l.type=".$this->db->quote($types);
         }
-        $query = $this->db->query("select l.*,u.fio from logs as l
+        $query = $this->db->query("select l.*,u.first_name,u.last_name from logs as l
             LEFT JOIN users as u ON u.id_user = l.user
             {$type_text}
             order by date DESC LIMIT {$limit}");
-        $logs = $query->fetchAll();
+        while ($row = $query->fetch())
+        {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $logs[] = $row;
+        }
         return $logs;
     }
 }

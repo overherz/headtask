@@ -2,10 +2,10 @@
 
 $INFO['sql_driver'] = 'mysql';
 $INFO['sql_host'] = 'localhost';
-$INFO['sql_database'] = 'tasker_old';
+$INFO['sql_database'] = 'tasker';
 $INFO['sql_user'] = 'root';
 $INFO['sql_pass'] = 'jckjck';
-$INFO['dev_mode'] = '1';
+$INFO['dev_mode'] = '0';
 $INFO['error_to_mail'] = '1';
 $INFO['antiddos'] = '0';
 $INFO['domen_for_cli'] = "overherz.dyndns.org";

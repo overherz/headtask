@@ -35,39 +35,61 @@ class projects extends \Controller {
             {
                 $projects = $projects_ar['projects'];
                 $redirect = current($projects_ar['projects']);
-                $this->redirect("/projects/~{$redirect['id']}/");
+                $this->redirect("/projects/tasks/{$redirect['id']}/");
             }
             else $this->redirect("/projects/all/");
         }
         else
         {
             $access = $this->get_controller("projects","users")->get_access($this->id);
-            if (!$project = $access['project']) $this->error_page();
-
-            if ($project['owner']) crumbs("Личные проекты","/projects/",true);
-            crumbs($project['name'],"/projects/~{$project['id']}");
-            crumbs("Обзор");
-
-            $stats_other['files'] = $this->get_controller("projects","files")->get_files_count($this->id);
-            $stats_other['docs'] = $this->get_controller("projects","documents")->get_documents_count($this->id);
-
-            if ($project['owner'] == "")
+            if (!$project = $access['project'])
             {
-                $stats_other['news'] = $this->get_controller("projects","news")->get_news_count($this->id);
-                $stats_other['users'] = $this->get_controller("projects","users")->get_users_count($this->id);
-                $stats_other['forum'] = $this->get_controller("projects","forum")->get_forums_count($this->id);
+                if ($_POST) $res['error'] = "Проект не найден";
+                else $this->error_page();
             }
 
-            $this->layout_show("review.html",array(
-                'access' => $access['access'],
-                'projects' => $this->get_projects($this->id),
-                'project' => $project,
-                'review_button' => true,
-                'stats' => $this->get_controller("projects","tasks")->get_stats($this->id),
-                'stats_other' => $stats_other,
-                'news' => $this->get_controller("projects","news")->get_last_news($this->id),
-                'categories' => $this->get_categories($this->id)
-            ));
+            if (!$res['error'])
+            {
+                if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+                crumbs($project['name'],"/projects/~{$project['id']}");
+                crumbs("Обзор");
+
+                $stats_other['files'] = $this->get_controller("projects","files")->get_files_count($this->id);
+                $stats_other['docs'] = $this->get_controller("projects","documents")->get_documents_count($this->id);
+
+                if ($project['owner'] == "")
+                {
+                    $stats_other['news'] = $this->get_controller("projects","news")->get_news_count($this->id);
+                    $stats_other['users'] = $this->get_controller("projects","users")->get_users_count($this->id);
+                    $stats_other['forum'] = $this->get_controller("projects","forum")->get_forums_count($this->id);
+                }
+
+                if ($_POST)
+                {
+                    $data = array(
+//                    'access' => $access['access'],
+                        'project' => $project,
+                        'stats' => $this->get_controller("projects","tasks")->get_stats($this->id),
+                        'categories' => $this->get_categories($this->id)
+                    );
+                    $res['success'] = $this->layout_get("review_post.html",$data);
+                }
+                else
+                {
+                    $data = array(
+                        'access' => $access['access'],
+                        'projects' => $this->get_projects($this->id),
+                        'project' => $project,
+                        'review_button' => true,
+                        'stats' => $this->get_controller("projects","tasks")->get_stats($this->id),
+                        'stats_other' => $stats_other,
+                        'news' => $this->get_controller("projects","news")->get_last_news($this->id),
+                        'categories' => $this->get_categories($this->id)
+                    );
+                    $this->layout_show("review.html",$data);
+                }
+            }
+            if ($_POST) echo json_encode($res);
         }
     }
 

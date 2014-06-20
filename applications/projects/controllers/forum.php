@@ -193,7 +193,7 @@ class forum extends \Admin {
             if ($forums)
             {
                 $ids = implode(",",$ids);
-                $query = $this->db->query("SELECT t.id,t.id_forum,p.created,u.id_user,u.nickname,u.fio,t.name,g.color,g.name as group_name
+                $query = $this->db->query("SELECT t.id,t.id_forum,p.created,u.id_user,u.nickname,u.first_name,u.last_name,t.name,g.color,g.name as group_name
                         FROM projects_posts p JOIN projects_topics t ON p.id_topic = t.id
                         LEFT JOIN users as u ON u.id_user=p.author
                         LEFT JOIN groups as g ON u.id_group=g.id
@@ -207,7 +207,7 @@ class forum extends \Admin {
                     $forums[$row['id_forum']]['last'] = array(
                         'id' => $row['id'],
                         'name' => $row['name'],
-                        'author' => array('id_user' => $row['id_user'],'fio' => $row['fio'],'nickname' => $row['nickname']),
+                        'author' => array('id_user' => $row['id_user'],'fio' => build_user_name($row['first_name'],$row['last_name']),'nickname' => $row['nickname']),
                         'created' => $row['created'],
                         'color' => $row['color'],
                         'group_name' => $row['group_name']
@@ -245,7 +245,7 @@ class forum extends \Admin {
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
 
             $query = $this->db->prepare("select t.*,(select count(*) from projects_posts where id_topic=t.id) as count_posts,
-                    p.created,u.id_user,u.fio,u.nickname,t.created as topic_created,g.color,g.name as group_name
+                    p.created,u.id_user,u.first_name,u.last_name,u.nickname,t.created as topic_created,g.color,g.name as group_name
                     from projects_topics t
                     LEFT JOIN projects_posts as p ON p.id_topic=t.id
                     LEFT JOIN users as u ON p.author=u.id_user
@@ -258,12 +258,13 @@ class forum extends \Admin {
             $query->execute(array($id_forum));
             while ($row = $query->fetch())
             {
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
                 $topics[$row['id']] = $row;
                 if ($row['author'] != "") $ids[] = $row['author'];
             }
 
             $query = $this->db->prepare("select t.*,(select count(*) from projects_posts where id_topic=t.id) as count_posts,
-                    p.created,u.id_user,u.fio,u.nickname,t.created as topic_created,g.color,g.name as group_name
+                    p.created,u.id_user,u.first_name,u.last_name,u.nickname,t.created as topic_created,g.color,g.name as group_name
                     from projects_topics t
                     LEFT JOIN projects_posts as p ON p.id_topic=t.id
                     LEFT JOIN users as u ON p.author=u.id_user
@@ -274,6 +275,7 @@ class forum extends \Admin {
             $query->execute(array($id_forum));
             while ($row = $query->fetch())
             {
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
                 $fixed_topics[$row['id']] = $row;
                 if ($row['author'] != "") $ids[] = $row['author'];
             }
@@ -281,13 +283,14 @@ class forum extends \Admin {
             if ($topics)
             {
                 $ids = implode(",",$ids);
-                $query = $this->db->query("select u.nickname,u.id_user,u.fio,g.color,g.name as group_name
+                $query = $this->db->query("select u.nickname,u.id_user,u.first_name,u.last_name,g.color,g.name as group_name
                     from users as u
                     LEFT JOIN groups as g ON u.id_group=g.id
                     where id_user IN({$ids})
                 ");
                 while ($row = $query->fetch())
                 {
+                    $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
                     $authors[$row['id_user']] = $row;
                 }
             }
@@ -333,7 +336,7 @@ class forum extends \Admin {
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_GET['page'], $this->limit_posts);
 
-            $query = $this->db->prepare("select p.*,u.fio,u.nickname,u.id_user,u.avatar,u.last_user_action,g.color,g.name as group_name
+            $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,u.id_user,u.avatar,u.last_user_action,g.color,g.name as group_name
                     from projects_posts as p
                     LEFT JOIN users as u ON p.author=u.id_user
                     LEFT JOIN groups as g ON u.id_group=g.id
@@ -343,7 +346,11 @@ class forum extends \Admin {
                     OFFSET {$paginator->get_range('from')}");
 
             $query->execute(array($topic['id']));
-            $posts = $query->fetchAll();
+            while ($row = $query->fetch())
+            {
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                $posts[] = $row;
+            }
 
             $query = $this->db->prepare("update projects_topics set number_of_views = number_of_views + 1 where id=?");
             $query->execute(array($topic['id']));
@@ -799,7 +806,7 @@ class forum extends \Admin {
             $last_send = 0;
         }
 
-        $query = $this->db->prepare("SELECT s.id_user,pr.name,count(p.id) as count,pr.id,u.fio,u.email
+        $query = $this->db->prepare("SELECT s.id_user,pr.name,count(p.id) as count,pr.id,u.first_name,u.last_name,u.email
             from projects_posts as p
             LEFT JOIN projects_topics as t ON p.id_topic=t.id
             LEFT JOIN projects_forums_subscribes as s ON p.id_topic=s.id_topic
@@ -833,57 +840,16 @@ class forum extends \Admin {
         }
     }
 
-    function get_new_topics_statistic1($id_user=false,$last_send=false)
-    {
-        $last_send = (int) $last_send;
-        if ($id_user)
-        {
-            $search_for_one_user = " and s.id_user=".$this->db->quote($id_user);
-            $last_send = 0;
-        }
-        $query = $this->db->prepare("SELECT s.id_user,pr.name,pr.id,u.fio,u.email
-            from projects_topics as t
-            LEFT JOIN projects_forums_subscribes as s ON t.id=s.id_topic
-            LEFT JOIN projects_forums as f ON t.id_forum=f.id
-            LEFT JOIN projects as pr ON f.id_project=pr.id
-            LEFT JOIN users as u ON s.id_user=u.id_user
-            WHERE (t.created > IF(s.last_action > {$last_send}, s.last_action, {$last_send}))
-            and s.id_user IN (select id_user from projects_users where id_project=pr.id) {$search_for_one_user}
-            group by s.id_user,pr.id
-            order by s.id_user ASC
-        ");
-
-        $query->execute();
-        if (!$id_user) while ($row = $query->fetch()) $new_posts[$row['id_user']][] = $row;
-        else $new_posts = $query->fetchAll();
-        return $new_posts;
-    }
-
-    function new_topics_to_mail1()
-    {
-        $query = $this->db->query("select * from tasks where controller='new_posts'");
-        $task = $query->fetch();
-        if ($new_posts = $this->get_new_posts_statistic(false,$task['completed']))
-        {
-            $from = get_setting('email');
-            foreach($new_posts as $n)
-            {
-                $html = $this->layout_get("forum/mail_text.html",array('new_posts' => $n,'server_name' => DOMEN_FOR_CLI));
-                if (!send_mail($from, $n[0]['email'], "Новые сообщения на форумах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
-            }
-        }
-    }
-
     function get_new_topics_statistic($last_action)
     {
         $last_action = (int) $last_action;
-        $query = $this->db->query("select id_user,email,fio from users");
+        $query = $this->db->query("select id_user,email,first_name,last_name from users");
 
         if ($users = $query->fetchAll())
         {
             foreach ($users as $u)
             {
-                $query_c = $this->db->prepare("SELECT u.id_user,pr.name,pr.id,u.fio,u.email,t.id as topic_id,t.name as topic_name
+                $query_c = $this->db->prepare("SELECT u.id_user,pr.name,pr.id,u.first_name,u.last_name,u.email,t.id as topic_id,t.name as topic_name
                     from projects_topics as t
                     LEFT JOIN projects_forums_subscribes as s ON t.id=s.id_topic and s.id_user=?
                     LEFT JOIN projects_forums as f ON t.id_forum=f.id
@@ -895,7 +861,7 @@ class forum extends \Admin {
                 while($row = $query_c->fetch())
                 {
                     $co[$u['id_user']]['email'] = $u['email'];
-                    $co[$u['id_user']]['fio'] = $u['fio'];
+                    $co[$u['id_user']]['fio'] = build_user_name($u['first_name'],$u['last_name']);
                     $co[$u['id_user']]['topics'][$row['id']][] = $row;
                 }
             }

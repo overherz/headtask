@@ -75,13 +75,14 @@ class files extends \Admin {
 
                 if (!$res['error'])
                 {
-                    $query = $this->db->prepare("select p.*,u.fio,u.nickname,g.color,g.name as group_name
+                    $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
                         from projects_files as p
                         LEFT JOIN users as u ON p.owner=u.id_user
                         LEFT JOIN groups as g ON u.id_group=g.id
                         where p.id=?");
                     $query->execute(array($last));
                     $file = $query->fetch();
+                    $file['fio'] = build_user_name($file['first_name'],$file['last_name']);
                     $file['size'] = $this->format_file_size($file['size']);
 
                     $log = $this->get_controller("projects","logs");
@@ -127,7 +128,7 @@ class files extends \Admin {
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
             if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-            $query = $this->db->prepare("select p.*,u.fio,u.nickname,g.color,g.name as group_name
+            $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
                 from projects_files as p
                 LEFT JOIN users as u ON p.owner=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
@@ -139,6 +140,7 @@ class files extends \Admin {
             $query->execute(array($this->id));
             while ($row = $query->fetch())
             {
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
                 $row['size'] = $this->format_file_size($row['size']);
                 $files[] = $row;
             }

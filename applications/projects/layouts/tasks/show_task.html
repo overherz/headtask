@@ -37,25 +37,17 @@
             </div>
         {% endif %}
 
-         Статус выполнения
-        <div class="progress progress-striped {% if task.status == "in_progress" %}active{% endif %}">
-            <div class="progress-bar {% if undate %}progress-bar-danger{% endif %}" role="progressbar" aria-valuenow="{{task.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {% if task.percent > 0 %}{{task.percent}}%;{% else %}30px;{% endif %}">
-                <span>{{ task.percent }} %</span>
-            </div>
-        </div>
-
         <table class="table table-hover table-condensed table-border" style="margin-top:20px;" id="tasks_table">
             <thead>
             <tr>
-                <th></th>
                 <th>Статус</th>
                 <th>Приоритет</th>
                 <th>Делегировано</th>
-                <th>Начало</th>
-                <th>Окончание</th>
+                <th>Начало - Окончание</th>
                 <th>Расчетное время</th>
                 <th>Затраченное время</th>
                 <th>Добавил</th>
+                <th><i class="fa fa-calendar"></i></th>
                 <th></th>
             </tr>
             </thead>
@@ -83,7 +75,6 @@
                 <tr>
                     <td>
                         <a href="/users/~{{l.id_user}}/" style="color:{{ l.color }} !important;font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
-                        <div class="nickname">{{l.nickname}}</div>
                     </td>
                     <td>{{l.created|date('d.m.Y H:i:s')}}</td>
                     <td>{{l.text|raw}}</td>

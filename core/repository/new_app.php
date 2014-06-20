@@ -12,10 +12,9 @@ if (!$INFO['dev_mode'])
     exit();
 }
 
-
 if ($_GET['app_name'] != "")
 {
-    layout::
+  //  layout::
     //new_application(dirname(dirname(dirname(__FILE__)))."/applications/".$_GET['app_name'],$_GET['app_name'],true);
 }
 

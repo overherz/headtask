@@ -118,7 +118,7 @@ class news extends \Controller {
             $total = $this->get_news_count($this->id);
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
-            $news = $this->db->query("select n.id,n.name,n.created,n.author,u.fio,u.nickname,g.color,g.name as group_name
+            $query = $this->db->query("select n.id,n.name,n.created,n.author,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
                 from projects_news as n
                 LEFT JOIN users as u ON n.author=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
@@ -126,7 +126,12 @@ class news extends \Controller {
                 order by created DESC
                 LIMIT {$this->limit}
                 OFFSET {$paginator->get_range('from')}
-            ")->fetchAll();
+            ");
+            while ($row = $query->fetch())
+            {
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                $news[] = $row;
+            }
 
             $data = array(
                 'project' => $project,
@@ -151,11 +156,12 @@ class news extends \Controller {
 
     function get_news($id)
     {
-        $query = $this->db->prepare("select pn.*,u.id_user,u.fio,u.nickname from projects_news as pn
+        $query = $this->db->prepare("select pn.*,u.id_user,u.first_name,u.last_name,u.nickname from projects_news as pn
             LEFT JOIN users as u ON pn.author = u.id_user
             where pn.id=?");
         $query->execute(array($id));
         $news = $query->fetch();
+        $news['fio'] = build_user_name($news['first_name'],$news['last_name']);
 
         return $news;
     }

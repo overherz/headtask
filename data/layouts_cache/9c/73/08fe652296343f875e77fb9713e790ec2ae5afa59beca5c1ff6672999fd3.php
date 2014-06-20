@@ -32,7 +32,7 @@ class __TwigTemplate_9c7308fe652296343f875e77fb9713e790ec2ae5afa59beca5c1ff66729
         echo \layout::func_from_text("<div class=\"container-fluid\">
     <div class=\"row\">
         <div class=\"col-lg-12\">
-            <div class=\"jumbotron\">
+            <div class=\"jumbotron\" style=\"position: relative;\">
                 ");
         // line 7
         $this->displayBlock('context', $context, $blocks);
@@ -61,6 +61,6 @@ class __TwigTemplate_9c7308fe652296343f875e77fb9713e790ec2ae5afa59beca5c1ff66729
 
     public function getDebugInfo()
     {
-        return array (  40 => 8,  38 => 7,  32 => 3,  29 => 2,  147 => 50,  138 => 46,  130 => 43,  124 => 42,  121 => 41,  116 => 40,  101 => 27,  98 => 26,  92 => 25,  81 => 19,  75 => 18,  69 => 17,  63 => 16,  57 => 15,  51 => 11,  48 => 7,  42 => 7,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  48 => 7,  40 => 8,  38 => 7,  32 => 3,  29 => 2,);
     }
 }

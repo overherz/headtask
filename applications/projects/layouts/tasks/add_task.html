@@ -95,7 +95,7 @@
             <select name="assigned" id="assigned">
                 <option value="">&nbsp;</option>
                 {% for u in users %}
-                <option value="{{u.id_user}}" {% if u.id_user == task.assigned %}selected{% endif %}>{{u.fio}} {% if u.nickname %}<span>({{u.nickname}})</span>{% endif %}</option>
+                <option value="{{u.id_user}}" {% if u.id_user == task.assigned %}selected{% endif %}>{{u.fio}}</option>
                 {% endfor %}
             </select>
         </div>

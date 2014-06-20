@@ -88,9 +88,7 @@ class __TwigTemplate_566f48665488675bd093e983bf2aa6f53cfd22363e9024bac0cfbfc7d95
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["file"]) ? $context["file"] : null), "group_name"), "html", null, true));
         echo \layout::func_from_text("\">");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["file"]) ? $context["file"] : null), "fio"), "html", null, true));
-        echo \layout::func_from_text("</a><div class=\"nickname\">");
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["file"]) ? $context["file"] : null), "nickname"), "html", null, true));
-        echo \layout::func_from_text("</div></td>
+        echo \layout::func_from_text("</a></td>
     ");
         // line 22
         if ((!(isset($context["show_task"]) ? $context["show_task"] : null))) {
@@ -141,6 +139,6 @@ class __TwigTemplate_566f48665488675bd093e983bf2aa6f53cfd22363e9024bac0cfbfc7d95
 
     public function getDebugInfo()
     {
-        return array (  129 => 37,  126 => 36,  116 => 32,  112 => 30,  105 => 26,  101 => 24,  98 => 23,  96 => 22,  84 => 21,  80 => 20,  76 => 19,  73 => 18,  65 => 16,  57 => 14,  55 => 13,  51 => 11,  44 => 10,  38 => 8,  32 => 5,  27 => 4,  25 => 3,  19 => 1,);
+        return array (  127 => 37,  124 => 36,  114 => 32,  110 => 30,  103 => 26,  99 => 24,  96 => 23,  94 => 22,  84 => 21,  80 => 20,  76 => 19,  73 => 18,  65 => 16,  57 => 14,  55 => 13,  51 => 11,  44 => 10,  38 => 8,  32 => 5,  27 => 4,  25 => 3,  19 => 1,);
     }
 }

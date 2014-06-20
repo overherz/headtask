@@ -5,7 +5,9 @@
 
 CKEDITOR.editorConfig = function( config )
 {
-    config.removePlugins = 'backup,magicline';
+    config.removePlugins = 'backup,magicline,divarea';
+    config.extraPlugins = 'codemirror';
+    config.skin = 'moonocolor';
 
     config.uiColor = '#F5F5F5';
     config.language = 'ru';
@@ -16,9 +18,17 @@ CKEDITOR.editorConfig = function( config )
     config.enterMode = CKEDITOR.ENTER_DIV;
     config.allowedContent = true;
     config.protectedSource.push(/<(script).*>.*<\/script>/ig);
+    config.protectedSource.push(/<(code).*>.*<\/code>/ig);
     config.protectedSource.push(/<(map).*>.*<\/map>/ig);
     config.protectedSource.push(/<(area).*>/ig);
     config.protectedSource.push(/<(form).*>.*<\/form>/ig);
+  //  config.entities = false;
+   // config.basicEntities = false;
+
+    config.codeSnippet_languages = {
+        javascript: 'JavaScript',
+        html: 'Html'
+    };
 
     config.toolbar_Basic =
         [

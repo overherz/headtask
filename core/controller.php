@@ -288,10 +288,10 @@ class Admin extends Controller {
         
         if ($_SESSION['admin']['id_group'])
         {
-            $result = $this->db->query("select u.id_group,u.fio,g.name,g.access,g.access_admin,g.color from users as u LEFT JOIN groups as g ON u.id_group=g.id where u.id_user='{$_SESSION['admin']['id_user']}' LIMIT 1")->fetch();
+            $result = $this->db->query("select u.id_group,u.first_name,u.last_name,g.name,g.access,g.access_admin,g.color from users as u LEFT JOIN groups as g ON u.id_group=g.id where u.id_user='{$_SESSION['admin']['id_user']}' LIMIT 1")->fetch();
             if (!$result['access_admin']) unset($_SESSION['admin']);
             else {
-                $_SESSION['admin']['fio'] = $result['fio'];
+                $_SESSION['admin']['fio'] = build_user_name($result['first_name'],$result['last_name']);
                 $_SESSION['admin']['access'] = json_decode($result['access']);
                 $_SESSION['admin']['group_name'] = $result['name'];
                 $_SESSION['admin']['group_color'] = $result['color'];

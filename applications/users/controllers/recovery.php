@@ -64,7 +64,7 @@ class recovery extends \Controller {
 
             $hash = md5(md5(time()).md5($user['salt']));
             $query = $this->db->prepare("insert into recovery(email,hash,date,type) values(?,?,?,?) ON DUPLICATE KEY UPDATE hash=?");
-            if ($query->execute(array($email,$hash,strtotime("now"),'recovery',$hash)))
+            if ($query->execute(array($email,$hash,time(),'recovery',$hash)))
             {
                 $subject = "Восстановление пароля";
                 $message = $this->layout_get("elements/recovery_mail.html",array('hash' => $hash,'server_name' => $_SERVER["SERVER_NAME"],'site_name' => get_setting('site_name')));

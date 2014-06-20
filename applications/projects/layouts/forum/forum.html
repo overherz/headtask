@@ -33,14 +33,14 @@
         <td>
             {% if f.last %}
                 <div><a href='/projects/forum/show_topic/{{f.last.id}}/'>{{f.last.name}}</a></div>
-                <div><a href='/users/~{{f.last.author.id_user}}/' style="color:{{ f.last.color }};font-weight: bold;" title="{{ f.last.group_name }}">{{f.last.author.fio}}</a><div class="nickname"> {{f.last.author.nickname}}</div> </div>
+                <div><a href='/users/~{{f.last.author.id_user}}/' style="color:{{ f.last.color }};font-weight: bold;" title="{{ f.last.group_name }}">{{f.last.author.fio}}</a></div>
                 <div>{{f.last.created|date('d.m.Y H:i:s')}}</div>
             {% else %}
                 сообщений нет
             {% endif %}
         </td>
         {% if access.forum %}
-        <td style="width: 80px;">
+        <td style="width: 85px;">
             <div class="btn-group">
                 <a class="btn btn-oscar btn-sm" href="/projects/forum/edit/{{f.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-oscar btn-sm" delete_forum={{f.id}} href=""><i class="fa fa-trash-o"></i></a>

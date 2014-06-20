@@ -33,7 +33,7 @@ class users extends \Admin {
         if (isset($_POST['search']) && $_POST['search'] != '')
         {
             $s = $this->db->quote("%{$_POST['search']}%");
-            $sql = "where u.fio LIKE ".$s." OR u.nickname LIKE ".$s." OR u.email LIKE ".$s;
+            $sql = "where u.first_name LIKE ".$s." OR u.last_name LIKE ".$s." OR u.nickname LIKE ".$s." OR u.email LIKE ".$s;
         }
 
         $total = $this->db->num_rows("users as u {$sql}","id_user");
@@ -45,6 +45,7 @@ class users extends \Admin {
         $query = $this->db->query("select u.*,g.name as group_name,g.color as group_color from users as u LEFT JOIN groups as g ON u.id_group=g.id {$sql} ORDER BY u.id_group,u.id_user ASC LIMIT {$on_page} OFFSET {$paginator->get_range('from')}");
         while ($row = $query->fetch())
         {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
             $users[$row['id_user']] = $row;
         }
 
@@ -74,7 +75,7 @@ class users extends \Admin {
             if ($query->execute(array($_POST['id'])))
             {
                 $res['success'] = true;
-                if ($log) $log->save_into_log("admin","Пользователи",true,"Удален пользователь \"{$user['fio']}\" ({$user['nickname']})",$_SESSION['admin']['id_user']);
+                if ($log) $log->save_into_log("admin","Пользователи",true,"Удален пользователь \"{$user['fio']}\"",$_SESSION['admin']['id_user']);
             }
             else $res['error'] = "Ошибка удаления";
         }
@@ -117,7 +118,8 @@ class users extends \Admin {
     function save()
     {
         if ($_POST['email'] == '') $res['error'][] = "Email не может быть пустым";
-        if ($_POST['fio'] == '') $res['error'][] = "ФИО не может быть пустым";
+        if ($_POST['first_name'] == '') $res['error'][] = "Введите имя";
+        if ($_POST['last_name'] == '') $res['error'][] = "Введите фамилию";
         if ($_POST['gender'] != "m" && $_POST['gender'] != "f") $res['error']['gender'] = "Пол не выбран";
 
         if ($_POST['email'] == "") $res['error']['email'] = "Введите адрес почты";
@@ -154,7 +156,7 @@ class users extends \Admin {
             if ($log)
             {
                 $user = $this->get_user($_POST['id']);
-                if ($user['fio'] != $_POST['fio'] && $_POST['id'] != "") $message = ". ФИО изменено на \"{$_POST['fio']}\"";
+                if ($user['fio'] != build_user_name($_POST['first_name'],$_POST['last_name']) && $_POST['id'] != "") $message = ". ФИО изменено на \"".build_user_name($_POST['first_name'],$_POST['last_name'])."\"";
                 if ($user['nickname'] != $_POST['nickname'] && $_POST['id'] != "") $message .= ". Ник изменен на \"{$_POST['nickname']}\"";
                 if ($user['id_group'] != $_POST['id_group'] && $_POST['id'] != "")
                 {
@@ -167,21 +169,21 @@ class users extends \Admin {
             {
                 if ($p)
                 {
-                    $query = $this->db->prepare("UPDATE users set nickname=?,gender=?,email=?,pass=?,salt=?,uniq_key=?,id_group=?,fio=? where id_user=?");
-                    if (!$query->execute(array($_POST['nickname'],$_POST['gender'],$_POST['email'],$p['password'],$p['salt'],$p['uniq_key'],$id_group,$_POST['fio'],$_POST['id']))) $res['error']  = true;
+                    $query = $this->db->prepare("UPDATE users set nickname=?,gender=?,email=?,pass=?,salt=?,uniq_key=?,id_group=?,first_name=?,last_name=? where id_user=?");
+                    if (!$query->execute(array($_POST['nickname'],$_POST['gender'],$_POST['email'],$p['password'],$p['salt'],$p['uniq_key'],$id_group,$_POST['first_name'],$_POST['last_name'],$_POST['id']))) $res['error']  = true;
                     elseif ($log) $log->save_into_log("admin","Пользователи",true,"Отредактирован пользователь \"{$user['fio']}\" ({$user['nickname']}). Пароль изменен".$message,$_SESSION['admin']['id_user']);
                 }
                 else
                 {
-                    $query = $this->db->prepare("UPDATE users set nickname=?,gender=?,email=?,id_group=?,fio=? where id_user=?");
-                    if (!$query->execute(array($_POST['nickname'],$_POST['gender'],$_POST['email'],$id_group,$_POST['fio'],$_POST['id']))) $res['error']  = true;
+                    $query = $this->db->prepare("UPDATE users set nickname=?,gender=?,email=?,id_group=?,first_name=?,last_name=? where id_user=?");
+                    if (!$query->execute(array($_POST['nickname'],$_POST['gender'],$_POST['email'],$id_group,$_POST['first_name'],$_POST['last_name'],$_POST['id']))) $res['error']  = true;
                     elseif ($log) $log->save_into_log("admin","Пользователи",true,"Отредактирован пользователь \"{$user['fio']}\" ({$user['nickname']})".$message,$_SESSION['admin']['id_user']);
                 }
             }
             else
             {
-                $query = $this->db->prepare("INSERT INTO users(nickname,gender,email,id_group,fio,pass,salt,uniq_key,mailconfirm,created) VALUES(?,?,?,?,?,?,?,?,?,?)");
-                if (!$query->execute(array($_POST['nickname'],$_POST['gender'],$_POST['email'],$id_group,$_POST['fio'],$p['password'],$p['salt'],$p['uniq_key'],true,time()))) $res['error']  = true;
+                $query = $this->db->prepare("INSERT INTO users(nickname,gender,email,id_group,first_name,last_name,pass,salt,uniq_key,mailconfirm,created) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+                if (!$query->execute(array($_POST['nickname'],$_POST['gender'],$_POST['email'],$id_group,$_POST['first_name'],$_POST['last_name'],$p['password'],$p['salt'],$p['uniq_key'],true,time()))) $res['error']  = true;
                 elseif ($log) $log->save_into_log("admin","Пользователи",true,"Добавлен пользователь \"{$_POST['fio']}\" ({$_POST['nickname']})".$message,$_SESSION['admin']['id_user']);
             }
 
@@ -197,6 +199,7 @@ class users extends \Admin {
         $query = $this->db->prepare("select u.*,g.name as group_name from users as u LEFT JOIN groups as g ON u.id_group=g.id where u.id_user=?");
         $query->execute(array($id));
         $user = $query->fetch();
+        $user['fio'] = build_user_name($user['first_name'],$user['last_name']);
 
         return $user;
     }
