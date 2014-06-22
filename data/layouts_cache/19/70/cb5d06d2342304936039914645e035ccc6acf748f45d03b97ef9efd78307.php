@@ -20,6 +20,7 @@ class __TwigTemplate_1970cb5d06d2342304936039914645e035ccc6acf748f45d03b97ef9efd
     <div class=\"container-fluid\">
         <div class=\"navbar-header\">
             <span class=\"navbar-brand\">Task me!</span>
+            <div style=\"color: orange;position: absolute;left:80px;top:33px;font-size: 11px;\">beta</div>
             <button type=\"button\" class=\"navbar-toggle pull-left\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">
                 <span class=\"sr-only\">Toggle navigation</span>
                 <span class=\"icon-bar\"></span>
@@ -30,17 +31,17 @@ class __TwigTemplate_1970cb5d06d2342304936039914645e035ccc6acf748f45d03b97ef9efd
         <div class=\"navbar-collapse collapse\">
             <ul class=\"nav navbar-nav\">
                 ");
-        // line 14
+        // line 15
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu"));
         foreach ($context['_seq'] as $context["k"] => $context["m"]) {
-            // line 15
+            // line 16
             echo \layout::func_from_text("                    ");
             if (((isset($context["k"]) ? $context["k"] : null) != "crumbs")) {
-                // line 16
+                // line 17
                 echo \layout::func_from_text("                         ");
                 if ((!$this->getAttribute((isset($context["m"]) ? $context["m"] : null), "category"))) {
-                    // line 17
+                    // line 18
                     echo \layout::func_from_text("                            <li ");
                     if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "active") || $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu"), "crumbs"), $this->getAttribute((isset($context["m"]) ? $context["m"] : null), "id"), array(), "array"))) {
                         echo \layout::func_from_text("class=\"active\"");
@@ -68,19 +69,19 @@ class __TwigTemplate_1970cb5d06d2342304936039914645e035ccc6acf748f45d03b97ef9efd
                     echo \layout::func_from_text("</a></li>
                          ");
                 } else {
-                    // line 19
+                    // line 20
                     echo \layout::func_from_text("                             <li class=\"dropdown\">
                                  <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">");
-                    // line 20
+                    // line 21
                     echo \layout::func_from_text($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "name"));
                     echo \layout::func_from_text(" <b class=\"caret\"></b></a>
                                  <ul class=\"dropdown-menu\">
                                      ");
-                    // line 22
+                    // line 23
                     $context['_parent'] = (array) $context;
                     $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "category"));
                     foreach ($context['_seq'] as $context["_key"] => $context["sub"]) {
-                        // line 23
+                        // line 24
                         echo \layout::func_from_text("                                        <li><a ");
                         if ($this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "clickable")) {
                             echo \layout::func_from_text("href=\"");
@@ -103,40 +104,40 @@ class __TwigTemplate_1970cb5d06d2342304936039914645e035ccc6acf748f45d03b97ef9efd
                     $_parent = $context['_parent'];
                     unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sub'], $context['_parent'], $context['loop']);
                     $context = array_intersect_key($context, $_parent) + $_parent;
-                    // line 25
+                    // line 26
                     echo \layout::func_from_text("                                 </ul>
                              </li>
                          ");
                 }
-                // line 28
+                // line 29
                 echo \layout::func_from_text("                    ");
             }
-            // line 29
+            // line 30
             echo \layout::func_from_text("                ");
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['k'], $context['m'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 30
+        // line 31
         echo \layout::func_from_text("            </ul>
             <ul class=\"nav navbar-nav navbar-right\">
                 ");
-        // line 32
+        // line 33
         if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user")) {
-            // line 33
+            // line 34
             echo \layout::func_from_text("                    <li><a href=\"/users/profile/\" class=\"username_in_top\" title=\"Профиль\"><i class=\"fa fa-user\"></i><span>");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "fio"), "html", null, true));
             echo \layout::func_from_text("</span></a></li>
                 ");
         }
-        // line 35
+        // line 36
         echo \layout::func_from_text("                ");
         if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user")) {
-            // line 36
+            // line 37
             echo \layout::func_from_text("                    <li><a href=\"/users/logout/\" id=\"logout\"><i class=\"fa fa-power-off\"></i></a></li>
                 ");
         }
-        // line 38
+        // line 39
         echo \layout::func_from_text("            </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
@@ -155,6 +156,6 @@ class __TwigTemplate_1970cb5d06d2342304936039914645e035ccc6acf748f45d03b97ef9efd
 
     public function getDebugInfo()
     {
-        return array (  140 => 38,  136 => 36,  133 => 35,  127 => 33,  125 => 32,  121 => 30,  115 => 29,  112 => 28,  107 => 25,  84 => 23,  80 => 22,  75 => 20,  72 => 19,  41 => 16,  38 => 15,  34 => 14,  19 => 1,  102 => 37,  98 => 31,  95 => 30,  91 => 17,  88 => 16,  83 => 4,  78 => 40,  76 => 39,  73 => 38,  71 => 37,  68 => 36,  66 => 35,  61 => 32,  59 => 30,  45 => 18,  43 => 16,  28 => 4,  23 => 1,  56 => 8,  51 => 6,  44 => 17,  33 => 4,  30 => 3,  54 => 14,  50 => 13,  46 => 11,  42 => 8,  40 => 8,  37 => 6,  32 => 4,  29 => 3,);
+        return array (  141 => 39,  137 => 37,  134 => 36,  128 => 34,  126 => 33,  122 => 31,  116 => 30,  113 => 29,  108 => 26,  85 => 24,  81 => 23,  42 => 17,  39 => 16,  35 => 15,  19 => 1,  102 => 37,  98 => 31,  95 => 30,  91 => 17,  88 => 16,  83 => 4,  78 => 40,  76 => 21,  73 => 20,  71 => 37,  68 => 36,  66 => 35,  61 => 32,  59 => 30,  45 => 18,  43 => 16,  28 => 4,  23 => 1,);
     }
 }

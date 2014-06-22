@@ -6,4 +6,3 @@ setlocale(LC_ALL, "ru_RU.UTF-8");
 require_once('core/initdata.php');
 //pr(apache_get_modules());
 //pr($_SERVER['SERVER_SOFTWARE']);
-?>

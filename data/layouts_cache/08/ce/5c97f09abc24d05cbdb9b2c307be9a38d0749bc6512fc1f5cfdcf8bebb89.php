@@ -72,13 +72,13 @@ class __TwigTemplate_08ce5c97f09abc24d05cbdb9b2c307be9a38d0749bc6512fc1f5cfdcf8b
                             <input type=\"text\" name=\"email\" id=\"email\" maxlength=\"60\" class=\"form-control\" tabindex=\"1\" value=\"");
         // line 22
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["email"]) ? $context["email"] : null), "html", null, true));
-        echo \layout::func_from_text("\">
+        echo \layout::func_from_text("\" autocomplete=\"off\">
                         </div>
                     </div>
                     <div class=\"col-xs-6\">
                         <div class=\"form-group\">
                             <label for=\"password1\">Пароль <span error=\"password1\" class=\"reg_erroru\"></span></label>
-                            <input type=\"password\" name=\"password1\" id=\"password1\" maxlength=\"60\" class=\"form-control\">
+                            <input type=\"password\" name=\"password1\" id=\"password1\" maxlength=\"60\" class=\"form-control\" autocomplete=\"off\">
                         </div>
                     </div>
                     <div class=\"col-xs-6\">

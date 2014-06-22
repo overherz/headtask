@@ -37,6 +37,7 @@ class registration extends \Controller {
 
     function showform()
     {
+        if ($_SESSION['user']['id_user']) $this->redirect();
         $captcha = $this->get_controller("captcha")->get_captcha(6);
         $data['captcha'] = $captcha;
         $data['tz'] = $this->get_controller("users")->tz;

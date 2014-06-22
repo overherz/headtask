@@ -10,7 +10,9 @@ class login extends \Controller {
             case "login":
                 $this->get_login($_POST['login'],$_POST['password'],true);
                 break;
-            default: $this->layout_show("login.html");
+            default:
+                if ($_SESSION['user']['id_user']) $this->redirect();
+                $this->layout_show("login.html");
         }
     }
 

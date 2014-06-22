@@ -156,7 +156,7 @@ class Controller {
         exit();
     }
 
-    static function redirect($url='', $delay=0)
+    static function redirect($url='/', $delay=0)
     {
         $delay = (int) $delay;
         if(!$delay && !headers_sent()) {
