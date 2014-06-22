@@ -18,7 +18,7 @@ class __TwigTemplate_e45d5c586e6ec8a6f8a2ece7b613e6ea39a78a75aacff0e452c0cfe3f94
         // line 1
         echo \layout::func_from_text("<div class=\"clearfix\"></div>
 <div id=\"footer\">
-    <div class=\"muted credit\"><span style=\"margin-right: 20px;\">v.3.2.1</span> by OverHerz &copy; ");
+    <div class=\"muted credit\"><span style=\"margin-right: 20px;\">v.3.2.1</span> by <a href=\"mailto:overherz@gmail.com\">OverHerz</a> &copy; ");
         // line 3
         echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, "", "Y"), "html", null, true));
         echo \layout::func_from_text("</div>
@@ -37,6 +37,6 @@ class __TwigTemplate_e45d5c586e6ec8a6f8a2ece7b613e6ea39a78a75aacff0e452c0cfe3f94
 
     public function getDebugInfo()
     {
-        return array (  19 => 1,  104 => 37,  100 => 31,  97 => 30,  93 => 17,  90 => 16,  85 => 4,  80 => 40,  78 => 39,  75 => 38,  73 => 37,  66 => 35,  61 => 32,  59 => 30,  45 => 18,  43 => 16,  28 => 4,  23 => 3,  38 => 7,  32 => 3,  29 => 2,  196 => 133,  192 => 131,  187 => 128,  175 => 119,  70 => 36,  68 => 15,  65 => 14,  63 => 13,  60 => 12,  54 => 9,  51 => 8,  48 => 7,  40 => 8,  37 => 3,  31 => 2,);
+        return array (  126 => 33,  122 => 31,  113 => 27,  110 => 26,  104 => 24,  96 => 22,  94 => 21,  84 => 18,  81 => 17,  72 => 15,  63 => 13,  34 => 8,  30 => 6,  26 => 5,  21 => 2,  19 => 1,  102 => 37,  98 => 31,  95 => 30,  91 => 20,  88 => 16,  83 => 4,  78 => 40,  76 => 39,  73 => 38,  71 => 37,  68 => 36,  66 => 35,  61 => 32,  59 => 12,  45 => 10,  43 => 16,  28 => 4,  23 => 3,);
     }
 }

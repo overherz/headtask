@@ -81,53 +81,52 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
         $this->env->loadTemplate("/source/crumbs.html")->display($context);
         // line 31
         echo \layout::func_from_text("    </div>
-    <div class=\"row row-offcanvas row-offcanvas-left\">
-        <div class=\"col-xs-6 col-md-2 sidebar-offcanvas\" id=\"sidebar\" role=\"navigation\" style=\"padding-right: 0;z-index: 2;\">
-            <div class=\"well well-sm\" style=\"border: 0;margin-bottom: 0\">
-                <div class=\"btn-group\">
-                    ");
+    <div class=\"sidebar-offcanvas\" id=\"sidebar\" role=\"navigation\">
+        <div id=\"show_project_panel_left\" data-toggle=\"offcanvas\"></div>
+        <div class=\"well well-sm\" style=\"border: 0;margin-bottom: 0;padding-right: 22px;\">
+            <div class=\"btn-group\">
+                ");
         // line 36
         if (($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_project") || $this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_own_project"))) {
             // line 37
-            echo \layout::func_from_text("                        <a href=\"/projects/add/\" class=\"btn btn-primary ");
+            echo \layout::func_from_text("                    <a href=\"/projects/add/\" class=\"btn btn-primary ");
             if ((isset($context["add"]) ? $context["add"] : null)) {
                 echo \layout::func_from_text("active");
             }
             echo \layout::func_from_text("\" style=\"margin-bottom: 20px;\"><i class=\"fa fa-plus\"></i></a>
-                    ");
+                ");
         }
         // line 39
-        echo \layout::func_from_text("                    <a href=\"/projects/all/\" class=\"btn btn-info ");
+        echo \layout::func_from_text("                <a href=\"/projects/all/\" class=\"btn btn-info ");
         if ((isset($context["all_projects"]) ? $context["all_projects"] : null)) {
             echo \layout::func_from_text("active");
         }
         echo \layout::func_from_text("\" style=\"margin-bottom: 20px;\" title=\"Все проекты\"><i class=\"fa fa-book\"></i> Все</a>
-                </div>
-                <div id=\"project_panel_result\">");
+            </div>
+            <div id=\"project_panel_result\">");
         // line 41
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "projects_in_panel.html"), "method"));
         $template->display($context);
         echo \layout::func_from_text("</div>
 
-                <form action=\"\" class=\"project_panel_form\" method=\"post\" style=\"margin: 0px;\">
-                    <input type=\"hidden\" name=\"project_panel_page\" value=\"\">
-                    <input type=\"hidden\" name=\"act\" value=\"get_panel_page_projects\">
-                    <input type=\"hidden\" name=\"id_project\" value=\"");
+            <form action=\"\" class=\"project_panel_form\" method=\"post\" style=\"margin: 0px;\">
+                <input type=\"hidden\" name=\"project_panel_page\" value=\"\">
+                <input type=\"hidden\" name=\"act\" value=\"get_panel_page_projects\">
+                <input type=\"hidden\" name=\"id_project\" value=\"");
         // line 46
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("\">
-                </form>
-            </div>
-        </div><!--/span-->
-        <div class=\"col-xs-12 col-sm-12 col-md-10\" id=\"projects_second_panel\" style=\"padding-left: 0;\">
+            </form>
+        </div>
+    </div>
+    <div class=\"row row-offcanvas row-offcanvas-left off_show\" style=\"float: left;position: relative;\">
+        <div class=\"col-xs-12\" id=\"projects_second_panel\" style=\"padding-left: 0;\">
+            <div id=\"show_project_panel\" data-toggle=\"offcanvas\"></div>
             <div class=\"jumbotron\" style=\"padding: 10px;margin-bottom: 0;\">
-                <p class=\"hidden-md hidden-lg\" style=\"margin-left: -10px;margin-top: -17px;\">
-                    <button type=\"button\" class=\"btn btn-primary btn-xs\" data-toggle=\"offcanvas\">Панель проектов</button>
-                </p>
             ");
-        // line 55
+        // line 54
         $this->displayBlock('project', $context, $blocks);
-        // line 56
+        // line 55
         echo \layout::func_from_text("            </div>
         </div>
     </div>
@@ -136,7 +135,7 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
 ");
     }
 
-    // line 55
+    // line 54
     public function block_project($context, array $blocks = array())
     {
     }
@@ -153,6 +152,6 @@ class __TwigTemplate_2e175dd2671c1d3a008fe6ce1053ec6732b4d62b106d42607168bbeec0b
 
     public function getDebugInfo()
     {
-        return array (  140 => 55,  131 => 56,  129 => 55,  117 => 46,  108 => 41,  100 => 39,  92 => 37,  90 => 36,  83 => 31,  81 => 30,  74 => 27,  71 => 26,  49 => 7,  44 => 6,  41 => 5,  34 => 3,  31 => 2,);
+        return array (  139 => 54,  130 => 55,  128 => 54,  117 => 46,  108 => 41,  100 => 39,  92 => 37,  90 => 36,  83 => 31,  81 => 30,  74 => 27,  71 => 26,  49 => 7,  44 => 6,  41 => 5,  34 => 3,  53 => 14,  50 => 13,  47 => 12,  39 => 8,  36 => 7,  31 => 2,  28 => 3,);
     }
 }

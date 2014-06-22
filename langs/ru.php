@@ -42,5 +42,17 @@ $GLOBALS['lang'] = array(
     'Thu' => "Чт",
     'Fri' => "Пт",
     'Sat' => "Сб",
-    'Sun' => "Вс"
+    'Sun' => "Вс",
+
+    //task's status
+    'task_status_new' => 'новая',
+    'task_status_in_progress' => 'в процессе',
+    'task_status_closed' => 'закрытая',
+    'task_status_rejected' => 'отклоненная',
+
+    //task's priority
+    'task_priority_1' => 'низкий',
+    'task_priority_2' => 'обычный',
+    'task_priority_3' => 'высокий',
+    'task_priority_4' => 'критический',
 );

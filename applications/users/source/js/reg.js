@@ -1,5 +1,4 @@
 $(document).ready(function($){
-
     $(".menu a").removeClass("active");
     $("[name='birthday']").mask("99.99.9999");
 
@@ -12,7 +11,7 @@ $(document).ready(function($){
 
     $("#sendReg").on("click", function(){
         user_api($("#regForm").serialize(),function(res){
-            show_message("success","Регистрация выполнена");
+            $("[error='success']").text("Регистрация выполнена").show();
             redirect("/",2);
         },function(res){
             $("#registration_captcha").html(res.captcha_html);
@@ -21,6 +20,7 @@ $(document).ready(function($){
             $.each(res,function(k,v){
                 $("[error='"+k+"']").text(v).show();
             })
+            $('#wrap input, #wrap select').styler();
         });
         return false;
     })
@@ -43,4 +43,5 @@ $(document).ready(function($){
         }
     });
     $(elem).attr("selected","selected");
+    $('#tz').trigger('refresh');
 });

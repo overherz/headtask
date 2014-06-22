@@ -105,7 +105,7 @@ class calendar extends \Controller {
         $query->execute(array($id_user,$id_user,$id_user,$date,$begin_of_day,$end_of_day));
         while ($row = $query->fetch())
         {
-            $row['assigned_name'] = build_user_name($row['first_name'],$row['last_name']);
+            $row['assigned_name'] = build_user_name($row['first_name'],$row['last_name'],true);
             $bit = 0;
 
             if ($row['task_creater'] == $_SESSION['user']['id_user']) $bit = $bit | $own;

@@ -32,11 +32,10 @@ class edit extends \Controller {
     
     function profile()
     {
-        $u_cr = $this->get_controller("users","tree");
         $id = $_SESSION['user']['id_user'];
         $user = $this->get_controller("users")->get_user($id);
 
-        crumbs($user['fio'],"/users/~{$user['id_user']}");
+        crumbs(build_user_name($user['first_name'],$user['last_name']),"/users/~{$user['id_user']}");
         crumbs("Редактирование профиля");
 
         if (!$user) $this->redirect('/users/');
@@ -53,8 +52,8 @@ class edit extends \Controller {
         $user['changemail'] = $changemail;
         if ($_GET['mode']=="new") $user['new'] = true;
 
-        $user['birthday'] = $u_cr->convert_date($user['birthday']);
-        $this->layout_show('edit.html', array('user'=>$user));
+        $user['birthday'] = convert_date($user['birthday']);
+        $this->layout_show('edit.html', array('user'=>$user,'tz' => $this->get_controller("users")->tz));
     }
 
     function save_profile()

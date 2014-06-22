@@ -491,7 +491,8 @@ function do_flush()
     flush();
 }
 
-function build_user_name($first_name,$last_name)
+function build_user_name($first_name,$last_name,$first_letter_name=false)
 {
+    if ($first_letter_name) $first_name = mb_substr($first_name,0,1).".";
     if ($first_name != "" && $last_name != "") return $last_name." ".$first_name;
 }

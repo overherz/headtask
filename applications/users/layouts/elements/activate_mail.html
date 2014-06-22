@@ -1,0 +1,10 @@
+{% if password %}
+    Спасибо за регистрацию!
+    <div>Ваши регистрационные данные:</div>
+    <div><b>Логин:</b> {{ email }}</div>
+    <div><b>Пароль:</b> {{ password }}</div>
+{% endif %}
+
+<div>
+    Вам необходимо подтвердить email, для этого перейдите по ссылке <a href='http://{{server_name}}/users/registration/?act=confirm&confirmcode={{ code }}'>http://{{server_name}}/users/registration/?act=confirm&confirmcode={{ code }}</a>"
+</div>

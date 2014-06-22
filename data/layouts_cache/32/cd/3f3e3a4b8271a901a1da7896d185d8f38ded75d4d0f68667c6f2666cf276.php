@@ -33,7 +33,7 @@ class __TwigTemplate_32cd3f3e3a4b8271a901a1da7896d185d8f38ded75d4d0f68667c6f2666
                 echo \layout::func_from_text("active");
             }
             echo \layout::func_from_text("\">
-        ");
+            ");
             // line 4
             if ($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "owner")) {
                 echo \layout::func_from_text("<i class=\"fa fa-user\"></i> ");
@@ -73,6 +73,6 @@ class __TwigTemplate_32cd3f3e3a4b8271a901a1da7896d185d8f38ded75d4d0f68667c6f2666
 
     public function getDebugInfo()
     {
-        return array (  60 => 10,  56 => 8,  49 => 6,  38 => 4,  27 => 3,  22 => 2,  19 => 1,);
+        return array (  60 => 10,  56 => 8,  38 => 4,  27 => 3,  75 => 8,  48 => 6,  30 => 5,  24 => 3,  22 => 2,  19 => 1,  102 => 37,  98 => 31,  95 => 30,  91 => 17,  88 => 16,  78 => 9,  76 => 39,  73 => 38,  68 => 36,  66 => 35,  61 => 7,  59 => 30,  45 => 18,  43 => 16,  23 => 1,  139 => 54,  130 => 55,  128 => 54,  117 => 46,  108 => 41,  100 => 39,  92 => 37,  90 => 36,  83 => 4,  81 => 30,  74 => 27,  71 => 37,  49 => 6,  44 => 6,  41 => 5,  34 => 3,  53 => 14,  50 => 13,  47 => 12,  39 => 8,  36 => 7,  31 => 2,  28 => 4,);
     }
 }

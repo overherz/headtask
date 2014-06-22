@@ -63,9 +63,7 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
 <div id=\"wrap\">
     ");
         // line 35
-        if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user")) {
-            $this->env->loadTemplate("/source/menu.html")->display($context);
-        }
+        $this->env->loadTemplate("/source/menu.html")->display($context);
         // line 36
         echo \layout::func_from_text("    <div class=\"from_top\"></div>
     ");
@@ -117,6 +115,6 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
 
     public function getDebugInfo()
     {
-        return array (  104 => 37,  100 => 31,  97 => 30,  93 => 17,  90 => 16,  85 => 4,  80 => 40,  78 => 39,  75 => 38,  73 => 37,  66 => 35,  61 => 32,  59 => 30,  45 => 18,  43 => 16,  28 => 4,  23 => 1,  38 => 7,  32 => 3,  29 => 2,  196 => 133,  192 => 131,  187 => 128,  175 => 119,  70 => 36,  68 => 15,  65 => 14,  63 => 13,  60 => 12,  54 => 9,  51 => 8,  48 => 7,  40 => 8,  37 => 3,  31 => 2,);
+        return array (  102 => 37,  98 => 31,  95 => 30,  91 => 17,  88 => 16,  83 => 4,  78 => 40,  76 => 39,  73 => 38,  71 => 37,  68 => 36,  66 => 35,  61 => 32,  59 => 30,  45 => 18,  43 => 16,  28 => 4,  23 => 1,);
     }
 }

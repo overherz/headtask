@@ -29,29 +29,28 @@
     <div style="margin: 10px 10px -10px">
         {% include "/source/crumbs.html" %}
     </div>
-    <div class="row row-offcanvas row-offcanvas-left">
-        <div class="col-xs-6 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation" style="padding-right: 0;z-index: 2;">
-            <div class="well well-sm" style="border: 0;margin-bottom: 0">
-                <div class="btn-group">
-                    {% if access.add_project or access.add_own_project %}
-                        <a href="/projects/add/" class="btn btn-primary {% if add %}active{% endif %}" style="margin-bottom: 20px;"><i class="fa fa-plus"></i></a>
-                    {% endif %}
-                    <a href="/projects/all/" class="btn btn-info {% if all_projects %}active{% endif %}" style="margin-bottom: 20px;" title="Все проекты"><i class="fa fa-book"></i> Все</a>
-                </div>
-                <div id="project_panel_result">{% include app.path('projects','projects_in_panel.html') %}</div>
-
-                <form action="" class="project_panel_form" method="post" style="margin: 0px;">
-                    <input type="hidden" name="project_panel_page" value="">
-                    <input type="hidden" name="act" value="get_panel_page_projects">
-                    <input type="hidden" name="id_project" value="{{project.id}}">
-                </form>
+    <div class="sidebar-offcanvas" id="sidebar" role="navigation">
+        <div id="show_project_panel_left" data-toggle="offcanvas"></div>
+        <div class="well well-sm" style="border: 0;margin-bottom: 0;padding-right: 22px;">
+            <div class="btn-group">
+                {% if access.add_project or access.add_own_project %}
+                    <a href="/projects/add/" class="btn btn-primary {% if add %}active{% endif %}" style="margin-bottom: 20px;"><i class="fa fa-plus"></i></a>
+                {% endif %}
+                <a href="/projects/all/" class="btn btn-info {% if all_projects %}active{% endif %}" style="margin-bottom: 20px;" title="Все проекты"><i class="fa fa-book"></i> Все</a>
             </div>
-        </div><!--/span-->
-        <div class="col-xs-12 col-sm-12 col-md-10" id="projects_second_panel" style="padding-left: 0;">
+            <div id="project_panel_result">{% include app.path('projects','projects_in_panel.html') %}</div>
+
+            <form action="" class="project_panel_form" method="post" style="margin: 0px;">
+                <input type="hidden" name="project_panel_page" value="">
+                <input type="hidden" name="act" value="get_panel_page_projects">
+                <input type="hidden" name="id_project" value="{{project.id}}">
+            </form>
+        </div>
+    </div>
+    <div class="row row-offcanvas row-offcanvas-left off_show" style="float: left;position: relative;">
+        <div class="col-xs-12" id="projects_second_panel" style="padding-left: 0;">
+            <div id="show_project_panel" data-toggle="offcanvas"></div>
             <div class="jumbotron" style="padding: 10px;margin-bottom: 0;">
-                <p class="hidden-md hidden-lg" style="margin-left: -10px;margin-top: -17px;">
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Панель проектов</button>
-                </p>
             {% block project %}{% endblock %}
             </div>
         </div>

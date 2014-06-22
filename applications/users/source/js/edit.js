@@ -171,6 +171,7 @@ $(document).ready(function($)
     var myDate = new Date();
     var offset = -myDate.getTimezoneOffset() / 60;
     if (offset > 0) offset = "+"+offset;
+
     $("#localTZ").html(offset);
 
     $("[name='newmail']").popover({

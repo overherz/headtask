@@ -112,7 +112,7 @@ class tasks extends \Controller {
             $f_ctr = $this->get_controller("projects","files");
             while ($row = $query->fetch())
             {
-                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
                 $row['size'] = $f_ctr->format_file_size($row['size']);
                 $files[] = $row;
             }
@@ -270,8 +270,8 @@ class tasks extends \Controller {
         $query->execute();
         while ($row = $query->fetch())
         {
-            $row['assigned_name'] = build_user_name($row['assigned_first_name'],$row['assigned_last_name']);
-            $row['user_name'] = build_user_name($row['user_first_name'],$row['user_last_name']);
+            $row['assigned_name'] = build_user_name($row['assigned_first_name'],$row['assigned_last_name'],true);
+            $row['user_name'] = build_user_name($row['user_first_name'],$row['user_last_name'],true);
             $row['diff'] = $this->get_date_diff($row['end']);
             $tasks[] = $row;
         }
@@ -311,8 +311,8 @@ class tasks extends \Controller {
             ");
         $query->execute(array($id));
         $task = $query->fetch();
-        $task['assigned_name'] = build_user_name($task['assigned_first_name'],$task['assigned_last_name']);
-        $task['user_name'] = build_user_name($task['user_first_name'],$task['user_last_name']);
+        $task['assigned_name'] = build_user_name($task['assigned_first_name'],$task['assigned_last_name'],true);
+        $task['user_name'] = build_user_name($task['user_first_name'],$task['user_last_name'],true);
         return $task;
     }
 
@@ -603,7 +603,7 @@ class tasks extends \Controller {
         $f_ctr = $this->get_controller("projects","files");
         while ($row = $query->fetch())
         {
-            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
             $row['size'] = $f_ctr->format_file_size($row['size']);
             $files[] = $row;
         }
@@ -634,7 +634,7 @@ class tasks extends \Controller {
             $f_ctr = $this->get_controller("projects","files");
             while ($row = $query->fetch())
             {
-                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
                 $row['size'] = $f_ctr->format_file_size($row['size']);
                 $res['success'] .= $this->layout_get("files/file.html",array('file' => $row,'to_task' => true));
             }
@@ -718,7 +718,7 @@ class tasks extends \Controller {
         $query->execute(array($_SESSION['user']['id_user'],$now));
         while ($row = $query->fetch())
         {
-            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
             $tasks[] = $row;
         }
         return $tasks;

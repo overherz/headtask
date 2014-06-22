@@ -1,0 +1,93 @@
+{% extends "/source/wrapper_index.html" %}
+
+{% block title %}Регистрация{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('users','reg.css')}}">
+{% endblock %}
+{% block js %}
+    <script type ="text/javascript" src="/source/js/masked_input.js"></script>
+    <script type ="text/javascript" src="{{app.path('users','reg.js')}}"></script>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <form id="regForm">
+            <div class="panel panel-default">
+                <div class="panel-heading"><b>Регистрация</b></div>
+                <div class="panel-body">
+                    <div class="alert alert-danger reg_erroru" error="global"></div>
+                    <div class="alert alert-success" error="success" style="display: none;"></div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="email">Email <span error="email" class="reg_erroru"></span></label>
+                            <input type="text" name="email" id="email" maxlength="60" class="form-control" tabindex="1" value="{{ email }}">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="password1">Пароль <span error="password1" class="reg_erroru"></span></label>
+                            <input type="password" name="password1" id="password1" maxlength="60" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="nickname">Ник <span error="nickname" class="reg_erroru"></span></label>
+                            <input type="text" name="nickname" id="nickname" maxlength="60" class="form-control" tabindex="2">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="password2">Повтор пароля <span error="password2" class="reg_erroru"></span></label>
+                            <input type="password" name="password2" id="password2" maxlength="60" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="last_name">Фамилия <span error="last_name" class="reg_erroru"></span></label>
+                            <input type="text" name="last_name" id="last_name" maxlength="60" class="form-control" tabindex="3">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="birthday">Дата Рождения <span error="birthday" class="reg_erroru"></span></label>
+                            <input type="text" name="birthday" id="birthday" maxlength="60" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="first_name">Имя <span error="first_name" class="reg_erroru"></span></label>
+                            <input type="text" name="first_name" id="first_name" maxlength="60" class="form-control" tabindex="4">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Пол <span error="gender" class="reg_erroru"></span></label>
+                            <div class="form-group">
+                                <label for="gender_m" style="font-weight: normal;">Мужской</label>
+                                <input type="radio" name="gender" id="gender_m" value="m" class="radio" checked>
+                                  &nbsp;&nbsp;
+                                <label for="gender_w" style="font-weight: normal;">Женский</label>
+                                <input type="radio" name="gender" id="gender_w" value="f" class="radio">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="tz">Часовой пояс <span error="tz" class="reg_erroru"></span></label>
+                            <select id="tz" name="tz" class="form-control">
+                                {% for k,t in tz %}
+                                    <option {% if user.tzOffset == k %}selected{% endif %} title="{{ t }}" value="{{ k }}">{{ t }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12" style="vertical-align: top !important;padding-top:5px;" id="registration_captcha">
+                        {{captcha|raw}}
+                    </div>
+                    <div class="col-xs-12" style="margin-top: 30px;">
+                        <a href="#" id="sendReg" class="btn btn-primary"><span>Зарегистрироваться</span></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

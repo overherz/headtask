@@ -1,11 +1,16 @@
-{% extends "/source/wrapper_index.html" %}
+{% extends "/source/wrapper_index2.html" %}
 
-{% block body %}
+{% block info_title %}
+    Подтверждение email
+{% endblock %}
+
+{% block info %}
 {% if success %}
-Ваш адрес электронной почты подтвержден<br>
+    <div class="alert alert-success">Ваш адрес электронной почты подтвержден</div>
+<span
 {% else %}
-Ваш адрес скорее всего уже подтвержден, или у нас нет информации об этом коде.<br>
+    <div class="alert alert-danger">Ваш адрес скорее всего уже подтвержден, или у нас нет информации об этом коде</div>
 {% endif %}
-{{msg}}<br>
-{{error}}
+<div>{{msg}}</div>
+<div>{{error}}</div>
 {% endblock %}

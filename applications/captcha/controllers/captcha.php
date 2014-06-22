@@ -20,7 +20,7 @@ class captcha extends \Controller {
         }
     }
 
-    function get_captcha($count=3)
+    function get_captcha($count=6)
     {
         session_start();
         require_once(ROOT.'/libraries/AES_class.php');

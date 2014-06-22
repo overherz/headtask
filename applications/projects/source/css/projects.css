@@ -7,60 +7,75 @@
     border-right: 0;
 }
 
+.off_show {
+    width:calc(100% - 250px + 15px * 2);
+}
+
+#show_project_panel {
+    display: none;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 25px 0 25px 15px;
+    border-color: transparent #ff0000 transparent #007bff;
+    position: absolute;
+    left: 0;
+}
+
+#show_project_panel_left {
+    display: none;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 25px 15px 25px 0;
+    border-color: transparent #007bff transparent transparent;
+    float: right;
+}
+
+#sidebar {
+    padding-right: 0;
+    z-index: 2;
+    width: 250px;
+    float: left;
+    box-sizing: border-box;
+}
+
 /*
  * Off Canvas
  * --------------------------------------------------
  */
 @media screen and (max-width: 991px) {
-    .row-offcanvas {
-        position: relative;
-        -webkit-transition: all .25s ease-out;
-        -moz-transition: all .25s ease-out;
-        transition: all .25s ease-out;
-    }
+  #sidebar {
+      display: none;
+  }
 
-    .row-offcanvas-right {
-        right: 0;
-    }
+  .row-offcanvas-left {
+      width:calc(100% + 15px * 2);
+      padding-left: 15px;
+  }
 
-    .row-offcanvas-left {
-        left: 0;
-    }
+  #show_project_panel {
+      display: inline-block;
+  }
 
-    .row-offcanvas-right
-    .sidebar-offcanvas {
-        right: -50%; /* 6 columns */
-    }
+  .row-offcanvas-left.active {
+      display: none;
+  }
 
-    .row-offcanvas-left
-    .sidebar-offcanvas {
-        left: -50%; /* 6 columns */
-    }
+  #sidebar.active {
+      display: block;
+      width: 100%;
+  }
 
-    .row-offcanvas-right.active {
-        right: 50%; /* 6 columns */
-    }
+  #sidebar.active #show_project_panel_left {
+      display: block;
+      margin-right: -1px;
+  }
 
-    .row-offcanvas-left.active {
-        left: 50%; /* 6 columns */
-    }
 
-    .sidebar-offcanvas.active {
-        display: block;
-    }
-
-    .sidebar-offcanvas {
-        position: absolute;
-        top: 0;
-        width: 50%; /* 6 columns */
-        margin-left: 15px;
-        display: none;
-
-    }
-
-    #projects_second_panel {
-        padding-left: 15px !important;
-    }
+  #projects_second_panel .jumbotron {
+      padding-left: 25px !important;
+  }
 }
 
 .all_comments {
