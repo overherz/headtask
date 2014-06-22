@@ -48,9 +48,12 @@ class __TwigTemplate_6f7de32e0393a67c29bb2e9107fd45238cee13d39926475f71d8fa94c12
     public function block_context($context, array $blocks = array())
     {
         // line 12
-        echo \layout::func_from_text("    <input type=\"button\" class=\"btn btn-primary\" value=\"Пригласить\" style=\"position: absolute;right: 10px;\" id=\"invite_user\">
-    ");
+        echo \layout::func_from_text("    ");
+        if ((isset($context["invite"]) ? $context["invite"] : null)) {
+            echo \layout::func_from_text("<input type=\"button\" class=\"btn btn-primary\" value=\"Пригласить\" style=\"position: absolute;right: 10px;\" id=\"invite_user\">");
+        }
         // line 13
+        echo \layout::func_from_text("    ");
         $this->env->loadTemplate("/source/search_form.html")->display($context);
         // line 14
         echo \layout::func_from_text("    <div id=\"search_result\">
@@ -75,6 +78,6 @@ class __TwigTemplate_6f7de32e0393a67c29bb2e9107fd45238cee13d39926475f71d8fa94c12
 
     public function getDebugInfo()
     {
-        return array (  62 => 16,  59 => 15,  56 => 14,  54 => 13,  51 => 12,  48 => 11,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  65 => 16,  62 => 15,  59 => 14,  56 => 13,  51 => 12,  48 => 11,  39 => 6,  36 => 5,  30 => 3,);
     }
 }

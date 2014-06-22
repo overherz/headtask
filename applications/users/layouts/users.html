@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block context %}
-    <input type="button" class="btn btn-primary" value="Пригласить" style="position: absolute;right: 10px;" id="invite_user">
+    {% if invite %}<input type="button" class="btn btn-primary" value="Пригласить" style="position: absolute;right: 10px;" id="invite_user">{% endif %}
     {% include "/source/search_form.html" %}
     <div id="search_result">
         {% include app.path('users','users_table.html') %}

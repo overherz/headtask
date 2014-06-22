@@ -117,7 +117,8 @@ class users extends \Controller {
                 'users' => $users,
                 'total' => $total,
                 'paginator' => $paginator,
-                'search' => $_POST['search']
+                'search' => $_POST['search'],
+                'invite' => $_SESSION['user']['id_group'] == 1 ? true : false
             );
 
             if ($_POST)
