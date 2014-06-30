@@ -7,7 +7,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#search_form select').change(function(){
+    $('#search_form select').on("change",function(){
         $('#search_form').submit();
     });
 
@@ -38,7 +38,7 @@ function search(){
     if (window.clear) $('[name="page"]').val(1);
     var request = $('#search_form').serialize();
     p = $('#search_form').attr("path")
-   
+
     user_api(request,function(res){
         clearTimeout(window.loading,300);
         input.css('background','');

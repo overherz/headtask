@@ -67,21 +67,6 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $("#show_project_panel").on("click",function(){
-        /*
-        if ($("#sidebar").is(":hidden"))
-        {
-            $("#sidebar").show();
-            $(".off_show").removeClass("row-offcanvas-left").addClass("off_show");
-        }
-        else
-        {
-            $("#sidebar").hide();
-            $(".off_show").addClass("row-offcanvas-left").removeClass("off_show");
-        }
-        */
-    });
-
     $(document).on("click", "[save_category]", function () {
         var request = $("#category_form").serialize();
         user_api(request, function (data) {

@@ -1,12 +1,10 @@
-<tr id="task{{task.id}}" {% if task.type == "error" %}class='danger'{% endif %}>
+<tr id="task{{task.id}}">
     <td style="width: 1px;" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}"></td>
-    {% if all %}
-    <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.id_user == globals.user.id_user %}class="own_task"{% endif %}">{{task.name}}</a>
+    <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
     {% if task.status == "rejected" %}
         <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
     {% endif %}
     </td>
-    {% endif %}
     <td style="width: 110px;">
         {% set undate = false %}
         {% if task.end and ((now|date('Y-m-d') > task.end) and (task.status == 'new' or task.status == 'in_progress'))%}
@@ -19,13 +17,7 @@
         </div>
     </td>
     <td style="width: 200px;"><a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a></td>
-    {% if not all %}
-    <td>{{task.start|date('d.m.Y')}}{% if task.end %} - {{task.end|date('d.m.Y')}}{% endif %}</td>
-    <td>{% if task.estimated_time %}{{task.estimated_time}} ч.{% else %}не указано{% endif %}</td>
-    <td>{{task.spent_time|default(0)}} ч.</td>
-    <td><a href="/users/~{{task.id_user}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.user_name}}</a></td>
-    {% endif %}
-    <td style="width: 1px;" {% if task.diff < 0 %}class="task_diff_alert"{% endif %}>
+    <td style="width: 1px;" {% if task.diff < 0 and task.status != "closed" %}class="task_diff_alert"{% endif %}>
         {% if task.status != "closed" %}
             {% if task.diff != "0" and task.diff != "inf" %}{{ task.diff }} {{ "days"|lang(task.diff) }}{% elseif task.diff == "inf" %}&infin;{% else %}сегодня{% endif %}
         {% endif %}
@@ -33,7 +25,7 @@
     <td style="width: 140px;text-align: right;">
         <div class="btn-group">
             {% if access.edit_tasks or task.assigned == globals.user.id_user or task.id_user == globals.user.id_user or not task.assigned %}
-                {% if task.status != "closed" %}<a class="btn btn-success btn-sm" forward_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}' style="padding: 5px 10px !important;"><i class="fa fa-forward fa-fw"></i></a>{% endif %}
+                {% if task.status != "closed" %}<a class="btn btn-success btn-sm" forward_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}'><i class="fa fa-forward fa-fw"></i></a>{% endif %}
                 {% if access.edit_tasks or task.id_user == globals.user.id_user %}<a class="btn btn-info btn-sm" href="/projects/tasks/edit/{{task.id}}"><i class="fa fa-pencil fa-fw"></i></a>{% endif %}
                 {% if access.delete_tasks %}<a class="btn btn-danger btn-sm" delete_task={{task.id}} from='{% if show_task %}show_task{% endif %}' href=""><i class="fa fa-trash-o fa-fw"></i></a>{% endif %}
             {% endif %}

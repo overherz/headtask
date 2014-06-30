@@ -42,13 +42,13 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
         // line 16
         $this->displayBlock('css', $context, $blocks);
         // line 18
-        echo \layout::func_from_text("    <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>
+        echo \layout::func_from_text("    <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\"></script>
     <script src=\"/source/js/jquery-ui-1.10.4.custom.min.js\"></script>
     <script src=\"/source/js/jquery.jgrowl_minimized.js\"></script>
     <script src=\"/source/js/functions.js\"></script>
     <script src=\"/source/js/message.js\"></script>
     <script src=\"http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js\"></script>
-    <script src=\"/source/js/styler/jquery.formstyler.js\"></script>
+    <script src=\"/source/js/styler/jquery.formstyler.min.js\"></script>
     <script>
         \$(document).ready(function(\$) {
             \$('#wrap input, #wrap select').styler();
@@ -115,6 +115,6 @@ class __TwigTemplate_465cc4618ba2a73bd33223442ae3cd46208e7592fdd861446f5c975a853
 
     public function getDebugInfo()
     {
-        return array (  102 => 37,  98 => 31,  95 => 30,  91 => 17,  88 => 16,  83 => 4,  78 => 40,  76 => 39,  73 => 38,  71 => 37,  68 => 36,  66 => 35,  61 => 32,  59 => 30,  45 => 18,  43 => 16,  28 => 4,  23 => 1,);
+        return array (  102 => 37,  95 => 30,  91 => 17,  88 => 16,  83 => 4,  78 => 40,  73 => 38,  71 => 37,  68 => 36,  66 => 35,  61 => 32,  59 => 30,  45 => 18,  43 => 16,  28 => 4,  23 => 1,  40 => 8,  38 => 7,  32 => 3,  29 => 2,  147 => 50,  138 => 46,  130 => 43,  124 => 42,  121 => 41,  116 => 40,  101 => 27,  98 => 31,  92 => 25,  82 => 20,  76 => 39,  70 => 18,  64 => 17,  58 => 16,  51 => 11,  48 => 7,  42 => 7,  39 => 6,  36 => 5,  30 => 3,);
     }
 }

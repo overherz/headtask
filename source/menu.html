@@ -3,13 +3,16 @@
         <div class="navbar-header">
             <span class="navbar-brand">Task me!</span>
             <div style="color: orange;position: absolute;left:80px;top:33px;font-size: 11px;">beta</div>
+            {% if globals.menu %}
             <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            {% endif %}
         </div>
+        {% if globals.menu %}
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 {% for k,m in globals.menu %}
@@ -37,6 +40,7 @@
                     <li><a href="/users/logout/" id="logout"><i class="fa fa-power-off"></i></a></li>
                 {% endif %}
             </ul>
-        </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
+        </div>
+        {% endif %}
+    </div>
 </div>

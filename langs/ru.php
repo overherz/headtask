@@ -55,4 +55,9 @@ $GLOBALS['lang'] = array(
     'task_priority_2' => 'обычный',
     'task_priority_3' => 'высокий',
     'task_priority_4' => 'критический',
+
+    'task_priority_label_1' => '<span class="label label-default">низкий</span>',
+    'task_priority_label_2' => '<span class="label label-success">обычный</span>',
+    'task_priority_label_3' => '<span class="label label-warning">высокий</span>',
+    'task_priority_label_4' => '<span class="label label-danger">критический</span>',
 );
