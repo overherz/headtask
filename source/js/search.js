@@ -4,6 +4,9 @@ $(document).ready(function() {
         if(typeof activate_fancy == 'function') {
             activate_fancy();
         }
+        if(typeof get_statuses == 'function') {
+            get_statuses();
+        }
         return false;
     });
 

@@ -481,7 +481,7 @@ fieldset[disabled] .btn-oscar.active {
     top: 50%;
     margin-top: -1.5em;
     border-top: 1.5em solid transparent;
-    border-bottom: 1.5em solid transparent;
+    border-bottom: 1.2em solid transparent;
     border-left: 1em solid;
     right: -1em;
 }

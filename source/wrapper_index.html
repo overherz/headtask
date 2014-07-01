@@ -27,6 +27,37 @@
             $('#wrap input, #wrap select').styler();
         });
     </script>
+    <script src="/source/js/sound_manager/soundmanager2-nodebug-jsmin.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $.getScript("/source/js/socket.io/socket.io.js",function(){
+                $.getScript("{{app.path('users','client.js')}}",function(){
+                    soundManager.setup({
+                        useFlashBlock : false,
+                        url : '/source/js/sound_manager/',
+                        debugMode : false,
+                        consoleOnly : false,
+                        onready : function() {
+                            soundManager.createSound({
+                                id:'new_message',
+                                url:'/source/js/sound_manager/sound.mp3'
+                            });
+                            soundManager.createSound({
+                                id:'call',
+                                url:'/source/js/sound_manager/incoming_call.mp3'
+                            });
+                        }
+                    });
+                });
+            });
+        });
+
+        window.ms = {
+            address: "{{globals.message_server}}",
+            uniq_key: "{{globals.user.uniq_key}}"
+        }
+    </script>
     {% block js %}
     {% endblock %}
 </head>

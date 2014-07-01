@@ -57,7 +57,7 @@ class tasks_today extends \Controller {
             $data['comment_count'] = $task->get_count_new_comments($ids);
         }
 
-        $data['new_posts'] = $this->get_controller("projects","forum")->get_new_posts_statistic($_SESSION['user']['id_user']);
+     //   $data['new_posts'] = $this->get_controller("projects","forum")->get_new_posts_statistic($_SESSION['user']['id_user']);
       //  $data['manager_stats'] = $task->get_manager_stats();
     //    $data['count_project'] = $task->get_count_project();
      //   $data['count_personal_tasks'] = $task->get_count_personal_tasks();

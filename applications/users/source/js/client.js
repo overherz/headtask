@@ -1,77 +1,63 @@
 $(document).ready(function(){
-    var count_connect = 0;
-    var chat_with = get_opponent();
-    var connect = false;
+    var chat_with = get_opponent(),
+        connect = false,
+        playerVersion = swfobject.getFlashPlayerVersion(),
+        majorVersion = playerVersion.major;
+
+    if (majorVersion < 10) show_message("warning","Установите последнюю версию Adobe flash player");
+    $.getScript("/source/js/jquery.scrollTo-1.4.2-min.js");
+
     socket = io.connect(window.ms.address,{
-      'reconnect': false,
-      'reconnection delay': 5000,
-      'max reconnection attempts': 5000,
-      'secure':                    false,
-      'try multiple transports':   true,
-      'reopen delay':              3000,
-      'sync disconnect on unload': true,
-      'auto connect':              true,
-      'remember transport':        false,
-      'force new connection':      false
+        'reconnection': true,
+        'reconnectionDelay': 1000,
+        'reconnectionDelayMax': 5000,
+        'timeout': 5000,
+        'autoConnect': true,
+        'transports': ['websocket', 'polling']
     });
-/*
-    setTimeout(function(){
-        if (!connect)
-        {
-            $.jGrowl('close');
-            show_message("error","Ошибка соединения с сервером сообщений");
-        }
-    },5000);
-*/
-    setInterval(function(){
-        if (!connect)
-        {
-          //  hide_message('ms_error',0);
-            socket.socket.connect();
-            $("[get_ms_status]").each(function(k,v) {
-                $(v).html("<span class='msgsrv_status_offline'>offline</span>");
-            });
-        //    show_message("error","Ошибка соединения с сервером сообщений",false,'ms_error');
-        }
-    },10000);
 
     socket.on('connect', function () {
         connect = true;
         socket.emit('auth', {hash: window.ms.uniq_key});
+        get_statuses();
+    });
 
-        // Забираем статусы спустя 200мс, потом каждые 10сек
-        setTimeout(function(){
-            get_statuses_ids(function(ids){
-                socket.emit('get_status', {ids: ids});
-            });
-        },200);
-        
-        setInterval(function(){
-            get_statuses_ids(function(ids){
-                socket.emit('get_status', {ids: ids});
-            })
-        },10000);
-
-        // Проверка на реконекты при падении сервера
-        count_connect = count_connect+1;
-        //if (count_connect > 1) window.location.href=window.location.href;
+    socket.on('connect_error',function(){
+        show_message("error","Ошибка соединения с сервером сообщений",false,'ms_error');
     });
 
     socket.on('set_count_of_new_messages',function(data){
         set_count_of_new_messages(data.count);
     });
 
+    socket.on('success_connect',function(data){
+        soundManager.play('new_message',{volume:50});
+        show_message("success","Connect success");
+    });
+
     socket.on('disconnect',function(data){
         connect = false;
-        //hide_message('ms_error');
+        hide_message('ms_error',0);
+        $(".get_ms_status").each(function(k,v) {
+            $(v).removeClass("user_online").addClass("user_offline");
+        });
+        $("[get_ms_status_call]").each(function(k,v) {
+            $(v).hide();
+        });
         setTimeout(function(){show_message("error","Потеря соединения с сервером сообщений",false,'ms_error');},5000);
     });
 
     socket.on('show_statuses',function(data){
-        $("[get_ms_status]").each(function(k,v) {
-            id = $(v).attr("get_ms_status");
-            if ($.inArray(id,data.ids) > -1) $(this).html("<span class='msgsrv_status_online'>online</span>");
-            else $(this).html("<span class='msgsrv_status_offline'>offline</span>");
+        $(".get_ms_status").each(function(k,v) {
+            var id = $(v).data("id");
+            if ($.inArray(id,data.ids) > -1) $(this).removeClass("user_offline").addClass("user_online");
+            else $(this).removeClass("user_online").addClass("user_offline");
+        })
+
+        $("[get_ms_status_call]").each(function(k,v) {
+            id = $(v).attr("get_ms_status_call");
+            if ($.inArray(id,data.ids) > -1) $(this).show();
+            else $(this).hide();
         })
     });
 
@@ -83,9 +69,10 @@ $(document).ready(function(){
             var my = false;
             if (msg.message.owner == msg.message.id_user) my = true;
 
+            chat_with = get_opponent();
             if (chat_with == msg.message.to_user || chat_with == msg.message.id_user)
             {
-                $("#all_messages").append(msg.renderedHtml);
+                $(".all_messages").append(msg.renderedHtml);
                 if (my) window.ajax = false;
                 else play_sound(msg.message.id);
             }
@@ -108,7 +95,7 @@ $(document).ready(function(){
                 set_count_of_new_messages(new_count);
             }
 
-            if ($("#all_messages_box").length > 0) setTimeout(function(){$("#all_messages_box").scrollTo($("[message]:last"),500)},500);
+            scroll_to_last();
             if ($("[name='message_from_profile']").length > 0) hide_popup();
         }
         if (msg.event == "error")
@@ -116,23 +103,54 @@ $(document).ready(function(){
             window.ajax = false;
             show_message("error",msg.message,false,'ms_error');
         }
+
+        if (msg.event == "call")
+        {
+            play_sound_call();
+            show_popup("<img src='"+msg.avatar+"'>","Видеозвонок от "+msg.name,false,function(){
+                socket.emit('call_end',{id:msg.from,id2:msg.to});
+                soundManager.stop('call');
+            });
+
+            add_popup_button("Принять звонок","get_call",false,function(){
+                soundManager.stop('call');
+                activate_call(msg.from,false,function(p2pid){
+                    socket.emit('answered',{from:msg.from,to:msg.to,p2pid:p2pid});
+                    activate_video_chat(msg.p2pid);
+                });
+            });
+        }
+
+        if (msg.event == "answered") activate_video_chat(msg.p2pid);
+
+        if (msg.event == "call_end")
+        {
+            soundManager.stop('call');
+            hide_popup();
+        }
+        if (msg.event == "busy")
+        {
+            hide_popup();
+            show_message("error","Занято");
+        }
     });
 
-    $("[send_message_from_dialog]").on("click",function(){
+    $(document).on("click","[send_message_from_dialog]",function(){
         if (!connect) show_message("warning","Дождитесь соединения с сервером сообщений");
         if (window.ajax) return false;
         message = $.trim($("[name='message']").val());
         if (message != "" && connect)
         {
             window.ajax = true;
-            socket.emit('new_message',{to:chat_with,message:message,from: window.ms.uniq_key});
+            chat_with = get_opponent();
+            socket.emit('new_message',{to:chat_with,message:message,from: window.ms.uniq_key,type:"message"});
             $("[name='message']").val('');
             window.ajax = false;
         }
         return false;
     })
 
-    $("#message_form").keydown(function(e){
+    $(document).on("keydown","#message_form,#message_form_call",function(e){
         var keyCode = e.keyCode || e.which;
         if( (!e.ctrlKey && (keyCode == 13)) ) {
             $("[send_message_from_dialog]").click();
@@ -143,7 +161,7 @@ $(document).ready(function(){
         }
     })
 
-    $("[prepare_message]").on("click",function(){
+    $(document).on("click","[prepare_message]",function(){
         var id = $(this).attr("prepare_message");
         user_api({act:'get_form',id:id},function(data){
             show_popup(data,"Личное сообщение");
@@ -152,18 +170,24 @@ $(document).ready(function(){
         return false;
     });
 
-    $("[send_message]").on("click",function(){
+    $(document).on("click","[get_ms_status_call]",function(){
+        var call_to = $(this).attr("get_ms_status_call");
+        activate_call(call_to,true);
+        return false;
+    });
+
+    $(document).on("click","[send_message]",function(){
         if (!connect) show_message("warning","Дождитесь соединения с сервером сообщений");
         message = $("[name='message']").val();
         if (message != "" && connect)
         {
-            socket.emit('new_message',{to:get_opponent(),message:message,from: window.ms.uniq_key});
+            socket.emit('new_message',{to:get_opponent(),message:message,from: window.ms.uniq_key,type:"message"});
             window.send_message_show_success = true;
         }
         return false;
     });
 
-    $("#get_old").on("click",function(){
+    $(document).on("click","#get_old",function(){
         if (window.ajax) return false;
         window.ajax = true;
         th = this;
@@ -176,13 +200,13 @@ $(document).ready(function(){
         },false,'/users/messages/');
     });
 
-    $("[delete_dialog]").on('click',function(){
+    $(document).on("click","[delete_dialog]",function(){
         show_popup("Действительно хотите удалить этот диалог?","Подтверждение");
         add_popup_button("Да",'delete_dialog_from_base='+$(this).attr('delete_dialog'));
         return false;
     });
 
-    $("[delete_dialog_from_base]").on('click',function(){
+    $(document).on("click","[delete_dialog_from_base]",function(){
         var opponent = $(this).attr('delete_dialog_from_base');
         user_api({act:'delete_dialog',opponent:opponent},function(data){
             hide_popup();
@@ -191,8 +215,32 @@ $(document).ready(function(){
         return false;
     })
 
-    if ($("#all_messages_box").length > 0) setTimeout(function(){$("#all_messages_box").scrollTo($("[message]:last"),500)},500);
+    scroll_to_last();
 });
+
+var status_t_out = false;
+var status_t_int = false
+
+function get_statuses()
+{
+    clearTimeout(status_t_out);
+    clearInterval(status_t_int);
+
+    if (socket)
+    {
+        status_t_out = setTimeout(function(){
+            get_statuses_ids(function(ids){
+                socket.emit('get_status', {ids: ids});
+            });
+        },200);
+
+        status_t_int = setInterval(function(){
+            get_statuses_ids(function(ids){
+                socket.emit('get_status', {ids: ids});
+            })
+        },5000);
+    }
+}
 
 function play_sound(id)
 {
@@ -206,10 +254,31 @@ function play_sound(id)
         if ($("[name='sound_trigger']").length > 0 && $("[name='sound_trigger']").prop("checked"))
         {
             localStorage.setItem('ms_message_status','play');
-            window.sounds.new_message.play({volume:50});
+            soundManager.play('new_message',{volume:50});
         }
-        else if($("[name='sound_trigger']").length < 1) window.sounds.new_message.play({volume:50});
+        else if($("[name='sound_trigger']").length < 1) soundManager.play('new_message',{volume:50});
     }
+}
+
+function play_sound_call()
+{
+    if (localStorage.getItem('call_sound') != "yes")
+    {
+        localStorage.setItem('call_sound',"yes");
+        loopSound();
+        setTimeout(function(){
+            localStorage.setItem('call_sound',"no");
+        },500);
+    }
+}
+
+function loopSound() {
+    soundManager.play('call',{
+        volume:50,
+        onfinish: function() {
+            loopSound();
+        }
+    });
 }
 
 function set_count_of_new_messages(new_count)
@@ -227,8 +296,164 @@ function get_opponent()
 function get_statuses_ids(callback)
 {
     var ids = [];
-    $("[get_ms_status]").each(function(k,v) {
-        ids.push($(v).attr('get_ms_status'));
+    $(".get_ms_status").each(function(k,v) {
+        ids.push($(v).data('id'));
     });
     callback(ids);
+}
+
+function activate_call(call_to,activate,callback)
+{
+    user_api({act:'get_call_window',to:call_to},function(data){
+        show_popup(data,"Видеозвонок",function(){
+                scroll_to_last();
+            },
+            function(){
+                var id2 = $("[name='from']").val()
+                socket.emit('call_end',{id:call_to,id2:id2});
+            });
+
+        var key = $("[name='key']").val();
+        var from = $("[name='from']").val();
+        var name = $("[name='fio']").val();
+        var avatar = $("[name='avatar']").val();
+
+        var flashvars = {
+            "st":"/source/video_main.txt",
+            "uid":"video_main",
+            "file":"rtmfp://p2p.rtmfp.net/test",
+            "p2pkey":"d19997d5de856c25fdb83c96-9817180983d3",
+            "camera":1,
+            "camrecord":0,
+            "camlive":2,
+            "camw":640,
+            "camh":480,
+            "camq":80,
+            "jscamera":1,
+            "buffersec":0
+        };
+
+        var params = {bgcolor:"#ffffff",allowFullScreen:"true",allowScriptAccess:"always"};
+        var attributes={id:"video_main"};
+        new swfobject.embedSWF("/source/uppod.swf", "video_main", "286", "215", "10.0.115.0", false, flashvars, params,attributes);
+
+        var p2pid_get = function(){
+            var p2pid = uppodGet('video_main','get[p2pid]');
+            if (p2pid)
+            {
+                if (activate) socket.emit('call',{from:from,to:call_to,name:name,p2pid:p2pid,avatar:avatar});
+                if (callback) callback(p2pid);
+                clearInterval(p2pid_timer);
+            }
+        };
+        var p2pid_timer = setInterval(p2pid_get,1500);
+    },false,'/videochat/');
+}
+
+function activate_video_chat(p2pid)
+{
+    var key = $("[name='key']").val();
+    var flashvars_op = {
+        "st":"/source/video_opponent.txt",
+        "uid":"video_opponent",
+        "file":"rtmfp://p2p.rtmfp.net/test",
+        "p2pkey":"d19997d5de856c25fdb83c96-9817180983d3",
+        "p2pid": p2pid,
+        'auto': "play",
+        "buffersec":0
+    };
+    var params_op = {bgcolor:"#ffffff", allowFullScreen:"true",allowScriptAccess:"always"};
+    var attributes_op={id:"video_opponent"};
+    new swfobject.embedSWF("/source/uppod.swf", "video_opponent", "640", "480", "10.0.115.0", false, flashvars_op, params_op,attributes_op);
+}
+
+function uppodEvent(playerID,event) {
+
+    if (playerID == "video_opponent" || playerID == "video_main") return false;
+
+    switch(event){
+
+        case "NetStream.Publish.Start":
+            break;
+
+        case "NetStream.Publish.Stop":
+            hide_popup();
+            break;
+
+        case 'init':
+
+            break;
+
+        case 'start':
+            break;
+
+        case 'play':
+            // uppodStopAll(playerID);
+            break;
+
+        case 'pause':
+
+            break;
+
+        case 'stop':
+            //alert('343434');
+            break;
+
+        case 'seek':
+
+            break;
+
+        case 'loaded':
+
+            break;
+
+        case 'end':
+
+            break;
+
+        case 'download':
+
+            break;
+
+        case 'quality':
+
+            break;
+
+        case 'error':
+
+            break;
+
+        case 'ad_end':
+
+            break;
+
+        case 'pl':
+
+            break;
+    }
+
+}
+
+// Commands
+
+function uppodSend(playerID,com,callback) {
+    document.getElementById(playerID).sendToUppod(com);
+}
+
+// Requests
+
+function uppodGet(playerID,com,callback) {
+    return document.getElementById(playerID).getUppod(com);
+}
+
+function scroll_to_last()
+{
+    $(".all_messages_box").each(function(k,v){
+        if ($(v).length > 0)
+        {
+            setTimeout(function(){
+                $(v).scrollTo($(v).find("[message]:last"),500)
+            },500);
+        }
+    });
 }
