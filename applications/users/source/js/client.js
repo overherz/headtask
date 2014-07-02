@@ -23,7 +23,7 @@ $(document).ready(function(){
     });
 
     socket.on('connect_error',function(){
-        show_message("error","Ошибка соединения с сервером сообщений",false,'ms_error');
+        show_message("error","Ошибка соединения с сервером сообщений",false,'ms_error',true);
     });
 
     socket.on('set_count_of_new_messages',function(data){
@@ -31,8 +31,8 @@ $(document).ready(function(){
     });
 
     socket.on('success_connect',function(data){
-        soundManager.play('new_message',{volume:50});
-        show_message("success","Connect success");
+      //  soundManager.play('new_message',{volume:50});
+       // show_message("success","Connect success",true);
     });
 
     socket.on('disconnect',function(data){

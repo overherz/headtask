@@ -1,5 +1,14 @@
-function show_message(type,text,sticky,id)
+function show_message(type,text,sticky,id,uniq)
 {
+    if (!id) id = type;
+    if (uniq)
+    {
+        if ($(".group-"+id).length > 0)
+        {
+            return false;
+        }
+    }
+
     //types: info,warning,error,success
     var message = "";
 
@@ -11,17 +20,16 @@ function show_message(type,text,sticky,id)
     }
     else message = text;
 
-    if (!id) id = type;
-
     $.jGrowl.defaults.closer = false;
     $.jGrowl.defaults.position = "bottom-right";
 
     $.jGrowl(message, {
-        life: 8000,
+        life: 5000,
         theme: type,
         speed: 'fast',
         sticky: sticky,
-        group: "group-" + id
+        group: "group-" + id,
+        themeState: false
     });
 }
 

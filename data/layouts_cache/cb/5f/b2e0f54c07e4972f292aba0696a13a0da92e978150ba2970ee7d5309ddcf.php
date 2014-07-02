@@ -42,9 +42,9 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
         // line 16
         $this->displayBlock('css', $context, $blocks);
         // line 18
-        echo \layout::func_from_text("    <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\"></script>
-    <script src=\"/source/js/jquery-ui-1.10.4.custom.min.js\"></script>
-    <script src=\"/source/js/jquery.jgrowl_minimized.js\"></script>
+        echo \layout::func_from_text("    <script src=\"http://yandex.st/jquery/2.1.1/jquery.min.js\"></script>
+    <script src=\"http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js\"></script>
+    <script src=\"/source/js/jquery.jgrowl.min.js\"></script>
     <script src=\"/source/js/functions.js\"></script>
     <script src=\"/source/js/message.js\"></script>
     <script src=\"http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js\"></script>

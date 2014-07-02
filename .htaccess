@@ -34,7 +34,7 @@ php_value max_input_time 1800
 
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresDefault "access plus 3600 seconds"
+  ExpiresDefault "access plus 31600 seconds"
   ExpiresByType image/x-icon "access plus 2592000 seconds"
   ExpiresByType image/jpeg "access plus 2592000 seconds"
   ExpiresByType image/png "access plus 2592000 seconds"
