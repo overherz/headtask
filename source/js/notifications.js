@@ -184,7 +184,6 @@ function get_count_of_new_messages(user,callback)
     });
 }
 
-//id последнего сообщения в базе
 function get_last_id(callback)
 {
     connection.query("SELECT id from messages order by created DESC LIMIT 1", function(err, res){
@@ -193,12 +192,29 @@ function get_last_id(callback)
     });
 }
 
-// Цикл проверки новых сообщений
-var last_id = 0;
+function get_last_id_logs(callback)
+{
+    connection.query("SELECT id from projects_logs order by created DESC LIMIT 1", function(err, res){
+        if (res && res[0]) callback(res[0].id);
+        else callback(null);
+    });
+}
+
+var last_id = 0,
+    last_id_logs;
+
 if (last_id < 1)
 {
     get_last_id(function(last_id){
         setTimeout(function(){notify(last_id)},1000);
+    });
+}
+else setTimeout(function(){notify(last_id)},1000);
+
+if (last_id_logs < 1)
+{
+    get_last_id_logs(function(last_id_logs){
+        setTimeout(function(){notify_logs(last_id_logs)},1000);
     });
 }
 else setTimeout(function(){notify(last_id)},1000);
@@ -227,6 +243,31 @@ function notify(last_id)
             last_id = res[i].id;
         }
         setTimeout(function(){notify(last_id)},2000);
+    });
+}
+
+function notify_logs(last_id_logs)
+{
+    if (!last_id) last_id = "0";
+    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.nickname,u.gender,u.tzOffset,SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from logs as m LEFT JOIN users as u ON u.id_user=m.id_user where id > '"+last_id_logs+"' LIMIT 200", function(err, res){
+        if (err){
+            throw err;
+        }
+
+        for(var i = 0; i < res.length; i++){
+            res[i].created = res[i].created*1000;
+            res[i].tzOffset = res[i].tzOffset / 60;
+            if (res[i].id_user == res[i].owner) res[i].my = true;
+            if (transport[res[i].owner])
+            {
+                var renderedHtml = message_to_dialog.render(res[i]);
+                for (key in transport[res[i].owner]) {
+                    socket.sockets.socket(key).json.send({'event': 'message','message':res[i],'renderedHtml' : renderedHtml});
+                }
+            }
+            last_id = res[i].id;
+        }
+        setTimeout(function(){notify(last_id)},5000);
     });
 }
 

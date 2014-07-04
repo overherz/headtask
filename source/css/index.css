@@ -721,3 +721,11 @@ blockquote:before {
     padding: 4px;
     overflow: hidden;
 }
+
+.table-condensed2 td, .table-condensed2 th {
+    padding: 2px 7px !important;
+}
+
+.btn-xs, .btn-group-xs > .btn {
+    padding: 2px 5px;
+}

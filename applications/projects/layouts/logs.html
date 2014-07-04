@@ -1,7 +1,34 @@
+<div>
+    <table class="table table-hover table-border table-condensed">
+        <tr>
+            <th>Тип</th>
+            <th>Проект</th>
+            <th>Описание</th>
+            <th>Дата</th>
+            <th>Пользователь</th>
+        </tr>
+        {% for l in logs %}
+            <tr>
+                <td>{{ ("type_"~l.type)|lang }}</td>
+                <td>{% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}</td>
+                <td>{{l.text|raw}}</td>
+                <td>{{l.created|date('d.m.Y H:i:s')}}</td>
+                <td>
+                    {% if l.id_user %}<a href="/users/~{{l.id_user}}/" style="color:{{ l.color }};font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
+                    {% else %}{{ l.trash_name_user }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
 {% if logs_projects %}
 <ul class="breadcrumbs-one second"><span href="" plus="project"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;cursor: pointer;"></i></span>
     <li><a class="current">Проекты</a></li>
 </ul>
+
+
 <div block="project">
     <table class="table table-hover table-border table-condensed">
         <tr>

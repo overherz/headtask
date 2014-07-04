@@ -1,20 +1,34 @@
 <?php
 
-function _get_options()
+namespace global_module;
+
+class get_options extends \global_module
 {
-    if (!Cache::connect()->get('options'))
+    protected $admin = false;
+    protected $on_ajax_not_run = false;
+
+    function __construct()
     {
-        if ($result = MyPDO::connect()->query("select * from options"))
-            while ($row = $result->fetch()) $GLOBALS['settings'][$row['key_name']] = $row;
-        Cache::connect()->set('options',$GLOBALS['settings'],100);
+        if (\Router::admin()) $this->admin = true;
     }
-    else $GLOBALS['settings'] = Cache::connect()->get('options');
-}
 
-_get_options();
+    function run_module()
+    {
+        if (!\Cache::connect()->get('options'))
+        {
+            if ($result = \MyPDO::connect()->query("select * from options"))
+                while ($row = $result->fetch()) $GLOBALS['settings'][$row['key_name']] = $row;
+            \Cache::connect()->set('options',$GLOBALS['settings'],100);
+        }
+        else $GLOBALS['settings'] = \Cache::connect()->get('options');
 
-if ($GLOBALS['settings']['site_close']['value'])
-{
-    echo $GLOBALS['settings']['site_close_message']['value'];
-    exit();
+        if (!$this->admin)
+        {
+            if ($GLOBALS['settings']['site_close']['value'])
+            {
+                echo $GLOBALS['settings']['site_close_message']['value'];
+                exit();
+            }
+        }
+    }
 }

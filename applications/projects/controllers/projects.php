@@ -206,15 +206,27 @@ class projects extends \Controller {
         {
             if ($access['access']['delete_project'])
             {
+                $log = $this->get_controller("projects","logs");
+                $project = $this->get_project($_POST['id']);
+
                 $query = $this->db->prepare("select * from projects_files where id_project=?");
                 if (!$query->execute(array($_POST['id']))) $res['error'] = "Ошибка базы данных";
                 else $files = $query->fetchAll();
 
+                $this->db->beginTransaction();
+
                 $query = $this->db->prepare("delete from projects where id=?");
                 if (!$query->execute(array($_POST['id']))) $res['error'] = "Возникла ошибка при попытке удалить проект";
-                else
+
+                $query = $this->db->prepare("insert into trash_data(type,id_for_type,trash_name) values(?,?,?)");
+                if (!$query->execute(array('project',$project['id'],$project['name']))) $res['error'] = "Возникла ошибка при попытке удалить проект";
+
+                if (!$log->set_logs('project',$project['id'],'Проект удален')) $res['error'] = "Возникла ошибка при попытке обновить логи";
+
+                if (!$res['error'])
                 {
                     $res['success'] = true;
+                    $this->db->commit();
 
                     if ($files)
                     {
@@ -234,6 +246,7 @@ class projects extends \Controller {
                         }
                     }
                 }
+                else $this->db->rollBack();
             }
             else $res['error']['text'] = "У Вас недостаточно прав";
         }

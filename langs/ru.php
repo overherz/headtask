@@ -60,4 +60,8 @@ $GLOBALS['lang'] = array(
     'task_priority_label_2' => '<span class="label label-success">обычный</span>',
     'task_priority_label_3' => '<span class="label label-warning">высокий</span>',
     'task_priority_label_4' => '<span class="label label-danger">критический</span>',
+
+
+    //logs types
+    'type_project' => 'Проект',
 );

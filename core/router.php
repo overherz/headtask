@@ -77,7 +77,9 @@ class Router {
         unset($this->route[1]);
         $this->rules();
 
-        self::run_globals();
+        $g = new global_module();
+        $g->run(self::$admin);
+
         $this->get_application();
     }
 
@@ -122,10 +124,13 @@ class Router {
 
     static function run_globals()
     {
+        /*
         if (self::$admin) $folder = ROOT.'globals'.DS.'admin'.DS;
         else $folder = ROOT.'globals'.DS;
 
         foreach (glob($folder."*.php") as $filename) include_once($filename);
+        */
+
     }
 
     static function application()

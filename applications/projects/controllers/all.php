@@ -59,10 +59,4 @@ class all extends \Controller {
         }
         else $this->layout_show("all_projects.html",$data);
     }
-
-    function get_all_projects()
-    {
-
-        return $projects;
-    }
 }

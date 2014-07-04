@@ -352,4 +352,36 @@ class Admin extends Controller {
         return $mods;
     }
 }
-?>
+
+class global_module
+{
+    protected $admin = false;
+    protected $on_ajax_not_run = true;
+    private $modules = array();
+
+    function run($admin,$module=false)
+    {
+        if (!$module)
+        {
+            $folder = ROOT.'globals'.DS;
+            foreach (glob($folder."*.php") as $filename) $this->modules[] = basename($filename);
+        }
+        else $this->modules[] = $module."php";
+        if (count($this->modules) > 0)
+        {
+            foreach ($this->modules as $m)
+            {
+                $file = ROOT."globals/".$m;
+                if (file_exists($file))
+                {
+                    include($file);
+                    $class = "global_module\\".str_replace(".php","",$m);
+                    $r = new $class;
+                    if (AJAX && $r->on_ajax_not_run) continue;
+                    if ((!$admin && $r->admin) || ($admin && !$r->admin)) continue;
+                    $r->run_module();
+                }
+            }
+        }
+    }
+}

@@ -16,11 +16,31 @@ class logs extends \Controller {
             $end = strtotime($_POST['end']) + 60*60*24-1;
         }
 
-        $logs_tasks = $this->get_logs("task",$start,$end);
-        $logs_projects = $this->get_logs("project",$start,$end);
-        $manager_logs = $this->get_manager_logs($start,$end);
+  //      $logs_tasks = $this->get_logs("task",$start,$end);
+  //      $logs_projects = $this->get_logs("project",$start,$end);
+  //      $manager_logs = $this->get_manager_logs($start,$end);
+
+        $query = $this->db->prepare("select l.*,u.first_name,u.last_name,u.id_user,p.name as project_name,
+            tu.trash_name as trash_user_name,tp.trash_name as trash_project_name,
+            p.id as id_project,u.id_user as id_user,
+            g.color,g.name as group_name
+            from projects_logs as l
+            LEFT JOIN users as u ON l.id_user = u.id_user
+            LEFT JOIN projects as p ON l.id_project = p.id
+            LEFT JOIN trash_data as tu ON l.id_user = u.id_user and tu.type = 'user'
+            LEFT JOIN trash_data as tp ON l.id_user = u.id_user and tp.type = 'project'
+            LEFT JOIN groups as g ON u.id_group=g.id
+            WHERE p.id IN( SELECT id_project from projects_users where id_user=?
+        ");
+        $query->execute(array($_SESSION['user']['id_user']));
+        while ($row = $query->fetch())
+        {
+            if ($row['first_name']) $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $logs[] = $row;
+        }
 
         $data = array(
+            'logs' => $logs,
             'logs_tasks' => $logs_tasks,
             'logs_projects' => $logs_projects,
             'manager_logs' => $manager_logs,
@@ -137,21 +157,12 @@ class logs extends \Controller {
         }
     }
 
-    function set_logs($type,$id,$text)
+    function set_logs($type,$id_project,$text,$id_task=false)
     {
         if ($type)
         {
-            $query = false;
-            switch ($type)
-            {
-                case "project":
-                    $query = $this->db->prepare("insert into projects_logs(id_user,user_name,id_project,text,created) values(?,?,?,?,?)");
-                    break;
-                case "task":
-                    $query = $this->db->prepare("insert into projects_tasks_logs(id_user,user_name,id_task,text,created) values(?,?,?,?,?)");
-                    break;
-            }
-            if($query) $query->execute(array($_SESSION['user']['id_user'],build_user_name($_SESSION['user']['first_name'],$_SESSION['user']['last_name']),$id,$text,time()));
+            $query = $this->db->prepare("insert into projects_logs(id_user,id_project,id_task,text,created,type) values(?,?,?,?,?,?)");
+            if ($query->execute(array($_SESSION['user']['id_user'],$id_project,$id_task,$text,time(),$type))) return true;
         }
     }
 }

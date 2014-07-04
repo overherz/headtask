@@ -1,7 +1,20 @@
 <?php
 
-if (!$_GET['ajax'] && ($_SESSION && array_key_exists('user',$_SESSION)))
+namespace global_module;
+
+class get_user_menu extends \global_module
 {
-    $menu = Controller::get_controller("menu")->generate_menu(Router::application(),Router::controller(),Router::id());
-    Controller::set_global('menu',$menu);
+    protected $admin = false;
+    protected $on_ajax_not_run = true;
+
+    function run_module()
+    {
+        if ($_SESSION && array_key_exists('user',$_SESSION))
+        {
+            $menu = \Controller::get_controller("menu")->generate_menu(\Router::application(),\Router::controller(),\Router::id());
+            \Controller::set_global('menu',$menu);
+        }
+    }
 }
+
+

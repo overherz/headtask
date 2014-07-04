@@ -1,11 +1,11 @@
 $(document).ready(function(){
     var chat_with = get_opponent(),
-        connect = false,
-        playerVersion = swfobject.getFlashPlayerVersion(),
-        majorVersion = playerVersion.major;
+        connect = false;
+//        playerVersion = swfobject.getFlashPlayerVersion(),
+//        majorVersion = playerVersion.major;
 
-    if (majorVersion < 10) show_message("warning","Установите последнюю версию Adobe flash player");
-    $.getScript("/source/js/jquery.scrollTo-1.4.2-min.js");
+    //if (majorVersion < 10) show_message("warning","Установите последнюю версию Adobe flash player");
+    $.getScript("/source/js/jquery.scrollTo.min.js");
 
     socket = io.connect(window.ms.address,{
         'reconnection': true,
@@ -218,21 +218,17 @@ $(document).ready(function(){
     scroll_to_last();
 });
 
-var status_t_out = false;
 var status_t_int = false
 
 function get_statuses()
 {
-    clearTimeout(status_t_out);
     clearInterval(status_t_int);
 
     if (socket)
     {
-        status_t_out = setTimeout(function(){
-            get_statuses_ids(function(ids){
-                socket.emit('get_status', {ids: ids});
-            });
-        },200);
+        get_statuses_ids(function(ids){
+            socket.emit('get_status', {ids: ids});
+        });
 
         status_t_int = setInterval(function(){
             get_statuses_ids(function(ids){
