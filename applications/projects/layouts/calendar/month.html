@@ -34,14 +34,14 @@
 <section class="month" style="clear: both;">
     <h2 style="text-align: center;">
         <a class="arrow" href="" month='{{prevMonth.year}}:{{prevMonth.month}}'>&larr;</a>
-        <a href="" get_months="{{currentMonth.year.int}}">{{currentMonth.name|lang}} {{currentMonth.year.int}}</a>
+        <a href="" get_months="{{currentMonth.year.int}}">{{("month_"~currentMonth.monthINT)|lang}} {{currentMonth.year.int}}</a>
         <a class="arrow" href="" month='{{nextMonth.year}}:{{nextMonth.month}}'>&rarr;</a>
     </h2>
 
     <table class="table table-bordered calendar_table">
         <tr>
             {% for weekDay in currentMonth.weeks.first.days %}
-            <th {% if loop.index > 5 %}class="weekend" {% if not weekend %}style='display:none;'{% endif %}{% endif %}>{{weekDay.shortname|lang}}</th>
+            <th {% if loop.index > 5 %}class="weekend" {% if not weekend %}style='display:none;'{% endif %}{% endif %}>{{("day_"~weekDay.weekday)|lang}}</th>
             {% endfor %}
         </tr>
         {% set day_int = 0 %}

@@ -93,7 +93,7 @@ class __TwigTemplate_58580ac2a727a0f4ebae4dbb25449ea5d35fa1e72214e862aa31c95918d
         // line 37
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["currentMonth"]) ? $context["currentMonth"] : null), "year"), "int"), "html", null, true));
         echo \layout::func_from_text("\">");
-        echo \layout::func_from_text(twig_escape_filter($this->env, lang($this->getAttribute((isset($context["currentMonth"]) ? $context["currentMonth"] : null), "name")), "html", null, true));
+        echo \layout::func_from_text(twig_escape_filter($this->env, lang(("month_" . $this->getAttribute((isset($context["currentMonth"]) ? $context["currentMonth"] : null), "monthINT"))), "html", null, true));
         echo \layout::func_from_text(" ");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["currentMonth"]) ? $context["currentMonth"] : null), "year"), "int"), "html", null, true));
         echo \layout::func_from_text("</a>
@@ -134,7 +134,7 @@ class __TwigTemplate_58580ac2a727a0f4ebae4dbb25449ea5d35fa1e72214e862aa31c95918d
                 }
             }
             echo \layout::func_from_text(">");
-            echo \layout::func_from_text(twig_escape_filter($this->env, lang($this->getAttribute((isset($context["weekDay"]) ? $context["weekDay"] : null), "shortname")), "html", null, true));
+            echo \layout::func_from_text(twig_escape_filter($this->env, lang(("day_" . $this->getAttribute((isset($context["weekDay"]) ? $context["weekDay"] : null), "weekday"))), "html", null, true));
             echo \layout::func_from_text("</th>
             ");
             ++$context['loop']['index0'];
@@ -409,6 +409,6 @@ class __TwigTemplate_58580ac2a727a0f4ebae4dbb25449ea5d35fa1e72214e862aa31c95918d
 
     public function getDebugInfo()
     {
-        return array (  396 => 98,  389 => 96,  374 => 94,  371 => 93,  367 => 91,  353 => 90,  350 => 89,  340 => 87,  337 => 86,  334 => 85,  331 => 84,  328 => 83,  325 => 82,  323 => 81,  316 => 77,  301 => 76,  297 => 74,  291 => 72,  285 => 71,  278 => 70,  275 => 69,  272 => 68,  268 => 67,  264 => 66,  260 => 65,  258 => 64,  247 => 63,  244 => 62,  241 => 61,  223 => 60,  221 => 59,  216 => 58,  213 => 57,  211 => 56,  202 => 55,  200 => 54,  189 => 53,  186 => 52,  183 => 51,  166 => 50,  163 => 49,  158 => 48,  156 => 47,  153 => 46,  129 => 44,  112 => 43,  102 => 38,  94 => 37,  88 => 36,  81 => 31,  74 => 29,  70 => 28,  60 => 27,  56 => 26,  52 => 25,  43 => 23,  19 => 1,  64 => 17,  61 => 16,  58 => 15,  55 => 14,  50 => 11,  47 => 24,  40 => 6,  37 => 5,  31 => 3,);
+        return array (  396 => 98,  389 => 96,  374 => 94,  371 => 93,  367 => 91,  353 => 90,  350 => 89,  340 => 87,  337 => 86,  334 => 85,  331 => 84,  328 => 83,  325 => 82,  323 => 81,  316 => 77,  301 => 76,  297 => 74,  291 => 72,  285 => 71,  278 => 70,  275 => 69,  272 => 68,  268 => 67,  264 => 66,  260 => 65,  258 => 64,  247 => 63,  244 => 62,  241 => 61,  223 => 60,  221 => 59,  216 => 58,  213 => 57,  211 => 56,  202 => 55,  200 => 54,  189 => 53,  186 => 52,  183 => 51,  166 => 50,  163 => 49,  158 => 48,  156 => 47,  153 => 46,  129 => 44,  112 => 43,  102 => 38,  94 => 37,  88 => 36,  81 => 31,  74 => 29,  70 => 28,  60 => 27,  56 => 26,  52 => 25,  47 => 24,  43 => 23,  19 => 1,);
     }
 }

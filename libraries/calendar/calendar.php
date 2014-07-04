@@ -468,7 +468,6 @@ class CalendarMonth extends CalendarObj {
   function shortname() {
     return strftime('%b', $this->timestamp);
   }
-
 }
 
 class CalendarWeek extends CalendarObj {

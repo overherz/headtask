@@ -366,7 +366,7 @@ class global_module
             $folder = ROOT.'globals'.DS;
             foreach (glob($folder."*.php") as $filename) $this->modules[] = basename($filename);
         }
-        else $this->modules[] = $module."php";
+        else $this->modules[] = $module.".php";
         if (count($this->modules) > 0)
         {
             foreach ($this->modules as $m)
