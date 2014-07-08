@@ -15,51 +15,6 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400italic,600italic,400' rel='stylesheet' type='text/css'>
     {% block css %}
     {% endblock %}
-    <script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="/source/js/jquery.jgrowl.min.js"></script>
-    <script src="/source/js/functions.js"></script>
-    <script src="/source/js/message.js"></script>
-    <script src="http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="/source/js/styler/jquery.formstyler.min.js"></script>
-    <script>
-        $(document).ready(function($) {
-            $('#wrap input, #wrap select').styler();
-        });
-    </script>
-    <script src="/source/js/sound_manager/soundmanager2-nodebug-jsmin.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function($) {
-            $.getScript("/source/js/socket.io/socket.io.js",function(){
-                $.getScript("{{app.path('users','client.js')}}",function(){
-                    soundManager.setup({
-                        useFlashBlock : false,
-                        url : '/source/js/sound_manager/',
-                        debugMode : false,
-                        consoleOnly : false,
-                        onready : function() {
-                            soundManager.createSound({
-                                id:'new_message',
-                                url:'/source/js/sound_manager/sound.mp3'
-                            });
-                            soundManager.createSound({
-                                id:'call',
-                                url:'/source/js/sound_manager/incoming_call.mp3'
-                            });
-                        }
-                    });
-                });
-            });
-        });
-
-        window.ms = {
-            address: "{{globals.message_server}}",
-            uniq_key: "{{globals.user.uniq_key}}"
-        }
-    </script>
-    {% block js %}
-    {% endblock %}
 </head>
 <body>
 <div id="wrap">
@@ -68,5 +23,51 @@
     {% block body %}{% endblock %}
 </div>
 {% include "/source/footer.html" %}
+
+<script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
+<script src="/source/js/jquery.jgrowl.min.js"></script>
+<script src="/source/js/functions.js"></script>
+<script src="/source/js/message.js"></script>
+<script src="http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/source/js/styler/jquery.formstyler.min.js"></script>
+<script>
+    $(document).ready(function($) {
+        $('#wrap input, #wrap select').styler();
+    });
+</script>
+<script src="/source/js/sound_manager/soundmanager2-nodebug-jsmin.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+<script type="text/javascript">
+    $(document).ready(function($) {
+        $.getScript("/source/js/socket.io/socket.io.js",function(){
+            $.getScript("{{app.path('users','client.js')}}",function(){
+                soundManager.setup({
+                    useFlashBlock : false,
+                    url : '/source/js/sound_manager/',
+                    debugMode : false,
+                    consoleOnly : false,
+                    onready : function() {
+                        soundManager.createSound({
+                            id:'new_message',
+                            url:'/source/js/sound_manager/sound.mp3'
+                        });
+                        soundManager.createSound({
+                            id:'call',
+                            url:'/source/js/sound_manager/incoming_call.mp3'
+                        });
+                    }
+                });
+            });
+        });
+    });
+
+    window.ms = {
+        address: "{{globals.message_server}}",
+        uniq_key: "{{globals.user.uniq_key}}"
+    }
+</script>
+{% block js %}
+{% endblock %}
 </body>
 </html>
