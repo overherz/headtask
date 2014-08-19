@@ -263,6 +263,7 @@ class tasks extends \Controller {
                 LEFT JOIN groups as gt ON a.id_group = gt.id
                 LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id
                 {$where}
+                                group by t.id
                 order by t.updated DESC,t.name ASC
                 LIMIT {$this->limit}
                 OFFSET {$paginator->get_range('from')}
@@ -279,6 +280,8 @@ class tasks extends \Controller {
             if (is_array($row['cats'])) $cats_ids = array_merge($cats_ids,$row['cats']);
             $tasks[] = $row;
         }
+
+        pr($tasks);
 
         if (count($cats_ids) > 0)
         {
