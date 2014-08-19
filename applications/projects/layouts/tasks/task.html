@@ -4,6 +4,13 @@
     {% if task.status == "rejected" %}
         <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
     {% endif %}
+        {% if task.cats %}
+            <div>
+                {% for k in task.cats %}
+                    <div style="margin-bottom:5px;display: inline-block;"><span class="label" style="background: {{ cats[k].color }};color: {{ cats[k].color_text }}">{{ cats[k].name }}</span></div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </td>
     <td style="width: 110px;">
         {% set undate = false %}

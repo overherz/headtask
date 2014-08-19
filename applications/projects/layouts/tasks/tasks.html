@@ -11,6 +11,7 @@
 
 {% block js %}
 {{ parent() }}
+<script src="{{app.path('projects','tasks.js')}}"></script>
 <script type ="text/javascript" src="/source/js/search.js"></script>
 
 {% endblock %}

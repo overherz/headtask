@@ -255,7 +255,7 @@ class tasks extends \Controller {
         $query = $this->db->prepare("select distinct t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
                 a.first_name as assigned_first_name,a.last_name as assigned_last_name,a.nickname as assigned_nickname,
                 u.first_name as user_first_name,u.last_name as user_last_name,u.nickname as user_nickname,g.color,g.name as group_name,
-                gt.color as assigned_color,gt.name as assigned_group_name
+                gt.color as assigned_color,gt.name as assigned_group_name, GROUP_CONCAT(c.id_category) as cats
                 from projects_tasks as t
                 LEFT JOIN users as a ON t.assigned = a.id_user
                 LEFT JOIN users as u ON t.id_user = u.id_user
@@ -268,12 +268,28 @@ class tasks extends \Controller {
                 OFFSET {$paginator->get_range('from')}
             ");
         $query->execute();
+        $cats_ids = array();
         while ($row = $query->fetch())
         {
             $row['assigned_name'] = build_user_name($row['assigned_first_name'],$row['assigned_last_name'],true);
             $row['user_name'] = build_user_name($row['user_first_name'],$row['user_last_name'],true);
             $row['diff'] = $this->get_date_diff($row['end']);
+            $row['cats'] = explode(",",$row['cats']);
+            if ($row['cats'][0] == "") $row['cats'] = false;
+            if (is_array($row['cats'])) $cats_ids = array_merge($cats_ids,$row['cats']);
             $tasks[] = $row;
+        }
+
+        if (count($cats_ids) > 0)
+        {
+            $cats_ids = array_unique($cats_ids);
+            $uniq_ids = implode(",",$cats_ids);
+
+            $query = $this->db->query("select * from projects_tasks_categories where id IN({$uniq_ids})");
+            while ($row = $query->fetch())
+            {
+                $cats[$row['id']] = $row;
+            }
         }
 
         $data = array(
@@ -284,7 +300,8 @@ class tasks extends \Controller {
             'paginator' => $paginator,
             'form' => $form,
             'access' => $access['access'],
-            'all' => true
+            'all' => true,
+            'cats' => $cats
         );
 
         if ($_POST && $_GET['ajax'])
@@ -806,7 +823,7 @@ class tasks extends \Controller {
 
         $parent = intval($_POST['parent']);
         if ($parent < 1) $parent = null;
-        $comment = trim(strip_tags($_POST['comment']));
+        $comment = trim($_POST['comment']);
         $created = time();
 //        $created_test = $created-$this->time_limit;
 

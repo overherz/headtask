@@ -277,12 +277,14 @@ $(document).ready(function ($) {
             $(this).after(form);
             $(this).css('display', 'none');
         }
+        CKEDITOR.replace('comment',{toolbar:'Forum',height:200});
         $("[name='parent']").val(id);
         $("[name='comment']").focus();
         return false;
     });
 
     $(document).on("click",".comment_form_clone .add_comment",function(){
+        $("[name='comment']").val(CKEDITOR.instances.comment.getData());
         var request = $(".comment_form_clone").serialize();
         var parent = $(".comment_form_clone").find("[name='parent']").val();
         var th = this;
@@ -290,7 +292,7 @@ $(document).ready(function ($) {
         user_api(request,function(data){
             if (parent > 0) $(".comment[id='"+parent+"']").parent().append(data);
             else $(".all_comments").append(data);
-            $(th).parent().remove();
+            $(th).parent().parent().remove();
             show_message("success","Комментарий добавлен");
             $("#botnewcomm").css('display', 'inline-block');
         });
@@ -305,7 +307,7 @@ $(document).ready(function ($) {
     });
 
     $(document).on("click",".canc_comm",function(){
-        $(this).parent().remove();
+        $(this).parent().parent().remove();
         $("#botnewcomm").css('display', 'inline-block');
         return false;
     });

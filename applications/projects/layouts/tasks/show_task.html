@@ -11,6 +11,7 @@
 
 {% block js %}
 {{parent()}}
+    <script type ="text/javascript" src="/source/js/ckeditor/ckeditor.js"></script>
     <script type ="text/javascript" src="/source/js/fancybox/jquery.fancybox.pack.js"></script>
     <script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
@@ -25,9 +26,9 @@
 <ul class="nav nav-tabs" id="form_tabs">
     <li class="active"><a href="#tabs-1">Описание</a></li>
     {% if files %}
-        <li><a href="#tabs-2">Файлы</a></li>
+        <li><a href="#tabs-2" style="padding-right: 30px;">Файлы <span class="label label-default" style="position: absolute; top:0;right: 0;padding:3px;">{{ files|length }}</span></a></li>
     {% endif %}
-    <li><a href="#tabs-3">Логи</a></li>
+    <li><a href="#tabs-3" style="padding-right: 30px;">Логи <span class="label label-default" style="position: absolute; top:0;right: 0;padding:3px;">{{ logs|length }}</span></a></li>
 </ul>
 
 <div class="tab-content">
@@ -153,9 +154,11 @@
         <input type="hidden" name="parent" value="0">
         <input type="hidden" name="id" value="{{task.id}}">
 
-        <textarea style="height: 100px;margin-bottom: 10px;" name="comment" class="form-control"></textarea><div class="cl"></div>
-        <a href="#" class="btn btn-success add_comment"><span>Добавить</span></a>
-        <a href="#" class="btn btn-danger canc_comm"><span>Отмена</span></a>
+        <textarea style="height: 100px;" name="comment" class="form-control"></textarea><div class="cl"></div>
+        <div style="margin-top: 10px;">
+            <a href="#" class="btn btn-success add_comment"><span>Добавить</span></a>
+            <a href="#" class="btn btn-danger canc_comm"><span>Отмена</span></a>
+        </div>
         <div class="cl"></div>
     </form>
 </div>

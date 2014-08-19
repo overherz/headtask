@@ -51,17 +51,21 @@ class __TwigTemplate_478e0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb
         // line 13
         $this->displayParentBlock("js", $context, $blocks);
         echo \layout::func_from_text("
+<script src=\"");
+        // line 14
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks.js"), "method"), "html", null, true));
+        echo \layout::func_from_text("\"></script>
 <script type =\"text/javascript\" src=\"/source/js/search.js\"></script>
 
 ");
     }
 
-    // line 18
+    // line 19
     public function block_project_data($context, array $blocks = array())
     {
-        // line 19
-        $context["inputs"] = $this->env->loadTemplate("/source/search_macro.html");
         // line 20
+        $context["inputs"] = $this->env->loadTemplate("/source/search_macro.html");
+        // line 21
         echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin-bottom:0px;\">
     <input type=\"hidden\" name=\"page\" value=\"\">
     <table class=\"table table-condensed table-border\" id=\"filter_table\">
@@ -69,36 +73,36 @@ class __TwigTemplate_478e0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb
             <th>Статус</th>
             <th>Приоритет</th>
             ");
-        // line 26
+        // line 27
         if ($this->getAttribute($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "options")) {
             echo \layout::func_from_text("<th>Категория</th>");
         }
-        // line 27
+        // line 28
         echo \layout::func_from_text("            <th>Другое</th>
         </tr>
         <tr>
             <td>");
-        // line 30
+        // line 31
         echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "status"), "status"));
         echo \layout::func_from_text("</td>
             <td>");
-        // line 31
+        // line 32
         echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "priority"), "priority"));
         echo \layout::func_from_text("</td>
             ");
-        // line 32
+        // line 33
         if ($this->getAttribute($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "options")) {
-            // line 33
+            // line 34
             echo \layout::func_from_text("                <td>");
             echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "category"));
             echo \layout::func_from_text("</td>
             ");
         }
-        // line 35
+        // line 36
         echo \layout::func_from_text("            <td>
                 <input type=\"text\" name=\"search\" id=\"search_label\" class=\"input-large\" placeholder=\"Поиск\"><br/><br/>
                 ");
-        // line 37
+        // line 38
         echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "percent"), "percent", true));
         echo \layout::func_from_text("
             </td>
@@ -108,10 +112,10 @@ class __TwigTemplate_478e0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb
 <div class=\"clearfix\"></div>
 <div id=\"search_result\">
     ");
-        // line 44
+        // line 45
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/tasks_table.html"), "method"));
         $template->display($context);
-        // line 45
+        // line 46
         echo \layout::func_from_text("</div>
 ");
     }
@@ -128,6 +132,6 @@ class __TwigTemplate_478e0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb
 
     public function getDebugInfo()
     {
-        return array (  115 => 45,  112 => 44,  102 => 37,  98 => 35,  92 => 33,  90 => 32,  86 => 31,  82 => 30,  77 => 27,  73 => 26,  65 => 20,  63 => 19,  60 => 18,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  119 => 46,  116 => 45,  106 => 38,  102 => 36,  96 => 34,  94 => 33,  90 => 32,  86 => 31,  81 => 28,  77 => 27,  69 => 21,  67 => 20,  64 => 19,  56 => 14,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
     }
 }
