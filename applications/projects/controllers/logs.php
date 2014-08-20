@@ -3,7 +3,7 @@ namespace projects;
 
 class logs extends \Controller {
 
-    private $limit = 6;
+    private $limit = 30;
 
     function default_method()
     {
