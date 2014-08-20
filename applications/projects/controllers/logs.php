@@ -16,14 +16,14 @@ class logs extends \Controller {
 
     function update_logs()
     {
+        $query_update = $this->db->prepare("insert into projects_logs(id_user,id_project,id_task,text,created,type) values(?,?,?,?,?,?)");
         $query = $this->db->query("select l.*,t.id_project
             from projects_tasks_logs as l
             LEFT JOIN projects_tasks as t ON l.id_task = t.id
         ");
         while ($row = $query->fetch())
         {
-            $query = $this->db->prepare("insert into projects_logs(id_user,id_project,id_task,text,created,type) values(?,?,?,?,?,?)");
-            $query->execute(array($row['id_user'],$row['id_project'],$row['id_task'],$row['text'],$row['created'],'task'));
+            $query_update->execute(array($row['id_user'],$row['id_project'],$row['id_task'],$row['text'],$row['created'],'task'));
         }
     }
 
