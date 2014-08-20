@@ -201,7 +201,7 @@ class files extends \Admin {
                     }
 
                     $log = $this->get_controller("projects","logs");
-                    if ($log) $log->set_logs("project",$access['project']['id'],"Удален \"{$file['name']}\"");
+                    if ($log) $log->set_logs("project",$access['project']['id'],"Удален {$file['name']}");
 
                     $res['success'] = true;
                 }
