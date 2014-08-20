@@ -66,4 +66,7 @@ $GLOBALS['lang'] = array(
     'type_project' => 'Проект',
     'type_task' => 'Задача',
     'type_file' => 'Файл',
+    'type_news' => 'Новость',
+    'type_wiki' => 'Wiki',
+    'type_comment' => 'Комментарий',
 );

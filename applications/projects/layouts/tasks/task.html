@@ -1,13 +1,13 @@
 <tr id="task{{task.id}}">
     <td style="width: 1px;" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}"></td>
-    <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
+    <td {% if task.cats %}style="padding-bottom: 0;" {% endif %}><a href="/projects/tasks/show/{{task.id}}/" {% if task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
     {% if task.status == "rejected" %}
         <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
     {% endif %}
         {% if task.cats %}
             <div>
                 {% for k in task.cats %}
-                    <div style="margin-bottom:5px;display: inline-block;"><span class="label" style="background: {{ cats[k].color }};color: {{ cats[k].color_text }}">{{ cats[k].name }}</span></div>
+                    <div style="margin-bottom:2px;display: inline-block;"><span class="label label-cat" style="background: {{ cats[k].color }};color: {{ cats[k].color_text }}">{{ cats[k].name }}</span></div>
                 {% endfor %}
             </div>
         {% endif %}

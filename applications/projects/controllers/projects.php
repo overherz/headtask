@@ -76,6 +76,10 @@ class projects extends \Controller {
                 }
                 else
                 {
+                    $start = date("d-m-Y",strtotime("-3 days", time()));
+                    $end = date("d-m-Y",time());
+                    $logs = $this->get_controller("projects","logs")->get_logs(false,$this->id,false);
+
                     $data = array(
                         'access' => $access['access'],
                         'projects' => $this->get_projects($this->id),
@@ -83,8 +87,12 @@ class projects extends \Controller {
                         'review_button' => true,
                         'stats' => $this->get_controller("projects","tasks")->get_stats($this->id),
                         'stats_other' => $stats_other,
-                        'news' => $this->get_controller("projects","news")->get_last_news($this->id),
-                        'categories' => $this->get_categories($this->id)
+                        'categories' => $this->get_categories($this->id),
+                        'logs' => $logs['logs'],
+                        'paginator' => $logs['paginator'],
+                        'types' => array('project','task','file','news','comment'),//$this->db->get_enum("projects_logs","type"),
+                        'start' => $start,
+                        'end' => $end
                     );
                     $this->layout_show("review.html",$data);
                 }

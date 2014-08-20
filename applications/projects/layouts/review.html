@@ -7,9 +7,11 @@
 {% block js %}
 {{ parent() }}
 <script src="{{app.path('projects','tasks.js')}}"></script>
+<script type ="text/javascript" src="/source/js/search.js"></script>
 {% endblock %}
 
 {% block project_data %}
+
 {% if project.description or project.url %}
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -22,93 +24,102 @@
 </div>
 {% endif %}
 
-<table class="table review_table table-condensed table-border">
-    <tr>
-        <th class="left_column">Статистика</th>
-        {% if not project.owner and news %}<th>Последние новости</th>{% endif %}
-    </tr>
-    <tr>
-        <td class="left_column" style="vertical-align: top !important;padding: 0;width: 50%;">
-            <table class="table-condensed table_statistic">
-                <tr>
-                    <td class="first">Задачи</td>
-                    <td>
-                        <span class="label label-info">{{stats.all|default(0)}}</span> {{ "stats_tasks_all"|lang }} :
-                        <span class="label label-info">{{stats.new|default(0)}}</span> {{ "stats_tasks_new"|lang(stats.new|default(0)) }}
-                        <span class="label label-info">{{stats.in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}
-                        <span class="label label-info">{{stats.closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(stats.closed|default(0)) }}
-                        <span class="label label-info">{{stats.rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats.rejected|default(0)) }}
 
+<ul class="nav nav-tabs" id="form_tabs">
+    <li class="active"><a href="#tabs-1">Лента</a></li>
+    <li><a href="#tabs-2">Статистика</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="tabs-1" class="tab-pane fade in active">
+        <form action="" id="search_form" method="post" class="form-horizontal" style="margin-bottom:0;" path="/projects/logs/">
+            <input type="hidden" name="page" value="">
+            <input type="hidden" name="project" value="{{ project.id }}">
+            Тип <select name="type">
+                <option>&nbsp;</option>
+                {% for i in types %}
+                    <option value="{{ i }}">{{ ("type_"~i)|lang }}</option>
+                {% endfor %}
+            </select>&nbsp;
+            <i class="fa fa-calendar"></i> <input type="text" name="start" value="{{start}}" class="input-small" readonly> <i class="fa fa-arrow-right"></i> <input type="text" name="end" value="{{end}}" class="input-small" readonly>
+        </form>
+
+        <div id="search_result">
+            {% include app.path('projects','logs.html') %}
+        </div>
+    </div>
+    <div id="tabs-2" class="tab-pane">
+        <table class="table review_table table-condensed table-border">
+            <tr>
+                <td class="left_column" style="vertical-align: top !important;padding: 0;width: 50%;">
+                    <table class="table-condensed table_statistic">
+                        <tr>
+                            <td class="first">Задачи</td>
+                            <td>
+                                <span class="label label-info">{{stats.all|default(0)}}</span> {{ "stats_tasks_all"|lang }} :
+                                <span class="label label-info">{{stats.new|default(0)}}</span> {{ "stats_tasks_new"|lang(stats.new|default(0)) }}
+                                <span class="label label-info">{{stats.in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}
+                                <span class="label label-info">{{stats.closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(stats.closed|default(0)) }}
+                                <span class="label label-info">{{stats.rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats.rejected|default(0)) }}
+                            </td>
+                        </tr>
                         {% if categories %}
-                        <div style="margin-top: 15px;">
-                        <div style="font-weight:bold;margin-bottom: 10px;">Открытые задачи по категориям </div>
-                        {% for cat in categories %}
-                            <a href="/projects/tasks/{{project.id}}/?cat={{ cat.id }}" class="list-group-item">
-                                <span class="label" style="margin-right: 20px;background: {{ cat.color }};color: {{ cat.color_text }}">
-                                    {{ cat.name }}
-                                </span>
-                                <span class="label label-info pull-right" style="margin-top: 3px;">{{ stats.cats[cat.id]|default('0') }}</span>
-                            </a>
-                        {% endfor %}
-                        </div>
+                            <tr>
+                                <td class="first">Открытые задачи <br>по меткам</td>
+                                <td>
+                                    {% for cat in categories %}
+                                        <a href="/projects/tasks/{{project.id}}/?cat={{ cat.id }}" class="list-group-item">
+                            <span class="label label-cat" style="margin-right: 20px;background: {{ cat.color }};color: {{ cat.color_text }}">
+                                {{ cat.name }}
+                            </span>
+                                            <span class="label label-info pull-right" style="margin-top: 3px;">{{ stats.cats[cat.id]|default('0') }}</span>
+                                        </a>
+                                    {% endfor %}
+                                </td>
+                            </tr>
                         {% endif %}
-                    </td>
-                </tr>
-                {% if not project.owner %}
-                <tr>
-                    <td class="first">Новости</td>
-                    <td>
-                        <span class="label label-info">{{stats_other.news|default(0)}}</span> {{ "stats_news"|lang(stats_other.news|default(0)) }}
-                    </td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <td class="first">Файлы</td>
-                    <td>
-                        <span class="label label-info">{{stats_other.files.count|default(0)}}</span> {{ "stats_files"|lang(stats_other.files.count|default(0)) }}{% if stats_other.files.sum_size %}, общим размером <span class="label label-info">{{stats_other.files.sum_size}}</span>{% endif %}
-                    </td>
-                </tr>
-                {% if not project.owner %}
-                <tr>
-                    <td class="first">Участники</td>
-                    <td>
-                        <span class="label label-info">{{stats_other.users|default(0)}}</span> {{ "stats_users"|lang(stats_other.users|default(0)) }}
-                    </td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <td class="first">Wiki</td>
-                    <td>
-                        <span class="label label-info">{{stats_other.docs|default(0)}}</span> {{ "stats_docs"|lang(stats_other.docs|default(0)) }}
-                    </td>
-                </tr>
-                {% if not project.owner %}
-                <tr>
-                    <td class="first">Форум</td>
-                    <td>
-                        <span class="label label-info">{{stats_other.forum.forums_count|default(0)}}</span> {{ "stats_forum_forums"|lang(stats_other.forum.forums_count|default(0)) }}
-                        <span class="label label-info">{{stats_other.forum.topics_count|default(0)}}</span> {{ "stats_forum_topics"|lang(stats_other.forum.topics_count|default(0)) }}
-                        <span class="label label-info">{{stats_other.forum.posts_count|default(0)}}</span> {{ "stats_forum_posts"|lang(stats_other.forum.posts_count|default(0)) }}
-                    </td>
-                </tr>
-                {% endif %}
-            </table>
-        </td>
-        {% if not project.owner and news %}
-        <td class="right_column" style="padding: 0;vertical-align: top !important;">
-            {% if news %}
-                <table class="table table-striped table-condensed">
-                    {% for n in news %}
-                    <tr>
-                        <td style="white-space: nowrap;width: 1px;">{{n.created|date('d.m.Y H:i')}}</td>
-                        <td><a href="/projects/news/show/{{n.id}}">{{n.name}}</a></td></tr>
-                    {% endfor %}
-                </table>
-            {% else %}
-                <div>новостей нет</div>
-            {% endif %}
-        </td>
-        {% endif %}
-    </tr>
-</table>
+                        {% if not project.owner %}
+                            <tr>
+                                <td class="first">Новости</td>
+                                <td>
+                                    <span class="label label-info">{{stats_other.news|default(0)}}</span> {{ "stats_news"|lang(stats_other.news|default(0)) }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <td class="first">Файлы</td>
+                            <td>
+                                <span class="label label-info">{{stats_other.files.count|default(0)}}</span> {{ "stats_files"|lang(stats_other.files.count|default(0)) }}{% if stats_other.files.sum_size %}, общим размером <span class="label label-info">{{stats_other.files.sum_size}}</span>{% endif %}
+                            </td>
+                        </tr>
+                        {% if not project.owner %}
+                            <tr>
+                                <td class="first">Участники</td>
+                                <td>
+                                    <span class="label label-info">{{stats_other.users|default(0)}}</span> {{ "stats_users"|lang(stats_other.users|default(0)) }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <td class="first">Wiki</td>
+                            <td>
+                                <span class="label label-info">{{stats_other.docs|default(0)}}</span> {{ "stats_docs"|lang(stats_other.docs|default(0)) }}
+                            </td>
+                        </tr>
+                        {% if not project.owner %}
+                            <tr>
+                                <td class="first">Форум</td>
+                                <td>
+                                    <span class="label label-info">{{stats_other.forum.forums_count|default(0)}}</span> {{ "stats_forum_forums"|lang(stats_other.forum.forums_count|default(0)) }}
+                                    <span class="label label-info">{{stats_other.forum.topics_count|default(0)}}</span> {{ "stats_forum_topics"|lang(stats_other.forum.topics_count|default(0)) }}
+                                    <span class="label label-info">{{stats_other.forum.posts_count|default(0)}}</span> {{ "stats_forum_posts"|lang(stats_other.forum.posts_count|default(0)) }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 {% endblock %}

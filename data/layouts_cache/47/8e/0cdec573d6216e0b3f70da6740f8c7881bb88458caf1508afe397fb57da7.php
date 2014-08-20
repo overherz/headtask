@@ -75,7 +75,7 @@ class __TwigTemplate_478e0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb
             ");
         // line 27
         if ($this->getAttribute($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "options")) {
-            echo \layout::func_from_text("<th>Категория</th>");
+            echo \layout::func_from_text("<th>Метка</th>");
         }
         // line 28
         echo \layout::func_from_text("            <th>Другое</th>

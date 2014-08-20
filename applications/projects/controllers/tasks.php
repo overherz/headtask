@@ -3,7 +3,7 @@ namespace projects;
 
 class tasks extends \Controller {
 
-    var $limit = 15;
+    var $limit = 30;
     
     function default_method()
     {
@@ -846,6 +846,10 @@ class tasks extends \Controller {
             if ($query->execute(array($comment,$parent,$_POST['id'],$_SESSION['user']['id_user'],$created)))
             {
                 $insert_id = $this->db->lastInsertId();
+
+                $log = $this->get_controller("projects","logs");
+                $log->set_logs("comment",$access['project']['id'],"Добавлен к задаче <a href='/projects/tasks/show/{$access['task']['id']}/#comment_{$insert_id}'>{$access['task']['name']}</a>");
+
                 $_SESSION['last_comment'] = $created;
                 $query = $this->db->prepare("select c.*,u.nickname,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
                     from projects_tasks_comments as c

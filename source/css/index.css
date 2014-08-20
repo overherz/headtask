@@ -747,3 +747,25 @@ blockquote:before {
     border-color: #4cae4c;
     color: #fff;
 }
+
+.log_news {
+    background-color: #544242;
+    border-color: #544242;
+    color: #fff;
+}
+
+.log_wiki {
+    background-color: #a80000;
+    border-color: #a80000;
+    color: #fff;
+}
+
+.log_comment {
+    background-color: darkorange;
+    border-color: darkorange;
+    color: #fff;
+}
+
+.label-cat {
+    padding: 0 4px;
+}

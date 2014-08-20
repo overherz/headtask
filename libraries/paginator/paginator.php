@@ -10,7 +10,7 @@ class Paginator {
     var $pages;
     private $count;
     private $range;
-    
+
     public $num_list=array();
     public $current_page;
 
@@ -25,25 +25,27 @@ class Paginator {
     {
         if ($count) $this->count_on_page = $count;
         else $this->count_on_page = 15;
-        
+
         $this->pages = ceil($this->count / $this->count_on_page);
     }
 
     private function get_num_list(){
-        if ($this->pages>1){
-            if($this->pages<=$this->show){
-                $this->num_list=range(1,$this->pages);
+        if ($this->pages > 1)
+        {
+            if ($this->pages <= $this->show || $this->pages <= $this->show+1)
+            {
+                $this->num_list = range(1,$this->pages);
                 return true;
             }
-            $cnt=ceil(($this->show-2)/2);
-            if($this->current_page>=($this->pages-2)) $i=$this->pages-$cnt*2;
-            else {
-                $i=$this->current_page-$cnt;
-            }
-            if($i<1)$i=1;
-            while(count($this->num_list)<($this->show-1)){
-                if($i>$this->pages) break;
-                $this->num_list[]=$i;
+            $cnt = ceil(($this->show-2)/2);
+            if ($this->current_page >= ($this->pages-2)) $i = $this->pages - $cnt*2;
+            else $i = $this->current_page-$cnt;
+
+            if ($i < 1) $i = 1;
+            while (count($this->num_list) < ($this->show-1))
+            {
+                if ($i > $this->pages) break;
+                $this->num_list[] = $i;
                 $i++;
             }
         }
@@ -84,15 +86,15 @@ class Paginator {
     function offset(){
         return $this->range[0];
     }
-    
+
     function from(){
         return $this->range[0]+1;
     }
-    
+
     function to(){
         return $this->range[1];
     }
-    
+
     function total(){
         return $this->count;
     }

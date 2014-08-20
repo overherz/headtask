@@ -9,9 +9,9 @@
     {% for cat in categories %}
         <tr>
             <td>
-                <span class="label" style="background: {{ cat.color }};color: {{ cat.color_text }}">{{ cat.name }}</span>
+                <span class="label label-cat" style="background: {{ cat.color }};color: {{ cat.color_text }};">{{ cat.name }}</span>
             </td>
-            <td style="width: 80px;">
+            <td style="width: 85px;">
                 <div class="btn-group">
                     <a class="btn btn-info btn-sm edit_category" data-id="{{ cat.id }}"><i class="fa fa-pencil"></i></a>
                     <a class="btn btn-danger btn-sm delete_category" data-id="{{ cat.id }}"><i class="fa fa-trash-o"></i></a>
@@ -20,7 +20,7 @@
         </tr>
     {% else %}
         <tr id="cat_not_found">
-            <td colspan="3">категорий не найдено</td>
+            <td colspan="3">меток не найдено</td>
         </tr>
     {% endfor %}
     </tbody>

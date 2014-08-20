@@ -34,14 +34,15 @@
 <div class="tab-content">
     <div id="tabs-1" class="tab-pane fade in active">
         {% if task_categories %}
-            <div style="margin-bottom: 10px;">
+            <div>
+                Метки:
                 {% for cat in task_categories %}
-                    <div style="margin-bottom:5px;display: inline-block;"><span class="label" style="background: {{ cat.color }};color: {{ cat.color_text }}">{{ cat.name }}</span></div>
+                    <div style="margin-bottom:2px;display: inline-block;"><span class="label label-cat" style="background: {{ cat.color }};color: {{ cat.color_text }}">{{ cat.name }}</span></div>
                 {% endfor %}
             </div>
         {% endif %}
 
-        <table class="table table-condensed table-border" style="width: 700px;" id="tasks_table">
+        <table class="table table-condensed table-border" style="width: 700px;margin-top: 20px;" id="tasks_table">
             <tr>
                 <th>Приоритет</th>
                 <td style="width: 1px;">{{ ("task_priority_label_"~task.priority)|lang|raw }}</td>

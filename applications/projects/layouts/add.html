@@ -19,7 +19,7 @@
 
     <ul class="nav nav-tabs" id="form_tabs">
         <li class="active"><a href="#tabs-1">Описание</a></li>
-        <li><a href="#tabs-2">Категории</a></li>
+        <li><a href="#tabs-2">Метки задач</a></li>
     </ul>
 
     <div class="tab-content">
@@ -71,7 +71,7 @@
 {% if project %}
         <div id="tabs-2" class="tab-pane">
             <div style="text-align: right;">
-                <a class="btn btn-success btn-sm" id="add_category" data-project_id="{{ project.id }}">Добавить категорию</a>
+                <a class="btn btn-success btn-sm" id="add_category" data-project_id="{{ project.id }}">Добавить метку</a>
             </div>
         <div id="category_div">
             {% include app.path('projects','category_table.html') %}

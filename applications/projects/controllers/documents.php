@@ -212,7 +212,7 @@ class documents extends \Controller {
                     {
                         $res['success'] = $_POST['id'];
                         if ($documents['name'] != $_POST['name']) $log_text = ". Название изменено на \"{$_POST['name']}\"";
-                        if ($log) $log->set_logs("project",$id_project,"Изменил документ <a href='/projects/documents/show/{$documents['id']}'>\"{$documents['name']}\"</a>{$log_text}");
+                        if ($log) $log->set_logs("wiki",$id_project,"Изменен <a href='/projects/documents/show/{$documents['id']}'>{$documents['name']}</a>{$log_text}");
                     }
                     else $res['error'] = "Ошибка сохранения документа";
                 }
@@ -227,7 +227,7 @@ class documents extends \Controller {
                     {
                         $last_id = $this->db->lastInsertId();
                         $res['success'] = $last_id;
-                        if ($log) $log->set_logs("project",$id_project,"Добавил документ <a href='/projects/documents/show/{$last_id}'>\"{$_POST['name']}\"</a>");
+                        if ($log) $log->set_logs("wiki",$id_project,"Создан <a href='/projects/documents/show/{$last_id}'>{$_POST['name']}</a>");
                     }
                     else $res['error'] = "Ошибка добавления документа";
                 }
@@ -250,7 +250,7 @@ class documents extends \Controller {
             if ($query->execute(array($_POST['id'])))
             {
                 $res['success'] = $access['project']['id'];
-                $log->set_logs("project",$access['project']['id'],"Удален документ \"{$documents['name']}\"");
+                $log->set_logs("wiki",$access['project']['id'],"Удален {$documents['name']}");
             }
             else $res['error'] = "Ошибка базы данных";
         }

@@ -74,7 +74,7 @@ class __TwigTemplate_99e7432f1a6fcde46104753a93b2e7ed228d8a5993c33af7c7edc511d59
             echo \layout::func_from_text("
     <ul class=\"nav nav-tabs\" id=\"form_tabs\">
         <li class=\"active\"><a href=\"#tabs-1\">Описание</a></li>
-        <li><a href=\"#tabs-2\">Категории</a></li>
+        <li><a href=\"#tabs-2\">Метки задач</a></li>
     </ul>
 
     <div class=\"tab-content\">
@@ -172,7 +172,7 @@ class __TwigTemplate_99e7432f1a6fcde46104753a93b2e7ed228d8a5993c33af7c7edc511d59
                 <a class=\"btn btn-success btn-sm\" id=\"add_category\" data-project_id=\"");
             // line 74
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("\">Добавить категорию</a>
+            echo \layout::func_from_text("\">Добавить метку</a>
             </div>
         <div id=\"category_div\">
             ");

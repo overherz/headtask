@@ -39,7 +39,7 @@ $(document).ready(function ($) {
     $(document).on("click","#add_category",function(){
         var id_project = $(this).data("project_id");
         user_api({act:'get_category_form',id_project:id_project}, function (data) {
-            show_popup(data, "Добавление категории");
+            show_popup(data, "Создание метки");
             add_popup_button("Добавить", 'save_category');
             create_color_input();
         });
@@ -55,11 +55,11 @@ $(document).ready(function ($) {
     });
 
     $(document).on("click",".delete_category",function(){
-        show_popup("<div style='text-align:center;'>Вы хотите удалить эту категорию?</div>","Подтверждение удаления категории");
+        show_popup("<div style='text-align:center;'>Вы хотите удалить данную метку?</div>","Подтверждение удаления метки");
         var id = $(this).data("id");
         add_popup_button("Да",'Yes', {id:id}, function(vars){
             user_api({act:'delete_category',id:vars.id},function(data){
-                show_message("success","Категория успешно удалена");
+                show_message("success","Метка успешно удалена");
                 hide_popup();
                 $("#category_div").html(data);
             });

@@ -25,8 +25,12 @@ class __TwigTemplate_a7f9152ee126e03c6adb766df311954821d201e22d1dae8f27ef593760d
         echo \layout::func_from_text("\" title=\"");
         echo \layout::func_from_text(twig_escape_filter($this->env, lang(("task_priority_" . $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "priority"))), "html", null, true));
         echo \layout::func_from_text("\"></td>
-    <td><a href=\"/projects/tasks/show/");
+    <td ");
         // line 3
+        if ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "cats")) {
+            echo \layout::func_from_text("style=\"padding-bottom: 0;\" ");
+        }
+        echo \layout::func_from_text("><a href=\"/projects/tasks/show/");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("/\" ");
         if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id_user") == $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user"))) {
@@ -55,7 +59,7 @@ class __TwigTemplate_a7f9152ee126e03c6adb766df311954821d201e22d1dae8f27ef593760d
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "cats"));
             foreach ($context['_seq'] as $context["_key"] => $context["k"]) {
                 // line 10
-                echo \layout::func_from_text("                    <div style=\"margin-bottom:5px;display: inline-block;\"><span class=\"label\" style=\"background: ");
+                echo \layout::func_from_text("                    <div style=\"margin-bottom:2px;display: inline-block;\"><span class=\"label label-cat\" style=\"background: ");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["cats"]) ? $context["cats"] : null), (isset($context["k"]) ? $context["k"] : null), array(), "array"), "color"), "html", null, true));
                 echo \layout::func_from_text(";color: ");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["cats"]) ? $context["cats"] : null), (isset($context["k"]) ? $context["k"] : null), array(), "array"), "color_text"), "html", null, true));
@@ -200,6 +204,6 @@ class __TwigTemplate_a7f9152ee126e03c6adb766df311954821d201e22d1dae8f27ef593760d
 
     public function getDebugInfo()
     {
-        return array (  186 => 39,  183 => 38,  172 => 37,  165 => 36,  154 => 35,  152 => 34,  147 => 31,  144 => 30,  133 => 29,  131 => 28,  125 => 27,  115 => 26,  103 => 23,  99 => 22,  93 => 21,  90 => 20,  87 => 19,  84 => 18,  81 => 17,  79 => 16,  75 => 14,  71 => 12,  58 => 10,  54 => 9,  51 => 8,  48 => 7,  42 => 5,  40 => 4,  30 => 3,  24 => 2,  19 => 1,);
+        return array (  190 => 39,  187 => 38,  176 => 37,  169 => 36,  158 => 35,  156 => 34,  151 => 31,  148 => 30,  137 => 29,  135 => 28,  129 => 27,  119 => 26,  107 => 23,  103 => 22,  97 => 21,  94 => 20,  91 => 19,  88 => 18,  85 => 17,  83 => 16,  79 => 14,  75 => 12,  62 => 10,  58 => 9,  55 => 8,  52 => 7,  46 => 5,  44 => 4,  30 => 3,  24 => 2,  19 => 1,);
     }
 }
