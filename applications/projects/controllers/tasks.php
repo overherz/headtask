@@ -161,7 +161,7 @@ class tasks extends \Controller {
                 'show_task' => $show_task,
                 'to_task' => $to_task,
                 'access' => $access['access'],
-                'logs' => $logs,
+                'logs' => $logs['logs'],
                 'comments'=> $comments,
                 'categories' => $categories,
                 'task_categories' => $task_categories
