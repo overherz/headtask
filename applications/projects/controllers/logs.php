@@ -5,6 +5,30 @@ class logs extends \Controller {
 
     function default_method()
     {
+        switch ($_GET['act'])
+        {
+            case "update":
+                $this->update_logs();
+                break;
+            default: $this->show_logs();
+        }
+    }
+
+    function update_logs()
+    {
+        $query = $this->db->query("select l.*,t.id_project
+            from projects_tasks_logs as l
+            LEFT JOIN projects_tasks as t ON l.id_task = t.id
+        ");
+        while ($row = $query->fetch())
+        {
+            $query = $this->db->prepare("insert into projects_logs(id_user,id_project,id_task,text,created,type) values(?,?,?,?,?,?)");
+            $query->execute(array($row['id_user'],$row['id_project'],$row['id_task'],$row['text'],$row['created'],'task'));
+        }
+    }
+
+    function show_logs()
+    {
         if (!$_POST)
         {
             $start = strtotime(date("d-m-Y",strtotime("-1 days", time())));
@@ -16,34 +40,11 @@ class logs extends \Controller {
             $end = strtotime($_POST['end']) + 60*60*24-1;
         }
 
-  //      $logs_tasks = $this->get_logs("task",$start,$end);
-  //      $logs_projects = $this->get_logs("project",$start,$end);
-  //      $manager_logs = $this->get_manager_logs($start,$end);
-
-        $query = $this->db->prepare("select l.*,u.first_name,u.last_name,u.id_user,p.name as project_name,
-            tu.trash_name as trash_user_name,tp.trash_name as trash_project_name,
-            p.id as id_project,u.id_user as id_user,
-            g.color,g.name as group_name
-            from projects_logs as l
-            LEFT JOIN users as u ON l.id_user = u.id_user
-            LEFT JOIN projects as p ON l.id_project = p.id
-            LEFT JOIN trash_data as tu ON l.id_user = u.id_user and tu.type = 'user'
-            LEFT JOIN trash_data as tp ON l.id_user = u.id_user and tp.type = 'project'
-            LEFT JOIN groups as g ON u.id_group=g.id
-            WHERE p.id IN( SELECT id_project from projects_users where id_user=?
-        ");
-        $query->execute(array($_SESSION['user']['id_user']));
-        while ($row = $query->fetch())
-        {
-            if ($row['first_name']) $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
-            $logs[] = $row;
-        }
+        $logs = $this->get_logs($_POST['type'],false,false,$start,$end);
 
         $data = array(
+            'types' => array('project','task','file'),//$this->db->get_enum("projects_logs","type"),
             'logs' => $logs,
-            'logs_tasks' => $logs_tasks,
-            'logs_projects' => $logs_projects,
-            'manager_logs' => $manager_logs,
             'start' => date("d-m-Y",$start),
             'end' => date("d-m-Y",$end)
         );
@@ -113,7 +114,7 @@ class logs extends \Controller {
         return $logs;
     }
 
-    function get_logs($type,$start,$end)
+    function get_logs1($type,$start,$end)
     {
         switch ($type)
         {
@@ -155,6 +156,63 @@ class logs extends \Controller {
                 return $logs;
                 break;
         }
+    }
+
+    function get_logs($type=false,$id_project=false,$id_task=false,$start=false,$end=false)
+    {
+        $search_data = array($_SESSION['user']['id_user']);
+        $where = array();
+
+        if ($type)
+        {
+            $where[] = "pl.type=?";
+            $search_data[] = $type;
+        }
+
+        if ($start && $end)
+        {
+            $where[] = "pl.created between ? and ?";
+            $search_data[] = $start;
+            $search_data[] = $end;
+        }
+
+        if ($id_project)
+        {
+            $where[] = "p.id=?";
+            $search_data[] = $id_project;
+        }
+
+        if ($id_task)
+        {
+            $where[] = "t.id=?";
+            $search_data[] = $id_task;
+        }
+
+        if (count($where) > 0) $where_string = " AND ".implode(" AND ",$where);
+
+        $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name,
+                    tu.trash_name as trash_user_name,tp.trash_name as trash_project_name,
+                    p.id as id_project,u.id_user as id_user
+                    from projects_logs as pl
+                    LEFT JOIN projects_tasks as t ON pl.id_task = t.id
+                    LEFT JOIN projects as p ON pl.id_project = p.id
+                    LEFT JOIN users as u ON u.id_user = pl.id_user
+                    LEFT JOIN trash_data as tu ON pl.id_user = tu.id_for_type and tu.type = 'user'
+                    LEFT JOIN trash_data as tp ON pl.id_project = tp.id_for_type and tp.type = 'project'
+                    LEFT JOIN groups as g ON u.id_group=g.id
+                    WHERE pl.id_project IN (SELECT id_project from projects_users where id_user=?) and p.archive IS NULL
+                    {$where_string}
+                    group by pl.id
+                    order by pl.created DESC
+                ");
+        $query->execute($search_data);
+        while ($row = $query->fetch())
+        {
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $logs[] = $row;
+        }
+
+        return $logs;
     }
 
     function set_logs($type,$id_project,$text,$id_task=false)

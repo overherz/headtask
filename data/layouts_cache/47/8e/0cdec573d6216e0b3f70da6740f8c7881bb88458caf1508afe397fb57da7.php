@@ -66,7 +66,7 @@ class __TwigTemplate_478e0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb
         // line 20
         $context["inputs"] = $this->env->loadTemplate("/source/search_macro.html");
         // line 21
-        echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin-bottom:0px;\">
+        echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin-bottom:0;\">
     <input type=\"hidden\" name=\"page\" value=\"\">
     <table class=\"table table-condensed table-border\" id=\"filter_table\">
         <tr>

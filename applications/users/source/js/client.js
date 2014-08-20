@@ -5,8 +5,6 @@ $(document).ready(function(){
 //        majorVersion = playerVersion.major;
 
     //if (majorVersion < 10) show_message("warning","Установите последнюю версию Adobe flash player");
-    $.getScript("/source/js/jquery.scrollTo.min.js");
-
     socket = io.connect(window.ms.address,{
         'reconnection': true,
         'reconnectionDelay': 1000,

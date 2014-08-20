@@ -49,7 +49,7 @@ class add extends \Controller {
                     {
                         $res['success'] = $_POST['id'];
                         if ($access['project']['name'] != $_POST['name']) $log_text = ". Название изменено на \"{$_POST['name']}\"";
-                        if ($log) $log->set_logs("project",$access['project']['id'],"Изменил{$log_text}");
+                        if ($log) $log->set_logs("project",$access['project']['id'],"Изменен{$log_text}");
                     }
                     else $res['error'] = "Ошибка сохранения проекта";
                 }

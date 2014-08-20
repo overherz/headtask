@@ -85,7 +85,7 @@ class tasks extends \Controller {
         if ($this->id == "show")
         {
             $show_task = true;
-            $logs = $this->get_controller("projects","logs")->get_logs_task($this->_0);
+            $logs = $this->get_controller("projects","logs")->get_logs("task",false,$this->_0);
         }
         else if ($this->id == "edit") $to_task = true;
 
@@ -421,7 +421,7 @@ class tasks extends \Controller {
                     )))
                     {
                         $res['success'] = $_POST['id'];
-                        $log->set_logs("task",$task['id'],"Изменил{$text_log}");
+                        $log->set_logs("task",$task['id_project'],"Изменена <a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a>{$text_log}",$task['id']);
                     }
                     else $res['error'] = "Ошибка сохранения задачи";
 
@@ -447,7 +447,7 @@ class tasks extends \Controller {
                     {
                         $last_id = $this->db->lastInsertId();
                         $res['success'] = $last_id;
-                        $log->set_logs("task",$last_id,"Создал");
+                        $log->set_logs("task",$_POST['project'],"Создана <a href='/projects/tasks/show/{$last_id}/'>{$_POST['name']}</a>",$last_id);
                     }
                     else $res['error'] = "Ошибка создания задачи";
 
@@ -675,7 +675,7 @@ class tasks extends \Controller {
             if ($query->execute(array($_POST['id'])))
             {
                 $res['success']['project'] = $task['id_project'];
-                $log->set_logs("project",$access['project']['id'],"Удалена задача \"{$task['name']}\"");
+                $log->set_logs("task",$access['project']['id'],"Удалена {$task['name']}");
             }
             else $res['error'] = "Ошибка базы данных";
         }

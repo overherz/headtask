@@ -1,17 +1,17 @@
-<div>
+<div style="margin-top: 20px;">
     <table class="table table-hover table-border table-condensed">
         <tr>
-            <th>Тип</th>
-            <th>Проект</th>
+            <th style="width: 1px;white-space: nowrap;"></th>
             <th>Описание</th>
+            <th>Проект</th>
             <th>Дата</th>
             <th>Пользователь</th>
         </tr>
         {% for l in logs %}
             <tr>
-                <td>{{ ("type_"~l.type)|lang }}</td>
-                <td>{% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}</td>
+                <td><span class="label label-default log_{{ l.type }}">{{ ("type_"~l.type)|lang }}</span></td>
                 <td>{{l.text|raw}}</td>
+                <td>{% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}</td>
                 <td>{{l.created|date('d.m.Y H:i:s')}}</td>
                 <td>
                     {% if l.id_user %}<a href="/users/~{{l.id_user}}/" style="color:{{ l.color }};font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
@@ -22,85 +22,4 @@
         {% endfor %}
     </table>
 </div>
-
-{% if logs_projects %}
-<ul class="breadcrumbs-one second"><span href="" plus="project"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;cursor: pointer;"></i></span>
-    <li><a class="current">Проекты</a></li>
-</ul>
-
-
-<div block="project">
-    <table class="table table-hover table-border table-condensed">
-        <tr>
-            <th>Проект</th>
-            <th>Описание</th>
-            <th>Дата</th>
-            <th>Пользователь</th>
-        </tr>
-        {% for l in logs_projects %}
-        <tr>
-            <td><a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a></td>
-            <td>{{l.text|raw}}</td>
-            <td>{{l.created|date('d.m.Y H:i:s')}}</td>
-            <td>
-                <a href="/users/~{{l.id_user}}/" style="color:{{ l.color }};font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
-{% endif %}
-{% if logs_tasks %}
-<ul class="breadcrumbs-one second"><span href="" plus="task"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;cursor: pointer;"></i></span>
-    <li><a class="current">Личные задачи</a></li>
-</ul>
-<div block="task">
-    <table class="table table-hover table-border table-condensed">
-        <tr>
-            <th>Проект</th>
-            <th>Задача</th>
-            <th>Описание</th>
-            <th>Дата</th>
-            <th>Пользователь</th>
-        </tr>
-        {% for l in logs_tasks %}
-        <tr>
-            <td><a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a></td>
-            <td><a href="/projects/tasks/show/{{l.id_task}}/">{{l.task_name}}</a></td>
-            <td>{{l.text|raw}}</td>
-            <td>{{l.created|date('d.m.Y H:i:s')}}</td>
-            <td>
-                <a href="/users/~{{l.id_user}}/" style="color:{{ l.color }};font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
-{% endif %}
-{% if manager_logs %}
-<ul class="breadcrumbs-one second"><span plus="manager"><i class="fa fa-minus" style="position: absolute;top:7px;right:7px;cursor: pointer;"></i></span>
-    <li><a class="current">Блок менеджера</a></li>
-</ul>
-<div block="manager">
-    <table class="table table-hover table-border table-condensed">
-        <tr>
-            <th>Проект</th>
-            <th>Задача</th>
-            <th>Описание</th>
-            <th>Дата</th>
-            <th>Пользователь</th>
-        </tr>
-        {% for l in manager_logs %}
-        <tr>
-            <td><a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a></td>
-            <td><a href="/projects/tasks/show/{{l.id_task}}/">{{l.task_name}}</a></td>
-            <td>{{l.text|raw}}</td>
-            <td>{{l.created|date('d.m.Y H:i:s')}}</td>
-            <td>
-                <a href="/users/~{{l.id_user}}/" style="color:{{ l.color }};font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
-{% endif %}
+<div style="position: relative;margin-top: 10px;">{% include '/source/jpaginator_boot.html' %}</div>

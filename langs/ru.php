@@ -64,4 +64,6 @@ $GLOBALS['lang'] = array(
 
     //logs types
     'type_project' => 'Проект',
+    'type_task' => 'Задача',
+    'type_file' => 'Файл',
 );

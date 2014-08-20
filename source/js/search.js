@@ -14,11 +14,15 @@ $(document).ready(function() {
         $('#search_form').submit();
     });
 
+    $("#search_form [type='text']").on("change",function(){
+        $('#search_form').submit();
+    });
+
     $("#search_form [type='checkbox']").change(function(){
         $('#search_form').submit();
     });
 
-    $(document).on('keydown','input[name="search"]',function(){
+    $(document).on('keydown','#search_form input[type="text"],#search_form textarea',function(){
           clearTimeout(window.timer);
           window.keypress = true;
           window.clear = true;

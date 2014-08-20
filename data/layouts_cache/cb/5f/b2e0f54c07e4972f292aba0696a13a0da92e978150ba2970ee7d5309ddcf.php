@@ -67,55 +67,54 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 <script src=\"/source/js/message.js\"></script>
 <script src=\"http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js\"></script>
 <script src=\"/source/js/styler/jquery.formstyler.min.js\"></script>
+<script src=\"/source/js/socket.io/socket.io.js\"></script>
+<script src=\"/source/js/jquery.scrollTo.min.js\"></script>
+<!--<script src=\"");
+        // line 36
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "client.js"), "method"), "html", null, true));
+        echo \layout::func_from_text("\"></script>-->
 <script>
     \$(document).ready(function(\$) {
         \$('#wrap input, #wrap select').styler();
     });
 </script>
 <script src=\"/source/js/sound_manager/soundmanager2-nodebug-jsmin.js\"></script>
-<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js\"></script>
+<!--<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js\"></script>-->
 <script type=\"text/javascript\">
     \$(document).ready(function(\$) {
-        \$.getScript(\"/source/js/socket.io/socket.io.js\",function(){
-            \$.getScript(\"");
-        // line 44
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "client.js"), "method"), "html", null, true));
-        echo \layout::func_from_text("\",function(){
-                soundManager.setup({
-                    useFlashBlock : false,
-                    url : '/source/js/sound_manager/',
-                    debugMode : false,
-                    consoleOnly : false,
-                    onready : function() {
-                        soundManager.createSound({
-                            id:'new_message',
-                            url:'/source/js/sound_manager/sound.mp3'
-                        });
-                        soundManager.createSound({
-                            id:'call',
-                            url:'/source/js/sound_manager/incoming_call.mp3'
-                        });
-                    }
+        soundManager.setup({
+            useFlashBlock : false,
+            url : '/source/js/sound_manager/',
+            debugMode : false,
+            consoleOnly : false,
+            onready : function() {
+                soundManager.createSound({
+                    id:'new_message',
+                    url:'/source/js/sound_manager/sound.mp3'
                 });
-            });
+                soundManager.createSound({
+                    id:'call',
+                    url:'/source/js/sound_manager/incoming_call.mp3'
+                });
+            }
         });
     });
 
     window.ms = {
         address: \"");
-        // line 66
+        // line 65
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "message_server"), "html", null, true));
         echo \layout::func_from_text("\",
         uniq_key: \"");
-        // line 67
+        // line 66
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "uniq_key"), "html", null, true));
         echo \layout::func_from_text("\"
     }
 </script>
 ");
-        // line 70
+        // line 69
         $this->displayBlock('js', $context, $blocks);
-        // line 72
+        // line 71
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -137,7 +136,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     {
     }
 
-    // line 70
+    // line 69
     public function block_js($context, array $blocks = array())
     {
     }
@@ -154,6 +153,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     public function getDebugInfo()
     {
-        return array (  141 => 70,  136 => 23,  132 => 17,  129 => 16,  124 => 4,  119 => 72,  117 => 70,  111 => 67,  107 => 66,  82 => 44,  62 => 26,  60 => 25,  57 => 24,  55 => 23,  52 => 22,  50 => 21,  45 => 18,  43 => 16,  28 => 4,  23 => 1,);
+        return array (  140 => 69,  135 => 23,  131 => 17,  128 => 16,  123 => 4,  118 => 71,  116 => 69,  110 => 66,  106 => 65,  74 => 36,  62 => 26,  60 => 25,  57 => 24,  55 => 23,  52 => 22,  50 => 21,  45 => 18,  43 => 16,  28 => 4,  23 => 1,);
     }
 }

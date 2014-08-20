@@ -729,3 +729,21 @@ blockquote:before {
 .btn-xs, .btn-group-xs > .btn {
     padding: 2px 5px;
 }
+
+.log_file {
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    color: #fff;
+}
+
+.log_project {
+    background-color: #8500c6;
+    border-color: #8500c6;
+    color: #fff;
+}
+
+.log_task {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    color: #fff;
+}
