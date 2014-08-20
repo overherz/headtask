@@ -82,6 +82,8 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 <!--<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js\"></script>-->
 <script type=\"text/javascript\">
     \$(document).ready(function(\$) {
+        show_preloader();
+        show_message(\"success\",\"3242423423\",true);
         soundManager.setup({
             useFlashBlock : false,
             url : '/source/js/sound_manager/',
@@ -102,19 +104,19 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     window.ms = {
         address: \"");
-        // line 65
+        // line 67
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "message_server"), "html", null, true));
         echo \layout::func_from_text("\",
         uniq_key: \"");
-        // line 66
+        // line 68
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "uniq_key"), "html", null, true));
         echo \layout::func_from_text("\"
     }
 </script>
 ");
-        // line 69
-        $this->displayBlock('js', $context, $blocks);
         // line 71
+        $this->displayBlock('js', $context, $blocks);
+        // line 73
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -136,7 +138,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     {
     }
 
-    // line 69
+    // line 71
     public function block_js($context, array $blocks = array())
     {
     }
@@ -153,6 +155,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     public function getDebugInfo()
     {
-        return array (  140 => 69,  135 => 23,  131 => 17,  128 => 16,  123 => 4,  118 => 71,  116 => 69,  110 => 66,  106 => 65,  74 => 36,  62 => 26,  60 => 25,  57 => 24,  55 => 23,  52 => 22,  50 => 21,  45 => 18,  43 => 16,  28 => 4,  23 => 1,);
+        return array (  142 => 71,  137 => 23,  133 => 17,  130 => 16,  125 => 4,  120 => 73,  118 => 71,  112 => 68,  108 => 67,  74 => 36,  62 => 26,  60 => 25,  57 => 24,  55 => 23,  52 => 22,  50 => 21,  45 => 18,  43 => 16,  28 => 4,  23 => 1,);
     }
 }

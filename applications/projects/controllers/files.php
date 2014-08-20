@@ -91,7 +91,7 @@ class files extends \Admin {
                         if ($file['type'] == "image") $path_file = "/uploads/projects/projects_big/".real_path($file['file']);
                         else $path_file = "/uploads/projects/".real_path($file['file']);
 
-                        $log->set_logs("file",$access['project']['id'],"Загружен <a href='{$path_file}'>\"{$file['name']}\"</a>");
+                        $log->set_logs("file",$access['project']['id'],"Загружен <a href='{$path_file}'>{$file['name']}</a>");
                     }
 
                     $res['success'] = $this->layout_get("files/file.html",array('file' => $file,'access' => $access['access'],'to_task' => (bool) $_POST['to_task']));
