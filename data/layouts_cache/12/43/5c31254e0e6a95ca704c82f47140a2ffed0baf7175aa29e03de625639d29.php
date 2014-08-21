@@ -21,7 +21,7 @@ class __TwigTemplate_12435c31254e0e6a95ca704c82f47140a2ffed0baf7175aa29e03de6256
             echo \layout::func_from_text("    <table style=\"width: 100%;\">
         <tr>
             <td style=\"white-space: nowrap;text-align: right;\">
-                <ul class=\"pagination\" style=\"margin: 0 5px;\">
+                <ul class=\"pagination\" style=\"margin: 5px 0;\">
                     ");
             // line 6
             if ($this->getAttribute((isset($context["paginator"]) ? $context["paginator"] : null), "total")) {
@@ -138,6 +138,6 @@ class __TwigTemplate_12435c31254e0e6a95ca704c82f47140a2ffed0baf7175aa29e03de6256
 
     public function getDebugInfo()
     {
-        return array (  121 => 26,  107 => 25,  99 => 23,  94 => 22,  92 => 21,  89 => 20,  81 => 18,  75 => 16,  73 => 15,  70 => 14,  67 => 13,  63 => 12,  60 => 11,  57 => 10,  39 => 9,  29 => 7,  27 => 6,  21 => 2,  19 => 1,);
+        return array (  121 => 26,  107 => 25,  99 => 23,  94 => 22,  89 => 20,  81 => 18,  75 => 16,  73 => 15,  70 => 14,  67 => 13,  63 => 12,  60 => 11,  57 => 10,  39 => 9,  29 => 7,  27 => 6,  21 => 2,  103 => 24,  100 => 23,  92 => 21,  87 => 18,  74 => 17,  68 => 15,  54 => 14,  50 => 13,  44 => 12,  41 => 11,  37 => 10,  32 => 7,  28 => 6,  19 => 1,);
     }
 }

@@ -14,12 +14,13 @@
     <tbody>
     {% for task in tasks %}
         <tr id="task{{task.id}}">
-            <td style="width: 1px;" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}"></td>
-            <td style="width: 1px;white-space: nowrap;"><a href="/projects/tasks/{{task.id_project}}/" class="get_info_project" data-id="{{ task.id_project}}">{{ task.project_name }}</a></td>
-            <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.task_creater == globals.user.id_user or task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
+            <td style="width: 1px;{% if task.status == "rejected" %}padding-left:0;padding-right: 0;text-align: center;{% endif %}" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}">
                 {% if task.status == "rejected" %}
                     <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
                 {% endif %}
+            </td>
+            <td style="width: 1px;white-space: nowrap;"><a href="/projects/tasks/{{task.id_project}}/" class="get_info_project" data-id="{{ task.id_project}}">{{ task.project_name }}</a></td>
+            <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.task_creater == globals.user.id_user or task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
             </td>
             {% if not show_user %}<td style="font-weight: bold;width: 1px;">{{ comment_count[task.id].count }}</td>{% endif %}
             <td style="width: 110px;height: 100%;">

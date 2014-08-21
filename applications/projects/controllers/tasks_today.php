@@ -14,9 +14,19 @@ class tasks_today extends \Controller {
         $task = $this->get_controller("projects","tasks");
         if ($info = $this->get_controller("projects","calendar")->get_calendar_tasks("{$year}-{$month}-{$day}",false,true)) $tasks = $info['tasks'];
 
+      //  $start = strtotime("midnight", time());
+     //   $end = strtotime("tomorrow", time()) - 1;
+     //   $logs = $this->get_controller("projects","logs")->get_logs(false,false,false,$start,$end);
+
         $data = array(
             'tasks' => $tasks,
-            'manager' => $info['manager']
+            'manager' => $info['manager'],
+        //    'logs' => $logs['logs'],
+        //    'paginator' => $logs['paginator'],
+        ///    'types' => array('project','task','file','news','comment'),//$this->db->get_enum("projects_logs","type"),
+         //   'start' => $start,
+         //   'end' => $end,
+         //   'all' => true
         );
 
         if ($tasks)

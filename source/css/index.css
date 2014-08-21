@@ -85,7 +85,7 @@ a {
 }
 
 .table {
-    margin-bottom: 0;
+    margin: 5px 0;
 }
 
 .table th, .table td {

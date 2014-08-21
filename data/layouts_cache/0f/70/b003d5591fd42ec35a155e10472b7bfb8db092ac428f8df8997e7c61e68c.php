@@ -16,7 +16,7 @@ class __TwigTemplate_0f70b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c6
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<div style=\"position: relative;margin-top: 10px;\">");
+        echo \layout::func_from_text("<div style=\"position: relative;\">");
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         echo \layout::func_from_text("</div>
 <table class=\"table table-hover table-border table-condensed\">
@@ -98,7 +98,7 @@ class __TwigTemplate_0f70b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c6
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 23
         echo \layout::func_from_text("</table>
-<div style=\"position: relative;margin-top: 10px;\">");
+<div style=\"position: relative;\">");
         // line 24
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         echo \layout::func_from_text("</div>");
