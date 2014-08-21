@@ -85,7 +85,7 @@ a {
 }
 
 .table {
-
+    margin-bottom: 0;
 }
 
 .table th, .table td {
@@ -653,7 +653,7 @@ blockquote:before {
 }
 
 .table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
-    padding: 1px 10px;
+    padding: 2px 10px;
 }
 
 #projects_info {
@@ -734,36 +734,48 @@ blockquote:before {
     background-color: #5bc0de;
     border-color: #46b8da;
     color: #fff;
+    display: block;
+    padding: 4px;
 }
 
 .log_project {
     background-color: #8500c6;
     border-color: #8500c6;
     color: #fff;
+    display: block;
+    padding: 4px;
 }
 
 .log_task {
     background-color: #5cb85c;
     border-color: #4cae4c;
     color: #fff;
+    display: block;
+    padding: 4px;
 }
 
 .log_news {
     background-color: #544242;
     border-color: #544242;
     color: #fff;
+    display: block;
+    padding: 4px;
 }
 
 .log_wiki {
     background-color: #a80000;
     border-color: #a80000;
     color: #fff;
+    display: block;
+    padding: 4px;
 }
 
 .log_comment {
     background-color: darkorange;
     border-color: darkorange;
     color: #fff;
+    display: block;
+    padding: 4px;
 }
 
 .label-cat {

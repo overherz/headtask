@@ -26,11 +26,12 @@
 
 
 <ul class="nav nav-tabs" id="form_tabs">
-    <li class="active"><a href="#tabs-1">Лента</a></li>
+    {% if logs %}<li class="active"><a href="#tabs-1">Лента</a></li>{% endif %}
     <li><a href="#tabs-2">Статистика</a></li>
 </ul>
 
 <div class="tab-content">
+    {% if logs %}
     <div id="tabs-1" class="tab-pane fade in active">
         <form action="" id="search_form" method="post" class="form-horizontal" style="margin-bottom:0;" path="/projects/logs/">
             <input type="hidden" name="page" value="">
@@ -48,7 +49,8 @@
             {% include app.path('projects','logs.html') %}
         </div>
     </div>
-    <div id="tabs-2" class="tab-pane">
+    {% endif %}
+    <div id="tabs-2" class="tab-pane {% if not logs %}fade in active{% endif %}">
         <table class="table review_table table-condensed table-border">
             <tr>
                 <td class="left_column" style="vertical-align: top !important;padding: 0;width: 50%;">
