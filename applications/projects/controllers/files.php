@@ -145,9 +145,10 @@ class files extends \Admin {
                 $files[] = $row;
             }
 
+            $this->set_global('id_project',$project['id']);
             $data = array(
                 'files' => $files,
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'project' => $project,
                 'files_button' => true,
                 'paginator' => $paginator,

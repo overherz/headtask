@@ -3,8 +3,10 @@ require_once(ROOT.'libraries/Twig/Autoloader.php');
 
 class layout {
 
-    static $func_from_text =false;
+    static $func_from_text = true;
     static $twig = false;
+
+    private static $settings = array();
 
     static private function pre_render($path)
     {
@@ -36,6 +38,7 @@ class layout {
                 foreach ($data[1] as $d)
                 {
                     $call = explode("__",$d);
+                    $block = explode(" ",$d);
                     if ($call[0] != "" && $call[1] != "")
                     {
                         include(ROOT."applications/{$call[0]}/config.php");
@@ -47,25 +50,40 @@ class layout {
                             $text = str_replace("[[{$d}]]", call_user_func_array(array($call_controller,$call_alias['function']), $vars), $text);
                         }
                     }
+
+                    if ($block[0] == "block" && $block[1] != "")
+                    {
+
+                        if ($block_data = \Controller::get_controller("pages","blocks")->render_block($block[1]))
+                        {
+                            $text = str_replace("[[{$d}]]", $block_data, $text);
+                        }
+                    }
                 }
             }
         }
         return $text;
     }
 
+    static private function set_settings()
+    {
+        self::$settings = array(
+            'cache' => ROOT.'data'.DS.'layouts_cache',
+            'autoescape' => true,
+            'auto_reload'=> true,
+        );
+    }
+
     static private function run($path)
     {
         if (!self::$twig)
         {
-            $settings = array();
-            $settings['cache'] = ROOT.'data'.DS.'layouts_cache';
-            $settings['autoescape'] = true;
-            $settings['auto_reload'] = true;
+            self::set_settings();
 
-            Twig_Autoloader::register();
-            $loader=new Twig_Loader_Filesystem(ROOT);
+            \Twig_Autoloader::register();
+            $loader = new \Twig_Loader_Filesystem(ROOT);
 
-            self::$twig=new Twig_Environment($loader,$settings);
+            self::$twig = new \Twig_Environment($loader,self::$settings);
 
             // self functions
             self::$twig->addExtension(new Twig_Extension_StringLoader());
@@ -129,4 +147,3 @@ class app_paths
         }
     }
 }
-?>

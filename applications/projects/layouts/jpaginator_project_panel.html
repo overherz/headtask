@@ -1,27 +1,23 @@
 {% if projects.paginator.num_list %}
-    <table style="width: 100%;">
-        <tr>
-            <td style="white-space: nowrap;text-align: right;">
-                <ul class="pagination" style="margin: 0px;margin-top: 15px;">
-                    {% for i in projects.paginator.num_list %}
-                        {% if loop.first and i != 1 %}
-                            <li><a href="#" onclick="get_project_panel_page(1);return false;">1</a></li>
-                            {% if i>2 %}<li><a href="" onclick="return false;">...</a></li></li>{% endif %}
-                        {% endif %}
+<div style="text-align: center;">
+    <ul class="pagination pagination_projects" style="margin: 10px 0 0;">
+        {% for i in projects.paginator.num_list %}
+            {% if loop.first and i != 1 %}
+                <li><a href="#" onclick="get_project_panel_page(1);return false;">1</a></li>
+                {% if i > 2 %}<li><a href="" onclick="return false;">...</a></li></li>{% endif %}
+            {% endif %}
 
-                        {% if i == projects.paginator.current_page %}
-                            <li class="active"><a href="" onclick="return false;">{{i}}</a></li>
-                        {% else %}
-                            <li><a href="#" onclick="get_project_panel_page('{{i}}');return false;">{{i}}</a></li>
-                        {% endif %}
+            {% if i == projects.paginator.current_page %}
+                <li class="active"><a href="" onclick="return false;">{{i}}</a></li>
+            {% else %}
+                <li><a href="#" onclick="get_project_panel_page('{{i}}');return false;">{{i}}</a></li>
+            {% endif %}
 
-                        {% if loop.last and i != projects.paginator.get_pages %}
-                            {% if i< projects.paginator.get_pages-1 %}<li><a href="" onclick="return false;">...</a></li>{% endif %}
-                            <li><a href="#" onclick="get_project_panel_page('{{projects.paginator.get_pages}}');return false;">{{projects.paginator.get_pages}}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-    </table>
+            {% if loop.last and i != projects.paginator.get_pages %}
+                {% if i < projects.paginator.get_pages-1 %}<li><a href="" onclick="return false;">...</a></li>{% endif %}
+                <li><a href="#" onclick="get_project_panel_page('{{projects.paginator.get_pages}}');return false;">{{projects.paginator.get_pages}}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
 {% endif %}

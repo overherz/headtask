@@ -68,8 +68,9 @@ class documents extends \Controller {
             }
             else crumbs("Добавление документа");
 
+            $this->set_global('id_project',$project['id']);
             $this->layout_show('documents/add_documents.html',array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'add_documents_button' => $add_documents_button,
                 'project' => $project,
                 'access' => $access['access'],
@@ -91,10 +92,11 @@ class documents extends \Controller {
             crumbs("Wiki","/projects/documents/{$access['project']['id']}");
             crumbs($documents['name']);
 
+            $this->set_global('id_project',$access['project']['id']);
             $this->layout_show("documents/documents_show.html",array(
                 'documents' => $documents,
                 'project' => $access['project'],
-                'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
                 'documents_button' => true,
                 'access' => $access['access'],
             ));
@@ -141,9 +143,11 @@ class documents extends \Controller {
                 $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
                 $documents[] = $row;
             }
+
+            $this->set_global('id_project',$project['id']);
             $data = array(
                 'project' => $project,
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+//                'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'documents_button' => true,
                 'paginator' => $paginator,
                 'access' => $access['access'],

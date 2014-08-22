@@ -49,7 +49,7 @@ class __TwigTemplate_a88b7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd4
     {
         // line 11
         echo \layout::func_from_text("<div id=\"projects_info\"></div>
-<ul class=\"breadcrumbs-one\">
+<ul class=\"breadcrumbs-one\" >
     <li><a>Задачи</a></li>
     <li>
         <a class=\"current\">

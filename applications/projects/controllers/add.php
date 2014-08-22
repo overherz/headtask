@@ -23,7 +23,7 @@ class add extends \Controller {
         {
             crumbs("Создание проекта");
             $this->layout_show('add.html',array(
-                'projects' => $this->get_controller("projects")->get_projects(),
+                //'projects' => $this->get_controller("projects")->get_projects(),
                 'add' => true,
                 'access' => $access['access']
             ));

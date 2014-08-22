@@ -67,8 +67,10 @@ class tasks extends \Controller {
             crumbs("Задачи","/projects/tasks/{$project['id']}/");
             crumbs("Добавление");
             $users = $this->get_controller("projects","users")->get_users_project($this->_0);
+
+            $this->set_global('id_project',$project['id']);
             $this->layout_show('tasks/add_task.html',array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'add_tasks_button' => true,
                 'project' => $project,
                 'users' => $users,
@@ -151,8 +153,9 @@ class tasks extends \Controller {
                 $comments = $this->generate_comments($this->_0);
             }
 
+            $this->set_global('id_project',$project['id']);
             $this->layout_show($layout,array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'tasks_button' => true,
                 'project' => $project,
                 'task' => $task,
@@ -293,9 +296,10 @@ class tasks extends \Controller {
             }
         }
 
+        $this->set_global('id_project',$project['id']);
         $data = array(
             'tasks' => $tasks,
-            'projects' => $this->get_controller("projects")->get_projects($project['id']),
+            //'projects' => $this->get_controller("projects")->get_projects($project['id']),
             'project' => $project,
             'tasks_button' => true,
             'paginator' => $paginator,

@@ -85,7 +85,7 @@ function get_project_panel_page(page){
     var request = project_panel.serialize();
 
     user_api(request,function(res){
-        $('#project_panel_result').html(res.panel);
+        $('#project_panel_result').html(res);
     },false,'/projects/');
 }
 

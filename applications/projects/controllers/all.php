@@ -47,7 +47,7 @@ class all extends \Controller {
 
         $data = array(
             'all_projects' => $projects,
-            'projects' => $this->get_controller("projects")->get_projects(),
+            //'projects' => $this->get_controller("projects")->get_projects(),
             'access' => $access['access'],
             'paginator' => $paginator
         );

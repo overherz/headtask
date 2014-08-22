@@ -7,7 +7,7 @@ body {
 
 body {
     overflow-y: scroll;
-    background: url(/source/images/background.png);
+    background: #fff;
 }
 
 /* Wrapper for page content to push down footer */
@@ -52,14 +52,15 @@ body {
 
 #logout {
     text-decoration: none;
-    font-size: 30px;
+    font-size: 20px;
     color: orange;
-    padding-bottom: 9px;
-    padding-top: 9px;
+    padding: 0 5px;
+    text-indent: 0;
 }
 
 .username_in_top {
     color: #fff !important;
+    text-indent: 0;
 }
 
 .username_in_top:hover {
@@ -197,7 +198,7 @@ input,textarea {
 
 .jumbotron {
     background: #fff;
-    padding: 10px !important;
+    padding: 15px !important;
 }
 
 .pagination_disabled a {
@@ -436,7 +437,7 @@ fieldset[disabled] .btn-oscar.active {
     padding: 0;
     list-style: none;
     position: relative;
-    margin: -10px -10px 10px -10px;
+    margin: -15px -15px 15px -15px;
 }
 
 .breadcrumbs-one li{
@@ -529,8 +530,7 @@ fieldset[disabled] .btn-oscar.active {
 }
 
 .username_in_top i {
-    font-size: 30px;
-    display: none;
+    font-size: 20px;
 }
 
 @media screen and (max-width: 1180px) {
@@ -540,29 +540,6 @@ fieldset[disabled] .btn-oscar.active {
 
     .menu_icon {
         display: inline;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .username_in_top span {
-        display: none;
-    }
-    .username_in_top i {
-        display: inline;
-    }
-
-    .username_in_top {
-        padding-bottom: 9px !important;
-        padding-top: 9px !important;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .username_in_top span {
-        display: inline;
-    }
-    .username_in_top i {
-        display: none;
     }
 }
 
@@ -781,3 +758,191 @@ blockquote:before {
 .label-cat {
     padding: 0 4px;
 }
+
+
+
+
+
+.navbar-brand {
+    padding: 15px 0;
+    font-size: 24px;
+}
+
+.pagination_projects a {
+    padding: 2px 5px !important;
+    text-indent: 0;
+    border: none !important;
+}
+
+.pagination_projects a:hover {
+    background: #eee !important;
+    border: none !important;
+    color: #2a6496 !important;
+}
+
+
+
+
+
+
+
+
+#wrapper {
+    padding-left: 0;
+
+}
+
+#wrapper.toggled {
+    padding-left: 200px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 200px;
+    width: 30px;
+    height: 100%;
+    margin-left: -200px;
+    overflow-y: auto;
+    background: #222;
+    overflow-x: hidden;
+    -webkit-box-shadow: 2px 0px 4px 0px rgba(50, 50, 50, 0.64);
+    -moz-box-shadow:    2px 0px 4px 0px rgba(50, 50, 50, 0.64);
+    box-shadow:         2px 0px 4px 0px rgba(50, 50, 50, 0.64);
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 200px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    padding: 0;
+    padding-left: 30px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -200px;
+    padding-left: 0;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 0;
+    line-height: 25px;
+}
+
+#wrapper.toggled .sidebar-nav li {
+    text-indent: 10px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #ccc;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li.active {
+    background: #ff9f5d;
+}
+
+.sidebar-nav li.active a{
+    color: #333 !important;
+    font-weight: bold;
+}
+
+.sidebar_project a {
+    color: #999 !important;
+}
+
+.sidebar_project.active {
+
+}
+
+.sidebar_project.active a {
+
+}
+
+.sidebar-nav li.active a {
+    color: #fff;
+}
+
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 50px;
+    font-size: 18px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:1100px) {
+    #wrapper {
+        padding-left: 200px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 200px;
+    }
+
+    .sidebar-nav li {
+        text-indent: 10px;
+    }
+
+    #wrapper.toggled .sidebar-nav li {
+        text-indent: 0;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 30px;
+    }
+
+    #page-content-wrapper {
+        padding: 0;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+        padding-left: 30px;
+    }
+}
+
+
+
+
+

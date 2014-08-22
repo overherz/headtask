@@ -69,8 +69,9 @@ class news extends \Controller {
 
             $users = $this->get_controller("projects","users")->get_users_project($project['id'],true);
 
+            $this->set_global('id_project',$project['id']);
             $this->layout_show('news/add_news.html',array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'add_news_button' => $add_news_button,
                 'project' => $project,
                 'access' => $access['access'],
@@ -92,10 +93,11 @@ class news extends \Controller {
             crumbs("Новости","/projects/news/{$access['project']['id']}");
             crumbs($news['name']);
 
+            $this->set_global('id_project',$access['project']['id']);
             $this->layout_show("news/news_show.html",array(
                 'news' => $news,
                 'project' => $access['project'],
-                'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
                 'news_button' => true,
                 'access' => $access['access'],
             ));
@@ -133,9 +135,10 @@ class news extends \Controller {
                 $news[] = $row;
             }
 
+            $this->set_global('id_project',$project['id']);
             $data = array(
                 'project' => $project,
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'news_button' => true,
                 'paginator' => $paginator,
                 'access' => $access['access'],

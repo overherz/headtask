@@ -50,13 +50,13 @@ class __TwigTemplate_bb98a034f2368313044fdb91493bd7bcd3f2e70b3ccc9c24ebb5d767bca
         // line 12
         echo \layout::func_from_text("    ");
         if ((isset($context["invite"]) ? $context["invite"] : null)) {
-            echo \layout::func_from_text("<input type=\"button\" class=\"btn btn-primary\" value=\"Пригласить\" style=\"position: absolute;right: 10px;\" id=\"invite_user\">");
+            echo \layout::func_from_text("<input type=\"button\" class=\"btn btn-primary\" value=\"Пригласить\" style=\"position: absolute;right: 15px;\" id=\"invite_user\">");
         }
         // line 13
         echo \layout::func_from_text("    ");
         $this->env->loadTemplate("/source/search_form.html")->display($context);
         // line 14
-        echo \layout::func_from_text("    <div id=\"search_result\">
+        echo \layout::func_from_text("    <div id=\"search_result\" style=\"margin: 0 -15px;\">
         ");
         // line 15
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "users_table.html"), "method"));

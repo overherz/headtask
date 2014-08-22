@@ -13,16 +13,80 @@
     <link rel="stylesheet" href="/source/css/content.css" type="text/css" />
     <link rel="stylesheet" href="/source/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400italic,600italic,400' rel='stylesheet' type='text/css'>
+    <link type="text/css" href="http://jscrollpane.kelvinluck.com/style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
     {% block css %}
     {% endblock %}
 </head>
+
 <body>
-<div id="wrap">
-    {% include "/source/menu.html" %}
-    <div class="from_top"></div>
-    {% block body %}{% endblock %}
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <span class="navbar-brand" id="menu-toggle">Task me!</span>
+                <div style="position: absolute;top:0;right:5px;">
+                    <a href="/users/profile/" class="username_in_top" title="Профиль" style="display: inline-block;"><i class="fa fa-user"></i></a>
+                    <a href="/users/logout/" id="logout" style="display: inline-block;"><i class="fa fa-power-off"></i></a>
+                </div>
+            </li>
+
+            {% for k,m in globals.menu %}
+                {% if k != "crumbs"%}
+                    {% if not m.category %}
+                        <li {% if m.active or globals.menu.crumbs[m.id] %}class="active"{% endif %}>
+                            <div style="position: relative;"><a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{m.name}}</a>
+                        {% if m.path == "/projects/" %}
+                            <div style="position: absolute;top:0;right:5px;">
+                                {% if access.add_project or access.add_own_project or globals.access.add_project or globals.access.add_own_project %}
+                                    <a href="/projects/add/" class="{% if add %}active{% endif %}" style="display: inline-block;text-indent: 2px;padding-right: 4px;"><i class="fa fa-plus"></i></a>
+                                {% endif %}
+                                <a href="/projects/all/" class="{% if all_projects %}active{% endif %}" style="display: inline-block;text-indent: 2px;padding-right: 4px;" title="Все проекты"><i class="fa fa-book"></i></a>
+                            </div>
+                        {% endif %}</div>
+                        </li>
+                        {% if m.path == "/projects/" %}
+                            <div id="project_panel_result">[[projects__get_projects]]</div>
+
+                            <form action="" class="project_panel_form" method="post" style="margin: 0px;">
+                                <input type="hidden" name="project_panel_page" value="">
+                                <input type="hidden" name="act" value="get_panel_page_projects">
+                                <input type="hidden" name="id_project" value="{{project.id}}">
+                            </form>
+                        {% endif %}
+                    {% else %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ m.name|raw }} <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                {% for sub in m.category %}
+                                    <li><a {% if sub.clickable %}href="{{sub.path}}"{% else %}href='javascript:void(0);'{% endif %} class="{% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}">{{sub.name}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid" style="padding: 0">
+            <div class="row" style="margin-right: 0;">
+                <div class="col-lg-12" style="padding-right: 0;">
+                {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
 </div>
-{% include "/source/footer.html" %}
+<!-- /#wrapper -->
+
+
 
 <script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
@@ -33,16 +97,18 @@
 <script src="/source/js/styler/jquery.formstyler.min.js"></script>
 <script src="/source/js/socket.io/socket.io.js"></script>
 <script src="/source/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="{{app.path('projects','projects.js')}}"></script>
 <!--<script src="{{app.path('users','client.js')}}"></script>-->
-<script>
-    $(document).ready(function($) {
-        $('#wrap input, #wrap select').styler();
-    });
-</script>
 <script src="/source/js/sound_manager/soundmanager2-nodebug-jsmin.js"></script>
 <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>-->
 <script type="text/javascript">
     $(document).ready(function($) {
+        $('input,select').styler();
+
+        $("#menu-toggle").click(function(e) {
+            $("#wrapper").toggleClass("toggled");
+        });
+
         soundManager.setup({
             useFlashBlock : false,
             url : '/source/js/sound_manager/',

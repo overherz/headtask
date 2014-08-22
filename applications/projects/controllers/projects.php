@@ -30,7 +30,7 @@ class projects extends \Controller {
     {
         if (!$this->id)
         {
-            $projects_ar = $this->get_projects();
+            $projects_ar = $this->get_projects(false,true);
             if ($projects_ar)
             {
                 $projects = $projects_ar['projects'];
@@ -80,9 +80,9 @@ class projects extends \Controller {
                     $end = date("d-m-Y",time());
                     $logs = $this->get_controller("projects","logs")->get_logs(false,$this->id,false);
 
+                    $this->set_global("id_project",$this->id);
                     $data = array(
                         'access' => $access['access'],
-                        'projects' => $this->get_projects($this->id),
                         'project' => $project,
                         'review_button' => true,
                         'stats' => $this->get_controller("projects","tasks")->get_stats($this->id),
@@ -127,10 +127,12 @@ class projects extends \Controller {
         return $paginator->pages;
     }
 
-    function get_projects($id_project=false)
+    function get_projects($id_project=false,$data=false)
     {
-        if ($id_project) $page = $this->get_number_page($id_project);
-        else $page = $_POST['project_panel_page'];
+        if ($this->get_global('id_project')) $id_project = $this->get_global('id_project');
+
+        if ($_POST['project_panel_page'] != "") $page = $_POST['project_panel_page'];
+        else if ($id_project) $page = $this->get_number_page($id_project);
 
         $where[] = "archive IS NULL";
         if ($_SESSION['user']['id_group'] != 1) $where[] = "u.id_user='{$_SESSION['user']['id_user']}' and u.role IS NOT NULL";
@@ -163,22 +165,31 @@ class projects extends \Controller {
             $projects[$row['id']] = $row;
         }
 
-        if ($projects)
+        if (!$data)
         {
             if ($_POST['project_panel_page'])
             {
                 $data['projects'] = array('projects' => $projects,'paginator' => $paginator,'current_project' => $_POST['id_project']);
-                $res['success']['panel'] = $this->layout_get("projects_in_panel.html",$data);
+                $res['success'] = $this->layout_get("projects_in_panel.html",$data);
 
                 echo json_encode($res);
             }
             else
             {
-                return array (
+                $data = array (
                     'projects' => $projects,
-                    'paginator' => $paginator
+                    'paginator' => $paginator,
+                    'current_project' => $this->get_global('id_project')
                 );
+                return $this->layout_get("projects_in_panel.html",array('projects' => $data));
             }
+        }
+        else
+        {
+            return array (
+                'projects' => $projects,
+                'paginator' => $paginator
+            );
         }
     }
 

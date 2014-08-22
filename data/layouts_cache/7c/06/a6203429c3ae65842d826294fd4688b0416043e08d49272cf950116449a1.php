@@ -16,44 +16,37 @@ class __TwigTemplate_7c06a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<div class=\"list-group\">
-    ");
-        // line 2
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["projects"]) ? $context["projects"] : null), "projects"));
-        $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["p"]) {
-            // line 3
-            echo \layout::func_from_text("        <a href=\"/projects/tasks/");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("/\" data-id=\"");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("\" class=\"list-group-item ");
+            // line 2
+            echo \layout::func_from_text("    <li style=\"text-indent: 30px;\" class=\"sidebar_project ");
             if ((($this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id") == $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id")) || ($this->getAttribute((isset($context["projects"]) ? $context["projects"] : null), "current_project") == $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id")))) {
                 echo \layout::func_from_text("active");
             }
             echo \layout::func_from_text("\">
-            ");
+    <a href=\"/projects/tasks/");
+            // line 3
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
+            echo \layout::func_from_text("/\" data-id=\"");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
+            echo \layout::func_from_text("\">
+        ");
             // line 4
             if ($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "owner")) {
-                echo \layout::func_from_text("<i class=\"fa fa-user\"></i> ");
+                echo \layout::func_from_text("<i class=\"fa fa-user\" style=\"text-indent: 0;\"></i> ");
             }
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("
-        </a>
-    ");
-            $context['_iterated'] = true;
-        }
-        if (!$context['_iterated']) {
-            // line 6
-            echo \layout::func_from_text("ничего не найдено
-    ");
+    </a>
+    </li>
+");
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['p'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 8
-        echo \layout::func_from_text("</div>
+        echo \layout::func_from_text("
 
 ");
         // line 10
@@ -73,6 +66,6 @@ class __TwigTemplate_7c06a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116
 
     public function getDebugInfo()
     {
-        return array (  60 => 10,  56 => 8,  49 => 6,  38 => 4,  27 => 3,  22 => 2,  19 => 1,);
+        return array (  53 => 10,  49 => 8,  36 => 4,  30 => 3,  23 => 2,  19 => 1,);
     }
 }

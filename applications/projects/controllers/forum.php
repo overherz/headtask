@@ -109,10 +109,11 @@ class forum extends \Admin {
         $query->execute(array($this->_0,$_SESSION['user']['id_user']));
         $new_posts = $query->fetchAll();
 
+        $this->set_global('id_project',$access['project']['id']);
         $data = array(
             'new_posts' => $new_posts,
             'access' => $access['access'],
-            'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+            //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
             'forum_button' => true,
             'paginator' => $paginator,
             'project' => $access['project']
@@ -156,8 +157,9 @@ class forum extends \Admin {
             if ($forum) crumbs("Редактирование \"{$forum['name']}\"");
             else crumbs("Добавление нового раздела");
 
+            $this->set_global('id_project',$project['id']);
             $this->layout_show('forum/add_forum.html',array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+               // 'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'add_forum_button' => $add_forum_button,
                 'project' => $project,
                 'access' => $access['access'],
@@ -215,9 +217,10 @@ class forum extends \Admin {
                 }
             }
 
+            $this->set_global('id_project',$project['id']);
             $data = array(
                 'project' => $project,
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+              //  'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'forum_button' => true,
                 'access' => $access['access'],
                 'forums' => $forums,
@@ -295,10 +298,11 @@ class forum extends \Admin {
                 }
             }
 
+            $this->set_global('id_project',$access['project']['id']);
             $data = array(
                 'forum' => $forum,
                 'project' => $access['project'],
-                'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+             //   'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
                 'forum_button' => true,
                 'access' => $access['access'],
                 'paginator' => $paginator,
@@ -359,8 +363,9 @@ class forum extends \Admin {
             $this->update_subscribe($this->_0);
             $topic['subscribe'] = $this->check_subscribe($this->_0);
 
+            $this->set_global('id_project',$access['project']['id']);
             $this->layout_show("forum/show_topic.html",array(
-                'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+              //  'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
                 'project' => $access['project'],
                 'access' => $access['access'],
                 'posts' => $posts,
@@ -397,8 +402,9 @@ class forum extends \Admin {
             crumbs($forum['name'],"/projects/forum/show/{$forum['id']}/");
             crumbs("Редактирование темы");
 
+            $this->set_global('id_project',$access['project']['id']);
             $this->layout_show("forum/add_topic.html",array(
-                'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+               // 'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
                 'project' => $access['project'],
                 'access' => $access['access'],
                 'topic' => $topic

@@ -24,8 +24,9 @@ class gantt extends \Controller {
                 crumbs($project['name'],"/projects/~{$project['id']}");
                 crumbs("Диаграмма Гантта");
 
+                $this->set_global('id_project',$this->id);
                 $this->layout_show('tasks/gantt.html',array(
-                    'projects' => $this->get_controller("projects")->get_projects($this->id),
+                    //'projects' => $this->get_controller("projects")->get_projects($this->id),
                     'project' => $project,
                     'gantt_button' => true,
                     'access' => $access['access'],

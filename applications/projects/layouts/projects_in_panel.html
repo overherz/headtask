@@ -1,10 +1,10 @@
-<div class="list-group">
-    {% for p in projects.projects %}
-        <a href="/projects/tasks/{{p.id}}/" data-id="{{ p.id }}" class="list-group-item {% if project.id == p.id or projects.current_project == p.id %}active{% endif %}">
-            {% if p.owner %}<i class="fa fa-user"></i> {% endif %}{{p.name}}
-        </a>
-    {% else %}ничего не найдено
-    {% endfor %}
-</div>
+{% for p in projects.projects %}
+    <li style="text-indent: 30px;" class="sidebar_project {% if project.id == p.id or projects.current_project == p.id %}active{% endif %}">
+    <a href="/projects/tasks/{{p.id}}/" data-id="{{ p.id }}">
+        {% if p.owner %}<i class="fa fa-user" style="text-indent: 0;"></i> {% endif %}{{p.name}}
+    </a>
+    </li>
+{% endfor %}
+
 
 {% include app.path('projects','jpaginator_project_panel.html') %}

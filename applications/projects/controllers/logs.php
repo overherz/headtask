@@ -208,7 +208,7 @@ class logs extends \Controller {
         $query->execute($search_data);
         while ($row = $query->fetch())
         {
-            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
             $logs[] = $row;
         }
 
