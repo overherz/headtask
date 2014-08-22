@@ -2,52 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/dd/22/175bc42deec10b8f665b23b6b97f86a9e54ab5480bb6a1eba00fdee845c6.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/b8/2e/2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f146717.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/31/3e/3d440d54d3418972021488c986bd0db4eea55507ff1d230bad2cc7649ba3.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/43/cc/89f1b3db42d0b784feeb49dddfbdbd5b2594394b916f89d00461c792c0c6.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/13/7d/9f4ac7ad4695567c4c5bf76594c3a583accdf1a0a968b1b6839e00ef19f3.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/09/f3/f38a8e1451cc7f6c259159ccd68ab5b89de4a7cf3b3585bf258f5c4ee465.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/20/ad/f3ba6cc7bc5198a4ffd14eb88465193ac628513938f993a9804724555893.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/b9/69/f7610072d19e0bd5a399e3f9e3dd74973db0bfef91073a5671bc33d8930c.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/globals/get_sprojects_access.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/6d/1c/221d1b5593884f7a0ebafb8046f266a200ded818c1ec62447252c13cd790.php" afterPath="$PROJECT_DIR$/data/layouts_cache/6d/1c/221d1b5593884f7a0ebafb8046f266a200ded818c1ec62447252c13cd790.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/9c/be/2cbff42b94fd31a17ebd02dc34dd4927b4dab20637f8bce3374b18613d22.php" afterPath="$PROJECT_DIR$/data/layouts_cache/9c/be/2cbff42b94fd31a17ebd02dc34dd4927b4dab20637f8bce3374b18613d22.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/8b/7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd40bce7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/a8/8b/7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd40bce7.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/95/a4/89360c4cdec3c73d69b0ce19bd448b533815b9526c1cf79cf0df77531a15.php" afterPath="$PROJECT_DIR$/data/layouts_cache/95/a4/89360c4cdec3c73d69b0ce19bd448b533815b9526c1cf79cf0df77531a15.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/bb/98/a034f2368313044fdb91493bd7bcd3f2e70b3ccc9c24ebb5d767bca5ce9f.php" afterPath="$PROJECT_DIR$/data/layouts_cache/bb/98/a034f2368313044fdb91493bd7bcd3f2e70b3ccc9c24ebb5d767bca5ce9f.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/7c/06/a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116449a1.php" afterPath="$PROJECT_DIR$/data/layouts_cache/7c/06/a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116449a1.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/add.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/all.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/all.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/82/0e/bbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157edb7b87.php" afterPath="$PROJECT_DIR$/data/layouts_cache/82/0e/bbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157edb7b87.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/config.php" afterPath="$PROJECT_DIR$/applications/projects/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" afterPath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/documents.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/documents.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/edit.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/5f/4c/f2ec211fb882e85f154dd12d6ada569260575ee64f3715d29f14701204e7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/5f/4c/f2ec211fb882e85f154dd12d6ada569260575ee64f3715d29f14701204e7.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/files.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/files.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/forum.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/forum.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/gantt.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/gantt.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/globals/get_user_menu.php" afterPath="$PROJECT_DIR$/globals/get_user_menu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/css/index.css" afterPath="$PROJECT_DIR$/source/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/index.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/index.html" afterPath="$PROJECT_DIR$/source/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/jpaginator_project_panel.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/jpaginator_project_panel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/layout.php" afterPath="$PROJECT_DIR$/core/layout.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/logs.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/logs.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/news.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/news.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/source/js/projects.js" afterPath="$PROJECT_DIR$/applications/projects/source/js/projects.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/projects.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/projects.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/projects_in_panel.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/projects_in_panel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/tasks.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/tasks.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/layouts/users.html" afterPath="$PROJECT_DIR$/applications/users/layouts/users.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/users.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/users.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/controllers/users.php" afterPath="$PROJECT_DIR$/applications/users/controllers/users.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/layouts/users_table.html" afterPath="$PROJECT_DIR$/applications/users/layouts/users_table.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/wrapper_index.html" afterPath="$PROJECT_DIR$/source/wrapper_index.html" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
     <ignored path="tasker.iws" />
@@ -183,7 +139,7 @@
       <file leaf-file-name="projects.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/applications/projects/controllers/projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="62" selection-start="3112" selection-end="3112" vertical-scroll-proportion="0.61927146" vertical-offset="867" max-vertical-offset="5083">
+            <state line="82" column="62" selection-start="3112" selection-end="3112" vertical-scroll-proportion="0.6207303" vertical-offset="867" max-vertical-offset="5083">
               <folding>
                 <marker date="1408745729306" expanded="true" signature="4477:4663" placeholder="SELECT n FRO..@recNo..." />
                 <marker date="1408745729306" expanded="true" signature="4504:4570" placeholder="SELECT @recN..projects..." />
@@ -831,13 +787,18 @@
       <created>1408661737014</created>
       <updated>1408661737014</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="new design">
+      <created>1408746101518</created>
+      <updated>1408746101518</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1054" extended-state="0" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -853,7 +814,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36421725" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -879,7 +839,8 @@
     <MESSAGE value="calendar fix locale lang" />
     <MESSAGE value="1" />
     <MESSAGE value="update logs app" />
-    <option name="LAST_COMMIT_MESSAGE" value="update logs app" />
+    <MESSAGE value="new design" />
+    <option name="LAST_COMMIT_MESSAGE" value="new design" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1275,7 +1236,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/controllers/projects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="62" selection-start="3112" selection-end="3112" vertical-scroll-proportion="0.61927146" vertical-offset="867" max-vertical-offset="5083">
+        <state line="82" column="62" selection-start="3112" selection-end="3112" vertical-scroll-proportion="0.6207303" vertical-offset="867" max-vertical-offset="5083">
           <folding>
             <marker date="1408745729306" expanded="true" signature="4477:4663" placeholder="SELECT n FRO..@recNo..." />
             <marker date="1408745729306" expanded="true" signature="4504:4570" placeholder="SELECT @recN..projects..." />
