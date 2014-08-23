@@ -1,5 +1,4 @@
 <?php
-
 namespace global_module;
 
 class get_user_menu extends \global_module
