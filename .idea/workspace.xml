@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/3c/f2/a71777db456f758a5470f303563eaa7b1962ac077716c9f6374f0045759a.php" afterPath="$PROJECT_DIR$/data/layouts_cache/3c/f2/a71777db456f758a5470f303563eaa7b1962ac077716c9f6374f0045759a.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/css/index.css" afterPath="$PROJECT_DIR$/source/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/layouts/user.html" afterPath="$PROJECT_DIR$/applications/users/layouts/user.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/wrapper_index.html" afterPath="$PROJECT_DIR$/source/wrapper_index.html" />
     </list>
@@ -39,19 +38,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="827" column="1" selection-start="15210" selection-end="15210" vertical-scroll-proportion="-16.925926" vertical-offset="13602" max-vertical-offset="18037">
+            <state line="819" column="0" selection-start="14879" selection-end="14879" vertical-scroll-proportion="0.2783019" vertical-offset="13687" max-vertical-offset="18020">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wrapper_index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="wrapper_index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="112" selection-start="202" selection-end="202" vertical-scroll-proportion="0.07888631" vertical-offset="0" max-vertical-offset="1955">
+            <state line="4" column="111" selection-start="201" selection-end="201" vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="1955">
               <folding />
             </state>
           </provider>
@@ -212,8 +211,8 @@
         <option value="$PROJECT_DIR$/applications/projects/layouts/index.html" />
         <option value="$PROJECT_DIR$/applications/users/layouts/user.html" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/projects.php" />
-        <option value="$PROJECT_DIR$/source/css/index.css" />
         <option value="$PROJECT_DIR$/source/wrapper_index.html" />
+        <option value="$PROJECT_DIR$/source/css/index.css" />
       </list>
     </option>
   </component>
@@ -899,7 +898,15 @@
       <created>1409000428394</created>
       <updated>1409000428394</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="new design">
+      <created>1409002288840</created>
+      <updated>1409002288840</updated>
+    </task>
+    <task id="LOCAL-00047" summary="new design">
+      <created>1409002868239</created>
+      <updated>1409002868239</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1456,16 +1463,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/css/index.css">
+    <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="827" column="1" selection-start="15210" selection-end="15210" vertical-scroll-proportion="-16.925926" vertical-offset="13602" max-vertical-offset="18037">
+        <state line="4" column="111" selection-start="201" selection-end="201" vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="1955">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
+    <entry file="file://$PROJECT_DIR$/source/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="112" selection-start="202" selection-end="202" vertical-scroll-proportion="0.07888631" vertical-offset="0" max-vertical-offset="1955">
+        <state line="819" column="0" selection-start="14879" selection-end="14879" vertical-scroll-proportion="0.2783019" vertical-offset="13687" max-vertical-offset="18020">
           <folding />
         </state>
       </provider>

@@ -28,6 +28,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
         // line 4
         $this->displayBlock('title', $context, $blocks);
         echo \layout::func_from_text("</title>
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">
     <link rel=\"icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
     <link rel=\"shortcut icon\" href=\"/favicon.ico\" type=\"image/x-icon\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
@@ -41,18 +42,18 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400italic,600italic,400' rel='stylesheet' type='text/css'>
     <link type=\"text/css\" href=\"http://jscrollpane.kelvinluck.com/style/jquery.jscrollpane.css\" rel=\"stylesheet\" media=\"all\" />
     ");
-        // line 17
+        // line 18
         $this->displayBlock('css', $context, $blocks);
-        // line 19
+        // line 20
         echo \layout::func_from_text("</head>
 
 <body>
 <div id=\"wrapper\">
 
 ");
-        // line 24
+        // line 25
         $this->displayBlock('menu', $context, $blocks);
-        // line 27
+        // line 28
         echo \layout::func_from_text("
     <!-- Page Content -->
     <div id=\"page-content-wrapper\">
@@ -60,9 +61,9 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
             <div class=\"row\" style=\"margin-right: 0;\">
                 <div class=\"col-lg-12\" style=\"padding-right: 0;\">
                 ");
-        // line 33
-        $this->displayBlock('body', $context, $blocks);
         // line 34
+        $this->displayBlock('body', $context, $blocks);
+        // line 35
         echo \layout::func_from_text("                </div>
             </div>
         </div>
@@ -85,11 +86,11 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 <script src=\"/source/js/jquery.scrollTo.min.js\"></script>
 <script src=\"/source/js/jquery.cookie.js\"></script>
 <script type=\"text/javascript\" src=\"");
-        // line 55
+        // line 56
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "projects.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 <!--<script src=\"");
-        // line 56
+        // line 57
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "client.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>-->
 <script src=\"/source/js/sound_manager/soundmanager2-nodebug-jsmin.js\"></script>
@@ -138,19 +139,19 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     window.ms = {
         address: \"");
-        // line 102
+        // line 103
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "message_server"), "html", null, true));
         echo \layout::func_from_text("\",
         uniq_key: \"");
-        // line 103
+        // line 104
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "uniq_key"), "html", null, true));
         echo \layout::func_from_text("\"
     }
 </script>
 ");
-        // line 106
+        // line 107
         $this->displayBlock('js', $context, $blocks);
-        // line 108
+        // line 109
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -160,29 +161,29 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     {
     }
 
-    // line 17
+    // line 18
     public function block_css($context, array $blocks = array())
     {
-        // line 18
+        // line 19
         echo \layout::func_from_text("    ");
     }
 
-    // line 24
+    // line 25
     public function block_menu($context, array $blocks = array())
     {
-        // line 25
+        // line 26
         echo \layout::func_from_text("    ");
         $this->env->loadTemplate("/source/menu.html")->display($context);
-        // line 26
+        // line 27
         echo \layout::func_from_text(" ");
     }
 
-    // line 33
+    // line 34
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 106
+    // line 107
     public function block_js($context, array $blocks = array())
     {
     }
@@ -199,6 +200,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     public function getDebugInfo()
     {
-        return array (  186 => 106,  181 => 33,  177 => 26,  174 => 25,  171 => 24,  167 => 18,  164 => 17,  159 => 4,  154 => 108,  152 => 106,  146 => 103,  142 => 102,  93 => 56,  89 => 55,  66 => 34,  64 => 33,  56 => 27,  54 => 24,  47 => 19,  45 => 17,  29 => 4,  24 => 1,);
+        return array (  187 => 107,  182 => 34,  178 => 27,  175 => 26,  172 => 25,  168 => 19,  165 => 18,  160 => 4,  155 => 109,  153 => 107,  147 => 104,  143 => 103,  94 => 57,  90 => 56,  67 => 35,  65 => 34,  57 => 28,  55 => 25,  48 => 20,  46 => 18,  29 => 4,  24 => 1,);
     }
 }
