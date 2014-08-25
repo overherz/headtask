@@ -16,145 +16,178 @@ class __TwigTemplate_38f76baab9950bfc35c0b0148c7879e8d0b5db9fd78dd3e77e62a3bd0aa
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<div class=\"navbar navbar-inverse navigation\" role=\"navigation\">
-    <div class=\"container-fluid\">
-        <div class=\"navbar-header\">
-            <span class=\"navbar-brand\">Task me!</span>
-            <div style=\"color: orange;position: absolute;left:80px;top:33px;font-size: 11px;\">beta</div>
-            ");
-        // line 6
-        if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu")) {
-            // line 7
-            echo \layout::func_from_text("            <button type=\"button\" class=\"navbar-toggle pull-left\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">
-                <span class=\"sr-only\">Toggle navigation</span>
-                <span class=\"icon-bar\"></span>
-                <span class=\"icon-bar\"></span>
-                <span class=\"icon-bar\"></span>
-            </button>
-            ");
-        }
-        // line 14
-        echo \layout::func_from_text("        </div>
+        echo \layout::func_from_text("<div id=\"sidebar-wrapper\">
+    <ul class=\"sidebar-nav\">
+        <li class=\"sidebar-brand\">
+            <span class=\"navbar-brand\">T<span class=\"brand_full\">ask me!</span></span>
+            <div style=\"position: absolute;top:0;right:0;\" id=\"user_menu\">
+                <a href=\"/users/profile/\" class=\"username_in_top\" title=\"Профиль\" style=\"display: inline-block;\"><i class=\"fa fa-user\"></i></a>
+                <a href=\"/users/logout/\" id=\"logout\" style=\"display: inline-block;\"><i class=\"fa fa-power-off\"></i></a>
+            </div>
+        </li>
+
         ");
-        // line 15
-        if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu")) {
-            // line 16
-            echo \layout::func_from_text("        <div class=\"navbar-collapse collapse\">
-            <ul class=\"nav navbar-nav\">
-                ");
-            // line 18
-            $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu"));
-            foreach ($context['_seq'] as $context["k"] => $context["m"]) {
-                // line 19
-                echo \layout::func_from_text("                    ");
-                if (((isset($context["k"]) ? $context["k"] : null) != "crumbs")) {
-                    // line 20
-                    echo \layout::func_from_text("                         ");
-                    if ((!$this->getAttribute((isset($context["m"]) ? $context["m"] : null), "category"))) {
-                        // line 21
-                        echo \layout::func_from_text("                            <li ");
-                        if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "active") || $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu"), "crumbs"), $this->getAttribute((isset($context["m"]) ? $context["m"] : null), "id"), array(), "array"))) {
-                            echo \layout::func_from_text("class=\"active\"");
+        // line 11
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu"));
+        foreach ($context['_seq'] as $context["k"] => $context["m"]) {
+            // line 12
+            echo \layout::func_from_text("            ");
+            if (((isset($context["k"]) ? $context["k"] : null) != "crumbs")) {
+                // line 13
+                echo \layout::func_from_text("                ");
+                if ((!$this->getAttribute((isset($context["m"]) ? $context["m"] : null), "category"))) {
+                    // line 14
+                    echo \layout::func_from_text("                    <li ");
+                    if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "active") || $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu"), "crumbs"), $this->getAttribute((isset($context["m"]) ? $context["m"] : null), "id"), array(), "array"))) {
+                        echo \layout::func_from_text("class=\"active\"");
+                    }
+                    echo \layout::func_from_text(">
+                        <div style=\"position: relative;\">
+                            <a ");
+                    // line 16
+                    if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "clickable") && ($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "application") || ($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "type") == "link")))) {
+                        echo \layout::func_from_text("href=\"");
+                        if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "type") == "link")) {
                         }
-                        echo \layout::func_from_text("><a ");
-                        if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "clickable") && ($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "application") || ($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "type") == "link")))) {
-                            echo \layout::func_from_text("href=\"");
-                            if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "type") == "link")) {
+                        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path"), "html", null, true));
+                        echo \layout::func_from_text("\"");
+                    } else {
+                        echo \layout::func_from_text("href='javascript:void(0);'");
+                    }
+                    echo \layout::func_from_text(" class=\"menu");
+                    echo \layout::func_from_text(twig_escape_filter($this->env, strtr($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path"), array("/" => "_")), "html", null, true));
+                    echo \layout::func_from_text("\" ");
+                    if ($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "new_window")) {
+                        echo \layout::func_from_text("target=\"_blank\"");
+                    }
+                    echo \layout::func_from_text(">
+                                ");
+                    // line 17
+                    if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path") == "/projects/")) {
+                        echo \layout::func_from_text("<i class=\"fa fa-tasks sidebar_icon fa-fw\"></i>");
+                    }
+                    // line 18
+                    echo \layout::func_from_text("                                ");
+                    if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path") == "/projects/tasks_today/")) {
+                        echo \layout::func_from_text("<i class=\"fa fa-tachometer sidebar_icon fa-fw\"></i>");
+                    }
+                    // line 19
+                    echo \layout::func_from_text("                                ");
+                    if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path") == "/projects/calendar/")) {
+                        echo \layout::func_from_text("<i class=\"fa fa-calendar sidebar_icon fa-fw\"></i>");
+                    }
+                    // line 20
+                    echo \layout::func_from_text("                                ");
+                    if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path") == "/users/")) {
+                        echo \layout::func_from_text("<i class=\"fa fa-users sidebar_icon fa-fw\"></i>");
+                    }
+                    // line 21
+                    echo \layout::func_from_text("                                ");
+                    if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path") == "/projects/logs/")) {
+                        echo \layout::func_from_text("<i class=\"fa fa-eye sidebar_icon fa-fw\"></i>");
+                    }
+                    // line 22
+                    echo \layout::func_from_text("                                <span class=\"sidebar_link\">");
+                    echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["m"]) ? $context["m"] : null), "name"), "html", null, true));
+                    echo \layout::func_from_text("</span>
+                            </a>
+                            ");
+                    // line 24
+                    if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path") == "/projects/")) {
+                        // line 25
+                        echo \layout::func_from_text("                                <div style=\"position: absolute;top:0;right:15px;\">
+                                    ");
+                        // line 26
+                        if (((($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_project") || $this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_own_project")) || $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "access"), "add_project")) || $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "access"), "add_own_project"))) {
+                            // line 27
+                            echo \layout::func_from_text("                                        <a href=\"/projects/add/\" class=\"");
+                            if ((isset($context["add"]) ? $context["add"] : null)) {
+                                echo \layout::func_from_text("active");
                             }
-                            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path"), "html", null, true));
+                            echo \layout::func_from_text("\" style=\"display: inline-block;text-indent: 2px;padding-right: 4px;\"><i class=\"fa fa-plus\"></i></a>
+                                    ");
+                        }
+                        // line 29
+                        echo \layout::func_from_text("                                    <a href=\"/projects/all/\" class=\"");
+                        if ((isset($context["all_projects"]) ? $context["all_projects"] : null)) {
+                            echo \layout::func_from_text("active");
+                        }
+                        echo \layout::func_from_text("\" style=\"display: inline-block;text-indent: 2px;padding-right: 4px;\" title=\"Все проекты\"><i class=\"fa fa-book\"></i></a>
+                                </div>
+                            ");
+                    }
+                    // line 31
+                    echo \layout::func_from_text("</div>
+                    </li>
+                    ");
+                    // line 33
+                    if (($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path") == "/projects/")) {
+                        // line 34
+                        echo \layout::func_from_text("                        <div id=\"project_panel_result\">[[projects__get_projects]]</div>
+
+                        <form action=\"\" class=\"project_panel_form\" method=\"post\" style=\"margin: 0px;\">
+                            <input type=\"hidden\" name=\"project_panel_page\" value=\"\">
+                            <input type=\"hidden\" name=\"act\" value=\"get_panel_page_projects\">
+                            <input type=\"hidden\" name=\"id_project\" value=\"");
+                        // line 39
+                        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
+                        echo \layout::func_from_text("\">
+                        </form>
+                    ");
+                    }
+                    // line 42
+                    echo \layout::func_from_text("                ");
+                } else {
+                    // line 43
+                    echo \layout::func_from_text("                    <li class=\"dropdown\">
+                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">");
+                    // line 44
+                    echo \layout::func_from_text($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "name"));
+                    echo \layout::func_from_text(" <b class=\"caret\"></b></a>
+                        <ul class=\"dropdown-menu\">
+                            ");
+                    // line 46
+                    $context['_parent'] = (array) $context;
+                    $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "category"));
+                    foreach ($context['_seq'] as $context["_key"] => $context["sub"]) {
+                        // line 47
+                        echo \layout::func_from_text("                                <li><a ");
+                        if ($this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "clickable")) {
+                            echo \layout::func_from_text("href=\"");
+                            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "path"), "html", null, true));
                             echo \layout::func_from_text("\"");
                         } else {
                             echo \layout::func_from_text("href='javascript:void(0);'");
                         }
-                        echo \layout::func_from_text(" title=\"");
-                        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["m"]) ? $context["m"] : null), "name"), "html", null, true));
-                        echo \layout::func_from_text("\" class=\"menu");
-                        echo \layout::func_from_text(twig_escape_filter($this->env, strtr($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "path"), array("/" => "_")), "html", null, true));
-                        echo \layout::func_from_text("\" ");
-                        if ($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "new_window")) {
-                            echo \layout::func_from_text("target=\"_blank\"");
+                        echo \layout::func_from_text(" class=\"");
+                        if (($this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "active") || $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu"), "crumbs"), $this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "id"), array(), "array"))) {
+                            echo \layout::func_from_text("active");
                         }
-                        echo \layout::func_from_text(">");
-                        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["m"]) ? $context["m"] : null), "name"), "html", null, true));
+                        echo \layout::func_from_text("\">");
+                        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "name"), "html", null, true));
                         echo \layout::func_from_text("</a></li>
-                         ");
-                    } else {
-                        // line 23
-                        echo \layout::func_from_text("                             <li class=\"dropdown\">
-                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">");
-                        // line 24
-                        echo \layout::func_from_text($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "name"));
-                        echo \layout::func_from_text(" <b class=\"caret\"></b></a>
-                                 <ul class=\"dropdown-menu\">
-                                     ");
-                        // line 26
-                        $context['_parent'] = (array) $context;
-                        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["m"]) ? $context["m"] : null), "category"));
-                        foreach ($context['_seq'] as $context["_key"] => $context["sub"]) {
-                            // line 27
-                            echo \layout::func_from_text("                                        <li><a ");
-                            if ($this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "clickable")) {
-                                echo \layout::func_from_text("href=\"");
-                                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "path"), "html", null, true));
-                                echo \layout::func_from_text("\"");
-                            } else {
-                                echo \layout::func_from_text("href='javascript:void(0);'");
-                            }
-                            echo \layout::func_from_text(" title=\"");
-                            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "name"), "html", null, true));
-                            echo \layout::func_from_text("\" class=\"");
-                            if (($this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "active") || $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "menu"), "crumbs"), $this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "id"), array(), "array"))) {
-                                echo \layout::func_from_text("active");
-                            }
-                            echo \layout::func_from_text("\">");
-                            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["sub"]) ? $context["sub"] : null), "name"), "html", null, true));
-                            echo \layout::func_from_text("</a></li>
-                                     ");
-                        }
-                        $_parent = $context['_parent'];
-                        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sub'], $context['_parent'], $context['loop']);
-                        $context = array_intersect_key($context, $_parent) + $_parent;
-                        // line 29
-                        echo \layout::func_from_text("                                 </ul>
-                             </li>
-                         ");
+                            ");
                     }
-                    // line 32
-                    echo \layout::func_from_text("                    ");
+                    $_parent = $context['_parent'];
+                    unset($context['_seq'], $context['_iterated'], $context['_key'], $context['sub'], $context['_parent'], $context['loop']);
+                    $context = array_intersect_key($context, $_parent) + $_parent;
+                    // line 49
+                    echo \layout::func_from_text("                        </ul>
+                    </li>
+                ");
                 }
-                // line 33
-                echo \layout::func_from_text("                ");
+                // line 52
+                echo \layout::func_from_text("            ");
             }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['k'], $context['m'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 34
-            echo \layout::func_from_text("            </ul>
-            <ul class=\"nav navbar-nav navbar-right\">
-                ");
-            // line 36
-            if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user")) {
-                // line 37
-                echo \layout::func_from_text("                    <li><a href=\"/users/profile/\" class=\"username_in_top\" title=\"Профиль\"><i class=\"fa fa-user\"></i><span>");
-                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "fio"), "html", null, true));
-                echo \layout::func_from_text("</span></a></li>
-                ");
-            }
-            // line 39
-            echo \layout::func_from_text("                ");
-            if ($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user")) {
-                // line 40
-                echo \layout::func_from_text("                    <li><a href=\"/users/logout/\" id=\"logout\"><i class=\"fa fa-power-off\"></i></a></li>
-                ");
-            }
-            // line 42
-            echo \layout::func_from_text("            </ul>
-        </div>
-        ");
+            // line 53
+            echo \layout::func_from_text("        ");
         }
-        // line 45
-        echo \layout::func_from_text("    </div>
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['k'], $context['m'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 54
+        echo \layout::func_from_text("    </ul>
 </div>");
     }
 
@@ -170,6 +203,6 @@ class __TwigTemplate_38f76baab9950bfc35c0b0148c7879e8d0b5db9fd78dd3e77e62a3bd0aa
 
     public function getDebugInfo()
     {
-        return array (  157 => 45,  152 => 42,  148 => 40,  145 => 39,  139 => 37,  137 => 36,  133 => 34,  127 => 33,  124 => 32,  119 => 29,  96 => 27,  92 => 26,  87 => 24,  84 => 23,  56 => 21,  53 => 20,  50 => 19,  46 => 18,  42 => 16,  40 => 15,  37 => 14,  28 => 7,  26 => 6,  19 => 1,);
+        return array (  190 => 54,  184 => 53,  181 => 52,  176 => 49,  155 => 47,  151 => 46,  146 => 44,  143 => 43,  140 => 42,  134 => 39,  127 => 34,  125 => 33,  121 => 31,  112 => 29,  104 => 27,  102 => 26,  99 => 25,  97 => 24,  91 => 22,  86 => 21,  81 => 20,  76 => 19,  71 => 18,  67 => 17,  49 => 16,  41 => 14,  38 => 13,  35 => 12,  31 => 11,  19 => 1,);
     }
 }

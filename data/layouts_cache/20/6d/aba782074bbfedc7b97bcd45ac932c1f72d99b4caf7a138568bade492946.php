@@ -47,10 +47,22 @@ class __TwigTemplate_206daba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade4
     public function block_project($context, array $blocks = array())
     {
         // line 13
-        echo \layout::func_from_text("    ");
-        $this->env->loadTemplate("/source/search_form.html")->display($context);
-        // line 14
-        echo \layout::func_from_text("<div id=\"search_result\">");
+        echo \layout::func_from_text("    <form action=\"\" id=\"search_form\" method=\"post\">
+        <div class=\"form-group col-xs-6\" style=\"padding-left: 0;\">
+            <input type=\"text\" name=\"search\" class=\"form-control\" placeholder=\"Поиск\" style=\"margin-bottom: 10px;\">
+            Личные <input type=\"checkbox\" name=\"my\" value=\"1\" ");
+        // line 16
+        if (($this->getAttribute((isset($context["get_data"]) ? $context["get_data"] : null), "filter") == "my")) {
+            echo \layout::func_from_text("checked");
+        }
+        echo \layout::func_from_text(">
+        </div>
+        <input type=\"hidden\" name=\"page\" value=\"\">
+    </form>
+    <div class=\"clearfix\"></div>
+
+<div id=\"search_result\">");
+        // line 22
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "all_projects_table.html"), "method"));
         $template->display($context);
         echo \layout::func_from_text("</div>
@@ -69,6 +81,6 @@ class __TwigTemplate_206daba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade4
 
     public function getDebugInfo()
     {
-        return array (  53 => 14,  50 => 13,  47 => 12,  39 => 8,  36 => 7,  31 => 4,  28 => 3,);
+        return array (  66 => 22,  55 => 16,  50 => 13,  47 => 12,  39 => 8,  36 => 7,  31 => 4,  28 => 3,);
     }
 }

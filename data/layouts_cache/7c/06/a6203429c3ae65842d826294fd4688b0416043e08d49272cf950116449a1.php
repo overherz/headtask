@@ -16,7 +16,7 @@ class __TwigTemplate_7c06a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<ul style=\"list-style: none;padding-left: 0;\">
+        echo \layout::func_from_text("<ul style=\"list-style: none;padding-left: 0;\" class=\"projects_in_panel\">
 ");
         // line 2
         $context['_parent'] = (array) $context;

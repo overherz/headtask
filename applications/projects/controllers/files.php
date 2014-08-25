@@ -107,7 +107,7 @@ class files extends \Admin {
             $access = $this->get_controller("projects","users")->get_access($this->id);
             if (!$project = $access['project']) $this->error_page();
 
-            if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+            if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}/");
             crumbs("Файлы");
 

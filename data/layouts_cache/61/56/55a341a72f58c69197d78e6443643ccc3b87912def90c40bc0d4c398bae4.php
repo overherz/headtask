@@ -41,7 +41,7 @@ class __TwigTemplate_615655a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c39
     public function block_context($context, array $blocks = array())
     {
         // line 10
-        echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin-bottom:0;\">
+        echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin-bottom:20px;\">
     <input type=\"hidden\" name=\"page\" value=\"\">
     Тип <select name=\"type\">
         <option>&nbsp;</option>

@@ -1,7 +1,20 @@
 {% extends "/source/wrapper_index.html" %}
 
+{% block css %}
+    <style>
+        body {
+            background: url(/source/images/login_back.jpg) no-repeat;
+        }
+
+        #wrapper {
+            padding-left: 0 !important;
+        }
+    </style>
+{% endblock %}
+
+{% block menu %}{% endblock %}
 {% block body %}
-    <div id="content">
+    <div id="content" style="margin: 50px;">
         <div class="panel panel-default">
             <div class="panel-heading"><b>{% block info_title %}{% endblock %}</b></div>
             <div class="panel-body">

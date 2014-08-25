@@ -22,3 +22,7 @@ body {
 .alert-danger {
     margin-top: 10px;
 }
+
+#wrapper {
+    padding-left: 0 !important;
+}

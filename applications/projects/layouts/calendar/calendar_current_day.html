@@ -3,21 +3,19 @@
 {% block title %}Календарь. Задачи сегодня{% endblock %}
 
 {% block js %}
-    <script src="/source/js/jquery.cookie.js"></script>
     <script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
 
 {% block context %}
 <div id="projects_info"></div>
 <ul class="breadcrumbs-one" >
-    <li><a>Задачи</a></li>
     <li>
         <a class="current">
-            <span style="margin-right: 5px;"><input type="checkbox" name="d1" id="d1" class="dashboard_option" value="1" {% if mask b-and 1 %}checked{% endif %}> <label for="d1" style="margin-bottom: 0;"> Создатель</label></span>
-            <span style="margin-right: 5px;"><input type="checkbox" name="d2" id="d2" class="dashboard_option" value="2" {% if mask b-and 2 %}checked{% endif %}> <label for="d2" style="margin-bottom: 0;">Делегированные</label></span>
-            <span style="margin-right: 5px;"><input type="checkbox" name="d4" id="d4" class="dashboard_option" value="4" {% if mask b-and 4 %}checked{% endif %}> <label for="d4" style="margin-bottom: 0;">Ничьи</label></span>
-            <span style="margin-right: 5px;"><input type="checkbox" name="d8" id="d8" class="dashboard_option" value="8" {% if mask b-and 8 %}checked{% endif %}> <label for="d8" style="margin-bottom: 0;">Чужие</label></span>
-            <span style="margin-right: 5px;"><input type="checkbox" name="d16" id="d16" class="dashboard_option" value="16" {% if mask b-and 16 %}checked{% endif %}> <label for="d16" style="margin-bottom: 0;">Закрытые сегодня</label></span>
+            <span style="margin-right: 25px;"><input type="checkbox" name="d1" id="d1" class="dashboard_option" value="1" {% if mask b-and 1 %}checked{% endif %}> <label for="d1" style="margin-bottom: 0;"> Мои</label></span>
+            <span style="margin-right: 5px;"><input type="radio" name="d2" id="d2" class="dashboard_option" value="2" {% if mask b-and 2 %}checked{% endif %}> <label for="d2" style="margin-bottom: 0;">Мне</label></span>
+            <span style="margin-right: 5px;"><input type="radio" name="d2" id="d4" class="dashboard_option" value="4" {% if mask b-and 4 %}checked{% endif %}> <label for="d4" style="margin-bottom: 0;">Никому</label></span>
+            <span style="margin-right: 25px;"><input type="radio" name="d2" id="d8" class="dashboard_option" value="8" {% if mask b-and 8 %}checked{% endif %}> <label for="d8" style="margin-bottom: 0;">Не мне</label></span>
+            <span style="margin-right: 5px;"><input type="checkbox" name="d16" id="d16" class="dashboard_option" value="16" {% if mask b-and 16 %}checked{% endif %}> <label for="d16" style="margin-bottom: 0;">Закрытые</label></span>
         </a>
     </li>
 </ul>

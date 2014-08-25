@@ -251,7 +251,7 @@ function user_api(request,func,func1,path)
     });
 }
 
-function scrollbarWidth(minus) {
+function scrollbarWidth(minus,only_int) {
     if (!isMyStuffScrolling())
     {
         var $inner = jQuery('<div style="width: 100%; height:200px;">test</div>'),
@@ -264,9 +264,11 @@ function scrollbarWidth(minus) {
         $outer.css('overflow', 'scroll');
         var width2 = outer.clientWidth;
         $outer.remove();
+        var suf = "";
+        if (!only_int) suf = "px";
 
-        if (minus) return -1 * (width1 - width2) + "px";
-        else return (width1 - width2) + "px";
+        if (minus) return -1 * (width1 - width2) + suf;
+        else return (width1 - width2) + suf;
     }
     else return false;
 }

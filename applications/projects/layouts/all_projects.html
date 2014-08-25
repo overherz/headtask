@@ -10,6 +10,14 @@
 {% endblock %}
 
 {% block project %}
-    {% include "/source/search_form.html" %}
+    <form action="" id="search_form" method="post">
+        <div class="form-group col-xs-6" style="padding-left: 0;">
+            <input type="text" name="search" class="form-control" placeholder="Поиск" style="margin-bottom: 10px;">
+            Личные <input type="checkbox" name="my" value="1" {% if get_data.filter == 'my' %}checked{% endif %}>
+        </div>
+        <input type="hidden" name="page" value="">
+    </form>
+    <div class="clearfix"></div>
+
 <div id="search_result">{% include app.path("projects","all_projects_table.html") %}</div>
 {% endblock %}

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/source/js/styler/jquery.formstyler.css" type="text/css" />
     <link href="http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/source/admin/fonts/font-awesome/css/font-awesome.minba72.css?v=4.0.3" rel="stylesheet">
+    <link href="/source/admin/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/source/css/jquery.jgrowl.css" type="text/css" />
     <link rel="stylesheet" href="/source/css/popup.css" type="text/css" />
     <link rel="stylesheet" href="/source/css/content.css" type="text/css" />
@@ -21,55 +21,9 @@
 <body>
 <div id="wrapper">
 
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <span class="navbar-brand" id="menu-toggle">Task me!</span>
-                <div style="position: absolute;top:0;right:5px;">
-                    <a href="/users/profile/" class="username_in_top" title="Профиль" style="display: inline-block;"><i class="fa fa-user"></i></a>
-                    <a href="/users/logout/" id="logout" style="display: inline-block;"><i class="fa fa-power-off"></i></a>
-                </div>
-            </li>
-
-            {% for k,m in globals.menu %}
-                {% if k != "crumbs"%}
-                    {% if not m.category %}
-                        <li {% if m.active or globals.menu.crumbs[m.id] %}class="active"{% endif %}>
-                            <div style="position: relative;"><a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{m.name}}</a>
-                        {% if m.path == "/projects/" %}
-                            <div style="position: absolute;top:0;right:5px;">
-                                {% if access.add_project or access.add_own_project or globals.access.add_project or globals.access.add_own_project %}
-                                    <a href="/projects/add/" class="{% if add %}active{% endif %}" style="display: inline-block;text-indent: 2px;padding-right: 4px;"><i class="fa fa-plus"></i></a>
-                                {% endif %}
-                                <a href="/projects/all/" class="{% if all_projects %}active{% endif %}" style="display: inline-block;text-indent: 2px;padding-right: 4px;" title="Все проекты"><i class="fa fa-book"></i></a>
-                            </div>
-                        {% endif %}</div>
-                        </li>
-                        {% if m.path == "/projects/" %}
-                            <div id="project_panel_result">[[projects__get_projects]]</div>
-
-                            <form action="" class="project_panel_form" method="post" style="margin: 0px;">
-                                <input type="hidden" name="project_panel_page" value="">
-                                <input type="hidden" name="act" value="get_panel_page_projects">
-                                <input type="hidden" name="id_project" value="{{project.id}}">
-                            </form>
-                        {% endif %}
-                    {% else %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ m.name|raw }} <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                {% for sub in m.category %}
-                                    <li><a {% if sub.clickable %}href="{{sub.path}}"{% else %}href='javascript:void(0);'{% endif %} class="{% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}">{{sub.name}}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-    <!-- /#sidebar-wrapper -->
+{% block menu %}
+    {% include "/source/menu.html" %}
+ {% endblock %}
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -97,6 +51,7 @@
 <script src="/source/js/styler/jquery.formstyler.min.js"></script>
 <script src="/source/js/socket.io/socket.io.js"></script>
 <script src="/source/js/jquery.scrollTo.min.js"></script>
+<script src="/source/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="{{app.path('projects','projects.js')}}"></script>
 <!--<script src="{{app.path('users','client.js')}}"></script>-->
 <script src="/source/js/sound_manager/soundmanager2-nodebug-jsmin.js"></script>
@@ -105,8 +60,24 @@
     $(document).ready(function($) {
         $('input,select').styler();
 
-        $("#menu-toggle").click(function(e) {
+        $(".sidebar-nav").click(function(event){
+            event.stopPropagation();
+        })
+
+        var window_width = parseInt($(window).width()) + parseInt(scrollbarWidth(false,true));
+        if (window_width >= 1100)
+        {
+            if ($.cookie('sidebar') == "toggled") $("#wrapper").addClass('toggled');
+        }
+
+        $("#sidebar-wrapper").click(function(e) {
             $("#wrapper").toggleClass("toggled");
+            if (window_width >= 1100)
+            {
+                var c_tog = false;
+                if ($("#wrapper").hasClass('toggled')) c_tog = 'toggled';
+                $.cookie('sidebar', c_tog, { expires: 30, path: '/' });
+            }
         });
 
         soundManager.setup({

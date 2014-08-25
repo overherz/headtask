@@ -30,14 +30,7 @@ class projects extends \Controller {
     {
         if (!$this->id)
         {
-            $projects_ar = $this->get_projects(false,true);
-            if ($projects_ar)
-            {
-                $projects = $projects_ar['projects'];
-                $redirect = current($projects_ar['projects']);
-                $this->redirect("/projects/tasks/{$redirect['id']}/");
-            }
-            else $this->redirect("/projects/all/");
+            $this->redirect("/projects/all/");
         }
         else
         {
@@ -50,7 +43,7 @@ class projects extends \Controller {
 
             if (!$res['error'])
             {
-                if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+                if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
                 crumbs($project['name'],"/projects/~{$project['id']}");
                 crumbs("Обзор");
 

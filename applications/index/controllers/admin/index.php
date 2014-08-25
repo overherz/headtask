@@ -10,12 +10,6 @@ class index extends \Admin {
             case "login":
                 $this->login();
                 break;
-            case "lost_pass":
-                $this->lost_pass();
-                break;
-            case "get_lost_pass":
-                $this->get_lost_pass();
-                break;
             case "update_session":
                 $this->update_session();
                 break;
@@ -85,20 +79,6 @@ class index extends \Admin {
                 if ($ban->check_for_ban() && $log) $log->save_into_log("login","Ограничение авторизации",false,"ip забанен");
             }
         }
-
-        echo json_encode($res);
-    }
-
-    function lost_pass()
-    {
-        $res['success'] = $this->layout_get("admin/lost_pass.html");
-        echo json_encode($res);
-    }
-
-    function get_lost_pass()
-    {
-        $u_cr = $this->get_controller("users","recovery");
-        $res = $u_cr->add_recovery($_POST['email']);
 
         echo json_encode($res);
     }

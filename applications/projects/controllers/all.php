@@ -24,6 +24,12 @@ class all extends \Controller {
             $where[] = "(".implode("OR ",$search_ar).")";
         }
 
+        if ($_POST['my'] != "" || $_GET['filter'] == "my") $my = true;
+        if ($my)
+        {
+            $where[] = "p.owner=".$_SESSION['user']['id_user'];
+        }
+
         if ($where) $where = "where ".implode(" and ",$where);
 
         $total = $this->db->num_rows("projects as p

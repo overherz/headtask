@@ -8,16 +8,6 @@ body {
 body {
     overflow-y: scroll;
     background: #fff;
-}
-
-/* Wrapper for page content to push down footer */
-#wrap {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    /* Negative indent footer by it's height */
-    margin: 0 auto -25px;
-    color: #333;
     min-width: 720px;
 }
 
@@ -54,13 +44,18 @@ body {
     text-decoration: none;
     font-size: 20px;
     color: orange;
-    padding: 0 5px;
     text-indent: 0;
+    position: absolute;
+    top:5px;
+    right:5px;
 }
 
 .username_in_top {
     color: #fff !important;
     text-indent: 0;
+    position: absolute;
+    top:5px;
+    right:30px;
 }
 
 .username_in_top:hover {
@@ -86,7 +81,7 @@ a {
 }
 
 .table {
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 .table th, .table td {
@@ -666,8 +661,8 @@ blockquote:before {
 }
 
 .task_diff_alert {
-    background:red !important;
-    color:#fff;
+    color:red;
+    font-weight: bold;
 }
 
 #show_project_panel,#show_project_panel_left {
@@ -765,7 +760,7 @@ blockquote:before {
 
 .navbar-brand {
     padding: 15px 0;
-    font-size: 24px;
+    font-size: 32px;
 }
 
 .pagination_projects a {
@@ -796,11 +791,31 @@ blockquote:before {
     padding-left: 200px;
 }
 
+#wrapper.toggled .navbar-brand {
+    font-size: 26px;
+}
+
+.brand_full {
+    display: none;
+}
+
+#user_menu {
+    display: none;
+}
+
+#wrapper.toggled #user_menu {
+    display: block;
+}
+
+#wrapper.toggled .brand_full {
+    display: inline;
+}
+
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
     left: 200px;
-    width: 30px;
+    width: 40px;
     height: 100%;
     margin-left: -200px;
     overflow-y: auto;
@@ -818,11 +833,11 @@ blockquote:before {
 #page-content-wrapper {
     width: 100%;
     padding: 0;
-    padding-left: 30px;
+    padding-left: 40px;
 }
 
 #wrapper.toggled #page-content-wrapper {
-    position: absolute;
+
     margin-right: -200px;
     padding-left: 0;
 }
@@ -830,7 +845,6 @@ blockquote:before {
 /* Sidebar Styles */
 
 .sidebar-nav {
-    position: absolute;
     top: 0;
     width: 200px;
     margin: 0;
@@ -839,12 +853,13 @@ blockquote:before {
 }
 
 .sidebar-nav li {
-    text-indent: 0;
-    line-height: 25px;
+    text-indent: 10px;
+    line-height: 40px;
 }
 
 #wrapper.toggled .sidebar-nav li {
     text-indent: 10px;
+    line-height: 25px;
 }
 
 .sidebar-nav li a {
@@ -860,11 +875,11 @@ blockquote:before {
 }
 
 .sidebar-nav li.active {
-    background: #ff9f5d;
+    background: #428bca;
 }
 
-.sidebar-nav li.active a{
-    color: #333 !important;
+.sidebar-nav li.active a {
+    color: #fff !important;
     font-weight: bold;
 }
 
@@ -877,11 +892,19 @@ blockquote:before {
 }
 
 .sidebar_project.active a {
-
+    font-weight: normal !important;
 }
 
 .sidebar-nav li.active a {
     color: #fff;
+}
+
+.projects_in_panel {
+    display: none;
+}
+
+#wrapper.toggled .projects_in_panel {
+    display: block;
 }
 
 
@@ -906,6 +929,23 @@ blockquote:before {
     background: none;
 }
 
+.sidebar_icon {
+    text-indent: -10px;
+    font-size: 1.5em;
+}
+
+#wrapper.toggled .sidebar_icon {
+    font-size: 1em;
+}
+
+.sidebar_link {
+    display: none;
+}
+
+#wrapper.toggled .sidebar_link {
+    display: inline;
+}
+
 @media(min-width:1100px) {
     #wrapper {
         padding-left: 200px;
@@ -919,16 +959,26 @@ blockquote:before {
         width: 200px;
     }
 
+    .projects_in_panel {
+        display: block;
+    }
+
+    #wrapper.toggled .projects_in_panel {
+        display: none;
+    }
+
     .sidebar-nav li {
         text-indent: 10px;
+        line-height: 25px;
     }
 
     #wrapper.toggled .sidebar-nav li {
-        text-indent: 0;
+        line-height: 40px;
+        /*text-indent: 6px;*/
     }
 
     #wrapper.toggled #sidebar-wrapper {
-        width: 30px;
+        width: 40px;
     }
 
     #page-content-wrapper {
@@ -938,7 +988,47 @@ blockquote:before {
     #wrapper.toggled #page-content-wrapper {
         position: relative;
         margin-right: 0;
-        padding-left: 30px;
+        padding-left: 40px;
+    }
+
+    .brand_full {
+        display: inline;
+    }
+
+    #wrapper.toggled .brand_full {
+        display: none;
+    }
+
+    #user_menu {
+        display: block;
+    }
+
+    #wrapper.toggled #user_menu {
+        display: none;
+    }
+
+    .sidebar_link {
+        display: inline;
+    }
+
+    #wrapper.toggled .sidebar_link {
+        display: none;
+    }
+
+    .sidebar_icon {
+        font-size: 1em;
+    }
+
+    #wrapper.toggled .sidebar_icon {
+        font-size: 1.5em;
+    }
+
+    .navbar-brand {
+        font-size: 26px;
+    }
+
+    #wrapper.toggled .navbar-brand {
+        font-size: 32px;
     }
 }
 

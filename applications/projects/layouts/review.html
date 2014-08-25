@@ -27,7 +27,7 @@
 
 <ul class="nav nav-tabs" id="form_tabs">
     {% if logs %}<li class="active"><a href="#tabs-1">Лента</a></li>{% endif %}
-    <li><a href="#tabs-2">Статистика</a></li>
+    <li {% if not logs %}class="active"{% endif %}><a href="#tabs-2">Статистика</a></li>
 </ul>
 
 <div class="tab-content">

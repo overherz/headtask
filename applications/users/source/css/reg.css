@@ -1,3 +1,7 @@
+body {
+    background: url(/source/images/login_back.jpg) no-repeat;
+}
+
 #male {
     background: url("/source/images/male.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
     cursor: pointer;
@@ -19,6 +23,11 @@
     width: 25px;
 }
 
+#regForm {
+    padding: 19px 29px 29px;
+    margin: 100px auto 20px;
+}
+
 #female.select {
     background: url("/source/images/female_select.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
@@ -34,4 +43,8 @@
 
 #regForm input.error, .body_reg #captcha.error,.body_reg #gender.error {
     background: #FFC1C1 !important;
+}
+
+#wrapper {
+    padding-left: 0 !important;
 }

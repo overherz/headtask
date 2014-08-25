@@ -1,4 +1,4 @@
-<ul style="list-style: none;padding-left: 0;">
+<ul style="list-style: none;padding-left: 0;" class="projects_in_panel">
 {% for p in projects.projects %}
     <li style="text-indent: 0;" class="sidebar_project {% if project.id == p.id or projects.current_project == p.id %}active{% endif %}">
     <a href="/projects/tasks/{{p.id}}/" data-id="{{ p.id }}" style="padding: 5px 0 5px 30px;line-height: 15px;">

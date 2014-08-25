@@ -58,6 +58,12 @@ class users extends \Controller {
             case "get_user_tags":
                 $this->get_user_tags();
                 break;
+            case "lost_pass":
+                $this->lost_pass();
+                break;
+            case "get_lost_pass":
+                $this->get_lost_pass();
+                break;
             default: $this->default_show();
         }
     }
@@ -302,5 +308,18 @@ class users extends \Controller {
         }
     }
 
+    function lost_pass()
+    {
+        $res['success'] = $this->layout_get("lost_pass.html");
+        echo json_encode($res);
+    }
+
+    function get_lost_pass()
+    {
+        $u_cr = $this->get_controller("users","recovery");
+        $res = $u_cr->add_recovery($_POST['email']);
+
+        echo json_encode($res);
+    }
 }
 

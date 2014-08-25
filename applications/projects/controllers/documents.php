@@ -58,7 +58,7 @@ class documents extends \Controller {
         {
             $project = $access['project'];
 
-            if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+            if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}/");
             crumbs("Wiki","/projects/documents/{$project['id']}");
             if ($documents)
@@ -87,7 +87,7 @@ class documents extends \Controller {
         {
             $access = $this->get_controller("projects","users")->get_access($documents['id_project']);
 
-            if ($access['project']['owner']) crumbs("Личные проекты","/projects/",true);
+            if ($access['project']['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($access['project']['name'],"/projects/~{$access['project']['id']}/");
             crumbs("Wiki","/projects/documents/{$access['project']['id']}");
             crumbs($documents['name']);
@@ -109,7 +109,7 @@ class documents extends \Controller {
         $access = $this->get_controller("projects","users")->get_access($this->id);
         if ($project = $access['project'])
         {
-            if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+            if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}/");
             crumbs("Wiki");
 

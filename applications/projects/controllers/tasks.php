@@ -62,7 +62,7 @@ class tasks extends \Controller {
         {
             if (!$project = $access['project']) $this->error_page();
 
-            if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+            if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}");
             crumbs("Задачи","/projects/tasks/{$project['id']}/");
             crumbs("Добавление");
@@ -99,7 +99,7 @@ class tasks extends \Controller {
             $task = $access['task'];
             if (intval($task['spent_time']) == $task['spent_time']) $task['spent_time'] = (int) $task['spent_time'];
 
-            if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+            if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}");
             crumbs("Задачи","/projects/tasks/{$project['id']}/");
             crumbs($task['name'],"/projects/tasks/show/{$task['id']}/");
@@ -178,7 +178,7 @@ class tasks extends \Controller {
         $access = $this->get_controller("projects","users")->get_access($this->id);
         if (!$project = $access['project']) $this->error_page();
 
-        if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+        if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
         crumbs($project['name'],"/projects/~{$project['id']}");
         crumbs("Задачи");
 

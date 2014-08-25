@@ -12,6 +12,7 @@ class __TwigTemplate_6f9322c63a913dc480f981798a731f4297ef3b657d41900353f1b68e650
         $this->blocks = array(
             'css' => array($this, 'block_css'),
             'js' => array($this, 'block_js'),
+            'menu' => array($this, 'block_menu'),
             'body' => array($this, 'block_body'),
         );
     }
@@ -47,9 +48,14 @@ class __TwigTemplate_6f9322c63a913dc480f981798a731f4297ef3b657d41900353f1b68e650
     }
 
     // line 9
+    public function block_menu($context, array $blocks = array())
+    {
+    }
+
+    // line 10
     public function block_body($context, array $blocks = array())
     {
-        // line 10
+        // line 11
         echo \layout::func_from_text("<div class=\"container\">
     <form class=\"form-signin\" id=\"login_form\">
         <div class=\"panel panel-default\">
@@ -64,6 +70,7 @@ class __TwigTemplate_6f9322c63a913dc480f981798a731f4297ef3b657d41900353f1b68e650
                     </label>
                 </div>
                 <button class=\"btn btn-success login\" type=\"button\">Войти</button>
+                <button class=\"btn btn-danger\" id=\"lost_pass\" type=\"button\" style=\"border-color: #ff9600 !important;\">Забыл пароль</button>
                 <div class=\"alert alert-danger\" style=\"display: none;\"></div>
             </div>
         </div>
@@ -84,6 +91,6 @@ class __TwigTemplate_6f9322c63a913dc480f981798a731f4297ef3b657d41900353f1b68e650
 
     public function getDebugInfo()
     {
-        return array (  53 => 10,  50 => 9,  43 => 7,  40 => 6,  33 => 4,  30 => 3,);
+        return array (  59 => 11,  56 => 10,  51 => 9,  44 => 7,  41 => 6,  34 => 4,  31 => 3,);
     }
 }

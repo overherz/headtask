@@ -22,9 +22,9 @@ $(document).ready(function() {
                 user_api(request, function (data) {
                     show_message("success", "Инструкция по восстановлению отправлена на Ваш почтовый ящик");
                     hide_popup();
-                });
+                },false,'/users/');
             });
-        });
+        },false,'/users/');
         return false;
     });
 
