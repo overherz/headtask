@@ -946,6 +946,14 @@ blockquote:before {
     display: inline;
 }
 
+.jpaginator_project_panel {
+    display: none;
+}
+
+#wrapper.toggled .jpaginator_project_panel {
+    display: block;
+}
+
 @media(min-width:1100px) {
     #wrapper {
         padding-left: 200px;
@@ -1029,6 +1037,14 @@ blockquote:before {
 
     #wrapper.toggled .navbar-brand {
         font-size: 32px;
+    }
+
+    .jpaginator_project_panel {
+        display: block;
+    }
+
+    #wrapper.toggled .jpaginator_project_panel {
+        display: none;
     }
 }
 

@@ -1,5 +1,5 @@
 {% if projects.paginator.num_list %}
-<div style="text-align: center;">
+<div style="text-align: center;" class="jpaginator_project_panel">
     <ul class="pagination pagination_projects" style="margin: 10px 0 0;">
         {% for i in projects.paginator.num_list %}
             {% if loop.first and i != 1 %}

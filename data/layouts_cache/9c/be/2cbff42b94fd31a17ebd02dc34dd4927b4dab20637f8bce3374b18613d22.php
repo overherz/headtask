@@ -18,7 +18,7 @@ class __TwigTemplate_9cbe2cbff42b94fd31a17ebd02dc34dd4927b4dab20637f8bce3374b186
         // line 1
         if ($this->getAttribute($this->getAttribute((isset($context["projects"]) ? $context["projects"] : null), "paginator"), "num_list")) {
             // line 2
-            echo \layout::func_from_text("<div style=\"text-align: center;\">
+            echo \layout::func_from_text("<div style=\"text-align: center;\" class=\"jpaginator_project_panel\">
     <ul class=\"pagination pagination_projects\" style=\"margin: 10px 0 0;\">
         ");
             // line 4
@@ -121,6 +121,6 @@ class __TwigTemplate_9cbe2cbff42b94fd31a17ebd02dc34dd4927b4dab20637f8bce3374b186
 
     public function getDebugInfo()
     {
-        return array (  106 => 21,  92 => 20,  84 => 18,  79 => 17,  77 => 16,  74 => 15,  66 => 13,  60 => 11,  58 => 10,  55 => 9,  52 => 8,  48 => 7,  45 => 6,  42 => 5,  25 => 4,  21 => 2,  53 => 10,  49 => 8,  36 => 4,  30 => 3,  23 => 2,  19 => 1,);
+        return array (  106 => 21,  92 => 20,  84 => 18,  79 => 17,  77 => 16,  74 => 15,  66 => 13,  60 => 11,  58 => 10,  55 => 9,  52 => 8,  48 => 7,  45 => 6,  42 => 5,  25 => 4,  21 => 2,  19 => 1,);
     }
 }

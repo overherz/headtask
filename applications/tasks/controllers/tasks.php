@@ -119,7 +119,7 @@ class tasks extends \Controller {
 
     function get_options()
     {
-        require_once(__DIR__ .'../../../../globals/admin/get_options.php');
+        require_once(__DIR__ .'../../../../globals/get_options.php');
     }
 }
 
