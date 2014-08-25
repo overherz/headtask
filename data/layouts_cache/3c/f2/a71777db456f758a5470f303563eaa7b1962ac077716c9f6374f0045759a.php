@@ -73,7 +73,7 @@ class __TwigTemplate_3cf2a71777db456f758a5470f303563eaa7b1962ac077716c9f6374f004
         // line 21
         echo \layout::func_from_text("<table class=\"table\" style=\"margin-top: -10px;\">
     <tr>
-        <td style=\"width: 1px;vertical-align: top !important;border-top:none;\">
+        <td style=\"width: 1px;vertical-align: top !important;border-top:none;padding-left: 0;\">
             <img id=\"avatar\" src=\"");
         // line 24
         if ($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "avatar")) {
@@ -97,7 +97,7 @@ class __TwigTemplate_3cf2a71777db456f758a5470f303563eaa7b1962ac077716c9f6374f004
         }
         // line 29
         echo \layout::func_from_text("        </td>
-        <td style=\"border-top:none;vertical-align: top !important;\">
+        <td style=\"border-top:none;vertical-align: top !important;padding-top: 2px;\">
             <a href=\"\" style=\"font-weight: bold;font-size: 20px;\">");
         // line 31
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "fio"), "html", null, true));
@@ -106,7 +106,7 @@ class __TwigTemplate_3cf2a71777db456f758a5470f303563eaa7b1962ac077716c9f6374f004
         // line 32
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "id_user"), "html", null, true));
         echo \layout::func_from_text("\"></span>
-            <table class=\"table table-striped table-border\" style=\"margin-top: 20px;\">
+            <table class=\"table table-striped table-border\" style=\"margin-top: 10px;\">
                 <tr>
                     <td style=\"width:1px;white-space: nowrap;font-weight: bold;border-top: none;\">Группа:</td>
                     <td style=\"text-align: justify;border-top:none;color:");

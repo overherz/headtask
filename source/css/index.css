@@ -824,6 +824,7 @@ blockquote:before {
     -webkit-box-shadow: 2px 0px 4px 0px rgba(50, 50, 50, 0.64);
     -moz-box-shadow:    2px 0px 4px 0px rgba(50, 50, 50, 0.64);
     box-shadow:         2px 0px 4px 0px rgba(50, 50, 50, 0.64);
+    -webkit-backface-visibility: hidden;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -858,7 +859,7 @@ blockquote:before {
 }
 
 #wrapper.toggled .sidebar-nav li {
-    text-indent: 10px;
+    text-indent: 7px;
     line-height: 25px;
 }
 
@@ -976,13 +977,13 @@ blockquote:before {
     }
 
     .sidebar-nav li {
-        text-indent: 10px;
+        text-indent: 7px;
         line-height: 25px;
     }
 
     #wrapper.toggled .sidebar-nav li {
         line-height: 40px;
-        /*text-indent: 6px;*/
+        text-indent: 10px;
     }
 
     #wrapper.toggled #sidebar-wrapper {
