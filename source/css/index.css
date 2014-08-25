@@ -824,7 +824,6 @@ blockquote:before {
     -webkit-box-shadow: 2px 0px 4px 0px rgba(50, 50, 50, 0.64);
     -moz-box-shadow:    2px 0px 4px 0px rgba(50, 50, 50, 0.64);
     box-shadow:         2px 0px 4px 0px rgba(50, 50, 50, 0.64);
-    -webkit-backface-visibility: hidden;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -838,7 +837,7 @@ blockquote:before {
 }
 
 #wrapper.toggled #page-content-wrapper {
-
+    position: absolute;
     margin-right: -200px;
     padding-left: 0;
 }
@@ -846,6 +845,7 @@ blockquote:before {
 /* Sidebar Styles */
 
 .sidebar-nav {
+    position: absolute;
     top: 0;
     width: 200px;
     margin: 0;
