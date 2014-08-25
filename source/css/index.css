@@ -193,7 +193,7 @@ input,textarea {
 
 .jumbotron {
     background: #fff;
-    padding: 15px !important;
+    padding: 10px 15px !important;
 }
 
 .pagination_disabled a {
@@ -432,7 +432,7 @@ fieldset[disabled] .btn-oscar.active {
     padding: 0;
     list-style: none;
     position: relative;
-    margin: -15px -15px 15px -15px;
+    margin: -10px -15px 15px -15px;
 }
 
 .breadcrumbs-one li{

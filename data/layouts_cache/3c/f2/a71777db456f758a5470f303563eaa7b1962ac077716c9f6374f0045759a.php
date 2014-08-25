@@ -73,8 +73,8 @@ class __TwigTemplate_3cf2a71777db456f758a5470f303563eaa7b1962ac077716c9f6374f004
         // line 21
         echo \layout::func_from_text("<table class=\"table\" style=\"margin-top: -10px;\">
     <tr>
-        <td style=\"width: 1px;padding: 0px;vertical-align: top !important;border-top:none;\">
-            <img id=\"avatar\" style=\"margin-left: -10px;\" src=\"");
+        <td style=\"width: 1px;vertical-align: top !important;border-top:none;\">
+            <img id=\"avatar\" src=\"");
         // line 24
         if ($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "avatar")) {
             echo \layout::func_from_text("/uploads/users/ava_profile/");
@@ -202,6 +202,6 @@ class __TwigTemplate_3cf2a71777db456f758a5470f303563eaa7b1962ac077716c9f6374f004
 
     public function getDebugInfo()
     {
-        return array (  188 => 65,  180 => 59,  176 => 57,  170 => 56,  165 => 53,  159 => 52,  154 => 49,  148 => 47,  141 => 45,  138 => 44,  136 => 43,  131 => 41,  128 => 40,  125 => 39,  121 => 38,  114 => 36,  107 => 32,  103 => 31,  99 => 29,  94 => 26,  92 => 25,  79 => 24,  74 => 21,  71 => 20,  54 => 8,  51 => 7,  45 => 5,  42 => 4,  39 => 3,  31 => 2,  76 => 32,  67 => 26,  61 => 23,  57 => 9,  53 => 21,  49 => 20,  37 => 11,  32 => 8,  30 => 7,  23 => 3,  19 => 1,);
+        return array (  188 => 65,  180 => 59,  176 => 57,  170 => 56,  165 => 53,  159 => 52,  154 => 49,  148 => 47,  141 => 45,  138 => 44,  136 => 43,  131 => 41,  128 => 40,  125 => 39,  121 => 38,  114 => 36,  107 => 32,  103 => 31,  99 => 29,  94 => 26,  92 => 25,  79 => 24,  74 => 21,  71 => 20,  57 => 9,  54 => 8,  51 => 7,  45 => 5,  42 => 4,  39 => 3,  31 => 2,);
     }
 }

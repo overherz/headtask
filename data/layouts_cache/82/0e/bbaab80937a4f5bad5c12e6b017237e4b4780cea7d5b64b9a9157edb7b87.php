@@ -55,7 +55,7 @@ class __TwigTemplate_820ebbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157ed
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("\">
 
-    <div style=\"margin: 15px 15px -15px\">
+    <div style=\"margin: 10px 15px -15px\">
         ");
         // line 13
         $this->env->loadTemplate("/source/crumbs.html")->display($context);
