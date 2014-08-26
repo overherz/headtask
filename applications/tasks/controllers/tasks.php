@@ -13,7 +13,6 @@ class tasks extends \Controller {
     {
         parent::__construct("tasks","tasks");
         $this->get_options();
-        pr(get_setting('cron_key'));
 
         if ($key == get_setting('cron_key'))
         {
