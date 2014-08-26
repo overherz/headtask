@@ -1,6 +1,8 @@
 <?php
 namespace tasks;
 
+use global_module\get_options;
+
 require_once(__DIR__ .'../../../../core/initdata.php');
 
 class tasks extends \Controller {
@@ -11,6 +13,7 @@ class tasks extends \Controller {
     {
         parent::__construct("tasks","tasks");
         $this->get_options();
+        pr(get_setting('cron_key'));
 
         if ($key == get_setting('cron_key'))
         {
@@ -120,6 +123,9 @@ class tasks extends \Controller {
     function get_options()
     {
         require_once(__DIR__ .'../../../../globals/get_options.php');
+        $g = new get_options(true);
+        $g->run_module();
+
     }
 }
 
