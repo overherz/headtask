@@ -377,7 +377,6 @@ class global_module
                     include_once($file);
                     $class = "global_module\\".str_replace(".php","",$m);
                     $r = new $class;
-                    pr($r);
                     if (AJAX && $r->on_ajax_not_run) continue;
                     if ((!$admin && $r->admin) || ($admin && !$r->admin)) continue;
                     $r->run_module();

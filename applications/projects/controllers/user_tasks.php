@@ -3,7 +3,7 @@ namespace projects;
 
 class user_tasks extends \Controller {
 
-    var $limit = 15;
+    var $limit = 2;
 
     function default_method($id_user=false)
     {
