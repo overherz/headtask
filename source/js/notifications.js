@@ -68,9 +68,9 @@ io.on('connection', function (client) {
                 if (!transport[real_id]) transport[real_id] = {};
                 transport[real_id][client.id] = 1; // Куда отсылать, зная только id пользователя
                 users[incoming.hash] = real_id; // Соответствие хэша реальному id
-                get_count_of_new_messages(real_id,function(count){
-                    client.emit('set_count_of_new_messages', {count: count});
-                });
+                //get_count_of_new_messages(real_id,function(count){
+                //    client.emit('set_count_of_new_messages', {count: count});
+                //});
             }
             else
             {
@@ -203,8 +203,10 @@ function get_last_id_logs(callback)
 var last_id = 0,
     last_id_logs;
 
+/*
 if (last_id < 1)
 {
+
     get_last_id(function(last_id){
         setTimeout(function(){notify(last_id)},1000);
     });
@@ -218,6 +220,7 @@ if (last_id_logs < 1)
     });
 }
 else setTimeout(function(){notify(last_id)},1000);
+*/
 
 //var message_to_dialog = template.compileFile("../../applications/users/layouts/elements/dialog_message_node.html");
 

@@ -151,22 +151,14 @@ class __TwigTemplate_b82e2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f1
             echo \layout::func_from_text(";font-weight: bold;font-size: 10px;\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "group_name"), "html", null, true));
             echo \layout::func_from_text("</div>
-            ");
+            <div class=\"get_ms_status user_offline\" data-id=\"");
             // line 42
-            if (($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "last_user_action") >= $this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "time"))) {
-                // line 43
-                echo \layout::func_from_text("                <div class=\"user_online\"></div>
-            ");
-            } else {
-                // line 45
-                echo \layout::func_from_text("                <div class=\"user_offline\"></div>
-            ");
-            }
-            // line 47
-            echo \layout::func_from_text("        </td>
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "author"), "html", null, true));
+            echo \layout::func_from_text("\"></div>
+        </td>
         <td class=\"wysiwyg post_td\" style=\"vertical-align: top !important;\">
             <div id=\"post");
-            // line 49
+            // line 45
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\" class=\"post\">");
             echo \layout::func_from_text($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "text"));
@@ -176,44 +168,44 @@ class __TwigTemplate_b82e2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f1
     <tr>
         <td class=\"forum_post_footer\" colspan=\"2\">
             <a href=\"\" class=\"btn btn-oscar btn-xs quote_post\" data-id=\"");
-            // line 54
+            // line 50
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\"><i class=\"fa fa-quote-right\"></i></a>
             <div class=\"forum_post_action\" style=\"display: inline-block;\">
                 <div class=\"btn-group\">
                     ");
-            // line 57
+            // line 53
             if (($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "forum") || ($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "author") == $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user")))) {
-                // line 58
+                // line 54
                 echo \layout::func_from_text("                        <a href=\"\" class=\"btn btn-xs btn-oscar edit_post\" data-id=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("\"><i class=\"fa fa-pencil\"></i></a>
                     ");
             }
-            // line 60
+            // line 56
             echo \layout::func_from_text("                    ");
             if (($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "forum") && ((isset($context["first_post"]) ? $context["first_post"] : null) != $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id")))) {
-                // line 61
+                // line 57
                 echo \layout::func_from_text("                        <a href=\"\" class=\"btn btn-xs btn-oscar delete_post\" data-id=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("\"><i class=\"fa fa-trash-o\"></i></a>
                     ");
             }
-            // line 63
+            // line 59
             echo \layout::func_from_text("                </div>
             </div>
         </td>
     </tr>
     ");
-            // line 67
+            // line 63
             if ((!$this->getAttribute((isset($context["loop"]) ? $context["loop"] : null), "last"))) {
-                // line 68
+                // line 64
                 echo \layout::func_from_text("    <tr>
         <td colspan=\"3\" style=\"background: #f5f5f5;padding: 5px;\"></td>
     </tr>
     ");
             }
-            // line 72
+            // line 68
             echo \layout::func_from_text("    ");
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
@@ -227,18 +219,18 @@ class __TwigTemplate_b82e2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f1
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['p'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 73
+        // line 69
         echo \layout::func_from_text("    </tbody>
 </table>
 
 ");
-        // line 76
+        // line 72
         if ((!$this->getAttribute((isset($context["topic"]) ? $context["topic"] : null), "closed"))) {
-            // line 77
+            // line 73
             echo \layout::func_from_text("<div class=\"clearfix\"></div>
 <form class='post_form_bottom' style=\"margin-top: 20px;\">
     <input type=\"hidden\" name=\"id_topic\" value=\"");
-            // line 79
+            // line 75
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["topic"]) ? $context["topic"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\">
     <input type=\"hidden\" name=\"act\" value=\"save_post\">
@@ -247,7 +239,7 @@ class __TwigTemplate_b82e2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f1
     <div style=\"text-align: center;\"><a href=\"\" class=\"btn btn-oscar save_post_bottom\" style=\"margin-top: 20px;\">Отправить</a></div>
 ");
         }
-        // line 85
+        // line 81
         $this->env->loadTemplate("/source/paginator.html")->display($context);
     }
 
@@ -263,6 +255,6 @@ class __TwigTemplate_b82e2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f1
 
     public function getDebugInfo()
     {
-        return array (  251 => 85,  242 => 79,  238 => 77,  236 => 76,  231 => 73,  217 => 72,  211 => 68,  209 => 67,  203 => 63,  197 => 61,  194 => 60,  188 => 58,  186 => 57,  180 => 54,  170 => 49,  166 => 47,  162 => 45,  158 => 43,  156 => 42,  149 => 41,  141 => 40,  133 => 35,  125 => 32,  121 => 30,  104 => 29,  100 => 27,  96 => 25,  94 => 24,  90 => 22,  88 => 21,  72 => 20,  69 => 19,  63 => 17,  61 => 16,  59 => 15,  56 => 14,  50 => 11,  46 => 10,  41 => 8,  38 => 7,  31 => 4,  28 => 3,);
+        return array (  243 => 81,  234 => 75,  230 => 73,  228 => 72,  223 => 69,  209 => 68,  203 => 64,  201 => 63,  195 => 59,  189 => 57,  186 => 56,  180 => 54,  178 => 53,  172 => 50,  162 => 45,  156 => 42,  149 => 41,  141 => 40,  133 => 35,  125 => 32,  121 => 30,  104 => 29,  100 => 27,  96 => 25,  94 => 24,  90 => 22,  88 => 21,  72 => 20,  69 => 19,  63 => 17,  61 => 16,  59 => 15,  56 => 14,  50 => 11,  46 => 10,  41 => 8,  38 => 7,  31 => 4,  28 => 3,);
     }
 }

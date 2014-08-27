@@ -76,23 +76,23 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
 
 <script src=\"http://yandex.st/jquery/2.1.1/jquery.min.js\"></script>
+<script src=\"/source/js/socket.io/socket.io.js\"></script>
+<script src=\"");
+        // line 48
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "client.js"), "method"), "html", null, true));
+        echo \layout::func_from_text("\"></script>
 <script src=\"http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js\"></script>
 <script src=\"/source/js/jquery.jgrowl.min.js\"></script>
 <script src=\"/source/js/functions.js\"></script>
 <script src=\"/source/js/message.js\"></script>
 <script src=\"http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js\"></script>
 <script src=\"/source/js/styler/jquery.formstyler.min.js\"></script>
-<script src=\"/source/js/socket.io/socket.io.js\"></script>
 <script src=\"/source/js/jquery.scrollTo.min.js\"></script>
 <script src=\"/source/js/jquery.cookie.js\"></script>
 <script type=\"text/javascript\" src=\"");
-        // line 56
+        // line 57
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "projects.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
-<!--<script src=\"");
-        // line 57
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "client.js"), "method"), "html", null, true));
-        echo \layout::func_from_text("\"></script>-->
 <script src=\"/source/js/sound_manager/soundmanager2-nodebug-jsmin.js\"></script>
 <!--<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js\"></script>-->
 <script type=\"text/javascript\">
@@ -200,6 +200,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     public function getDebugInfo()
     {
-        return array (  187 => 107,  182 => 34,  178 => 27,  175 => 26,  172 => 25,  168 => 19,  165 => 18,  160 => 4,  155 => 109,  153 => 107,  147 => 104,  143 => 103,  94 => 57,  90 => 56,  67 => 35,  65 => 34,  57 => 28,  55 => 25,  48 => 20,  46 => 18,  29 => 4,  24 => 1,);
+        return array (  187 => 107,  182 => 34,  178 => 27,  175 => 26,  172 => 25,  168 => 19,  165 => 18,  160 => 4,  155 => 109,  153 => 107,  147 => 104,  143 => 103,  94 => 57,  82 => 48,  67 => 35,  65 => 34,  57 => 28,  55 => 25,  48 => 20,  46 => 18,  29 => 4,  24 => 1,);
     }
 }

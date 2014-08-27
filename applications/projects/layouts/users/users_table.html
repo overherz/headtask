@@ -31,11 +31,7 @@
                 <div style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats[u.id_user].rejected|default(0)) }}</div>
             </td>
             <td style="text-align: center;">
-                {% if u.last_user_action >= globals.time %}
-                    <div class="user_online big"></div>
-                {% else %}
-                    <div class="user_offline big"></div>
-                {% endif %}
+                <div class="get_ms_status user_offline big" data-id="{{u.id_user}}"></div>
             </td>
             <td>
                 {% if u.skypename %}<div><span style="font-weight: bold;">Skype:</span> <a href="skype:{{u.skypename}}?chat">{{ u.skypename }}</a>{% endif %}</div>

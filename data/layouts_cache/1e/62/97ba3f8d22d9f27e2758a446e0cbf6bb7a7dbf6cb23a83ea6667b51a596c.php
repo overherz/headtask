@@ -121,22 +121,14 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
             echo \layout::func_from_text("</div>
             </td>
             <td style=\"text-align: center;\">
-                ");
+                <div class=\"get_ms_status user_offline big\" data-id=\"");
             // line 34
-            if (($this->getAttribute((isset($context["u"]) ? $context["u"] : null), "last_user_action") >= $this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "time"))) {
-                // line 35
-                echo \layout::func_from_text("                    <div class=\"user_online big\"></div>
-                ");
-            } else {
-                // line 37
-                echo \layout::func_from_text("                    <div class=\"user_offline big\"></div>
-                ");
-            }
-            // line 39
-            echo \layout::func_from_text("            </td>
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
+            echo \layout::func_from_text("\"></div>                
+            </td>
             <td>
                 ");
-            // line 41
+            // line 37
             if ($this->getAttribute((isset($context["u"]) ? $context["u"] : null), "skypename")) {
                 echo \layout::func_from_text("<div><span style=\"font-weight: bold;\">Skype:</span> <a href=\"skype:");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "skypename"), "html", null, true));
@@ -146,65 +138,65 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
             }
             echo \layout::func_from_text("</div>
                 ");
-            // line 42
+            // line 38
             if ($this->getAttribute((isset($context["u"]) ? $context["u"] : null), "mphone")) {
                 echo \layout::func_from_text("<div><span style=\"font-weight: bold;\">М. тел:</span> ");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "mphone"), "html", null, true));
             }
             echo \layout::func_from_text("</div>
                 ");
-            // line 43
+            // line 39
             if (((!$this->getAttribute((isset($context["u"]) ? $context["u"] : null), "skypename")) && (!$this->getAttribute((isset($context["u"]) ? $context["u"] : null), "mphone")))) {
                 echo \layout::func_from_text("&nbsp;");
             }
-            // line 44
+            // line 40
             echo \layout::func_from_text("            </td>
             <td>
                 ");
-            // line 46
+            // line 42
             if ($this->getAttribute((isset($context["u"]) ? $context["u"] : null), "last_user_action")) {
                 echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "last_user_action"), "d.m.Y H:i"), "html", null, true));
                 echo \layout::func_from_text("
                 ");
             } else {
-                // line 47
+                // line 43
                 echo \layout::func_from_text("дата неизвестна
                 ");
             }
-            // line 49
+            // line 45
             echo \layout::func_from_text("            </td>
             ");
-            // line 50
+            // line 46
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "users")) {
-                // line 51
+                // line 47
                 echo \layout::func_from_text("            <td style=\"width: 85px;\">
                 <div class=\"btn-group\">
                     <a class=\"btn btn-primary btn-sm\" href=\"/projects/users/edit/");
-                // line 53
+                // line 49
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("/");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
                 echo \layout::func_from_text("/\"><i class=\"fa fa-pencil\"></i></a>
                     <a class=\"btn btn-primary btn-sm\" href=\"\" delete_project_user=\"");
-                // line 54
+                // line 50
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
                 echo \layout::func_from_text("\"><i class=\"fa fa-trash-o\"></i></a>
                 </div>
             </td>
             ");
             }
-            // line 58
+            // line 54
             echo \layout::func_from_text("        </tr>
     ");
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['u'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 60
+        // line 56
         echo \layout::func_from_text("    </tbody>
 </table>
 ");
-        // line 62
+        // line 58
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
     }
 
@@ -220,6 +212,6 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
 
     public function getDebugInfo()
     {
-        return array (  208 => 62,  204 => 60,  197 => 58,  190 => 54,  184 => 53,  180 => 51,  178 => 50,  175 => 49,  171 => 47,  165 => 46,  161 => 44,  157 => 43,  150 => 42,  140 => 41,  136 => 39,  132 => 37,  128 => 35,  126 => 34,  118 => 31,  112 => 30,  106 => 29,  100 => 28,  94 => 27,  87 => 24,  83 => 22,  78 => 21,  68 => 20,  55 => 18,  46 => 17,  42 => 16,  37 => 13,  33 => 12,  21 => 2,  19 => 1,);
+        return array (  200 => 58,  196 => 56,  189 => 54,  182 => 50,  176 => 49,  172 => 47,  170 => 46,  167 => 45,  163 => 43,  157 => 42,  153 => 40,  149 => 39,  142 => 38,  132 => 37,  126 => 34,  118 => 31,  112 => 30,  106 => 29,  100 => 28,  94 => 27,  87 => 24,  83 => 22,  78 => 21,  68 => 20,  55 => 18,  46 => 17,  42 => 16,  37 => 13,  33 => 12,  21 => 2,  19 => 1,);
     }
 }
