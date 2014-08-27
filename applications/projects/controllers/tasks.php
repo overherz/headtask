@@ -556,11 +556,11 @@ class tasks extends \Controller {
                         $res['success']['project'] = $task['id_project'];
                         $log = $this->get_controller("projects","logs");
 
-                        if ($task['status'] == "closed") $message = "Закрыта";
-                        else if ($_POST['new_current_percent'] > 0) $message = "Изменен статус выполнения ({$_POST['new_current_percent']} %)";
+                        if ($task['status'] == "closed") $message = "Закрыта <a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a>";
+                        else if ($_POST['new_current_percent'] > 0) $message = "Изменен статус выполнения <a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a> ({$_POST['new_current_percent']} %)";
                         else $message = "Начата";
 
-                        $log->set_logs("task",$task['id'],$message);
+                        $log->set_logs("task",$task['id_project'],$message,$task['id']);
 
                         $message = $this->layout_get("tasks/task_mail.html",array(
                             'server_name' => $_SERVER["SERVER_NAME"],
