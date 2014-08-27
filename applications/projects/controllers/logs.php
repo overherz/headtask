@@ -211,7 +211,6 @@ class logs extends \Controller {
             $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
             $logs[] = $row;
         }
-
         return array('logs' => $logs,'paginator' => $paginator);
     }
 
