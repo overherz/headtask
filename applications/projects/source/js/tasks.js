@@ -63,8 +63,8 @@ $(document).ready(function ($) {
 
     $(document).on("change","[name='status']",function(){
         var status = $(this).val();
-        if (status == "rejected") $("#rejected").show();
-        else $("#rejected").hide();
+        if (status == "rejected") $(".rejected").show();
+        else $(".rejected").hide();
     });
 
     $("[add_file_to_task]").click(function(){

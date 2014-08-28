@@ -1049,7 +1049,11 @@ blockquote:before {
     }
 }
 
+.jq-select-multiple {
+    box-shadow: none;
+    padding: 0;
+}
 
-
-
-
+.form-control {
+    height: 30px;
+}

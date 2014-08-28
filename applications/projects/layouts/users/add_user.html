@@ -19,11 +19,18 @@
         <input type="hidden" name="act" value="save_user">
         {% if user.id_user %}<input type="hidden" name="id" value="{{user.id_user}}">{% endif %}
 
-        <div class="docs-input-sizes">
-            <div class="control-group">
-                <label class="control-label" for="name">Участник</label>
-                <div class="controls">
+        <div>
+            <div class="form-group">
+                <label class="col-lg-1 control-label"></label>
+                <div class="col-lg-6">
+                    <input type='text' class='form-control search_user' placeholder='Фильтр'>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-1 control-label" for="name">Участник</label>
+                <div class="col-lg-6">
                     {% if mode == "add" %}
+
                         <select name="new_user" {% if not users %}disabled{% endif %}>
                             {% for u in users %}
                                 <option value="{{ u.id_user }}{{ i }}">{{ u.fio }}</option>
@@ -31,30 +38,29 @@
                                 <option>Ничего не найдено</option>
                             {% endfor %}
                         </select>
-                        <input type='text' class='input-medium search_user' placeholder='Фильтр'>
                     {% else %}
                         <span style="font-weight: bold;">{{ user.fio }}</span>
                     {% endif %}
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="role">Роль</label>
-                <div class="controls">
+            <div class="form-group">
+                <label class="col-lg-1 control-label" for="role">Роль</label>
+                <div class="col-lg-6">
                     <select name="role">
                         <option value="manager">Менеджер</option>
                         <option value="user" {% if user.role == "user" %}selected{% endif %}>Участник проекта</option>
                     </select>
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="description">Описание</label>
-                <div class="controls">
-                    <input type="text" name="description" value="{{ user.description }}" class="span6">
+            <div class="form-group">
+                <label class="col-lg-1 control-label" for="description">Описание</label>
+                <div class="col-lg-6">
+                    <input type="text" name="description" value="{{ user.description }}" class="form-control">
                 </div>
             </div>
-            <div class="control-group" id="control-group-rights" {% if user.role == "manager" or not user %}style="display: none;"{% endif %}>
-                <label class="control-label" for="rights">Права</label>
-                <div class="controls">
+            <div class="form-group" id="control-group-rights" {% if user.role == "manager" or not user %}style="display: none;"{% endif %}>
+                <label class="col-lg-1 control-label" for="rights">Права</label>
+                <div class="col-lg-6">
                     <table class="table table-bordered table-condensed" style="width: auto;">
                         <tr>
                             <th style="width: 150px;">Группа прав</th>
@@ -74,7 +80,7 @@
                 </div>
             </div>
             <div style="text-align: center">
-                <button class="btn btn-large btn-primary save_user" type="button">{% if project.id %}Сохранить{% else %}Создать{% endif %}</button>
+                <button class="btn btn-lg btn-primary save_user" type="button">{% if project.id %}Сохранить{% else %}Создать{% endif %}</button>
             </div>
         </div>
     </form>
