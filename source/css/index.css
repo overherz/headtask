@@ -1100,6 +1100,13 @@ td .progress {
     background: none repeat scroll 0 0 #FFFFFF;
 }
 
+.table_style tbody:before {
+    line-height:0;
+    content:"-";
+    color:white; /* to hide text */
+    display:block;
+}
+
 .table_style.no_style td {
     border: none !important;
     background: none !important;

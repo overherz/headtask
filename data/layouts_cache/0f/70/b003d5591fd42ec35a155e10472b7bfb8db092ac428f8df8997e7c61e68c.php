@@ -20,37 +20,40 @@ class __TwigTemplate_0f70b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c6
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         echo \layout::func_from_text("</div>
 <table class=\"table table-hover table_style no_padding_left\">
+    <thead>
     <tr>
         <th style=\"width: 1px;white-space: nowrap;\"></th>
         <th>Описание</th>
         ");
-        // line 6
+        // line 7
         if ((isset($context["all"]) ? $context["all"] : null)) {
             echo \layout::func_from_text("<th>Проект</th>");
         }
-        // line 7
+        // line 8
         echo \layout::func_from_text("        <th>Дата</th>
         <th>Пользователь</th>
     </tr>
+    </thead>
+    <tbody>
     ");
-        // line 10
+        // line 13
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["logs"]) ? $context["logs"] : null));
         foreach ($context['_seq'] as $context["_key"] => $context["l"]) {
-            // line 11
+            // line 14
             echo \layout::func_from_text("        <tr>
             <td><span class=\"label label-default log_");
-            // line 12
+            // line 15
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "type"), "html", null, true));
             echo \layout::func_from_text("\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, lang(("type_" . $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "type"))), "html", null, true));
             echo \layout::func_from_text("</span></td>
             <td>");
-            // line 13
+            // line 16
             echo \layout::func_from_text($this->getAttribute((isset($context["l"]) ? $context["l"] : null), "text"));
             echo \layout::func_from_text("</td>
             ");
-            // line 14
+            // line 17
             if ((isset($context["all"]) ? $context["all"] : null)) {
                 echo \layout::func_from_text("<td>");
                 if ($this->getAttribute((isset($context["l"]) ? $context["l"] : null), "id_project")) {
@@ -64,13 +67,13 @@ class __TwigTemplate_0f70b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c6
                 }
                 echo \layout::func_from_text("</td>");
             }
-            // line 15
+            // line 18
             echo \layout::func_from_text("            <td>");
             echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "created"), "d.m.Y H:i:s"), "html", null, true));
             echo \layout::func_from_text("</td>
             <td>
                 ");
-            // line 17
+            // line 20
             if ($this->getAttribute((isset($context["l"]) ? $context["l"] : null), "id_user")) {
                 echo \layout::func_from_text("<a href=\"/users/~");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "id_user"), "html", null, true));
@@ -83,12 +86,12 @@ class __TwigTemplate_0f70b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c6
                 echo \layout::func_from_text("</a>
                 ");
             } else {
-                // line 18
+                // line 21
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "trash_name_user"), "html", null, true));
                 echo \layout::func_from_text("
                 ");
             }
-            // line 20
+            // line 23
             echo \layout::func_from_text("            </td>
         </tr>
     ");
@@ -96,10 +99,11 @@ class __TwigTemplate_0f70b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c6
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['l'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 23
-        echo \layout::func_from_text("</table>
+        // line 26
+        echo \layout::func_from_text("    </tbody>
+</table>
 <div style=\"position: relative;\">");
-        // line 24
+        // line 28
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         echo \layout::func_from_text("</div>");
     }
@@ -116,6 +120,6 @@ class __TwigTemplate_0f70b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c6
 
     public function getDebugInfo()
     {
-        return array (  103 => 24,  100 => 23,  92 => 20,  87 => 18,  74 => 17,  68 => 15,  54 => 14,  50 => 13,  44 => 12,  41 => 11,  37 => 10,  32 => 7,  28 => 6,  19 => 1,);
+        return array (  107 => 28,  103 => 26,  95 => 23,  90 => 21,  77 => 20,  71 => 18,  57 => 17,  53 => 16,  47 => 15,  44 => 14,  40 => 13,  33 => 8,  29 => 7,  19 => 1,);
     }
 }

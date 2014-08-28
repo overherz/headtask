@@ -43,7 +43,7 @@ class __TwigTemplate_17516976556773f554381de5d4f5723633d76036cfc786b9e531bc4499f
         // line 5
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "news")) {
             // line 6
-            echo \layout::func_from_text("    <td style=\"width: 74px;\">
+            echo \layout::func_from_text("    <td style=\"width: 75px;\">
         <div class=\"btn-group\">
             <a class=\"btn btn-black btn-sm\" href=\"/projects/news/edit/");
             // line 8

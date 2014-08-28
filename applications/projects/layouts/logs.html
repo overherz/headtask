@@ -1,5 +1,6 @@
 <div style="position: relative;">{% include '/source/jpaginator_boot.html' %}</div>
 <table class="table table-hover table_style no_padding_left">
+    <thead>
     <tr>
         <th style="width: 1px;white-space: nowrap;"></th>
         <th>Описание</th>
@@ -7,6 +8,8 @@
         <th>Дата</th>
         <th>Пользователь</th>
     </tr>
+    </thead>
+    <tbody>
     {% for l in logs %}
         <tr>
             <td><span class="label label-default log_{{ l.type }}">{{ ("type_"~l.type)|lang }}</span></td>
@@ -20,5 +23,6 @@
             </td>
         </tr>
     {% endfor %}
+    </tbody>
 </table>
 <div style="position: relative;">{% include '/source/jpaginator_boot.html' %}</div>

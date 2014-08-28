@@ -7,12 +7,15 @@
         <input type="hidden" name="act" value="get_data">
         <input type="hidden" name="id_user" value="{{ id_user }}">
         <table class="table table_style no_style" style="width: auto;">
+            <thead>
             <tr>
                 <th>Дата</th>
                 <th>Статус</th>
                 <th>Приоритет</th>
                 <th>Другое</th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
                 <td>От: <input type="text" name="start" value="{{start}}" class="input-small" readonly style="margin-bottom: 10px;"><br>
                     До: <input type="text" name="end" value="{{end}}" class="input-small" readonly></td>
@@ -23,6 +26,7 @@
                     {{ inputs.input(form.percent,'percent',true) }}
                 </td>
             </tr>
+            </tbody>
         </table>
     </form>
     <div class="clearfix"></div>

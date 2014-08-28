@@ -20,12 +20,15 @@
 <form action="" id="search_form" method="post" class="form-horizontal" style="margin-bottom:0;">
     <input type="hidden" name="page" value="">
     <table class="table table_style no_style" id="filter_table">
+        <thead>
         <tr>
             <th>Статус</th>
             <th>Приоритет</th>
             {% if form.category.options %}<th>Метка</th>{% endif %}
             <th>Другое</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td>{{ inputs.input(form.status,'status') }}</td>
             <td>{{ inputs.input(form.priority,'priority') }}</td>
@@ -37,6 +40,7 @@
                 {{ inputs.input(form.percent,'percent',true) }}
             </td>
         </tr>
+        </tbody>
     </table>
 </form>
 <div class="clearfix"></div>
