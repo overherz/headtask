@@ -227,7 +227,7 @@ class news extends \Controller {
                         $notif = "Добавлена новость \"{$_POST['name']}\" в проект \"{$project['name']}\"";
                         $last_id = $this->db->lastInsertId();
                         $res['success'] = $last_id;
-                        if ($log) $log->set_logs("news",$id_project,"Создана <a href='/projects/news/show/{$last_id}'>\"{$_POST['name']}\"</a>");
+                        if ($log) $log->set_logs("news",$id_project,"Создана <a href='/projects/news/show/{$last_id}'>{$_POST['name']}</a>");
                     }
                     else $res['error'] = "Ошибка добавления новости";
                 }

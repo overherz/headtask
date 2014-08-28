@@ -1,6 +1,13 @@
 $(document).ready(function(){
     var chat_with = get_opponent(),
         connect = false;
+
+    var langs = { 'project' : 'Проект',
+        'task' : 'Задача',
+        'file' : 'Файл',
+        'news' : 'Новость',
+        'wiki' : 'Wiki',
+        'comment' : 'Комментарий' }
 //        playerVersion = swfobject.getFlashPlayerVersion(),
 //        majorVersion = playerVersion.major;
 
@@ -28,8 +35,11 @@ $(document).ready(function(){
     });
 
     socket.on('logs',function(data){
-        soundManager.play('new_message',{volume:100});
-        show_message("info",data.message.text);
+        if (window.ms.id != data.message.id_user)
+        {
+            soundManager.play('new_message',{volume:100});
+            show_message("info","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;'>"+langs[data.message.type]+"</span>"+data.message.text,false,false,false,true);
+        }
     });
 
     socket.on('connect_error',function(){

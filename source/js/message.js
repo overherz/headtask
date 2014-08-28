@@ -1,5 +1,6 @@
-function show_message(type,text,sticky,id,uniq)
+function show_message(type,text,sticky,id,uniq,not_closer)
 {
+    var closer;
     if (!id) id = type;
     if (uniq)
     {
@@ -8,6 +9,9 @@ function show_message(type,text,sticky,id,uniq)
             return false;
         }
     }
+
+    if (not_closer) closer = false;
+    else closer = 'x';
 
     //types: info,warning,error,success
     var message = "";
@@ -29,7 +33,8 @@ function show_message(type,text,sticky,id,uniq)
         speed: 'fast',
         sticky: sticky,
         group: "group-" + id,
-        themeState: false
+        themeState: false,
+        closeTemplate: closer
     });
 }
 
