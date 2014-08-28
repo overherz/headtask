@@ -38,7 +38,7 @@ $(document).ready(function(){
         if (window.ms.id != data.message.id_user)
         {
             soundManager.play('new_message',{volume:100});
-            show_message("info","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;'>"+langs[data.message.type]+"</span>"+data.message.text,false,false,false,true);
+            show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;'>"+langs[data.message.type]+"</span>"+data.message.text,false,false,false,true);
         }
     });
 

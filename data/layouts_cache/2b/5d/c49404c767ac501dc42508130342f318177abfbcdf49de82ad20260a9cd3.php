@@ -19,7 +19,7 @@ class __TwigTemplate_2b5dc49404c767ac501dc42508130342f318177abfbcdf49de82ad20260
         echo \layout::func_from_text("<div style=\"position: relative;margin-top: 10px;\">");
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         echo \layout::func_from_text("</div>
-<table class=\"table table-hover table_style\" id=\"tasks_table\">
+<table class=\"table table-hover table_style no_padding_right\" id=\"tasks_table\">
     <thead>
     <tr>
         <th></th>
