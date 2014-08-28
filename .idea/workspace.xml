@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/29/d6/6637865a4ad8089da7006015f99bd054e47f8669e58d127c36f16a4cf756.php" afterPath="$PROJECT_DIR$/data/layouts_cache/29/d6/6637865a4ad8089da7006015f99bd054e47f8669e58d127c36f16a4cf756.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/source/js/client.js" afterPath="$PROJECT_DIR$/applications/users/source/js/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/js/message.js" afterPath="$PROJECT_DIR$/source/js/message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/news.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/news.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/js/notifications.js" afterPath="$PROJECT_DIR$/source/js/notifications.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/js/search.js" afterPath="$PROJECT_DIR$/source/js/search.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
@@ -32,7 +33,25 @@
       <file leaf-file-name="notifications.js" pinned="true" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/js/notifications.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="304" column="0" selection-start="10402" selection-end="10402" vertical-scroll-proportion="0.0" vertical-offset="4258" max-vertical-offset="5559">
+            <state line="121" column="0" selection-start="4157" selection-end="4157" vertical-scroll-proportion="-2.5185184" vertical-offset="1989" max-vertical-offset="5763">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/users/source/js/users.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/js/search.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="9" selection-start="1549" selection-end="1549" vertical-scroll-proportion="0.9065934" vertical-offset="59" max-vertical-offset="1088">
               <folding />
             </state>
           </provider>
@@ -70,30 +89,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get_session.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/globals/get_session.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="1688" selection-end="1688" vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1020">
-              <folding>
-                <marker date="1409221351500" expanded="true" signature="1911:2021" placeholder="update users..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show_topic.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/show_topic.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="81" selection-start="1918" selection-end="1987" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1479">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="client.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/users/source/js/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="9" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.43589744" vertical-offset="255" max-vertical-offset="8160">
+            <state line="256" column="16" selection-start="9255" selection-end="9255" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8160">
               <folding />
             </state>
           </provider>
@@ -169,7 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/applications/projects/controllers/gantt.php" />
         <option value="$PROJECT_DIR$/globals/get_projects_access.php" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/users.php" />
         <option value="$PROJECT_DIR$/globals/get_sprojects_access.php" />
@@ -216,10 +214,11 @@
         <option value="$PROJECT_DIR$/applications/projects/layouts/users/users_table.html" />
         <option value="$PROJECT_DIR$/globals/get_session.php" />
         <option value="$PROJECT_DIR$/source/wrapper_index.html" />
-        <option value="$PROJECT_DIR$/source/js/notifications.js" />
         <option value="$PROJECT_DIR$/source/js/message.js" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/news.php" />
+        <option value="$PROJECT_DIR$/source/js/search.js" />
         <option value="$PROJECT_DIR$/applications/users/source/js/client.js" />
+        <option value="$PROJECT_DIR$/source/js/notifications.js" />
       </list>
     </option>
   </component>
@@ -285,6 +284,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -517,7 +534,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistory" value="" />
+    <property name="SearchEverywhereHistory" value="//" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
   </component>
   <component name="RecentsManager">
@@ -800,7 +817,11 @@
       <created>1409229342521</created>
       <updated>1409229342522</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="new design">
+      <created>1409230404534</created>
+      <updated>1409230404534</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -855,16 +876,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/add_task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="9.807693" vertical-offset="255" max-vertical-offset="2890" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/all.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="63" selection-start="966" selection-end="966" vertical-scroll-proportion="-18.961538" vertical-offset="0" max-vertical-offset="1258" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/controllers/documents.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="111" column="66" selection-start="3678" selection-end="3678" vertical-scroll-proportion="-6.6923075" vertical-offset="1713" max-vertical-offset="4675">
@@ -1094,7 +1105,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="0" selection-start="1688" selection-end="1688" vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1020">
           <folding>
-            <marker date="1409221351500" expanded="true" signature="1911:2021" placeholder="update users..." />
+            <marker date="1409221351500" expanded="true" signature="-1:-1" placeholder="update users..." />
           </folding>
         </state>
       </provider>
@@ -1123,13 +1134,6 @@
     <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="105" column="38" selection-start="4341" selection-end="4341" vertical-scroll-proportion="-27.538462" vertical-offset="1069" max-vertical-offset="1989">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/js/notifications.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="304" column="0" selection-start="10402" selection-end="10402" vertical-scroll-proportion="0.0" vertical-offset="4258" max-vertical-offset="5559">
           <folding />
         </state>
       </provider>
@@ -1173,9 +1177,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/source/js/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="910">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/applications/users/source/js/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="9" selection-start="1173" selection-end="1173" vertical-scroll-proportion="0.43589744" vertical-offset="255" max-vertical-offset="8160">
+        <state line="256" column="16" selection-start="9255" selection-end="9255" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8160">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/js/notifications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="121" column="0" selection-start="4157" selection-end="4157" vertical-scroll-proportion="-2.5185184" vertical-offset="1989" max-vertical-offset="5763">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/js/search.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="9" selection-start="1549" selection-end="1549" vertical-scroll-proportion="0.9065934" vertical-offset="59" max-vertical-offset="1088">
           <folding />
         </state>
       </provider>

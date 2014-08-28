@@ -19,8 +19,8 @@ class __TwigTemplate_29d66637865a4ad8089da7006015f99bd054e47f8669e58d127c36f16a4
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
         echo \layout::func_from_text("
-<div class=\"container-fluid\" style=\"padding: 0;\">
-    <div class=\"row\">
+<div class=\"container-fluid\" style=\"padding-right: 0;\">
+    <div class=\"row\" style=\"margin-right: 0;\">
         ");
         // line 5
         $context['_parent'] = (array) $context;

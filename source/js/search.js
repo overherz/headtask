@@ -1,12 +1,6 @@
 $(document).ready(function() {
     $(document).on("submit","#search_form",function(){
         search();
-        if(typeof activate_fancy == 'function') {
-            activate_fancy();
-        }
-        if(typeof get_statuses == 'function') {
-            get_statuses();
-        }
         return false;
     });
 
@@ -50,6 +44,13 @@ function search(){
         clearTimeout(window.loading,300);
         input.css('background','');
         $('#search_result').html(res);
+
+        if(typeof activate_fancy == 'function') {
+            activate_fancy();
+        }
+        if(typeof get_statuses == 'function') {
+            get_statuses();
+        }
 
         if(jQuery().styler) {
             $(".popup input").styler();

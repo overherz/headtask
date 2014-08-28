@@ -238,7 +238,7 @@ $(document).ready(function(){
     scroll_to_last();
 });
 
-var status_t_int = false
+var status_t_int = false;
 
 function get_statuses()
 {

@@ -3,8 +3,20 @@ var io = require('../../node_modules/socket.io')(http);
 var template = require('../../node_modules/swig');
 http.listen(9900);
 
+http.on('error', function (e) {
+    console.log(e);
+    if (e.code == 'EADDRINUSE') {
+        console.log('Address in use, retrying...');
+        setTimeout(function () {
+            http.close();
+            http.listen(9900);
+        }, 1000);
+    }
+});
+
 process.on('uncaughtException', function (err) {
     console.log(err);
+   // process.exit(1);
 });
 
 template.setDefaults({
@@ -97,7 +109,7 @@ io.on('connection', function (client) {
     });
 
     client.on('set_read', function(data) {
-        if (users[data.hash])
+        if (users[data.hash] && Object.size(transport[users[data.hash]] > 0))
         {
             connection.query("update messages set be_read='1' where id=? and to_user=? and owner=?",[data.id,users[data.hash],users[data.hash]], function(err, res){
                 if (err) client.json.send({'event': 'error','message':'Ошибка базы данных'});
@@ -164,7 +176,7 @@ io.on('connection', function (client) {
             var size = Object.size(transport[client.real_id]);
             if (size < 1)
             {
-                delete users[client.hash];
+                //delete users[client.hash];
                 delete transport[client.real_id];
             }
         }
@@ -293,11 +305,11 @@ function notify_logs(last_id_logs)
 
         for(var i = 0; i < res.length; i++){
             for (key in transport) {
-                console.log(users_projects[key]);
+                //console.log(users_projects[key]);
                 if (users_projects[key].indexOf(res[i].id_project) != -1)
                 {
                     for (socketid in transport[key]) {
-                        console.log(socketid);
+                  //      console.log(socketid);
                         io.sockets.connected[socketid].emit('logs', {message: res[i]});
                     }
                 }
