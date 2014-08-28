@@ -1,8 +1,4 @@
 $(document).ready(function($) {
-    $(document).on("change","[name='start'],[name='end']",function(){
-        $('#search_form').submit();
-    });
-
     $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
     $("[name='start']").datepicker({
         changeMonth: true,

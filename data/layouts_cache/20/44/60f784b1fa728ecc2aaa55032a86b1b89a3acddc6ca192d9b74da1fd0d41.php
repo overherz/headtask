@@ -17,7 +17,7 @@ class __TwigTemplate_204460f784b1fa728ecc2aaa55032a86b1b89a3acddc6ca192d9b74da1f
     {
         // line 1
         echo \layout::func_from_text("<div>
-    <div style=\"float: right;\">
+    <div class=\"pull-right\">
         <a href=\"\">Актуальная дата</a></div>
 </div>
 

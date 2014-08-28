@@ -18,7 +18,7 @@ class __TwigTemplate_6225c53bf6d3114e3ce09ef9c05fd5b676543890a7569f023a09b863f51
         // line 1
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("<table class=\"table table-hover table-condensed table-border\">
+        echo \layout::func_from_text("<table class=\"table table-hover table_style\">
     <thead>
     <tr>
         <th></th>
