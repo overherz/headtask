@@ -145,13 +145,21 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
         uniq_key: \"");
         // line 104
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "uniq_key"), "html", null, true));
+        echo \layout::func_from_text("\",
+        name: \"");
+        // line 105
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "fio"), "html", null, true));
+        echo \layout::func_from_text("\",
+        id: \"");
+        // line 106
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user"), "html", null, true));
         echo \layout::func_from_text("\"
     }
 </script>
 ");
-        // line 107
-        $this->displayBlock('js', $context, $blocks);
         // line 109
+        $this->displayBlock('js', $context, $blocks);
+        // line 111
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -183,7 +191,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     {
     }
 
-    // line 107
+    // line 109
     public function block_js($context, array $blocks = array())
     {
     }
@@ -200,6 +208,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     public function getDebugInfo()
     {
-        return array (  187 => 107,  182 => 34,  178 => 27,  175 => 26,  172 => 25,  168 => 19,  165 => 18,  160 => 4,  155 => 109,  153 => 107,  147 => 104,  143 => 103,  94 => 57,  82 => 48,  67 => 35,  65 => 34,  57 => 28,  55 => 25,  48 => 20,  46 => 18,  29 => 4,  24 => 1,);
+        return array (  195 => 109,  190 => 34,  186 => 27,  183 => 26,  180 => 25,  176 => 19,  173 => 18,  168 => 4,  163 => 111,  161 => 109,  155 => 106,  151 => 105,  147 => 104,  143 => 103,  94 => 57,  82 => 48,  67 => 35,  65 => 34,  57 => 28,  55 => 25,  48 => 20,  46 => 18,  29 => 4,  24 => 1,);
     }
 }

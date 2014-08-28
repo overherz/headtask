@@ -124,7 +124,7 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
                 <div class=\"get_ms_status user_offline big\" data-id=\"");
             // line 34
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
-            echo \layout::func_from_text("\"></div>                
+            echo \layout::func_from_text("\"></div>
             </td>
             <td>
                 ");

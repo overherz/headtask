@@ -16,8 +16,20 @@ $(document).ready(function(){
 
     socket.on('connect', function () {
         connect = true;
-        socket.emit('auth', {hash: window.ms.uniq_key});
+        socket.emit('auth', {hash: window.ms.uniq_key, name:window.ms.name});
         get_statuses();
+    });
+
+    socket.on('userJoined',function(data){
+        if (window.ms.id != data.id)
+        {
+            show_message("info","вошел "+data.name);
+        }
+    });
+
+    socket.on('logs',function(data){
+        soundManager.play('new_message',{volume:100});
+        show_message("info",data.message.text);
     });
 
     socket.on('connect_error',function(){

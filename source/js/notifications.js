@@ -41,6 +41,7 @@ function onRequest(request, response) {
 
 var transport = {};
 var users = {};
+var users_projects = {};
 var calls = {};
 
 Object.size = function(obj) {
@@ -55,11 +56,9 @@ io.set('transports', ['websocket', 'polling']);
 io.set('origins', '*:*');
 
 io.on('connection', function (client) {
-//socket.broadcast.json.send({'event': 'userJoined', 'name': ID, 'time': time});
-
     //проверяем реальный id // Защита от подключения, не зная хэш
     client.on('auth', function (incoming) {
-        get_real_id(incoming.hash,function(real_id){
+        get_real_id(incoming.hash,function(real_id,new_connect){
             if (real_id > 0)
             {
                 client.emit('success_connect');
@@ -68,9 +67,16 @@ io.on('connection', function (client) {
                 if (!transport[real_id]) transport[real_id] = {};
                 transport[real_id][client.id] = 1; // Куда отсылать, зная только id пользователя
                 users[incoming.hash] = real_id; // Соответствие хэша реальному id
+                get_user_projects(real_id,function(data){
+                    var result = data.split(",").map(function (x) {
+                        return parseInt(x);
+                    });
+                    users_projects[real_id] = result;
+                });
                 //get_count_of_new_messages(real_id,function(count){
                 //    client.emit('set_count_of_new_messages', {count: count});
                 //});
+             //   if (new_connect) io.sockets.emit('userJoined', {'name': incoming.name,'id':real_id});
             }
             else
             {
@@ -169,10 +175,17 @@ io.on('connection', function (client) {
 // Достает реальный id из базы
 function get_real_id(hash,callback)
 {
-    connection.query("SELECT id_user FROM users where uniq_key='"+hash+"' LIMIT 1", function(err, res){
-        if (res && res[0]) callback(res[0].id_user);
-        else callback(null);
-    });
+    if (users[hash])
+    {
+        callback(users[hash]);
+    }
+    else
+    {
+        connection.query("SELECT id_user FROM users where uniq_key='"+hash+"' LIMIT 1", function(err, res){
+            if (res && res[0]) callback(res[0].id_user,true);
+            else callback(null);
+        });
+    }
 }
 
 //Количество непрочитанных сообщений пользователя
@@ -200,8 +213,16 @@ function get_last_id_logs(callback)
     });
 }
 
+function get_user_projects(id_user,callback)
+{
+    connection.query("SELECT GROUP_CONCAT(id_project) as projects from projects_users where id_user="+id_user+"", function(err, res){
+        if (res && res[0]) callback(res[0].projects);
+        else callback(null);
+    });
+}
+
 var last_id = 0,
-    last_id_logs;
+    last_id_logs = 0;
 
 /*
 if (last_id < 1)
@@ -212,6 +233,7 @@ if (last_id < 1)
     });
 }
 else setTimeout(function(){notify(last_id)},1000);
+ */
 
 if (last_id_logs < 1)
 {
@@ -219,8 +241,8 @@ if (last_id_logs < 1)
         setTimeout(function(){notify_logs(last_id_logs)},1000);
     });
 }
-else setTimeout(function(){notify(last_id)},1000);
-*/
+else setTimeout(function(){notify_logs(last_id)},1000);
+
 
 //var message_to_dialog = template.compileFile("../../applications/users/layouts/elements/dialog_message_node.html");
 
@@ -251,26 +273,39 @@ function notify(last_id)
 
 function notify_logs(last_id_logs)
 {
-    if (!last_id) last_id = "0";
-    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.nickname,u.gender,u.tzOffset,SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from logs as m LEFT JOIN users as u ON u.id_user=m.id_user where id > '"+last_id_logs+"' LIMIT 200", function(err, res){
+    if (!last_id_logs) last_id_logs = "0";
+    connection.query("select pl.*,t.name as task_name,p.name as project_name,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name," +
+        " tu.trash_name as trash_user_name,tp.trash_name as trash_project_name," +
+        " p.id as id_project,u.id_user as id_user" +
+        " from projects_logs as pl" +
+        " LEFT JOIN projects_tasks as t ON pl.id_task = t.id" +
+        " LEFT JOIN projects as p ON pl.id_project = p.id" +
+        " LEFT JOIN users as u ON u.id_user = pl.id_user" +
+        " LEFT JOIN trash_data as tu ON pl.id_user = tu.id_for_type and tu.type = 'user'" +
+        " LEFT JOIN trash_data as tp ON pl.id_project = tp.id_for_type and tp.type = 'project'" +
+        " LEFT JOIN groups as g ON u.id_group=g.id" +
+        " WHERE p.archive IS NULL and pl.id > "+last_id_logs+
+        " group by pl.id" +
+        " order by pl.created DESC LIMIT 200", function(err, res){
         if (err){
             throw err;
         }
 
         for(var i = 0; i < res.length; i++){
-            res[i].created = res[i].created*1000;
-            res[i].tzOffset = res[i].tzOffset / 60;
-            if (res[i].id_user == res[i].owner) res[i].my = true;
-            if (transport[res[i].owner])
-            {
-                var renderedHtml = message_to_dialog.render(res[i]);
-                for (key in transport[res[i].owner]) {
-                    socket.sockets.socket(key).json.send({'event': 'message','message':res[i],'renderedHtml' : renderedHtml});
+            for (key in transport) {
+                console.log(users_projects[key]);
+                if (users_projects[key].indexOf(res[i].id_project) != -1)
+                {
+                    for (socketid in transport[key]) {
+                        console.log(socketid);
+                        io.sockets.connected[socketid].emit('logs', {message: res[i]});
+                    }
                 }
             }
-            last_id = res[i].id;
+
+            last_id_logs = res[i].id;
         }
-        setTimeout(function(){notify(last_id)},5000);
+        setTimeout(function(){notify_logs(last_id_logs)},5000);
     });
 }
 
