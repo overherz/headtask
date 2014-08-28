@@ -1071,15 +1071,15 @@ td .progress {
 }
 
 .table_style {
-    border-spacing: 0 3px;
+    border-spacing: 0 0px;
     border-collapse: separate;
 }
 
 .table_style td {
     padding: 0 10px !important;
-    border-top: 1px solid #ddd !important;
-    border-bottom: 1px solid #ddd !important;
-    background: #fafafa;
+    border-top: 1px solid #eee !important;
+    border-bottom: 1px solid #eee !important;
+    background: #f7f7f7;
 }
 
 .table_style th {
@@ -1089,11 +1089,15 @@ td .progress {
 }
 
 .table_style td:first-child {
-    border-left: 1px solid #ddd !important;
+    border-left: none !important;
 }
 
 .table_style td:last-child {
-    border-right: 1px solid #ddd !important;
+    border-right: none !important;
+}
+
+.table_style tr:nth-child(odd) td {
+    background: none repeat scroll 0 0 #FFFFFF;
 }
 
 .table_style.no_style td {

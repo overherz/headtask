@@ -74,7 +74,7 @@ class __TwigTemplate_09f3f38a8e1451cc7f6c259159ccd68ab5b89de4a7cf3b3585bf258f5c4
         echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["t"]) ? $context["t"] : null), "created"), "d.m.Y H:i:s"), "html", null, true));
         echo \layout::func_from_text("
     </td>
-    <td style=\"width: 74px;\">
+    <td style=\"width: 75px;\">
         ");
         // line 15
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "forum")) {
