@@ -43,7 +43,7 @@ class __TwigTemplate_0e9b309ad9bde426e0aec278cd93169bb7e600cf7b7648e71f10a735b0c
         // line 5
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "documents")) {
             // line 6
-            echo \layout::func_from_text("    <td style=\"width: 74px;\">
+            echo \layout::func_from_text("    <td style=\"width: 75px;\">
         <div class=\"btn-group\">
             <a class=\"btn btn-foxtrot btn-sm\" href=\"/projects/documents/edit/");
             // line 8

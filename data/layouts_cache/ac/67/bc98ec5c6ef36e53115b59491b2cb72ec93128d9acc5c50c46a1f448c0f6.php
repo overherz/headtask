@@ -139,7 +139,7 @@ class __TwigTemplate_ac67bc98ec5c6ef36e53115b59491b2cb72ec93128d9acc5c50c46a1f44
                 // line 42
                 if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "forum")) {
                     // line 43
-                    echo \layout::func_from_text("        <td style=\"width: 74px;\">
+                    echo \layout::func_from_text("        <td style=\"width: 75px;\">
             <div class=\"btn-group\">
                 <a class=\"btn btn-oscar btn-sm\" href=\"/projects/forum/edit/");
                     // line 45

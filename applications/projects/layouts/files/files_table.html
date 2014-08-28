@@ -9,14 +9,14 @@
         <th>Добавил</th>
         {% if not show_task %}{% if access.delete_files %}<th></th>{% endif %}{% endif %}
     </tr>
-
+    </thead>
     <tbody>
     {% if files %}
     {% for file in files %}
         {% include app.path('projects','files/file.html') %}
     {% endfor %}
     {% else %}
-    <td colspan="{% if access.delete_files %}5{% else %}4{% endif %}" id="no_file">файлов нет</td>
+    <td colspan="{% if access.delete_files %}5{% else %}4{% endif %}" id="no_file"><span style="margin-left: 10px;">файлов нет</span></td>
     {% endif %}
     </tbody>
 </table>

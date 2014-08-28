@@ -1104,3 +1104,19 @@ blockquote:before {
 .table_style.no_padding_right td:last-child,.table_style.no_padding_right th:last-child {
     padding-right: 0 !important;
 }
+
+.minicolors-theme-bootstrap .minicolors-swatch {
+    height: 24px !important;
+    width: 24px !important;
+}
+
+td .label {
+    position:relative;
+    top:-1px;
+    padding: 0 4px;
+}
+
+td .progress {
+    position:relative;
+    top:-1px;
+}

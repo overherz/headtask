@@ -51,76 +51,72 @@
     </div>
     {% endif %}
     <div id="tabs-2" class="tab-pane {% if not logs %}fade in active{% endif %}">
-        <table class="table review_table table-condensed table-border">
+        <table class="table table_style">
             <tr>
-                <td class="left_column" style="vertical-align: top !important;padding: 0;width: 50%;">
-                    <table class="table-condensed table_statistic">
-                        <tr>
-                            <td class="first">Задачи</td>
-                            <td>
-                                <span class="label label-info">{{stats.all|default(0)}}</span> {{ "stats_tasks_all"|lang }} :
-                                <span class="label label-info">{{stats.new|default(0)}}</span> {{ "stats_tasks_new"|lang(stats.new|default(0)) }}
-                                <span class="label label-info">{{stats.in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}
-                                <span class="label label-info">{{stats.closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(stats.closed|default(0)) }}
-                                <span class="label label-info">{{stats.rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats.rejected|default(0)) }}
-                            </td>
-                        </tr>
-                        {% if categories %}
-                            <tr>
-                                <td class="first">Открытые задачи <br>по меткам</td>
-                                <td>
-                                    {% for cat in categories %}
-                                        <a href="/projects/tasks/{{project.id}}/?cat={{ cat.id }}" class="list-group-item">
-                            <span class="label label-cat" style="margin-right: 20px;background: {{ cat.color }};color: {{ cat.color_text }}">
-                                {{ cat.name }}
-                            </span>
-                                            <span class="label label-info pull-right" style="margin-top: 3px;">{{ stats.cats[cat.id]|default('0') }}</span>
-                                        </a>
-                                    {% endfor %}
-                                </td>
-                            </tr>
-                        {% endif %}
-                        {% if not project.owner %}
-                            <tr>
-                                <td class="first">Новости</td>
-                                <td>
-                                    <span class="label label-info">{{stats_other.news|default(0)}}</span> {{ "stats_news"|lang(stats_other.news|default(0)) }}
-                                </td>
-                            </tr>
-                        {% endif %}
-                        <tr>
-                            <td class="first">Файлы</td>
-                            <td>
-                                <span class="label label-info">{{stats_other.files.count|default(0)}}</span> {{ "stats_files"|lang(stats_other.files.count|default(0)) }}{% if stats_other.files.sum_size %}, общим размером <span class="label label-info">{{stats_other.files.sum_size}}</span>{% endif %}
-                            </td>
-                        </tr>
-                        {% if not project.owner %}
-                            <tr>
-                                <td class="first">Участники</td>
-                                <td>
-                                    <span class="label label-info">{{stats_other.users|default(0)}}</span> {{ "stats_users"|lang(stats_other.users|default(0)) }}
-                                </td>
-                            </tr>
-                        {% endif %}
-                        <tr>
-                            <td class="first">Wiki</td>
-                            <td>
-                                <span class="label label-info">{{stats_other.docs|default(0)}}</span> {{ "stats_docs"|lang(stats_other.docs|default(0)) }}
-                            </td>
-                        </tr>
-                        {% if not project.owner %}
-                            <tr>
-                                <td class="first">Форум</td>
-                                <td>
-                                    <span class="label label-info">{{stats_other.forum.forums_count|default(0)}}</span> {{ "stats_forum_forums"|lang(stats_other.forum.forums_count|default(0)) }}
-                                    <span class="label label-info">{{stats_other.forum.topics_count|default(0)}}</span> {{ "stats_forum_topics"|lang(stats_other.forum.topics_count|default(0)) }}
-                                    <span class="label label-info">{{stats_other.forum.posts_count|default(0)}}</span> {{ "stats_forum_posts"|lang(stats_other.forum.posts_count|default(0)) }}
-                                </td>
-                            </tr>
-                        {% endif %}
-                    </table>
+                <td class="first" style="width: 1px;">Задачи</td>
+                <td>
+                    <span class="label label-info">{{stats.all|default(0)}}</span> {{ "stats_tasks_all"|lang }} :
+                    <span class="label label-info">{{stats.new|default(0)}}</span> {{ "stats_tasks_new"|lang(stats.new|default(0)) }}
+                    <span class="label label-info">{{stats.in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}
+                    <span class="label label-info">{{stats.closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(stats.closed|default(0)) }}
+                    <span class="label label-info">{{stats.rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats.rejected|default(0)) }}
                 </td>
             </tr>
+            {% if categories %}
+                <tr>
+                    <td class="first">Открытые задачи <br>по меткам</td>
+                    <td>
+                        {% for cat in categories %}
+                            <div>
+                            <a href="/projects/tasks/{{project.id}}/?cat={{ cat.id }}">
+                                <span class="label label-cat" style="margin-right: 5px;background: {{ cat.color }};color: {{ cat.color_text }}">
+                                    {{ cat.name }}
+                                </span>
+                                <span class="label label-info" style="margin-top: 3px;">{{ stats.cats[cat.id]|default('0') }}</span>
+                            </a>
+                            </div>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endif %}
+            {% if not project.owner %}
+                <tr>
+                    <td class="first">Новости</td>
+                    <td>
+                        <span class="label label-info">{{stats_other.news|default(0)}}</span> {{ "stats_news"|lang(stats_other.news|default(0)) }}
+                    </td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td class="first">Файлы</td>
+                <td>
+                    <span class="label label-info">{{stats_other.files.count|default(0)}}</span> {{ "stats_files"|lang(stats_other.files.count|default(0)) }}{% if stats_other.files.sum_size %}, общим размером <span class="label label-info">{{stats_other.files.sum_size}}</span>{% endif %}
+                </td>
+            </tr>
+            {% if not project.owner %}
+                <tr>
+                    <td class="first">Участники</td>
+                    <td>
+                        <span class="label label-info">{{stats_other.users|default(0)}}</span> {{ "stats_users"|lang(stats_other.users|default(0)) }}
+                    </td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td class="first">Wiki</td>
+                <td>
+                    <span class="label label-info">{{stats_other.docs|default(0)}}</span> {{ "stats_docs"|lang(stats_other.docs|default(0)) }}
+                </td>
+            </tr>
+            {% if not project.owner %}
+                <tr>
+                    <td class="first">Форум</td>
+                    <td>
+                        <span class="label label-info">{{stats_other.forum.forums_count|default(0)}}</span> {{ "stats_forum_forums"|lang(stats_other.forum.forums_count|default(0)) }}
+                        <span class="label label-info">{{stats_other.forum.topics_count|default(0)}}</span> {{ "stats_forum_topics"|lang(stats_other.forum.topics_count|default(0)) }}
+                        <span class="label label-info">{{stats_other.forum.posts_count|default(0)}}</span> {{ "stats_forum_posts"|lang(stats_other.forum.posts_count|default(0)) }}
+                    </td>
+                </tr>
+            {% endif %}
         </table>
     </div>
 </div>

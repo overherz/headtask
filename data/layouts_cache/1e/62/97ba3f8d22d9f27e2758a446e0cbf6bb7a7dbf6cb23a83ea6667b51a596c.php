@@ -41,6 +41,7 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
         // line 16
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["users"]) ? $context["users"] : null));
+        $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["u"]) {
             // line 17
             echo \layout::func_from_text("        <tr ");
@@ -169,7 +170,7 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
             // line 46
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "users")) {
                 // line 47
-                echo \layout::func_from_text("            <td style=\"width: 74px;\">
+                echo \layout::func_from_text("            <td style=\"width: 75px;\">
                 <div class=\"btn-group\">
                     <a class=\"btn btn-primary btn-sm\" href=\"/projects/users/edit/");
                 // line 49
@@ -188,15 +189,23 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
             // line 54
             echo \layout::func_from_text("        </tr>
     ");
+            $context['_iterated'] = true;
+        }
+        if (!$context['_iterated']) {
+            // line 56
+            echo \layout::func_from_text("        <tr><td colspan=\"7\">
+            <span style=\"margin-left: 10px;\">участников нет</span>
+        </td></tr>
+    ");
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['u'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 56
+        // line 60
         echo \layout::func_from_text("    </tbody>
 </table>
 ");
-        // line 58
+        // line 62
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
     }
 
@@ -212,6 +221,6 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
 
     public function getDebugInfo()
     {
-        return array (  200 => 58,  196 => 56,  189 => 54,  182 => 50,  176 => 49,  172 => 47,  170 => 46,  167 => 45,  163 => 43,  157 => 42,  153 => 40,  149 => 39,  142 => 38,  132 => 37,  126 => 34,  118 => 31,  112 => 30,  106 => 29,  100 => 28,  94 => 27,  87 => 24,  83 => 22,  78 => 21,  68 => 20,  55 => 18,  46 => 17,  42 => 16,  37 => 13,  33 => 12,  21 => 2,  19 => 1,);
+        return array (  209 => 62,  205 => 60,  196 => 56,  190 => 54,  183 => 50,  177 => 49,  173 => 47,  171 => 46,  168 => 45,  164 => 43,  158 => 42,  154 => 40,  150 => 39,  143 => 38,  133 => 37,  127 => 34,  119 => 31,  113 => 30,  107 => 29,  101 => 28,  95 => 27,  88 => 24,  84 => 22,  79 => 21,  69 => 20,  56 => 18,  47 => 17,  42 => 16,  37 => 13,  33 => 12,  21 => 2,  19 => 1,);
     }
 }

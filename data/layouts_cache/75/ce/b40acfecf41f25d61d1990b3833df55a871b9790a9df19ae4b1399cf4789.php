@@ -16,7 +16,7 @@ class __TwigTemplate_75ceb40acfecf41f25d61d1990b3833df55a871b9790a9df19ae4b1399c
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<table class=\"table table-border\" style=\"margin-top: 15px;\" id=\"category_table\">
+        echo \layout::func_from_text("<table class=\"table table_style no_padding_right\" style=\"margin-top: 15px;\" id=\"category_table\">
     <thead>
     <tr>
         <th>Название</th>
@@ -42,7 +42,7 @@ class __TwigTemplate_75ceb40acfecf41f25d61d1990b3833df55a871b9790a9df19ae4b1399c
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("</span>
             </td>
-            <td style=\"width: 85px;\">
+            <td style=\"width: 75px;\">
                 <div class=\"btn-group\">
                     <a class=\"btn btn-info btn-sm edit_category\" data-id=\"");
             // line 16

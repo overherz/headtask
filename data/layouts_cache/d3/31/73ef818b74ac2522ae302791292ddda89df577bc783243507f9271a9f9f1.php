@@ -41,7 +41,7 @@ class __TwigTemplate_d33173ef818b74ac2522ae302791292ddda89df577bc783243507f9271a
         }
         // line 11
         echo \layout::func_from_text("    </tr>
-
+    </thead>
     <tbody>
     ");
         // line 14
@@ -92,7 +92,7 @@ class __TwigTemplate_d33173ef818b74ac2522ae302791292ddda89df577bc783243507f9271a
             } else {
                 echo \layout::func_from_text("4");
             }
-            echo \layout::func_from_text("\" id=\"no_file\">файлов нет</td>
+            echo \layout::func_from_text("\" id=\"no_file\"><span style=\"margin-left: 10px;\">файлов нет</span></td>
     ");
         }
         // line 21

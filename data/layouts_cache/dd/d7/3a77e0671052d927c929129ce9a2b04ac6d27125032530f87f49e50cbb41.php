@@ -20,7 +20,7 @@ class __TwigTemplate_ddd73a77e0671052d927c929129ce9a2b04ac6d27125032530f87f49e50
         // line 2
         if ((isset($context["all_projects"]) ? $context["all_projects"] : null)) {
             // line 3
-            echo \layout::func_from_text("    <table class=\"table table-bordered\">
+            echo \layout::func_from_text("    <table class=\"table table_style\">
         <tr>
             ");
             // line 5
@@ -131,6 +131,6 @@ class __TwigTemplate_ddd73a77e0671052d927c929129ce9a2b04ac6d27125032530f87f49e50
 
     public function getDebugInfo()
     {
-        return array (  119 => 20,  115 => 18,  111 => 16,  97 => 15,  94 => 14,  79 => 12,  61 => 11,  58 => 10,  54 => 9,  44 => 6,  27 => 5,  23 => 3,  21 => 2,  19 => 1,  53 => 14,  50 => 13,  47 => 7,  39 => 8,  36 => 7,  31 => 4,  28 => 3,);
+        return array (  119 => 20,  115 => 18,  111 => 16,  97 => 15,  94 => 14,  79 => 12,  61 => 11,  58 => 10,  54 => 9,  47 => 7,  44 => 6,  27 => 5,  23 => 3,  21 => 2,  19 => 1,);
     }
 }

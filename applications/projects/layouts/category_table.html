@@ -1,4 +1,4 @@
-<table class="table table-border" style="margin-top: 15px;" id="category_table">
+<table class="table table_style no_padding_right" style="margin-top: 15px;" id="category_table">
     <thead>
     <tr>
         <th>Название</th>
@@ -11,7 +11,7 @@
             <td>
                 <span class="label label-cat" style="background: {{ cat.color }};color: {{ cat.color_text }};">{{ cat.name }}</span>
             </td>
-            <td style="width: 85px;">
+            <td style="width: 75px;">
                 <div class="btn-group">
                     <a class="btn btn-info btn-sm edit_category" data-id="{{ cat.id }}"><i class="fa fa-pencil"></i></a>
                     <a class="btn btn-danger btn-sm delete_category" data-id="{{ cat.id }}"><i class="fa fa-trash-o"></i></a>
