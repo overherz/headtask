@@ -19,7 +19,7 @@ class __TwigTemplate_979758b8ea5e1d0cddb860791efc8d7feb09ffbf81e03a696c9aec1d3fd
         echo \layout::func_from_text("<div style=\"position: relative;margin-top: 10px;\">");
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         echo \layout::func_from_text("</div>
-<table class=\"table table-hover table-condensed table-border\" id=\"tasks_table\">
+<table class=\"table table-hover table_style no_padding_right\" id=\"tasks_table\">
     <thead>
     <tr>
         <th></th>
@@ -97,6 +97,6 @@ class __TwigTemplate_979758b8ea5e1d0cddb860791efc8d7feb09ffbf81e03a696c9aec1d3fd
 
     public function getDebugInfo()
     {
-        return array (  85 => 23,  74 => 18,  60 => 17,  38 => 15,  36 => 14,  19 => 1,  119 => 46,  116 => 45,  106 => 38,  102 => 36,  96 => 34,  94 => 33,  90 => 32,  86 => 31,  81 => 21,  77 => 19,  69 => 21,  67 => 20,  64 => 19,  56 => 16,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  85 => 23,  81 => 21,  77 => 19,  74 => 18,  60 => 17,  56 => 16,  38 => 15,  36 => 14,  19 => 1,);
     }
 }

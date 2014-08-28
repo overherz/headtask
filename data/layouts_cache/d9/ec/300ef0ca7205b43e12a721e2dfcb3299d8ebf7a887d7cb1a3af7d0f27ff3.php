@@ -30,7 +30,7 @@ class __TwigTemplate_d9ec300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f
         // line 8
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["id_user"]) ? $context["id_user"] : null), "html", null, true));
         echo \layout::func_from_text("\">
-        <table class=\"table table-condensed table-border\" style=\"width: auto;\">
+        <table class=\"table table_style no_style\" style=\"width: auto;\">
             <tr>
                 <th>Дата</th>
                 <th>Статус</th>

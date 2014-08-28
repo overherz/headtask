@@ -74,7 +74,7 @@ class __TwigTemplate_09f3f38a8e1451cc7f6c259159ccd68ab5b89de4a7cf3b3585bf258f5c4
         echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["t"]) ? $context["t"] : null), "created"), "d.m.Y H:i:s"), "html", null, true));
         echo \layout::func_from_text("
     </td>
-    <td style=\"width: 85px;\">
+    <td style=\"width: 74px;\">
         ");
         // line 15
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "forum")) {
@@ -112,6 +112,6 @@ class __TwigTemplate_09f3f38a8e1451cc7f6c259159ccd68ab5b89de4a7cf3b3585bf258f5c4
 
     public function getDebugInfo()
     {
-        return array (  99 => 22,  95 => 20,  89 => 18,  85 => 17,  82 => 16,  80 => 15,  74 => 12,  58 => 8,  54 => 7,  43 => 5,  25 => 3,  125 => 24,  121 => 22,  117 => 20,  114 => 19,  100 => 18,  96 => 17,  78 => 16,  64 => 11,  60 => 14,  42 => 13,  40 => 12,  34 => 9,  21 => 2,  19 => 1,  69 => 21,  66 => 20,  59 => 15,  56 => 14,  50 => 11,  45 => 9,  41 => 8,  38 => 7,  31 => 4,  28 => 3,);
+        return array (  99 => 22,  95 => 20,  89 => 18,  85 => 17,  82 => 16,  80 => 15,  74 => 12,  64 => 11,  58 => 8,  54 => 7,  43 => 5,  25 => 3,  19 => 1,);
     }
 }

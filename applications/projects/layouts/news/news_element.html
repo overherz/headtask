@@ -3,7 +3,7 @@
     <td>{{n.created|date('d.m.Y H:i:s')}}</td>
     <td><a href="/users/~{{n.author}}/" style="color:{{ n.color }};font-weight: bold;" title="{{ n.group_name }}">{{n.fio}}</a></td>
     {% if access.news %}
-    <td style="width: 85px;">
+    <td style="width: 74px;">
         <div class="btn-group">
             <a class="btn btn-black btn-sm" href="/projects/news/edit/{{n.id}}"><i class="fa fa-pencil"></i></a>
             <a class="btn btn-black btn-sm" delete_news={{n.id}} href=""><i class="fa fa-trash-o"></i></a>

@@ -19,7 +19,7 @@ class __TwigTemplate_0f70b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c6
         echo \layout::func_from_text("<div style=\"position: relative;\">");
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         echo \layout::func_from_text("</div>
-<table class=\"table table-hover table-border table-condensed\">
+<table class=\"table table-hover table_style no_padding_left\">
     <tr>
         <th style=\"width: 1px;white-space: nowrap;\"></th>
         <th>Описание</th>

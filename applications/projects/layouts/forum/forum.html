@@ -12,7 +12,7 @@
 
 {% block project_data %}
 <div class="new_post_count"><a href='/projects/forum/new_posts/{{project.id}}'>Новый сообщений: {{new_post_count}}</a></div>
-<table class="table table-border table-hover table-condensed" id="tasks_table">
+<table class="table table-hover table_style no_padding_right" id="tasks_table">
     <thead>
     <tr>
         <th>Название раздела</th>
@@ -40,7 +40,7 @@
             {% endif %}
         </td>
         {% if access.forum %}
-        <td style="width: 85px;">
+        <td style="width: 74px;">
             <div class="btn-group">
                 <a class="btn btn-oscar btn-sm" href="/projects/forum/edit/{{f.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-oscar btn-sm" delete_forum={{f.id}} href=""><i class="fa fa-trash-o"></i></a>

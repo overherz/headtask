@@ -23,13 +23,13 @@ class __TwigTemplate_43cc89f1b3db42d0b784feeb49dddfbdbd5b2594394b916f89d00461c79
         echo \layout::func_from_text("'>Новый сообщений: ");
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["new_post_count"]) ? $context["new_post_count"] : null), "html", null, true));
         echo \layout::func_from_text("</a></div>
-<table class=\"table table-border table-hover vert_middle table-condensed\" style=\"background: #fff;\" id=\"topics_table\">
+<table class=\"table table-hover vert_middle table_style no_padding_right\" style=\"background: #fff;\" id=\"topics_table\">
     <tr>
         <th>Название темы</th>
         <th style=\"width:15%;\">Автор</th>
         <th style=\"width:15%;\">Статистика</th>
         <th style=\"width:15%;\">Последнее сообщение</th>
-        <th style=\"width: 40px;text-align: center;\"><a class=\"btn btn-oscar btn-sm\" href=\"/projects/forum/add_topic/");
+        <th style=\"width: 20px;text-align: right;padding-right: 0 !important;\"><a class=\"btn btn-oscar btn-sm\" href=\"/projects/forum/add_topic/");
         // line 9
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["forum"]) ? $context["forum"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("/\"><i class=\"fa fa-plus\"></i></a></th>
@@ -137,6 +137,6 @@ class __TwigTemplate_43cc89f1b3db42d0b784feeb49dddfbdbd5b2594394b916f89d00461c79
 
     public function getDebugInfo()
     {
-        return array (  125 => 24,  121 => 22,  117 => 20,  114 => 19,  100 => 18,  96 => 17,  78 => 16,  64 => 15,  60 => 14,  42 => 13,  40 => 12,  34 => 9,  21 => 2,  19 => 1,  69 => 21,  66 => 20,  59 => 15,  56 => 14,  50 => 11,  45 => 9,  41 => 8,  38 => 7,  31 => 4,  28 => 3,);
+        return array (  125 => 24,  121 => 22,  117 => 20,  114 => 19,  100 => 18,  96 => 17,  78 => 16,  64 => 15,  60 => 14,  42 => 13,  40 => 12,  34 => 9,  21 => 2,  19 => 1,);
     }
 }

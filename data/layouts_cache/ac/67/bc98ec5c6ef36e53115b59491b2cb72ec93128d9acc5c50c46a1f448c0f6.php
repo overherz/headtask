@@ -60,7 +60,7 @@ class __TwigTemplate_ac67bc98ec5c6ef36e53115b59491b2cb72ec93128d9acc5c50c46a1f44
         echo \layout::func_from_text("'>Новый сообщений: ");
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["new_post_count"]) ? $context["new_post_count"] : null), "html", null, true));
         echo \layout::func_from_text("</a></div>
-<table class=\"table table-border table-hover table-condensed\" id=\"tasks_table\">
+<table class=\"table table-hover table_style no_padding_right\" id=\"tasks_table\">
     <thead>
     <tr>
         <th>Название раздела</th>
@@ -139,7 +139,7 @@ class __TwigTemplate_ac67bc98ec5c6ef36e53115b59491b2cb72ec93128d9acc5c50c46a1f44
                 // line 42
                 if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "forum")) {
                     // line 43
-                    echo \layout::func_from_text("        <td style=\"width: 85px;\">
+                    echo \layout::func_from_text("        <td style=\"width: 74px;\">
             <div class=\"btn-group\">
                 <a class=\"btn btn-oscar btn-sm\" href=\"/projects/forum/edit/");
                     // line 45

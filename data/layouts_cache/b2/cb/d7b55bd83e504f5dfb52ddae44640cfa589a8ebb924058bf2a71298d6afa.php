@@ -300,7 +300,7 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
         // line 110
         echo \layout::func_from_text("            </select>
         </div>
-        <label class=\"col-md-2 control-label\" for=\"estimated_time\">Время</label>
+        <label class=\"col-md-2 control-label\" for=\"estimated_time\">Расчетное время</label>
         <div class=\"col-md-4\">
             <div class=\"input-group\">
                 <input type=\"text\" name=\"estimated_time\" id=\"estimated_time\" class=\"form-control\" value=\"");

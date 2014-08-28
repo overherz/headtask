@@ -19,7 +19,7 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
         echo \layout::func_from_text("
-<table class=\"table table-border table-hover table-condensed\">
+<table class=\"table table-hover table_style no_padding_right no_padding_left\">
     <thead>
     <tr>
         <th style=\"width: 100px;\"></th>
@@ -169,7 +169,7 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
             // line 46
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "users")) {
                 // line 47
-                echo \layout::func_from_text("            <td style=\"width: 85px;\">
+                echo \layout::func_from_text("            <td style=\"width: 74px;\">
                 <div class=\"btn-group\">
                     <a class=\"btn btn-primary btn-sm\" href=\"/projects/users/edit/");
                 // line 49
