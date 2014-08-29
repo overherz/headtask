@@ -39,21 +39,20 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     <link rel=\"stylesheet\" href=\"/source/css/popup.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/source/css/content.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/source/css/ui-lightness/jquery-ui-1.10.4.custom.min.css\" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400italic,700italic,400' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     ");
-        // line 18
+        // line 17
         $this->displayBlock('css', $context, $blocks);
-        // line 20
+        // line 19
         echo \layout::func_from_text("</head>
 
 <body>
 <div id=\"wrapper\">
 
 ");
-        // line 25
+        // line 24
         $this->displayBlock('menu', $context, $blocks);
-        // line 28
+        // line 27
         echo \layout::func_from_text("
     <!-- Page Content -->
     <div id=\"page-content-wrapper\">
@@ -61,9 +60,9 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
             <div class=\"row\" style=\"margin-right: 0;\">
                 <div class=\"col-lg-12\" style=\"padding-right: 0;\">
                 ");
-        // line 34
+        // line 33
         $this->displayBlock('body', $context, $blocks);
-        // line 35
+        // line 34
         echo \layout::func_from_text("                </div>
             </div>
         </div>
@@ -78,7 +77,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 <script src=\"http://yandex.st/jquery/2.1.1/jquery.min.js\"></script>
 <script src=\"/source/js/socket.io/socket.io.js\"></script>
 <script src=\"");
-        // line 48
+        // line 47
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "client.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 <script src=\"http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js\"></script>
@@ -90,7 +89,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 <script src=\"/source/js/jquery.scrollTo.min.js\"></script>
 <script src=\"/source/js/jquery.cookie.js\"></script>
 <script type=\"text/javascript\" src=\"");
-        // line 57
+        // line 56
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "projects.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 <script src=\"/source/js/sound_manager/soundmanager2-nodebug-jsmin.js\"></script>
@@ -139,27 +138,27 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     window.ms = {
         address: \"");
-        // line 103
+        // line 102
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "message_server"), "html", null, true));
         echo \layout::func_from_text("\",
         uniq_key: \"");
-        // line 104
+        // line 103
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "uniq_key"), "html", null, true));
         echo \layout::func_from_text("\",
         name: \"");
-        // line 105
+        // line 104
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "fio"), "html", null, true));
         echo \layout::func_from_text("\",
         id: \"");
-        // line 106
+        // line 105
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user"), "html", null, true));
         echo \layout::func_from_text("\"
     }
 </script>
 ");
-        // line 109
+        // line 108
         $this->displayBlock('js', $context, $blocks);
-        // line 111
+        // line 110
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -169,29 +168,29 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     {
     }
 
-    // line 18
+    // line 17
     public function block_css($context, array $blocks = array())
     {
-        // line 19
+        // line 18
         echo \layout::func_from_text("    ");
     }
 
-    // line 25
+    // line 24
     public function block_menu($context, array $blocks = array())
     {
-        // line 26
+        // line 25
         echo \layout::func_from_text("    ");
         $this->env->loadTemplate("/source/menu.html")->display($context);
-        // line 27
+        // line 26
         echo \layout::func_from_text(" ");
     }
 
-    // line 34
+    // line 33
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 109
+    // line 108
     public function block_js($context, array $blocks = array())
     {
     }
@@ -208,6 +207,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     public function getDebugInfo()
     {
-        return array (  195 => 109,  190 => 34,  186 => 27,  183 => 26,  180 => 25,  176 => 19,  173 => 18,  168 => 4,  163 => 111,  161 => 109,  155 => 106,  151 => 105,  147 => 104,  143 => 103,  94 => 57,  82 => 48,  67 => 35,  65 => 34,  57 => 28,  55 => 25,  48 => 20,  46 => 18,  29 => 4,  24 => 1,);
+        return array (  194 => 108,  189 => 33,  185 => 26,  182 => 25,  179 => 24,  175 => 18,  172 => 17,  167 => 4,  162 => 110,  160 => 108,  154 => 105,  150 => 104,  146 => 103,  142 => 102,  93 => 56,  81 => 47,  66 => 34,  64 => 33,  56 => 27,  54 => 24,  47 => 19,  45 => 17,  29 => 4,  24 => 1,);
     }
 }
