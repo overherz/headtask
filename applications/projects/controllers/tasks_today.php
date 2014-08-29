@@ -41,6 +41,11 @@ class tasks_today extends \Controller {
             ),
         );
 
+        if ($_POST['act'] == "get_data")
+        {
+            setcookie('dashboard', serialize($_POST), time()+60*60*24*30,"/");
+        }
+
         if ($_COOKIE['dashboard'] != "")
         {
             $filter = unserialize($_COOKIE['dashboard']);
@@ -48,19 +53,20 @@ class tasks_today extends \Controller {
             {
                 if ($filter[$k]) $f['selected'] = $filter[$k];
             }
+            if (!$_POST['act'] == "get_data")
+            {
+                $start = $filter['start'];
+                $end = $filter['end'];
+            }
         }
 
         $u_cr = $this->get_controller("projects","user_tasks");
         $u_cr->limit = 50;
         $u_cr->form = $form;
         $u_cr->owner = true;
+        $u_cr->start = $start;
         $u_cr->end = $end;
         $u_cr->dashboard = true;
-
-        if ($_POST['act'] == "get_data")
-        {
-            setcookie('dashboard', serialize($_POST), time()+60*60*24*30,"/");
-        }
 
         if ($data['user_tasks'] = $u_cr->default_method())
         {

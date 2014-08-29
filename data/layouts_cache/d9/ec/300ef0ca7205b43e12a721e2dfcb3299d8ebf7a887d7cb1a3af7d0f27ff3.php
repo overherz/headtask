@@ -65,12 +65,14 @@ class __TwigTemplate_d9ec300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f
                     <td>От: <input type=\"text\" name=\"start\" value=\"");
             // line 28
             if ((isset($context["start"]) ? $context["start"] : null)) {
-                echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, (isset($context["start"]) ? $context["start"] : null), "d.m.Y"), "html", null, true));
+                echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["start"]) ? $context["start"] : null), "html", null, true));
             }
             echo \layout::func_from_text("\" readonly style=\"margin-bottom: 10px;width: 85px;\"><br>
                         До: <input type=\"text\" name=\"end\" value=\"");
             // line 29
-            echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, (isset($context["end"]) ? $context["end"] : null), "d.m.Y"), "html", null, true));
+            if ((isset($context["end"]) ? $context["end"] : null)) {
+                echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["end"]) ? $context["end"] : null), "html", null, true));
+            }
             echo \layout::func_from_text("\" readonly style=\"width: 85px;\"></td>
                     <td>");
             // line 30
@@ -158,6 +160,6 @@ class __TwigTemplate_d9ec300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f
 
     public function getDebugInfo()
     {
-        return array (  144 => 69,  141 => 68,  131 => 61,  125 => 58,  121 => 57,  117 => 56,  113 => 55,  98 => 43,  90 => 37,  81 => 31,  77 => 30,  73 => 29,  67 => 28,  62 => 26,  56 => 23,  52 => 22,  34 => 7,  30 => 6,  25 => 3,  22 => 2,  19 => 1,);
+        return array (  146 => 69,  143 => 68,  133 => 61,  127 => 58,  123 => 57,  119 => 56,  115 => 55,  100 => 43,  92 => 37,  83 => 31,  79 => 30,  73 => 29,  67 => 28,  62 => 26,  56 => 23,  52 => 22,  34 => 7,  30 => 6,  25 => 3,  22 => 2,  19 => 1,);
     }
 }

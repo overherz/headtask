@@ -18,6 +18,7 @@ class user_tasks extends \Controller {
             'type' => 'checkbox'
         ),
     );
+    public $start = false;
     public $end = false;
     public $owner = false;
     public $dashboard = false;
@@ -35,7 +36,9 @@ class user_tasks extends \Controller {
         }
 
         if ($_POST['start'] != "") $start = convert_date($_POST['start'],true);
+        else $start = convert_date($this->start,true);
         if ($_POST['end'] != "") $end = convert_date($_POST['end'],true);
+        else $end = convert_date($this->end,true);
 
         if ($start && $end) $where[] = "t.start >='{$start}' and (t.end <= '{$end}' or t.end IS NULL)";
         else if ($start) $where[] = "t.start >='{$start}'";
@@ -129,6 +132,8 @@ class user_tasks extends \Controller {
             'tasks' => $tasks,
             'id_user' => $id_user,
             'dashboard' => $this->dashboard,
+            'start' => $this->start,
+            'end' => $this->end
         );
 
         if ($_POST['act'] == "get_data")

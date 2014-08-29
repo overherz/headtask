@@ -25,8 +25,8 @@
                     <td class="dashboard_radio">
                         {{ inputs.input(form.assigned,'assigned') }}
                     </td>
-                    <td>От: <input type="text" name="start" value="{% if start %}{{start|date("d.m.Y")}}{% endif %}" readonly style="margin-bottom: 10px;width: 85px;"><br>
-                        До: <input type="text" name="end" value="{{end|date("d.m.Y")}}" readonly style="width: 85px;"></td>
+                    <td>От: <input type="text" name="start" value="{% if start %}{{start}}{% endif %}" readonly style="margin-bottom: 10px;width: 85px;"><br>
+                        До: <input type="text" name="end" value="{% if end %}{{end}}{% endif %}" readonly style="width: 85px;"></td>
                     <td>{{ inputs.input(form.status,'status') }}</td>
                     <td>{{ inputs.input(form.priority,'priority') }}</td>
                 </tr>

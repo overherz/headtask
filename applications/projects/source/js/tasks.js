@@ -4,11 +4,32 @@ $(document).ready(function ($) {
     $("[name='start']").datepicker({
         changeMonth: true,
         dateFormat: "dd.mm.yy",
+        showButtonPanel: true,
         'maxDate': $("[name='end']").val(),
         onClose: function( selectedDate ) {
             $("[name='end']").datepicker( "option", "minDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
         }
     });
+
+    function dpClearButton (input) {
+        setTimeout(function () {
+            var buttonPane = $(input)
+                .datepicker("widget")
+                .find(".ui-datepicker-buttonpane");
+
+            $("<button>", {
+                html: "<i class='fa fa-trash-o'></i>",
+                click: function () { jQuery.datepicker._clearDate(input); }
+            }).appendTo(buttonPane).addClass("ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all");
+        }, 1)
+    }
 
     $("[name='end']").datepicker({
         changeMonth: true,
@@ -16,6 +37,13 @@ $(document).ready(function ($) {
         'minDate': $("[name='start']").val(),
         onClose: function( selectedDate ) {
             $("[name='start']").datepicker( "option", "maxDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
         }
     });
 
