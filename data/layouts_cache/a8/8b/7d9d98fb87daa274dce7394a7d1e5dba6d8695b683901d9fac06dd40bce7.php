@@ -37,20 +37,21 @@ class __TwigTemplate_a88b7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd4
     {
         // line 6
         echo \layout::func_from_text("    <script type=\"text/javascript\" src=\"/source/js/search.js\"></script>
+    <script src=\"/source/js/jquery.ui.datepicker-ru.min.js\"></script>
     <script src=\"");
-        // line 7
+        // line 8
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 ");
     }
 
-    // line 10
+    // line 11
     public function block_context($context, array $blocks = array())
     {
-        // line 11
+        // line 12
         echo \layout::func_from_text("<div id=\"projects_info\"></div>
     ");
-        // line 12
+        // line 13
         echo \layout::func_from_text((isset($context["user_tasks"]) ? $context["user_tasks"] : null));
         echo \layout::func_from_text("
 
@@ -69,6 +70,6 @@ class __TwigTemplate_a88b7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd4
 
     public function getDebugInfo()
     {
-        return array (  54 => 12,  51 => 11,  48 => 10,  42 => 7,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  55 => 13,  52 => 12,  49 => 11,  43 => 8,  39 => 6,  36 => 5,  30 => 3,);
     }
 }

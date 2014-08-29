@@ -82,7 +82,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "client.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 <script src=\"http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js\"></script>
-<script src=\"/source/js/datepicker_ru.js\"></script>
 <script src=\"/source/js/jquery.jgrowl.min.js\"></script>
 <script src=\"/source/js/functions.js\"></script>
 <script src=\"/source/js/message.js\"></script>
@@ -91,7 +90,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 <script src=\"/source/js/jquery.scrollTo.min.js\"></script>
 <script src=\"/source/js/jquery.cookie.js\"></script>
 <script type=\"text/javascript\" src=\"");
-        // line 58
+        // line 57
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "projects.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 <script src=\"/source/js/sound_manager/soundmanager2-nodebug-jsmin.js\"></script>
@@ -140,27 +139,27 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     window.ms = {
         address: \"");
-        // line 104
+        // line 103
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "message_server"), "html", null, true));
         echo \layout::func_from_text("\",
         uniq_key: \"");
-        // line 105
+        // line 104
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "uniq_key"), "html", null, true));
         echo \layout::func_from_text("\",
         name: \"");
-        // line 106
+        // line 105
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "fio"), "html", null, true));
         echo \layout::func_from_text("\",
         id: \"");
-        // line 107
+        // line 106
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user"), "html", null, true));
         echo \layout::func_from_text("\"
     }
 </script>
 ");
-        // line 110
+        // line 109
         $this->displayBlock('js', $context, $blocks);
-        // line 112
+        // line 111
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -192,7 +191,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     {
     }
 
-    // line 110
+    // line 109
     public function block_js($context, array $blocks = array())
     {
     }
@@ -209,6 +208,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     public function getDebugInfo()
     {
-        return array (  196 => 110,  191 => 34,  187 => 27,  184 => 26,  181 => 25,  177 => 19,  174 => 18,  169 => 4,  164 => 112,  162 => 110,  156 => 107,  152 => 106,  148 => 105,  144 => 104,  95 => 58,  82 => 48,  67 => 35,  65 => 34,  57 => 28,  55 => 25,  48 => 20,  46 => 18,  29 => 4,  24 => 1,);
+        return array (  195 => 109,  190 => 34,  186 => 27,  183 => 26,  180 => 25,  176 => 19,  173 => 18,  168 => 4,  163 => 111,  161 => 109,  155 => 106,  151 => 105,  147 => 104,  143 => 103,  94 => 57,  82 => 48,  67 => 35,  65 => 34,  57 => 28,  48 => 20,  46 => 18,  29 => 4,  24 => 1,  55 => 25,  52 => 12,  49 => 11,  43 => 8,  39 => 6,  36 => 5,  30 => 3,);
     }
 }
