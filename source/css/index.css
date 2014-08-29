@@ -2,7 +2,6 @@ html,
 body {
     height: 100%;
     font-family: 'Open Sans', sans-serif !important;
-    /* The html and body elements cannot have any padding or margin. */
 }
 
 body {
@@ -620,7 +619,7 @@ blockquote:before {
 }
 
 .own_task {
-    color: #11b700;
+
     font-weight: bold;
 }
 

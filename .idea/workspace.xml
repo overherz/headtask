@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/ca/6d/1bc9fb5a5045d0eccd5926ec1a8be59ceb752d98adbc04c44450ae3df43a.php" afterPath="$PROJECT_DIR$/data/layouts_cache/ca/6d/1bc9fb5a5045d0eccd5926ec1a8be59ceb752d98adbc04c44450ae3df43a.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/44/0a/5d0bf6c05157e90afe1f495745f07022336b9b36601fc33d588b9ad8795f.php" afterPath="$PROJECT_DIR$/data/layouts_cache/44/0a/5d0bf6c05157e90afe1f495745f07022336b9b36601fc33d588b9ad8795f.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/62/25/c53bf6d3114e3ce09ef9c05fd5b676543890a7569f023a09b863f51bbd90.php" afterPath="$PROJECT_DIR$/data/layouts_cache/62/25/c53bf6d3114e3ce09ef9c05fd5b676543890a7569f023a09b863f51bbd90.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/calendar/task_today.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/calendar/task_today.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/css/index.css" afterPath="$PROJECT_DIR$/source/css/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/wrapper_index.html" afterPath="$PROJECT_DIR$/source/wrapper_index.html" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
     <ignored path="tasker.iws" />
@@ -40,10 +38,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_tasks.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/css/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="52" selection-start="83" selection-end="83" vertical-scroll-proportion="0.06014151" vertical-offset="0" max-vertical-offset="19346">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wrapper_index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="80" selection-start="1093" selection-end="1093" vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="1989">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_tasks.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="26" selection-start="5757" selection-end="5757" vertical-scroll-proportion="1.0011779" vertical-offset="1292" max-vertical-offset="3043">
+            <state line="126" column="26" selection-start="5757" selection-end="5757" vertical-scroll-proportion="-69.96154" vertical-offset="323" max-vertical-offset="3043">
               <folding>
                 <marker date="1409338910237" expanded="true" signature="4974:5718" placeholder="select t.id,..projects_tasks..." />
                 <marker date="1409338910237" expanded="true" signature="6421:6485" placeholder="select * fro..projects_tasks_categories..." />
@@ -121,19 +137,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wrapper_index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="74" selection-start="2095" selection-end="2095" vertical-scroll-proportion="-22.23077" vertical-offset="238" max-vertical-offset="1989">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="task_today.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/task_today.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -151,15 +154,6 @@
         <entry file="file://$PROJECT_DIR$/applications/projects/controllers/calendar.php">
           <provider selected="true" editor-type-id="text-editor">
             <state line="97" column="187" selection-start="3330" selection-end="3517" vertical-scroll-proportion="-18.307692" vertical-offset="1173" max-vertical-offset="2431">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calendar_current_day.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="69" selection-start="250" selection-end="250" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="340">
               <folding />
             </state>
           </provider>
@@ -237,17 +231,17 @@
         <option value="$PROJECT_DIR$/applications/projects/layouts/forum/show_topic.html" />
         <option value="$PROJECT_DIR$/source/js/message.js" />
         <option value="$PROJECT_DIR$/applications/users/source/js/client.js" />
-        <option value="$PROJECT_DIR$/source/css/index.css" />
         <option value="$PROJECT_DIR$/source/search_macro.html" />
         <option value="$PROJECT_DIR$/source/js/search.js" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" />
         <option value="$PROJECT_DIR$/source/js/datepicker_ru.js" />
-        <option value="$PROJECT_DIR$/source/wrapper_index.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" />
         <option value="$PROJECT_DIR$/applications/projects/source/js/tasks.js" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/calendar/task_today.html" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" />
+        <option value="$PROJECT_DIR$/source/wrapper_index.html" />
+        <option value="$PROJECT_DIR$/source/css/index.css" />
       </list>
     </option>
   </component>
@@ -910,7 +904,11 @@
       <created>1409329746852</created>
       <updated>1409329746852</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="new design">
+      <created>1409339160246</created>
+      <updated>1409339160246</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1139,13 +1137,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1085" column="18" selection-start="19069" selection-end="19069" vertical-scroll-proportion="2.5185184" vertical-offset="18513" max-vertical-offset="19363">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/search_macro.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="69" selection-start="788" selection-end="788" vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="357">
@@ -1264,17 +1255,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="74" selection-start="2095" selection-end="2095" vertical-scroll-proportion="-22.23077" vertical-offset="238" max-vertical-offset="1989">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="69" selection-start="250" selection-end="250" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="340">
@@ -1372,11 +1352,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="26" selection-start="5757" selection-end="5757" vertical-scroll-proportion="1.0011779" vertical-offset="1292" max-vertical-offset="3043">
+        <state line="126" column="26" selection-start="5757" selection-end="5757" vertical-scroll-proportion="-69.96154" vertical-offset="323" max-vertical-offset="3043">
           <folding>
             <marker date="1409338910237" expanded="true" signature="4974:5718" placeholder="select t.id,..projects_tasks..." />
             <marker date="1409338910237" expanded="true" signature="6421:6485" placeholder="select * fro..projects_tasks_categories..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="80" selection-start="1093" selection-end="1093" vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="1989">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="52" selection-start="83" selection-end="83" vertical-scroll-proportion="0.06014151" vertical-offset="0" max-vertical-offset="19346">
+          <folding />
         </state>
       </provider>
     </entry>

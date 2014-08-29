@@ -39,8 +39,8 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     <link rel=\"stylesheet\" href=\"/source/css/popup.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/source/css/content.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/source/css/ui-lightness/jquery-ui-1.10.4.custom.min.css\" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400italic,600italic,400' rel='stylesheet' type='text/css'>
-    <link type=\"text/css\" href=\"http://jscrollpane.kelvinluck.com/style/jquery.jscrollpane.css\" rel=\"stylesheet\" media=\"all\" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400italic,700italic,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
     ");
         // line 18
         $this->displayBlock('css', $context, $blocks);
@@ -208,6 +208,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     public function getDebugInfo()
     {
-        return array (  195 => 109,  190 => 34,  186 => 27,  183 => 26,  180 => 25,  176 => 19,  173 => 18,  168 => 4,  163 => 111,  161 => 109,  155 => 106,  151 => 105,  147 => 104,  143 => 103,  94 => 57,  82 => 48,  67 => 35,  65 => 34,  57 => 28,  48 => 20,  46 => 18,  29 => 4,  24 => 1,  55 => 25,  52 => 12,  49 => 11,  43 => 8,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  195 => 109,  190 => 34,  186 => 27,  183 => 26,  180 => 25,  176 => 19,  173 => 18,  168 => 4,  163 => 111,  161 => 109,  155 => 106,  151 => 105,  147 => 104,  143 => 103,  94 => 57,  82 => 48,  67 => 35,  65 => 34,  57 => 28,  55 => 25,  48 => 20,  46 => 18,  29 => 4,  24 => 1,);
     }
 }
