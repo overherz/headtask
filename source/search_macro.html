@@ -8,5 +8,9 @@
     </select>
     {% elseif f.type == "checkbox" %}
     <input type='checkbox' name='{{name}}' {% if f.selected %}checked{% endif %} style="margin-top:-2px;">
+    {% elseif f.type == "radio" %}
+        {% for j,o in f.options %}
+            <div style="white-space: nowrap;"><input name="{{ name }}" type="radio" value="{{j}}" {% if j in f.selected %}checked{% endif %}> {{o}}</div>
+        {% endfor %}
     {% endif %}
 {% endmacro %}

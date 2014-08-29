@@ -12,7 +12,7 @@ $(document).ready(function() {
         $('#search_form').submit();
     });
 
-    $("#search_form [type='checkbox']").change(function(){
+    $("#search_form [type='checkbox'],#search_form [type='radio']").change(function(){
         $('#search_form').submit();
     });
 

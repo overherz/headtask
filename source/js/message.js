@@ -1,6 +1,6 @@
 function show_message(type,text,sticky,id,uniq,not_closer)
 {
-    var closer;
+    var closer,lifetime;
     if (!id) id = type;
     if (uniq)
     {
@@ -27,8 +27,11 @@ function show_message(type,text,sticky,id,uniq,not_closer)
     $.jGrowl.defaults.closer = false;
     $.jGrowl.defaults.position = "bottom-right";
 
+    if (type == "logs") lifetime = 10000;
+    else lifetime = 5000;
+
     $.jGrowl(message, {
-        life: 5000,
+        life: lifetime,
         theme: type,
         speed: 'fast',
         sticky: sticky,

@@ -3,35 +3,36 @@ namespace projects;
 
 class user_tasks extends \Controller {
 
-    var $limit = 15;
+    public $limit = 15;
+    public $form = array(
+        'status' => array('label' => 'Статус',
+            'type' => 'multy_select',
+            'options' => array('new' => 'новая','in_progress' => 'в процессе','closed' => 'закрытая','rejected' => 'отклоненная'),
+            'selected' => array('new','in_progress')
+        ),
+        'priority' => array('label' => 'Приоритет',
+            'type' => 'multy_select',
+            'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический')
+        ),
+        'percent' => array('label' => 'Только просроченные',
+            'type' => 'checkbox'
+        ),
+    );
+    public $end = false;
+    public $owner = false;
+    public $dashboard = false;
 
     function default_method($id_user=false)
     {
-        if (!$id_user) $id_user = $_POST['id_user'];
-        $form = array(
-            'status' => array('label' => 'Статус',
-                'type' => 'multy_select',
-                'options' => array('new' => 'новая','in_progress' => 'в процессе','closed' => 'закрытая','rejected' => 'отклоненная'),
-                'selected' => array('new','in_progress')
-            ),
-            'priority' => array('label' => 'Приоритет',
-                'type' => 'multy_select',
-                'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический')
-            ),
-            'percent' => array('label' => 'Только просроченные',
-                'type' => 'checkbox'
-            ),
-        );
+        if (!$id_user && $_POST['id_user'] != "") $id_user = $_POST['id_user'];
 
         if (!$_POST)
         {
-            foreach ($form as $k => $f)
+            foreach ($this->form as $k => $f)
             {
                 if ($f['selected']) $_POST[$k] = $f['selected'];
             }
         }
-
-        $where[] = "t.assigned=".$this->db->quote($id_user);
 
         if ($_POST['start'] != "") $start = convert_date($_POST['start'],true);
         if ($_POST['end'] != "") $end = convert_date($_POST['end'],true);
@@ -69,7 +70,29 @@ class user_tasks extends \Controller {
             $where[] = "t.priority IN (".implode(",",$_POST['priority']).")";
         }
 
-        $where[] = "p.owner IS NULL";
+        if (isset($_POST['my']) && $_POST['my'] != '')
+        {
+            $where[] = "t.id_user=".$_SESSION['user']['id_user'];
+        }
+
+        if (isset($_POST['assigned']) && $_POST['assigned'] != '')
+        {
+            switch ($_POST['assigned'])
+            {
+                case "me":
+                    $where[] = "t.assigned = ".$_SESSION['user']['id_user'];
+                    break;
+                case "not_me":
+                    $where[] = "t.assigned != ".$_SESSION['user']['id_user'];
+                    break;
+                case "not_all":
+                    $where[] = "t.assigned IS NULL";
+                    break;
+            }
+        }
+        else if ($id_user) $where[] = "t.assigned=".$this->db->quote($id_user);
+
+        if (!$this->owner) $where[] = "p.owner IS NULL";
         //$where[] = "(t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='manager') or ((t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='user') and t.assigned='{$_SESSION['user']['id_user']}')))";
 
         if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
@@ -82,9 +105,11 @@ class user_tasks extends \Controller {
 
         $t_cr = $this->get_controller("projects","tasks");
         $query = $this->db->prepare("select t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
-            p.name as project_name
+            p.name as project_name,g.color,g.name as group_name,u.first_name,u.last_name
             from projects_tasks as t
             LEFT JOIN projects as p ON t.id_project = p.id
+            LEFT JOIN users as u ON t.assigned = u.id_user
+            LEFT JOIN groups as g ON u.id_group=g.id
             {$where}
             order by t.updated DESC,t.name ASC
             LIMIT {$this->limit}
@@ -93,16 +118,17 @@ class user_tasks extends \Controller {
         $query->execute();
         while ($row = $query->fetch())
         {
+            $row['assigned_name'] = build_user_name($row['first_name'],$row['last_name'],true);
             $row['diff'] = $t_cr->get_date_diff($row['end']);
             $tasks[] = $row;
         }
 
         $data = array(
-            'form' => $form,
+            'form' => $this->form,
             'paginator' => $paginator,
             'tasks' => $tasks,
             'id_user' => $id_user,
-            'show_user' => true
+            'dashboard' => $this->dashboard,
         );
 
         if ($_POST['act'] == "get_data")

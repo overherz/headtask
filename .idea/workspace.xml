@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/47/8e/0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb57da7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/47/8e/0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb57da7.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/b8/2e/2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f146717.php" afterPath="$PROJECT_DIR$/data/layouts_cache/b8/2e/2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f146717.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/d9/ec/300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f27ff3.php" afterPath="$PROJECT_DIR$/data/layouts_cache/d9/ec/300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f27ff3.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/17/51/6976556773f554381de5d4f5723633d76036cfc786b9e531bc4499f29a17.php" afterPath="$PROJECT_DIR$/data/layouts_cache/17/51/6976556773f554381de5d4f5723633d76036cfc786b9e531bc4499f29a17.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/0f/70/b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c61e68c.php" afterPath="$PROJECT_DIR$/data/layouts_cache/0f/70/b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c61e68c.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/8b/5d/559c5e810875c12e00f14356b3d2aa71382551cbd4516424c76385d3f51c.php" afterPath="$PROJECT_DIR$/data/layouts_cache/8b/5d/559c5e810875c12e00f14356b3d2aa71382551cbd4516424c76385d3f51c.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/8b/7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd40bce7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/a8/8b/7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd40bce7.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/source/js/client.js" afterPath="$PROJECT_DIR$/applications/users/source/js/client.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/css/index.css" afterPath="$PROJECT_DIR$/source/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/logs.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/logs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/forum/show_topic.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/forum/show_topic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/tasks/tasks.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/tasks/tasks.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/js/message.js" afterPath="$PROJECT_DIR$/source/js/message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/js/search.js" afterPath="$PROJECT_DIR$/source/js/search.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/search_macro.html" afterPath="$PROJECT_DIR$/source/search_macro.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
@@ -45,48 +47,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/css/index.css">
+      <file leaf-file-name="calendar_current_day.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1103" column="17" selection-start="19437" selection-end="19437" vertical-scroll-proportion="-13.962963" vertical-offset="18374" max-vertical-offset="19363">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logs.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/logs.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="12" selection-start="1105" selection-end="1105" vertical-scroll-proportion="-16.346153" vertical-offset="0" max-vertical-offset="561">
+            <state line="11" column="4" selection-start="316" selection-end="316" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="323">
               <folding>
-                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+                <marker date="1409324639497" expanded="true" signature="261:352" placeholder="{% block context ...%}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tasks.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/tasks.html">
+      <file leaf-file-name="user_tasks.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/user_tasks.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="16" selection-start="1461" selection-end="1461" vertical-scroll-proportion="-27.461538" vertical-offset="0" max-vertical-offset="935">
-              <folding />
+            <state line="68" column="4" selection-start="3356" selection-end="3380" vertical-scroll-proportion="-29.653847" vertical-offset="385" max-vertical-offset="1258">
+              <folding>
+                <element signature="n#style#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#1;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#form#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#form#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#form#1;n#!!top" expanded="true" />
+                <marker date="1409324511437" expanded="true" signature="59:3318" placeholder="{% if dashboard ...%}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show_topic.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/show_topic.html">
+      <file leaf-file-name="user_tasks.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="3438" selection-end="3438" vertical-scroll-proportion="-31.538462" vertical-offset="302" max-vertical-offset="1394">
+            <state line="133" column="39" selection-start="5420" selection-end="5447" vertical-scroll-proportion="-23.115385" vertical-offset="1660" max-vertical-offset="2533">
               <folding>
-                <element signature="e#1451#1522#0" expanded="true" />
-                <element signature="e#1600#1624#0" expanded="true" />
-                <element signature="e#1677#1705#0" expanded="true" />
-                <element signature="e#1744#1765#0" expanded="true" />
-                <element signature="e#1876#2038#0" expanded="true" />
-                <element signature="e#2264#2338#0" expanded="true" />
-                <element signature="e#2513#2629#0" expanded="true" />
+                <marker date="1409324360332" expanded="true" signature="4295:4901" placeholder="select t.id,..projects_tasks..." />
               </folding>
             </state>
           </provider>
@@ -95,56 +90,54 @@
       <file leaf-file-name="user.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/users/layouts/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="28" selection-start="1029" selection-end="1029" vertical-scroll-proportion="-0.5" vertical-offset="378" max-vertical-offset="1275">
+            <state line="67" column="0" selection-start="3566" selection-end="3586" vertical-scroll-proportion="-28.346153" vertical-offset="402" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_tasks.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/user_tasks.html">
+      <file leaf-file-name="search.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/js/search.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="20" selection-start="1424" selection-end="1424" vertical-scroll-proportion="-18.307692" vertical-offset="0" max-vertical-offset="646">
+            <state line="14" column="63" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tasks_today.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks_today.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="48" column="62" selection-start="1934" selection-end="1934" vertical-scroll-proportion="-0.34311512" vertical-offset="1120" max-vertical-offset="2006">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/users/controllers/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="45" column="83" selection-start="1525" selection-end="1576" vertical-scroll-proportion="-17.653847" vertical-offset="306" max-vertical-offset="1615">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controller.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="45" column="21" selection-start="1247" selection-end="1260" vertical-scroll-proportion="-12.153846" vertical-offset="449" max-vertical-offset="6681">
               <folding>
-                <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <marker date="1409046349723" expanded="true" signature="9934:10130" placeholder="select u.id_..users..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="task_today.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="task_today.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/task_today.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="45" selection-start="90" selection-end="90" vertical-scroll-proportion="0.019517796" vertical-offset="0" max-vertical-offset="1020">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jquery.jgrowl.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/css/jquery.jgrowl.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="21" selection-start="4243" selection-end="4243" vertical-scroll-proportion="-28.518518" vertical-offset="1797" max-vertical-offset="2754">
-              <folding>
-                <marker date="1409266558382" expanded="true" signature="148:412" placeholder="{...}" />
-                <marker date="1409266558382" expanded="true" signature="436:565" placeholder="{...}" />
-                <marker date="1409266558382" expanded="true" signature="609:742" placeholder="{...}" />
-                <marker date="1409266558382" expanded="true" signature="766:895" placeholder="{...}" />
-                <marker date="1409266558382" expanded="true" signature="943:1207" placeholder="{...}" />
-                <marker date="1409266558382" expanded="true" signature="1231:1495" placeholder="{...}" />
-                <marker date="1409266558382" expanded="true" signature="1542:1675" placeholder="{...}" />
-                <marker date="1409266558382" expanded="true" signature="1699:1963" placeholder="{...}" />
-                <marker date="1409266558382" expanded="true" signature="2005:2138" placeholder="{...}" />
-                <marker date="1409266558382" expanded="true" signature="2162:2291" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/users/source/js/client.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="7" selection-start="1461" selection-end="1461" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="8160">
+            <state line="1" column="45" selection-start="90" selection-end="90" vertical-scroll-proportion="3.2692308" vertical-offset="102" max-vertical-offset="1020">
               <folding />
             </state>
           </provider>
@@ -173,9 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/applications/projects/controllers/edit.php" />
-        <option value="$PROJECT_DIR$/applications/projects/controllers/files.php" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/all_projects.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/projects_in_panel.html" />
         <option value="$PROJECT_DIR$/source/menu.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/jpaginator_project_panel.html" />
@@ -185,15 +175,12 @@
         <option value="$PROJECT_DIR$/applications/tasks/controllers/tasks.php" />
         <option value="$PROJECT_DIR$/core/controller.php" />
         <option value="$PROJECT_DIR$/applications/users/layouts/user.html" />
-        <option value="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/tasks.php" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/logs.php" />
         <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/globals/get_session.php" />
         <option value="$PROJECT_DIR$/source/wrapper_index.html" />
-        <option value="$PROJECT_DIR$/source/js/message.js" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/news.php" />
-        <option value="$PROJECT_DIR$/source/js/search.js" />
         <option value="$PROJECT_DIR$/source/js/notifications.js" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/users/add_user.html" />
         <option value="$PROJECT_DIR$/applications/projects/source/js/tasks.js" />
@@ -218,12 +205,18 @@
         <option value="$PROJECT_DIR$/applications/projects/source/js/user_tasks.js" />
         <option value="$PROJECT_DIR$/libraries/calendar/calendar.css" />
         <option value="$PROJECT_DIR$/source/css/jquery.jgrowl.css" />
-        <option value="$PROJECT_DIR$/applications/users/source/js/client.js" />
-        <option value="$PROJECT_DIR$/source/css/index.css" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/logs.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/tasks/tasks.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/forum/show_topic.html" />
+        <option value="$PROJECT_DIR$/source/js/message.js" />
+        <option value="$PROJECT_DIR$/applications/users/source/js/client.js" />
+        <option value="$PROJECT_DIR$/source/css/index.css" />
+        <option value="$PROJECT_DIR$/source/search_macro.html" />
+        <option value="$PROJECT_DIR$/source/js/search.js" />
+        <option value="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" />
+        <option value="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" />
+        <option value="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" />
       </list>
     </option>
   </component>
@@ -259,6 +252,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -503,6 +497,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="applications" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="projects" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -599,65 +615,34 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="applications" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layouts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="forum" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="applications" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layouts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="calendar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="applications" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -990,20 +975,23 @@
       <created>1409268118249</created>
       <updated>1409268118249</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="new design">
+      <created>1409269009114</created>
+      <updated>1409269009114</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="1" width="1920" height="1054" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22630458" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2284345" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1011,11 +999,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36392742" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36392742" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1045,57 +1034,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/js/socket.io/README.md">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1989" max-vertical-offset="2907" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/js/socket.io/History.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="10" selection-start="2209" selection-end="2211" vertical-scroll-proportion="0.0" vertical-offset="1581" max-vertical-offset="5304" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="29" selection-start="881" selection-end="881" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="595" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="90" selection-start="813" selection-end="883" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="646" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/globals/get_session.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1688" selection-end="1688" vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1020" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/logs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="203" column="44" selection-start="7454" selection-end="8477" vertical-scroll-proportion="0.0" vertical-offset="2829" max-vertical-offset="3910" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="38" selection-start="4341" selection-end="4341" vertical-scroll-proportion="-27.538462" vertical-offset="1069" max-vertical-offset="1989" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/langs/ru.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="65" column="0" selection-start="2315" selection-end="2496" vertical-scroll-proportion="-24.653847" vertical-offset="464" max-vertical-offset="1326" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/js/message.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="20" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/controllers/news.php">
@@ -1106,13 +1047,6 @@
     <entry file="file://$PROJECT_DIR$/applications/users/source/js/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="910" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/js/search.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="9" selection-start="1549" selection-end="1549" vertical-scroll-proportion="0.0" vertical-offset="59" max-vertical-offset="1088">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/source/js/tasks.js">
@@ -1224,45 +1158,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/users/users_table.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="43" selection-start="3595" selection-end="3595" vertical-scroll-proportion="0.0" vertical-offset="239" max-vertical-offset="1139">
-          <folding />
-        </state>
+        <state line="56" column="43" selection-start="3595" selection-end="3595" vertical-scroll-proportion="0.0" vertical-offset="239" max-vertical-offset="1139" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/files/popup_file.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/files/file.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="15" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="714">
-          <folding />
-        </state>
+        <state line="1" column="15" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="714" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/files/files_table.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="133" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="476">
-          <folding />
-        </state>
+        <state line="18" column="133" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="476" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/review.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="19" selection-start="2095" selection-end="2095" vertical-scroll-proportion="0.0" vertical-offset="557" max-vertical-offset="2176">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="2091">
-          <folding>
-            <marker date="1409048224547" expanded="true" signature="-1:-1" placeholder="select t.id,..projects_tasks..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1275,94 +1192,222 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/source/js/user_tasks.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="32" selection-end="32" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <folding />
-        </state>
+        <state line="1" column="0" selection-start="32" selection-end="32" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/css/jquery.jgrowl.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="21" selection-start="4243" selection-end="4243" vertical-scroll-proportion="-28.518518" vertical-offset="1797" max-vertical-offset="2754">
+        <state line="151" column="21" selection-start="4243" selection-end="4243" vertical-scroll-proportion="0.0" vertical-offset="1797" max-vertical-offset="2754">
           <folding>
-            <marker date="1409266558382" expanded="true" signature="148:412" placeholder="{...}" />
-            <marker date="1409266558382" expanded="true" signature="436:565" placeholder="{...}" />
-            <marker date="1409266558382" expanded="true" signature="609:742" placeholder="{...}" />
-            <marker date="1409266558382" expanded="true" signature="766:895" placeholder="{...}" />
-            <marker date="1409266558382" expanded="true" signature="943:1207" placeholder="{...}" />
-            <marker date="1409266558382" expanded="true" signature="1231:1495" placeholder="{...}" />
-            <marker date="1409266558382" expanded="true" signature="1542:1675" placeholder="{...}" />
-            <marker date="1409266558382" expanded="true" signature="1699:1963" placeholder="{...}" />
-            <marker date="1409266558382" expanded="true" signature="2005:2138" placeholder="{...}" />
-            <marker date="1409266558382" expanded="true" signature="2162:2291" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1409266558382" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/source/js/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="7" selection-start="1461" selection-end="1461" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="8160">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1103" column="17" selection-start="19437" selection-end="19437" vertical-scroll-proportion="-13.962963" vertical-offset="18374" max-vertical-offset="19363">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/logs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="12" selection-start="1105" selection-end="1105" vertical-scroll-proportion="-16.346153" vertical-offset="0" max-vertical-offset="561">
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="25" column="12" selection-start="1105" selection-end="1105" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="561">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/tasks.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="16" selection-start="1461" selection-end="1461" vertical-scroll-proportion="-27.461538" vertical-offset="0" max-vertical-offset="935">
+        <state line="42" column="16" selection-start="1461" selection-end="1461" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="935">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/show_topic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="3438" selection-end="3438" vertical-scroll-proportion="-31.538462" vertical-offset="302" max-vertical-offset="1394">
-          <folding>
-            <element signature="e#1451#1522#0" expanded="true" />
-            <element signature="e#1600#1624#0" expanded="true" />
-            <element signature="e#1677#1705#0" expanded="true" />
-            <element signature="e#1744#1765#0" expanded="true" />
-            <element signature="e#1876#2038#0" expanded="true" />
-            <element signature="e#2264#2338#0" expanded="true" />
-            <element signature="e#2513#2629#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="28" selection-start="1029" selection-end="1029" vertical-scroll-proportion="-0.5" vertical-offset="378" max-vertical-offset="1275">
+        <state line="66" column="0" selection-start="3438" selection-end="3438" vertical-scroll-proportion="0.0" vertical-offset="302" max-vertical-offset="1394">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/user_tasks.html">
+    <entry file="file://$PROJECT_DIR$/source/js/message.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="20" selection-start="1424" selection-end="1424" vertical-scroll-proportion="-18.307692" vertical-offset="0" max-vertical-offset="646">
+        <state line="30" column="25" selection-start="0" selection-end="1113" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/source/js/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="114" selection-start="2334" selection-end="2334" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="8160">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1085" column="18" selection-start="19069" selection-end="19069" vertical-scroll-proportion="2.5185184" vertical-offset="18513" max-vertical-offset="19363">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/search_macro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="69" selection-start="788" selection-end="788" vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/js/search.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="63" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/calendar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="95" selection-start="4082" selection-end="4177" vertical-scroll-proportion="0.75910693" vertical-offset="1173" max-vertical-offset="2431">
           <folding>
-            <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <marker date="1404493781831" expanded="true" signature="-1:-1" placeholder="select pt.id..projects_tasks..." />
+            <marker date="1404493781831" expanded="true" signature="-1:-1" placeholder="SELECT id_pr..projects_users..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/task_today.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="45" selection-start="90" selection-end="90" vertical-scroll-proportion="0.019517796" vertical-offset="0" max-vertical-offset="1020">
+        <state line="1" column="45" selection-start="90" selection-end="90" vertical-scroll-proportion="3.2692308" vertical-offset="102" max-vertical-offset="1020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="175" column="13" selection-start="6872" selection-end="6872" vertical-scroll-proportion="61.692307" vertical-offset="4579" max-vertical-offset="17578">
+          <folding>
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select ft.*,..files_to_tasks..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select c.* f..projects_tasks_to_categories..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select * fro..projects_tasks_last_visit..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="UPDATE last_..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select disti..projects_tasks..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select * fro..projects_tasks_categories..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select t.*,a..projects_tasks..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="update proje..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="update proje..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select p.*,u..projects_files..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select * fro..profile..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select email..users..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select pt.na..projects_tasks..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select pt.na..projects_tasks..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="SELECT id_pr..projects_users..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select pt.st..projects_users..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select disti..projects_tasks..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select statu..projects_tasks..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select id fr..projects_tasks_comments..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select c.*,u..projects_tasks_comments..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="UPDATE last_..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select id_ta..projects_tasks_comments..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="SELECT c.*,u..projects_tasks_comments..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select id_us..users..." />
+            <marker date="1409143663790" expanded="true" signature="-1:-1" placeholder="select * fro..tasks..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/controllers/users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="103" selection-start="7395" selection-end="7478" vertical-scroll-proportion="0.77908343" vertical-offset="2040" max-vertical-offset="5627">
+          <folding>
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select disti..users..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select disti..users..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select up.id..userprofiles..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select u.fir..users..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select up.*,..userprofiles..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select id,na..users_notes..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select t.*, ..tags_to_users..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select id_us..users..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select up.id..userprofiles..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select * fro..users..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select up.*,..userprofiles..." />
+            <marker date="1408987103801" expanded="true" signature="-1:-1" placeholder="select * fro..contact_list..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="21" selection-start="1247" selection-end="1260" vertical-scroll-proportion="-12.153846" vertical-offset="449" max-vertical-offset="6681">
+          <folding>
+            <marker date="1409046349723" expanded="true" signature="9934:10130" placeholder="select u.id_..users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="0" selection-start="3566" selection-end="3586" vertical-scroll-proportion="-28.346153" vertical-offset="402" max-vertical-offset="1275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/user_tasks.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="4" selection-start="3356" selection-end="3380" vertical-scroll-proportion="-29.653847" vertical-offset="385" max-vertical-offset="1258">
+          <folding>
+            <element signature="n#style#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#1;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#form#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#form#1;n#!!top" expanded="true" />
+            <marker date="1409324511437" expanded="true" signature="59:3318" placeholder="{% if dashboard ...%}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="4" selection-start="316" selection-end="316" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="323">
+          <folding>
+            <marker date="1409324639497" expanded="true" signature="261:352" placeholder="{% block context ...%}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/controllers/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="83" selection-start="1525" selection-end="1576" vertical-scroll-proportion="-17.653847" vertical-offset="306" max-vertical-offset="1615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="39" selection-start="5420" selection-end="5447" vertical-scroll-proportion="-23.115385" vertical-offset="1660" max-vertical-offset="2533">
+          <folding>
+            <marker date="1409324360332" expanded="true" signature="4295:4901" placeholder="select t.id,..projects_tasks..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks_today.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="62" selection-start="1934" selection-end="1934" vertical-scroll-proportion="-0.34311512" vertical-offset="1120" max-vertical-offset="2006">
           <folding />
         </state>
       </provider>

@@ -64,7 +64,7 @@ $(document).ready(function(){
         $("[get_ms_status_call]").each(function(k,v) {
             $(v).hide();
         });
-        setTimeout(function(){show_message("error","Потеря соединения с сервером сообщений",false,'ms_error');},5000);
+        setTimeout(function(){show_message("error","Потеря соединения с сервером сообщений",false,'ms_error');},10000);
     });
 
     socket.on('show_statuses',function(data){
