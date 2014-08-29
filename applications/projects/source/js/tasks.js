@@ -18,23 +18,11 @@ $(document).ready(function ($) {
         }
     });
 
-    function dpClearButton (input) {
-        setTimeout(function () {
-            var buttonPane = $(input)
-                .datepicker("widget")
-                .find(".ui-datepicker-buttonpane");
-
-            $("<button>", {
-                html: "<i class='fa fa-trash-o'></i>",
-                click: function () { jQuery.datepicker._clearDate(input); }
-            }).appendTo(buttonPane).addClass("ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all");
-        }, 1)
-    }
-
     $("[name='end']").datepicker({
         changeMonth: true,
         dateFormat: "dd.mm.yy",
         'minDate': $("[name='start']").val(),
+        showButtonPanel: true,
         onClose: function( selectedDate ) {
             $("[name='start']").datepicker( "option", "maxDate", selectedDate );
         },
@@ -393,3 +381,15 @@ $(document).ready(function ($) {
 });
 
 
+function dpClearButton (input) {
+    setTimeout(function () {
+        var buttonPane = $(input)
+            .datepicker("widget")
+            .find(".ui-datepicker-buttonpane");
+
+        $("<button>", {
+            html: "<i class='fa fa-trash-o'></i>",
+            click: function () { jQuery.datepicker._clearDate(input); }
+        }).appendTo(buttonPane).addClass("ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all");
+    }, 1)
+}

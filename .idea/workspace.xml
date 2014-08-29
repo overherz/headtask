@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/js/datepicker_ru.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/8b/7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd40bce7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/a8/8b/7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd40bce7.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/source/js/tasks.js" afterPath="$PROJECT_DIR$/applications/projects/source/js/tasks.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/wrapper_index.html" afterPath="$PROJECT_DIR$/source/wrapper_index.html" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
     <ignored path="tasker.iws" />
@@ -65,12 +62,12 @@
       <file leaf-file-name="tasks.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/projects/source/js/tasks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="9" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6817">
+            <state line="24" column="30" selection-start="768" selection-end="768" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6800">
               <folding>
-                <marker date="1409327413392" expanded="false" signature="4530:4546" placeholder="..." />
-                <marker date="1409327413392" expanded="false" signature="5876:5894" placeholder="..." />
-                <marker date="1409327413392" expanded="false" signature="9726:9744" placeholder="..." />
-                <marker date="1409327413392" expanded="false" signature="11218:11236" placeholder="..." />
+                <marker date="1409329717841" expanded="false" signature="4062:4078" placeholder="..." />
+                <marker date="1409329717841" expanded="false" signature="5408:5426" placeholder="..." />
+                <marker date="1409329717841" expanded="false" signature="9258:9276" placeholder="..." />
+                <marker date="1409329717841" expanded="false" signature="10750:10768" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -109,19 +106,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendar_current_day.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="calendar_current_day.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="69" selection-start="250" selection-end="250" vertical-scroll-proportion="0.118329465" vertical-offset="0" max-vertical-offset="862">
+            <state line="6" column="69" selection-start="250" selection-end="250" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="340">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tasks_today.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="tasks_today.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks_today.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="42" selection-start="2192" selection-end="2192" vertical-scroll-proportion="-23.538462" vertical-offset="357" max-vertical-offset="2108">
+            <state line="17" column="10" selection-start="535" selection-end="535" vertical-scroll-proportion="0.15777262" vertical-offset="153" max-vertical-offset="2108">
               <folding />
             </state>
           </provider>
@@ -196,11 +193,11 @@
         <option value="$PROJECT_DIR$/source/js/search.js" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" />
         <option value="$PROJECT_DIR$/source/js/datepicker_ru.js" />
-        <option value="$PROJECT_DIR$/applications/projects/source/js/tasks.js" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" />
-        <option value="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" />
         <option value="$PROJECT_DIR$/source/wrapper_index.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" />
+        <option value="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" />
+        <option value="$PROJECT_DIR$/applications/projects/source/js/tasks.js" />
       </list>
     </option>
   </component>
@@ -791,7 +788,11 @@
       <created>1409328934898</created>
       <updated>1409328934898</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="new design">
+      <created>1409329120859</created>
+      <updated>1409329120859</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -809,7 +810,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2284345" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2284345" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1165,18 +1166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/source/js/tasks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="9" selection-start="1559" selection-end="1559" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6817">
-          <folding>
-            <marker date="1409327413392" expanded="false" signature="4530:4546" placeholder="..." />
-            <marker date="1409327413392" expanded="false" signature="5876:5894" placeholder="..." />
-            <marker date="1409327413392" expanded="false" signature="9726:9744" placeholder="..." />
-            <marker date="1409327413392" expanded="false" signature="11218:11236" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="339" column="9" selection-start="10835" selection-end="10835" vertical-scroll-proportion="0.34275618" vertical-offset="5472" max-vertical-offset="8551">
@@ -1195,22 +1184,6 @@
             <marker date="1403369105603" expanded="false" signature="-1:-1" placeholder="..." />
             <marker date="1403369105603" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="27" selection-start="1163" selection-end="1163" vertical-scroll-proportion="-11.923077" vertical-offset="319" max-vertical-offset="2618">
-          <folding>
-            <marker date="1409328378144" expanded="true" signature="4428:5034" placeholder="select t.id,..projects_tasks..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks_today.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="42" selection-start="2192" selection-end="2192" vertical-scroll-proportion="-23.538462" vertical-offset="357" max-vertical-offset="2108">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1250,7 +1223,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="69" selection-start="250" selection-end="250" vertical-scroll-proportion="0.118329465" vertical-offset="0" max-vertical-offset="340">
+        <state line="6" column="69" selection-start="250" selection-end="250" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="27" selection-start="1163" selection-end="1163" vertical-scroll-proportion="-11.923077" vertical-offset="319" max-vertical-offset="2618">
+          <folding>
+            <marker date="1409328378144" expanded="true" signature="4428:5034" placeholder="select t.id,..projects_tasks..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/source/js/tasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="30" selection-start="768" selection-end="768" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6800">
+          <folding>
+            <marker date="1409329717841" expanded="false" signature="4062:4078" placeholder="..." />
+            <marker date="1409329717841" expanded="false" signature="5408:5426" placeholder="..." />
+            <marker date="1409329717841" expanded="false" signature="9258:9276" placeholder="..." />
+            <marker date="1409329717841" expanded="false" signature="10750:10768" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks_today.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="10" selection-start="535" selection-end="535" vertical-scroll-proportion="0.15777262" vertical-offset="153" max-vertical-offset="2108">
           <folding />
         </state>
       </provider>

@@ -15,7 +15,7 @@ class tasks_today extends \Controller {
 //        if ($info = $this->get_controller("projects","calendar")->get_calendar_tasks("{$year}-{$month}-{$day}",false,true)) $tasks = $info['tasks'];
 
       //  $start = strtotime("midnight", time());
-        $end = date("d.m.Y",strtotime("tomorrow", time()) - 1);
+        //$end = date("d.m.Y",strtotime("tomorrow", time()) - 1);
      //   $logs = $this->get_controller("projects","logs")->get_logs(false,false,false,$start,$end);
 
         $form = array(
