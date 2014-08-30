@@ -5,15 +5,15 @@
                 <img src="/uploads/projects/projects_small/{{file.file|real_path}}">
             </a>
         {% else %}
-            <a href="/uploads/projects/{{file.file|real_path}}"><img src="/source/images/icons/file.png"></a>
+            <a href="/uploads/projects/{{file.file|real_path}}" download="{{file.name}}"><img src="/source/images/icons/file.png"></a>
         {% endif%}
         {% if not get_popup_files and not post_data.get_popup_files %}<input type="hidden" name="files[]" value="{{file.id}}">{% endif %}
     </td>
     <td style="max-width: 200px;overflow: hidden;">
         {% if file.type == "image" %}
-        <a href="/uploads/projects/projects_big/{{file.file|real_path}}">{{file.name}}</a>
+        <a href="/uploads/projects/projects_big/{{file.file|real_path}}" download="{{file.name}}">{{file.name}}</a>
         {% else %}
-        <a href="/uploads/projects/{{file.file|real_path}}">{{file.name}}</a>
+        <a href="/uploads/projects/{{file.file|real_path}}" download="{{file.name}}">{{file.name}}</a>
         {% endif%}
     </td>
     <td>{{file.created|date('d.m.Y H:i:s')}}</td>
