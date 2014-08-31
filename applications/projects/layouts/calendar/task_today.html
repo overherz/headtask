@@ -5,9 +5,9 @@
         <th></th>
         <th>Проект</th>
         <th>Задача</th>
-        {% if not show_user %}<th><i class="fa fa-comment"></i></th>{% endif %}
+        {% if dashboard %}<th><i class="fa fa-comment"></i></th>{% endif %}
         <th>Статус</th>
-        {% if not show_user %}<th>Делегировано</th>{% endif %}
+        {% if dashboard %}<th>Делегировано</th>{% endif %}
         <th><i class="fa fa-calendar"></i></th>
     </tr>
     </thead>
@@ -27,7 +27,7 @@
                     {% endfor %}
                 {% endif %}
             </td>
-            {% if not show_user %}<td style="font-weight: bold;width: 1px;">{{ comment_count[task.id].count }}</td>{% endif %}
+            {% if dashboard %}<td style="font-weight: bold;width: 1px;">{{ comment_count[task.id].count }}</td>{% endif %}
             <td style="width: 110px;height: 100%;">
                 {% set undate = false %}
                 {% if task.end and ((now|date('Y-m-d') > task.end) and (task.status == 'new' or task.status == 'in_progress'))%}
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </td>
-            {% if not show_user %}
+            {% if dashboard %}
             <td style="width: 1px;white-space: nowrap;">
                 <a href="/users/~{{task.assigned}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.assigned_name}}</a>
             </td>

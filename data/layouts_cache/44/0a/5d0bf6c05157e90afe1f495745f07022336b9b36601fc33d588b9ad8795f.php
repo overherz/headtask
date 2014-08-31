@@ -26,14 +26,14 @@ class __TwigTemplate_440a5d0bf6c05157e90afe1f495745f07022336b9b36601fc33d588b9ad
         <th>Задача</th>
         ");
         // line 8
-        if ((!(isset($context["show_user"]) ? $context["show_user"] : null))) {
+        if ((isset($context["dashboard"]) ? $context["dashboard"] : null)) {
             echo \layout::func_from_text("<th><i class=\"fa fa-comment\"></i></th>");
         }
         // line 9
         echo \layout::func_from_text("        <th>Статус</th>
         ");
         // line 10
-        if ((!(isset($context["show_user"]) ? $context["show_user"] : null))) {
+        if ((isset($context["dashboard"]) ? $context["dashboard"] : null)) {
             echo \layout::func_from_text("<th>Делегировано</th>");
         }
         // line 11
@@ -119,7 +119,7 @@ class __TwigTemplate_440a5d0bf6c05157e90afe1f495745f07022336b9b36601fc33d588b9ad
             echo \layout::func_from_text("            </td>
             ");
             // line 30
-            if ((!(isset($context["show_user"]) ? $context["show_user"] : null))) {
+            if ((isset($context["dashboard"]) ? $context["dashboard"] : null)) {
                 echo \layout::func_from_text("<td style=\"font-weight: bold;width: 1px;\">");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["comment_count"]) ? $context["comment_count"] : null), $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), array(), "array"), "count"), "html", null, true));
                 echo \layout::func_from_text("</td>");
@@ -165,7 +165,7 @@ class __TwigTemplate_440a5d0bf6c05157e90afe1f495745f07022336b9b36601fc33d588b9ad
             </td>
             ");
             // line 43
-            if ((!(isset($context["show_user"]) ? $context["show_user"] : null))) {
+            if ((isset($context["dashboard"]) ? $context["dashboard"] : null)) {
                 // line 44
                 echo \layout::func_from_text("            <td style=\"width: 1px;white-space: nowrap;\">
                 <a href=\"/users/~");

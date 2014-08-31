@@ -35,6 +35,41 @@ $(document).ready(function ($) {
         }
     });
 
+    $("[name='start_edit']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        showButtonPanel: true,
+        'maxDate': $("[name='end_edit']").val(),
+        onClose: function( selectedDate ) {
+            $("[name='end_edit']").datepicker( "option", "minDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+        }
+    });
+
+    $("[name='end_edit']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        'minDate': $("[name='start_edit']").val(),
+        showButtonPanel: true,
+        onClose: function( selectedDate ) {
+            $("[name='start_edit']").datepicker( "option", "maxDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+        }
+    });
+
+
     if ($("[name='description']").length > 0)
     {
         CKEDITOR.replace('description',{toolbar:'Basic',extraPlugins : 'divarea'});

@@ -33,53 +33,69 @@ class __TwigTemplate_d9ec300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f
             // line 7
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user"), "html", null, true));
             echo \layout::func_from_text("\">
+
+            <input type=\"text\" name=\"search\" id=\"search_label\" placeholder=\"Поиск\" class=\"col-xs-6\">
+            <div class=\"col-xs-6\">
+                <div style=\"position: relative;top:5px;\">
+                ");
+            // line 12
+            echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "percent"), "percent", true));
+            echo \layout::func_from_text("
+                ");
+            // line 13
+            echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "my"), "my", true));
+            echo \layout::func_from_text("</div>
+            </div>
+
+            <div style=\"clear: both;height: 10px;\"></div>
             <table class=\"table table_style no_style\" style=\"width: auto;margin-top: 0;\">
                 <thead>
                 <tr>
-                    <th>Другое</th>
                     <th>Кому</th>
-                    <th>Дата</th>
+                    <th>Начало-окончание</th>
+                    <th>Дата изменения</th>
                     <th>Статус</th>
                     <th>Приоритет</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>
-                        <input type=\"text\" name=\"search\" id=\"search_label\" class=\"input-large\" placeholder=\"Поиск\"><br/><br/>
-                        <div>");
-            // line 22
-            echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "percent"), "percent", true));
-            echo \layout::func_from_text("</div>
-                        <div>");
-            // line 23
-            echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "my"), "my", true));
-            echo \layout::func_from_text("</div>
-                    </td>
                     <td class=\"dashboard_radio\">
                         ");
-            // line 26
+            // line 30
             echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "assigned"), "assigned"));
             echo \layout::func_from_text("
                     </td>
                     <td>От: <input type=\"text\" name=\"start\" value=\"");
-            // line 28
+            // line 32
             if ((isset($context["start"]) ? $context["start"] : null)) {
                 echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["start"]) ? $context["start"] : null), "html", null, true));
             }
             echo \layout::func_from_text("\" readonly style=\"margin-bottom: 10px;width: 85px;\"><br>
                         До: <input type=\"text\" name=\"end\" value=\"");
-            // line 29
+            // line 33
             if ((isset($context["end"]) ? $context["end"] : null)) {
                 echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["end"]) ? $context["end"] : null), "html", null, true));
             }
             echo \layout::func_from_text("\" readonly style=\"width: 85px;\"></td>
+                    <td>От: <input type=\"text\" name=\"start_edit\" value=\"");
+            // line 34
+            if ((isset($context["start_edit"]) ? $context["start_edit"] : null)) {
+                echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["start_edit"]) ? $context["start_edit"] : null), "html", null, true));
+            }
+            echo \layout::func_from_text("\" readonly style=\"margin-bottom: 10px;width: 85px;\"><br>
+                        До: <input type=\"text\" name=\"end_edit\" value=\"");
+            // line 35
+            if ((isset($context["end_edit"]) ? $context["end_edit"] : null)) {
+                echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["end_edit"]) ? $context["end_edit"] : null), "html", null, true));
+            }
+            echo \layout::func_from_text("\" readonly style=\"width: 85px;\"></td>
                     <td>");
-            // line 30
+            // line 36
             echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "status"), "status"));
             echo \layout::func_from_text("</td>
                     <td>");
-            // line 31
+            // line 37
             echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "priority"), "priority"));
             echo \layout::func_from_text("</td>
                 </tr>
@@ -88,7 +104,7 @@ class __TwigTemplate_d9ec300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f
         </form>
     ");
         } else {
-            // line 37
+            // line 43
             echo \layout::func_from_text("    <ul class=\"breadcrumbs-one second\">
         <li><a class=\"current\">Задачи</a></li>
     </ul>
@@ -96,7 +112,7 @@ class __TwigTemplate_d9ec300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f
         <input type=\"hidden\" name=\"page\" value=\"\">
         <input type=\"hidden\" name=\"act\" value=\"get_data\">
         <input type=\"hidden\" name=\"id_user\" value=\"");
-            // line 43
+            // line 49
             echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["id_user"]) ? $context["id_user"] : null), "html", null, true));
             echo \layout::func_from_text("\">
         <table class=\"table table_style no_style\" style=\"width: auto;\">
@@ -111,25 +127,25 @@ class __TwigTemplate_d9ec300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f
             <tbody>
             <tr>
                 <td>От: <input type=\"text\" name=\"start\" value=\"");
-            // line 55
+            // line 61
             echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["start"]) ? $context["start"] : null), "html", null, true));
             echo \layout::func_from_text("\" class=\"input-small\" readonly style=\"margin-bottom: 10px;\"><br>
                     До: <input type=\"text\" name=\"end\" value=\"");
-            // line 56
+            // line 62
             echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["end"]) ? $context["end"] : null), "html", null, true));
             echo \layout::func_from_text("\" class=\"input-small\" readonly></td>
                 <td>");
-            // line 57
+            // line 63
             echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "status"), "status"));
             echo \layout::func_from_text("</td>
                 <td>");
-            // line 58
+            // line 64
             echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "priority"), "priority"));
             echo \layout::func_from_text("</td>
                 <td>
                     <input type=\"text\" name=\"search\" id=\"search_label\" class=\"input-large\" placeholder=\"Поиск\"><br/><br/>
                     ");
-            // line 61
+            // line 67
             echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "percent"), "percent", true));
             echo \layout::func_from_text("
                 </td>
@@ -139,10 +155,10 @@ class __TwigTemplate_d9ec300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f
     </form>
     ");
         }
-        // line 68
+        // line 74
         echo \layout::func_from_text("    <div class=\"clearfix\"></div>
     <div id=\"search_result\">");
-        // line 69
+        // line 75
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "calendar/task_today.html"), "method"));
         $template->display($context);
         echo \layout::func_from_text("</div>");
@@ -160,6 +176,6 @@ class __TwigTemplate_d9ec300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f
 
     public function getDebugInfo()
     {
-        return array (  146 => 69,  143 => 68,  133 => 61,  127 => 58,  123 => 57,  119 => 56,  115 => 55,  100 => 43,  92 => 37,  83 => 31,  79 => 30,  73 => 29,  67 => 28,  62 => 26,  56 => 23,  52 => 22,  34 => 7,  30 => 6,  25 => 3,  22 => 2,  19 => 1,);
+        return array (  162 => 75,  159 => 74,  149 => 67,  143 => 64,  139 => 63,  135 => 62,  131 => 61,  116 => 49,  108 => 43,  99 => 37,  95 => 36,  89 => 35,  83 => 34,  77 => 33,  71 => 32,  66 => 30,  46 => 13,  42 => 12,  34 => 7,  30 => 6,  25 => 3,  22 => 2,  19 => 1,);
     }
 }

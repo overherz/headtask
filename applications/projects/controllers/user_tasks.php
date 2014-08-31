@@ -20,6 +20,8 @@ class user_tasks extends \Controller {
     );
     public $start = false;
     public $end = false;
+    public $start_edit = false;
+    public $end_edit = false;
     public $owner = false;
     public $dashboard = false;
 
@@ -40,9 +42,18 @@ class user_tasks extends \Controller {
         if ($_POST['end'] != "") $end = convert_date($_POST['end'],true);
         else $end = convert_date($this->end,true);
 
-        if ($start && $end) $where[] = "t.start >='{$start}' and (t.end <= '{$end}' or (t.end IS NULL and t.status != 'closed') or (t.end IS NULL and t.status = 'closed' and from_unixtime(t.updated, '%Y-%m-%d') <= '{$end}'))";
+        if ($_POST['start_edit'] != "") $start_edit = convert_date($_POST['start_edit'],true);
+        else $start_edit = convert_date($this->start_edit,true);
+        if ($_POST['end_edit'] != "") $end_edit = convert_date($_POST['end_edit'],true);
+        else $end_edit = convert_date($this->end_edit,true);
+
+        if ($start && $end) $where[] = "t.start >='{$start}' and (t.end <= '{$end}' or t.end IS NULL)";
         else if ($start) $where[] = "t.start >='{$start}'";
-        else if ($end) $where[] = "t.start <= '{$end}' and (t.end <= '{$end}' or (t.end IS NULL and t.status != 'closed') or (t.end IS NULL and t.status = 'closed' and from_unixtime(t.updated, '%Y-%m-%d') <= '{$end}'))";
+        else if ($end) $where[] = "t.start <= '{$end}' and (t.end <= '{$end}' or t.end IS NULL)";
+
+        if ($start_edit && $end_edit) $where[] = "from_unixtime(t.updated,'%Y-%m-%d') >='{$start_edit}' and from_unixtime(t.updated,'%Y-%m-%d') <= '{$end_edit}'";
+        else if ($start_edit) $where[] = "from_unixtime(t.updated,'%Y-%m-%d') >='{$start_edit}'";
+        else if ($end_edit) $where[] = "from_unixtime(t.updated,'%Y-%m-%d') <= '{$end_edit}' and from_unixtime(t.updated,'%Y-%m-%d') <= '{$end_edit}'";
 
         if (isset($_POST['search']) && $_POST['search'] != '')
         {
@@ -135,7 +146,14 @@ class user_tasks extends \Controller {
             if ($row['cats'][0] == "") $row['cats'] = false;
             if (is_array($row['cats'])) $cats_ids = array_merge($cats_ids,$row['cats']);
 
-            $tasks[] = $row;
+            $tasks[$row['id']] = $row;
+        }
+
+        if ($tasks && $this->dashboard)
+        {
+            $ids = array_keys($tasks);
+            $task = $this->get_controller("projects","tasks");
+            $comment_count = $task->get_count_new_comments($ids);
         }
 
         if (count($cats_ids) > 0)
@@ -158,7 +176,10 @@ class user_tasks extends \Controller {
             'dashboard' => $this->dashboard,
             'start' => $this->start,
             'end' => $this->end,
-            'cats' => $cats
+            'start_edit' => $this->start_edit,
+            'end_edit' => $this->end_edit,
+            'cats' => $cats,
+            'comment_count' => $comment_count
         );
 
         if ($_POST['act'] == "get_data")

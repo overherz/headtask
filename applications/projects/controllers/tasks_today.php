@@ -36,7 +36,7 @@ class tasks_today extends \Controller {
                 'type' => 'multy_select',
                 'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический')
             ),
-            'percent' => array('label' => 'Только просроченные',
+            'percent' => array('label' => 'Просроченные',
                 'type' => 'checkbox'
             ),
         );
@@ -57,6 +57,8 @@ class tasks_today extends \Controller {
             {
                 $start = $filter['start'];
                 $end = $filter['end'];
+                $start_edit = $filter['start_edit'];
+                $end_edit = $filter['end_edit'];
             }
         }
 
@@ -66,6 +68,8 @@ class tasks_today extends \Controller {
         $u_cr->owner = true;
         $u_cr->start = $start;
         $u_cr->end = $end;
+        $u_cr->start_edit = $start_edit;
+        $u_cr->end_edit = $end_edit;
         $u_cr->dashboard = true;
 
         if ($data['user_tasks'] = $u_cr->default_method())
