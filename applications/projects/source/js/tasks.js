@@ -329,6 +329,12 @@ $(document).ready(function ($) {
             $(this).css('display', 'none');
         }
         CKEDITOR.replace('comment',{toolbar:'Forum',height:200});
+        CKEDITOR.instances.comment.on( 'key', function (evt) {
+            var kc = evt.data.keyCode,
+                csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
+            if (kc == 1114125) $(".comment_form_clone .add_comment").trigger("click")
+        });
+
         $("[name='parent']").val(id);
         $("[name='comment']").focus();
         return false;
@@ -351,7 +357,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("keydown",".comment_form_clone [name='comment']",function(e){
+    $(document).on("keydown",".comment_form_clone .comment",function(e){
         if (e.ctrlKey && e.keyCode == 13) {
             $(".comment_form_clone .add_comment").trigger("click")
         }
@@ -381,17 +387,6 @@ $(document).ready(function ($) {
             return false;
         });
         return false;
-    });
-
-    $(document).on("change","input.dashboard_option",function(){
-        var bit = 0;
-        $("input.dashboard_option:checked").each(function(k,v)
-        {
-            bit = bit | $(v).val();
-        });
-
-        $.cookie('dashboard', bit, { expires: 30, path: '/' });
-        redirect();
     });
 
     var project_info;
