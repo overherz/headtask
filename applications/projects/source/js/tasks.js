@@ -77,11 +77,14 @@ $(document).ready(function ($) {
 
     $(document).on("click", ".save_task", function () {
         if ($("[name='description']").length > 0) $("[name='description']").val(CKEDITOR.instances.description.getData());
+        var th = this;
+        var id_project = $("[name='id_project']").val();
         var request = $("#task_form").serialize();
-        request = request + "&project=" + $("[name='id_project']").val();
+        request = request + "&project=" + id_project;
         user_api(request, function (data) {
             show_message("success", "Сохранено");
-            redirect("/projects/tasks/show/"+data+"/", 1);
+            if ($(th).hasClass('create_other')) redirect("/projects/tasks/add/"+id_project+"/", 1);
+            else redirect("/projects/tasks/show/"+data+"/", 1);
         });
         return false;
     });

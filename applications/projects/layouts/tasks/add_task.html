@@ -152,6 +152,9 @@
         </div>
         {% endif %}
         <button class="btn btn-large btn-primary save_task" type="button">{% if task.id %}Сохранить{% else %}Создать{% endif %}</button>
+        {% if not task.id %}
+            <button class="btn btn-large btn-primary save_task create_other" type="button">Сохранить и создать еще</button>
+        {% endif %}
     </div>
 </form>
 <div class="clearfix"></div>
