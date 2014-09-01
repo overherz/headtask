@@ -29,7 +29,7 @@ class __TwigTemplate_a97a428f7fd1dd1c8eb1bde62761ff19a22e25c9f24f7d0404e89c79304
     <link rel=\"stylesheet\" href=\"/source/css/jquery.jgrowl.css\" type=\"text/css\" media=\"screen, projection\" />
     <link rel=\"stylesheet\" href=\"/source/css/popup.css\" type=\"text/css\" media=\"screen, projection\" />
     <link href=\"http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-    <link href=\"/source/admin/fonts/font-awesome/css/font-awesome.minba72.css?v=4.0.3\" rel=\"stylesheet\">
+    <link href=\"/source/admin/fonts/font-awesome/css/font-awesome.min.css\" rel=\"stylesheet\">
     <link href=\"/source/admin/css/libs/animate.min.css\" rel=\"stylesheet\">
     <link href=\"/source/admin/css/libs/bootstrap-switch.css\" rel=\"stylesheet\">
     <link rel=\"stylesheet\" href=\"/source/js/styler/jquery.formstyler.css\" type=\"text/css\" />
@@ -356,6 +356,6 @@ class __TwigTemplate_a97a428f7fd1dd1c8eb1bde62761ff19a22e25c9f24f7d0404e89c79304
 
     public function getDebugInfo()
     {
-        return array (  343 => 162,  338 => 122,  333 => 17,  325 => 163,  323 => 162,  319 => 161,  277 => 122,  268 => 115,  249 => 112,  242 => 111,  238 => 110,  212 => 86,  206 => 85,  199 => 81,  191 => 80,  187 => 79,  180 => 78,  177 => 77,  174 => 76,  171 => 75,  167 => 73,  165 => 72,  154 => 70,  151 => 69,  148 => 68,  143 => 66,  138 => 64,  130 => 63,  126 => 62,  123 => 61,  120 => 60,  117 => 59,  114 => 58,  110 => 57,  105 => 54,  94 => 52,  89 => 51,  87 => 50,  72 => 40,  68 => 39,  55 => 29,  42 => 18,  22 => 1,  131 => 32,  128 => 31,  122 => 30,  118 => 28,  99 => 53,  95 => 25,  90 => 24,  88 => 23,  83 => 22,  79 => 21,  74 => 18,  71 => 17,  65 => 14,  62 => 13,  56 => 10,  53 => 9,  50 => 8,  43 => 6,  40 => 17,  35 => 3,  32 => 2,);
+        return array (  343 => 162,  338 => 122,  333 => 17,  325 => 163,  323 => 162,  319 => 161,  277 => 122,  268 => 115,  249 => 112,  242 => 111,  238 => 110,  212 => 86,  206 => 85,  199 => 81,  191 => 80,  187 => 79,  180 => 78,  177 => 77,  174 => 76,  171 => 75,  167 => 73,  165 => 72,  154 => 70,  151 => 69,  148 => 68,  143 => 66,  138 => 64,  130 => 63,  126 => 62,  123 => 61,  120 => 60,  117 => 59,  114 => 58,  110 => 57,  105 => 54,  99 => 53,  94 => 52,  89 => 51,  87 => 50,  72 => 40,  68 => 39,  55 => 29,  42 => 18,  40 => 17,  22 => 1,);
     }
 }

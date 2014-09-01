@@ -1070,6 +1070,7 @@ td .progress {
 
 .table_style {
     border-spacing: 0 0px;
+    margin-top: 10px;
     border-collapse: separate;
 }
 
