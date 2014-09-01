@@ -5,17 +5,23 @@
         <th style="width: 1px;white-space: nowrap;"></th>
         <th>Описание</th>
         {% if all %}<th>Проект</th>{% endif %}
-        <th>Дата</th>
+        <th>Время</th>
         <th>Пользователь</th>
     </tr>
     </thead>
     <tbody>
     {% for l in logs %}
+        {% if not date or date != l.created|date('d.m.Y') %}
+        {% set date = l.created|date('d.m.Y') %}
+        <tr>
+            <td colspan="5" style="font-size: 14px;font-weight: bold;text-align: center;">{{ date }}</td>
+        </tr>
+        {% endif %}
         <tr>
             <td><span class="label label-default log_{{ l.type }}">{{ ("type_"~l.type)|lang }}</span></td>
             <td>{{l.text|raw}}</td>
             {% if all %}<td>{% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}</td>{% endif %}
-            <td>{{l.created|date('d.m.Y H:i:s')}}</td>
+            <td>{{l.created|date('H:i:s')}}</td>
             <td>
                 {% if l.id_user %}<a href="/users/~{{l.id_user}}/" style="color:{{ l.color }};font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
                 {% else %}{{ l.trash_name_user }}
