@@ -43,8 +43,12 @@
 
 
 <script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
-<script src="/source/js/socket.io/socket.io.js"></script>
-<script src="{{app.path('users','client.js')}}"></script>
+{% if globals.user.id_user %}
+    <script src="/source/js/socket.io/socket.io.js"></script>
+    <script src="{{app.path('users','client.js')}}"></script>
+    <script type="text/javascript" src="{{app.path('projects','projects.js')}}"></script>
+    <script src="/source/js/sound_manager/soundmanager2-nodebug-jsmin.js"></script>
+{% endif %}
 <script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
 <script src="/source/js/jquery.jgrowl.min.js"></script>
 <script src="/source/js/functions.js"></script>
@@ -53,13 +57,12 @@
 <script src="/source/js/styler/jquery.formstyler.min.js"></script>
 <script src="/source/js/jquery.scrollTo.min.js"></script>
 <script src="/source/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="{{app.path('projects','projects.js')}}"></script>
-<script src="/source/js/sound_manager/soundmanager2-nodebug-jsmin.js"></script>
 <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>-->
 <script type="text/javascript">
     $(document).ready(function($) {
         $('input,select').styler();
 
+        {% if globals.user.id_user %}
         $(".sidebar-nav").click(function(event){
             event.stopPropagation();
         })
@@ -96,14 +99,17 @@
                 });
             }
         });
+        {% endif %}
     });
 
+    {% if globals.user.id_user %}
     window.ms = {
         address: "{{globals.message_server}}",
         uniq_key: "{{globals.user.uniq_key}}",
         name: "{{globals.user.fio}}",
         id: "{{globals.user.id_user}}"
     }
+    {% endif %}
 </script>
 {% block js %}
 {% endblock %}

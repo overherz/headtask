@@ -75,27 +75,29 @@
             </select>
         </div>
 
-        {% if not project.owner %}
-
-        <label class="col-md-2 control-label" for="assigned">Делегировано</label>
-        <div class="col-md-4">
-            <select name="assigned" id="assigned">
-                <option value="">&nbsp;</option>
-                {% for u in users %}
-                <option value="{{u.id_user}}" {% if u.id_user == task.assigned %}selected{% endif %}>{{u.fio}}</option>
-                {% endfor %}
-            </select>
-        </div>
-        {% endif %}
-    </div>
-    <div class="form-group">
         <label class="col-md-2 control-label" for="start">Начало</label>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <input type="text" name="start" id="start" class="form-control" value="{{task.start|date('d.m.Y')}}">
         </div>
 
+    </div>
+    <div class="form-group">
+        {% if not project.owner %}
+            <label class="col-md-2 control-label" for="assigned">Делегировано</label>
+            <div class="col-md-4">
+                <select name="assigned" id="assigned">
+                    <option value="">&nbsp;</option>
+                    {% for u in users %}
+                        <option value="{{u.id_user}}" {% if u.id_user == task.assigned %}selected{% endif %}>{{u.fio}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% else %}
+            <div class="col-md-6"></div>
+        {% endif %}
+
         <label class="col-md-2 control-label" for="end">Окончание</label>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <input type="text" name="end" id="end" class="form-control" value="{% if task.end %}{{task.end|date('d.m.Y')}}{% endif %}">
         </div>
     </div>
@@ -110,7 +112,7 @@
             </select>
         </div>
         <label class="col-md-2 control-label" for="estimated_time">Расчетное время</label>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="input-group">
                 <input type="text" name="estimated_time" id="estimated_time" class="form-control" value="{{task.estimated_time}}">
                 <span class="input-group-addon">ч.</span>
@@ -125,9 +127,10 @@
                 {% for cat in categories %}
                     <tr>
                         <td style="padding: 3px;">
-                            <span class="label" style="background: {{ cat.color }};color: {{ cat.color_text }}">
-                                <input type="checkbox" style="margin-top: -2px;" name="category[]" value="{{ cat.id }}" {% if task_categories[cat.id] %}checked{% endif %}> {{ cat.name }}
-                            </span>
+                            <input type="checkbox" id="cat_{{ cat.id }}" style="margin-top: -2px;" name="category[]" value="{{ cat.id }}" {% if task_categories[cat.id] %}checked{% endif %}>
+                            <label class="label" for="cat_{{ cat.id }}" style="background: {{ cat.color }};color: {{ cat.color_text }};position: relative;top:0;">
+                                {{ cat.name }}
+                            </label>
                         </td>
                     </tr>
                 {% endfor %}
