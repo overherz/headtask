@@ -82,7 +82,7 @@ class __TwigTemplate_6d7f13f94c6c0df88561de045a365228d2516727075bcb616df7d30f0e0
 </table>
 ");
         // line 19
-        $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
+        $this->env->loadTemplate("/source/jpaginator_boot_if.html")->display($context);
     }
 
     public function getTemplateName()

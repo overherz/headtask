@@ -16,9 +16,10 @@ class __TwigTemplate_a878d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
+        echo \layout::func_from_text("<div style=\"margin-right: 15px;\">");
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
-        // line 2
-        echo \layout::func_from_text("
+        echo \layout::func_from_text("</div>
+
 <div class=\"container-fluid\" style=\"padding-right: 0;\">
     <div class=\"row\" style=\"margin-right: 0;\">
         ");
@@ -119,7 +120,7 @@ class __TwigTemplate_a878d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4
 </div>
 ");
         // line 33
-        $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
+        $this->env->loadTemplate("/source/jpaginator_boot_if.html")->display($context);
     }
 
     public function getTemplateName()
@@ -134,6 +135,6 @@ class __TwigTemplate_a878d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4
 
     public function getDebugInfo()
     {
-        return array (  122 => 33,  118 => 31,  109 => 27,  106 => 26,  100 => 24,  92 => 22,  90 => 21,  87 => 20,  80 => 18,  77 => 17,  68 => 15,  63 => 13,  45 => 10,  34 => 8,  26 => 5,  21 => 2,  19 => 1,  65 => 16,  62 => 15,  59 => 12,  56 => 13,  51 => 12,  48 => 11,  39 => 6,  36 => 5,  30 => 6,);
+        return array (  123 => 33,  119 => 31,  110 => 27,  107 => 26,  101 => 24,  93 => 22,  91 => 21,  88 => 20,  81 => 18,  78 => 17,  69 => 15,  64 => 13,  60 => 12,  46 => 10,  35 => 8,  31 => 6,  27 => 5,  19 => 1,);
     }
 }

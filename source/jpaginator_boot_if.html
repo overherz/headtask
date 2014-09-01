@@ -1,0 +1,27 @@
+{% if paginator.num_list %}
+    <table style="width: 100%;margin-bottom: 0;">
+        <tr>
+            <td style="white-space: nowrap;text-align: right;padding: 0;line-height: 0;">
+                <ul class="pagination" style="margin: 0;">
+                    {% for i in paginator.num_list %}
+                        {% if loop.first and i != 1 %}
+                            <li><a href="#" onclick="get_page(1);return false;">1</a></li>
+                            {% if i>2 %}<li><a href="" onclick="return false;">...</a></li></li>{% endif %}
+                        {% endif %}
+
+                        {% if i == paginator.current_page %}
+                            <li class="active"><a href="" onclick="return false;">{{i}}</a></li>
+                        {% else %}
+                            <li><a href="#" onclick="get_page('{{i}}');return false;">{{i}}</a></li>
+                        {% endif %}
+
+                        {% if loop.last and i != paginator.get_pages %}
+                            {% if i< paginator.get_pages-1 %}<li><a href="" onclick="return false;">...</a></li>{% endif %}
+                            <li><a href="#" onclick="get_page('{{paginator.get_pages}}');return false;">{{paginator.get_pages}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+{% endif %}
