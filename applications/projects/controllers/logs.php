@@ -150,7 +150,12 @@ class logs extends \Controller {
         if ($type)
         {
 
-            if (!is_array($type)) $type[] = $type;
+            if (!is_array($type))
+            {
+                $old_type = $type;
+                $type = array();
+                $type[] = $old_type;
+            }
 
             foreach ($type as &$s) $s = $this->db->quote($s);
             $where[] = "pl.type IN (".implode(",",$type).")";
