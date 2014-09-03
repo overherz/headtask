@@ -1,10 +1,10 @@
 var http = require('http').createServer(onRequest);
 var io = require('../../node_modules/socket.io')(http);
 var template = require('../../node_modules/swig');
-var fs = require("fs")
-var vm = require('vm')
+var fs = require("fs");
+var vm = require('vm');
 
-vm.runInThisContext(fs.readFileSync(__dirname + "/notifications_data.js"))
+vm.runInThisContext(fs.readFileSync(__dirname + "/notifications_data.js"));
 http.listen(9900);
 
 http.on('error', function (e) {

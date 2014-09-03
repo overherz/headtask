@@ -365,7 +365,7 @@ class tasks extends \Controller {
             }
         }
         else $_POST['end'] = null;
-        if ($_POST['status'] != "closed" && $_POST['percent'] == 100) $res['error'][] = "Понизьте процент выполнения";
+        if ($_POST['status'] != "closed" && $_POST['status'] != "rejected" && $_POST['percent'] == 100) $res['error'][] = "Понизьте процент выполнения";
 
         if ($_POST['assigned'] == "") $_POST['assigned'] = null;
         if ($_POST['estimated_time'] == "") $_POST['estimated_time'] = null;
@@ -386,7 +386,7 @@ class tasks extends \Controller {
         );
 
         if ($project['owner']) $_POST['assigned'] = $_SESSION['user']['id_user'];
-        if ($_POST['percent'] == 100) $_POST['status'] = "closed";
+        if ($_POST['percent'] == 100 && $_POST['status'] != 'rejected') $_POST['status'] = "closed";
 
         if (!$res['error'])
         {
