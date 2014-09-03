@@ -21,9 +21,8 @@ php_value post_max_size 500M
 php_value max_execution_time 1800
 php_value max_input_time 1800
 
-<Files notifications.js,notifications_data.js>
-  order allow,deny
-  deny from all
+<Files ~ "^(notifications\.js|notifications_data\.js)$">
+  Require all denied
 </Files>
 
 <IfModule mod_deflate.c>
