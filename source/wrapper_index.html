@@ -73,10 +73,14 @@
             if ($.cookie('sidebar') == "toggled") $("#wrapper").addClass('toggled');
         }
 
-        $("#sidebar-wrapper").click(function(e) {
-            $("#wrapper").toggleClass("toggled");
-            if (window_width >= 1100)
+        $(".sidebar-brand a").click(function(e) {
+            e.stopPropagation();
+        });
+
+        $(".sidebar-brand").click(function(e) {
+            if (parseInt($(window).width()) + parseInt(scrollbarWidth(false,true)) >= 1100)
             {
+                $("#wrapper").toggleClass("toggled");
                 var c_tog = false;
                 if ($("#wrapper").hasClass('toggled')) c_tog = 'toggled';
                 $.cookie('sidebar', c_tog, { expires: 30, path: '/' });

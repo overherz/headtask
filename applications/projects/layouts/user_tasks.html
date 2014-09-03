@@ -1,6 +1,6 @@
     {% import "/source/search_macro.html" as inputs %}
     {% if dashboard %}
-        <form path="/projects/tasks_today/" id="search_form" method="post" class="form-horizontal user_tasks" style="margin-bottom:0;">
+        <form path="/projects/dashboard/" id="search_form" method="post" class="form-horizontal user_tasks" style="margin-bottom:0;">
             <input type="hidden" name="page" value="">
             <input type="hidden" name="act" value="get_data">
             <input type="hidden" name="limit" value="{{ limit }}">

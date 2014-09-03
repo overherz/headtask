@@ -20,7 +20,7 @@ class logs extends \Controller {
             $end = strtotime($_POST['end']) + 60*60*24-1;
         }
 
-        $logs = $this->get_logs($_POST['type'],$_POST['project'],false,$start,$end);
+        $logs = $this->get_logs($_POST['type'],$_POST['project'],false,$start,$end,$_POST['search']);
 
        // pr($logs['paginator']);
 
@@ -142,15 +142,18 @@ class logs extends \Controller {
         }
     }
 
-    function get_logs($type=false,$id_project=false,$id_task=false,$start=false,$end=false)
+    function get_logs($type=false,$id_project=false,$id_task=false,$start=false,$end=false,$search=false)
     {
         $search_data = array($_SESSION['user']['id_user']);
         $where = array();
 
         if ($type)
         {
-            $where[] = "pl.type=?";
-            $search_data[] = $type;
+
+            if (!is_array($type)) $type[] = $type;
+
+            foreach ($type as &$s) $s = $this->db->quote($s);
+            $where[] = "pl.type IN (".implode(",",$type).")";
         }
 
         if ($start && $end)
@@ -170,6 +173,17 @@ class logs extends \Controller {
         {
             $where[] = "t.id=?";
             $search_data[] = $id_task;
+        }
+
+        if ($search != '')
+        {
+            $search = explode(" ",$search);
+            foreach ($search as $s)
+            {
+                $s = $this->db->quote("%{$s}%");
+                $search_ar[] = "pl.text LIKE ".$s;
+            }
+            $where[] = "(".implode("OR ",$search_ar).")";
         }
 
         if (count($where) > 0) $where_string = " AND ".implode(" AND ",$where);

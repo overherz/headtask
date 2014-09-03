@@ -1,7 +1,7 @@
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
-        <li class="sidebar-brand">
-            <span class="navbar-brand">T<span class="brand_full">ask me!</span></span>
+        <li class="sidebar-brand" style="background: #fff;">
+            <span class="navbar-brand logo_color1">h<span class="brand_full">ead</span><span class="logo_color2">t<span class="brand_full">ask</span></span></span>
             <div style="position: absolute;top:0;right:0;" id="user_menu">
                 <a href="/users/profile/" class="username_in_top" title="Профиль" style="display: inline-block;"><i class="fa fa-user"></i></a>
                 <a href="/users/logout/" id="logout" style="display: inline-block;"><i class="fa fa-power-off"></i></a>
@@ -15,7 +15,7 @@
                         <div style="position: relative;">
                             <a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>
                                 {% if m.path == '/projects/' %}<i class="fa fa-tasks sidebar_icon fa-fw"></i>{% endif %}
-                                {% if m.path == '/projects/tasks_today/' %}<i class="fa fa-tachometer sidebar_icon fa-fw"></i>{% endif %}
+                                {% if m.path == '/projects/dashboard/' %}<i class="fa fa-tachometer sidebar_icon fa-fw"></i>{% endif %}
                                 {% if m.path == '/projects/calendar/' %}<i class="fa fa-calendar sidebar_icon fa-fw"></i>{% endif %}
                                 {% if m.path == '/users/' %}<i class="fa fa-users sidebar_icon fa-fw"></i>{% endif %}
                                 {% if m.path == '/projects/logs/' %}<i class="fa fa-eye sidebar_icon fa-fw"></i>{% endif %}

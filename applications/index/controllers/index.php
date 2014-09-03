@@ -5,7 +5,7 @@ class index extends \Controller {
 
     function default_method()
     {
-        $this->redirect("/projects/tasks_today/");
+        $this->redirect("/projects/dashboard/");
     }
 }
 

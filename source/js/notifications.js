@@ -1,6 +1,10 @@
 var http = require('http').createServer(onRequest);
 var io = require('../../node_modules/socket.io')(http);
 var template = require('../../node_modules/swig');
+var fs = require("fs")
+var vm = require('vm')
+
+vm.runInThisContext(fs.readFileSync(__dirname + "/notifications_data.js"))
 http.listen(9900);
 
 http.on('error', function (e) {
@@ -15,7 +19,8 @@ http.on('error', function (e) {
 });
 
 process.on('uncaughtException', function (err) {
-    console.log(err);
+    if (err.code == 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR') console.log('query error');
+    else console.log(err);
    // process.exit(1);
 });
 
@@ -30,20 +35,36 @@ template.setDefaults({
 });
 
 var mysql = require('../../node_modules/mysql');
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'jckjck',
-    port     : '3306',
-    database : 'tasker'
-});
+var db_config = {
+    host     : db_host,
+    user     : db_user,
+    password : db_pass,
+    port     : db_post,
+    database : db_name
+};
+var connection;
 
-connection.connect(function(err) {
-    if (err) {
-        console.error('database connection error');
-        process.exit(code=0);
-    }
-});
+function handleDisconnect() {
+    connection = mysql.createConnection(db_config);
+
+    connection.connect(function(err) {
+        if(err) {
+            console.log('error when connecting to db');
+            setTimeout(handleDisconnect, 2000);
+        }
+    });
+
+    connection.on('error', function(err) {
+        console.log('db error', err);
+        if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+            handleDisconnect();
+        } else {
+            throw err;
+        }
+    });
+}
+
+handleDisconnect();
 
 function onRequest(request, response) {
     response.writeHead(200, {"Content-Type": "text/plain"});

@@ -7,15 +7,35 @@
 {% endblock %}
 
 {% block context %}
-<form action="" id="search_form" method="post" class="form-horizontal" style="margin-bottom:20px;">
+<form action="" id="search_form" method="post" class="form-horizontal user_tasks" style="margin-bottom:20px;">
     <input type="hidden" name="page" value="">
-    Тип <select name="type">
-        <option>&nbsp;</option>
-        {% for i in types %}
-            <option value="{{ i }}">{{ ("type_"~i)|lang }}</option>
-        {% endfor %}
-    </select>&nbsp;
-    <i class="fa fa-calendar"></i> <input type="text" name="start" value="{{start}}" class="input-small" readonly> <i class="fa fa-arrow-right"></i> <input type="text" name="end" value="{{end}}" class="input-small" readonly>
+    <table class="table table_style no_style" style="width: auto;margin-top: 0">
+        <thead>
+            <tr>
+                <th>Тип</th>
+                <th>Дата</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <select name="type[]" multiple size="{{ types|length }}">
+                        {% for i in types %}
+                            <option value="{{ i }}">{{ ("type_"~i)|lang }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>
+                    От: <input type="text" name="start" value="{{start}}" readonly style="width: 90px;margin-bottom: 10px;"><br>
+                    До: <input type="text" name="end" value="{{end}}" readonly style="width: 90px;">
+                </td>
+                <td>
+                    <input type="text" name="search" id="search_label" class="input-large" placeholder="Поиск">
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </form>
 
 <div id="search_result">

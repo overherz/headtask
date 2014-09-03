@@ -2,15 +2,165 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/tasks/add_task.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/tasks/add_task.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/b2/cb/d7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298d6afa.php" afterPath="$PROJECT_DIR$/data/layouts_cache/b2/cb/d7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298d6afa.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_big/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409256611.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_small/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409256611.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_big/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409266246.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_small/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409266246.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_big/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409433189.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_small/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409433189.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_big/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409433273.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_small/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409433273.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_big/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409433357.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_small/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409433357.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_big/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409433452.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_small/49/a4/49a4ad401ba44a4595a696369109c54d8e775e2e1409433452.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_big/9e/a7/9ea78faee41eafc539ab30a0aa833b4b97dad04e1409256611.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_small/9e/a7/9ea78faee41eafc539ab30a0aa833b4b97dad04e1409256611.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_big/9e/a7/9ea78faee41eafc539ab30a0aa833b4b97dad04e1409266489.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_small/9e/a7/9ea78faee41eafc539ab30a0aa833b4b97dad04e1409266489.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/34/36/34363eeda3b0ebb439328ed7208698c0954dd9741409256676.sql" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/00/5a/fe09e6b64544dbad05e552917bfce7da558bf75da9b197bccfa1dd97322a.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/04/6f/52aff089701e9ebc8765d87cba50a83a9baf312f3e61157d472a9fa817ff.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/06/30/71ddf0cd53b2379e354032c35ca2436055f31de20c34c7a61f07dc8a7246.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/07/6f/a99a25ff13091cfbf273abda469826d7e94e5c1854f6af4fc68dc013e8cc.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/09/f3/f38a8e1451cc7f6c259159ccd68ab5b89de4a7cf3b3585bf258f5c4ee465.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/0e/9b/309ad9bde426e0aec278cd93169bb7e600cf7b7648e71f10a735b0c11df8.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/0f/70/b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c61e68c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/12/43/5c31254e0e6a95ca704c82f47140a2ffed0baf7175aa29e03de625639d29.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/13/7d/9f4ac7ad4695567c4c5bf76594c3a583accdf1a0a968b1b6839e00ef19f3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/15/2f/e584277f575f99ecdef8b36a789134a51d9ec62fa8cf5b756f597a3902dc.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/16/af/8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5b180e.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/17/51/6976556773f554381de5d4f5723633d76036cfc786b9e531bc4499f29a17.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/1a/7b/910cc6a042ffc764352bc5c01ed7a04f15099e02352d5d9ac2e0011c8d83.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/1e/4a/585eda2e1a7b20ae7d5ec42a6dd8e5ec2b7744b1f4471737cc469a9a4e94.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/1e/62/97ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51a596c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/1e/d4/a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300ae8761.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/20/44/60f784b1fa728ecc2aaa55032a86b1b89a3acddc6ca192d9b74da1fd0d41.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/20/5d/f044108506924cdb35437fe0210f73f0b2471c7f484b2238337c5cf3cace.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/20/6a/dacc5c311667586e7b3d514816a1012bb96e03c460ed4f1da7c43177b488.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/20/6d/aba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade492946.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/20/ad/f3ba6cc7bc5198a4ffd14eb88465193ac628513938f993a9804724555893.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/24/4b/759964f2552c9e34d903144c317ef6066dd51a06a3767586e52fe71ceffb.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/29/d6/6637865a4ad8089da7006015f99bd054e47f8669e58d127c36f16a4cf756.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/2b/5d/c49404c767ac501dc42508130342f318177abfbcdf49de82ad20260a9cd3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/31/3e/3d440d54d3418972021488c986bd0db4eea55507ff1d230bad2cc7649ba3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/35/42/f1d0ba3ea1b1500d297afcb51ddd24695c27b34edaf1a681f2f856b39b78.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/36/3a/21869aa9deafdecfa29d4f5f9194ca39b4d84a972eb29607719b2c205d5a.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/37/4d/0b47b97fcb4adbe62f25e25ca5b96888147af64e876895564ca4cf24947c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/38/f7/6baab9950bfc35c0b0148c7879e8d0b5db9fd78dd3e77e62a3bd0aa23c8c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/3c/f2/a71777db456f758a5470f303563eaa7b1962ac077716c9f6374f0045759a.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/41/a4/f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc42be7.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/42/82/bd7f6d9c0ad1b612cb9224612cfce130858e6975371312f9ac37e038ecbc.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/43/a6/62d758f170d121846e6552cd3b6e1bd756979b6bea58c0b96d766b1e333c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/43/cc/89f1b3db42d0b784feeb49dddfbdbd5b2594394b916f89d00461c792c0c6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/44/0a/5d0bf6c05157e90afe1f495745f07022336b9b36601fc33d588b9ad8795f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/44/63/f375af82577999b438f74e66b6a380b0f1405b870e52fe5308df7d8e3a9e.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/45/b3/eaa8c1c9836c53c156522d21b3a27cda763af4fce28a657d6a58f3553e5f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/47/8e/0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb57da7.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/4b/44/14e1d76ce84d7e69084b3d7a17a76044287f401ce49c7909883fc7b7a12f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/4c/3e/fc7425397325fa126c8b81d10f7b69972c01e815db1e648d4dccf1d4705f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/4d/b5/e9dae38173acac72fc3e91a56db646ba17ee3e5388800524e4ac90c5009c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/52/83/1757cc57a75482438cb0597ff8c4b437cc88467359548bb59beedf326b5d.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/57/1a/da57d2ede507cd987b4cca260e6fa9ee865ca0d1fb4470fdece41cab2bc2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/58/58/0ac2a727a0f4ebae4dbb25449ea5d35fa1e72214e862aa31c95918dd977a.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/5a/c3/1cbdae045789e24a2ed3535df98abefa8279aefa40bd7ce9735a3da8581f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/5e/81/06afbc346789a2892cf3356ebfa2c969706d46730c90a87c94e1de07ffae.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/5f/4c/f2ec211fb882e85f154dd12d6ada569260575ee64f3715d29f14701204e7.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/5f/60/b6bec83ddb01f23924a24bd8b875be379429f296de0b340fb66eabc277ab.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/61/56/55a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c398bae4.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/62/25/c53bf6d3114e3ce09ef9c05fd5b676543890a7569f023a09b863f51bbd90.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/66/b4/b429d84d57f3d026afe1c92acedaced652187f97f95e88cf99d6a255eccf.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/68/f4/ef7ce4ff57804bce6c62ef80b9ffd956f476cbbef7fa121a55a4b44504c1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/6c/24/689ba46c0834e7800b567fd5df134a16440220f7f6ddfd9bb3e6972ac622.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/6d/1c/221d1b5593884f7a0ebafb8046f266a200ded818c1ec62447252c13cd790.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/6d/7f/13f94c6c0df88561de045a365228d2516727075bcb616df7d30f0e0a89a3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/6f/93/22c63a913dc480f981798a731f4297ef3b657d41900353f1b68e650c1191.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/70/ab/4df119842359265e934cc78cb96f204c83f5b5407845e7a0641bd576f444.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/75/ab/411f269a019b1d896f3be0a43e7115d4436e439b42ab038ba50e5f19aab2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/75/ce/b40acfecf41f25d61d1990b3833df55a871b9790a9df19ae4b1399cf4789.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/76/da/71bd67accbf73b492df98c5e24e36f3a4318f921a51c1ff647eb442497f1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/7a/34/c346ad5435319afab26587c3b280b9b9ec8a38ed0f394272eec15db21152.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/7c/06/a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116449a1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/82/0e/bbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157edb7b87.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/85/14/0274251bbe924bb35b656800bbcd26f9211f7e2c4234ac59baf0615cabc2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/87/b6/ecca88bc216e6757dc52b0a4487f497b8b8d324af3941a58da5018a192d2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/89/53/a141f619404cc6feac308694f450fa960fdf4ad9720a9d491b8409b118a4.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/8b/5d/559c5e810875c12e00f14356b3d2aa71382551cbd4516424c76385d3f51c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/94/52/f947ddd4a1bc1be9c12c35b0d0269b55e1cae1cd33422df849d2034a2070.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/95/52/63f74af2ffb298d4a0b97d2a0dfc6dab5c5f04d34303dea6f92dbb20806f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/95/a4/89360c4cdec3c73d69b0ce19bd448b533815b9526c1cf79cf0df77531a15.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/96/75/7e7e6cbc1d42ff73e84aac9690bc7fbf3d4bfe12017d3656b0e1b1bdd18b.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/97/97/58b8ea5e1d0cddb860791efc8d7feb09ffbf81e03a696c9aec1d3fd7a8b0.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/98/c5/c13f5a7ea10086a9618ae687e4b6c1d62d6c81d2c49559584a93fafa006f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/99/e7/432f1a6fcde46104753a93b2e7ed228d8a5993c33af7c7edc511d59b6633.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/9c/be/2cbff42b94fd31a17ebd02dc34dd4927b4dab20637f8bce3374b18613d22.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/9e/d9/d4a859cdffc73bec10e2f096da45a8d40f7f82bde756753a403a10fcc0d7.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/a3/8d/ce67c808d89c5d78c99237c10cd182d28e0b83fcd624747fe812759b0b51.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/a5/00/93b11a85e6254e697048603147da9f514ecda00df1ae82772d182c04b66d.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/a7/eb/002c28cc6cb443d849c86116e33855275ee1d11051f0b8fb2c91f3f6ac64.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/a7/f9/152ee126e03c6adb766df311954821d201e22d1dae8f27ef593760df4712.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/8b/7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd40bce7.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/a9/7a/428f7fd1dd1c8eb1bde62761ff19a22e25c9f24f7d0404e89c79304b6bb6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/aa/90/9513b487767a6b358ead0b7aa653ba010e6dd66d0ebe28e465ec3cf5de8d.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/ac/4a/53969ce35bda275e6d8abe894f633ccbed5b98981612f9cd0bfbc8d709b1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/ac/67/bc98ec5c6ef36e53115b59491b2cb72ec93128d9acc5c50c46a1f448c0f6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/ad/87/f5b65f1832eec8d075d6df2dfd6767215415ed8bd44ce963b50b196ee601.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/ae/52/72a4075855fc2625613cc5cd2259f2cd07ba64a9d203ce5fb997164cf572.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/b2/cb/d7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298d6afa.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/b6/46/56816d502ca9b8528edb3448abd579c20ecd0f520bdff27bf1fe99b402b5.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/b8/2e/2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f146717.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/b9/69/f7610072d19e0bd5a399e3f9e3dd74973db0bfef91073a5671bc33d8930c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/bb/98/a034f2368313044fdb91493bd7bcd3f2e70b3ccc9c24ebb5d767bca5ce9f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/c1/53/7effba62b46468638e80b8b5f54a3ffba8f4de81626de230791759982aa6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/c2/b7/e3a4e548a8966259949aff24eab2a96a46be7d0e10cfa36e320748df0a4a.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/ca/6d/1bc9fb5a5045d0eccd5926ec1a8be59ceb752d98adbc04c44450ae3df43a.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/45/8a9c631c0d9a31b117c1ac46382f879165888453bd45223ad42d886f725c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/d3/31/73ef818b74ac2522ae302791292ddda89df577bc783243507f9271a9f9f1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/d9/1e/def010d8987ec2d39ab84830fcbf094e4d4b655e81f27eca7c89a3538db2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/d9/81/2d5c0d3fc66fe46a9af55cf84e3e09e3353ea90097ad66c85f715a3df20e.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/d9/9e/7833a94b74bc9ebbdb47f0629a6d93c3e57e5cc34275445a5f73912f39e4.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/d9/ec/300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f27ff3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/dd/22/175bc42deec10b8f665b23b6b97f86a9e54ab5480bb6a1eba00fdee845c6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/dd/d7/3a77e0671052d927c929129ce9a2b04ac6d27125032530f87f49e50cbb41.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/dd/e7/f689178bf97b9b76ec7f7410ff2fa5546fa7d32144e8f8660b4524784697.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/e4/ee/db28135042550b3ff96933468226da117cbe7d7ff5f1a413a6a5a77ecf05.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/e5/86/4a4387730e163d4100cf69c8b30f3b9780301b124ad3a45057c966f9141c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/e8/13/e0a63a59d5cb39f1fef07d9d10f8085bf9d718f56bcfc62442cce353ca61.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/ec/c4/c913da578c0f4801a6331a71ed22eac8d6c0ee82bdb4e1e23e5bada88501.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/ee/3b/993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c469ae93.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/f3/29/b5719fa6bb6bb0c1bde3e57a19cad15d37a6160b8c3020f0e48d166bbe83.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/f3/2a/e676a2c1076ef9582d18dffc14e34d7e68c4d4148b544ae7377f79312e76.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/f4/03/680c03536a19c9107d9efee916c033be30f675c9c74fc496fa9ed5886b2f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/f8/9b/6de840d45105c46fa4e34ef604d73fb27f2b1d5c590014cf00029c44fd19.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/f9/eb/d6e6b93e38d64db2281fd0defb8e59ac73d824c6143e5c8d1c5cf235d858.php" afterPath="" />
+    </list>
+    <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
+    <list id="3204c51e-7cb7-4919-b55d-dfb58f872d14" name="Failed commit: Default (2)" comment="new design">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/js/notifications_data.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/dashboard.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/favicon.ico" afterPath="$PROJECT_DIR$/favicon.ico" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/all_projects_table.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/all_projects_table.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/css/index.css" afterPath="$PROJECT_DIR$/source/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/index.html" afterPath="$PROJECT_DIR$/source/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/index/controllers/index.php" afterPath="$PROJECT_DIR$/applications/index/controllers/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/logs.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/logs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/logs.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/logs.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/logs_index.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/logs_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/menu.html" afterPath="$PROJECT_DIR$/source/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/js/notifications.js" afterPath="$PROJECT_DIR$/source/js/notifications.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/search_macro.html" afterPath="$PROJECT_DIR$/source/search_macro.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/layouts/users_table.html" afterPath="$PROJECT_DIR$/applications/users/layouts/users_table.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/wrapper_index.html" afterPath="$PROJECT_DIR$/source/wrapper_index.html" />
     </list>
-    <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
     <ignored path="tasker.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="data/layouts_cache/" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,100 +183,94 @@
       <file leaf-file-name="notifications.js" pinned="true" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/js/notifications.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="0" selection-start="4157" selection-end="4157" vertical-scroll-proportion="0.0" vertical-offset="1989" max-vertical-offset="5763">
+            <state line="58" column="48" selection-start="1510" selection-end="1510" vertical-scroll-proportion="0.0" vertical-offset="1037" max-vertical-offset="6120">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_posts.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/new_posts.html">
+      <file leaf-file-name="users_table.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/users/layouts/users_table.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+            <state line="7" column="117" selection-start="459" selection-end="459" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="646">
               <folding>
-                <marker date="1376600094000" expanded="false" signature="477:501" placeholder="..." />
-                <marker date="1376600094000" expanded="true" signature="502:565" placeholder="..." />
-                <marker date="1376600094000" expanded="true" signature="627:710" placeholder="..." />
+                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="topic.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/topic.html">
+      <file leaf-file-name="users.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/users/layouts/users.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="374">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="topics.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/topics.html">
+      <file leaf-file-name="menu.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/menu.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="47" selection-start="1096" selection-end="1096" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="493">
+            <state line="38" column="28" selection-start="3279" selection-end="3279" vertical-scroll-proportion="0.9907407" vertical-offset="111" max-vertical-offset="1020">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jpaginator_boot_if.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/jpaginator_boot_if.html">
+      <file leaf-file-name="dashboard.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/controllers/dashboard.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="240" selection-end="240" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="544">
+            <state line="6" column="5" selection-start="105" selection-end="105" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="2176">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_task.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/add_task.html">
+      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/index/controllers/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="28" selection-start="5336" selection-end="5336" vertical-scroll-proportion="-20.307692" vertical-offset="1410" max-vertical-offset="2873">
+            <state line="7" column="44" selection-start="139" selection-end="139" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="289">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notifications_data.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/js/notifications_data.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="21" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_tasks.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/user_tasks.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="39" selection-start="117" selection-end="117" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="1360">
               <folding>
-                <element signature="e#5988#6013#0" expanded="true" />
-                <element signature="e#6177#6266#0" expanded="true" />
+                <element signature="n#style#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/css/index.css">
+      <file leaf-file-name="tasks_table.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/tasks_table.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="835" column="63" selection-start="15252" selection-end="15252" vertical-scroll-proportion="0.0" vertical-offset="13913" max-vertical-offset="19346">
+            <state line="6" column="14" selection-start="260" selection-end="260" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="476">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/applications/users/layouts/login.html">
+      <file leaf-file-name="files_table.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/files/files_table.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="33" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="864">
+            <state line="18" column="138" selection-start="651" selection-end="786" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="476">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wrapper_index2.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/wrapper_index2.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="510">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wrapper_index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="12" selection-start="4384" selection-end="4384" vertical-scroll-proportion="-31.26923" vertical-offset="1074" max-vertical-offset="2074">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -154,34 +298,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/source/js/notifications.js" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/users/add_user.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/tasks/task.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/calendar/month.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/documents/documents_element.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/forum/forum.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/forum/topic.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/news/news_element.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/all_projects_table.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/files/popup_files.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/category_table.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/review.html" />
         <option value="$PROJECT_DIR$/applications/projects/source/js/user_tasks.js" />
         <option value="$PROJECT_DIR$/libraries/calendar/calendar.css" />
         <option value="$PROJECT_DIR$/source/css/jquery.jgrowl.css" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/logs.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/tasks/tasks.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/forum/show_topic.html" />
         <option value="$PROJECT_DIR$/source/js/message.js" />
         <option value="$PROJECT_DIR$/applications/users/source/js/client.js" />
-        <option value="$PROJECT_DIR$/source/search_macro.html" />
         <option value="$PROJECT_DIR$/source/js/search.js" />
         <option value="$PROJECT_DIR$/source/js/datepicker_ru.js" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/calendar/calendar_current_day.html" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/files.php" />
         <option value="$PROJECT_DIR$/libraries/imaginator/imaginator.php" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/files/file.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/tasks_today.php" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" />
         <option value="$PROJECT_DIR$/applications/projects/source/js/tasks.js" />
@@ -190,10 +321,8 @@
         <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/applications/menu/source/css/menu.css" />
         <option value="$PROJECT_DIR$/applications/menu/source/js/menu_admin.js" />
-        <option value="$PROJECT_DIR$/source/jpaginator_boot.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/calendar/task_today.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/tasks/tasks_table.html" />
-        <option value="$PROJECT_DIR$/applications/users/layouts/users_table.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/news/news_table.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/files/files_table.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/users/users_table.html" />
@@ -202,9 +331,24 @@
         <option value="$PROJECT_DIR$/applications/projects/layouts/forum/topics.html" />
         <option value="$PROJECT_DIR$/source/jpaginator_boot_if.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/tasks/add_task.html" />
+        <option value="$PROJECT_DIR$/applications/users/layouts/login.html" />
+        <option value="$PROJECT_DIR$/source/search_macro.html" />
+        <option value="$PROJECT_DIR$/source/index.html" />
         <option value="$PROJECT_DIR$/source/css/index.css" />
         <option value="$PROJECT_DIR$/source/wrapper_index.html" />
-        <option value="$PROJECT_DIR$/applications/users/layouts/login.html" />
+        <option value="$PROJECT_DIR$/applications/projects/layouts/all_projects_table.html" />
+        <option value="$PROJECT_DIR$/applications/projects/layouts/logs_index.html" />
+        <option value="$PROJECT_DIR$/applications/projects/controllers/logs.php" />
+        <option value="$PROJECT_DIR$/applications/projects/layouts/logs.html" />
+        <option value="$PROJECT_DIR$/.htaccess" />
+        <option value="$PROJECT_DIR$/source/js/notifications_data.js" />
+        <option value="$PROJECT_DIR$/source/js/notifications.js" />
+        <option value="$PROJECT_DIR$/applications/users/layouts/users_table.html" />
+        <option value="$PROJECT_DIR$/source/jpaginator_boot.html" />
+        <option value="$PROJECT_DIR$/applications/projects/controllers/dashboard.php" />
+        <option value="$PROJECT_DIR$/applications/index/controllers/index.php" />
+        <option value="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" />
+        <option value="$PROJECT_DIR$/source/menu.html" />
       </list>
     </option>
   </component>
@@ -240,7 +384,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -269,21 +412,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -315,7 +444,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="users" />
+              <option name="myItemId" value="projects" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -333,43 +462,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="users" />
+              <option name="myItemId" value="projects" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="applications" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="users" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layouts" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.fileTypes" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Ignored.Files" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -393,6 +501,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1146" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/data/layouts_cache" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -770,19 +879,29 @@
       <created>1409542017292</created>
       <updated>1409542017292</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="new design">
+      <created>1409546747889</created>
+      <updated>1409546747890</updated>
+    </task>
+    <task id="LOCAL-00083" summary="new design">
+      <created>1409548614506</created>
+      <updated>1409548614506</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="1" width="1920" height="1054" extended-state="6" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3631523" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23695421" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24707136" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -791,8 +910,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36392742" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -825,91 +942,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="21" selection-start="1247" selection-end="1260" vertical-scroll-proportion="-12.153846" vertical-offset="449" max-vertical-offset="6681" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="3566" selection-end="3586" vertical-scroll-proportion="-28.346153" vertical-offset="402" max-vertical-offset="1275" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/controllers/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="83" selection-start="1525" selection-end="1576" vertical-scroll-proportion="-17.653847" vertical-offset="306" max-vertical-offset="1615" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/js/search.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="63" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/source/js/projects.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2006" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="339" column="9" selection-start="10835" selection-end="10835" vertical-scroll-proportion="0.34275618" vertical-offset="5472" max-vertical-offset="8551" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/js/jquery.ui.datepicker-ru.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="875" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/logs_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="65" selection-start="134" selection-end="199" vertical-scroll-proportion="0.080094226" vertical-offset="0" max-vertical-offset="849" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="588" selection-end="901" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="765" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="266" column="79" selection-start="11339" selection-end="11418" vertical-scroll-proportion="0.0" vertical-offset="4222" max-vertical-offset="17578" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/calendar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="187" selection-start="3330" selection-end="3517" vertical-scroll-proportion="0.0" vertical-offset="1173" max-vertical-offset="2431" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/paginator/paginator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1989" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/imaginator/imaginator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="53" selection-start="3244" selection-end="3244" vertical-scroll-proportion="0.0" vertical-offset="1309" max-vertical-offset="3961" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/files/file.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="97" selection-start="827" selection-end="827" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="714" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/files.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="25" selection-start="2228" selection-end="2228" vertical-scroll-proportion="-26.384615" vertical-offset="283" max-vertical-offset="4573" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks_today.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="60" selection-start="262" selection-end="322" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="2176" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="65" selection-start="7008" selection-end="7008" vertical-scroll-proportion="0.0" vertical-offset="2526" max-vertical-offset="3400" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/source/js/tasks.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="86" column="17" selection-start="2854" selection-end="2854" vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="7361" />
@@ -945,11 +977,6 @@
         <state line="10" column="73" selection-start="583" selection-end="583" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="2924" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="21" selection-start="188" selection-end="189" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="595" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/menu/layouts/admin/elements/row.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="22" selection-start="151" selection-end="151" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="340" />
@@ -965,39 +992,14 @@
         <state line="2" column="61" selection-start="151" selection-end="151" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2006" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/jpaginator_boot.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="1" selection-end="1611" vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="612" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/user_tasks.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="1913" selection-end="1913" vertical-scroll-proportion="-3.0769231" vertical-offset="498" max-vertical-offset="1360" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/task_today.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="60" column="47" selection-start="3520" selection-end="3520" vertical-scroll-proportion="-29.384615" vertical-offset="256" max-vertical-offset="1122" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/tasks_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="47" selection-start="674" selection-end="674" vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="476" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="86" selection-start="1899" selection-end="1899" vertical-scroll-proportion="-20.923077" vertical-offset="0" max-vertical-offset="646" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/news/news_table.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="47" selection-start="554" selection-end="554" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="408" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/files/files_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="47" selection-start="872" selection-end="872" vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="476" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/files/popup_files.html">
@@ -1012,139 +1014,261 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/documents/documents_table.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="47" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="442">
-          <folding>
-            <marker date="1409541913045" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409541913045" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409541913045" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409541913045" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+        <state line="20" column="47" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="442" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/forum.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="1071">
-          <folding>
-            <marker date="1409262002322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409262002322" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="1071" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/forum_show.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
-          <folding>
-            <marker date="1376387243000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1376387243000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1376387243000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/mail_text.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/new_posts_table.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="47" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="527">
-          <folding>
-            <marker date="1409541944105" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409541944105" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409541944105" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409541944105" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409541944105" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409541944105" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1409541944105" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+        <state line="25" column="47" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="527" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/new_posts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
-          <folding>
-            <marker date="1376600094000" expanded="false" signature="477:501" placeholder="..." />
-            <marker date="1376600094000" expanded="true" signature="502:565" placeholder="..." />
-            <marker date="1376600094000" expanded="true" signature="627:710" placeholder="..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/topic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="875">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="875" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/forum/topics.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="47" selection-start="1096" selection-end="1096" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="493">
-          <folding />
-        </state>
+        <state line="23" column="47" selection-start="1096" selection-end="1096" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="493" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/jpaginator_boot_if.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="240" selection-end="240" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="544">
-          <folding />
-        </state>
+        <state line="5" column="0" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="544" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/add_task.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="28" selection-start="5336" selection-end="5336" vertical-scroll-proportion="-20.307692" vertical-offset="1410" max-vertical-offset="2873">
-          <folding>
-            <element signature="e#5988#6013#0" expanded="true" />
-            <element signature="e#6177#6266#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="835" column="63" selection-start="15252" selection-end="15252" vertical-scroll-proportion="0.0" vertical-offset="13913" max-vertical-offset="19346">
-          <folding />
-        </state>
+        <state line="114" column="28" selection-start="5336" selection-end="5336" vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="2873" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/wrapper_index2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="890">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="890" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="33" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="864" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="21" selection-start="188" selection-end="189" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="595" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/search_macro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="71" selection-start="103" selection-end="103" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="374">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="14" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0959368" vertical-offset="0" max-vertical-offset="886" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="812" column="2" selection-start="14714" selection-end="14714" vertical-scroll-proportion="-16.37037" vertical-offset="13362" max-vertical-offset="19873">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="12" selection-start="4384" selection-end="4384" vertical-scroll-proportion="-31.26923" vertical-offset="1074" max-vertical-offset="2074">
+        <state line="80" column="82" selection-start="3419" selection-end="3419" vertical-scroll-proportion="-16.23077" vertical-offset="938" max-vertical-offset="2142">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/all_projects.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="890">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/all_projects_table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="49" selection-start="207" selection-end="207" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/tasks.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="16" selection-start="1247" selection-end="1348" vertical-scroll-proportion="0.6655093" vertical-offset="71" max-vertical-offset="935">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/logs_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="111" selection-start="1452" selection-end="1452" vertical-scroll-proportion="-21.576923" vertical-offset="0" max-vertical-offset="833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="184" column="0" selection-start="7208" selection-end="7674" vertical-scroll-proportion="-14.807693" vertical-offset="2743" max-vertical-offset="17578">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="877">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/logs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="81" selection-start="1430" selection-end="1430" vertical-scroll-proportion="-20.26923" vertical-offset="0" max-vertical-offset="697">
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#4;n#tr#1;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/login.html">
+    <entry file="file://$PROJECT_DIR$/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="33" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="864">
+        <state line="23" column="46" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+          <folding>
+            <marker date="1409704066829" expanded="true" signature="-1:-1" placeholder="&lt;Files notifications.js,notifications_data.js&gt;" />
+            <marker date="1409704066829" expanded="true" signature="-1:-1" placeholder="&lt;IfModule mod_deflate.c&gt;" />
+            <marker date="1409704066829" expanded="true" signature="-1:-1" placeholder="&lt;IfModule mod_expires.c&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/tasks_table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="14" selection-start="260" selection-end="260" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="476">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/logs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="65" selection-start="330" selection-end="330" vertical-scroll-proportion="0.31962398" vertical-offset="0" max-vertical-offset="4148">
+          <folding>
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="select pl.*,..projects_tasks_logs..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="select pt.na..projects_tasks..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="SELECT id_pr..projects_users..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="select pl.*,..projects_tasks_logs..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="SELECT id_pr..projects_users..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="select pl.*,..projects_logs..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="SELECT id_pr..projects_users..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="select pl.*,..projects_tasks_logs..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="SELECT id_pr..projects_users..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="select count..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="select pl.*,..projects_logs..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="SELECT id_pr..projects_users..." />
+            <marker date="1409700957021" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/files/files_table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="138" selection-start="651" selection-end="786" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="476">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/js/notifications_data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="21" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/js/notifications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="48" selection-start="1510" selection-end="1510" vertical-scroll-proportion="0.0" vertical-offset="1037" max-vertical-offset="6120">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/jpaginator_boot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="71" selection-start="1214" selection-end="1214" vertical-scroll-proportion="0.39952996" vertical-offset="0" max-vertical-offset="851">
+          <folding>
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users_table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="117" selection-start="459" selection-end="459" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="646">
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="890">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="5" selection-start="105" selection-end="105" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="2176">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/index/controllers/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="44" selection-start="139" selection-end="139" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="289">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/user_tasks.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="39" selection-start="117" selection-end="117" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="1360">
+          <folding>
+            <element signature="n#style#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="28" selection-start="3279" selection-end="3279" vertical-scroll-proportion="0.9907407" vertical-offset="111" max-vertical-offset="1020">
           <folding />
         </state>
       </provider>
