@@ -9,15 +9,6 @@
     <link rel="stylesheet" type="text/css" href="/source/css/jquery.fileupload-ui.css">
 {% endblock %}
 
-{% block js %}
-{{ parent() }}
-    <script type ="text/javascript" src="/source/js/file_upload/vendor/jquery.ui.widget.js"></script>
-    <script type ="text/javascript" src="/source/js/file_upload/jquery.iframe-transport.js"></script>
-    <script type ="text/javascript" src="/source/js/file_upload/jquery.fileupload.js"></script>
-    <script type ="text/javascript" src="/source/js/file_upload/jquery.fileupload-process.js"></script>
-    <script type ="text/javascript" src="/source/js/file_upload/jquery.fileupload-ui.js"></script>
-{% endblock %}
-
 {% block project %}
 {% include app.path('projects','project_menu.html') %}
     {% block project_data %}
