@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Панель управления сайтом</title>
 
-    <link rel="stylesheet" href="/source/css/jquery.jgrowl.css" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="/source/css/popup.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/source/css/plugins.css" type="text/css" />
     <link href="http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="/source/admin/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="/source/admin/css/libs/animate.min.css" rel="stylesheet">
     <link href="/source/admin/css/libs/bootstrap-switch.css" rel="stylesheet">
-    <link rel="stylesheet" href="/source/js/styler/jquery.formstyler.css" type="text/css" />
     <link rel="stylesheet" href="/source/css/smoothness/jquery-ui-1.10.4.custom.css" type="text/css">
     <link href="/source/admin/css/styler/style.css" rel="stylesheet" type="text/css">
     {% block css %}{% endblock %}
@@ -144,7 +142,14 @@
     <script src="/source/admin/js/styler/script.js"></script>
 
     <script src="/source/js/head.min.js"></script>
-    <script src="/source/js/styler/jquery.formstyler.js"></script>
+    <script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="/source/js/functions.js"></script>
+    <script src="{{app.path('index','index_admin.js')}}"></script>
+    <script>
+        head.js(
+                {% block js %}{% endblock %}
+        );
+    </script>
     <script>
         $(document).ready(function($) {
             if(jQuery().styler) {
@@ -152,16 +157,5 @@
             }
         });
     </script>
-    <script>
-        head.js(
-                "http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js",
-                "/source/js/jquery.jgrowl.min.js",
-                "/source/js/functions.js",
-                "/source/js/message.js",
-                "{{app.path('index','index_admin.js')}}"
-                {% block js %}{% endblock %}
-        );
-    </script>
-
 </body>
 </html>

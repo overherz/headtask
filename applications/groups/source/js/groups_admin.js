@@ -14,7 +14,7 @@ $(document).ready(function() {
             show_popup(data,"Добавление группы");
             add_popup_button("Сохранить",'save');
             check_checkboxes();
-            $("[name='color']").miniColors();
+            $("[name='color']").minicolors();
         });
     });
 
@@ -25,7 +25,7 @@ $(document).ready(function() {
             show_popup(data,"Редактирование группы");
             add_popup_button("Сохранить",'save');
             check_checkboxes();
-            $("[name='color']").miniColors();
+            $("[name='color']").minicolors();
         });
     });
 

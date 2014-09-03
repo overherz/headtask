@@ -11,12 +11,8 @@
 
 {% block js %}
     {{parent()}}
-    <script src="/source/js/jquery.ui.datepicker-ru.min.js"></script>
     <script type ="text/javascript" src="/source/js/ckeditor/ckeditor.js"></script>
     <script type ="text/javascript" src="/source/js/fancybox/jquery.fancybox.pack.js"></script>
-    {% if access.edit_tasks or access.edit_task or not task %}
-        <script type ="text/javascript" src="/source/js/search.js"></script>
-    {% endif %}
     <script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
 
