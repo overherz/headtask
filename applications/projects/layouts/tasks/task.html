@@ -5,7 +5,7 @@
         {% endif %}
     </td>
     <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
-        {% if task.cats %}|
+        {% if task.cats %}
             {% for k in task.cats %}
                 <div style="margin-bottom:2px;display: inline-block;"><span class="label label-cat" style="background: {{ cats[k].color }};color: {{ cats[k].color_text }}">{{ cats[k].name }}</span></div>
             {% endfor %}

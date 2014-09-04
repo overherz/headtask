@@ -771,6 +771,8 @@ td .progress {
 
 .label-cat {
     padding: 0 4px;
+    border: 1px solid #ccc;
+    font-size: 10px;
 }
 
 
