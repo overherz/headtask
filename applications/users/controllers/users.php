@@ -321,5 +321,17 @@ class users extends \Controller {
 
         echo json_encode($res);
     }
+
+    function save_user_data($id_user,$id_key,$data)
+    {
+        $query = $this->db->prepare("insert into users_data(id_user,id_key,data) values(?,?,?) on duplicate key update data=?");
+        if($query->execute(array($id_user,$id_key,$data,$data))) return true;
+    }
+
+    function get_user_data($id_user,$id_key)
+    {
+        $query = $this->db->prepare("select * from users_data where id_user=? and id_key=?");
+        if ($query->execute(array($id_user,$id_key))) return $query->fetch();
+    }
 }
 

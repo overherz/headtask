@@ -216,27 +216,25 @@ class tasks extends \Controller {
             )
         );
 
+        $u_data_cr = $this->get_controller("users");
+
         if ($_POST['act'] == "get_data")
         {
-            setcookie("project_filter".$this->id, serialize($_POST), time()+60*60*24*30,"/");
+            $u_data_cr->save_user_data($_SESSION['user']['id_user'],"project_filter".$this->id,serialize($_POST));
         }
-
-        if ($_COOKIE["project_filter".$this->id] != "")
+        else if ($user_data = $u_data_cr->get_user_data($_SESSION['user']['id_user'],"project_filter".$this->id))
         {
-            $filter = unserialize($_COOKIE["project_filter".$this->id]);
+            $filter = unserialize($user_data['data']);
             foreach ($form as $k => &$f)
             {
                 if ($filter[$k]) $f['selected'] = $filter[$k];
                 else $f['selected'] = false;
             }
 
-            if (!$_POST['act'] == "get_data")
-            {
-                $start = $filter['start'];
-                $end = $filter['end'];
-                $start_edit = $filter['start_edit'];
-                $end_edit = $filter['end_edit'];
-            }
+            $start = $filter['start'];
+            $end = $filter['end'];
+            $start_edit = $filter['start_edit'];
+            $end_edit = $filter['end_edit'];
         }
 
         $u_cr = $this->get_controller("projects","user_tasks");
