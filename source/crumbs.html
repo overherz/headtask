@@ -1,9 +1,9 @@
 <ul class="breadcrumbs-one">
     {% if globals.crumbs.name %}
-    <li>{{globals.crumbs.name|raw}}</li>
+    <li>{{globals.crumbs.name}}</li>
     {% else %}
     {% for k,cr in globals.crumbs %}
-    {% if not loop.last and cr.url %}<li><a href="{{cr.url}}">{{cr.name|raw}}</a></li>{% else %}<li><a class="current">{{cr.name|raw}}</a></li>{% endif %}
+    {% if not loop.last and cr.url %}<li><a href="{{cr.url}}">{{cr.name|raw}}</a></li>{% else %}<li><a class="current">{{cr.name}}</a></li>{% endif %}
     {% endfor %}
     {% endif %}
 </ul>
