@@ -1,12 +1,12 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-{% if documents %}Редактирование новости{% else %}Добавление новости{% endif %}
+{% if documents %}Редактирование документа{% else %}Добавление документа{% endif %}. Проект {{ project.name }}
 {% endblock %}
 
 {% block js %}
 {{parent()}}
-<script type ="text/javascript" src="/source/js/ckeditor/ckeditor.js"></script>
+<script type ="text/javascript" src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
 
 <script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}

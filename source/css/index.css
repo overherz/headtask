@@ -69,8 +69,12 @@ body {
 }
 
 a {
-    color: #2E6980;
+    color: #035980;
     outline: none !important;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 .table tbody tr.danger td {
@@ -624,7 +628,7 @@ blockquote:before {
 }
 
 .own_task {
-    font-weight: bold;
+   font-weight: bold;
 }
 
 .table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
@@ -652,7 +656,7 @@ blockquote:before {
 }
 
 .priority2 {
-    background: #5cb85c !important;
+    background: #5cb85c !important;;
 }
 
 .priority3 {
@@ -1161,4 +1165,8 @@ td .progress {
 .minicolors-theme-bootstrap .minicolors-swatch {
     height: 24px !important;
     width: 24px !important;
+}
+
+.user_name {
+    font-weight: bold;
 }

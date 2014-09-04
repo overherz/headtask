@@ -5,8 +5,8 @@
     <link rel="stylesheet" type="text/css" href="{{app.path('users','reg.css')}}">
 {% endblock %}
 {% block js %}
-    <script type ="text/javascript" src="/source/js/masked_input.js"></script>
-    <script type ="text/javascript" src="{{app.path('users','reg.js')}}"></script>
+    <script type ="text/javascript" src="{{ app.path('/source/js/','masked_input.js',true) }}"></script>
+    <script type ="text/javascript" src="{{ app.path('users','reg.js')}}"></script>
 {% endblock %}
 {% block menu %}{% endblock %}
 {% block body %}

@@ -1,15 +1,15 @@
 {% extends "/source/index.html" %}
 {% block title %}{{user.fio}} {{user.nickname}}{% endblock %}
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="/source/css/jcrop/jquery.Jcrop.css">
+    <link rel="stylesheet" type="text/css" href="{{ app.path('/source/css/jcrop/','jquery.Jcrop.css',true) }}">
     <link rel="stylesheet" type="text/css" href="{{app.path('users','users.css')}}">
 {% endblock %}
 {% block js %}
-<script type ="text/javascript" src="/source/js/jquery.Jcrop.min.js"></script>
-<script type ="text/javascript" src="{{app.path('users','edit.js')}}"></script>
-<script type ="text/javascript" src="/source/js/jquery.form.js"></script>
-<script type ="text/javascript" src="/source/js/jquery.color.js"></script>
-<script type="text/javascript" src="{{ app.path('projects','user_tasks.js') }}"></script>
+<script type="text/javascript" src="{{ app.path('/source/js/','jquery.Jcrop.min.js',true) }}"></script>
+<script type="text/javascript" src="{{ app.path('users','edit.js')}}"></script>
+<script type="text/javascript" src="{{ app.path('/source/js/','jquery.form.js',true) }}"></script>
+<script type="text/javascript" src="{{ app.path('/source/js/','jquery.color.js',true) }}"></script>
+<script type="text/javascript" src="{{  app.path('projects','user_tasks.js') }}"></script>
 <script>
     $(document).ready(function($)
     {

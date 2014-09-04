@@ -110,34 +110,36 @@ class layout {
 
 class app_paths
 {
-    function path($app, $file)
+    function path($app,$file,$global=false)
     {
         if ($file)
         {
             $ext_ar = explode(".",$file);
             $ext = end($ext_ar);
-            $path = false;
             $version = false;
+            $path = "/applications/{$app}/";
             switch($ext)
             {
                 case "css":
-                    $path = "/applications/{$app}/source/css/";
+                    $path = $path."source/css/";
                     $version = true;
                     break;
                 case "js":
-                    $path = "/applications/{$app}/source/js/";
+                    $path = $path."source/js/";
                     $version = true;
                     break;
                 case "bmp":
                 case "gif":
                 case "jpg":
                 case "png":
-                    $path = "/applications/{$app}/source/images/";
+                    $path = $path."source/images/";
                     break;
                 case "html":
-                    $path = "/applications/{$app}/layouts/";
+                    $path = $path."layouts/";
                     break;
             }
+
+            if ($global) $path = $app;
 
             $path = $path.$file;
             if ($version) $path .= "?v=".get_setting("source_version",1);

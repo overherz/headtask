@@ -14,7 +14,13 @@
         {% if not date or date != l.created|date('d.m.Y') %}
         {% set date = l.created|date('d.m.Y') %}
         <tr>
-            <td colspan="5" style="font-size: 14px;font-weight: bold;text-align: center;">{{ date }}</td>
+            <td colspan="5" style="font-size: 14px;font-weight: bold;text-align: center;">
+                {% if ""|date('d.m.Y') == date %}
+                    сегодня
+                {% else %}
+                {{ date }}
+                {% endif %}
+            </td>
         </tr>
         {% endif %}
         <tr>

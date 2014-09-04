@@ -1,12 +1,11 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-Проект "{{project.name}}"
-{% endblock %}
+Задачи {{project.name}}{% endblock %}
 
 {% block css %}
 {{ parent() }}
-<link rel="stylesheet" type="text/css" href="/source/js/fancybox/jquery.fancybox.css">
+    <link rel="stylesheet" type="text/css" href="{{ app.path('/source/js/fancybox/','jquery.fancybox.css',true) }}">
 {% endblock %}
 
 {% block js %}

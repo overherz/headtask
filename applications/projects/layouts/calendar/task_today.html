@@ -21,7 +21,7 @@
             </td>
             <td style="width: 1px;white-space: nowrap;"><a href="/projects/tasks/{{task.id_project}}/" class="get_info_project" data-id="{{ task.id_project}}">{{ task.project_name }}</a></td>
             <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.task_creater == globals.user.id_user or task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
-                {% if task.cats %}|
+                {% if task.cats %}
                     {% for k in task.cats %}
                         <div style="margin-bottom:2px;display: inline-block;"><span class="label label-cat" style="background: {{ cats[k].color }};color: {{ cats[k].color_text }}">{{ cats[k].name }}</span></div>
                     {% endfor %}
@@ -42,7 +42,11 @@
             </td>
             {% if dashboard %}
             <td style="width: 1px;white-space: nowrap;">
-                <a href="/users/~{{task.assigned}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.assigned_name}}</a>
+                {% if globals.user.id_user == task.assigned %}
+                    <span class="user_name">мне</span>
+                {% else %}
+                <a href="/users/~{{task.assigned}}/" style="color:{{ task.color }} !important;" class="user_name" title="{{ task.group_name }}">{{task.assigned_name}}</a>
+                {% endif %}
             </td>
             {% endif %}
             <td style="width: 1px;white-space: nowrap;" {% if task.diff < 0 and task.status != "closed" %}class="task_diff_alert"{% endif %}>

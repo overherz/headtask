@@ -4,7 +4,7 @@
 
 {% block js %}
     <script type ="text/javascript" src="{{ app.path('users','invite.js') }}"></script>
-    <script type="text/javascript" src="/source/js/skypeCheck.js"></script>
+    <script type="text/javascript" src="{{ app.path('/source/js/','skypeCheck.js',true) }}"></script>
 {% endblock %}
 
 {% block context %}

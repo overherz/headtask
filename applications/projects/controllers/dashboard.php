@@ -117,6 +117,6 @@ class dashboard extends \Controller {
       //  $data['count'] = $info['count'];
        // $data['mask'] = $info['mask'];
       //  $data['count_show'] = count($tasks);
-        if (!$_POST['act'] == "get_data") $this->layout_show('calendar/calendar_current_day.html',$data);
+        if (!$_POST['act'] == "get_data") $this->layout_show('calendar/dashboard.html',$data);
     }
 }

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Task me! {% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}{% if block('title') %} - {% endif %} {{ settings.site_name.value }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/source/css/plugins.css" type="text/css" />
-    <link href="http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/source/admin/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/source/css/content.css" type="text/css" />
-    <link rel="stylesheet" href="/source/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ app.path('/source/css/','plugins.css',true) }}" type="text/css" />
+    <link rel="stylesheet" href="http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ app.path('/source/admin/fonts/font-awesome/css/','font-awesome.min.css',true) }}">
+    <link rel="stylesheet" href="{{ app.path('/source/css/','content.css',true) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ app.path('/source/css/ui-lightness/','jquery-ui-1.10.4.custom.min.css',true) }}" />
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic'  type='text/css'>
     {% block css %}
     {% endblock %}
 </head>
@@ -42,13 +42,13 @@
 
 <script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
 {% if globals.user.id_user %}
-    <script src="/source/js/socket.io/socket.io.js"></script>
-    <script src="{{app.path('users','client.js')}}"></script>
-    <script type="text/javascript" src="{{app.path('projects','projects.js')}}"></script>
-    <script src="/source/js/sound_manager/soundmanager2-nodebug-jsmin.js"></script>
+    <script src="{{ app.path('/source/js/socket.io/','socket.io.js',true)}}"></script>
+    <script src="{{ app.path('users','client.js')}}"></script>
+    <script src="{{ app.path('projects','projects.js')}}"></script>
+    <script src="{{ app.path('/source/js/sound_manager/','soundmanager2-nodebug-jsmin.js',true) }}"></script>
 {% endif %}
 <script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
-<script src="/source/js/functions.js"></script>
+<script src="{{ app.path('/source/js/','functions.js',true) }}"></script>
 <script src="http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>-->
 <script type="text/javascript">

@@ -1,82 +1,74 @@
-.review_table .left_column div {
-    margin-bottom: 10px;
-}
-
-.right_column td {
-    border-left: 0;
-    border-right: 0;
-}
-
-.off_show {
-    width:calc(100% - 250px + 15px * 2);
-}
-
-#show_project_panel {
-    display: none;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 25px 0 25px 15px;
-    border-color: transparent #ff0000 transparent #007bff;
-    position: absolute;
-    left: 0;
-}
-
-#show_project_panel_left {
-    display: none;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 25px 15px 25px 0;
-    border-color: transparent #007bff transparent transparent;
-    float: right;
-}
-
-#sidebar {
-    padding-right: 0;
-    z-index: 2;
-    width: 250px;
-    float: left;
-    box-sizing: border-box;
-}
-
+@charset "UTF-8";
 /*
- * Off Canvas
- * --------------------------------------------------
+ * jQuery File Upload UI Plugin CSS 8.1
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
  */
-@media screen and (max-width: 991px) {
-  #sidebar {
-      display: none;
-  }
 
-  .row-offcanvas-left {
-      width:calc(100% + 15px * 2);
-      padding-left: 15px;
-  }
-
-  #show_project_panel {
-      display: inline-block;
-  }
-
-  .row-offcanvas-left.active {
-      display: none;
-  }
-
-  #sidebar.active {
-      display: block;
-      width: 100%;
-  }
-
-  #sidebar.active #show_project_panel_left {
-      display: block;
-      margin-right: -1px;
-  }
-
-
-  #projects_second_panel .jumbotron {
-      padding-left: 25px !important;
-  }
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
 }
+.fileinput-button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transform: translate(-300px, 0) scale(4);
+    font-size: 23px;
+    direction: ltr;
+    cursor: pointer;
+}
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+    margin-bottom: 5px;
+}
+.progress-animated .bar {
+    background: url(../img/progressbar.gif) !important;
+    filter: none;
+}
+.fileupload-loading {
+    float: right;
+    width: 32px;
+    height: 32px;
+    background: url(../img/loading.gif) center no-repeat;
+    background-size: contain;
+    display: none;
+}
+.fileupload-processing .fileupload-loading {
+    display: block;
+}
+.files audio,
+.files video {
+    max-width: 300px;
+}
+
+@media (max-width: 767px) {
+    .fileupload-buttonbar .toggle,
+    .files .toggle,
+    .files .btn span {
+        display: none;
+    }
+    .files .name {
+        width: 80px;
+        word-wrap: break-word;
+    }
+    .files audio,
+    .files video {
+        max-width: 80px;
+    }
+}
+
+
+
+
 
 .all_comments {
     overflow: hidden;

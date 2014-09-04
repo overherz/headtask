@@ -1,18 +1,18 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-{% if task %}Задача - {{ task.name}}{% endif %}
+{% if task %}Задача - {{ task.name}}. Проект {{ project.name }}{% endif %}
 {% endblock %}
 
 {% block css %}
 {{ parent() }}
-<link rel="stylesheet" type="text/css" href="/source/js/fancybox/jquery.fancybox.css">
+<link rel="stylesheet" type="text/css" href="{{ app.path('/source/js/fancybox/','jquery.fancybox.css',true) }}">
 {% endblock %}
 
 {% block js %}
 {{parent()}}
-    <script type ="text/javascript" src="/source/js/ckeditor/ckeditor.js"></script>
-    <script type ="text/javascript" src="/source/js/fancybox/jquery.fancybox.pack.js"></script>
+    <script type ="text/javascript" src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
+    <script type ="text/javascript" src="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></script>
     <script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
 
@@ -41,13 +41,32 @@
                 {% endfor %}
             </div>
         {% endif %}
+        {% if files %}
+            <div>
+                Файлы:
+                {% for file in files %}
+                    {% if file.type == "image" %}
+                        <a href="/uploads/projects/projects_big/{{file.file|real_path}}" download="{{file.name}}">{{file.name}}</a>
+                    {% else %}
+                        <a href="/uploads/projects/{{file.file|real_path}}" download="{{file.name}}">{{file.name}}</a>
+                    {% endif%}
+                {% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
 
         <table class="table table-condensed table-border" style="width: 700px;margin-top: 20px;" id="tasks_table">
             <tr>
                 <th>Приоритет</th>
                 <td style="width: 1px;">{{ ("task_priority_label_"~task.priority)|lang|raw }}</td>
                 <th>Начало</th>
-                <td>{{task.start|date('d.m.Y')}}</td>
+                <td>
+                    {% if ""|date('d.m.Y') == task.start|date('d.m.Y') %}
+                        сегодня
+                    {% else %}
+                        {{task.start|date('d.m.Y')}}
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Статус
@@ -67,17 +86,38 @@
                     </div>
                 </td>
                 <th>Окончание</th>
-                <td>{% if task.end %}{{task.end|date('d.m.Y')}}{% else %}&infin;{% endif %}</td>
+                <td>
+                    {% if task.end %}
+                        {% if ""|date('d.m.Y') == task.end|date('d.m.Y') %}
+                            сегодня
+                        {% else %}
+                            {{task.end|date('d.m.Y')}}
+                        {% endif %}
+                    {% else %}&infin;
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Делегировано</th>
-                <td style="width: 200px;"><a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a></td>
+                <td style="width: 200px;">
+                    {% if globals.user.id_user == task.assigned %}
+                        <span class="user_name">мне</span>
+                    {% else %}
+                        <a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a>
+                    {% endif %}
+                </td>
                 <th>Расчетное время</th>
-                <td>{% if task.estimated_time %}{{task.estimated_time}} ч.{% else %}не указано{% endif %}</td>
+                <td style="white-space: nowrap;">{% if task.estimated_time %}{{task.estimated_time}} ч.{% else %}не указано{% endif %}</td>
             </tr>
             <tr>
                 <th>Добавил</th>
-                <td><a href="/users/~{{task.id_user}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.user_name}}</a></td>
+                <td>
+                    {% if globals.user.id_user == task.id_user %}
+                        <span class="user_name">я</span>
+                    {% else %}
+                        <a href="/users/~{{task.id_user}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.user_name}}</a>
+                    {% endif %}
+                </td>
                 <th>Затраченное время</th>
                 <td>{{task.spent_time|default(0)}} ч.</td>
             </tr>
@@ -95,7 +135,7 @@
                 <th>Дедлайн</th>
                 <td style="width: 1px;" {% if task.diff < 0 and task.status != "closed" %}class="task_diff_alert"{% endif %}>
                     {% if task.status != "closed" %}
-                        {% if task.diff != "0" and task.diff != "inf" %}{{ task.diff }} {{ "days"|lang(task.diff) }}{% elseif task.diff == "inf" %}&infin;{% else %}сегодня{% endif %}
+                        {% if task.diff != "0" and task.diff != "inf" %}{{ task.diff }} {{ ""|lang(task.diff) }}{% elseif task.diff == "inf" %}&infin;{% else %}сегодня{% endif %}
                     {% endif %}
                 </td>
             </tr>
