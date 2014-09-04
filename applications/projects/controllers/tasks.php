@@ -182,20 +182,17 @@ class tasks extends \Controller {
         crumbs($project['name'],"/projects/~{$project['id']}");
         crumbs("Задачи");
 
-        if (isset($_POST['search']) && $_POST['search'] != '')
-        {
-            $search = explode(" ",$_POST['search']);
-            foreach ($search as $s)
-            {
-                $s = $this->db->quote("%{$s}%");
-                $search_ar[] = "t.name LIKE ".$s." OR t.description LIKE ".$s." OR a.first_name LIKE ".$s." OR a.last_name LIKE ".$s." OR a.nickname LIKE ".$s;
-            }
-            $where[] = "(".implode("OR ",$search_ar).")";
-        }
-
         $categories = $this->get_controller("projects")->get_categories($this->id,true);
 
         $form = array(
+            'my' => array('label' => 'Мои',
+                'type' => 'checkbox'
+            ),
+            'assigned' => array('label' => 'Делегированные',
+                'type' => 'radio',
+                'options' => array('all' => 'Все','me' => 'Мне','not_all' => 'Никому','not_me' => 'Не мне'),
+                'selected' => 'all'
+            ),
             'status' => array('label' => 'Статус',
                 'type' => 'multy_select',
                 'options' => array('new' => 'новая','in_progress' => 'в процессе','closed' => 'закрытая','rejected' => 'отклоненная'),
@@ -210,113 +207,55 @@ class tasks extends \Controller {
                 'options' => $categories,
                 'selected' => array(intval($_GET['cat']))
             ),
-            'percent' => array('label' => 'Только просроченные',
+            'percent' => array('label' => 'Просроченные',
                 'type' => 'checkbox'
             ),
         );
 
-        if ($_POST['status'] == "" && !$_POST) $_POST['status'] = $form['status']['selected'];
-        else if ($_POST['status'] == "") $_POST['status'] = array_keys($form['status']['options']);
-        if (isset($_POST['status']) && $_POST['status'] != '')
+        if ($_POST['act'] == "get_data")
         {
-            foreach ($_POST['status'] as &$s) $s = $this->db->quote($s);
-            $where[] = "t.status IN (".implode(",",$_POST['status']).")";
+            setcookie("project_filter".$this->id, serialize($_POST), time()+60*60*24*30,"/");
         }
 
-        if (isset($_POST['percent']) && $_POST['percent'] != '')
+        if ($_COOKIE["project_filter".$this->id] != "")
         {
-            $d = "'".date("Y-m-d")."'";
-            $where[] = "(t.end IS NOT NULL and t.end < {$d} and t.status IN('new','in_progress'))";
-        }
-
-        if (isset($_POST['priority']) && $_POST['priority'] != '')
-        {
-            foreach ($_POST['priority'] as &$s) $s = $this->db->quote($s);
-            $where[] = "t.priority IN (".implode(",",$_POST['priority']).")";
-        }
-
-        if (isset($_POST['category']) && $_POST['category'] != '')
-        {
-            foreach ($_POST['category'] as &$s) $s = (int) $s;
-            $where[] = "c.id_category IN (".implode(",",$_POST['category']).")";
-        }
-        else if ($_GET['cat'])
-        {
-            $where[] = "c.id_category = ".intval($_GET['cat']);
-        }
-
-        $where[] = "t.id_project={$this->db->quote($this->id)}";
-
-        if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
-
-        $total = $this->db->num_rows("projects_tasks as t LEFT JOIN users as a ON t.assigned = a.id_user LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id {$where}");
-
-        require_once(ROOT.'libraries/paginator/paginator.php');
-        $paginator = new \Paginator($total, $_POST['page'], $this->limit);
-        if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
-
-        $query = $this->db->prepare("select distinct t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
-                a.first_name as assigned_first_name,a.last_name as assigned_last_name,a.nickname as assigned_nickname,
-                u.first_name as user_first_name,u.last_name as user_last_name,u.nickname as user_nickname,g.color,g.name as group_name,
-                gt.color as assigned_color,gt.name as assigned_group_name, GROUP_CONCAT(c.id_category) as cats
-                from projects_tasks as t
-                LEFT JOIN users as a ON t.assigned = a.id_user
-                LEFT JOIN users as u ON t.id_user = u.id_user
-                LEFT JOIN groups as g ON u.id_group = g.id
-                LEFT JOIN groups as gt ON a.id_group = gt.id
-                LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id
-                {$where}
-                group by t.id
-                order by t.updated DESC,t.name ASC
-                LIMIT {$this->limit}
-                OFFSET {$paginator->get_range('from')}
-            ");
-        $query->execute();
-        $cats_ids = array();
-        while ($row = $query->fetch())
-        {
-            $row['assigned_name'] = build_user_name($row['assigned_first_name'],$row['assigned_last_name'],true);
-            $row['user_name'] = build_user_name($row['user_first_name'],$row['user_last_name'],true);
-            $row['diff'] = $this->get_date_diff($row['end']);
-            $row['cats'] = explode(",",$row['cats']);
-            if ($row['cats'][0] == "") $row['cats'] = false;
-            if (is_array($row['cats'])) $cats_ids = array_merge($cats_ids,$row['cats']);
-            $tasks[] = $row;
-        }
-
-        if (count($cats_ids) > 0)
-        {
-            $cats_ids = array_unique($cats_ids);
-            $uniq_ids = implode(",",$cats_ids);
-
-            $query = $this->db->query("select * from projects_tasks_categories where id IN({$uniq_ids})");
-            while ($row = $query->fetch())
+            $filter = unserialize($_COOKIE["project_filter".$this->id]);
+            foreach ($form as $k => &$f)
             {
-                $cats[$row['id']] = $row;
+                if ($filter[$k]) $f['selected'] = $filter[$k];
+                else $f['selected'] = false;
+            }
+            if (!$_POST['act'] == "get_data")
+            {
+                $start = $filter['start'];
+                $end = $filter['end'];
+                $start_edit = $filter['start_edit'];
+                $end_edit = $filter['end_edit'];
             }
         }
 
+        $u_cr = $this->get_controller("projects","user_tasks");
+        $u_cr->limit = 50;
+        $u_cr->form = $form;
+        $u_cr->owner = true;
+        $u_cr->start = $start;
+        $u_cr->end = $end;
+        $u_cr->start_edit = $start_edit;
+        $u_cr->end_edit = $end_edit;
+        $u_cr->dashboard = true;
+        $u_cr->id_project = $this->id;
+        $u_cr->access = $access['access'];
+
         $this->set_global('id_project',$project['id']);
         $data = array(
-            'tasks' => $tasks,
-            //'projects' => $this->get_controller("projects")->get_projects($project['id']),
             'project' => $project,
             'tasks_button' => true,
-            'paginator' => $paginator,
-            'form' => $form,
             'access' => $access['access'],
             'all' => true,
-            'cats' => $cats
+            'user_tasks' => $u_cr->default_method()
         );
 
-        if ($_POST && $_GET['ajax'])
-        {
-            if ($text = $this->layout_get('tasks/tasks_table.html',$data)) $result['success'] = $text;
-            else $result['error'] = "Ничего не найдено";
-
-            echo json_encode($result);
-        }
-        else $this->layout_show('tasks/tasks.html',$data);
+        if (!$_POST['act'] == "get_data") $this->layout_show('tasks/tasks.html',$data);
     }
 
     function get_task($id)

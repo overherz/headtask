@@ -1,6 +1,6 @@
     {% import "/source/search_macro.html" as inputs %}
     {% if dashboard %}
-        <form path="/projects/dashboard/" id="search_form" method="post" class="form-horizontal user_tasks" style="margin-bottom:0;">
+        <form path="{% if id_project %}/projects/tasks/{{ id_project }}/{% else %}/projects/dashboard/{% endif %}" id="search_form" method="post" class="form-horizontal user_tasks" style="margin-bottom:0;">
             <input type="hidden" name="page" value="">
             <input type="hidden" name="act" value="get_data">
             <input type="hidden" name="limit" value="{{ limit }}">
@@ -22,6 +22,9 @@
                     <th>Дата изменения</th>
                     <th>Статус</th>
                     <th>Приоритет</th>
+                    {% if id_project and form.category.options%}
+                    <th>Метка</th>
+                    {% endif %}
                 </tr>
                 </thead>
                 <tbody>
@@ -35,6 +38,12 @@
                         До: <input type="text" name="end_edit" value="{% if end_edit %}{{end_edit}}{% endif %}" readonly style="width: 85px;"></td>
                     <td>{{ inputs.input(form.status,'status') }}</td>
                     <td>{{ inputs.input(form.priority,'priority') }}</td>
+
+                    {% if id_project and form.category.options%}
+                    <td>
+                        {{ inputs.input(form.category,'category') }}
+                    </td>
+                    {% endif %}
                 </tr>
                 </tbody>
             </table>

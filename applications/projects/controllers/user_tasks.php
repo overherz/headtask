@@ -24,6 +24,8 @@ class user_tasks extends \Controller {
     public $end_edit = false;
     public $owner = false;
     public $dashboard = false;
+    public $id_project = false;
+    public $access = array();
 
     function default_method($id_user=false)
     {
@@ -106,6 +108,21 @@ class user_tasks extends \Controller {
         }
         else if ($id_user) $where[] = "t.assigned=".$this->db->quote($id_user);
 
+        if ($this->id_project)
+        {
+            $where[] = "t.id_project=".$this->db->quote($this->id_project);
+        }
+
+        if (isset($_POST['category']) && $_POST['category'] != '')
+        {
+            foreach ($_POST['category'] as $k => &$s)
+            {
+                $s = (int) $s;
+                if ($s < 1) unset($_POST['category'][$s]);
+            }
+            if (count($_POST['category']) > 0) $where[] = "c.id_category IN (".implode(",",$_POST['category']).")";
+        }
+
         if (!$this->owner) $where[] = "p.owner IS NULL";
         //$where[] = "(t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='manager') or ((t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='user') and t.assigned='{$_SESSION['user']['id_user']}')))";
 
@@ -115,7 +132,7 @@ class user_tasks extends \Controller {
 
         if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
 
-        $total = $this->db->num_rows("projects_tasks as t LEFT JOIN projects as p ON t.id_project = p.id  {$where}");
+        $total = $this->db->num_rows("projects_tasks as t LEFT JOIN projects as p ON t.id_project = p.id LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id  {$where}");
 
         require_once(ROOT.'libraries/paginator/paginator.php');
         $paginator = new \Paginator($total, $_POST['page'], $this->limit);
@@ -179,7 +196,9 @@ class user_tasks extends \Controller {
             'start_edit' => $this->start_edit,
             'end_edit' => $this->end_edit,
             'cats' => $cats,
-            'comment_count' => $comment_count
+            'comment_count' => $comment_count,
+            'id_project' => $this->id_project,
+            'access' => $this->access
         );
 
         if ($_POST['act'] == "get_data")

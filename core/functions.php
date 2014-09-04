@@ -59,7 +59,7 @@ function get_setting($key,$default=false)
 function pr($a)
 {
     if (is_array($a)) {
-        echo "<pre style='background:#fff;padding-top: 50px;'>".print_r($a,true)."</pre>";
+        echo "<pre style='background:#fff;padding-top: 50px;padding-left:250px;'>".print_r($a,true)."</pre>";
     }
     else if (is_object($a))
     {
