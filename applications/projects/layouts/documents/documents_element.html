@@ -2,9 +2,9 @@
     <td><a href="/projects/documents/show/{{n.id}}/">{{n.name}}</a></td>
     <td>
         {% if ""|date('d.m.Y') == n.created|date('d.m.Y') %}
-            сегодня {{ n.created|date('H:i:s') }}
+            сегодня {{ n.created|date('H:i') }}
         {% else %}
-            {{n.created|date('d.m.Y H:i:s')}}
+            {{n.created|date('d.m.Y H:i')}}
         {% endif %}
     </td>
     <td>

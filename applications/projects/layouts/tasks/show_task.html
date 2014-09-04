@@ -163,7 +163,7 @@
                     <td>
                         <a href="/users/~{{l.id_user}}/" style="color:{{ l.color }} !important;font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
                     </td>
-                    <td>{{l.created|date('d.m.Y H:i:s')}}</td>
+                    <td>{{l.created|date('d.m.Y H:i')}}</td>
                     <td>{{l.text|raw}}</td>
                 </tr>
             {% endfor %}

@@ -18,9 +18,9 @@
     </td>
     <td>
         {% if ""|date('d.m.Y') == file.created|date('d.m.Y') %}
-            сегодня {{ file.created|date('H:i:s') }}
+            сегодня {{ file.created|date('H:i') }}
         {% else %}
-            {{file.created|date('d.m.Y H:i:s')}}
+            {{file.created|date('d.m.Y H:i')}}
         {% endif %}
     </td>
     <td>{{ file.size }}</td>

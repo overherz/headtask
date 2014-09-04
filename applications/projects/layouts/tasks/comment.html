@@ -10,7 +10,7 @@
             <td class="comm_td">
                 <div class="comment_head">
                     <a href="/users/~{{com.id_user}}/" style="color:{{ com.group_color }}!important;font-weight: bold;" title="{{ com.group_name }}">{{com.fio}}</a>
-                    <span class="commdate">{{com.created|date("d.m.Y, H:i:s")}}</span>
+                    <span class="commdate">{{com.created|date("d.m.Y, H:i")}}</span>
                     <a href="#comment_{{com.id}}">#</a>
                     {% if com.parent_id > 0 %}<a href="#comment_{{com.parent_id}}" parent="{{com.parent_id}}">↑</a>{% endif %}
                     {% if task.subscribe.last_visit and com.created > task.subscribe.last_visit %}<span style="color:blue;">новый!</span>{% endif  %}

@@ -16,10 +16,20 @@
         <a href="/uploads/projects/{{file.file|real_path}}">{{file.name}}</a>
         {% endif%}
     </td>
-    <td>{{file.created|date('d.m.Y H:i:s')}}</td>
+    <td>
+        {% if ""|date('d.m.Y') == file.created|date('d.m.Y') %}
+            сегодня {{ file.created|date('H:i') }}
+        {% else %}
+            {{file.created|date('d.m.Y H:i')}}
+        {% endif %}
+    </td>
     <td>{{ file.size }}</td>
     <td>
-        <a href="/users/~{{file.owner}}/" style="color:{{ file.color }};font-weight: bold;" title="{{ file.group_name }}">{{file.fio}}</a>
+        {% if globals.user.id_user == file.owner %}
+            <span class="user_name">я</span>
+        {% else %}
+            <a href="/users/~{{file.owner}}/" style="color:{{ file.color }};font-weight: bold;" title="{{ file.group_name }}">{{file.fio}}</a>
+        {% endif %}
     </td>
     <td style="width: 1px;">
         <div class="btn-group">

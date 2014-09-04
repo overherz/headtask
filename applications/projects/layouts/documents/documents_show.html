@@ -11,7 +11,7 @@
 
 {% block project_data %}
 <ul class="breadcrumbs-one second">
-    <li><a class="current">{{documents.created|date('d.m.Y H:i:s')}} |
+    <li><a class="current">{{documents.created|date('d.m.Y H:i')}} |
             {{documents.fio}}</a></li>
     {% if access.documents %}
         <div class="btn-group" style="float: right;">

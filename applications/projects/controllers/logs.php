@@ -11,7 +11,7 @@ class logs extends \Controller {
 
         if (!$_POST)
         {
-            $start = strtotime(date("d-m-Y",strtotime("-3 days", time())));
+            $start = strtotime(date("d.m.Y",strtotime("-3 days", time())));
             $end = time();
         }
         else
@@ -28,8 +28,8 @@ class logs extends \Controller {
             'types' => array('project','task','file','news','comment'),//$this->db->get_enum("projects_logs","type"),
             'logs' => $logs['logs'],
             'paginator' => $logs['paginator'],
-            'start' => date("d-m-Y",$start),
-            'end' => date("d-m-Y",$end),
+            'start' => date("d.m.Y",$start),
+            'end' => date("d.m.Y",$end),
             'all' => $all
         );
 

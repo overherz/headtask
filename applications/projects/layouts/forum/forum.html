@@ -33,7 +33,7 @@
             {% if f.last %}
                 <div><a href='/projects/forum/show_topic/{{f.last.id}}/'>{{f.last.name}}</a></div>
                 <div><a href='/users/~{{f.last.author.id_user}}/' style="color:{{ f.last.color }};font-weight: bold;" title="{{ f.last.group_name }}">{{f.last.author.fio}}</a></div>
-                <div>{{f.last.created|date('d.m.Y H:i:s')}}</div>
+                <div>{{f.last.created|date('d.m.Y H:i')}}</div>
             {% else %}
                 сообщений нет
             {% endif %}

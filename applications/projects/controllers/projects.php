@@ -69,9 +69,9 @@ class projects extends \Controller {
                 }
                 else
                 {
-                    $start = date("d-m-Y",strtotime("-3 days", time()));
-                    $end = date("d-m-Y",time());
-                    $logs = $this->get_controller("projects","logs")->get_logs(false,$this->id,false);
+                    $start = strtotime(date("d.m.Y",strtotime("-3 days", time())));
+                    $end = time();
+                    $logs = $this->get_controller("projects","logs")->get_logs(false,$this->id,false,$start,$end);
 
                     $this->set_global("id_project",$this->id);
                     $data = array(
@@ -84,8 +84,8 @@ class projects extends \Controller {
                         'logs' => $logs['logs'],
                         'paginator' => $logs['paginator'],
                         'types' => array('project','task','file','news','comment'),//$this->db->get_enum("projects_logs","type"),
-                        'start' => $start,
-                        'end' => $end
+                        'start' => date("d.m.Y",$start),
+                        'end' => date("d.m.Y",$end),
                     );
                     $this->layout_show("review.html",$data);
                 }
