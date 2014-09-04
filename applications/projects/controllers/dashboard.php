@@ -26,6 +26,10 @@ class dashboard extends \Controller {
             'percent' => array('label' => 'Просроченные',
                 'type' => 'checkbox'
             ),
+            'search' => array('label' => 'Поиск',
+                'type' => 'text',
+                'selected' => $_POST['search']
+            )
         );
 
         if ($_POST['act'] == "get_data")

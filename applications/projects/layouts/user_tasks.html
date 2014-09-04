@@ -6,7 +6,7 @@
             <input type="hidden" name="limit" value="{{ limit }}">
             <input type="hidden" name="id_user" value="{{ globals.user.id_user }}">
 
-            <input type="text" name="search" id="search_label" placeholder="Поиск" class="col-xs-6">
+            <input type="text" name="search" id="search_label" placeholder="Поиск" value="{{ form.search.selected }}" class="col-xs-6">
             <div class="col-xs-6">
                 <div style="position: relative;top:5px;">
                 {{ inputs.input(form.percent,'percent',true) }}

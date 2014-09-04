@@ -210,6 +210,10 @@ class tasks extends \Controller {
             'percent' => array('label' => 'Просроченные',
                 'type' => 'checkbox'
             ),
+            'search' => array('label' => 'Поиск',
+                'type' => 'text',
+                'selected' => $_POST['search']
+            )
         );
 
         if ($_POST['act'] == "get_data")
@@ -225,6 +229,7 @@ class tasks extends \Controller {
                 if ($filter[$k]) $f['selected'] = $filter[$k];
                 else $f['selected'] = false;
             }
+
             if (!$_POST['act'] == "get_data")
             {
                 $start = $filter['start'];
