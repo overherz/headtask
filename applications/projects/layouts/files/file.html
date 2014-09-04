@@ -16,9 +16,21 @@
         <a href="/uploads/projects/{{file.file|real_path}}" download="{{file.name}}">{{file.name}}</a>
         {% endif%}
     </td>
-    <td>{{file.created|date('d.m.Y H:i:s')}}</td>
+    <td>
+        {% if ""|date('d.m.Y') == file.created|date('d.m.Y') %}
+            сегодня {{ file.created|date('H:i:s') }}
+        {% else %}
+            {{file.created|date('d.m.Y H:i:s')}}
+        {% endif %}
+    </td>
     <td>{{ file.size }}</td>
-    <td><a href="/users/~{{file.owner}}/" style="color:{{ file.color }};font-weight: bold;" title="{{ file.group_name }}">{{file.fio}}</a></td>
+    <td>
+        {% if globals.user.id_user == file.owner %}
+        <span class="user_name">я</span>
+        {% else %}
+        <a href="/users/~{{file.owner}}/" style="color:{{ file.color }};font-weight: bold;" title="{{ file.group_name }}">{{file.fio}}</a>
+        {% endif %}
+    </td>
     {% if not show_task %}
     {% if access.delete_files and not to_task %}
     <td style="width: 1px;">

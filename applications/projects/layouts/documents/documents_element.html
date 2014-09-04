@@ -1,7 +1,19 @@
 <tr id="documents{{n.id}}">
     <td><a href="/projects/documents/show/{{n.id}}/">{{n.name}}</a></td>
-    <td>{{n.created|date('d.m.Y H:i:s')}}</td>
-    <td><a href="/users/~{{n.author}}/" style="color:{{ n.color }};font-weight: bold;" title="{{ n.group_name }}">{{n.fio}}</a></td>
+    <td>
+        {% if ""|date('d.m.Y') == n.created|date('d.m.Y') %}
+            сегодня {{ n.created|date('H:i:s') }}
+        {% else %}
+            {{n.created|date('d.m.Y H:i:s')}}
+        {% endif %}
+    </td>
+    <td>
+        {% if globals.user.id_user == n.author %}
+            <span class="user_name">я</span>
+        {% else %}
+            <a href="/users/~{{n.author}}/" style="color:{{ n.color }};font-weight: bold;" title="{{ n.group_name }}">{{n.fio}}</a>
+        {% endif %}
+    </td>
     {% if access.documents %}
     <td style="width: 75px;">
         <div class="btn-group">

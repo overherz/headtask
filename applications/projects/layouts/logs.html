@@ -29,8 +29,12 @@
             {% if all %}<td>{% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}</td>{% endif %}
             <td>{{l.created|date('H:i:s')}}</td>
             <td>
-                {% if l.id_user %}<a href="/users/~{{l.id_user}}/" style="color:{{ l.color }};font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
-                {% else %}{{ l.trash_name_user }}
+                {% if globals.user.id_user == l.id_user %}
+                <span class="user_name">я</span>
+                {% else %}
+                    {% if l.id_user %}<a href="/users/~{{l.id_user}}/" style="color:{{ l.color }};font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
+                    {% else %}{{ l.trash_name_user }}
+                    {% endif %}
                 {% endif %}
             </td>
         </tr>
