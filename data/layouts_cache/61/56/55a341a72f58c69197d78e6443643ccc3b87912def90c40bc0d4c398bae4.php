@@ -59,10 +59,7 @@ class __TwigTemplate_615655a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c39
         <tbody>
             <tr>
                 <td>
-                    <select name=\"type[]\" multiple size=\"");
-        // line 23
-        echo \layout::func_from_text(twig_escape_filter($this->env, twig_length_filter($this->env, (isset($context["types"]) ? $context["types"] : null)), "html", null, true));
-        echo \layout::func_from_text("\">
+                    <select name=\"type[]\" multiple size=\"4\">
                         ");
         // line 24
         $context['_parent'] = (array) $context;
@@ -122,6 +119,6 @@ class __TwigTemplate_615655a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c39
 
     public function getDebugInfo()
     {
-        return array (  109 => 43,  106 => 42,  92 => 31,  88 => 30,  83 => 27,  72 => 25,  68 => 24,  64 => 23,  49 => 10,  46 => 9,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  106 => 43,  103 => 42,  89 => 31,  85 => 30,  80 => 27,  69 => 25,  65 => 24,  49 => 10,  46 => 9,  39 => 6,  36 => 5,  30 => 3,);
     }
 }

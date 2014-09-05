@@ -69,4 +69,5 @@ $GLOBALS['lang'] = array(
     'type_news' => 'Новость',
     'type_wiki' => 'Wiki',
     'type_comment' => 'Комментарий',
+    'type_forum' => 'Форум',
 );

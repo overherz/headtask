@@ -20,7 +20,7 @@
         <tbody>
             <tr>
                 <td>
-                    <select name="type[]" multiple size="{{ types|length }}">
+                    <select name="type[]" multiple size="4">
                         {% for i in types %}
                             <option value="{{ i }}">{{ ("type_"~i)|lang }}</option>
                         {% endfor %}

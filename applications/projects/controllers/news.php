@@ -209,7 +209,7 @@ class news extends \Controller {
                     {
                         $res['success'] = $_POST['id'];
                         if ($news['name'] != $_POST['name']) $log_text = ". Название изменено на \"{$_POST['name']}\"";
-                        if ($log) $log->set_logs("news",$id_project,"Изменена <a href='/projects/news/show/{$news['id']}'>\"{$news['name']}\"</a>{$log_text}");
+                        if ($log) $log->set_logs("news",$id_project,"Изменена <a href='/projects/news/show/{$news['id']}'>{$news['name']}</a>{$log_text}");
                         $notif = "Изменена новость \"{$news['name']}\" в проекте \"{$project['name']}\"";
                         $edit = true;
                     }

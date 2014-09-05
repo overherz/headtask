@@ -7,7 +7,9 @@ $(document).ready(function(){
         'file' : 'Файл',
         'news' : 'Новость',
         'wiki' : 'Wiki',
-        'comment' : 'Комментарий' }
+        'comment' : 'Комментарий',
+        'forum' : 'Форум'
+    }
 //        playerVersion = swfobject.getFlashPlayerVersion(),
 //        majorVersion = playerVersion.major;
 

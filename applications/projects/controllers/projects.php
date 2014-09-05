@@ -83,7 +83,7 @@ class projects extends \Controller {
                         'categories' => $this->get_categories($this->id),
                         'logs' => $logs['logs'],
                         'paginator' => $logs['paginator'],
-                        'types' => array('project','task','file','news','comment'),//$this->db->get_enum("projects_logs","type"),
+                        'types' => array('project','task','file','news','comment','forum'),//$this->db->get_enum("projects_logs","type"),
                         'start' => date("d.m.Y",$start),
                         'end' => date("d.m.Y",$end),
                     );

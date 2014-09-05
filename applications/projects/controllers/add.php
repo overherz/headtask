@@ -48,7 +48,7 @@ class add extends \Controller {
                     if ($query->execute(array($_POST['name'],$_POST['description'],$_POST['url'],$_POST['archive'],$_POST['id'])))
                     {
                         $res['success'] = $_POST['id'];
-                        if ($access['project']['name'] != $_POST['name']) $log_text = ". Название изменено на \"{$_POST['name']}\"";
+                        if ($access['project']['name'] != $_POST['name']) $log_text = ". Название изменено на {$_POST['name']}";
                         if ($log) $log->set_logs("project",$access['project']['id'],"Изменен{$log_text}");
                     }
                     else $res['error'] = "Ошибка сохранения проекта";

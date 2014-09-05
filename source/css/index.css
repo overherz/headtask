@@ -113,7 +113,7 @@ a:hover {
 }
 
 .table-hover tbody tr:hover td {
-    background-color: rgba(124, 207, 125, 0.14);
+    background-color: #fff5e2;
 }
 
 .breadcrumb {
@@ -764,6 +764,14 @@ td .progress {
 .log_comment {
     background-color: darkorange;
     border-color: darkorange;
+    color: #fff;
+    display: block;
+    padding: 4px !important;
+}
+
+.log_forum {
+    background-color: #00720a;
+    border-color: #00720a;
     color: #fff;
     display: block;
     padding: 4px !important;

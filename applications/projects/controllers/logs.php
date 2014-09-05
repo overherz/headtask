@@ -25,7 +25,7 @@ class logs extends \Controller {
        // pr($logs['paginator']);
 
         $data = array(
-            'types' => array('project','task','file','news','comment'),//$this->db->get_enum("projects_logs","type"),
+            'types' => array('project','task','file','news','comment','forum'),//$this->db->get_enum("projects_logs","type"),
             'logs' => $logs['logs'],
             'paginator' => $logs['paginator'],
             'start' => date("d.m.Y",$start),

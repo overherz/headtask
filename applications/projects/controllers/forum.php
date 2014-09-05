@@ -546,6 +546,9 @@ class forum extends \Admin {
                     {
                         if (!$this->subscribe_always($last_id)) $res['error'] = "Ошибка базы данных";
                         $id_topic = $last_id;
+
+                        $log = $this->get_controller("projects","logs");
+                        if ($log) $log->set_logs("forum",$id_project,"Создана тема <a href='/projects/forum/show_topic/{$id_topic}'>{$_POST['name']}</a>");
                     }
                 }
                 else $res['error'] = "Ошибка добавления темы";
@@ -625,8 +628,17 @@ class forum extends \Admin {
 
         if ($access['access']['forum'])
         {
+            $query = $this->db->prepare("select name from projects_topics where id=?");
+            $query->execute(array($_POST['id']));
+            $topic = $query->fetch();
+
             $query = $this->db->prepare("delete from projects_topics where id=? LIMIT 1");
-            if ($query->execute(array($_POST['id']))) $res['success'] = $access['project']['id'];
+            if ($query->execute(array($_POST['id'])))
+            {
+                $res['success'] = $access['project']['id'];
+                $log = $this->get_controller("projects","logs");
+                if ($log) $log->set_logs("forum",$id_project,"Удалена тема {$topic['name']}");
+            }
             else $res['error'] = "Ошибка базы данных";
         }
         else $res['error'] = "У Вас недостаточно прав";
