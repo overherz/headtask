@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="notifications&#10;raw problem logs">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/notifications/server/.htaccess" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/notifications/notifications.js" afterPath="$PROJECT_DIR$/notifications/server/notifications.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/notifications/notifications_data.js" afterPath="$PROJECT_DIR$/notifications/server/notifications_data.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/notifications/ssl/server.cert" afterPath="$PROJECT_DIR$/notifications/server/ssl/server.cert" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/notifications/ssl/server.key" afterPath="$PROJECT_DIR$/notifications/server/ssl/server.key" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/.htaccess" afterPath="$PROJECT_DIR$/applications/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/.htaccess" afterPath="$PROJECT_DIR$/core/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/.htaccess" afterPath="$PROJECT_DIR$/data/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/error/.htaccess" afterPath="$PROJECT_DIR$/error/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/globals/.htaccess" afterPath="$PROJECT_DIR$/globals/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/langs/.htaccess" afterPath="$PROJECT_DIR$/langs/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/.htaccess" afterPath="$PROJECT_DIR$/libraries/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/.htaccess" afterPath="$PROJECT_DIR$/source/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uploads/.htaccess" afterPath="$PROJECT_DIR$/uploads/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/09/f3/f38a8e1451cc7f6c259159ccd68ab5b89de4a7cf3b3585bf258f5c4ee465.php" afterPath="$PROJECT_DIR$/data/layouts_cache/09/f3/f38a8e1451cc7f6c259159ccd68ab5b89de4a7cf3b3585bf258f5c4ee465.php" />
+    <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notifications/server/notifications.js" afterPath="$PROJECT_DIR$/notifications/server/notifications.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
@@ -43,8 +30,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="notifications.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/notifications/server/notifications.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="72" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6358">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name=".htaccess" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/langs/.htaccess">
+        <entry file="file://$PROJECT_DIR$/source/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
             <state line="2" column="18" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
               <folding />
@@ -52,19 +48,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".htaccess" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/.htaccess">
+      <file leaf-file-name=".htaccess" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="18" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".htaccess" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/.htaccess">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="18" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+            <state line="23" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="0.4403153" vertical-offset="0" max-vertical-offset="888">
               <folding />
             </state>
           </provider>
@@ -124,10 +111,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".htaccess" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".htaccess" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/uploads/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="18" selection-start="118" selection-end="118" vertical-scroll-proportion="0.038288288" vertical-offset="0" max-vertical-offset="888">
+            <state line="2" column="18" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
               <folding />
             </state>
           </provider>
@@ -156,8 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/core/functions.php" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/forum/topics_mail.html" />
         <option value="$PROJECT_DIR$/applications/users/controllers/edit.php" />
         <option value="$PROJECT_DIR$/applications/users/controllers/invite.php" />
         <option value="$PROJECT_DIR$/applications/users/controllers/recovery.php" />
@@ -207,6 +192,8 @@
         <option value="$PROJECT_DIR$/globals/.htaccess" />
         <option value="$PROJECT_DIR$/libraries/.htaccess" />
         <option value="$PROJECT_DIR$/uploads/.htaccess" />
+        <option value="$PROJECT_DIR$/notifications/server/notifications.js" />
+        <option value="$PROJECT_DIR$/.htaccess" />
       </list>
     </option>
   </component>
@@ -1054,7 +1041,11 @@
       <created>1409949634005</created>
       <updated>1409949634006</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="notifications&#10;raw problem logs">
+      <created>1409951868284</created>
+      <updated>1409951868284</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1306,13 +1297,6 @@
             <marker date="1409901449683" expanded="false" signature="-1:-1" placeholder="..." />
             <marker date="1409901449683" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notifications/server/notifications.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="363" column="42" selection-start="11727" selection-end="11727" vertical-scroll-proportion="0.0" vertical-offset="5483" max-vertical-offset="6358">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1604,20 +1588,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="553" selection-end="573" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="18" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/langs/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="18" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
@@ -1683,7 +1653,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/uploads/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="18" selection-start="118" selection-end="118" vertical-scroll-proportion="0.038288288" vertical-offset="0" max-vertical-offset="888">
+        <state line="2" column="18" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notifications/server/notifications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="72" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6358">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="18" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="0.4403153" vertical-offset="0" max-vertical-offset="888">
           <folding />
         </state>
       </provider>
