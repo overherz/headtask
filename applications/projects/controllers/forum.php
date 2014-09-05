@@ -452,7 +452,7 @@ class forum extends \Admin {
                 {
                     $res['success'] = $project['id'];
                     if ($forum['name'] != $_POST['name']) $log_text = ". Название изменено на \"{$_POST['name']}\"";
-                    if ($log) $log->set_logs("project",$id_project,"Изменил раздел форума <a href='/projects/forum/show/{$forum['id']}'>\"{$forum['name']}\"</a>{$log_text}");
+                    if ($log) $log->set_logs("forum",$id_project,"Изменил раздел форума <a href='/projects/forum/show/{$forum['id']}'>{$forum['name']}</a>{$log_text}");
                 }
                 else $res['error'] = "Ошибка сохранения раздела форума";
             }
@@ -463,7 +463,7 @@ class forum extends \Admin {
                 {
                     $last_id = $this->db->lastInsertId();
                     $res['success'] = $project['id'];
-                    if ($log) $log->set_logs("project",$id_project,"Добавил раздел форума <a href='/projects/forum/show/{$last_id}'>\"{$_POST['name']}\"</a>");
+                    if ($log) $log->set_logs("forum",$id_project,"Добавил раздел форума <a href='/projects/forum/show/{$last_id}'>{$_POST['name']}</a>");
                 }
                 else $res['error'] = "Ошибка добавления раздела форума";
             }
@@ -483,7 +483,7 @@ class forum extends \Admin {
             {
                 $log = $this->get_controller("projects","logs");
                 $res['success'] = $access['project']['id'];
-                $log->set_logs("project",$access['project']['id'],"Удален раздел форума \"{$forum['name']}\"");
+                $log->set_logs("forum",$access['project']['id'],"Удален раздел форума {$forum['name']}");
             }
             else $res['error'] = "Ошибка базы данных";
         }
