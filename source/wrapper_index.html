@@ -43,7 +43,7 @@
 <script src="//yastatic.net/jquery/2.1.1/jquery.min.js"></script>
 {% if globals.user.id_user %}
     <script src="{{ app.path('/source/js/socket.io/','socket.io.js',true)}}"></script>
-    <script src="{{ app.path('users','client.js')}}"></script>
+    <script src="{{ app.path('/notifications/','client.js',true)}}"></script>
     <script src="{{ app.path('projects','projects.js')}}"></script>
     <script src="{{ app.path('/source/js/sound_manager/','soundmanager2-nodebug-jsmin.js',true) }}"></script>
 {% endif %}

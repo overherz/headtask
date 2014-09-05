@@ -99,7 +99,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
             echo \layout::func_from_text("\"></script>
     <script src=\"");
             // line 46
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "client.js"), "method"), "html", null, true));
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/notifications/", 1 => "client.js", 2 => true), "method"), "html", null, true));
             echo \layout::func_from_text("\"></script>
     <script src=\"");
             // line 47

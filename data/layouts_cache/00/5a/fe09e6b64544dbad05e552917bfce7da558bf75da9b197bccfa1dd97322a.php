@@ -50,7 +50,7 @@ class __TwigTemplate_005afe09e6b64544dbad05e552917bfce7da558bf75da9b197bccfa1dd9
                     echo \layout::func_from_text("<li><a href=\"");
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "url"), "html", null, true));
                     echo \layout::func_from_text("\">");
-                    echo \layout::func_from_text($this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "name"));
+                    echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "name"), "html", null, true));
                     echo \layout::func_from_text("</a></li>");
                 } else {
                     echo \layout::func_from_text("<li><a class=\"current\">");

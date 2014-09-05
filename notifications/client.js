@@ -35,11 +35,8 @@ $(document).ready(function(){
     });
 
     socket.on('logs',function(data){
-        if (window.ms.id != data.message.id_user)
-        {
-            soundManager.play('new_message',{volume:100});
-            show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;'>"+langs[data.message.type]+"</span>"+data.message.text,false,false,false,true);
-        }
+        soundManager.play('new_message',{volume:100});
+        show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;'>"+langs[data.message.type]+"</span>"+data.message.text,false,false,false,true);
     });
 
     socket.on('connect_error',function(){

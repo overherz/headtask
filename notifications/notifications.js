@@ -1,15 +1,16 @@
 var fs = require("fs");
 var vm = require('vm');
 var path = require("path");
+var _ = require('../node_modules/underscore');
 
-var privateKey  = fs.readFileSync(path.join(__dirname, '..','/ssl/server.key'), 'utf8');
-var certificate = fs.readFileSync(path.join(__dirname, '..','/ssl/server.cert'), 'utf8');
+var privateKey  = fs.readFileSync(path.join(__dirname, '','/ssl/server.key'), 'utf8');
+var certificate = fs.readFileSync(path.join(__dirname, '','/ssl/server.cert'), 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 //var http = require('http').createServer(onRequest);
 var http = require('https').createServer(credentials, onRequest);
-var io = require('../../node_modules/socket.io')(http);
-var template = require('../../node_modules/swig');
+var io = require('../node_modules/socket.io')(http);
+var template = require('../node_modules/swig');
 
 vm.runInThisContext(fs.readFileSync(__dirname + "/notifications_data.js"));
 http.listen(9900);
@@ -41,7 +42,7 @@ template.setDefaults({
     tags: {}
 });
 
-var mysql = require('../../node_modules/mysql');
+var mysql = require('../node_modules/mysql');
 var db_config = {
     host     : db_host,
     user     : db_user,
@@ -314,16 +315,11 @@ function notify(last_id)
 function notify_logs(last_id_logs)
 {
     if (!last_id_logs) last_id_logs = "0";
-    connection.query("select pl.*,t.name as task_name,p.name as project_name,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name," +
-        " tu.trash_name as trash_user_name,tp.trash_name as trash_project_name," +
-        " p.id as id_project,u.id_user as id_user" +
+    connection.query("select pl.*," +
+        " t.assigned,t.id_user as creater_task" +
         " from projects_logs as pl" +
         " LEFT JOIN projects_tasks as t ON pl.id_task = t.id" +
         " LEFT JOIN projects as p ON pl.id_project = p.id" +
-        " LEFT JOIN users as u ON u.id_user = pl.id_user" +
-        " LEFT JOIN trash_data as tu ON pl.id_user = tu.id_for_type and tu.type = 'user'" +
-        " LEFT JOIN trash_data as tp ON pl.id_project = tp.id_for_type and tp.type = 'project'" +
-        " LEFT JOIN groups as g ON u.id_group=g.id" +
         " WHERE p.archive IS NULL and pl.id > "+last_id_logs+
         " group by pl.id" +
         " order by pl.created DESC LIMIT 200", function(err, res){
@@ -332,12 +328,14 @@ function notify_logs(last_id_logs)
         }
 
         for(var i = 0; i < res.length; i++){
+            res[i].text = remake_link(_.escape(res[i].text));
             for (key in transport) {
-                //console.log(users_projects[key]);
+                if (res[i].type == 'task' && res[i].assigned != key && res[i].creater_task != key) continue;
+                if (res[i].id_user == key) continue;
+
                 if (users_projects[key].indexOf(res[i].id_project) != -1)
                 {
                     for (socketid in transport[key]) {
-                  //      console.log(socketid);
                         io.sockets.connected[socketid].emit('logs', {message: res[i]});
                     }
                 }
@@ -359,4 +357,14 @@ function get_status(ids,callback)
         }
     }
     callback(statuses);
+}
+
+function remake_link(text)
+{
+    //console.log(text.replace(/&lt;a(.*?)&gt;(.*?)&lt;\/a&gt;/g,"<a" + _.unescape("$1") + ">$2</a>",text));
+    return text.replace(/&lt;a(.*?)&gt;(.*?)&lt;\/a&gt;/g, function(match, href, name, s)
+        {
+            return "<a"+ _.unescape(href)+">"+name+"</a>";
+        }
+    );
 }
