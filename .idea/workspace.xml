@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_big/9e/a7/9ea78faee41eafc539ab30a0aa833b4b97dad04e1409786027.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/projects_small/9e/a7/9ea78faee41eafc539ab30a0aa833b4b97dad04e1409786027.jpg" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/a7/eb/002c28cc6cb443d849c86116e33855275ee1d11051f0b8fb2c91f3f6ac64.php" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/85/14/0274251bbe924bb35b656800bbcd26f9211f7e2c4234ac59baf0615cabc2.php" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/layouts_cache/58/58/0ac2a727a0f4ebae4dbb25449ea5d35fa1e72214e862aa31c95918dd977a.php" />
@@ -1219,7 +1217,11 @@
       <created>1409876369537</created>
       <updated>1409876369538</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="add global to add.path">
+      <created>1409876395028</created>
+      <updated>1409876395028</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="ToolWindowManager">
