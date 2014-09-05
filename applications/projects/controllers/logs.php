@@ -228,8 +228,8 @@ class logs extends \Controller {
         while ($row = $query->fetch())
         {
             $row['text'] = htmlentities($row['text']);
-            $row['text'] = preg_replace("/&lt;a(.*?)&gt;(.*?)&lt;\/a&gt;/u","<a html_entity_decode($1)>$2</a>",$row['text']);
-//            $m = preg_match("/&lt;a(.*?)&gt;(.*?)&lt;\/a&gt;/u",$row['text'],$matches);
+            $row['text'] = preg_replace("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u","<a html_entity_decode($1)>$2</a>",$row['text']);
+//            $m = preg_match("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u",$row['text'],$matches);
 //            pr($matches);
 
             $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);

@@ -147,7 +147,7 @@ class __TwigTemplate_b82e2f8ab8773812cb0748490fa30d5c644a7e8aa776248346344e6c1f1
             echo \layout::func_from_text("</b></a>
             <div style=\"float: right;\">");
             // line 34
-            echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "created"), "d.m.Y H:i:s"), "html", null, true));
+            echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "created"), "d.m.Y H:i"), "html", null, true));
             echo \layout::func_from_text("</div>
         </th>
     </tr>

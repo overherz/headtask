@@ -361,10 +361,9 @@ function get_status(ids,callback)
 
 function remake_link(text)
 {
-    //console.log(text.replace(/&lt;a(.*?)&gt;(.*?)&lt;\/a&gt;/g,"<a" + _.unescape("$1") + ">$2</a>",text));
-    return text.replace(/&lt;a(.*?)&gt;(.*?)&lt;\/a&gt;/g, function(match, href, name, s)
+    return text.replace(/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/g, function(match, href, name, s)
         {
-            return "<a"+ _.unescape(href)+">"+name+"</a>";
+            return "<a "+ _.unescape(href)+">"+name+"</a>";
         }
     );
 }

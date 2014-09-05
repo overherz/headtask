@@ -331,7 +331,7 @@ $(document).ready(function ($) {
             $(this).after(form);
             $(this).css('display', 'none');
         }
-        CKEDITOR.replace('comment',{toolbar:'Forum',height:200});
+        CKEDITOR.replace('comment',{toolbar:'Forum',height:200, on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
         CKEDITOR.instances.comment.on( 'key', function (evt) {
             var kc = evt.data.keyCode,
                 csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);

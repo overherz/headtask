@@ -339,8 +339,9 @@ class tasks extends \Controller {
                 if ($access['access']['edit_task'] || $access['access']['edit_tasks'])
                 {
                     $text_log = "";
+                    if ($task['name'] != $_POST['name']) $text_log .= ". Название изменено на ".$_POST['name'];
                     if ($task['status'] != $_POST['status']) $text_log .= ". Статус изменен с '{$sta[$task['status']]}' на '{$sta[$_POST['status']]}'";
-                    if ($task['percent'] != $_POST['percent']) $text_log .= ". Статус выполнения изменен с {$task['percent']}% на {$_POST['percent']}%";
+                    if ($task['percent'] != $_POST['percent']) $text_log .= ". % выполнения изменен с {$task['percent']}% на {$_POST['percent']}%";
 
                     if ($task['priority'] != $_POST['priority']) $text_log .= ". Приоритет изменен с {$pri[$task['priority']]} на {$pri[$_POST['priority']]}";
 
@@ -499,7 +500,7 @@ class tasks extends \Controller {
                         $log = $this->get_controller("projects","logs");
 
                         if ($task['status'] == "closed") $message = "Закрыта <a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a>";
-                        else if ($_POST['new_current_percent'] > 0) $message = "Изменен статус выполнения <a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a> ({$_POST['new_current_percent']} %)";
+                        else if ($_POST['new_current_percent'] > 0) $message = "Изменен % выполнения <a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a> ({$_POST['new_current_percent']} %)";
                         else $message = "Начата";
 
                         $log->set_logs("task",$task['id_project'],$message,$task['id']);
