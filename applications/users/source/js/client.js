@@ -43,7 +43,7 @@ $(document).ready(function(){
     });
 
     socket.on('connect_error',function(){
-        show_message("error","Ошибка соединения с сервером сообщений",false,'ms_error',true);
+        show_message("error","Cервер сообщений недоступен",false,'ms_error',true);
     });
 
     socket.on('set_count_of_new_messages',function(data){
