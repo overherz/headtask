@@ -4,8 +4,9 @@
         <title>Панель управления</title>
         <script src="/source/js/head.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/source/css/plugins.css">
+        <link rel="stylesheet" href="{{ app.path('/source/css/','plugins.css',true) }}">
         <link rel="stylesheet" href="//yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link href="{{ app.path('/source/admin/css/styler/','style.css',true) }}" rel="stylesheet" type="text/css">
         <script src="//yastatic.net/jquery/2.1.1/jquery.min.js"></script>
         <script>
             head.js(

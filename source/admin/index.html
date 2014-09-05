@@ -6,12 +6,12 @@
     <title>Панель управления сайтом</title>
 
     <link rel="stylesheet" href="/source/css/plugins.css" type="text/css" />
-    <link href="http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/source/admin/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/source/admin/css/libs/animate.min.css" rel="stylesheet">
-    <link href="/source/admin/css/libs/bootstrap-switch.css" rel="stylesheet">
-    <link rel="stylesheet" href="/source/css/smoothness/jquery-ui-1.10.4.custom.css" type="text/css">
-    <link href="/source/admin/css/styler/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ app.path('/source/admin/fonts/font-awesome/css/','font-awesome.min.css',true) }}">
+    <link rel="stylesheet" href="{{ app.path('/source/admin/css/libs/','animate.min.css',true) }}">
+    <link rel="stylesheet" href="{{ app.path('/source/admin/css/libs/','bootstrap-switch.css',true) }}">
+    <link rel="stylesheet" href="{{ app.path('/source/css/smoothness/','jquery-ui-1.10.4.custom.css',true) }}" type="text/css">
+    <link rel="stylesheet" href="{{ app.path('/source/admin/css/styler/','style.css',true) }}" >
     {% block css %}{% endblock %}
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
