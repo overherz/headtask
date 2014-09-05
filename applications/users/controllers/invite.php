@@ -41,7 +41,7 @@ class invite extends \Controller {
             if ($query->execute(array($_POST['email'],$hash,time(),'invite',$hash)))
             {
                 $subject = "Приглашение";
-                $message = $this->layout_get("elements/invite_mail.html",array('hash' => $hash,'server_name' => $_SERVER["SERVER_NAME"],'site_name' => get_setting('site_name')));
+                $message = $this->layout_get("elements/invite_mail.html",array('hash' => $hash,'domain' => get_full_domain_name(),'site_name' => get_setting('site_name')));
                 if (!send_mail(get_setting('email'), $_POST['email'], $subject, $message,get_setting('site_name')))
                 {
                     $res['error'] = "Ошибка при отправке письма";

@@ -251,7 +251,7 @@ class news extends \Controller {
             foreach ($n_array as $k => $v)
             {
                 $message = $this->layout_get("news/news_mail.html",array(
-                    'server_name' => $_SERVER["SERVER_NAME"],
+                    'domain' => get_full_domain_name(),
                     'name' => $project['name'],
                     'edit' => $edit,
                     'news' => $res['success'],

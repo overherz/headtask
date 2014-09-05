@@ -435,7 +435,7 @@ class tasks extends \Controller {
                 $this->db->commit();
 
                 $message = $this->layout_get("tasks/task_mail.html",array(
-                    'server_name' => $_SERVER["SERVER_NAME"],
+                    'domain' => get_full_domain_name(),
                     'name' => $project['name'],
                     'edit' => $edit,
                     'task' => $res['success']
@@ -505,7 +505,7 @@ class tasks extends \Controller {
                         $log->set_logs("task",$task['id_project'],$message,$task['id']);
 
                         $message = $this->layout_get("tasks/task_mail.html",array(
-                            'server_name' => $_SERVER["SERVER_NAME"],
+                            'domain' => get_full_domain_name(),
                             'name' => $access['project']['name'],
                             'edit' => true,
                             'task' => $task['id'],
@@ -949,7 +949,7 @@ class tasks extends \Controller {
             $from = get_setting('email');
             foreach($new_comments as $n)
             {
-                $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n,'server_name' => DOMEN_FOR_CLI));
+                $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n,'domain' => get_full_domain_name()));
                 if (!send_mail($from, $n['email'], "Новые комментарии в задачах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }

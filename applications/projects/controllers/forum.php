@@ -840,7 +840,7 @@ class forum extends \Admin {
             $from = get_setting('email');
             foreach($new_posts as $n)
             {
-                $html = $this->layout_get("forum/mail_text.html",array('new_posts' => $n,'server_name' => DOMEN_FOR_CLI));
+                $html = $this->layout_get("forum/mail_text.html",array('new_posts' => $n,'domain' => get_full_domain_name()));
                 if (!send_mail($from, $n[0]['email'], "Новые сообщения на форумах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }
@@ -885,7 +885,7 @@ class forum extends \Admin {
             $from = get_setting('email');
             foreach($new_topics as $n)
             {
-                $html = $this->layout_get("forum/topics_mail.html",array('new_topics' => $n,'server_name' => DOMEN_FOR_CLI));
+                $html = $this->layout_get("forum/topics_mail.html",array('new_topics' => $n,'domain' => get_full_domain_name()));
                 if (!send_mail($from, $n['email'], "Новые темы на форумах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }
