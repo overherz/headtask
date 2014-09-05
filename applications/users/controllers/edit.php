@@ -124,8 +124,8 @@ class edit extends \Controller {
                     $query = $this->db->prepare("update users set pass=?,salt=?,uniq_key=? WHERE id_user=?");
                     if ($query->execute(array($get_pass['password'], $get_pass['salt'], $get_pass['uniq_key'], $_SESSION['user']['id_user'])))
                     {
-                        setcookie('login', $user['email'], time()+60*60*24*30,"/");
-                        setcookie('password', $get_pass['password'], time()+60*60*24*30,"/");
+                        setcookie('login', $user['email'], time()+60*60*24*30,"/",null,null,true);
+                        setcookie('password', $get_pass['password'], time()+60*60*24*30,"/",null,null,true);
                         $res['success'] = true;
                     }
                     else $res['error'] = "Ошибка базы данных";

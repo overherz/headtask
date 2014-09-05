@@ -1,8 +1,15 @@
-var http = require('http').createServer(onRequest);
-var io = require('../../node_modules/socket.io')(http);
-var template = require('../../node_modules/swig');
 var fs = require("fs");
 var vm = require('vm');
+var path = require("path");
+
+var privateKey  = fs.readFileSync(path.join(__dirname, '..','/ssl/server.key'), 'utf8');
+var certificate = fs.readFileSync(path.join(__dirname, '..','/ssl/server.cert'), 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+
+var http = require('http').createServer(onRequest);
+//var http = require('https').createServer(credentials, onRequest);
+var io = require('../../node_modules/socket.io')(http);
+var template = require('../../node_modules/swig');
 
 vm.runInThisContext(fs.readFileSync(__dirname + "/notifications_data.js"));
 http.listen(9900);

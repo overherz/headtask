@@ -135,7 +135,7 @@
                 <th>Дедлайн</th>
                 <td style="width: 1px;" {% if task.diff < 0 and task.status != "closed" %}class="task_diff_alert"{% endif %}>
                     {% if task.status != "closed" %}
-                        {% if task.diff != "0" and task.diff != "inf" %}{{ task.diff }} {{ ""|lang(task.diff) }}{% elseif task.diff == "inf" %}&infin;{% else %}сегодня{% endif %}
+                        {% if task.diff != "0" and task.diff != "inf" %}{{ task.diff }} {{ "days"|lang(task.diff) }}{% elseif task.diff == "inf" %}&infin;{% else %}сегодня{% endif %}
                     {% endif %}
                 </td>
             </tr>

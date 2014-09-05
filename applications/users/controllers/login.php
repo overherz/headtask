@@ -43,8 +43,8 @@ class login extends \Controller {
                         {
                             if ($post && $_POST['cookie'])
                             {
-                                setcookie('login', $login, time()+60*60*24*30,"/");
-                                setcookie('password', $u['pass'], time()+60*60*24*30,"/");
+                                setcookie('login', $login, time()+60*60*24*30,"/",null,null,true);
+                                setcookie('password', $u['pass'], time()+60*60*24*30,"/",null,null,true);
                             }
 
                             unset($u['salt']);unset($u['access_site']); unset($u['pass']);

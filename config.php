@@ -27,4 +27,4 @@ $INFO['site_login_page'] = '/users/login/';
 $INFO['admin_mail'] = 'overherz@yandex.ru';
 
 $INFO['default_user_group_id'] = 4;
-$INFO['message_server'] = 'ws://127.0.0.1:9900';
+$INFO['message_server'] = '127.0.0.1:9900';

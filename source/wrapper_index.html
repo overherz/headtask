@@ -7,11 +7,11 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ app.path('/source/css/','plugins.css',true) }}" type="text/css" />
-    <link rel="stylesheet" href="http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ app.path('/source/admin/fonts/font-awesome/css/','font-awesome.min.css',true) }}">
     <link rel="stylesheet" href="{{ app.path('/source/css/','content.css',true) }}" type="text/css" />
     <link rel="stylesheet" href="{{ app.path('/source/css/ui-lightness/','jquery-ui-1.10.4.custom.min.css',true) }}" />
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic'  type='text/css'>
+    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic'  type='text/css'>
     {% block css %}
     {% endblock %}
 </head>
@@ -40,16 +40,16 @@
 
 
 
-<script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
+<script src="//yastatic.net/jquery/2.1.1/jquery.min.js"></script>
 {% if globals.user.id_user %}
     <script src="{{ app.path('/source/js/socket.io/','socket.io.js',true)}}"></script>
     <script src="{{ app.path('users','client.js')}}"></script>
     <script src="{{ app.path('projects','projects.js')}}"></script>
     <script src="{{ app.path('/source/js/sound_manager/','soundmanager2-nodebug-jsmin.js',true) }}"></script>
 {% endif %}
-<script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
+<script src="//yastatic.net/jquery-ui/1.10.4/jquery-ui.min.js"></script>
 <script src="{{ app.path('/source/js/','functions.js',true) }}"></script>
-<script src="http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="//yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>-->
 <script type="text/javascript">
     $(document).ready(function($) {
