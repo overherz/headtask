@@ -1221,7 +1221,11 @@
       <created>1409876395028</created>
       <updated>1409876395028</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="add global to add.path">
+      <created>1409876403465</created>
+      <updated>1409876403465</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="ToolWindowManager">
