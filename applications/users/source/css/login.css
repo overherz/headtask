@@ -1,12 +1,15 @@
 body {
     overflow-y: scroll;
-    background: #fff;
-    min-width: 380px;
+    min-width: 320px;
+    background: url(/source/images/login_back.jpg) no-repeat;
+}
+
+#page-content-wrapper {
+    padding-left : 0;
 }
 
 .form-signin {
-    max-width: 350px;
-    padding: 19px 29px 29px;
+    width: 250px;
     margin: 100px auto 20px;
 }
 .form-signin .form-signin-heading,
@@ -19,10 +22,6 @@ body {
     height: auto;
     margin-bottom: 15px;
     padding: 7px 9px;
-}
-
-body {
-    background: url(/source/images/login_back.jpg) no-repeat;
 }
 
 .alert-danger {
