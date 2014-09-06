@@ -96,14 +96,7 @@ class projects extends \Controller {
 
     function get_number_page($id_project)
     {
-        if ($_SESSION['user']['id_group'] != 1)
-        {
-            $where = "WHERE p.archive IS NULL and p.id IN (select id_project from projects_users where id_user=? and role IS NOT NULL)";
-        }
-        else
-        {
-            $where = "WHERE p.archive IS NULL and (p.owner=? OR p.owner IS NULL)";
-        }
+        $where = "WHERE p.archive IS NULL and p.id IN (select id_project from projects_users where id_user=? and role IS NOT NULL)";
         $this->db->query("SET @recNo:=0");
         $query = $this->db->prepare("SELECT n FROM
             (SELECT @recNo := @recNo+1 n, p.id

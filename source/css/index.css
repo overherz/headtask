@@ -797,15 +797,16 @@ td .progress {
     padding: 2px 5px !important;
     text-indent: 0;
     border: none !important;
+    color: #428bca !important;
 }
 
 .pagination_projects a:hover {
     background: #eee !important;
-    border: none !important;
-    color: #2a6496 !important;
 }
 
-
+.pagination_projects li.active a:hover {
+    background: #428bca !important;
+}
 
 
 
