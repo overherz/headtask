@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/7c/06/a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116449a1.php" afterPath="$PROJECT_DIR$/data/layouts_cache/7c/06/a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116449a1.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/dd/d7/3a77e0671052d927c929129ce9a2b04ac6d27125032530f87f49e50cbb41.php" afterPath="$PROJECT_DIR$/data/layouts_cache/dd/d7/3a77e0671052d927c929129ce9a2b04ac6d27125032530f87f49e50cbb41.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/20/6d/aba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade492946.php" afterPath="$PROJECT_DIR$/data/layouts_cache/20/6d/aba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade492946.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/all.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/all.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/all_projects.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/all_projects.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/all_projects_table.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/all_projects_table.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/initdata.php" afterPath="$PROJECT_DIR$/core/initdata.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notifications/server/notifications.js" afterPath="$PROJECT_DIR$/notifications/server/notifications.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/projects.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/projects.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
@@ -77,12 +72,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="all.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="all.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/applications/projects/controllers/all.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="51" selection-start="1599" selection-end="1599" vertical-scroll-proportion="-23.73077" vertical-offset="199" max-vertical-offset="1768">
+            <state line="36" column="93" selection-start="1197" selection-end="1197" vertical-scroll-proportion="0.6566125" vertical-offset="46" max-vertical-offset="1768">
               <folding>
-                <marker date="1409968543354" expanded="true" signature="2575:2886" placeholder="select * fro..projects..." />
+                <marker date="1409968805610" expanded="true" signature="2564:2875" placeholder="select * fro..projects..." />
               </folding>
             </state>
           </provider>
@@ -110,10 +105,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="all_projects.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="all_projects.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/projects/layouts/all_projects.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="102" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.6902552" vertical-offset="0" max-vertical-offset="901">
+            <state line="35" column="102" selection-start="1628" selection-end="1628" vertical-scroll-proportion="-22.884615" vertical-offset="0" max-vertical-offset="901">
               <folding>
                 <element signature="e#320#348#0" expanded="true" />
                 <element signature="e#404#450#0" expanded="true" />
@@ -216,8 +211,8 @@
         <option value="$PROJECT_DIR$/applications/projects/layouts/all_projects_table.html" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/projects.php" />
         <option value="$PROJECT_DIR$/core/initdata.php" />
-        <option value="$PROJECT_DIR$/applications/projects/controllers/all.php" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/all_projects.html" />
+        <option value="$PROJECT_DIR$/applications/projects/controllers/all.php" />
       </list>
     </option>
   </component>
@@ -989,7 +984,11 @@
       <created>1409955877541</created>
       <updated>1409955877541</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="notifications&#10;raw problem logs">
+      <created>1409968683540</created>
+      <updated>1409968683540</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1611,21 +1610,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/all.php">
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/all_projects.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="51" selection-start="1599" selection-end="1599" vertical-scroll-proportion="-23.73077" vertical-offset="199" max-vertical-offset="1768">
+        <state line="35" column="102" selection-start="1628" selection-end="1628" vertical-scroll-proportion="-22.884615" vertical-offset="0" max-vertical-offset="901">
           <folding>
-            <marker date="1409968543354" expanded="true" signature="2575:2886" placeholder="select * fro..projects..." />
+            <element signature="e#320#348#0" expanded="true" />
+            <element signature="e#404#450#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/all_projects.html">
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/all.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="102" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.6902552" vertical-offset="0" max-vertical-offset="901">
+        <state line="36" column="93" selection-start="1197" selection-end="1197" vertical-scroll-proportion="0.6566125" vertical-offset="46" max-vertical-offset="1768">
           <folding>
-            <element signature="e#320#348#0" expanded="true" />
-            <element signature="e#404#450#0" expanded="true" />
+            <marker date="1409968805610" expanded="true" signature="2564:2875" placeholder="select * fro..projects..." />
           </folding>
         </state>
       </provider>

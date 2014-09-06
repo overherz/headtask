@@ -34,7 +34,7 @@ class all extends \Controller {
             }
             if (count($my) != 2) $where[] = "(".implode("OR ",$my).")";
         }
-        else if (!$_POST) $where[] = "p.owner=".$_SESSION['user']['id_user'];
+        else if ($_GET['filter'] == "my") $where[] = "p.owner=".$_SESSION['user']['id_user'];
 
         if ($_POST['in'] != "")
         {
@@ -46,7 +46,7 @@ class all extends \Controller {
             }
             if (count($in) != 2) $where[] = "(".implode("OR ",$in).")";
         }
-        else if (!$_POST || $_GET['filter'] == "my") $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
+        else if (!$_POST) $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
 
         if ($_POST['archive'] != "")
         {
