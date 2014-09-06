@@ -4,7 +4,7 @@ var path = require("path");
 var _ = require('../../node_modules/underscore');
 
 var privateKey  = fs.readFileSync(path.join(__dirname, '','/ssl/server.key'), 'utf8');
-var certificate = fs.readFileSync(path.join(__dirname, '','/ssl/server.crt'), 'utf8');
+var certificate = fs.readFileSync(path.join(__dirname, '','/ssl/server.cert'), 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 //var http = require('http').createServer(onRequest);

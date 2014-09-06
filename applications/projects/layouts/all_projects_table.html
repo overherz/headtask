@@ -4,7 +4,17 @@
         <tr>
             {% for p in all_projects %}
             <td style="width:33%;font-size: 20px;">
-                <a href="/projects/~{{p.id}}"> {{p.name}}</a>
+                {% if not p.role and globals.user.id_group != 1 %}{{ p.name }}
+                {% else %}
+                    <a href="/projects/~{{p.id}}"> {{p.name}}</a>
+                {% endif %}
+                {% if p.role %}
+                    <div style="font-weight: bold;font-size: 10px;">
+                        {% if p.role == "manager" %}Менеджер
+                        {% elseif p.role == "user" %}Участник
+                        {% endif %}
+                    </div>
+                {% endif %}
             </td>
         {% if loop.index % 3 == 0 and not loop.last %}<tr>{% endif %}
             {% if loop.last and loop.index % 3 > 0 %}

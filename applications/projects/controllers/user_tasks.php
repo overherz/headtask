@@ -112,6 +112,12 @@ class user_tasks extends \Controller {
         {
             $where[] = "t.id_project=".$this->db->quote($this->id_project);
         }
+        else
+        {
+            $where[] = "t.id_project IN(
+            SELECT id_project from projects_users where id_user={$_SESSION['user']['id_user']}
+            and (role='manager' or (role='user' and (t.id_user={$_SESSION['user']['id_user']} or t.assigned={$_SESSION['user']['id_user']} or t.assigned IS NULL))))";
+        }
 
         if (isset($_POST['category']) && $_POST['category'] != '')
         {
@@ -125,10 +131,6 @@ class user_tasks extends \Controller {
 
         if (!$this->owner) $where[] = "p.owner IS NULL";
         //$where[] = "(t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='manager') or ((t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='user') and t.assigned='{$_SESSION['user']['id_user']}')))";
-
-        $where[] = "t.id_project IN(
-            SELECT id_project from projects_users where id_user={$_SESSION['user']['id_user']}
-            and (role='manager' or (role='user' and (t.id_user={$_SESSION['user']['id_user']} or t.assigned={$_SESSION['user']['id_user']} or t.assigned IS NULL))))";
 
         if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
 

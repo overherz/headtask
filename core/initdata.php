@@ -47,7 +47,7 @@ foreach ($INFO as $key => $value)
     }
 }
 
-if ($INFO['dev_mode'] || (defined('SECRET_DEV_MODE') && SECRET_DEV_MODE)) error_reporting(E_ALL & ~E_NOTICE);
+if ($INFO['dev_mode'] || (defined('SECRET_DEV_MODE') && SECRET_DEV_MODE)) error_reporting(E_ALL ^ E_NOTICE);
 else error_reporting(0);
 ini_set('display_errors', 0);
 

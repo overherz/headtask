@@ -8,7 +8,37 @@
     <form action="" id="search_form" method="post">
         <div class="form-group col-xs-6" style="padding-left: 0;">
             <input type="text" name="search" class="form-control" placeholder="Поиск" style="margin-bottom: 10px;">
-            Личные <input type="checkbox" name="my" value="1" {% if get_data.filter == 'my' %}checked{% endif %}>
+            <table class="table table_style no_style" style="width: auto;margin-top: 0;clear: both;">
+                <thead>
+                    <tr>
+                        <th>Статус</th>
+                        <th>Участие</th>
+                        <th>Принадлежность</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select name="archive[]" multiple size="2">
+                                <option value="1" selected>текущие</option>
+                                <option value="2">архивные</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="in[]" multiple size="2">
+                                <option value="1" selected>участвую</option>
+                                <option value="2">не участвую</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="my[]" multiple size="2">
+                                <option value="1" selected>личные</option>
+                                <option value="2" {% if not get_data.filter == 'my' %}selected{% endif %}>общие</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <input type="hidden" name="page" value="">
     </form>

@@ -128,13 +128,13 @@ class projects extends \Controller {
         else if ($id_project) $page = $this->get_number_page($id_project);
 
         $where[] = "archive IS NULL";
-        if ($_SESSION['user']['id_group'] != 1) $where[] = "u.id_user='{$_SESSION['user']['id_user']}' and u.role IS NOT NULL";
-        else $where[] = "(p.owner='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";
+        $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
+//        else $where[] = "(p.owner='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";
 
         if ($where) $where = "where ".implode(" and ",$where);
 
         $query = $this->db->query("select count(distinct p.id) as count from projects as p
-            LEFT JOIN projects_users as u ON p.id = u.id_project
+            LEFT JOIN projects_users as u ON p.id = u.id_project and u.id_user=".$_SESSION['user']['id_user']."
             {$where}
         ");
         $total =$query->fetch();
@@ -143,11 +143,9 @@ class projects extends \Controller {
         require_once(ROOT.'libraries/paginator/paginator.php');
         $paginator = new \Paginator($total, $page, $this->project_panel_limit);
 
-        $query = $this->db->query("select p.* from projects as p
-            LEFT JOIN projects_users as u ON p.id = u.id_project
-            LEFT JOIN projects_tasks_categories as c ON c.id_project = p.id
+        $query = $this->db->query("select p.*,u.role from projects as p
+            LEFT JOIN projects_users as u ON p.id = u.id_project and u.id_user=".$_SESSION['user']['id_user']."
             {$where}
-            group by p.id
             order by p.owner DESC,p.name
             LIMIT {$this->project_panel_limit}
             OFFSET {$paginator->get_range('from')}
