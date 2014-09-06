@@ -143,10 +143,9 @@ class edit extends \Controller {
         if ($user['last_name'] == "") $errors['last_name'] = "Введите фамилию";
 
         // Проверка даты рождения
-        $u_cr = $this->get_controller("users","tree");
         if ($user['birthday'] == "") $errors['birthday'] = "Укажите дату рождения";
-        else if (!$u_cr->check_date($user['birthday'])) $errors['birthday'] = "Неверная дата рождения";
-        else $user['birthday'] = $u_cr->convert_date($user['birthday'],true);
+        else if (!check_date($user['birthday'])) $errors['birthday'] = "Неверная дата рождения";
+        else $user['birthday'] = convert_date($user['birthday'],true);
         unset($user['act']);
         unset($user['id']);
 
