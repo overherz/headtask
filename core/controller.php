@@ -374,7 +374,7 @@ class global_module
                 $file = ROOT."globals/".$m;
                 if (file_exists($file))
                 {
-                    include($file);
+                    include_once($file);
                     $class = "global_module\\".str_replace(".php","",$m);
                     $r = new $class;
                     if (AJAX && $r->on_ajax_not_run) continue;

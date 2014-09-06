@@ -27,6 +27,7 @@ class get_session extends \global_module
             }
 
             if (\Router::application() == "users" && \Router::controller() == "registration") return false;
+            if (\Router::application() == "users" && ($_POST['act'] == "lost_pass" || $_POST['act'] == "get_lost_pass")) return false;
             if (\Router::application() == "captcha" && \Router::controller() == "captcha") return false;
             if (!array_key_exists('user',$_SESSION) && (\Router::application() != "users" || (\Router::application() == "users" && \Router::controller() != "login")))
             {

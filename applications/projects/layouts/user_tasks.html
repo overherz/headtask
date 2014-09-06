@@ -1,21 +1,73 @@
-    <script src="/source/js/jquery.ui.datepicker-ru.min.js"></script>
-    <script type="text/javascript" src="/source/js/search.js"></script>
-    <script type="text/javascript" src="{{ app.path('projects','user_tasks.js') }}"></script>
+    {% import "/source/search_macro.html" as inputs %}
+    {% if dashboard %}
+        <form path="{% if id_project %}/projects/tasks/{{ id_project }}/{% else %}/projects/dashboard/{% endif %}" id="search_form" method="post" class="form-horizontal user_tasks" style="margin-bottom:0;">
+            <input type="hidden" name="page" value="">
+            <input type="hidden" name="act" value="get_data">
+            <input type="hidden" name="limit" value="{{ limit }}">
+            <input type="hidden" name="id_user" value="{{ globals.user.id_user }}">
+
+            <div class="form-group col-xs-4">
+                <input type="text" name="search" id="search_label" class="form-control" placeholder="Поиск" value="{{ form.search.selected }}">
+            </div>
+            <div class="col-xs-8">
+                <div style="position: relative;top:5px;">
+                {{ inputs.input(form.percent,'percent',true) }}
+                {{ inputs.input(form.my,'my',true) }}</div>
+            </div>
+
+
+            <table class="table table_style no_style" style="width: auto;margin-top: 0;clear: both;">
+                <thead>
+                <tr>
+                    <th>Кому</th>
+                    <th>Начало-окончание</th>
+                    <th>Дата изменения</th>
+                    <th>Статус</th>
+                    <th>Приоритет</th>
+                    {% if id_project and form.category.options%}
+                    <th>Метка</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="dashboard_radio">
+                        {{ inputs.input(form.assigned,'assigned') }}
+                    </td>
+                    <td>От: <input type="text" name="start" value="{% if start %}{{start}}{% endif %}" readonly style="margin-bottom: 10px;width: 85px;"><br>
+                        До: <input type="text" name="end" value="{% if end %}{{end}}{% endif %}" readonly style="width: 85px;"></td>
+                    <td>От: <input type="text" name="start_edit" value="{% if start_edit %}{{start_edit}}{% endif %}" readonly style="margin-bottom: 10px;width: 85px;"><br>
+                        До: <input type="text" name="end_edit" value="{% if end_edit %}{{end_edit}}{% endif %}" readonly style="width: 85px;"></td>
+                    <td>{{ inputs.input(form.status,'status') }}</td>
+                    <td>{{ inputs.input(form.priority,'priority') }}</td>
+
+                    {% if id_project and form.category.options%}
+                    <td>
+                        {{ inputs.input(form.category,'category') }}
+                    </td>
+                    {% endif %}
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    {% else %}
     <ul class="breadcrumbs-one second">
         <li><a class="current">Задачи</a></li>
     </ul>
-    {% import "/source/search_macro.html" as inputs %}
     <form path="/projects/user_tasks/" id="search_form" method="post" class="form-horizontal user_tasks" style="margin-bottom:0px;">
         <input type="hidden" name="page" value="">
         <input type="hidden" name="act" value="get_data">
         <input type="hidden" name="id_user" value="{{ id_user }}">
-        <table class="table table-condensed table-border" style="width: auto;">
+        <table class="table table_style no_style" style="width: auto;">
+            <thead>
             <tr>
                 <th>Дата</th>
                 <th>Статус</th>
                 <th>Приоритет</th>
                 <th>Другое</th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
                 <td>От: <input type="text" name="start" value="{{start}}" class="input-small" readonly style="margin-bottom: 10px;"><br>
                     До: <input type="text" name="end" value="{{end}}" class="input-small" readonly></td>
@@ -26,7 +78,9 @@
                     {{ inputs.input(form.percent,'percent',true) }}
                 </td>
             </tr>
+            </tbody>
         </table>
     </form>
+    {% endif %}
     <div class="clearfix"></div>
     <div id="search_result">{% include app.path('projects','calendar/task_today.html') %}</div>

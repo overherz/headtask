@@ -30,10 +30,15 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
     {
         // line 4
         if ((isset($context["task"]) ? $context["task"] : null)) {
-            echo \layout::func_from_text("Редактирование задачи");
+            echo \layout::func_from_text("Редактирование задачи ");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "name"), "html", null, true));
         } else {
             echo \layout::func_from_text("Добавление задачи");
         }
+        echo \layout::func_from_text(". Проект ");
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "name"), "html", null, true));
+        echo \layout::func_from_text("
+");
     }
 
     // line 7
@@ -42,7 +47,10 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
         // line 8
         $this->displayParentBlock("css", $context, $blocks);
         echo \layout::func_from_text("
-<link rel=\"stylesheet\" type=\"text/css\" href=\"/source/js/fancybox/jquery.fancybox.css\">
+<link rel=\"stylesheet\" type=\"text/css\" href=\"");
+        // line 9
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/source/js/fancybox/", 1 => "jquery.fancybox.css", 2 => true), "method"), "html", null, true));
+        echo \layout::func_from_text("\">
 ");
     }
 
@@ -53,199 +61,191 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
         echo \layout::func_from_text("    ");
         $this->displayParentBlock("js", $context, $blocks);
         echo \layout::func_from_text("
-    <script src=\"/source/js/jquery.ui.datepicker-ru.min.js\"></script>
-    <script type =\"text/javascript\" src=\"/source/js/ckeditor/ckeditor.js\"></script>
-    <script type =\"text/javascript\" src=\"/source/js/fancybox/jquery.fancybox.pack.js\"></script>
-    ");
-        // line 17
-        if ((($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "edit_tasks") || $this->getAttribute((isset($context["access"]) ? $context["access"] : null), "edit_task")) || (!(isset($context["task"]) ? $context["task"] : null)))) {
-            // line 18
-            echo \layout::func_from_text("        <script type =\"text/javascript\" src=\"/source/js/search.js\"></script>
-    ");
-        }
-        // line 20
-        echo \layout::func_from_text("    <script src=\"");
+    <script type =\"text/javascript\" src=\"");
+        // line 14
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/source/js/ckeditor/", 1 => "ckeditor.js", 2 => true), "method"), "html", null, true));
+        echo \layout::func_from_text("\"></script>
+    <script type =\"text/javascript\" src=\"");
+        // line 15
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/source/js/fancybox/", 1 => "jquery.fancybox.pack.js", 2 => true), "method"), "html", null, true));
+        echo \layout::func_from_text("\"></script>
+    <script src=\"");
+        // line 16
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 ");
     }
 
-    // line 23
+    // line 19
     public function block_project_data($context, array $blocks = array())
     {
-        // line 24
+        // line 20
         echo \layout::func_from_text("
 ");
-        // line 25
+        // line 21
         if ((isset($context["task"]) ? $context["task"] : null)) {
-            // line 26
+            // line 22
             echo \layout::func_from_text("        ");
             if (($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "edit_tasks") || $this->getAttribute((isset($context["access"]) ? $context["access"] : null), "edit_task"))) {
                 $context["full_edit"] = true;
             }
         } else {
-            // line 28
+            // line 24
             echo \layout::func_from_text("    ");
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_task")) {
                 $context["full_edit"] = true;
             }
         }
-        // line 30
+        // line 26
         echo \layout::func_from_text("
 <form id=\"task_form\" class=\"form-horizontal\">
     <input type=\"hidden\" name=\"act\" value=\"save_task\">
     ");
-        // line 33
+        // line 29
         if ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id")) {
             echo \layout::func_from_text("<input type=\"hidden\" name=\"id\" value=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\">");
         }
-        // line 34
+        // line 30
         echo \layout::func_from_text("    ");
         if ((isset($context["full_edit"]) ? $context["full_edit"] : null)) {
-            // line 35
+            // line 31
             echo \layout::func_from_text("    <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"name\">Название задачи</label>
-        <div class=\"col-lg-10\">
+        <label class=\"col-md-2 control-label\" for=\"name\">Название задачи</label>
+        <div class=\"col-md-10\">
             <input type=\"text\" name=\"name\" id=\"name\" class=\"form-control\" value=\"");
-            // line 38
+            // line 34
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("\">
         </div>
     </div>
     <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"description\">Описание задачи</label>
-        <div class=\"col-lg-10\">
+        <label class=\"col-md-2 control-label\" for=\"description\">Описание задачи</label>
+        <div class=\"col-md-10\">
             <div class=\"wysiwyg\"><textarea rows=\"5\" class=\"form-control\" name=\"description\" id=\"description\">");
-            // line 44
+            // line 40
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "description"), "html", null, true));
             echo \layout::func_from_text("</textarea></div>
         </div>
     </div>
     ");
         }
-        // line 48
+        // line 44
         echo \layout::func_from_text("    <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"status\">Статус</label>
-        <div class=\"col-lg-4\">
+        <label class=\"col-md-2 control-label\" for=\"status\">Статус</label>
+        <div class=\"col-md-4\">
             <select name=\"status\" id=\"status\">
                 ");
-        // line 52
+        // line 48
         if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") == "closed")) {
             echo \layout::func_from_text("<option disabled selected>Закрытая</option>");
         }
-        // line 53
+        // line 49
         echo \layout::func_from_text("                <option value=\"new\" ");
         if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") == "new")) {
             echo \layout::func_from_text("selected");
         }
         echo \layout::func_from_text(">Новая</option>
                 ");
-        // line 54
+        // line 50
         if ((isset($context["task"]) ? $context["task"] : null)) {
-            // line 55
+            // line 51
             echo \layout::func_from_text("                <option value=\"in_progress\" ");
             if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") == "in_progress")) {
                 echo \layout::func_from_text("selected");
             }
             echo \layout::func_from_text(">В процессе</option>
                 <option value=\"rejected\" ");
-            // line 56
+            // line 52
             if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") == "rejected")) {
                 echo \layout::func_from_text("selected");
             }
             echo \layout::func_from_text(">Отклоненная</option>
                 ");
         }
-        // line 58
+        // line 54
         echo \layout::func_from_text("            </select>
         </div>
-    </div>
-    <div class=\"form-group\" id=\"rejected\" ");
-        // line 61
+
+        <label class=\"col-md-2 control-label rejected\" for=\"message\" ");
+        // line 57
+        if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "rejected")) {
+            echo \layout::func_from_text("style='display:none;'");
+        }
+        echo \layout::func_from_text(">Причина</label>
+        <div class=\"col-md-4 rejected\" ");
+        // line 58
         if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "rejected")) {
             echo \layout::func_from_text("style='display:none;'");
         }
         echo \layout::func_from_text(">
-        <label class=\"col-lg-2 control-label\" for=\"message\">Причина</label>
-        <div class=\"col-lg-4\">
             <textarea rows=\"3\" class=\"form-control\" name=\"message\" id=\"message\">");
-        // line 64
+        // line 59
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "message"), "html", null, true));
         echo \layout::func_from_text("</textarea>
         </div>
     </div>
     ");
-        // line 67
+        // line 62
         if ((isset($context["full_edit"]) ? $context["full_edit"] : null)) {
-            // line 68
+            // line 63
             echo \layout::func_from_text("    <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"priority\">Приоритет</label>
-        <div class=\"col-lg-4\">
+        <label class=\"col-md-2 control-label\" for=\"priority\">Приоритет</label>
+        <div class=\"col-md-4\">
             <select name=\"priority\" id=\"priority\">
                 <option value=\"1\" ");
-            // line 72
+            // line 67
             if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "priority") == 1)) {
                 echo \layout::func_from_text("selected");
             }
             echo \layout::func_from_text(">Низкий</option>
                 <option value=\"2\" ");
-            // line 73
+            // line 68
             if (((!$this->getAttribute((isset($context["task"]) ? $context["task"] : null), "priority")) || ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "priority") == 2))) {
                 echo \layout::func_from_text("selected");
             }
             echo \layout::func_from_text(">Обычный</option>
                 <option value=\"3\" ");
-            // line 74
+            // line 69
             if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "priority") == 3)) {
                 echo \layout::func_from_text("selected");
             }
             echo \layout::func_from_text(">Высокий</option>
                 <option value=\"4\" ");
-            // line 75
+            // line 70
             if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "priority") == 4)) {
                 echo \layout::func_from_text("selected");
             }
             echo \layout::func_from_text(">Критический</option>
             </select>
         </div>
+
+        <label class=\"col-md-2 control-label\" for=\"start\">Начало</label>
+        <div class=\"col-md-2\">
+            <input type=\"text\" name=\"start\" id=\"start\" class=\"form-control\" value=\"");
+            // line 76
+            echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "start"), "d.m.Y"), "html", null, true));
+            echo \layout::func_from_text("\">
+        </div>
+
     </div>
     <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"estimated_time\">Расчетное время</label>
-        <div class=\"col-lg-2\">
-            <div class=\"input-group\">
-                <input type=\"text\" name=\"estimated_time\" id=\"estimated_time\" class=\"form-control\" value=\"");
-            // line 83
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "estimated_time"), "html", null, true));
-            echo \layout::func_from_text("\">
-                <span class=\"input-group-addon\">ч.</span>
-            </div>
-        </div>
-    </div>
-    ");
-        }
-        // line 89
-        echo \layout::func_from_text("
-    ");
-        // line 90
-        if ((isset($context["full_edit"]) ? $context["full_edit"] : null)) {
-            // line 91
-            echo \layout::func_from_text("    ");
+        ");
+            // line 81
             if ((!$this->getAttribute((isset($context["project"]) ? $context["project"] : null), "owner"))) {
-                // line 92
-                echo \layout::func_from_text("    <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"assigned\">Делегировано</label>
-        <div class=\"col-lg-2\">
-            <select name=\"assigned\" id=\"assigned\">
-                <option value=\"\">&nbsp;</option>
-                ");
-                // line 97
+                // line 82
+                echo \layout::func_from_text("            <label class=\"col-md-2 control-label\" for=\"assigned\">Делегировано</label>
+            <div class=\"col-md-4\">
+                <select name=\"assigned\" id=\"assigned\">
+                    <option value=\"\">&nbsp;</option>
+                    ");
+                // line 86
                 $context['_parent'] = (array) $context;
                 $context['_seq'] = twig_ensure_traversable((isset($context["users"]) ? $context["users"] : null));
                 foreach ($context['_seq'] as $context["_key"] => $context["u"]) {
-                    // line 98
-                    echo \layout::func_from_text("                <option value=\"");
+                    // line 87
+                    echo \layout::func_from_text("                        <option value=\"");
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user"), "html", null, true));
                     echo \layout::func_from_text("\" ");
                     if (($this->getAttribute((isset($context["u"]) ? $context["u"] : null), "id_user") == $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "assigned"))) {
@@ -254,32 +254,26 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
                     echo \layout::func_from_text(">");
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "fio"), "html", null, true));
                     echo \layout::func_from_text("</option>
-                ");
+                    ");
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['u'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 100
-                echo \layout::func_from_text("            </select>
-        </div>
-    </div>
-    ");
+                // line 89
+                echo \layout::func_from_text("                </select>
+            </div>
+        ");
+            } else {
+                // line 92
+                echo \layout::func_from_text("            <div class=\"col-md-6\"></div>
+        ");
             }
-            // line 104
-            echo \layout::func_from_text("    <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"start\">Начало</label>
-        <div class=\"col-lg-2\">
-            <input type=\"text\" name=\"start\" id=\"start\" class=\"form-control\" value=\"");
-            // line 107
-            echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "start"), "d.m.Y"), "html", null, true));
-            echo \layout::func_from_text("\">
-        </div>
-    </div>
-    <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"end\">Окончание</label>
-        <div class=\"col-lg-2\">
+            // line 94
+            echo \layout::func_from_text("
+        <label class=\"col-md-2 control-label\" for=\"end\">Окончание</label>
+        <div class=\"col-md-2\">
             <input type=\"text\" name=\"end\" id=\"end\" class=\"form-control\" value=\"");
-            // line 113
+            // line 97
             if ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "end")) {
                 echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "end"), "d.m.Y"), "html", null, true));
             }
@@ -288,17 +282,17 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
     </div>
     ");
         }
-        // line 117
+        // line 101
         echo \layout::func_from_text("    <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"percent\">Статус выполнения</label>
-        <div class=\"col-lg-2\">
+        <label class=\"col-md-2 control-label\" for=\"percent\">% выполнения</label>
+        <div class=\"col-md-4\">
             <select name=\"percent\" id=\"percent\" style=\"width: 100px;\">
                 ");
-        // line 121
+        // line 105
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable(array(0 => 0, 1 => 10, 2 => 20, 3 => 30, 4 => 40, 5 => 50, 6 => 60, 7 => 70, 8 => 80, 9 => 90, 10 => 100));
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-            // line 122
+            // line 106
             echo \layout::func_from_text("                    <option value=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["i"]) ? $context["i"] : null), "html", null, true));
             echo \layout::func_from_text("\" ");
@@ -313,43 +307,59 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 124
+        // line 108
         echo \layout::func_from_text("            </select>
+        </div>
+        <label class=\"col-md-2 control-label\" for=\"estimated_time\">Расчетное время</label>
+        <div class=\"col-md-2\">
+            <div class=\"input-group\">
+                <input type=\"text\" name=\"estimated_time\" id=\"estimated_time\" class=\"form-control\" value=\"");
+        // line 113
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "estimated_time"), "html", null, true));
+        echo \layout::func_from_text("\">
+                <span class=\"input-group-addon\">ч.</span>
+            </div>
         </div>
     </div>
     ");
-        // line 127
+        // line 118
         if ((isset($context["categories"]) ? $context["categories"] : null)) {
-            // line 128
+            // line 119
             echo \layout::func_from_text("    <div class=\"form-group\">
-        <label class=\"col-lg-2 control-label\" for=\"category\">Категория</label>
-        <div class=\"col-lg-2\">
-            <table>
+        <label class=\"col-md-2 control-label\" for=\"category\">Категория</label>
+        <div class=\"col-md-10\">
+            <table style=\"width: 100%;\">
                 ");
-            // line 132
+            // line 123
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["categories"]) ? $context["categories"] : null));
             foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
-                // line 133
+                // line 124
                 echo \layout::func_from_text("                    <tr>
                         <td style=\"padding: 3px;\">
-                            <span class=\"label\" style=\"background: ");
-                // line 135
-                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color"), "html", null, true));
-                echo \layout::func_from_text(";color: ");
-                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color_text"), "html", null, true));
-                echo \layout::func_from_text("\">
-                                <input type=\"checkbox\" style=\"margin-top: -2px;\" name=\"category[]\" value=\"");
-                // line 136
+                            <input type=\"checkbox\" id=\"cat_");
+                // line 126
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "id"), "html", null, true));
+                echo \layout::func_from_text("\" style=\"margin-top: -2px;\" name=\"category[]\" value=\"");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("\" ");
                 if ($this->getAttribute((isset($context["task_categories"]) ? $context["task_categories"] : null), $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "id"), array(), "array")) {
                     echo \layout::func_from_text("checked");
                 }
-                echo \layout::func_from_text("> ");
+                echo \layout::func_from_text(">
+                            <label class=\"label label-cat\" for=\"cat_");
+                // line 127
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "id"), "html", null, true));
+                echo \layout::func_from_text("\" style=\"background: ");
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color"), "html", null, true));
+                echo \layout::func_from_text(";color: ");
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color_text"), "html", null, true));
+                echo \layout::func_from_text(";position: relative;top:0;\">
+                                ");
+                // line 128
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "name"), "html", null, true));
                 echo \layout::func_from_text("
-                            </span>
+                            </label>
                         </td>
                     </tr>
                 ");
@@ -357,52 +367,52 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 141
+            // line 133
             echo \layout::func_from_text("            </table>
         </div>
     </div>
     ");
         }
-        // line 145
+        // line 137
         echo \layout::func_from_text("    ");
         if ((isset($context["full_edit"]) ? $context["full_edit"] : null)) {
-            // line 146
+            // line 138
             echo \layout::func_from_text("        <center>
             <a class=\"btn btn-warning\" href=\"\" add_file_to_task style=\"margin: 20px 0 20px 0;\">Прикрепить файлы</a>
             ");
-            // line 148
+            // line 140
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_files")) {
                 echo \layout::func_from_text("<a class=\"btn btn-info upload_files\" style=\"margin: 20px 0 20px 0;\" href=\"\">Загрузить файлы</a>");
             }
-            // line 149
+            // line 141
             echo \layout::func_from_text("        </center>
         ");
-            // line 150
+            // line 142
             $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "files/files_table.html"), "method"));
             $template->display($context);
-            // line 151
+            // line 143
             echo \layout::func_from_text("    ");
         }
-        // line 152
+        // line 144
         echo \layout::func_from_text("
     <div style=\"text-align: center;\">
         ");
-        // line 154
+        // line 146
         if (((isset($context["full_edit"]) ? $context["full_edit"] : null) && (!$this->getAttribute((isset($context["project"]) ? $context["project"] : null), "owner")))) {
-            // line 155
+            // line 147
             echo \layout::func_from_text("        <div style=\"margin-bottom: 10px;\">
         Послать уведомление&nbsp;&nbsp;
             <input type=\"checkbox\" name=\"email\" checked> по email&nbsp;&nbsp;
             ");
-            // line 158
+            // line 150
             if (($this->getAttribute($this->getAttribute((isset($context["settings"]) ? $context["settings"] : null), "send_sms"), "value") == 1)) {
                 echo \layout::func_from_text("<input type=\"checkbox\" name=\"sms\"> по смс");
             }
-            // line 159
+            // line 151
             echo \layout::func_from_text("        </div>
         ");
         }
-        // line 161
+        // line 153
         echo \layout::func_from_text("        <button class=\"btn btn-large btn-primary save_task\" type=\"button\">");
         if ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id")) {
             echo \layout::func_from_text("Сохранить");
@@ -410,7 +420,15 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
             echo \layout::func_from_text("Создать");
         }
         echo \layout::func_from_text("</button>
-    </div>
+        ");
+        // line 154
+        if ((!$this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"))) {
+            // line 155
+            echo \layout::func_from_text("            <button class=\"btn btn-large btn-primary save_task create_other\" type=\"button\">Сохранить и создать еще</button>
+        ");
+        }
+        // line 157
+        echo \layout::func_from_text("    </div>
 </form>
 <div class=\"clearfix\"></div>
 ");
@@ -428,6 +446,6 @@ class __TwigTemplate_b2cbd7b55bd83e504f5dfb52ddae44640cfa589a8ebb924058bf2a71298
 
     public function getDebugInfo()
     {
-        return array (  406 => 161,  402 => 159,  398 => 158,  393 => 155,  391 => 154,  387 => 152,  384 => 151,  381 => 150,  378 => 149,  374 => 148,  370 => 146,  367 => 145,  361 => 141,  344 => 136,  338 => 135,  334 => 133,  330 => 132,  324 => 128,  322 => 127,  317 => 124,  302 => 122,  298 => 121,  292 => 117,  283 => 113,  274 => 107,  269 => 104,  263 => 100,  248 => 98,  244 => 97,  237 => 92,  234 => 91,  232 => 90,  229 => 89,  220 => 83,  207 => 75,  201 => 74,  195 => 73,  189 => 72,  183 => 68,  181 => 67,  175 => 64,  167 => 61,  162 => 58,  155 => 56,  148 => 55,  146 => 54,  139 => 53,  135 => 52,  129 => 48,  122 => 44,  113 => 38,  108 => 35,  105 => 34,  99 => 33,  94 => 30,  88 => 28,  82 => 26,  80 => 25,  77 => 24,  74 => 23,  67 => 20,  63 => 18,  61 => 17,  53 => 13,  50 => 12,  43 => 8,  40 => 7,  32 => 4,  29 => 3,);
+        return array (  431 => 157,  427 => 155,  425 => 154,  416 => 153,  412 => 151,  408 => 150,  403 => 147,  401 => 146,  397 => 144,  394 => 143,  391 => 142,  388 => 141,  384 => 140,  380 => 138,  377 => 137,  371 => 133,  360 => 128,  352 => 127,  342 => 126,  338 => 124,  334 => 123,  328 => 119,  326 => 118,  318 => 113,  311 => 108,  296 => 106,  292 => 105,  286 => 101,  277 => 97,  272 => 94,  268 => 92,  263 => 89,  248 => 87,  244 => 86,  238 => 82,  236 => 81,  228 => 76,  217 => 70,  211 => 69,  205 => 68,  199 => 67,  193 => 63,  191 => 62,  185 => 59,  179 => 58,  173 => 57,  168 => 54,  161 => 52,  154 => 51,  152 => 50,  145 => 49,  141 => 48,  135 => 44,  128 => 40,  119 => 34,  114 => 31,  111 => 30,  105 => 29,  100 => 26,  94 => 24,  88 => 22,  86 => 21,  83 => 20,  80 => 19,  74 => 16,  70 => 15,  66 => 14,  61 => 13,  58 => 12,  52 => 9,  48 => 8,  45 => 7,  32 => 4,  29 => 3,);
     }
 }

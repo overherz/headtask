@@ -4,14 +4,12 @@
 
 {% block js %}
     <script type ="text/javascript" src="{{ app.path('users','invite.js') }}"></script>
-    <script type ="text/javascript" src="/source/js/search.js"></script>
-    <script type="text/javascript" src="/source/js/skypeCheck.js"></script>
 {% endblock %}
 
 {% block context %}
-    {% if invite %}<input type="button" class="btn btn-primary" value="Пригласить" style="position: absolute;right: 10px;" id="invite_user">{% endif %}
+    {% if invite %}<input type="button" class="btn btn-primary" value="Пригласить" style="position: absolute;right: 15px;" id="invite_user">{% endif %}
     {% include "/source/search_form.html" %}
-    <div id="search_result">
+    <div id="search_result" style="margin: 0 -15px;">
         {% include app.path('users','users_table.html') %}
     </div>
 {% endblock %}

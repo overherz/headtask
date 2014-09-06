@@ -30,14 +30,7 @@ class projects extends \Controller {
     {
         if (!$this->id)
         {
-            $projects_ar = $this->get_projects();
-            if ($projects_ar)
-            {
-                $projects = $projects_ar['projects'];
-                $redirect = current($projects_ar['projects']);
-                $this->redirect("/projects/tasks/{$redirect['id']}/");
-            }
-            else $this->redirect("/projects/all/");
+            $this->redirect("/projects/all/");
         }
         else
         {
@@ -50,7 +43,7 @@ class projects extends \Controller {
 
             if (!$res['error'])
             {
-                if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+                if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
                 crumbs($project['name'],"/projects/~{$project['id']}");
                 crumbs("Обзор");
 
@@ -76,13 +69,13 @@ class projects extends \Controller {
                 }
                 else
                 {
-                    $start = date("d-m-Y",strtotime("-3 days", time()));
-                    $end = date("d-m-Y",time());
-                    $logs = $this->get_controller("projects","logs")->get_logs(false,$this->id,false);
+                    $start = strtotime(date("d.m.Y",strtotime("-3 days", time())));
+                    $end = time();
+                    $logs = $this->get_controller("projects","logs")->get_logs(false,$this->id,false,$start,$end);
 
+                    $this->set_global("id_project",$this->id);
                     $data = array(
                         'access' => $access['access'],
-                        'projects' => $this->get_projects($this->id),
                         'project' => $project,
                         'review_button' => true,
                         'stats' => $this->get_controller("projects","tasks")->get_stats($this->id),
@@ -90,9 +83,9 @@ class projects extends \Controller {
                         'categories' => $this->get_categories($this->id),
                         'logs' => $logs['logs'],
                         'paginator' => $logs['paginator'],
-                        'types' => array('project','task','file','news','comment'),//$this->db->get_enum("projects_logs","type"),
-                        'start' => $start,
-                        'end' => $end
+                        'types' => array('project','task','file','news','comment','forum'),//$this->db->get_enum("projects_logs","type"),
+                        'start' => date("d.m.Y",$start),
+                        'end' => date("d.m.Y",$end),
                     );
                     $this->layout_show("review.html",$data);
                 }
@@ -127,19 +120,21 @@ class projects extends \Controller {
         return $paginator->pages;
     }
 
-    function get_projects($id_project=false)
+    function get_projects($id_project=false,$data=false)
     {
-        if ($id_project) $page = $this->get_number_page($id_project);
-        else $page = $_POST['project_panel_page'];
+        if ($this->get_global('id_project')) $id_project = $this->get_global('id_project');
+
+        if ($_POST['project_panel_page'] != "") $page = $_POST['project_panel_page'];
+        else if ($id_project) $page = $this->get_number_page($id_project);
 
         $where[] = "archive IS NULL";
-        if ($_SESSION['user']['id_group'] != 1) $where[] = "u.id_user='{$_SESSION['user']['id_user']}' and u.role IS NOT NULL";
-        else $where[] = "(p.owner='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";
+        $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
+//        else $where[] = "(p.owner='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";
 
         if ($where) $where = "where ".implode(" and ",$where);
 
         $query = $this->db->query("select count(distinct p.id) as count from projects as p
-            LEFT JOIN projects_users as u ON p.id = u.id_project
+            LEFT JOIN projects_users as u ON p.id = u.id_project and u.id_user=".$_SESSION['user']['id_user']."
             {$where}
         ");
         $total =$query->fetch();
@@ -148,11 +143,9 @@ class projects extends \Controller {
         require_once(ROOT.'libraries/paginator/paginator.php');
         $paginator = new \Paginator($total, $page, $this->project_panel_limit);
 
-        $query = $this->db->query("select p.* from projects as p
-            LEFT JOIN projects_users as u ON p.id = u.id_project
-            LEFT JOIN projects_tasks_categories as c ON c.id_project = p.id
+        $query = $this->db->query("select p.*,u.role from projects as p
+            LEFT JOIN projects_users as u ON p.id = u.id_project and u.id_user=".$_SESSION['user']['id_user']."
             {$where}
-            group by p.id
             order by p.owner DESC,p.name
             LIMIT {$this->project_panel_limit}
             OFFSET {$paginator->get_range('from')}
@@ -163,22 +156,31 @@ class projects extends \Controller {
             $projects[$row['id']] = $row;
         }
 
-        if ($projects)
+        if (!$data)
         {
             if ($_POST['project_panel_page'])
             {
                 $data['projects'] = array('projects' => $projects,'paginator' => $paginator,'current_project' => $_POST['id_project']);
-                $res['success']['panel'] = $this->layout_get("projects_in_panel.html",$data);
+                $res['success'] = $this->layout_get("projects_in_panel.html",$data);
 
                 echo json_encode($res);
             }
             else
             {
-                return array (
+                $data = array (
                     'projects' => $projects,
-                    'paginator' => $paginator
+                    'paginator' => $paginator,
+                    'current_project' => $this->get_global('id_project')
                 );
+                return $this->layout_get("projects_in_panel.html",array('projects' => $data));
             }
+        }
+        else
+        {
+            return array (
+                'projects' => $projects,
+                'paginator' => $paginator
+            );
         }
     }
 

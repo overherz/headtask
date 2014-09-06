@@ -16,7 +16,7 @@ class __TwigTemplate_ca6d1bc9fb5a5045d0eccd5926ec1a8be59ceb752d98adbc04c44450ae3
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<table class=\"table table-border\" style=\"margin-top: 15px;\" id=\"category_table\">
+        echo \layout::func_from_text("<table class=\"table table_style no_padding_right\" style=\"margin-top: 15px;\" id=\"category_table\">
     <thead>
     <tr>
         <th>Название</th>
@@ -33,16 +33,16 @@ class __TwigTemplate_ca6d1bc9fb5a5045d0eccd5926ec1a8be59ceb752d98adbc04c44450ae3
             // line 10
             echo \layout::func_from_text("        <tr>
             <td>
-                <span class=\"label\" style=\"background: ");
+                <span class=\"label label-cat\" style=\"background: ");
             // line 12
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color"), "html", null, true));
             echo \layout::func_from_text(";color: ");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "color_text"), "html", null, true));
-            echo \layout::func_from_text("\">");
+            echo \layout::func_from_text(";\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("</span>
             </td>
-            <td style=\"width: 80px;\">
+            <td style=\"width: 75px;\">
                 <div class=\"btn-group\">
                     <a class=\"btn btn-info btn-sm edit_category\" data-id=\"");
             // line 16
@@ -61,7 +61,7 @@ class __TwigTemplate_ca6d1bc9fb5a5045d0eccd5926ec1a8be59ceb752d98adbc04c44450ae3
         if (!$context['_iterated']) {
             // line 22
             echo \layout::func_from_text("        <tr id=\"cat_not_found\">
-            <td colspan=\"3\">категорий не найдено</td>
+            <td colspan=\"3\">меток не найдено</td>
         </tr>
     ");
         }

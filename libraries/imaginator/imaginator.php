@@ -74,7 +74,8 @@ class imaginator {
         if($this->error)return false;
         if(!$this->headers)
         {
-            if (substr($this->file['path'],0,5) == "/tmp/")  unlink($this->file['path']);
+            if (substr($this->file['path'],0,5) == "/tmp/")
+                if (file_exists($this->file['path'])) unlink($this->file['path']);
         }
     }
 

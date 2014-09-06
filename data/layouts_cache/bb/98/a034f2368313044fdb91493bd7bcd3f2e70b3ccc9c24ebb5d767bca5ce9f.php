@@ -39,29 +39,27 @@ class __TwigTemplate_bb98a034f2368313044fdb91493bd7bcd3f2e70b3ccc9c24ebb5d767bca
         echo \layout::func_from_text("    <script type =\"text/javascript\" src=\"");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "invite.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
-    <script type =\"text/javascript\" src=\"/source/js/search.js\"></script>
-    <script type=\"text/javascript\" src=\"/source/js/skypeCheck.js\"></script>
 ");
     }
 
-    // line 11
+    // line 9
     public function block_context($context, array $blocks = array())
     {
-        // line 12
+        // line 10
         echo \layout::func_from_text("    ");
         if ((isset($context["invite"]) ? $context["invite"] : null)) {
-            echo \layout::func_from_text("<input type=\"button\" class=\"btn btn-primary\" value=\"Пригласить\" style=\"position: absolute;right: 10px;\" id=\"invite_user\">");
+            echo \layout::func_from_text("<input type=\"button\" class=\"btn btn-primary\" value=\"Пригласить\" style=\"position: absolute;right: 15px;\" id=\"invite_user\">");
         }
-        // line 13
+        // line 11
         echo \layout::func_from_text("    ");
         $this->env->loadTemplate("/source/search_form.html")->display($context);
-        // line 14
-        echo \layout::func_from_text("    <div id=\"search_result\">
+        // line 12
+        echo \layout::func_from_text("    <div id=\"search_result\" style=\"margin: 0 -15px;\">
         ");
-        // line 15
+        // line 13
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "users", 1 => "users_table.html"), "method"));
         $template->display($context);
-        // line 16
+        // line 14
         echo \layout::func_from_text("    </div>
 ");
     }
@@ -78,6 +76,6 @@ class __TwigTemplate_bb98a034f2368313044fdb91493bd7bcd3f2e70b3ccc9c24ebb5d767bca
 
     public function getDebugInfo()
     {
-        return array (  65 => 16,  62 => 15,  59 => 14,  56 => 13,  51 => 12,  48 => 11,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  63 => 14,  60 => 13,  57 => 12,  54 => 11,  49 => 10,  46 => 9,  39 => 6,  36 => 5,  30 => 3,);
     }
 }

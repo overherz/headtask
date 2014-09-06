@@ -95,8 +95,9 @@ class users extends \Controller {
                 $rights[$row['id_access_group']]['rights'][] = $row;
             }
 
+            $this->set_global('id_project',$project['id']);
             $this->layout_show('users/add_user.html',array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'add_users_button' => $add_users_button,
                 'project' => $project,
                 'access' => $access['access'],
@@ -150,8 +151,9 @@ class users extends \Controller {
         crumbs($project['name'],"/projects/~{$project['id']}");
         crumbs("Участники");
 
+        $this->set_global('id_project',$project['id']);
         $data = array(
-            'projects' => $this->get_controller("projects")->get_projects($project['id']),
+            //'projects' => $this->get_controller("projects")->get_projects($project['id']),
             'users_button' => true,
             'project' => $project,
             'users' => $users,
@@ -330,7 +332,7 @@ class users extends \Controller {
         return $user['role'];
     }
 
-    function get_access($id_project=false,$id_user=false,$id_task=false)
+    function get_access($id_project=false,$id_user=false,$id_task=false,$global=false)
     {
         $accesses = array(
             'add_project' => false,
@@ -341,14 +343,18 @@ class users extends \Controller {
             'edit_task' => false
         );
 
-        if (!$id_user)
+        if (!$global)
         {
-            $id_user = $_SESSION['user']['id_user'];
-            $u_cr = $this->get_controller("users");
-            $u_info = $u_cr->get_user($id_user);
-            $group = $u_info['id_group'];
+            if (!$id_user)
+            {
+                $id_user = $_SESSION['user']['id_user'];
+                $u_cr = $this->get_controller("users");
+                $u_info = $u_cr->get_user($id_user);
+                $group = $u_info['id_group'];
+            }
+            else $group = $_SESSION['user']['id_group'];
         }
-        else $group = $_SESSION['user']['id_group'];
+        else $group = $global;
 
         if ($id_task)
         {

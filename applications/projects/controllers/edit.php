@@ -32,11 +32,13 @@ class edit extends \Controller {
             $p_cr = $this->get_controller("projects");
             if ($project = $p_cr->get_project($this->id))
             {
-                if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+                if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
                 crumbs($project['name'],"/projects/~{$project['id']}");
                 crumbs("Редактирование проекта");
+
+                $this->set_global('id_project',$project['id']);
                 $this->layout_show('add.html',array(
-                    'projects' => $p_cr->get_projects($project['id']),
+                    //'projects' => $p_cr->get_projects($project['id']),
                     'project' => $project,
                     'access' => $access['access'],
                     'edit_button' => true,

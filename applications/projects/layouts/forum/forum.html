@@ -1,8 +1,7 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-Проект "{{project.name}}"
-{% endblock %}
+Форум {{project.name}}{% endblock %}
 
 {% block js %}
 {{ parent() }}
@@ -12,7 +11,7 @@
 
 {% block project_data %}
 <div class="new_post_count"><a href='/projects/forum/new_posts/{{project.id}}'>Новый сообщений: {{new_post_count}}</a></div>
-<table class="table table-border table-hover table-condensed" id="tasks_table">
+<table class="table table-hover table_style no_padding_right" id="tasks_table">
     <thead>
     <tr>
         <th>Название раздела</th>
@@ -34,13 +33,13 @@
             {% if f.last %}
                 <div><a href='/projects/forum/show_topic/{{f.last.id}}/'>{{f.last.name}}</a></div>
                 <div><a href='/users/~{{f.last.author.id_user}}/' style="color:{{ f.last.color }};font-weight: bold;" title="{{ f.last.group_name }}">{{f.last.author.fio}}</a></div>
-                <div>{{f.last.created|date('d.m.Y H:i:s')}}</div>
+                <div>{{f.last.created|date('d.m.Y H:i')}}</div>
             {% else %}
                 сообщений нет
             {% endif %}
         </td>
         {% if access.forum %}
-        <td style="width: 85px;">
+        <td style="width: 75px;">
             <div class="btn-group">
                 <a class="btn btn-oscar btn-sm" href="/projects/forum/edit/{{f.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-oscar btn-sm" delete_forum={{f.id}} href=""><i class="fa fa-trash-o"></i></a>

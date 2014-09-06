@@ -10,6 +10,7 @@ class __TwigTemplate_615655a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c39
         $this->parent = $this->env->loadTemplate("/source/index.html");
 
         $this->blocks = array(
+            'title' => array($this, 'block_title'),
             'js' => array($this, 'block_js'),
             'context' => array($this, 'block_context'),
         );
@@ -26,14 +27,18 @@ class __TwigTemplate_615655a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c39
     }
 
     // line 3
+    public function block_title($context, array $blocks = array())
+    {
+        echo \layout::func_from_text("Общая лента");
+    }
+
+    // line 5
     public function block_js($context, array $blocks = array())
     {
-        // line 4
+        // line 6
         echo \layout::func_from_text("<script type =\"text/javascript\" src=\"");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "logs.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
-<script src=\"/source/js/jquery.ui.datepicker-ru.min.js\"></script>
-<script type =\"text/javascript\" src=\"/source/js/search.js\"></script>
 ");
     }
 
@@ -41,42 +46,63 @@ class __TwigTemplate_615655a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c39
     public function block_context($context, array $blocks = array())
     {
         // line 10
-        echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin-bottom:0;\">
+        echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal user_tasks\" style=\"margin-bottom:20px;\">
     <input type=\"hidden\" name=\"page\" value=\"\">
-    Тип <select name=\"type\">
-        <option>&nbsp;</option>
-        ");
-        // line 14
+    <table class=\"table table_style no_style\" style=\"width: auto;margin-top: 0\">
+        <thead>
+            <tr>
+                <th>Тип</th>
+                <th>Дата</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <select name=\"type[]\" multiple size=\"4\">
+                        ");
+        // line 24
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["types"]) ? $context["types"] : null));
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-            // line 15
-            echo \layout::func_from_text("            <option value=\"");
+            // line 25
+            echo \layout::func_from_text("                            <option value=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["i"]) ? $context["i"] : null), "html", null, true));
             echo \layout::func_from_text("\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, lang(("type_" . (isset($context["i"]) ? $context["i"] : null))), "html", null, true));
             echo \layout::func_from_text("</option>
-        ");
+                        ");
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 17
-        echo \layout::func_from_text("    </select>&nbsp;
-    <i class=\"fa fa-calendar\"></i> <input type=\"text\" name=\"start\" value=\"");
-        // line 18
+        // line 27
+        echo \layout::func_from_text("                    </select>
+                </td>
+                <td>
+                    От: <input type=\"text\" name=\"start\" value=\"");
+        // line 30
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["start"]) ? $context["start"] : null), "html", null, true));
-        echo \layout::func_from_text("\" class=\"input-small\" readonly> <i class=\"fa fa-arrow-right\"></i> <input type=\"text\" name=\"end\" value=\"");
+        echo \layout::func_from_text("\" readonly style=\"width: 90px;margin-bottom: 10px;\"><br>
+                    До: <input type=\"text\" name=\"end\" value=\"");
+        // line 31
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["end"]) ? $context["end"] : null), "html", null, true));
-        echo \layout::func_from_text("\" class=\"input-small\" readonly>
+        echo \layout::func_from_text("\" readonly style=\"width: 90px;\">
+                </td>
+                <td>
+                    <input type=\"text\" name=\"search\" id=\"search_label\" class=\"input-large\" placeholder=\"Поиск\">
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </form>
 
 <div id=\"search_result\">
     ");
-        // line 22
+        // line 42
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "logs.html"), "method"));
         $template->display($context);
-        // line 23
+        // line 43
         echo \layout::func_from_text("</div>
 ");
     }
@@ -93,6 +119,6 @@ class __TwigTemplate_615655a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c39
 
     public function getDebugInfo()
     {
-        return array (  80 => 23,  77 => 22,  68 => 18,  65 => 17,  54 => 15,  50 => 14,  44 => 10,  41 => 9,  32 => 4,  29 => 3,);
+        return array (  106 => 43,  103 => 42,  89 => 31,  85 => 30,  80 => 27,  69 => 25,  65 => 24,  49 => 10,  46 => 9,  39 => 6,  36 => 5,  30 => 3,);
     }
 }

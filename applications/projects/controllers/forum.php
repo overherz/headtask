@@ -109,10 +109,11 @@ class forum extends \Admin {
         $query->execute(array($this->_0,$_SESSION['user']['id_user']));
         $new_posts = $query->fetchAll();
 
+        $this->set_global('id_project',$access['project']['id']);
         $data = array(
             'new_posts' => $new_posts,
             'access' => $access['access'],
-            'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+            //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
             'forum_button' => true,
             'paginator' => $paginator,
             'project' => $access['project']
@@ -156,8 +157,9 @@ class forum extends \Admin {
             if ($forum) crumbs("Редактирование \"{$forum['name']}\"");
             else crumbs("Добавление нового раздела");
 
+            $this->set_global('id_project',$project['id']);
             $this->layout_show('forum/add_forum.html',array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+               // 'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'add_forum_button' => $add_forum_button,
                 'project' => $project,
                 'access' => $access['access'],
@@ -215,9 +217,10 @@ class forum extends \Admin {
                 }
             }
 
+            $this->set_global('id_project',$project['id']);
             $data = array(
                 'project' => $project,
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+              //  'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'forum_button' => true,
                 'access' => $access['access'],
                 'forums' => $forums,
@@ -295,10 +298,11 @@ class forum extends \Admin {
                 }
             }
 
+            $this->set_global('id_project',$access['project']['id']);
             $data = array(
                 'forum' => $forum,
                 'project' => $access['project'],
-                'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+             //   'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
                 'forum_button' => true,
                 'access' => $access['access'],
                 'paginator' => $paginator,
@@ -359,8 +363,9 @@ class forum extends \Admin {
             $this->update_subscribe($this->_0);
             $topic['subscribe'] = $this->check_subscribe($this->_0);
 
+            $this->set_global('id_project',$access['project']['id']);
             $this->layout_show("forum/show_topic.html",array(
-                'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+              //  'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
                 'project' => $access['project'],
                 'access' => $access['access'],
                 'posts' => $posts,
@@ -397,8 +402,9 @@ class forum extends \Admin {
             crumbs($forum['name'],"/projects/forum/show/{$forum['id']}/");
             crumbs("Редактирование темы");
 
+            $this->set_global('id_project',$access['project']['id']);
             $this->layout_show("forum/add_topic.html",array(
-                'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+               // 'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
                 'project' => $access['project'],
                 'access' => $access['access'],
                 'topic' => $topic
@@ -446,7 +452,7 @@ class forum extends \Admin {
                 {
                     $res['success'] = $project['id'];
                     if ($forum['name'] != $_POST['name']) $log_text = ". Название изменено на \"{$_POST['name']}\"";
-                    if ($log) $log->set_logs("project",$id_project,"Изменил раздел форума <a href='/projects/forum/show/{$forum['id']}'>\"{$forum['name']}\"</a>{$log_text}");
+                    if ($log) $log->set_logs("forum",$id_project,"Изменил раздел форума <a href='/projects/forum/show/{$forum['id']}'>{$forum['name']}</a>{$log_text}");
                 }
                 else $res['error'] = "Ошибка сохранения раздела форума";
             }
@@ -457,7 +463,7 @@ class forum extends \Admin {
                 {
                     $last_id = $this->db->lastInsertId();
                     $res['success'] = $project['id'];
-                    if ($log) $log->set_logs("project",$id_project,"Добавил раздел форума <a href='/projects/forum/show/{$last_id}'>\"{$_POST['name']}\"</a>");
+                    if ($log) $log->set_logs("forum",$id_project,"Добавил раздел форума <a href='/projects/forum/show/{$last_id}'>{$_POST['name']}</a>");
                 }
                 else $res['error'] = "Ошибка добавления раздела форума";
             }
@@ -477,7 +483,7 @@ class forum extends \Admin {
             {
                 $log = $this->get_controller("projects","logs");
                 $res['success'] = $access['project']['id'];
-                $log->set_logs("project",$access['project']['id'],"Удален раздел форума \"{$forum['name']}\"");
+                $log->set_logs("forum",$access['project']['id'],"Удален раздел форума {$forum['name']}");
             }
             else $res['error'] = "Ошибка базы данных";
         }
@@ -540,6 +546,9 @@ class forum extends \Admin {
                     {
                         if (!$this->subscribe_always($last_id)) $res['error'] = "Ошибка базы данных";
                         $id_topic = $last_id;
+
+                        $log = $this->get_controller("projects","logs");
+                        if ($log) $log->set_logs("forum",$id_project,"Создана тема <a href='/projects/forum/show_topic/{$id_topic}'>{$_POST['name']}</a>");
                     }
                 }
                 else $res['error'] = "Ошибка добавления темы";
@@ -619,8 +628,17 @@ class forum extends \Admin {
 
         if ($access['access']['forum'])
         {
+            $query = $this->db->prepare("select name from projects_topics where id=?");
+            $query->execute(array($_POST['id']));
+            $topic = $query->fetch();
+
             $query = $this->db->prepare("delete from projects_topics where id=? LIMIT 1");
-            if ($query->execute(array($_POST['id']))) $res['success'] = $access['project']['id'];
+            if ($query->execute(array($_POST['id'])))
+            {
+                $res['success'] = $access['project']['id'];
+                $log = $this->get_controller("projects","logs");
+                if ($log) $log->set_logs("forum",$id_project,"Удалена тема {$topic['name']}");
+            }
             else $res['error'] = "Ошибка базы данных";
         }
         else $res['error'] = "У Вас недостаточно прав";
@@ -834,7 +852,7 @@ class forum extends \Admin {
             $from = get_setting('email');
             foreach($new_posts as $n)
             {
-                $html = $this->layout_get("forum/mail_text.html",array('new_posts' => $n,'server_name' => DOMEN_FOR_CLI));
+                $html = $this->layout_get("forum/mail_text.html",array('new_posts' => $n,'domain' => get_full_domain_name()));
                 if (!send_mail($from, $n[0]['email'], "Новые сообщения на форумах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }
@@ -879,7 +897,7 @@ class forum extends \Admin {
             $from = get_setting('email');
             foreach($new_topics as $n)
             {
-                $html = $this->layout_get("forum/topics_mail.html",array('new_topics' => $n,'server_name' => DOMEN_FOR_CLI));
+                $html = $this->layout_get("forum/topics_mail.html",array('new_topics' => $n,'domain' => get_full_domain_name()));
                 if (!send_mail($from, $n['email'], "Новые темы на форумах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }

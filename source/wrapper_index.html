@@ -1,48 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Task me! {% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}{% if block('title') %} - {% endif %} {{ settings.site_name.value }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/source/js/styler/jquery.formstyler.css" type="text/css" />
-    <link href="http://yandex.st/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/source/admin/fonts/font-awesome/css/font-awesome.minba72.css?v=4.0.3" rel="stylesheet">
-    <link rel="stylesheet" href="/source/css/jquery.jgrowl.css" type="text/css" />
-    <link rel="stylesheet" href="/source/css/popup.css" type="text/css" />
-    <link rel="stylesheet" href="/source/css/content.css" type="text/css" />
-    <link rel="stylesheet" href="/source/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400italic,600italic,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ app.path('/source/css/','plugins.css',true) }}" type="text/css" />
+    <link rel="stylesheet" href="//yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ app.path('/source/admin/fonts/font-awesome/css/','font-awesome.min.css',true) }}">
+    <link rel="stylesheet" href="{{ app.path('/source/css/','content.css',true) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ app.path('/source/css/ui-lightness/','jquery-ui-1.10.4.custom.min.css',true) }}" />
+    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic'  type='text/css'>
     {% block css %}
     {% endblock %}
 </head>
-<body>
-<div id="wrap">
-    {% include "/source/menu.html" %}
-    <div class="from_top"></div>
-    {% block body %}{% endblock %}
-</div>
-{% include "/source/footer.html" %}
 
-<script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
-<script src="/source/js/jquery.jgrowl.min.js"></script>
-<script src="/source/js/functions.js"></script>
-<script src="/source/js/message.js"></script>
-<script src="http://yandex.st/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="/source/js/styler/jquery.formstyler.min.js"></script>
-<script src="/source/js/socket.io/socket.io.js"></script>
-<script src="/source/js/jquery.scrollTo.min.js"></script>
-<!--<script src="{{app.path('users','client.js')}}"></script>-->
-<script>
-    $(document).ready(function($) {
-        $('#wrap input, #wrap select').styler();
-    });
-</script>
-<script src="/source/js/sound_manager/soundmanager2-nodebug-jsmin.js"></script>
+<body>
+<div id="wrapper">
+
+{% block menu %}
+    {% include "/source/menu.html" %}
+ {% endblock %}
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid" style="padding: 0">
+            <div class="row" style="margin-right: 0;">
+                <div class="col-lg-12" style="padding-right: 0;">
+                {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+
+
+<script src="//yastatic.net/jquery/2.1.1/jquery.min.js"></script>
+{% if globals.user.id_user %}
+    <script src="{{ app.path('/source/js/socket.io/','socket.io.js',true)}}"></script>
+    <script src="{{ app.path('/notifications/','client.js',true)}}"></script>
+    <script src="{{ app.path('projects','projects.js')}}"></script>
+    <script src="{{ app.path('/source/js/sound_manager/','soundmanager2-nodebug-jsmin.js',true) }}"></script>
+{% endif %}
+<script src="//yastatic.net/jquery-ui/1.10.4/jquery-ui.min.js"></script>
+<script src="{{ app.path('/source/js/','functions.js',true) }}"></script>
+<script src="//yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>-->
 <script type="text/javascript">
     $(document).ready(function($) {
+        $('input,select').styler();
+
+        {% if globals.user.id_user %}
+        $(".sidebar-nav").click(function(event){
+            event.stopPropagation();
+        })
+
+        var window_width = parseInt($(window).width()) + parseInt(scrollbarWidth(false,true));
+        if (window_width >= 1100)
+        {
+            if ($.cookie('sidebar') == "toggled") $("#wrapper").addClass('toggled');
+        }
+
+        $(".sidebar-brand a").click(function(e) {
+            e.stopPropagation();
+        });
+
+        $(".sidebar-brand").click(function(e) {
+            if (parseInt($(window).width()) + parseInt(scrollbarWidth(false,true)) >= 1100)
+            {
+                $("#wrapper").toggleClass("toggled");
+                var c_tog = false;
+                if ($("#wrapper").hasClass('toggled')) c_tog = 'toggled';
+                $.cookie('sidebar', c_tog, { expires: 30, path: '/' });
+            }
+        });
+
         soundManager.setup({
             useFlashBlock : false,
             url : '/source/js/sound_manager/',
@@ -59,12 +96,17 @@
                 });
             }
         });
+        {% endif %}
     });
 
+    {% if globals.user.id_user %}
     window.ms = {
         address: "{{globals.message_server}}",
-        uniq_key: "{{globals.user.uniq_key}}"
+        uniq_key: "{{globals.user.uniq_key}}",
+        name: "{{globals.user.fio}}",
+        id: "{{globals.user.id_user}}"
     }
+    {% endif %}
 </script>
 {% block js %}
 {% endblock %}

@@ -1,46 +1,13 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-Проект "{{project.name}}"
-{% endblock %}
-
-{% block css %}
-{{ parent() }}
-<link rel="stylesheet" type="text/css" href="/source/js/fancybox/jquery.fancybox.css">
-{% endblock %}
+Задачи {{project.name}}{% endblock %}
 
 {% block js %}
 {{ parent() }}
 <script src="{{app.path('projects','tasks.js')}}"></script>
-<script type ="text/javascript" src="/source/js/search.js"></script>
 {% endblock %}
 
 {% block project_data %}
-{% import "/source/search_macro.html" as inputs %}
-<form action="" id="search_form" method="post" class="form-horizontal" style="margin-bottom:0;">
-    <input type="hidden" name="page" value="">
-    <table class="table table-condensed table-border" id="filter_table">
-        <tr>
-            <th>Статус</th>
-            <th>Приоритет</th>
-            {% if form.category.options %}<th>Метка</th>{% endif %}
-            <th>Другое</th>
-        </tr>
-        <tr>
-            <td>{{ inputs.input(form.status,'status') }}</td>
-            <td>{{ inputs.input(form.priority,'priority') }}</td>
-            {% if form.category.options %}
-                <td>{{ inputs.input(form.category,'category') }}</td>
-            {% endif %}
-            <td>
-                <input type="text" name="search" id="search_label" class="input-large" placeholder="Поиск"><br/><br/>
-                {{ inputs.input(form.percent,'percent',true) }}
-            </td>
-        </tr>
-    </table>
-</form>
-<div class="clearfix"></div>
-<div id="search_result">
-    {% include app.path('projects','tasks/tasks_table.html') %}
-</div>
+    {{ user_tasks|raw }}
 {% endblock %}

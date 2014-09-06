@@ -1,7 +1,7 @@
-{% include '/source/jpaginator_boot.html' %}
+<div style="margin-right: 15px;">{% include '/source/jpaginator_boot.html' %}</div>
 
-<div class="container-fluid" style="padding: 0;">
-    <div class="row">
+<div class="container-fluid" style="padding-right: 0;margin-top: 10px;">
+    <div class="row" style="margin-right: 0;">
         {% for u in users %}
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 user_card">
             <div class="user_sub_card">
@@ -30,4 +30,4 @@
         {% endfor %}
     </div>
 </div>
-{% include '/source/jpaginator_boot.html' %}
+<div style="margin-right: 15px;">{% include '/source/jpaginator_boot_if.html' %}</div>

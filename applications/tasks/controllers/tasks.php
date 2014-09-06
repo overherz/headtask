@@ -1,6 +1,8 @@
 <?php
 namespace tasks;
 
+use global_module\get_options;
+
 require_once(__DIR__ .'../../../../core/initdata.php');
 
 class tasks extends \Controller {
@@ -119,7 +121,10 @@ class tasks extends \Controller {
 
     function get_options()
     {
-        require_once(__DIR__ .'../../../../globals/admin/get_options.php');
+        require_once(__DIR__ .'../../../../globals/get_options.php');
+        $g = new get_options(true);
+        $g->run_module();
+
     }
 }
 

@@ -1,46 +1,55 @@
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <span class="navbar-brand">Task me!</span>
-            <div style="color: orange;position: absolute;left:80px;top:33px;font-size: 11px;">beta</div>
-            {% if globals.menu %}
-            <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            {% endif %}
-        </div>
-        {% if globals.menu %}
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                {% for k,m in globals.menu %}
-                    {% if k != "crumbs"%}
-                         {% if not m.category %}
-                            <li {% if m.active or globals.menu.crumbs[m.id] %}class="active"{% endif %}><a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} title="{{m.name}}" class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{m.name}}</a></li>
-                         {% else %}
-                             <li class="dropdown">
-                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ m.name|raw }} <b class="caret"></b></a>
-                                 <ul class="dropdown-menu">
-                                     {% for sub in m.category %}
-                                        <li><a {% if sub.clickable %}href="{{sub.path}}"{% else %}href='javascript:void(0);'{% endif %} title="{{sub.name}}" class="{% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}">{{sub.name}}</a></li>
-                                     {% endfor %}
-                                 </ul>
-                             </li>
-                         {% endif %}
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand" style="background: #fff;">
+            <span class="navbar-brand logo_color1">h<span class="brand_full">ead</span><span class="logo_color2">t<span class="brand_full">ask</span></span></span>
+            <div style="position: absolute;top:0;right:0;" id="user_menu">
+                <a href="/users/profile/" class="username_in_top" title="Профиль" style="display: inline-block;"><i class="fa fa-user"></i></a>
+                <a href="/users/logout/" id="logout" style="display: inline-block;"><i class="fa fa-power-off"></i></a>
+            </div>
+        </li>
+
+        {% for k,m in globals.menu %}
+            {% if k != "crumbs"%}
+                {% if not m.category %}
+                    <li {% if m.active or globals.menu.crumbs[m.id] %}class="active"{% endif %}>
+                        <div style="position: relative;">
+                            <a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>
+                                {% if m.path == '/projects/' %}<i class="fa fa-tasks sidebar_icon fa-fw"></i>{% endif %}
+                                {% if m.path == '/projects/dashboard/' %}<i class="fa fa-tachometer sidebar_icon fa-fw"></i>{% endif %}
+                                {% if m.path == '/projects/calendar/' %}<i class="fa fa-calendar sidebar_icon fa-fw"></i>{% endif %}
+                                {% if m.path == '/users/' %}<i class="fa fa-users sidebar_icon fa-fw"></i>{% endif %}
+                                {% if m.path == '/projects/logs/' %}<i class="fa fa-eye sidebar_icon fa-fw"></i>{% endif %}
+                                <span class="sidebar_link">{{m.name}}</span>
+                            </a>
+                            {% if m.path == "/projects/" %}
+                                <div style="position: absolute;top:0;right:15px;">
+                                    {% if access.add_project or access.add_own_project or globals.access.add_project or globals.access.add_own_project %}
+                                        <a href="/projects/add/" class="{% if add %}active{% endif %}" style="display: inline-block;text-indent: 2px;padding-right: 4px;"><i class="fa fa-plus"></i></a>
+                                    {% endif %}
+                                    <a href="/projects/all/" class="{% if all_projects %}active{% endif %}" style="display: inline-block;text-indent: 2px;padding-right: 4px;" title="Все проекты"><i class="fa fa-book"></i></a>
+                                </div>
+                            {% endif %}</div>
+                    </li>
+                    {% if m.path == "/projects/" %}
+                        <div id="project_panel_result">[[projects__get_projects]]</div>
+
+                        <form action="" class="project_panel_form" method="post" style="margin: 0px;">
+                            <input type="hidden" name="project_panel_page" value="">
+                            <input type="hidden" name="act" value="get_panel_page_projects">
+                            <input type="hidden" name="id_project" value="{{project.id}}">
+                        </form>
                     {% endif %}
-                {% endfor %}
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                {% if globals.user %}
-                    <li><a href="/users/profile/" class="username_in_top" title="Профиль"><i class="fa fa-user"></i><span>{{globals.user.fio}}</span></a></li>
+                {% else %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ m.name|raw }} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            {% for sub in m.category %}
+                                <li><a {% if sub.clickable %}href="{{sub.path}}"{% else %}href='javascript:void(0);'{% endif %} class="{% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}">{{sub.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
                 {% endif %}
-                {% if globals.user %}
-                    <li><a href="/users/logout/" id="logout"><i class="fa fa-power-off"></i></a></li>
-                {% endif %}
-            </ul>
-        </div>
-        {% endif %}
-    </div>
+            {% endif %}
+        {% endfor %}
+    </ul>
 </div>

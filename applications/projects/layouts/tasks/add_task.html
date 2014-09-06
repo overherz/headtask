@@ -1,22 +1,18 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-{% if task %}Редактирование задачи{% else %}Добавление задачи{% endif %}
+{% if task %}Редактирование задачи {{ task.name }}{% else %}Добавление задачи{% endif %}. Проект {{ project.name }}
 {% endblock %}
 
 {% block css %}
 {{ parent() }}
-<link rel="stylesheet" type="text/css" href="/source/js/fancybox/jquery.fancybox.css">
+<link rel="stylesheet" type="text/css" href="{{ app.path('/source/js/fancybox/','jquery.fancybox.css',true) }}">
 {% endblock %}
 
 {% block js %}
     {{parent()}}
-    <script src="/source/js/jquery.ui.datepicker-ru.min.js"></script>
-    <script type ="text/javascript" src="/source/js/ckeditor/ckeditor.js"></script>
-    <script type ="text/javascript" src="/source/js/fancybox/jquery.fancybox.pack.js"></script>
-    {% if access.edit_tasks or access.edit_task or not task %}
-        <script type ="text/javascript" src="/source/js/search.js"></script>
-    {% endif %}
+    <script type ="text/javascript" src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
+    <script type ="text/javascript" src="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></script>
     <script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
 
@@ -33,21 +29,21 @@
     {% if task.id %}<input type="hidden" name="id" value="{{task.id}}">{% endif %}
     {% if full_edit %}
     <div class="form-group">
-        <label class="col-lg-2 control-label" for="name">Название задачи</label>
-        <div class="col-lg-10">
+        <label class="col-md-2 control-label" for="name">Название задачи</label>
+        <div class="col-md-10">
             <input type="text" name="name" id="name" class="form-control" value="{{task.name}}">
         </div>
     </div>
     <div class="form-group">
-        <label class="col-lg-2 control-label" for="description">Описание задачи</label>
-        <div class="col-lg-10">
+        <label class="col-md-2 control-label" for="description">Описание задачи</label>
+        <div class="col-md-10">
             <div class="wysiwyg"><textarea rows="5" class="form-control" name="description" id="description">{{task.description}}</textarea></div>
         </div>
     </div>
     {% endif %}
     <div class="form-group">
-        <label class="col-lg-2 control-label" for="status">Статус</label>
-        <div class="col-lg-4">
+        <label class="col-md-2 control-label" for="status">Статус</label>
+        <div class="col-md-4">
             <select name="status" id="status">
                 {% if task.status == "closed" %}<option disabled selected>Закрытая</option>{% endif %}
                 <option value="new" {% if task.status == "new" %}selected{% endif %}>Новая</option>
@@ -57,17 +53,16 @@
                 {% endif %}
             </select>
         </div>
-    </div>
-    <div class="form-group" id="rejected" {% if task.status != "rejected" %}style='display:none;'{% endif %}>
-        <label class="col-lg-2 control-label" for="message">Причина</label>
-        <div class="col-lg-4">
+
+        <label class="col-md-2 control-label rejected" for="message" {% if task.status != "rejected" %}style='display:none;'{% endif %}>Причина</label>
+        <div class="col-md-4 rejected" {% if task.status != "rejected" %}style='display:none;'{% endif %}>
             <textarea rows="3" class="form-control" name="message" id="message">{{task.message}}</textarea>
         </div>
     </div>
     {% if full_edit %}
     <div class="form-group">
-        <label class="col-lg-2 control-label" for="priority">Приоритет</label>
-        <div class="col-lg-4">
+        <label class="col-md-2 control-label" for="priority">Приоритет</label>
+        <div class="col-md-4">
             <select name="priority" id="priority">
                 <option value="1" {% if task.priority == 1 %}selected{% endif %}>Низкий</option>
                 <option value="2" {% if not task.priority or task.priority == 2 %}selected{% endif %}>Обычный</option>
@@ -75,66 +70,63 @@
                 <option value="4" {% if task.priority == 4 %}selected{% endif %}>Критический</option>
             </select>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-2 control-label" for="estimated_time">Расчетное время</label>
-        <div class="col-lg-2">
-            <div class="input-group">
-                <input type="text" name="estimated_time" id="estimated_time" class="form-control" value="{{task.estimated_time}}">
-                <span class="input-group-addon">ч.</span>
-            </div>
-        </div>
-    </div>
-    {% endif %}
 
-    {% if full_edit %}
-    {% if not project.owner %}
-    <div class="form-group">
-        <label class="col-lg-2 control-label" for="assigned">Делегировано</label>
-        <div class="col-lg-2">
-            <select name="assigned" id="assigned">
-                <option value="">&nbsp;</option>
-                {% for u in users %}
-                <option value="{{u.id_user}}" {% if u.id_user == task.assigned %}selected{% endif %}>{{u.fio}}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-    {% endif %}
-    <div class="form-group">
-        <label class="col-lg-2 control-label" for="start">Начало</label>
-        <div class="col-lg-2">
+        <label class="col-md-2 control-label" for="start">Начало</label>
+        <div class="col-md-2">
             <input type="text" name="start" id="start" class="form-control" value="{{task.start|date('d.m.Y')}}">
         </div>
+
     </div>
     <div class="form-group">
-        <label class="col-lg-2 control-label" for="end">Окончание</label>
-        <div class="col-lg-2">
+        {% if not project.owner %}
+            <label class="col-md-2 control-label" for="assigned">Делегировано</label>
+            <div class="col-md-4">
+                <select name="assigned" id="assigned">
+                    <option value="">&nbsp;</option>
+                    {% for u in users %}
+                        <option value="{{u.id_user}}" {% if u.id_user == task.assigned %}selected{% endif %}>{{u.fio}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% else %}
+            <div class="col-md-6"></div>
+        {% endif %}
+
+        <label class="col-md-2 control-label" for="end">Окончание</label>
+        <div class="col-md-2">
             <input type="text" name="end" id="end" class="form-control" value="{% if task.end %}{{task.end|date('d.m.Y')}}{% endif %}">
         </div>
     </div>
     {% endif %}
     <div class="form-group">
-        <label class="col-lg-2 control-label" for="percent">Статус выполнения</label>
-        <div class="col-lg-2">
+        <label class="col-md-2 control-label" for="percent">% выполнения</label>
+        <div class="col-md-4">
             <select name="percent" id="percent" style="width: 100px;">
                 {% for i in [0,10,20,30,40,50,60,70,80,90,100] %}
                     <option value="{{i}}" {% if task.percent == i %}selected{% endif %}>{{i}} %</option>
                 {% endfor %}
             </select>
         </div>
+        <label class="col-md-2 control-label" for="estimated_time">Расчетное время</label>
+        <div class="col-md-2">
+            <div class="input-group">
+                <input type="text" name="estimated_time" id="estimated_time" class="form-control" value="{{task.estimated_time}}">
+                <span class="input-group-addon">ч.</span>
+            </div>
+        </div>
     </div>
     {% if categories %}
     <div class="form-group">
-        <label class="col-lg-2 control-label" for="category">Категория</label>
-        <div class="col-lg-2">
-            <table>
+        <label class="col-md-2 control-label" for="category">Категория</label>
+        <div class="col-md-10">
+            <table style="width: 100%;">
                 {% for cat in categories %}
                     <tr>
                         <td style="padding: 3px;">
-                            <span class="label" style="background: {{ cat.color }};color: {{ cat.color_text }}">
-                                <input type="checkbox" style="margin-top: -2px;" name="category[]" value="{{ cat.id }}" {% if task_categories[cat.id] %}checked{% endif %}> {{ cat.name }}
-                            </span>
+                            <input type="checkbox" id="cat_{{ cat.id }}" style="margin-top: -2px;" name="category[]" value="{{ cat.id }}" {% if task_categories[cat.id] %}checked{% endif %}>
+                            <label class="label label-cat" for="cat_{{ cat.id }}" style="background: {{ cat.color }};color: {{ cat.color_text }};position: relative;top:0;">
+                                {{ cat.name }}
+                            </label>
                         </td>
                     </tr>
                 {% endfor %}
@@ -159,6 +151,9 @@
         </div>
         {% endif %}
         <button class="btn btn-large btn-primary save_task" type="button">{% if task.id %}Сохранить{% else %}Создать{% endif %}</button>
+        {% if not task.id %}
+            <button class="btn btn-large btn-primary save_task create_other" type="button">Сохранить и создать еще</button>
+        {% endif %}
     </div>
 </form>
 <div class="clearfix"></div>

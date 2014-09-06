@@ -1,27 +1,36 @@
 {% include '/source/jpaginator_boot.html' %}
-<table class="table table-hover table-condensed table-border">
+<table class="table table-hover table_style">
     <thead>
     <tr>
         <th></th>
-        <th>Проект</th>
+        {% if not id_project %}<th>Проект</th>{% endif %}
         <th>Задача</th>
-        {% if not show_user %}<th><i class="fa fa-comment"></i></th>{% endif %}
+        {% if dashboard %}<th><i class="fa fa-comment"></i></th>{% endif %}
         <th>Статус</th>
-        {% if not show_user %}<th>Делегировано</th>{% endif %}
+        {% if dashboard %}<th>Делегировано</th>{% endif %}
         <th><i class="fa fa-calendar"></i></th>
+        {% if id_project %}<th></th>{% endif %}
     </tr>
     </thead>
     <tbody>
     {% for task in tasks %}
         <tr id="task{{task.id}}">
-            <td style="width: 1px;" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}"></td>
-            <td style="width: 1px;white-space: nowrap;"><a href="/projects/tasks/{{task.id_project}}/" class="get_info_project" data-id="{{ task.id_project}}">{{ task.project_name }}</a></td>
-            <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.task_creater == globals.user.id_user or task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
+            <td style="width: 1px;{% if task.status == "rejected" %}padding-left:0;padding-right: 0;text-align: center;{% endif %}" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}">
                 {% if task.status == "rejected" %}
                     <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
                 {% endif %}
             </td>
-            {% if not show_user %}<td style="font-weight: bold;width: 1px;">{{ comment_count[task.id].count }}</td>{% endif %}
+            {% if not id_project %}
+            <td style="width: 1px;white-space: nowrap;"><a href="/projects/tasks/{{task.id_project}}/" class="get_info_project" data-id="{{ task.id_project}}">{{ task.project_name }}</a></td>
+            {% endif %}
+            <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.task_creater == globals.user.id_user or task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
+                {% if task.cats %}
+                    {% for k in task.cats %}
+                        <div style="margin-bottom:2px;display: inline-block;"><span class="label label-cat" style="background: {{ cats[k].color }};color: {{ cats[k].color_text }}">{{ cats[k].name }}</span></div>
+                    {% endfor %}
+                {% endif %}
+            </td>
+            {% if dashboard %}<td style="font-weight: bold;width: 1px;">{{ comment_count[task.id].count }}</td>{% endif %}
             <td style="width: 110px;height: 100%;">
                 {% set undate = false %}
                 {% if task.end and ((now|date('Y-m-d') > task.end) and (task.status == 'new' or task.status == 'in_progress'))%}
@@ -34,9 +43,13 @@
                     </div>
                 </div>
             </td>
-            {% if not show_user %}
+            {% if dashboard %}
             <td style="width: 1px;white-space: nowrap;">
-                <a href="/users/~{{task.assigned}}/" style="color:{{ task.color }} !important;font-weight: bold;" title="{{ task.group_name }}">{{task.assigned_name}}</a>
+                {% if globals.user.id_user == task.assigned %}
+                    <span class="user_name">мне</span>
+                {% else %}
+                <a href="/users/~{{task.assigned}}/" style="color:{{ task.color }} !important;" class="user_name" title="{{ task.group_name }}">{{task.assigned_name}}</a>
+                {% endif %}
             </td>
             {% endif %}
             <td style="width: 1px;white-space: nowrap;" {% if task.diff < 0 and task.status != "closed" %}class="task_diff_alert"{% endif %}>
@@ -44,6 +57,18 @@
                     {% if task.diff != "0" and task.diff != "inf" %}{{ task.diff }} {{ "days"|lang(task.diff) }}{% elseif task.diff == "inf" %}&infin;{% else %}сегодня{% endif %}
                 {% endif %}
             </td>
+
+            {% if id_project %}
+            <td style="width: 140px;text-align: right;">
+                <div class="btn-group">
+                    {% if access.edit_tasks or task.assigned == globals.user.id_user or task.id_user == globals.user.id_user or not task.assigned %}
+                        {% if task.status != "closed" %}<a class="btn btn-success btn-sm" forward_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}'><i class="fa fa-forward fa-fw"></i></a>{% endif %}
+                        {% if access.edit_tasks or task.id_user == globals.user.id_user %}<a class="btn btn-info btn-sm" href="/projects/tasks/edit/{{task.id}}"><i class="fa fa-pencil fa-fw"></i></a>{% endif %}
+                        {% if access.delete_tasks %}<a class="btn btn-danger btn-sm" delete_task={{task.id}} from='{% if show_task %}show_task{% endif %}' href=""><i class="fa fa-trash-o fa-fw"></i></a>{% endif %}
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
         </tr>
     {% else %}
         <tr>
@@ -52,3 +77,4 @@
     {% endfor %}
     </tbody>
 </table>
+{% include '/source/jpaginator_boot_if.html' %}

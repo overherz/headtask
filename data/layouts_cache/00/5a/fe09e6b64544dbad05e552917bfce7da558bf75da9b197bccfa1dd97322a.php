@@ -22,7 +22,7 @@ class __TwigTemplate_005afe09e6b64544dbad05e552917bfce7da558bf75da9b197bccfa1dd9
         if ($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "crumbs"), "name")) {
             // line 3
             echo \layout::func_from_text("    <li>");
-            echo \layout::func_from_text($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "crumbs"), "name"));
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "crumbs"), "name"), "html", null, true));
             echo \layout::func_from_text("</li>
     ");
         } else {
@@ -50,11 +50,11 @@ class __TwigTemplate_005afe09e6b64544dbad05e552917bfce7da558bf75da9b197bccfa1dd9
                     echo \layout::func_from_text("<li><a href=\"");
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "url"), "html", null, true));
                     echo \layout::func_from_text("\">");
-                    echo \layout::func_from_text($this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "name"));
+                    echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "name"), "html", null, true));
                     echo \layout::func_from_text("</a></li>");
                 } else {
                     echo \layout::func_from_text("<li><a class=\"current\">");
-                    echo \layout::func_from_text($this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "name"));
+                    echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cr"]) ? $context["cr"] : null), "name"), "html", null, true));
                     echo \layout::func_from_text("</a></li>");
                 }
                 // line 7
@@ -90,6 +90,6 @@ class __TwigTemplate_005afe09e6b64544dbad05e552917bfce7da558bf75da9b197bccfa1dd9
 
     public function getDebugInfo()
     {
-        return array (  75 => 8,  61 => 7,  48 => 6,  24 => 3,  22 => 2,  19 => 1,  139 => 54,  130 => 55,  128 => 54,  117 => 46,  108 => 41,  100 => 39,  83 => 31,  81 => 30,  74 => 27,  44 => 6,  41 => 5,  34 => 3,  31 => 2,  78 => 9,  71 => 26,  68 => 22,  54 => 13,  51 => 12,  43 => 8,  40 => 7,  33 => 4,  30 => 5,  115 => 45,  112 => 44,  102 => 37,  98 => 35,  92 => 37,  90 => 36,  86 => 31,  82 => 30,  77 => 27,  73 => 26,  65 => 21,  63 => 19,  60 => 18,  52 => 13,  49 => 7,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  78 => 9,  75 => 8,  61 => 7,  48 => 6,  30 => 5,  24 => 3,  22 => 2,  19 => 1,);
     }
 }

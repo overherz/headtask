@@ -1,18 +1,16 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-Проект "{{project.name}}"
-{% endblock %}
+Файлы {{project.name}}{% endblock %}
 
 {% block css %}
 {{ parent() }}
-    <link rel="stylesheet" type="text/css" href="/source/js/fancybox/jquery.fancybox.css">
+    <link rel="stylesheet" type="text/css" href="{{ app.path('/source/js/fancybox/','jquery.fancybox.css',true) }}">
 {% endblock %}
 
 {% block js %}
 {{ parent() }}
-<script type ="text/javascript" src="/source/js/search.js"></script>
-<script type ="text/javascript" src="/source/js/fancybox/jquery.fancybox.pack.js"></script>
+<script type ="text/javascript" src="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></script>
 <script type ="text/javascript">
     $(document).ready(function($) {
         activate_fancy()

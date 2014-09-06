@@ -4,9 +4,17 @@ $(document).ready(function ($) {
     $("[name='start']").datepicker({
         changeMonth: true,
         dateFormat: "dd.mm.yy",
+        showButtonPanel: true,
         'maxDate': $("[name='end']").val(),
         onClose: function( selectedDate ) {
             $("[name='end']").datepicker( "option", "minDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
         }
     });
 
@@ -14,10 +22,53 @@ $(document).ready(function ($) {
         changeMonth: true,
         dateFormat: "dd.mm.yy",
         'minDate': $("[name='start']").val(),
+        showButtonPanel: true,
         onClose: function( selectedDate ) {
             $("[name='start']").datepicker( "option", "maxDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
         }
     });
+
+    $("[name='start_edit']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        showButtonPanel: true,
+        'maxDate': $("[name='end_edit']").val(),
+        onClose: function( selectedDate ) {
+            $("[name='end_edit']").datepicker( "option", "minDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+        }
+    });
+
+    $("[name='end_edit']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        'minDate': $("[name='start_edit']").val(),
+        showButtonPanel: true,
+        onClose: function( selectedDate ) {
+            $("[name='start_edit']").datepicker( "option", "maxDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+        }
+    });
+
 
     if ($("[name='description']").length > 0)
     {
@@ -26,11 +77,14 @@ $(document).ready(function ($) {
 
     $(document).on("click", ".save_task", function () {
         if ($("[name='description']").length > 0) $("[name='description']").val(CKEDITOR.instances.description.getData());
+        var th = this;
+        var id_project = $("[name='id_project']").val();
         var request = $("#task_form").serialize();
-        request = request + "&project=" + $("[name='id_project']").val();
+        request = request + "&project=" + id_project;
         user_api(request, function (data) {
             show_message("success", "Сохранено");
-            redirect("/projects/tasks/show/"+data+"/", 1);
+            if ($(th).hasClass('create_other')) redirect("/projects/tasks/add/"+id_project+"/", 1);
+            else redirect("/projects/tasks/show/"+data+"/", 1);
         });
         return false;
     });
@@ -63,8 +117,8 @@ $(document).ready(function ($) {
 
     $(document).on("change","[name='status']",function(){
         var status = $(this).val();
-        if (status == "rejected") $("#rejected").show();
-        else $("#rejected").hide();
+        if (status == "rejected") $(".rejected").show();
+        else $(".rejected").hide();
     });
 
     $("[add_file_to_task]").click(function(){
@@ -277,7 +331,13 @@ $(document).ready(function ($) {
             $(this).after(form);
             $(this).css('display', 'none');
         }
-        CKEDITOR.replace('comment',{toolbar:'Forum',height:200});
+        CKEDITOR.replace('comment',{toolbar:'Forum',height:200, on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+        CKEDITOR.instances.comment.on( 'key', function (evt) {
+            var kc = evt.data.keyCode,
+                csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
+            if (kc == 1114125) $(".comment_form_clone .add_comment").trigger("click")
+        });
+
         $("[name='parent']").val(id);
         $("[name='comment']").focus();
         return false;
@@ -300,7 +360,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("keydown",".comment_form_clone [name='comment']",function(e){
+    $(document).on("keydown",".comment_form_clone .comment",function(e){
         if (e.ctrlKey && e.keyCode == 13) {
             $(".comment_form_clone .add_comment").trigger("click")
         }
@@ -332,17 +392,6 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("change","input.dashboard_option",function(){
-        var bit = 0;
-        $("input.dashboard_option:checked").each(function(k,v)
-        {
-            bit = bit | $(v).val();
-        });
-
-        $.cookie('dashboard', bit, { expires: 30, path: '/' });
-        redirect();
-    });
-
     var project_info;
 
     $(document).on("mouseover",".get_info_project",function(){
@@ -365,3 +414,15 @@ $(document).ready(function ($) {
 });
 
 
+function dpClearButton (input) {
+    setTimeout(function () {
+        var buttonPane = $(input)
+            .datepicker("widget")
+            .find(".ui-datepicker-buttonpane");
+
+        $("<button>", {
+            html: "<i class='fa fa-trash-o'></i>",
+            click: function () { jQuery.datepicker._clearDate(input); }
+        }).appendTo(buttonPane).addClass("ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all");
+    }, 1)
+}

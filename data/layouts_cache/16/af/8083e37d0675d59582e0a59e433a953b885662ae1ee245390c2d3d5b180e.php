@@ -56,26 +56,50 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
         echo \layout::func_from_text("></a></td>
             <td class=\"comm_td\">
                 <div class=\"comment_head\">
-                    <a href=\"/users/~");
+                    ");
         // line 12
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id_user"), "html", null, true));
-        echo \layout::func_from_text("/\" style=\"color:");
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "group_color"), "html", null, true));
-        echo \layout::func_from_text("!important;font-weight: bold;\" title=\"");
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "group_name"), "html", null, true));
-        echo \layout::func_from_text("\">");
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "fio"), "html", null, true));
-        echo \layout::func_from_text("</a>
-                    <span class=\"commdate\">");
-        // line 13
-        echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "created"), "d.m.Y, H:i:s"), "html", null, true));
-        echo \layout::func_from_text("</span>
+        if (($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user") == $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id_user"))) {
+            // line 13
+            echo \layout::func_from_text("                    <span class=\"user_name\">я</span>
+                    ");
+        } else {
+            // line 15
+            echo \layout::func_from_text("                    <a href=\"/users/~");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id_user"), "html", null, true));
+            echo \layout::func_from_text("/\" style=\"color:");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "group_color"), "html", null, true));
+            echo \layout::func_from_text("!important;font-weight: bold;\" title=\"");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "group_name"), "html", null, true));
+            echo \layout::func_from_text("\">");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "fio"), "html", null, true));
+            echo \layout::func_from_text("</a>
+                    ");
+        }
+        // line 17
+        echo \layout::func_from_text("                    <span class=\"commdate\">
+                        ");
+        // line 18
+        if ((twig_date_format_filter($this->env, "", "d.m.Y") == twig_date_format_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "created"), "d.m.Y"))) {
+            // line 19
+            echo \layout::func_from_text("                            сегодня ");
+            echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "created"), "H:i"), "html", null, true));
+            echo \layout::func_from_text("
+                        ");
+        } else {
+            // line 21
+            echo \layout::func_from_text("                            ");
+            echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "created"), "d.m.Y H:i"), "html", null, true));
+            echo \layout::func_from_text("
+                        ");
+        }
+        // line 23
+        echo \layout::func_from_text("                    </span>
                     <a href=\"#comment_");
-        // line 14
+        // line 24
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("\">#</a>
                     ");
-        // line 15
+        // line 25
         if (($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "parent_id") > 0)) {
             echo \layout::func_from_text("<a href=\"#comment_");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "parent_id"), "html", null, true));
@@ -83,40 +107,40 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "parent_id"), "html", null, true));
             echo \layout::func_from_text("\">↑</a>");
         }
-        // line 16
+        // line 26
         echo \layout::func_from_text("                    ");
         if (($this->getAttribute($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "subscribe"), "last_visit") && ($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "created") > $this->getAttribute($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "subscribe"), "last_visit")))) {
             echo \layout::func_from_text("<span style=\"color:blue;\">новый!</span>");
         }
-        // line 17
+        // line 27
         echo \layout::func_from_text("
                     ");
-        // line 18
+        // line 28
         if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") != "closed")) {
             echo \layout::func_from_text("<div style=\"float:right;\"><a href=\"\" class=\"comment_to_comment\" to_comment=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\">ответить</a></div>");
         }
-        // line 19
+        // line 29
         echo \layout::func_from_text("                    ");
         if (($this->getAttribute((isset($context["access_article"]) ? $context["access_article"] : null), "comment") && $this->getAttribute((isset($context["access_article"]) ? $context["access_article"] : null), "delete_comment"))) {
             echo \layout::func_from_text("<div style=\"float:right;margin-left: 5px;\">|&nbsp;</div>");
         }
-        // line 20
+        // line 30
         echo \layout::func_from_text("                    ");
         if ($this->getAttribute((isset($context["access_article"]) ? $context["access_article"] : null), "delete_comment")) {
             echo \layout::func_from_text("<div style=\"float:right;\"><a href=\"\" class=\"del_comment\" del_comment=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("\">удалить</a></div>");
         }
-        // line 21
+        // line 31
         echo \layout::func_from_text("                </div>
             </td>
         </tr>
         <tr>
             <td colspan=\"2\">
                 <div class=\"comment_body\">");
-        // line 26
+        // line 36
         echo \layout::func_from_text($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "text"));
         echo \layout::func_from_text("</div>
             </td>
@@ -125,9 +149,9 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
 </div>
 
 ");
-        // line 32
+        // line 42
         if ($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "category")) {
-            // line 33
+            // line 43
             echo \layout::func_from_text("    ");
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "category"));
@@ -145,11 +169,11 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["_key"] => $context["com"]) {
-                // line 34
+                // line 44
                 echo \layout::func_from_text("        ");
                 $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/comment.html"), "method"));
                 $template->display($context);
-                // line 35
+                // line 45
                 echo \layout::func_from_text("    ");
                 ++$context['loop']['index0'];
                 ++$context['loop']['index'];
@@ -164,7 +188,7 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['com'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
         }
-        // line 37
+        // line 47
         echo \layout::func_from_text("
 </div>
 ");
@@ -182,6 +206,6 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
 
     public function getDebugInfo()
     {
-        return array (  168 => 37,  153 => 35,  149 => 34,  131 => 33,  129 => 32,  120 => 26,  113 => 21,  106 => 20,  101 => 19,  95 => 18,  92 => 17,  87 => 16,  79 => 15,  75 => 14,  71 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
+        return array (  192 => 47,  177 => 45,  173 => 44,  155 => 43,  153 => 42,  144 => 36,  137 => 31,  130 => 30,  125 => 29,  119 => 28,  116 => 27,  111 => 26,  103 => 25,  99 => 24,  96 => 23,  90 => 21,  84 => 19,  82 => 18,  79 => 17,  67 => 15,  63 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
     }
 }

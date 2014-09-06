@@ -1,8 +1,8 @@
-{% if paginator.num_list %}
-    <table style="width: 100%;">
+
+    <table style="width: 100%;margin-bottom: 0;">
         <tr>
-            <td style="white-space: nowrap;text-align: right;">
-                <ul class="pagination" style="margin: 5px 0;">
+            <td style="white-space: nowrap;text-align: right;padding: 0;line-height: 0;">
+                <ul class="pagination" style="margin: 0;">
                     {% if paginator.total %}
                         <li class="disabled pagination_disabled"><a href="" onclick="return false;">{{paginator.from}} - {{paginator.to}} <b>из {{paginator.total}}</b></a></li>
                     {% endif %}
@@ -27,4 +27,4 @@
             </td>
         </tr>
     </table>
-{% endif %}
+

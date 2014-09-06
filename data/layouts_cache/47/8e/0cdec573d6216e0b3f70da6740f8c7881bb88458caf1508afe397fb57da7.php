@@ -9,7 +9,6 @@ class __TwigTemplate_478e0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
-            'css' => array($this, 'block_css'),
             'js' => array($this, 'block_js'),
             'project_data' => array($this, 'block_project_data'),
         );
@@ -29,93 +28,30 @@ class __TwigTemplate_478e0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb
     public function block_title($context, array $blocks = array())
     {
         // line 4
-        echo \layout::func_from_text("Проект \"");
+        echo \layout::func_from_text("Задачи ");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "name"), "html", null, true));
-        echo \layout::func_from_text("\"
-");
     }
 
-    // line 7
-    public function block_css($context, array $blocks = array())
-    {
-        // line 8
-        $this->displayParentBlock("css", $context, $blocks);
-        echo \layout::func_from_text("
-<link rel=\"stylesheet\" type=\"text/css\" href=\"/source/js/fancybox/jquery.fancybox.css\">
-");
-    }
-
-    // line 12
+    // line 6
     public function block_js($context, array $blocks = array())
     {
-        // line 13
+        // line 7
         $this->displayParentBlock("js", $context, $blocks);
         echo \layout::func_from_text("
 <script src=\"");
-        // line 14
+        // line 8
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
-<script type =\"text/javascript\" src=\"/source/js/search.js\"></script>
 ");
     }
 
-    // line 18
+    // line 11
     public function block_project_data($context, array $blocks = array())
     {
-        // line 19
-        $context["inputs"] = $this->env->loadTemplate("/source/search_macro.html");
-        // line 20
-        echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin-bottom:0;\">
-    <input type=\"hidden\" name=\"page\" value=\"\">
-    <table class=\"table table-condensed table-border\" id=\"filter_table\">
-        <tr>
-            <th>Статус</th>
-            <th>Приоритет</th>
-            ");
-        // line 26
-        if ($this->getAttribute($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "options")) {
-            echo \layout::func_from_text("<th>Метка</th>");
-        }
-        // line 27
-        echo \layout::func_from_text("            <th>Другое</th>
-        </tr>
-        <tr>
-            <td>");
-        // line 30
-        echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "status"), "status"));
-        echo \layout::func_from_text("</td>
-            <td>");
-        // line 31
-        echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "priority"), "priority"));
-        echo \layout::func_from_text("</td>
-            ");
-        // line 32
-        if ($this->getAttribute($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "options")) {
-            // line 33
-            echo \layout::func_from_text("                <td>");
-            echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "category"), "category"));
-            echo \layout::func_from_text("</td>
-            ");
-        }
-        // line 35
-        echo \layout::func_from_text("            <td>
-                <input type=\"text\" name=\"search\" id=\"search_label\" class=\"input-large\" placeholder=\"Поиск\"><br/><br/>
-                ");
-        // line 37
-        echo \layout::func_from_text($context["inputs"]->getinput($this->getAttribute((isset($context["form"]) ? $context["form"] : null), "percent"), "percent", true));
+        // line 12
+        echo \layout::func_from_text("    ");
+        echo \layout::func_from_text((isset($context["user_tasks"]) ? $context["user_tasks"] : null));
         echo \layout::func_from_text("
-            </td>
-        </tr>
-    </table>
-</form>
-<div class=\"clearfix\"></div>
-<div id=\"search_result\">
-    ");
-        // line 44
-        $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/tasks_table.html"), "method"));
-        $template->display($context);
-        // line 45
-        echo \layout::func_from_text("</div>
 ");
     }
 
@@ -131,6 +67,6 @@ class __TwigTemplate_478e0cdec573d6216e0b3f70da6740f8c7881bb88458caf1508afe397fb
 
     public function getDebugInfo()
     {
-        return array (  118 => 45,  115 => 44,  105 => 37,  101 => 35,  95 => 33,  93 => 32,  89 => 31,  85 => 30,  80 => 27,  76 => 26,  68 => 20,  66 => 19,  63 => 18,  56 => 14,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  52 => 12,  49 => 11,  43 => 8,  39 => 7,  36 => 6,  31 => 4,  28 => 3,);
     }
 }

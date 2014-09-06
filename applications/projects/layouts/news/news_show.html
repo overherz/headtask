@@ -1,7 +1,7 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-{% if task %}{% endif %}
+Новость - {{ news.name }}. Проект {{ project.name }}
 {% endblock %}
 
 {% block js %}
@@ -11,7 +11,7 @@
 
 {% block project_data %}
 <ul class="breadcrumbs-one second">
-    <li><a class="current">{{news.created|date('d.m.Y H:i:s')}} |
+    <li><a class="current">{{news.created|date('d.m.Y H:i')}} |
     {{news.fio}}</a></li>
     {% if access.news %}
         <div class="btn-group" style="float: right;">

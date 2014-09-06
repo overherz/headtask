@@ -1,13 +1,11 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-Проект "{{project.name}}"
-{% endblock %}
+Форум {{project.name}}{% endblock %}
 
 {% block js %}
 {{ parent() }}
 <script type ="text/javascript" src="{{app.path('projects','forum.js')}}"></script>
-<script type ="text/javascript" src="/source/js/search.js"></script>
 <script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
 

@@ -178,7 +178,7 @@ class registration extends \Controller {
         {
             $subject = "Регистрация";
             $message = $this->layout_get("elements/activate_mail.html",array(
-                'server_name' => $_SERVER["SERVER_NAME"],
+                'domain' => get_full_domain_name(),
                 'email' => $email,
                 'password' => $password,
                 'code' => $code

@@ -124,8 +124,8 @@ class edit extends \Controller {
                     $query = $this->db->prepare("update users set pass=?,salt=?,uniq_key=? WHERE id_user=?");
                     if ($query->execute(array($get_pass['password'], $get_pass['salt'], $get_pass['uniq_key'], $_SESSION['user']['id_user'])))
                     {
-                        setcookie('login', $user['email'], time()+60*60*24*30,"/");
-                        setcookie('password', $get_pass['password'], time()+60*60*24*30,"/");
+                        setcookie('login', $user['email'], time()+60*60*24*30,"/",null,null,true);
+                        setcookie('password', $get_pass['password'], time()+60*60*24*30,"/",null,null,true);
                         $res['success'] = true;
                     }
                     else $res['error'] = "Ошибка базы данных";
@@ -234,9 +234,9 @@ class edit extends \Controller {
             $this->db->beginTransaction();
             $query = $this->db->prepare("insert into recovery(uid,email,hash,date,type, newmail) values(?,?,?,?,?,?) ON DUPLICATE KEY UPDATE hash=?, newmail=?");
 
-            $html = $this->layout_get("elements/change_email.html",array('server_name' => $_SERVER["SERVER_NAME"],'code' => $code1['uniq_key']));
+            $html = $this->layout_get("elements/change_email.html",array('domain' => get_full_domain_name(),'code' => $code1['uniq_key']));
             if (!send_mail($from, $_POST['old_email'], $subject, $html, $site_name)) $res['error'] = "Ошибка отправки письма на старый адрес";
-            $html = $this->layout_get("elements/change_email.html",array('server_name' => $_SERVER["SERVER_NAME"],'code' => $code2['uniq_key']));
+            $html = $this->layout_get("elements/change_email.html",array('domain' => get_full_domain_name(),'code' => $code2['uniq_key']));
             if (!send_mail($from, $_POST['new_email'], $subject, $html, $site_name)) $res['error'] = "Ошибка отправки письма на новый адрес";
 
             if (!$res['error'])

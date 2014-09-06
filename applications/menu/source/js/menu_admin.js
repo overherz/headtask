@@ -1,8 +1,8 @@
 $(document).ready(function($) {
     $(document).on("mouseenter",".tree_block",function(){
-        $(this).find(".tree_icons").show();
+        $(this).find(".tree_icons").css('visibility','visible');
     }).on("mouseleave",".tree_block",function(){
-        $(this).find(".tree_icons").hide(); 
+        $(this).find(".tree_icons").css('visibility','');
     });
     
     $('ol.sortable').nestedSortable({

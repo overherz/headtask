@@ -1,17 +1,17 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-{% if task %}{% endif %}
+    Wiki - {{ documents.name }}. Проект {{ project.name }}
 {% endblock %}
 
 {% block js %}
 {{parent()}}
-<script src="{{app.path('projects','tasks.js')}}" xmlns="http://www.w3.org/1999/html"></script>
+<script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
 
 {% block project_data %}
 <ul class="breadcrumbs-one second">
-    <li><a class="current">{{documents.created|date('d.m.Y H:i:s')}} |
+    <li><a class="current">{{documents.created|date('d.m.Y H:i')}} |
             {{documents.fio}}</a></li>
     {% if access.documents %}
         <div class="btn-group" style="float: right;">

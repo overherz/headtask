@@ -28,40 +28,37 @@ class __TwigTemplate_8953a141f619404cc6feac308694f450fa960fdf4ad9720a9d491b8409b
     public function block_title($context, array $blocks = array())
     {
         // line 4
-        echo \layout::func_from_text("Проект \"");
+        echo \layout::func_from_text("Новости ");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "name"), "html", null, true));
-        echo \layout::func_from_text("\"
-");
     }
 
-    // line 7
+    // line 6
     public function block_js($context, array $blocks = array())
     {
-        // line 8
+        // line 7
         $this->displayParentBlock("js", $context, $blocks);
         echo \layout::func_from_text("
-<script type =\"text/javascript\" src=\"/source/js/search.js\"></script>
 <script src=\"");
-        // line 10
+        // line 8
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 ");
     }
 
-    // line 13
+    // line 11
     public function block_project_data($context, array $blocks = array())
     {
-        // line 14
+        // line 12
         echo \layout::func_from_text("<form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin: 0px;float: left;\">
     <input type=\"hidden\" name=\"page\" value=\"\">
 </form>
 <div class=\"clearfix\"></div>
 <div id=\"search_result\">
     ");
-        // line 19
+        // line 17
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "news/news_table.html"), "method"));
         $template->display($context);
-        // line 20
+        // line 18
         echo \layout::func_from_text("</div>
 ");
     }
@@ -78,6 +75,6 @@ class __TwigTemplate_8953a141f619404cc6feac308694f450fa960fdf4ad9720a9d491b8409b
 
     public function getDebugInfo()
     {
-        return array (  65 => 20,  62 => 19,  55 => 14,  52 => 13,  46 => 10,  41 => 8,  38 => 7,  31 => 4,  28 => 3,);
+        return array (  62 => 18,  59 => 17,  52 => 12,  49 => 11,  43 => 8,  39 => 7,  36 => 6,  31 => 4,  28 => 3,);
     }
 }

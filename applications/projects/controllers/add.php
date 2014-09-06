@@ -23,7 +23,7 @@ class add extends \Controller {
         {
             crumbs("Создание проекта");
             $this->layout_show('add.html',array(
-                'projects' => $this->get_controller("projects")->get_projects(),
+                //'projects' => $this->get_controller("projects")->get_projects(),
                 'add' => true,
                 'access' => $access['access']
             ));
@@ -48,7 +48,7 @@ class add extends \Controller {
                     if ($query->execute(array($_POST['name'],$_POST['description'],$_POST['url'],$_POST['archive'],$_POST['id'])))
                     {
                         $res['success'] = $_POST['id'];
-                        if ($access['project']['name'] != $_POST['name']) $log_text = ". Название изменено на \"{$_POST['name']}\"";
+                        if ($access['project']['name'] != $_POST['name']) $log_text = ". Название изменено на {$_POST['name']}";
                         if ($log) $log->set_logs("project",$access['project']['id'],"Изменен{$log_text}");
                     }
                     else $res['error'] = "Ошибка сохранения проекта";

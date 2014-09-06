@@ -60,7 +60,7 @@ class __TwigTemplate_dde7f689178bf97b9b76ec7f7410ff2fa5546fa7d32144e8f8660b45247
         </div>
     </div>
 
-    <span class=\"label\" id=\"category_demo\" style=\"background: ");
+    <span class=\"label label-cat\" id=\"category_demo\" style=\"background: ");
         // line 26
         if ((isset($context["category"]) ? $context["category"] : null)) {
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["category"]) ? $context["category"] : null), "color"), "html", null, true));

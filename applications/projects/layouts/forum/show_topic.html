@@ -1,12 +1,11 @@
 {% extends app.path('projects','project.html') %}
 
 {% block title %}
-Проект "{{project.name}}"
-{% endblock %}
+Форум {{project.name}}. Тема - {{ topic.name }}{% endblock %}
 
 {% block js %}
 {{ parent() }}
-<script type ="text/javascript" src="/source/js/ckeditor/ckeditor.js"></script>
+<script type ="text/javascript" src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
 <script type ="text/javascript" src="{{app.path('projects','forum.js')}}"></script>
 <script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
@@ -24,51 +23,42 @@
 {% if topic.fixed %}
     <i class="fa-thumb-tack " style="float: left;font-size: 40px;" title="Закрепленная тема"></i>
 {% endif %}
-<table class="table table-border" id="posts_table">
-    <tbody>
+<table class="table table_style no_padding_right no_padding_left" id="posts_table">
     {% for p in posts %}
+    {% if loop.index % 2 == 0 %}{% set color = '#f7f7f7' %}{% else %}{% set color = '#fff' %}{% endif %}
+    <thead>
     <tr>
-        <td class="forum_fio">
-            <a href="/users/~{{p.author}}/"><b>{{p.fio}}</b></a>
-        </td>
-        <td class="forum_post_date">
-            {{p.created|date('d.m.Y H:i:s')}}
-        </td>
+        <th class="forum_fio" colspan="2" style="text-align: left !important;background: {{ color }} !important;">
+            <span class="get_ms_status user_offline" data-id="{{p.author}}" style="font-size: 14px;"></span>
+            <a href="/users/~{{p.author}}/" style="color:{{ p.color }};"><b>{{p.fio}}</b></a>
+            <div style="float: right;">{{p.created|date('d.m.Y H:i')}}</div>
+        </th>
     </tr>
+    </thead>
+    <tbody>
     <tr>
-        <td style="text-align: center;vertical-align: top !important;border-right: 1px solid #ddd;width: 180px;">
+        <td style="text-align: center;vertical-align: top !important;border-right: 1px solid #ddd;width: 96px;padding-right: 0 !important;background: {{ color }} !important;">
             {% if p.avatar %}<img src="/uploads/users/ava_small/{{p.avatar|real_path}}">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}
-            <div class="nickname" style="color:{{ p.color }};font-weight: bold;font-size: 10px;">{{p.group_name}}</div>
-            {% if p.last_user_action >= globals.time %}
-                <div class="user_online"></div>
-            {% else %}
-                <div class="user_offline"></div>
-            {% endif %}
         </td>
-        <td class="wysiwyg post_td" style="vertical-align: top !important;">
+        <td class="wysiwyg post_td" style="vertical-align: top !important;background: {{ color }} !important;">
             <div id="post{{p.id}}" class="post">{{p.text|raw}}</div>
         </td>
     </tr>
-    <tr>
-        <td class="forum_post_footer" colspan="2">
-            <a href="" class="btn btn-oscar btn-xs quote_post" data-id="{{p.id}}"><i class="fa fa-quote-right"></i></a>
-            <div class="forum_post_action" style="display: inline-block;">
-                <div class="btn-group">
-                    {% if access.forum or p.author == globals.user.id_user %}
-                        <a href="" class="btn btn-xs btn-oscar edit_post" data-id="{{p.id}}"><i class="fa fa-pencil"></i></a>
-                    {% endif %}
-                    {% if access.forum and first_post != p.id %}
-                        <a href="" class="btn btn-xs btn-oscar delete_post" data-id="{{p.id}}"><i class="fa fa-trash-o"></i></a>
-                    {% endif %}
-                </div>
-            </div>
-        </td>
-    </tr>
-    {% if not loop.last %}
-    <tr>
-        <td colspan="3" style="background: #f5f5f5;padding: 5px;"></td>
-    </tr>
-    {% endif %}
+        {% if not loop.last %}
+            <tr>
+                <td colspan="2" style="border:none !important;text-align: right;background: {{ color }} !important;padding-bottom: 10px !important;">
+                    <div class="btn-group">
+                        <a href="" class="btn btn-oscar btn-xs quote_post" data-id="{{p.id}}"><i class="fa fa-quote-right fa-fw"></i></a>
+                        {% if access.forum or p.author == globals.user.id_user %}
+                            <a href="" class="btn btn-xs btn-oscar edit_post" data-id="{{p.id}}"><i class="fa fa-pencil fa-fw"></i></a>
+                        {% endif %}
+                        {% if access.forum and first_post != p.id %}
+                            <a href="" class="btn btn-xs btn-oscar delete_post" data-id="{{p.id}}"><i class="fa fa-trash-o fa-fw"></i></a>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+        {% endif %}
     {% endfor %}
     </tbody>
 </table>

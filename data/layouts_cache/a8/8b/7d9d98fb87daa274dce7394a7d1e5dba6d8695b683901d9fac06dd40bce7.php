@@ -36,69 +36,21 @@ class __TwigTemplate_a88b7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd4
     public function block_js($context, array $blocks = array())
     {
         // line 6
-        echo \layout::func_from_text("    <script src=\"/source/js/jquery.cookie.js\"></script>
-    <script src=\"");
-        // line 7
+        echo \layout::func_from_text("    <script src=\"");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks.js"), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 ");
     }
 
-    // line 10
+    // line 9
     public function block_context($context, array $blocks = array())
     {
-        // line 11
+        // line 10
         echo \layout::func_from_text("<div id=\"projects_info\"></div>
-<ul class=\"breadcrumbs-one\">
-    <li><a>Задачи</a></li>
-    <li>
-        <a class=\"current\">
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d1\" id=\"d1\" class=\"dashboard_option\" value=\"1\" ");
-        // line 16
-        if (((isset($context["mask"]) ? $context["mask"] : null) & 1)) {
-            echo \layout::func_from_text("checked");
-        }
-        echo \layout::func_from_text("> <label for=\"d1\" style=\"margin-bottom: 0;\"> Создатель</label></span>
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d2\" id=\"d2\" class=\"dashboard_option\" value=\"2\" ");
-        // line 17
-        if (((isset($context["mask"]) ? $context["mask"] : null) & 2)) {
-            echo \layout::func_from_text("checked");
-        }
-        echo \layout::func_from_text("> <label for=\"d2\" style=\"margin-bottom: 0;\">Делегированные</label></span>
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d4\" id=\"d4\" class=\"dashboard_option\" value=\"4\" ");
-        // line 18
-        if (((isset($context["mask"]) ? $context["mask"] : null) & 4)) {
-            echo \layout::func_from_text("checked");
-        }
-        echo \layout::func_from_text("> <label for=\"d4\" style=\"margin-bottom: 0;\">Ничьи</label></span>
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d8\" id=\"d8\" class=\"dashboard_option\" value=\"8\" ");
-        // line 19
-        if (((isset($context["mask"]) ? $context["mask"] : null) & 8)) {
-            echo \layout::func_from_text("checked");
-        }
-        echo \layout::func_from_text("> <label for=\"d8\" style=\"margin-bottom: 0;\">Чужие</label></span>
-            <span style=\"margin-right: 5px;\"><input type=\"checkbox\" name=\"d16\" id=\"d16\" class=\"dashboard_option\" value=\"16\" ");
-        // line 20
-        if (((isset($context["mask"]) ? $context["mask"] : null) & 16)) {
-            echo \layout::func_from_text("checked");
-        }
-        echo \layout::func_from_text("> <label for=\"d16\" style=\"margin-bottom: 0;\">Закрытые сегодня</label></span>
-        </a>
-    </li>
-</ul>
-
-<div style=\"margin-bottom: 10px;\">Всего задач: <span class=\"label label-info\" style=\"margin-right: 10px;\">");
-        // line 25
-        echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["count"]) ? $context["count"] : null), "html", null, true));
-        echo \layout::func_from_text("</span>Показано задач: <span class=\"label label-info\">");
-        echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["count_show"]) ? $context["count_show"] : null), "html", null, true));
-        echo \layout::func_from_text("</span></div>
-
-<div>");
-        // line 27
-        $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "calendar/task_today.html"), "method"));
-        $template->display($context);
-        echo \layout::func_from_text("</div>
+    ");
+        // line 11
+        echo \layout::func_from_text((isset($context["user_tasks"]) ? $context["user_tasks"] : null));
+        echo \layout::func_from_text("
 
 ");
     }
@@ -115,6 +67,6 @@ class __TwigTemplate_a88b7d9d98fb87daa274dce7394a7d1e5dba6d8695b683901d9fac06dd4
 
     public function getDebugInfo()
     {
-        return array (  99 => 27,  92 => 25,  82 => 20,  76 => 19,  70 => 18,  64 => 17,  58 => 16,  51 => 11,  48 => 10,  42 => 7,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  52 => 11,  49 => 10,  39 => 6,  228 => 61,  224 => 59,  215 => 55,  208 => 52,  205 => 51,  194 => 50,  192 => 49,  185 => 48,  173 => 45,  170 => 44,  168 => 43,  155 => 39,  151 => 38,  145 => 37,  142 => 36,  136 => 34,  133 => 33,  128 => 31,  122 => 30,  119 => 29,  103 => 26,  85 => 23,  74 => 21,  68 => 19,  56 => 17,  51 => 16,  40 => 11,  36 => 5,  33 => 9,  29 => 8,  21 => 2,  162 => 75,  159 => 74,  149 => 67,  143 => 64,  139 => 35,  135 => 62,  131 => 32,  116 => 28,  108 => 43,  99 => 25,  95 => 24,  89 => 35,  83 => 34,  77 => 22,  71 => 32,  66 => 18,  46 => 9,  42 => 12,  34 => 7,  30 => 3,  25 => 3,  22 => 2,  19 => 1,);
     }
 }

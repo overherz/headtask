@@ -1,10 +1,10 @@
 {% extends "/source/index.html" %}
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{{app.path('users','users.css')}}">
-<link rel="stylesheet" type="text/css" href="/source/js/miniColors/jquery.miniColors.css">
+<link rel="stylesheet" type="text/css" href="{{ app.path('/source/js/minicolors/','jquery.minicolors.css',true) }}">
 {% endblock %}
 {% block js %}
-<script type="text/javascript" src="/source/js/miniColors/jquery.miniColors.min.js"></script>
+<script type="text/javascript" src="{{ app.path('/source/js/minicolors/','jquery.minicolors.min.js',true) }}"></script>
 <script type="text/javascript" src="{{app.path('users','edit.js')}}"></script>
 {% endblock %}
 

@@ -7,9 +7,9 @@ class get_options extends \global_module
     protected $admin = false;
     protected $on_ajax_not_run = false;
 
-    function __construct()
+    function __construct($admin=false)
     {
-        if (\Router::admin()) $this->admin = true;
+        if (\Router::admin() || $admin) $this->admin = true;
     }
 
     function run_module()

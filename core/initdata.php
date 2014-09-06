@@ -1,4 +1,5 @@
 <?php
+
 if (function_exists("mb_internal_encoding")) mb_internal_encoding('UTF-8');
 $zone = @$_SESSION['user']['timezone'] ? $_SESSION['user']['timezone'] : "Europe/Moscow";
 date_default_timezone_set($zone);
@@ -13,6 +14,13 @@ define("AJAX",isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_
 require_once(ROOT."langs/".LANG.".php");
 require_once(ROOT.'config.php');
 require_once(ROOT.'core/functions.php');
+
+if($INFO['secure'] && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == ""))
+{
+    $redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+}
+
 set_start_statistic();
 set_error_handler("warning_handler");
 register_shutdown_function('shutdown');
@@ -39,7 +47,7 @@ foreach ($INFO as $key => $value)
     }
 }
 
-if ($INFO['dev_mode'] || (defined('SECRET_DEV_MODE') && SECRET_DEV_MODE)) error_reporting(E_ALL & ~E_NOTICE);
+if ($INFO['dev_mode'] || (defined('SECRET_DEV_MODE') && SECRET_DEV_MODE)) error_reporting(E_ALL ^ E_NOTICE);
 else error_reporting(0);
 ini_set('display_errors', 0);
 

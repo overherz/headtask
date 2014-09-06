@@ -19,7 +19,7 @@ class __TwigTemplate_979758b8ea5e1d0cddb860791efc8d7feb09ffbf81e03a696c9aec1d3fd
         echo \layout::func_from_text("<div style=\"position: relative;margin-top: 10px;\">");
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         echo \layout::func_from_text("</div>
-<table class=\"table table-hover table-condensed table-border\" id=\"tasks_table\">
+<table class=\"table table-hover table_style no_padding_right\" id=\"tasks_table\">
     <thead>
     <tr>
         <th></th>
@@ -82,7 +82,7 @@ class __TwigTemplate_979758b8ea5e1d0cddb860791efc8d7feb09ffbf81e03a696c9aec1d3fd
 </table>
 ");
         // line 23
-        $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
+        $this->env->loadTemplate("/source/jpaginator_boot_if.html")->display($context);
     }
 
     public function getTemplateName()
@@ -97,6 +97,6 @@ class __TwigTemplate_979758b8ea5e1d0cddb860791efc8d7feb09ffbf81e03a696c9aec1d3fd
 
     public function getDebugInfo()
     {
-        return array (  85 => 23,  74 => 18,  60 => 17,  38 => 15,  36 => 14,  19 => 1,  119 => 46,  116 => 45,  106 => 38,  102 => 36,  96 => 34,  94 => 33,  90 => 32,  86 => 31,  81 => 21,  77 => 19,  69 => 21,  67 => 20,  64 => 19,  56 => 16,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
+        return array (  36 => 14,  119 => 16,  116 => 15,  94 => 12,  43 => 4,  40 => 3,  210 => 40,  191 => 38,  171 => 33,  163 => 32,  158 => 30,  145 => 28,  137 => 27,  130 => 24,  120 => 23,  109 => 21,  100 => 18,  88 => 15,  59 => 11,  37 => 7,  23 => 3,  78 => 14,  30 => 5,  106 => 21,  92 => 17,  84 => 10,  79 => 17,  77 => 19,  74 => 18,  60 => 17,  58 => 10,  48 => 6,  25 => 4,  21 => 1,  55 => 9,  33 => 4,  26 => 3,  22 => 2,  190 => 54,  184 => 53,  181 => 34,  176 => 49,  155 => 29,  151 => 46,  146 => 44,  143 => 43,  140 => 42,  134 => 26,  127 => 34,  125 => 33,  112 => 22,  104 => 19,  102 => 26,  99 => 13,  86 => 21,  81 => 21,  71 => 18,  35 => 12,  19 => 1,  220 => 117,  215 => 31,  211 => 24,  208 => 23,  205 => 22,  201 => 39,  198 => 15,  193 => 4,  188 => 37,  186 => 117,  183 => 116,  177 => 113,  173 => 112,  169 => 111,  165 => 110,  162 => 109,  160 => 31,  156 => 106,  113 => 65,  111 => 64,  89 => 47,  85 => 23,  82 => 45,  66 => 13,  64 => 31,  47 => 17,  45 => 8,  24 => 3,  75 => 8,  70 => 13,  68 => 17,  63 => 14,  61 => 5,  54 => 22,  34 => 2,  51 => 9,  44 => 6,  41 => 14,  38 => 15,  31 => 11,  28 => 3,  121 => 31,  118 => 47,  107 => 20,  103 => 37,  97 => 24,  95 => 50,  91 => 22,  87 => 32,  80 => 8,  76 => 19,  67 => 17,  65 => 6,  62 => 12,  56 => 16,  52 => 8,  49 => 16,  42 => 5,  39 => 5,  32 => 5,  29 => 4,);
     }
 }

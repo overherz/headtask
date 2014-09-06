@@ -4,7 +4,7 @@ var hasCORS = require('has-cors');
 var textBlobBuilder = require('text-blob-builder');
 
 describe('connection', function() {
-  this.timeout(20000);
+  this.timeout(70000);
 
   it('should connect to localhost', function(done) {
     var socket = io({ forceNew: true });
@@ -16,9 +16,10 @@ describe('connection', function() {
   });
 
   it('should not connect when autoConnect option set to false', function() {
-    var socket = io({autoConnect: false});
+    var socket = io({ forceNew: true, autoConnect: false });
     expect(socket.io.engine).to.not.be.ok();
-  });  
+    socket.disconnect();
+  });
 
   it('should work with acks', function(done){
     var socket = io({ forceNew: true });
@@ -81,6 +82,22 @@ describe('connection', function() {
       foo.on('connect', function(){
         foo.close();
         socket.close();
+        manager.close();
+        done();
+      });
+    });
+  });
+
+  it('should open a new namespace after connection gets closed', function(done){
+    var manager = io.Manager();
+    var socket = manager.socket('/');
+    socket.on('connect', function() {
+      socket.disconnect();
+    }).on('disconnect', function() {
+      var foo = manager.socket('/foo');
+      foo.on('connect', function() {
+        foo.disconnect();
+        manager.close();
         done();
       });
     });
@@ -124,6 +141,7 @@ describe('connection', function() {
     manager.on('reconnect_failed', function failed() {
       expect(reconnects).to.be(2);
       socket.close();
+      manager.close();
       done();
     });
 
@@ -144,6 +162,7 @@ describe('connection', function() {
     socket.on('reconnect_failed', function failed() {
       expect(reconnects).to.be(2);
       socket.close();
+      manager.close();
       done();
     });
   });
@@ -155,6 +174,7 @@ describe('connection', function() {
     socket.on('error', function(data) {
       expect(data.code).to.be('test');
       socket.close();
+      manager.close();
       done();
     });
 
@@ -177,6 +197,7 @@ describe('connection', function() {
     socket.on('reconnect_failed', function failed() {
       expect(reconnects).to.be(2);
       socket.close();
+      manager.close();
       done();
     });
   });
@@ -194,6 +215,7 @@ describe('connection', function() {
       // set a timeout to let reconnection possibly fire
       setTimeout(function() {
         socket.close();
+        manager.close();
         done();
       }, 1000);
     });
@@ -215,6 +237,7 @@ describe('connection', function() {
       manager.on('reconnect_failed', function() {
         expect(reconnects).to.be(2);
         socket.disconnect();
+        manager.close();
         done();
       });
     });
@@ -231,6 +254,7 @@ describe('connection', function() {
         // set a timeout to let reconnection possibly fire
         setTimeout(function() {
           socket.disconnect();
+          manager.close();
           done();
         }, 1000);
       });
@@ -242,6 +266,7 @@ describe('connection', function() {
   it('should emit date as string', function(done){
     var socket = io({ forceNew: true });
     socket.on('takeDate', function(data) {
+      socket.close();
       expect(data).to.be.a('string');
       done();
     });
@@ -251,6 +276,7 @@ describe('connection', function() {
   it('should emit date in object', function(done){
     var socket = io({ forceNew: true });
     socket.on('takeDateObj', function(data) {
+      socket.close();
       expect(data).to.be.an('object');
       expect(data.date).to.be.a('string');
       done();
@@ -290,7 +316,7 @@ describe('connection', function() {
         socket.disconnect();
         done();
       });
-      var buf = base64.decode("asdfasdf");
+      var buf = base64.decode('asdfasdf');
       socket.emit('buffa', buf);
     });
 
@@ -300,7 +326,7 @@ describe('connection', function() {
         socket.disconnect();
         done();
       });
-      var buf = base64.decode("howdy");
+      var buf = base64.decode('howdy');
       socket.emit('jsonbuff', {hello: 'lol', message: buf, goodbye: 'gotcha'});
     });
 
@@ -310,7 +336,7 @@ describe('connection', function() {
         socket.disconnect();
         done();
       });
-      var buf = base64.decode("abuff1");
+      var buf = base64.decode('abuff1');
       socket.emit('abuff1', buf);
       socket.emit('abuff2', 'please arrive second');
     });

@@ -69,8 +69,9 @@ class news extends \Controller {
 
             $users = $this->get_controller("projects","users")->get_users_project($project['id'],true);
 
+            $this->set_global('id_project',$project['id']);
             $this->layout_show('news/add_news.html',array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'add_news_button' => $add_news_button,
                 'project' => $project,
                 'access' => $access['access'],
@@ -92,10 +93,11 @@ class news extends \Controller {
             crumbs("Новости","/projects/news/{$access['project']['id']}");
             crumbs($news['name']);
 
+            $this->set_global('id_project',$access['project']['id']);
             $this->layout_show("news/news_show.html",array(
                 'news' => $news,
                 'project' => $access['project'],
-                'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
                 'news_button' => true,
                 'access' => $access['access'],
             ));
@@ -133,9 +135,10 @@ class news extends \Controller {
                 $news[] = $row;
             }
 
+            $this->set_global('id_project',$project['id']);
             $data = array(
                 'project' => $project,
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'news_button' => true,
                 'paginator' => $paginator,
                 'access' => $access['access'],
@@ -206,7 +209,7 @@ class news extends \Controller {
                     {
                         $res['success'] = $_POST['id'];
                         if ($news['name'] != $_POST['name']) $log_text = ". Название изменено на \"{$_POST['name']}\"";
-                        if ($log) $log->set_logs("news",$id_project,"Изменена <a href='/projects/news/show/{$news['id']}'>\"{$news['name']}\"</a>{$log_text}");
+                        if ($log) $log->set_logs("news",$id_project,"Изменена <a href='/projects/news/show/{$news['id']}'>{$news['name']}</a>{$log_text}");
                         $notif = "Изменена новость \"{$news['name']}\" в проекте \"{$project['name']}\"";
                         $edit = true;
                     }
@@ -224,7 +227,7 @@ class news extends \Controller {
                         $notif = "Добавлена новость \"{$_POST['name']}\" в проект \"{$project['name']}\"";
                         $last_id = $this->db->lastInsertId();
                         $res['success'] = $last_id;
-                        if ($log) $log->set_logs("news",$id_project,"Создана <a href='/projects/news/show/{$last_id}'>\"{$_POST['name']}\"</a>");
+                        if ($log) $log->set_logs("news",$id_project,"Создана <a href='/projects/news/show/{$last_id}'>{$_POST['name']}</a>");
                     }
                     else $res['error'] = "Ошибка добавления новости";
                 }
@@ -248,7 +251,7 @@ class news extends \Controller {
             foreach ($n_array as $k => $v)
             {
                 $message = $this->layout_get("news/news_mail.html",array(
-                    'server_name' => $_SERVER["SERVER_NAME"],
+                    'domain' => get_full_domain_name(),
                     'name' => $project['name'],
                     'edit' => $edit,
                     'news' => $res['success'],

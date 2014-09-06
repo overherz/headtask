@@ -1,15 +1,14 @@
 <tr id="task{{task.id}}">
-    <td style="width: 1px;" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}"></td>
-    <td {% if task.cats %}style="padding-bottom: 0;" {% endif %}><a href="/projects/tasks/show/{{task.id}}/" {% if task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
-    {% if task.status == "rejected" %}
-        <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
-    {% endif %}
+    <td style="width: 1px;{% if task.status == "rejected" %}padding-left:0;padding-right: 0;text-align: center;{% endif %}" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}">
+        {% if task.status == "rejected" %}
+            <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
+        {% endif %}
+    </td>
+    <td><a href="/projects/tasks/show/{{task.id}}/" {% if task.id_user == globals.user.id_user %}class="own_task"{% endif %}>{{task.name}}</a>
         {% if task.cats %}
-            <div>
-                {% for k in task.cats %}
-                    <div style="margin-bottom:2px;display: inline-block;"><span class="label label-cat" style="background: {{ cats[k].color }};color: {{ cats[k].color_text }}">{{ cats[k].name }}</span></div>
-                {% endfor %}
-            </div>
+            {% for k in task.cats %}
+                <div style="margin-bottom:2px;display: inline-block;"><span class="label label-cat" style="background: {{ cats[k].color }};color: {{ cats[k].color_text }}">{{ cats[k].name }}</span></div>
+            {% endfor %}
         {% endif %}
     </td>
     <td style="width: 110px;">
@@ -23,7 +22,13 @@
             <div class="progress-bar {% if undate %}progress-bar-danger{% endif %}" role="progressbar" aria-valuenow="{{task.percent}}" aria-valuemin="0" aria-valuemax="100" style="width:{{task.percent}}%;"></div>
         </div>
     </td>
-    <td style="width: 200px;"><a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a></td>
+    <td style="width: 200px;">
+        {% if globals.user.id_user == task.assigned %}
+            <span class="user_name">мне</span>
+        {% else %}
+            <a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a>
+        {% endif %}
+    </td>
     <td style="width: 1px;" {% if task.diff < 0 and task.status != "closed" %}class="task_diff_alert"{% endif %}>
         {% if task.status != "closed" %}
             {% if task.diff != "0" and task.diff != "inf" %}{{ task.diff }} {{ "days"|lang(task.diff) }}{% elseif task.diff == "inf" %}&infin;{% else %}сегодня{% endif %}

@@ -28,8 +28,12 @@ class __TwigTemplate_98c5c13f5a7ea10086a9618ae687e4b6c1d62d6c81d2c49559584a93faf
     public function block_title($context, array $blocks = array())
     {
         // line 4
-        if ((isset($context["task"]) ? $context["task"] : null)) {
-        }
+        echo \layout::func_from_text("    Wiki - ");
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["documents"]) ? $context["documents"] : null), "name"), "html", null, true));
+        echo \layout::func_from_text(". Проект ");
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "name"), "html", null, true));
+        echo \layout::func_from_text("
+");
     }
 
     // line 7
@@ -41,7 +45,7 @@ class __TwigTemplate_98c5c13f5a7ea10086a9618ae687e4b6c1d62d6c81d2c49559584a93faf
 <script src=\"");
         // line 9
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks.js"), "method"), "html", null, true));
-        echo \layout::func_from_text("\" xmlns=\"http://www.w3.org/1999/html\"></script>
+        echo \layout::func_from_text("\"></script>
 ");
     }
 
@@ -52,7 +56,7 @@ class __TwigTemplate_98c5c13f5a7ea10086a9618ae687e4b6c1d62d6c81d2c49559584a93faf
         echo \layout::func_from_text("<ul class=\"breadcrumbs-one second\">
     <li><a class=\"current\">");
         // line 14
-        echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["documents"]) ? $context["documents"] : null), "created"), "d.m.Y H:i:s"), "html", null, true));
+        echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["documents"]) ? $context["documents"] : null), "created"), "d.m.Y H:i"), "html", null, true));
         echo \layout::func_from_text(" |
             ");
         // line 15
@@ -95,6 +99,6 @@ class __TwigTemplate_98c5c13f5a7ea10086a9618ae687e4b6c1d62d6c81d2c49559584a93faf
 
     public function getDebugInfo()
     {
-        return array (  81 => 23,  78 => 22,  72 => 19,  68 => 18,  65 => 17,  63 => 16,  59 => 15,  55 => 14,  52 => 13,  49 => 12,  43 => 9,  39 => 8,  36 => 7,  31 => 4,  28 => 3,);
+        return array (  85 => 23,  82 => 22,  76 => 19,  72 => 18,  69 => 17,  67 => 16,  63 => 15,  59 => 14,  56 => 13,  53 => 12,  47 => 9,  43 => 8,  40 => 7,  31 => 4,  28 => 3,);
     }
 }

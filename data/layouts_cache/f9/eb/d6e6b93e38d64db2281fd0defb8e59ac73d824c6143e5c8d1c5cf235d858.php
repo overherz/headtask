@@ -37,6 +37,8 @@ class __TwigTemplate_f9ebd6e6b93e38d64db2281fd0defb8e59ac73d824c6143e5c8d1c5cf23
             // line 8
             echo \layout::func_from_text("            <a href=\"/uploads/projects/");
             echo \layout::func_from_text(twig_escape_filter($this->env, real_path($this->getAttribute((isset($context["file"]) ? $context["file"] : null), "file")), "html", null, true));
+            echo \layout::func_from_text("\" download=\"");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["file"]) ? $context["file"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("\"><img src=\"/source/images/icons/file.png\"></a>
         ");
         }
@@ -56,6 +58,8 @@ class __TwigTemplate_f9ebd6e6b93e38d64db2281fd0defb8e59ac73d824c6143e5c8d1c5cf23
             // line 14
             echo \layout::func_from_text("        <a href=\"/uploads/projects/projects_big/");
             echo \layout::func_from_text(twig_escape_filter($this->env, real_path($this->getAttribute((isset($context["file"]) ? $context["file"] : null), "file")), "html", null, true));
+            echo \layout::func_from_text("\" download=\"");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["file"]) ? $context["file"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["file"]) ? $context["file"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("</a>
@@ -64,6 +68,8 @@ class __TwigTemplate_f9ebd6e6b93e38d64db2281fd0defb8e59ac73d824c6143e5c8d1c5cf23
             // line 16
             echo \layout::func_from_text("        <a href=\"/uploads/projects/");
             echo \layout::func_from_text(twig_escape_filter($this->env, real_path($this->getAttribute((isset($context["file"]) ? $context["file"] : null), "file")), "html", null, true));
+            echo \layout::func_from_text("\" download=\"");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["file"]) ? $context["file"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["file"]) ? $context["file"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("</a>
@@ -139,6 +145,6 @@ class __TwigTemplate_f9ebd6e6b93e38d64db2281fd0defb8e59ac73d824c6143e5c8d1c5cf23
 
     public function getDebugInfo()
     {
-        return array (  127 => 37,  124 => 36,  114 => 32,  110 => 30,  103 => 26,  99 => 24,  96 => 23,  94 => 22,  84 => 21,  80 => 20,  76 => 19,  73 => 18,  65 => 16,  57 => 14,  55 => 13,  51 => 11,  44 => 10,  38 => 8,  32 => 5,  27 => 4,  25 => 3,  19 => 1,);
+        return array (  133 => 37,  130 => 36,  120 => 32,  116 => 30,  109 => 26,  105 => 24,  102 => 23,  100 => 22,  90 => 21,  86 => 20,  82 => 19,  79 => 18,  69 => 16,  59 => 14,  57 => 13,  53 => 11,  46 => 10,  38 => 8,  32 => 5,  27 => 4,  25 => 3,  19 => 1,);
     }
 }

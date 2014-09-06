@@ -31,7 +31,8 @@ class __TwigTemplate_99e7432f1a6fcde46104753a93b2e7ed228d8a5993c33af7c7edc511d59
         // line 4
         echo \layout::func_from_text("    ");
         if ((isset($context["project"]) ? $context["project"] : null)) {
-            echo \layout::func_from_text("Редактирование проекта");
+            echo \layout::func_from_text("Редактирование проекта ");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "name"), "html", null, true));
         } else {
             echo \layout::func_from_text("Создание проекта");
         }
@@ -44,7 +45,10 @@ class __TwigTemplate_99e7432f1a6fcde46104753a93b2e7ed228d8a5993c33af7c7edc511d59
         echo \layout::func_from_text("    ");
         $this->displayParentBlock("css", $context, $blocks);
         echo \layout::func_from_text("
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"/source/js/miniColors/jquery.miniColors.css\">
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"");
+        // line 9
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/source/js/minicolors/", 1 => "jquery.minicolors.css", 2 => true), "method"), "html", null, true));
+        echo \layout::func_from_text("\">
 ");
     }
 
@@ -52,7 +56,9 @@ class __TwigTemplate_99e7432f1a6fcde46104753a93b2e7ed228d8a5993c33af7c7edc511d59
     public function block_js($context, array $blocks = array())
     {
         // line 12
-        echo \layout::func_from_text("    <script type=\"text/javascript\" src=\"/source/js/miniColors/jquery.miniColors.min.js\"></script>
+        echo \layout::func_from_text("    <script src=\"");
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/source/js/minicolors/", 1 => "jquery.minicolors.min.js", 2 => true), "method"), "html", null, true));
+        echo \layout::func_from_text("\"></script>
     ");
         // line 13
         $this->displayParentBlock("js", $context, $blocks);
@@ -203,6 +209,6 @@ class __TwigTemplate_99e7432f1a6fcde46104753a93b2e7ed228d8a5993c33af7c7edc511d59
 
     public function getDebugInfo()
     {
-        return array (  188 => 81,  183 => 78,  180 => 77,  174 => 74,  170 => 72,  168 => 71,  165 => 70,  161 => 69,  150 => 65,  146 => 63,  137 => 56,  135 => 55,  127 => 52,  118 => 46,  109 => 40,  100 => 34,  95 => 31,  89 => 30,  85 => 28,  74 => 19,  70 => 18,  67 => 17,  64 => 16,  58 => 13,  55 => 12,  52 => 11,  44 => 8,  41 => 7,  32 => 4,  29 => 3,);
+        return array (  194 => 81,  189 => 78,  186 => 77,  180 => 74,  176 => 72,  174 => 71,  171 => 70,  167 => 69,  156 => 65,  152 => 63,  143 => 56,  141 => 55,  133 => 52,  124 => 46,  115 => 40,  106 => 34,  101 => 31,  95 => 30,  91 => 28,  80 => 19,  76 => 18,  73 => 17,  70 => 16,  64 => 13,  59 => 12,  56 => 11,  50 => 9,  45 => 8,  42 => 7,  32 => 4,  29 => 3,);
     }
 }

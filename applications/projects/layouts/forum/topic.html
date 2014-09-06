@@ -9,9 +9,9 @@
     </td>
     <td>
         <div><a href="/users/~{{t.id_user}}/" style="color:{{ t.color }};font-weight: bold;" title="{{ t.group_name }}">{{t.fio}}</a></div>
-        {{t.created|date('d.m.Y H:i:s')}}
+        {{t.created|date('d.m.Y H:i')}}
     </td>
-    <td style="width: 85px;">
+    <td style="width: 75px;">
         {% if access.forum %}
             <div class="btn-group">
                 <a class="btn btn-oscar btn-sm" href="/projects/forum/edit_topic/{{t.id}}"><i class="fa fa-pencil"></i></a>

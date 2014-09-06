@@ -29,10 +29,14 @@ class __TwigTemplate_f89b6de840d45105c46fa4e34ef604d73fb27f2b1d5c590014cf00029c4
     {
         // line 4
         if ((isset($context["documents"]) ? $context["documents"] : null)) {
-            echo \layout::func_from_text("Редактирование новости");
+            echo \layout::func_from_text("Редактирование документа");
         } else {
-            echo \layout::func_from_text("Добавление новости");
+            echo \layout::func_from_text("Добавление документа");
         }
+        echo \layout::func_from_text(". Проект ");
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "name"), "html", null, true));
+        echo \layout::func_from_text("
+");
     }
 
     // line 7
@@ -41,7 +45,10 @@ class __TwigTemplate_f89b6de840d45105c46fa4e34ef604d73fb27f2b1d5c590014cf00029c4
         // line 8
         $this->displayParentBlock("js", $context, $blocks);
         echo \layout::func_from_text("
-<script type =\"text/javascript\" src=\"/source/js/ckeditor/ckeditor.js\"></script>
+<script type =\"text/javascript\" src=\"");
+        // line 9
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/source/js/ckeditor/", 1 => "ckeditor.js", 2 => true), "method"), "html", null, true));
+        echo \layout::func_from_text("\"></script>
 
 <script src=\"");
         // line 11
@@ -109,6 +116,6 @@ class __TwigTemplate_f89b6de840d45105c46fa4e34ef604d73fb27f2b1d5c590014cf00029c4
 
     public function getDebugInfo()
     {
-        return array (  88 => 31,  81 => 27,  72 => 21,  67 => 18,  61 => 17,  57 => 15,  54 => 14,  48 => 11,  42 => 8,  39 => 7,  31 => 4,  28 => 3,);
+        return array (  95 => 31,  88 => 27,  79 => 21,  74 => 18,  68 => 17,  64 => 15,  61 => 14,  55 => 11,  50 => 9,  46 => 8,  43 => 7,  31 => 4,  28 => 3,);
     }
 }

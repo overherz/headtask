@@ -59,7 +59,7 @@ function get_setting($key,$default=false)
 function pr($a)
 {
     if (is_array($a)) {
-        echo "<pre style='background:#fff;padding-top: 50px;'>".print_r($a,true)."</pre>";
+        echo "<pre style='background:#fff;padding-top: 50px;padding-left:250px;'>".print_r($a,true)."</pre>";
     }
     else if (is_object($a))
     {
@@ -495,4 +495,12 @@ function build_user_name($first_name,$last_name,$first_letter_name=false)
 {
     if ($first_letter_name) $first_name = mb_substr($first_name,0,1).".";
     if ($first_name != "" && $last_name != "") return $last_name." ".$first_name;
+}
+
+function get_full_domain_name()
+{
+    $protocol = (defined('SECURE') && SECURE) ? "https://" : "http://";
+    $domain = (defined('DOMAIN_NAME') && DOMAIN_NAME) ? DOMAIN_NAME : $_SERVER["SERVER_NAME"];
+
+    return $protocol.$domain;
 }

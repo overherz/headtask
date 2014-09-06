@@ -28,8 +28,12 @@ class __TwigTemplate_d99e7833a94b74bc9ebbdb47f0629a6d93c3e57e5cc34275445a5f73912
     public function block_title($context, array $blocks = array())
     {
         // line 4
-        if ((isset($context["task"]) ? $context["task"] : null)) {
-        }
+        echo \layout::func_from_text("Новость - ");
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["news"]) ? $context["news"] : null), "name"), "html", null, true));
+        echo \layout::func_from_text(". Проект ");
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "name"), "html", null, true));
+        echo \layout::func_from_text("
+");
     }
 
     // line 7
@@ -52,7 +56,7 @@ class __TwigTemplate_d99e7833a94b74bc9ebbdb47f0629a6d93c3e57e5cc34275445a5f73912
         echo \layout::func_from_text("<ul class=\"breadcrumbs-one second\">
     <li><a class=\"current\">");
         // line 14
-        echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["news"]) ? $context["news"] : null), "created"), "d.m.Y H:i:s"), "html", null, true));
+        echo \layout::func_from_text(twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["news"]) ? $context["news"] : null), "created"), "d.m.Y H:i"), "html", null, true));
         echo \layout::func_from_text(" |
     ");
         // line 15
@@ -95,6 +99,6 @@ class __TwigTemplate_d99e7833a94b74bc9ebbdb47f0629a6d93c3e57e5cc34275445a5f73912
 
     public function getDebugInfo()
     {
-        return array (  81 => 23,  78 => 22,  72 => 19,  68 => 18,  65 => 17,  63 => 16,  59 => 15,  55 => 14,  52 => 13,  49 => 12,  43 => 9,  39 => 8,  36 => 7,  31 => 4,  28 => 3,);
+        return array (  85 => 23,  82 => 22,  76 => 19,  72 => 18,  69 => 17,  67 => 16,  63 => 15,  59 => 14,  56 => 13,  53 => 12,  47 => 9,  43 => 8,  40 => 7,  31 => 4,  28 => 3,);
     }
 }

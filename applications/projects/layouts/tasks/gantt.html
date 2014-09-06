@@ -6,12 +6,12 @@
 
 {% block css %}
 {{ parent() }}
-<link rel="stylesheet" href="/libraries/gantt/css/style.css" type="text/css" />
+<link rel="stylesheet" href="{{ app.path('/libraries/gantt/css/','style.css',true) }}" type="text/css" />
 {% endblock %}
 
 {% block js %}
 {{ parent() }}
-<script src="/libraries/gantt/js/jquery.fn.gantt.min.js"></script>
+    <script src="{{ app.path('/libraries/gantt/js/','jquery.fn.gantt.min.js',true) }}"></script>
     <script src="{{ app.path('projects','gantt.js') }}"></script>
 {% endblock %}
 

@@ -18,7 +18,7 @@ class __TwigTemplate_6d7f13f94c6c0df88561de045a365228d2516727075bcb616df7d30f0e0
         // line 1
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("<table class=\"table table-border table-hover table-condensed\" id=\"tasks_table\">
+        echo \layout::func_from_text("<table class=\"table table-hover table_style no_padding_right\" id=\"tasks_table\">
     <tr>
         <th>Название</th>
         <th>Дата</th>
@@ -82,7 +82,7 @@ class __TwigTemplate_6d7f13f94c6c0df88561de045a365228d2516727075bcb616df7d30f0e0
 </table>
 ");
         // line 19
-        $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
+        $this->env->loadTemplate("/source/jpaginator_boot_if.html")->display($context);
     }
 
     public function getTemplateName()
@@ -97,6 +97,6 @@ class __TwigTemplate_6d7f13f94c6c0df88561de045a365228d2516727075bcb616df7d30f0e0
 
     public function getDebugInfo()
     {
-        return array (  85 => 19,  81 => 17,  77 => 15,  74 => 14,  60 => 13,  56 => 12,  36 => 10,  32 => 8,  21 => 2,  19 => 1,  65 => 20,  62 => 19,  55 => 14,  52 => 13,  46 => 10,  41 => 8,  38 => 11,  31 => 4,  28 => 7,);
+        return array (  85 => 19,  81 => 17,  77 => 15,  74 => 14,  60 => 13,  56 => 12,  36 => 10,  32 => 8,  21 => 2,  19 => 1,  64 => 19,  61 => 18,  54 => 13,  51 => 12,  45 => 9,  41 => 8,  38 => 11,  31 => 4,  28 => 7,);
     }
 }

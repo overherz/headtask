@@ -16,7 +16,7 @@ class __TwigTemplate_75ceb40acfecf41f25d61d1990b3833df55a871b9790a9df19ae4b1399c
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<table class=\"table table-border\" style=\"margin-top: 15px;\" id=\"category_table\">
+        echo \layout::func_from_text("<table class=\"table table_style no_padding_right\" style=\"margin-top: 15px;\" id=\"category_table\">
     <thead>
     <tr>
         <th>Название</th>
@@ -42,7 +42,7 @@ class __TwigTemplate_75ceb40acfecf41f25d61d1990b3833df55a871b9790a9df19ae4b1399c
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["cat"]) ? $context["cat"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("</span>
             </td>
-            <td style=\"width: 85px;\">
+            <td style=\"width: 75px;\">
                 <div class=\"btn-group\">
                     <a class=\"btn btn-info btn-sm edit_category\" data-id=\"");
             // line 16
@@ -85,6 +85,6 @@ class __TwigTemplate_75ceb40acfecf41f25d61d1990b3833df55a871b9790a9df19ae4b1399c
 
     public function getDebugInfo()
     {
-        return array (  72 => 26,  63 => 22,  53 => 17,  49 => 16,  38 => 12,  34 => 10,  29 => 9,  19 => 1,);
+        return array (  72 => 26,  63 => 22,  53 => 17,  49 => 16,  38 => 12,  34 => 10,  19 => 1,  188 => 81,  183 => 78,  180 => 77,  174 => 74,  170 => 72,  168 => 71,  165 => 70,  161 => 69,  150 => 65,  146 => 63,  137 => 56,  135 => 55,  127 => 52,  118 => 46,  109 => 40,  100 => 34,  95 => 31,  89 => 30,  85 => 28,  74 => 19,  70 => 18,  67 => 17,  64 => 16,  58 => 13,  55 => 12,  52 => 11,  44 => 8,  41 => 7,  32 => 4,  29 => 9,);
     }
 }

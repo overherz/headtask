@@ -17,12 +17,11 @@ class __TwigTemplate_1ed4a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300a
     {
         // line 1
         echo \layout::func_from_text("    <link rel=\"stylesheet\" href=\"/core/dev_panel/dev_panel.css\" type=\"text/css\" />
-    <link rel=\"stylesheet\" href=\"/source/css/popup.css\" type=\"text/css\" />
-    <script src=\"/source/js/functions.js\"></script>
+    <link rel=\"stylesheet\" href=\"/source/css/plugins.css\" type=\"text/css\" />
     <style>
         .dev_panel_name {
             background: ");
-        // line 6
+        // line 5
         if (((isset($context["count_error"]) ? $context["count_error"] : null) || (isset($context["errors"]) ? $context["errors"] : null))) {
             echo \layout::func_from_text("darkred");
         } else {
@@ -32,12 +31,11 @@ class __TwigTemplate_1ed4a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300a
         }
     </style>
     <script type=\"text/javascript\" src=\"/core/dev_panel/dev_panel.js\"></script>
-
     <div class=\"dev_panel_wrapper\">
     ");
-        // line 12
+        // line 10
         if ((!(isset($context["to_email"]) ? $context["to_email"] : null))) {
-            // line 13
+            // line 11
             echo \layout::func_from_text("    <table cellspacing='0' cellpadding='0' style='width:100%;height:10px;'>
     <tr>
         <td class=\"dev_panel_name\" colspan=\"3\">Developer's Panel
@@ -54,33 +52,33 @@ class __TwigTemplate_1ed4a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300a
     </table>
     ");
         }
-        // line 28
+        // line 26
         echo \layout::func_from_text("    <div id='dev_panel'>
         <div>
             <div class=\"queries_tab hover\" mode=\"dev_panel_queries\" style=\"float:left;\">GET -
                 Время (мс) - <span class=\"dev_panel_red\"> ");
-        // line 31
+        // line 29
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["time"]) ? $context["time"] : null), "html", null, true));
         echo \layout::func_from_text("</span>
                 Память (мб) - <span class=\"dev_panel_red\"> ");
-        // line 32
+        // line 30
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["memory"]) ? $context["memory"] : null), "html", null, true));
         echo \layout::func_from_text("</span>
                 Пик памяти (мб) - <span class=\"dev_panel_red\"> ");
-        // line 33
+        // line 31
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["memory_peak"]) ? $context["memory_peak"] : null), "html", null, true));
         echo \layout::func_from_text("</span>
                 <div style=\"background:#F08080;float: right;padding: 2px 10px;margin:-2px 0;color:darkred !important;\">Ошибок (");
-        // line 34
+        // line 32
         echo \layout::func_from_text(twig_escape_filter($this->env, ((array_key_exists("count_error", $context)) ? (_twig_default_filter((isset($context["count_error"]) ? $context["count_error"] : null), 0)) : (0)), "html", null, true));
         echo \layout::func_from_text(")</div>
                 <div style=\"float: right;padding-right: 10px;padding-left: 10px;\">Запросы (");
-        // line 35
+        // line 33
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["count_queries"]) ? $context["count_queries"] : null), "html", null, true));
         echo \layout::func_from_text(")</div>
             </div>
             ");
-        // line 37
+        // line 35
         if ((!(isset($context["to_email"]) ? $context["to_email"] : null))) {
             echo \layout::func_from_text("<div class=\"queries_tab\" mode=\"dev_panel_ajax_queries\" style=\"float:right;\">AJAX -
                 Время (мс) - <span class=\"dev_panel_red dev_panel_time\">0</span>
@@ -91,28 +89,28 @@ class __TwigTemplate_1ed4a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300a
             </div>
             ");
         }
-        // line 45
+        // line 43
         echo \layout::func_from_text("        </div>
         <div style=\"clear:both;\"></div>
         ");
-        // line 47
+        // line 45
         if ((!(isset($context["to_email"]) ? $context["to_email"] : null))) {
-            // line 48
+            // line 46
             echo \layout::func_from_text("            <div class=\"dev_panel_ajax_queries\" style=\"display:none;\">
                 <div class=\"dev_errors\"></div>
                 <div class=\"dev_queries\"><b style=\"margin: 5px;\">Запросы отсутствуют</b></div>
             </div>
         ");
         }
-        // line 53
+        // line 51
         echo \layout::func_from_text("        <div class=\"dev_panel_queries\">
             <div class=\"dev_errors\">
                 ");
-        // line 55
+        // line 53
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["errors"]) ? $context["errors"] : null));
         foreach ($context['_seq'] as $context["_key"] => $context["er"]) {
-            // line 56
+            // line 54
             echo \layout::func_from_text("                <div class=\"");
             if ($this->getAttribute((isset($context["er"]) ? $context["er"] : null), "type")) {
                 echo \layout::func_from_text("fatal_error");
@@ -125,11 +123,11 @@ class __TwigTemplate_1ed4a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300a
             }
             echo \layout::func_from_text(">
                     <div>");
-            // line 57
+            // line 55
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["er"]) ? $context["er"] : null), "err"), "html", null, true));
             echo \layout::func_from_text("</div>
                     <div>file ");
-            // line 58
+            // line 56
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["er"]) ? $context["er"] : null), "file"), "html", null, true));
             echo \layout::func_from_text(" line ");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["er"]) ? $context["er"] : null), "line"), "html", null, true));
@@ -140,10 +138,10 @@ class __TwigTemplate_1ed4a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['er'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 61
+        // line 59
         echo \layout::func_from_text("            </div>
             <div class=\"dev_queries\">");
-        // line 62
+        // line 60
         $this->env->loadTemplate("/core/dev_panel/queries.html")->display($context);
         echo \layout::func_from_text("</div>
         </div>
@@ -162,6 +160,6 @@ class __TwigTemplate_1ed4a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300a
 
     public function getDebugInfo()
     {
-        return array (  147 => 62,  144 => 61,  133 => 58,  129 => 57,  116 => 56,  112 => 55,  108 => 53,  101 => 48,  99 => 47,  95 => 45,  84 => 37,  79 => 35,  75 => 34,  71 => 33,  67 => 32,  63 => 31,  58 => 28,  41 => 13,  39 => 12,  26 => 6,  47 => 27,  19 => 1,);
+        return array (  145 => 60,  142 => 59,  131 => 56,  127 => 55,  114 => 54,  110 => 53,  106 => 51,  99 => 46,  97 => 45,  93 => 43,  82 => 35,  77 => 33,  73 => 32,  69 => 31,  65 => 30,  61 => 29,  56 => 26,  39 => 11,  37 => 10,  25 => 5,  19 => 1,);
     }
 }

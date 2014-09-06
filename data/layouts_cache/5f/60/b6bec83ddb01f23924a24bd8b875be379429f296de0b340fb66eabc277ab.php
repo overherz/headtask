@@ -29,10 +29,15 @@ class __TwigTemplate_5f60b6bec83ddb01f23924a24bd8b875be379429f296de0b340fb66eabc
     {
         // line 4
         if ((isset($context["news"]) ? $context["news"] : null)) {
-            echo \layout::func_from_text("Редактирование новости");
+            echo \layout::func_from_text("Редактирование новости ");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["news"]) ? $context["news"] : null), "name"), "html", null, true));
         } else {
             echo \layout::func_from_text("Добавление новости");
         }
+        echo \layout::func_from_text(". Проект ");
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "name"), "html", null, true));
+        echo \layout::func_from_text("
+");
     }
 
     // line 7
@@ -41,7 +46,10 @@ class __TwigTemplate_5f60b6bec83ddb01f23924a24bd8b875be379429f296de0b340fb66eabc
         // line 8
         $this->displayParentBlock("js", $context, $blocks);
         echo \layout::func_from_text("
-<script type =\"text/javascript\" src=\"/source/js/ckeditor/ckeditor.js\"></script>
+<script type =\"text/javascript\" src=\"");
+        // line 9
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/source/js/ckeditor/", 1 => "ckeditor.js", 2 => true), "method"), "html", null, true));
+        echo \layout::func_from_text("\"></script>
 
 <script src=\"");
         // line 11
@@ -168,6 +176,6 @@ class __TwigTemplate_5f60b6bec83ddb01f23924a24bd8b875be379429f296de0b340fb66eabc
 
     public function getDebugInfo()
     {
-        return array (  147 => 57,  144 => 56,  138 => 52,  131 => 50,  125 => 48,  123 => 47,  119 => 46,  115 => 45,  112 => 44,  108 => 43,  105 => 42,  101 => 40,  99 => 39,  90 => 32,  88 => 31,  82 => 28,  73 => 22,  67 => 18,  61 => 17,  57 => 15,  54 => 14,  48 => 11,  42 => 8,  39 => 7,  31 => 4,  28 => 3,);
+        return array (  155 => 57,  152 => 56,  146 => 52,  139 => 50,  133 => 48,  131 => 47,  127 => 46,  123 => 45,  120 => 44,  116 => 43,  113 => 42,  109 => 40,  107 => 39,  98 => 32,  96 => 31,  90 => 28,  81 => 22,  75 => 18,  69 => 17,  65 => 15,  62 => 14,  56 => 11,  51 => 9,  47 => 8,  44 => 7,  31 => 4,  28 => 3,);
     }
 }

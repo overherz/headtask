@@ -62,13 +62,15 @@ class tasks extends \Controller {
         {
             if (!$project = $access['project']) $this->error_page();
 
-            if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+            if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}");
             crumbs("Задачи","/projects/tasks/{$project['id']}/");
             crumbs("Добавление");
             $users = $this->get_controller("projects","users")->get_users_project($this->_0);
+
+            $this->set_global('id_project',$project['id']);
             $this->layout_show('tasks/add_task.html',array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'add_tasks_button' => true,
                 'project' => $project,
                 'users' => $users,
@@ -97,7 +99,7 @@ class tasks extends \Controller {
             $task = $access['task'];
             if (intval($task['spent_time']) == $task['spent_time']) $task['spent_time'] = (int) $task['spent_time'];
 
-            if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+            if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}");
             crumbs("Задачи","/projects/tasks/{$project['id']}/");
             crumbs($task['name'],"/projects/tasks/show/{$task['id']}/");
@@ -151,8 +153,9 @@ class tasks extends \Controller {
                 $comments = $this->generate_comments($this->_0);
             }
 
+            $this->set_global('id_project',$project['id']);
             $this->layout_show($layout,array(
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'tasks_button' => true,
                 'project' => $project,
                 'task' => $task,
@@ -175,24 +178,21 @@ class tasks extends \Controller {
         $access = $this->get_controller("projects","users")->get_access($this->id);
         if (!$project = $access['project']) $this->error_page();
 
-        if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+        if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
         crumbs($project['name'],"/projects/~{$project['id']}");
         crumbs("Задачи");
-
-        if (isset($_POST['search']) && $_POST['search'] != '')
-        {
-            $search = explode(" ",$_POST['search']);
-            foreach ($search as $s)
-            {
-                $s = $this->db->quote("%{$s}%");
-                $search_ar[] = "t.name LIKE ".$s." OR t.description LIKE ".$s." OR a.first_name LIKE ".$s." OR a.last_name LIKE ".$s." OR a.nickname LIKE ".$s;
-            }
-            $where[] = "(".implode("OR ",$search_ar).")";
-        }
 
         $categories = $this->get_controller("projects")->get_categories($this->id,true);
 
         $form = array(
+            'my' => array('label' => 'Мои',
+                'type' => 'checkbox'
+            ),
+            'assigned' => array('label' => 'Делегированные',
+                'type' => 'radio',
+                'options' => array('all' => 'Все','me' => 'Мне','not_all' => 'Никому','not_me' => 'Не мне'),
+                'selected' => 'all'
+            ),
             'status' => array('label' => 'Статус',
                 'type' => 'multy_select',
                 'options' => array('new' => 'новая','in_progress' => 'в процессе','closed' => 'закрытая','rejected' => 'отклоненная'),
@@ -207,112 +207,58 @@ class tasks extends \Controller {
                 'options' => $categories,
                 'selected' => array(intval($_GET['cat']))
             ),
-            'percent' => array('label' => 'Только просроченные',
+            'percent' => array('label' => 'Просроченные',
                 'type' => 'checkbox'
             ),
+            'search' => array('label' => 'Поиск',
+                'type' => 'text',
+                'selected' => $_POST['search']
+            )
         );
 
-        if ($_POST['status'] == "" && !$_POST) $_POST['status'] = $form['status']['selected'];
-        else if ($_POST['status'] == "") $_POST['status'] = array_keys($form['status']['options']);
-        if (isset($_POST['status']) && $_POST['status'] != '')
+        $u_data_cr = $this->get_controller("users");
+
+        if ($_POST['act'] == "get_data")
         {
-            foreach ($_POST['status'] as &$s) $s = $this->db->quote($s);
-            $where[] = "t.status IN (".implode(",",$_POST['status']).")";
+            $u_data_cr->save_user_data($_SESSION['user']['id_user'],"project_filter".$this->id,serialize($_POST));
         }
-
-        if (isset($_POST['percent']) && $_POST['percent'] != '')
+        else if ($user_data = $u_data_cr->get_user_data($_SESSION['user']['id_user'],"project_filter".$this->id))
         {
-            $d = "'".date("Y-m-d")."'";
-            $where[] = "(t.end IS NOT NULL and t.end < {$d} and t.status IN('new','in_progress'))";
-        }
-
-        if (isset($_POST['priority']) && $_POST['priority'] != '')
-        {
-            foreach ($_POST['priority'] as &$s) $s = $this->db->quote($s);
-            $where[] = "t.priority IN (".implode(",",$_POST['priority']).")";
-        }
-
-        if (isset($_POST['category']) && $_POST['category'] != '')
-        {
-            foreach ($_POST['category'] as &$s) $s = (int) $s;
-            $where[] = "c.id_category IN (".implode(",",$_POST['category']).")";
-        }
-        else if ($_GET['cat'])
-        {
-            $where[] = "c.id_category = ".intval($_GET['cat']);
-        }
-
-        $where[] = "t.id_project={$this->db->quote($this->id)}";
-
-        if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
-
-        $total = $this->db->num_rows("projects_tasks as t LEFT JOIN users as a ON t.assigned = a.id_user LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id {$where}");
-
-        require_once(ROOT.'libraries/paginator/paginator.php');
-        $paginator = new \Paginator($total, $_POST['page'], $this->limit);
-        if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
-
-        $query = $this->db->prepare("select distinct t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
-                a.first_name as assigned_first_name,a.last_name as assigned_last_name,a.nickname as assigned_nickname,
-                u.first_name as user_first_name,u.last_name as user_last_name,u.nickname as user_nickname,g.color,g.name as group_name,
-                gt.color as assigned_color,gt.name as assigned_group_name, GROUP_CONCAT(c.id_category) as cats
-                from projects_tasks as t
-                LEFT JOIN users as a ON t.assigned = a.id_user
-                LEFT JOIN users as u ON t.id_user = u.id_user
-                LEFT JOIN groups as g ON u.id_group = g.id
-                LEFT JOIN groups as gt ON a.id_group = gt.id
-                LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id
-                {$where}
-                group by t.id
-                order by t.updated DESC,t.name ASC
-                LIMIT {$this->limit}
-                OFFSET {$paginator->get_range('from')}
-            ");
-        $query->execute();
-        $cats_ids = array();
-        while ($row = $query->fetch())
-        {
-            $row['assigned_name'] = build_user_name($row['assigned_first_name'],$row['assigned_last_name'],true);
-            $row['user_name'] = build_user_name($row['user_first_name'],$row['user_last_name'],true);
-            $row['diff'] = $this->get_date_diff($row['end']);
-            $row['cats'] = explode(",",$row['cats']);
-            if ($row['cats'][0] == "") $row['cats'] = false;
-            if (is_array($row['cats'])) $cats_ids = array_merge($cats_ids,$row['cats']);
-            $tasks[] = $row;
-        }
-
-        if (count($cats_ids) > 0)
-        {
-            $cats_ids = array_unique($cats_ids);
-            $uniq_ids = implode(",",$cats_ids);
-
-            $query = $this->db->query("select * from projects_tasks_categories where id IN({$uniq_ids})");
-            while ($row = $query->fetch())
+            $filter = unserialize($user_data['data']);
+            foreach ($form as $k => &$f)
             {
-                $cats[$row['id']] = $row;
+                if ($filter[$k]) $f['selected'] = $filter[$k];
+                else $f['selected'] = false;
             }
+
+            $start = $filter['start'];
+            $end = $filter['end'];
+            $start_edit = $filter['start_edit'];
+            $end_edit = $filter['end_edit'];
         }
 
+        $u_cr = $this->get_controller("projects","user_tasks");
+        $u_cr->limit = 50;
+        $u_cr->form = $form;
+        $u_cr->owner = true;
+        $u_cr->start = $start;
+        $u_cr->end = $end;
+        $u_cr->start_edit = $start_edit;
+        $u_cr->end_edit = $end_edit;
+        $u_cr->dashboard = true;
+        $u_cr->id_project = $this->id;
+        $u_cr->access = $access['access'];
+
+        $this->set_global('id_project',$project['id']);
         $data = array(
-            'tasks' => $tasks,
-            'projects' => $this->get_controller("projects")->get_projects($project['id']),
             'project' => $project,
             'tasks_button' => true,
-            'paginator' => $paginator,
-            'form' => $form,
             'access' => $access['access'],
             'all' => true,
-            'cats' => $cats
+            'user_tasks' => $u_cr->default_method()
         );
 
-        if ($_POST && $_GET['ajax'])
-        {
-            if ($text = $this->layout_get('tasks/tasks_table.html',$data)) $result['success'] = $text;
-            else $result['error'] = "Ничего не найдено";
-
-            echo json_encode($result);
-        }
-        else $this->layout_show('tasks/tasks.html',$data);
+        if (!$_POST['act'] == "get_data") $this->layout_show('tasks/tasks.html',$data);
     }
 
     function get_task($id)
@@ -361,7 +307,7 @@ class tasks extends \Controller {
             }
         }
         else $_POST['end'] = null;
-        if ($_POST['status'] != "closed" && $_POST['percent'] == 100) $res['error'][] = "Понизьте процент выполнения";
+        if ($_POST['status'] != "closed" && $_POST['status'] != "rejected" && $_POST['percent'] == 100) $res['error'][] = "Понизьте процент выполнения";
 
         if ($_POST['assigned'] == "") $_POST['assigned'] = null;
         if ($_POST['estimated_time'] == "") $_POST['estimated_time'] = null;
@@ -382,7 +328,7 @@ class tasks extends \Controller {
         );
 
         if ($project['owner']) $_POST['assigned'] = $_SESSION['user']['id_user'];
-        if ($_POST['percent'] == 100) $_POST['status'] = "closed";
+        if ($_POST['percent'] == 100 && $_POST['status'] != 'rejected') $_POST['status'] = "closed";
 
         if (!$res['error'])
         {
@@ -393,8 +339,9 @@ class tasks extends \Controller {
                 if ($access['access']['edit_task'] || $access['access']['edit_tasks'])
                 {
                     $text_log = "";
+                    if ($task['name'] != $_POST['name']) $text_log .= ". Название изменено на ".$_POST['name'];
                     if ($task['status'] != $_POST['status']) $text_log .= ". Статус изменен с '{$sta[$task['status']]}' на '{$sta[$_POST['status']]}'";
-                    if ($task['percent'] != $_POST['percent']) $text_log .= ". Статус выполнения изменен с {$task['percent']}% на {$_POST['percent']}%";
+                    if ($task['percent'] != $_POST['percent']) $text_log .= ". % выполнения изменен с {$task['percent']}% на {$_POST['percent']}%";
 
                     if ($task['priority'] != $_POST['priority']) $text_log .= ". Приоритет изменен с {$pri[$task['priority']]} на {$pri[$_POST['priority']]}";
 
@@ -489,7 +436,7 @@ class tasks extends \Controller {
                 $this->db->commit();
 
                 $message = $this->layout_get("tasks/task_mail.html",array(
-                    'server_name' => $_SERVER["SERVER_NAME"],
+                    'domain' => get_full_domain_name(),
                     'name' => $project['name'],
                     'edit' => $edit,
                     'task' => $res['success']
@@ -552,14 +499,14 @@ class tasks extends \Controller {
                         $res['success']['project'] = $task['id_project'];
                         $log = $this->get_controller("projects","logs");
 
-                        if ($task['status'] == "closed") $message = "Закрыта";
-                        else if ($_POST['new_current_percent'] > 0) $message = "Изменен статус выполнения ({$_POST['new_current_percent']} %)";
+                        if ($task['status'] == "closed") $message = "Закрыта <a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a>";
+                        else if ($_POST['new_current_percent'] > 0) $message = "Изменен % выполнения <a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a> ({$_POST['new_current_percent']} %)";
                         else $message = "Начата";
 
-                        $log->set_logs("task",$task['id'],$message);
+                        $log->set_logs("task",$task['id_project'],$message,$task['id']);
 
                         $message = $this->layout_get("tasks/task_mail.html",array(
-                            'server_name' => $_SERVER["SERVER_NAME"],
+                            'domain' => get_full_domain_name(),
                             'name' => $access['project']['name'],
                             'edit' => true,
                             'task' => $task['id'],
@@ -1003,7 +950,7 @@ class tasks extends \Controller {
             $from = get_setting('email');
             foreach($new_comments as $n)
             {
-                $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n,'server_name' => DOMEN_FOR_CLI));
+                $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n,'domain' => get_full_domain_name()));
                 if (!send_mail($from, $n['email'], "Новые комментарии в задачах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }

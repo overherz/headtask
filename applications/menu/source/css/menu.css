@@ -37,7 +37,7 @@ ol.sortable {
 }
 
 .tree_icons {
-    display: none;
+    visibility: hidden;
     position: absolute;
     right: 0;
 }

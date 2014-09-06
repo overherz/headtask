@@ -1,6 +1,7 @@
 {% include '/source/jpaginator_boot.html' %}
 
-<table class="table table-border table-hover table-condensed">
+<table class="table table-hover table_style no_padding_right no_padding_left">
+    <thead>
     <tr>
         <th style="width: 100px;"></th>
         <th>Имя</th>
@@ -10,6 +11,8 @@
         <th style="width: 1px;">Активность</th>
         {% if access.users %}<th></th>{% endif %}
     </tr>
+    </thead>
+    <tbody>
     {% for u in users %}
         <tr {% if u.role == 'manager' %}class="success"{% endif %} id="tr_user{{u.id_user}}">
             <td style="text-align: center;"><a href="/users/~{{u.id_user}}/">{% if u.avatar %}<img src="/uploads/users/ava_small/{{u.avatar|real_path}}">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}</a></td>
@@ -28,11 +31,7 @@
                 <div style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats[u.id_user].rejected|default(0)) }}</div>
             </td>
             <td style="text-align: center;">
-                {% if u.last_user_action >= globals.time %}
-                    <div class="user_online big"></div>
-                {% else %}
-                    <div class="user_offline big"></div>
-                {% endif %}
+                <div class="get_ms_status user_offline big" data-id="{{u.id_user}}"></div>
             </td>
             <td>
                 {% if u.skypename %}<div><span style="font-weight: bold;">Skype:</span> <a href="skype:{{u.skypename}}?chat">{{ u.skypename }}</a>{% endif %}</div>
@@ -45,7 +44,7 @@
                 {% endif %}
             </td>
             {% if access.users %}
-            <td style="width: 85px;">
+            <td style="width: 75px;">
                 <div class="btn-group">
                     <a class="btn btn-primary btn-sm" href="/projects/users/edit/{{ project.id }}/{{ u.id_user }}/"><i class="fa fa-pencil"></i></a>
                     <a class="btn btn-primary btn-sm" href="" delete_project_user="{{ u.id_user }}"><i class="fa fa-trash-o"></i></a>
@@ -53,6 +52,11 @@
             </td>
             {% endif %}
         </tr>
+    {% else %}
+        <tr><td colspan="7">
+            <span style="margin-left: 10px;">участников нет</span>
+        </td></tr>
     {% endfor %}
+    </tbody>
 </table>
-{% include '/source/jpaginator_boot.html' %}
+{% include '/source/jpaginator_boot_if.html' %}

@@ -40,12 +40,22 @@ class files extends \Admin {
                     require_once(ROOT.'libraries/imaginator/imaginator.php');
 
                     $i = new \imaginator($_FILES['files']['tmp_name'][0]);
-                    if ($path2 = $i->get('projects_small','projects') && $path3 = $i->get('projects_big','projects'))
+                    if ($path2 = $i->get('projects_small','projects'))
                     {
-                        $name = basename($path3);
-                        $filesize = filesize(ROOT.$path3);
-                        if (!$query->execute(array(time(),'image',$_POST['project'],$_SESSION['user']['id_user'],$name,$_FILES['files']['name'][0],$filesize))) $res['error'] = "Ошибка базы данных";
-                        else $last = $this->db->lastInsertId();
+                        $name = basename($path2);
+                        $folder = "uploads/projects/projects_big/".real_path($name,true);
+
+                        if(!is_dir(ROOT.$folder)){
+                            if (!mkdir(ROOT.$folder,0777,true)) $res['error'] = "Ошибка создания директории";
+                        }
+
+                        $path = ROOT.$folder."/".$name;
+                        if (!move_uploaded_file($source, $path)) $res['error'] = "Файл не был перемещен ".$path;
+                        else
+                        {
+                            if (!$query->execute(array(time(),'image',$_POST['project'],$_SESSION['user']['id_user'],$name,$_FILES['files']['name'][0],$_FILES['files']['size'][0]))) $res['error'] = "Ошибка базы данных";
+                            else $last = $this->db->lastInsertId();
+                        }
                     }
                     else
                     {
@@ -107,7 +117,7 @@ class files extends \Admin {
             $access = $this->get_controller("projects","users")->get_access($this->id);
             if (!$project = $access['project']) $this->error_page();
 
-            if ($project['owner']) crumbs("Личные проекты","/projects/",true);
+            if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}/");
             crumbs("Файлы");
 
@@ -145,9 +155,10 @@ class files extends \Admin {
                 $files[] = $row;
             }
 
+            $this->set_global('id_project',$project['id']);
             $data = array(
                 'files' => $files,
-                'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
                 'project' => $project,
                 'files_button' => true,
                 'paginator' => $paginator,

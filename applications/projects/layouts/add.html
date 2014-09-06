@@ -1,15 +1,15 @@
 {% extends app.path('projects','index.html') %}
 
 {% block title %}
-    {% if project %}Редактирование проекта{% else %}Создание проекта{% endif %}
+    {% if project %}Редактирование проекта {{ project.name }}{% else %}Создание проекта{% endif %}
 {% endblock %}
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" type="text/css" href="/source/js/miniColors/jquery.miniColors.css">
+    <link rel="stylesheet" type="text/css" href="{{ app.path('/source/js/minicolors/','jquery.minicolors.css',true) }}">
 {% endblock %}
 {% block js %}
-    <script type="text/javascript" src="/source/js/miniColors/jquery.miniColors.min.js"></script>
+    <script src="{{ app.path('/source/js/minicolors/','jquery.minicolors.min.js',true) }}"></script>
     {{ parent() }}
 {% endblock %}
 

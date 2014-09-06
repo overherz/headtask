@@ -47,7 +47,9 @@ class __TwigTemplate_ae5272a4075855fc2625613cc5cd2259f2cd07ba64a9d203ce5fb997164
     public function block_css($context, array $blocks = array())
     {
         // line 11
-        echo \layout::func_from_text("    <link rel=\"stylesheet\" type=\"text/css\" href=\"/libraries/calendar/calendar.css\">
+        echo \layout::func_from_text("    <link rel=\"stylesheet\" type=\"text/css\" href=\"");
+        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/libraries/calendar/", 1 => "calendar.css", 2 => true), "method"), "html", null, true));
+        echo \layout::func_from_text("\">
 ");
     }
 
@@ -77,6 +79,6 @@ class __TwigTemplate_ae5272a4075855fc2625613cc5cd2259f2cd07ba64a9d203ce5fb997164
 
     public function getDebugInfo()
     {
-        return array (  64 => 17,  61 => 16,  58 => 15,  55 => 14,  50 => 11,  47 => 10,  40 => 6,  37 => 5,  31 => 3,);
+        return array (  66 => 17,  63 => 16,  60 => 15,  57 => 14,  50 => 11,  47 => 10,  40 => 6,  37 => 5,  31 => 3,);
     }
 }

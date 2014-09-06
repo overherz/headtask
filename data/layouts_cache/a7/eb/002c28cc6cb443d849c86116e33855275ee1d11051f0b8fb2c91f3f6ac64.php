@@ -31,12 +31,12 @@ class __TwigTemplate_a7eb002c28cc6cb443d849c86116e33855275ee1d11051f0b8fb2c91f3f
         // line 6
         echo \layout::func_from_text("&nbsp;");
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : null), "html", null, true));
-        echo \layout::func_from_text(" <a href=\"http://");
-        echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["server_name"]) ? $context["server_name"] : null), "html", null, true));
+        echo \layout::func_from_text(" <a href=\"");
+        echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["domain"]) ? $context["domain"] : null), "html", null, true));
         echo \layout::func_from_text("/projects/tasks/show/");
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["task"]) ? $context["task"] : null), "html", null, true));
-        echo \layout::func_from_text("/\">http://");
-        echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["server_name"]) ? $context["server_name"] : null), "html", null, true));
+        echo \layout::func_from_text("/\">");
+        echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["domain"]) ? $context["domain"] : null), "html", null, true));
         echo \layout::func_from_text("/projects/tasks/show/");
         echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["task"]) ? $context["task"] : null), "html", null, true));
         echo \layout::func_from_text("/</a>");

@@ -18,7 +18,7 @@ class __TwigTemplate_d91edef010d8987ec2d39ab84830fcbf094e4d4b655e81f27eca7c89a35
         // line 1
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("<table class=\"table table-condensed\" style=\"background: #fff;min-width: 700px;\" id=\"");
+        echo \layout::func_from_text("<table class=\"table table_style no_padding_left\" style=\"background: #fff;min-width: 700px;\" id=\"");
         if (((!(isset($context["get_popup_files"]) ? $context["get_popup_files"] : null)) && (!$this->getAttribute((isset($context["post_data"]) ? $context["post_data"] : null), "get_popup_files")))) {
             echo \layout::func_from_text("files_table");
         } else {

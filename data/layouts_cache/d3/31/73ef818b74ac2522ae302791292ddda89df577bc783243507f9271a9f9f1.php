@@ -18,7 +18,7 @@ class __TwigTemplate_d33173ef818b74ac2522ae302791292ddda89df577bc783243507f9271a
         // line 1
         $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
         // line 2
-        echo \layout::func_from_text("<table class=\"table table-hover table-condensed table-border\" id=\"");
+        echo \layout::func_from_text("<table class=\"table table-hover table_style no_padding_right no_padding_left\" id=\"");
         if (((!(isset($context["get_popup_files"]) ? $context["get_popup_files"] : null)) && (!$this->getAttribute((isset($context["post_data"]) ? $context["post_data"] : null), "get_popup_files")))) {
             echo \layout::func_from_text("files_table");
         } else {
@@ -41,7 +41,7 @@ class __TwigTemplate_d33173ef818b74ac2522ae302791292ddda89df577bc783243507f9271a
         }
         // line 11
         echo \layout::func_from_text("    </tr>
-
+    </thead>
     <tbody>
     ");
         // line 14
@@ -92,7 +92,7 @@ class __TwigTemplate_d33173ef818b74ac2522ae302791292ddda89df577bc783243507f9271a
             } else {
                 echo \layout::func_from_text("4");
             }
-            echo \layout::func_from_text("\" id=\"no_file\">файлов нет</td>
+            echo \layout::func_from_text("\" id=\"no_file\"><span style=\"margin-left: 10px;\">файлов нет</span></td>
     ");
         }
         // line 21
@@ -100,7 +100,7 @@ class __TwigTemplate_d33173ef818b74ac2522ae302791292ddda89df577bc783243507f9271a
 </table>
 ");
         // line 23
-        $this->env->loadTemplate("/source/jpaginator_boot.html")->display($context);
+        $this->env->loadTemplate("/source/jpaginator_boot_if.html")->display($context);
     }
 
     public function getTemplateName()
@@ -115,6 +115,6 @@ class __TwigTemplate_d33173ef818b74ac2522ae302791292ddda89df577bc783243507f9271a
 
     public function getDebugInfo()
     {
-        return array (  103 => 23,  89 => 19,  86 => 18,  72 => 17,  68 => 16,  48 => 14,  37 => 10,  21 => 2,  19 => 1,  406 => 161,  402 => 159,  398 => 158,  393 => 155,  391 => 154,  387 => 152,  384 => 151,  381 => 150,  378 => 149,  374 => 148,  370 => 146,  367 => 145,  361 => 141,  344 => 136,  338 => 135,  334 => 133,  330 => 132,  324 => 128,  322 => 127,  317 => 124,  302 => 122,  298 => 121,  292 => 117,  283 => 113,  274 => 107,  269 => 104,  263 => 100,  248 => 98,  244 => 97,  237 => 92,  234 => 91,  232 => 90,  229 => 89,  220 => 83,  207 => 75,  201 => 74,  195 => 73,  189 => 72,  183 => 68,  181 => 67,  175 => 64,  167 => 61,  162 => 58,  155 => 56,  148 => 55,  146 => 54,  139 => 53,  135 => 52,  129 => 48,  122 => 44,  113 => 38,  108 => 35,  105 => 34,  99 => 21,  94 => 30,  88 => 28,  82 => 26,  80 => 25,  77 => 24,  74 => 23,  67 => 20,  63 => 18,  61 => 17,  53 => 13,  50 => 15,  43 => 11,  40 => 7,  32 => 4,  29 => 3,);
+        return array (  103 => 23,  99 => 21,  89 => 19,  86 => 18,  72 => 17,  68 => 16,  50 => 15,  48 => 14,  43 => 11,  37 => 10,  21 => 2,  19 => 1,  76 => 26,  73 => 25,  70 => 24,  67 => 23,  64 => 22,  52 => 13,  49 => 12,  42 => 8,  39 => 7,  32 => 4,  29 => 3,);
     }
 }

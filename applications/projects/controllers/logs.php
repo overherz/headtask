@@ -11,7 +11,7 @@ class logs extends \Controller {
 
         if (!$_POST)
         {
-            $start = strtotime(date("d-m-Y",strtotime("-3 days", time())));
+            $start = strtotime(date("d.m.Y",strtotime("-3 days", time())));
             $end = time();
         }
         else
@@ -20,16 +20,16 @@ class logs extends \Controller {
             $end = strtotime($_POST['end']) + 60*60*24-1;
         }
 
-        $logs = $this->get_logs($_POST['type'],$_POST['project'],false,$start,$end);
+        $logs = $this->get_logs($_POST['type'],$_POST['project'],false,$start,$end,$_POST['search']);
 
        // pr($logs['paginator']);
 
         $data = array(
-            'types' => array('project','task','file','news','comment'),//$this->db->get_enum("projects_logs","type"),
+            'types' => array('project','task','file','news','comment','forum'),//$this->db->get_enum("projects_logs","type"),
             'logs' => $logs['logs'],
             'paginator' => $logs['paginator'],
-            'start' => date("d-m-Y",$start),
-            'end' => date("d-m-Y",$end),
+            'start' => date("d.m.Y",$start),
+            'end' => date("d.m.Y",$end),
             'all' => $all
         );
 
@@ -142,15 +142,23 @@ class logs extends \Controller {
         }
     }
 
-    function get_logs($type=false,$id_project=false,$id_task=false,$start=false,$end=false)
+    function get_logs($type=false,$id_project=false,$id_task=false,$start=false,$end=false,$search=false)
     {
         $search_data = array($_SESSION['user']['id_user']);
         $where = array();
 
         if ($type)
         {
-            $where[] = "pl.type=?";
-            $search_data[] = $type;
+
+            if (!is_array($type))
+            {
+                $old_type = $type;
+                $type = array();
+                $type[] = $old_type;
+            }
+
+            foreach ($type as &$s) $s = $this->db->quote($s);
+            $where[] = "pl.type IN (".implode(",",$type).")";
         }
 
         if ($start && $end)
@@ -170,6 +178,17 @@ class logs extends \Controller {
         {
             $where[] = "t.id=?";
             $search_data[] = $id_task;
+        }
+
+        if ($search != '')
+        {
+            $search = explode(" ",$search);
+            foreach ($search as $s)
+            {
+                $s = $this->db->quote("%{$s}%");
+                $search_ar[] = "pl.text LIKE ".$s;
+            }
+            $where[] = "(".implode("OR ",$search_ar).")";
         }
 
         if (count($where) > 0) $where_string = " AND ".implode(" AND ",$where);
@@ -208,10 +227,14 @@ class logs extends \Controller {
         $query->execute($search_data);
         while ($row = $query->fetch())
         {
-            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+            $row['text'] = htmlentities($row['text']);
+            $row['text'] = preg_replace("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u","<a html_entity_decode($1)>$2</a>",$row['text']);
+//            $m = preg_match("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u",$row['text'],$matches);
+//            pr($matches);
+
+            $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
             $logs[] = $row;
         }
-
         return array('logs' => $logs,'paginator' => $paginator);
     }
 
