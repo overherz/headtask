@@ -141,6 +141,7 @@ class user_tasks extends \Controller {
         if (!$this->owner) $where[] = "p.owner IS NULL";
         //$where[] = "(t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='manager') or ((t.id_project IN(select id_project from projects_users where id_user='{$_SESSION['user']['id_user']}' and role='user') and t.assigned='{$_SESSION['user']['id_user']}')))";
 
+        $where[] = "p.archive IS NULL";
         if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
 
         $total = $this->db->num_rows("projects_tasks as t LEFT JOIN projects as p ON t.id_project = p.id LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id {$where}",'distinct t.id');
