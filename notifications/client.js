@@ -10,6 +10,13 @@ $(document).ready(function(){
         'comment' : 'Комментарий',
         'forum' : 'Форум'
     }
+
+    var icons = {
+        'add': '<i class="fa fa-plus" style="color:#5cb85c;font-size: 14px;"></i>',
+        'edit': '<i class="fa fa-pencil" style="color:#5bc0de;"></i>',
+        'delete': '<i class="fa fa-trash-o" style="color:#d9534f;"></i>'
+    }
+
 //        playerVersion = swfobject.getFlashPlayerVersion(),
 //        majorVersion = playerVersion.major;
 
@@ -38,7 +45,7 @@ $(document).ready(function(){
 
     socket.on('logs',function(data){
         soundManager.play('new_message',{volume:100});
-        show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;'>"+langs[data.message.type]+"</span>"+data.message.text,false,false,false,true);
+        show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;font-size:12px;'>"+langs[data.message.type]+"</span>"+icons[data.message.action]+" "+data.message.text,false,false,false,true);
     });
 
     socket.on('connect_error',function(){

@@ -613,7 +613,7 @@ class tasks extends \Controller {
             if ($query->execute(array($_POST['id'])))
             {
                 $res['success']['project'] = $task['id_project'];
-                $log->set_logs("task",$access['project']['id'],"delete","Удалена {$task['name']}");
+                $log->set_logs("task",$access['project']['id'],"delete","{$task['name']}");
             }
             else $res['error'] = "Ошибка базы данных";
         }
@@ -786,7 +786,7 @@ class tasks extends \Controller {
                 $insert_id = $this->db->lastInsertId();
 
                 $log = $this->get_controller("projects","logs");
-                $log->set_logs("comment",$access['project']['id'],"Добавлен к задаче <a href='/projects/tasks/show/{$access['task']['id']}/#comment_{$insert_id}'>{$access['task']['name']}</a>","add");
+                $log->set_logs("comment",$access['project']['id'],"К задаче <a href='/projects/tasks/show/{$access['task']['id']}/#comment_{$insert_id}'>{$access['task']['name']}</a>","add");
 
                 $_SESSION['last_comment'] = $created;
                 $query = $this->db->prepare("select c.*,u.nickname,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color

@@ -77,7 +77,7 @@ class __TwigTemplate_0f70b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c6
             echo \layout::func_from_text("\">");
             echo \layout::func_from_text(twig_escape_filter($this->env, lang(("type_" . $this->getAttribute((isset($context["l"]) ? $context["l"] : null), "type"))), "html", null, true));
             echo \layout::func_from_text("</span></td>
-            <td>
+            <td style=\"width: 1px;\">
                 ");
             // line 30
             if (($this->getAttribute((isset($context["l"]) ? $context["l"] : null), "action") == "add")) {
