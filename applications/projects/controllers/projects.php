@@ -224,7 +224,7 @@ class projects extends \Controller {
                 $query = $this->db->prepare("insert into trash_data(type,id_for_type,trash_name) values(?,?,?)");
                 if (!$query->execute(array('project',$project['id'],$project['name']))) $res['error'] = "Возникла ошибка при попытке удалить проект";
 
-                if (!$log->set_logs('project',$project['id'],'Удален')) $res['error'] = "Возникла ошибка при попытке обновить логи";
+                if (!$log->set_logs('project',$project['id'],'Удален',"delete")) $res['error'] = "Возникла ошибка при попытке обновить логи";
 
                 if (!$res['error'])
                 {

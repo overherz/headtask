@@ -49,7 +49,7 @@ class add extends \Controller {
                     {
                         $res['success'] = $_POST['id'];
                         if ($access['project']['name'] != $_POST['name']) $log_text = ". Название изменено на {$_POST['name']}";
-                        if ($log) $log->set_logs("project",$access['project']['id'],"Изменен{$log_text}");
+                        if ($log) $log->set_logs("project",$access['project']['id'],"Изменен{$log_text}","edit");
                     }
                     else $res['error'] = "Ошибка сохранения проекта";
                 }
@@ -66,7 +66,7 @@ class add extends \Controller {
                     {
                         $last_id = $this->db->lastInsertId();
                         $res['success'] = $last_id;
-                        if ($log) $log->set_logs("project",$last_id,"Создан");
+                        if ($log) $log->set_logs("project",$last_id,"Создан","add");
                     }
                     else $res['error'] = "Ошибка создания проекта";
 

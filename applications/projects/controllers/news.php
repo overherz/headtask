@@ -209,7 +209,7 @@ class news extends \Controller {
                     {
                         $res['success'] = $_POST['id'];
                         if ($news['name'] != $_POST['name']) $log_text = ". Название изменено на \"{$_POST['name']}\"";
-                        if ($log) $log->set_logs("news",$id_project,"Изменена <a href='/projects/news/show/{$news['id']}'>{$news['name']}</a>{$log_text}");
+                        if ($log) $log->set_logs("news",$id_project,"Изменена <a href='/projects/news/show/{$news['id']}'>{$news['name']}</a>{$log_text}","edit");
                         $notif = "Изменена новость \"{$news['name']}\" в проекте \"{$project['name']}\"";
                         $edit = true;
                     }
@@ -227,7 +227,7 @@ class news extends \Controller {
                         $notif = "Добавлена новость \"{$_POST['name']}\" в проект \"{$project['name']}\"";
                         $last_id = $this->db->lastInsertId();
                         $res['success'] = $last_id;
-                        if ($log) $log->set_logs("news",$id_project,"Создана <a href='/projects/news/show/{$last_id}'>{$_POST['name']}</a>");
+                        if ($log) $log->set_logs("news",$id_project,"Создана <a href='/projects/news/show/{$last_id}'>{$_POST['name']}</a>","add");
                     }
                     else $res['error'] = "Ошибка добавления новости";
                 }
@@ -276,7 +276,7 @@ class news extends \Controller {
             if ($query->execute(array($_POST['id'])))
             {
                 $res['success'] = $access['project']['id'];
-                $log->set_logs("news",$access['project']['id'],"Удалена {$news['name']}");
+                $log->set_logs("news",$access['project']['id'],"Удалена {$news['name']}","delete");
             }
             else $res['error'] = "Ошибка базы данных";
         }
