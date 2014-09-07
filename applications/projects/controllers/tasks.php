@@ -332,7 +332,7 @@ class tasks extends \Controller {
                     if ($task['name'] != $_POST['name'])
                         $text_log[] = lang("log_task_change_name",$_POST['name']);
                     if ($task['status'] != $_POST['status'])
-                        $text_log[] = lang("log_task_change_status",array(lang("task_status_".$task['status']),lang("task_status_".$_POST['status'])));
+                        $text_log[] = lang("log_task_change_status",array(lang("task_status_".$_POST['status']),lang("task_status_".$task['status'])));
                     if ($task['percent'] != $_POST['percent'])
                         $text_log[] = lang("log_task_change_percent",array($_POST['percent'],$task['percent']));
                     if ($task['priority'] != $_POST['priority'])
@@ -487,7 +487,7 @@ class tasks extends \Controller {
 
                         $text_log = array();
                         if ($task['status'] != $_POST['status'])
-                            $text_log[] = lang("log_task_change_status",array(lang("task_status_".$task['status']),lang("task_status_".$_POST['status'])));
+                            $text_log[] = lang("log_task_change_status",array(lang("task_status_".$_POST['status']),lang("task_status_".$task['status'])));
                         if ($task['percent'] != $_POST['new_current_percent'])
                             $text_log[] = lang("log_task_change_percent",array($_POST['new_current_percent'],$task['percent']));
 
