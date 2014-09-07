@@ -504,7 +504,7 @@ class tasks extends \Controller {
                             'message' => $message
                         ));
 
-                        $notif = "В Задаче \"{$task['name']}\" в проекте \"{$access['project']['name']}\" изменен статус выполнения";
+                        $notif = "В Задаче \"{$task['name']}\" в проекте \"{$access['project']['name']}\" изменена готовность";
 
                         $this->send_notification($task['assigned'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
                         $this->send_notification($task['id_user'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);

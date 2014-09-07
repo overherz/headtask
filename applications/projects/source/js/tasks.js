@@ -195,7 +195,7 @@ $(document).ready(function ($) {
             add_popup_button("Сохранить",'save_forward', false, function(vars){
                 var request = $("#percent_form").serialize();
                 user_api(request,function(res){
-                    show_message("success","Статус выполнения успешно сохранен");
+                    show_message("success","Задача успешно сохранена");
                     hide_popup();
                     if (from == "show_task") redirect("/projects/tasks/"+res.project+"/",2);
                     else $('#search_form').submit();

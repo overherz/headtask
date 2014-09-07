@@ -36,7 +36,15 @@ class __TwigTemplate_206daba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade4
     {
         // line 8
         echo \layout::func_from_text("    <form action=\"\" id=\"search_form\" method=\"post\">
-        <div class=\"form-group col-xs-6\" style=\"padding-left: 0;\">
+    ");
+        // line 9
+        if (((($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_project") || $this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_own_project")) || $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "access"), "add_project")) || $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "access"), "add_own_project"))) {
+            // line 10
+            echo \layout::func_from_text("        <a href=\"/projects/add/\" class=\"btn btn-primary\" style=\"position: absolute;right: 15px;\">Создать проект</a>
+    ");
+        }
+        // line 12
+        echo \layout::func_from_text("        <div class=\"form-group col-xs-6\" style=\"padding-left: 0;\">
             <input type=\"text\" name=\"search\" class=\"form-control\" placeholder=\"Поиск\" style=\"margin-bottom: 10px;\">
             <table class=\"table table_style no_style\" style=\"width: auto;margin-top: 0;clear: both;\">
                 <thead>
@@ -64,7 +72,7 @@ class __TwigTemplate_206daba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade4
                             <select name=\"my[]\" multiple size=\"2\">
                                 <option value=\"1\" selected>личные</option>
                                 <option value=\"2\" ");
-        // line 36
+        // line 39
         if (((!$this->getAttribute((isset($context["get_data"]) ? $context["get_data"] : null), "filter")) == "my")) {
             echo \layout::func_from_text("selected");
         }
@@ -80,7 +88,7 @@ class __TwigTemplate_206daba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade4
     <div class=\"clearfix\"></div>
 
 <div id=\"search_result\">");
-        // line 47
+        // line 50
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "all_projects_table.html"), "method"));
         $template->display($context);
         echo \layout::func_from_text("</div>
@@ -99,6 +107,6 @@ class __TwigTemplate_206daba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade4
 
     public function getDebugInfo()
     {
-        return array (  84 => 47,  68 => 36,  38 => 8,  35 => 7,  30 => 4,  27 => 3,);
+        return array (  92 => 50,  76 => 39,  47 => 12,  43 => 10,  41 => 9,  38 => 8,  35 => 7,  30 => 4,  27 => 3,);
     }
 }
