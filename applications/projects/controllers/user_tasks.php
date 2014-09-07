@@ -143,7 +143,7 @@ class user_tasks extends \Controller {
 
         if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
 
-        $total = $this->db->num_rows("projects_tasks as t LEFT JOIN projects as p ON t.id_project = p.id LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id  {$where}");
+        $total = $this->db->num_rows("projects_tasks as t LEFT JOIN projects as p ON t.id_project = p.id LEFT JOIN projects_tasks_to_categories as c ON c.id_task = t.id {$where}",'distinct t.id');
 
         require_once(ROOT.'libraries/paginator/paginator.php');
         $paginator = new \Paginator($total, $_POST['page'], $this->limit);
