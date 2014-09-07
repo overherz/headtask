@@ -1201,3 +1201,10 @@ td .progress {
 .get_info {
     cursor: pointer;
 }
+
+input[disabled], select[disabled], textarea[disabled] {
+    border-color: #CCC !important;
+    background: #F5F5F5 !important;
+    box-shadow: none !important;
+    color: #888 !important;
+}

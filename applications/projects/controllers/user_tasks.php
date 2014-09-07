@@ -29,7 +29,6 @@ class user_tasks extends \Controller {
 
     function default_method($id_user=false)
     {
-
         $t_cr = $this->get_controller("projects","tasks");
         if (count($this->form['status']['options']) == 0)
         {

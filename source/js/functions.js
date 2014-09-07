@@ -555,7 +555,6 @@ $(document).ready(function() {
 
     $(document).on('keydown','#search_form input[type="text"],#search_form textarea',function(){
         clearTimeout(window.timer);
-        window.keypress = true;
         window.clear = true;
         window.timer = setTimeout(function(){$('#search_form').submit();},500);
     })
@@ -569,16 +568,19 @@ function get_page(page){
 }
 
 function search(){
+    if (search_query) return false;
+
     var input = $("input[name='search']");
     input.css('background','url(/source/images/admin/preloader.gif) 99% 50% no-repeat');
-    if (window.keypress) window.keypress = false;
 
     if (window.clear) $('[name="page"]').val(1);
     var request = $('#search_form').serialize();
-    p = $('#search_form').attr("path")
+    var p = $('#search_form').attr("path")
+
+    var search_query = setTimeout(function(){$('#search_form :input').attr("disabled", true).trigger('refresh')},200);
 
     user_api(request,function(res){
-        clearTimeout(window.loading,300);
+        clearTimeout(window.timer);
         input.css('background','');
         $('#search_result').html(res);
 
@@ -598,5 +600,10 @@ function search(){
         if(jQuery().styler) {
             $(".popup input").styler();
         }
-    },false,p);
+        clearTimeout(search_query);
+        $('#search_form :input').attr("disabled", false).trigger('refresh');
+    },function(){
+        clearTimeout(search_query);
+        $('#search_form :input').attr("disabled", false).trigger('refresh');
+    },p);
 }
