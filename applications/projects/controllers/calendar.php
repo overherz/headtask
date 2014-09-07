@@ -95,7 +95,7 @@ class calendar extends \Controller {
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
-            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL))))
+            where p.archive IS NULL and pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL))))
             and ((pt.start <= ? and pt.status IN ('new','in_progress','feedback'))
             or (pt.updated >= ? and pt.updated <= ? and pt.status = 'closed'))
             order by pt.updated DESC
