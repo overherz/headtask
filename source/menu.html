@@ -11,7 +11,7 @@
         {% for k,m in globals.menu %}
             {% if k != "crumbs"%}
                 {% if not m.category %}
-                    <li {% if m.active or globals.menu.crumbs[m.id] %}class="active"{% endif %}>
+                    <li {% if m.active or globals.menu.crumbs[m.id] %}class="active"{% endif %} {% if m.path == '/users/logout/' %}style="margin-top: 30px;" {% endif %}>
                         <div style="position: relative;">
                             <a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>
                                 {% if m.path == '/projects/' %}<i class="fa fa-tasks sidebar_icon fa-fw"></i>{% endif %}
@@ -19,6 +19,8 @@
                                 {% if m.path == '/projects/calendar/' %}<i class="fa fa-calendar sidebar_icon fa-fw"></i>{% endif %}
                                 {% if m.path == '/users/' %}<i class="fa fa-users sidebar_icon fa-fw"></i>{% endif %}
                                 {% if m.path == '/projects/logs/' %}<i class="fa fa-eye sidebar_icon fa-fw"></i>{% endif %}
+                                {% if m.path == '/users/profile/' %}<i class="fa fa-user sidebar_icon fa-fw"></i>{% endif %}
+                                {% if m.path == '/users/logout/' %}<i class="fa fa-power-off sidebar_icon fa-fw"></i>{% endif %}
                                 <span class="sidebar_link">{{m.name}}</span>
                             </a>
                             {% if m.path == "/projects/" %}

@@ -13,7 +13,7 @@
     {{parent()}}
     <script type ="text/javascript" src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
     <script type ="text/javascript" src="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></script>
-    <script src="{{app.path('projects','tasks.js')}}"></script>
+    <script type ="text/javascript" src="{{ app.path('projects','tasks.js')}}"></script>
 {% endblock %}
 
 {% block project_data %}
@@ -45,17 +45,14 @@
         <label class="col-md-2 control-label" for="status">Статус</label>
         <div class="col-md-4">
             <select name="status" id="status">
-                {% if task.status == "closed" %}<option disabled selected>Закрытая</option>{% endif %}
-                <option value="new" {% if task.status == "new" %}selected{% endif %}>Новая</option>
-                {% if task %}
-                <option value="in_progress" {% if task.status == "in_progress" %}selected{% endif %}>В процессе</option>
-                <option value="rejected" {% if task.status == "rejected" %}selected{% endif %}>Отклоненная</option>
-                {% endif %}
+                {% for s in status %}
+                    <option value="{{ s }}" {% if task.status == s %}selected {% endif %}>{{ ("task_status_"~s)|lang }}</option>
+                {% endfor %}
             </select>
         </div>
 
-        <label class="col-md-2 control-label rejected" for="message" {% if task.status != "rejected" %}style='display:none;'{% endif %}>Причина</label>
-        <div class="col-md-4 rejected" {% if task.status != "rejected" %}style='display:none;'{% endif %}>
+        <label class="col-md-2 control-label message" for="message" {% if task.status != "rejected" and task.status != "feedback" %}style='display:none;'{% endif %}>Сообщение</label>
+        <div class="col-md-4 message" {% if task.status != "rejected" and task.status != "feedback" %}style='display:none;'{% endif %}>
             <textarea rows="3" class="form-control" name="message" id="message">{{task.message}}</textarea>
         </div>
     </div>
@@ -64,10 +61,10 @@
         <label class="col-md-2 control-label" for="priority">Приоритет</label>
         <div class="col-md-4">
             <select name="priority" id="priority">
-                <option value="1" {% if task.priority == 1 %}selected{% endif %}>Низкий</option>
-                <option value="2" {% if not task.priority or task.priority == 2 %}selected{% endif %}>Обычный</option>
-                <option value="3" {% if task.priority == 3 %}selected{% endif %}>Высокий</option>
-                <option value="4" {% if task.priority == 4 %}selected{% endif %}>Критический</option>
+                <option value="1" {% if task.priority == 1 %}selected{% endif %}>{{ "task_priority_1"|lang }}</option>
+                <option value="2" {% if not task.priority or task.priority == 2 %}selected{% endif %}>{{ "task_priority_2"|lang }}</option>
+                <option value="3" {% if task.priority == 3 %}selected{% endif %}>{{ "task_priority_3"|lang }}</option>
+                <option value="4" {% if task.priority == 4 %}selected{% endif %}>{{ "task_priority_4"|lang }}</option>
             </select>
         </div>
 
@@ -103,7 +100,7 @@
         <div class="col-md-4">
             <select name="percent" id="percent" style="width: 100px;">
                 {% for i in [0,10,20,30,40,50,60,70,80,90,100] %}
-                    <option value="{{i}}" {% if task.percent == i %}selected{% endif %}>{{i}} %</option>
+                    <option value="{{i}}" {% if task.percent == i %}selected{% endif %}>{{i}} </option>
                 {% endfor %}
             </select>
         </div>

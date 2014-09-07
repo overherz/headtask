@@ -70,8 +70,8 @@
             </tr>
             <tr>
                 <th>Статус
-                    {% if task.status == "rejected" %}
-                        <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
+                    {% if (task.status == "rejected" or task.status == "feedback") and task.message != "" %}
+                        <i class="fa fa-info-circle get_info" rel="popover" data-title="Сообщение" data-content="{{task.message}}"></i>
                     {% endif %}
                 </th>
                 <td style="width: 110px;">
@@ -126,9 +126,9 @@
                 <td>
                     <div class="btn-group">
                         {% if access.edit_tasks or task.assigned == globals.user.id_user or task.id_user == globals.user.id_user or not task.assigned %}
-                            {% if task.status != "closed" %}<a class="btn btn-success btn-sm" forward_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}' ><i class="fa fa-forward fa-fw"></i></a>{% endif %}
-                            {% if access.edit_tasks or task.id_user == globals.user.id_user %}<a class="btn btn-info btn-sm" href="/projects/tasks/edit/{{task.id}}"><i class="fa fa-pencil fa-fw"></i></a>{% endif %}
-                            {% if access.delete_tasks %}<a class="btn btn-danger btn-sm" delete_task={{task.id}} from='{% if show_task %}show_task{% endif %}' href=""><i class="fa fa-trash-o fa-fw"></i></a>{% endif %}
+                            {% if task.status != "closed" %}<a class="btn btn-success btn-sm" forward_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}' ><i class="fa fa-forward "></i></a>{% endif %}
+                            {% if access.edit_tasks or task.id_user == globals.user.id_user %}<a class="btn btn-info btn-sm" href="/projects/tasks/edit/{{task.id}}"><i class="fa fa-pencil"></i></a>{% endif %}
+                            {% if access.delete_tasks %}<a class="btn btn-danger btn-sm" delete_task={{task.id}} from='{% if show_task %}show_task{% endif %}' href=""><i class="fa fa-trash-o"></i></a>{% endif %}
                         {% endif %}
                     </div>
                 </td>

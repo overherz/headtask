@@ -229,6 +229,18 @@ class logs extends \Controller {
         {
             $row['text'] = htmlentities($row['text']);
             $row['text'] = preg_replace("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u","<a html_entity_decode($1)>$2</a>",$row['text']);
+            $row['text'] = str_replace(
+                array(
+                    "&lt;s&gt;",
+                    "&lt;/s&gt;",
+//                    "&amp;rarr;"
+                ),
+                array(
+                    "<s>",
+                    "</s>",
+//                    "&rarr;"
+                ),
+                $row['text']);
 //            $m = preg_match("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u",$row['text'],$matches);
 //            pr($matches);
 
@@ -238,12 +250,12 @@ class logs extends \Controller {
         return array('logs' => $logs,'paginator' => $paginator);
     }
 
-    function set_logs($type,$id_project,$text,$id_task=false)
+    function set_logs($type,$id_project,$text,$action,$id_task=false)
     {
-        if ($type)
+        if ($type && $action)
         {
-            $query = $this->db->prepare("insert into projects_logs(id_user,id_project,id_task,text,created,type) values(?,?,?,?,?,?)");
-            if ($query->execute(array($_SESSION['user']['id_user'],$id_project,$id_task,$text,time(),$type))) return true;
+            $query = $this->db->prepare("insert into projects_logs(id_user,id_project,id_task,text,created,type,action) values(?,?,?,?,?,?,?)");
+            if ($query->execute(array($_SESSION['user']['id_user'],$id_project,$id_task,$text,time(),$type,$action))) return true;
         }
     }
 }

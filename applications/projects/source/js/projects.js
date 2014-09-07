@@ -31,11 +31,6 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $('[data-toggle=offcanvas]').click(function () {
-        $('.row-offcanvas').toggleClass('active')
-        $('.sidebar-offcanvas').toggleClass('active')
-    });
-
     $(document).on("click","#add_category",function(){
         var id_project = $(this).data("project_id");
         user_api({act:'get_category_form',id_project:id_project}, function (data) {

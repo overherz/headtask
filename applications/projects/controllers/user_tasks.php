@@ -7,7 +7,7 @@ class user_tasks extends \Controller {
     public $form = array(
         'status' => array('label' => 'Статус',
             'type' => 'multy_select',
-            'options' => array('new' => 'новая','in_progress' => 'в процессе','closed' => 'закрытая','rejected' => 'отклоненная'),
+            'options' => array(),
             'selected' => array('new','in_progress')
         ),
         'priority' => array('label' => 'Приоритет',
@@ -29,6 +29,16 @@ class user_tasks extends \Controller {
 
     function default_method($id_user=false)
     {
+
+        $t_cr = $this->get_controller("projects","tasks");
+        if (count($this->form['status']['options']) == 0)
+        {
+            foreach ($t_cr->status as $f)
+            {
+                $this->form['status']['options'][$f] = lang("task_status_".$f);
+            }
+        }
+
         if (!$id_user && $_POST['id_user'] != "") $id_user = $_POST['id_user'];
 
         if (!$_POST)
@@ -140,7 +150,6 @@ class user_tasks extends \Controller {
         $paginator = new \Paginator($total, $_POST['page'], $this->limit);
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-        $t_cr = $this->get_controller("projects","tasks");
         $query = $this->db->prepare("select t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
             p.name as project_name,g.color,g.name as group_name,u.first_name,u.last_name,GROUP_CONCAT(c.id_category) as cats
             from projects_tasks as t
@@ -171,8 +180,7 @@ class user_tasks extends \Controller {
         if ($tasks && $this->dashboard)
         {
             $ids = array_keys($tasks);
-            $task = $this->get_controller("projects","tasks");
-            $comment_count = $task->get_count_new_comments($ids);
+            $comment_count = $t_cr->get_count_new_comments($ids);
         }
 
         if (count($cats_ids) > 0)

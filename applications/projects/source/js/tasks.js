@@ -117,8 +117,8 @@ $(document).ready(function ($) {
 
     $(document).on("change","[name='status']",function(){
         var status = $(this).val();
-        if (status == "rejected") $(".rejected").show();
-        else $(".rejected").hide();
+        if (status == "rejected" || status == "feedback") $(".message").show();
+        else $(".message").hide();
     });
 
     $("[add_file_to_task]").click(function(){
@@ -141,7 +141,9 @@ $(document).ready(function ($) {
                 "<div class='clearfix'></div>"+
                 "<div id='search_result'>"+data+"</div></form>","Прикрепление файлов");
 
-            $(".popup input").styler();
+            if(jQuery().styler) {
+                $(".popup input").styler();
+            }
 
             add_popup_button("Добавить выбранные", 'Yes', false, function (vars) {
                 files_to_add = [];
@@ -186,7 +188,10 @@ $(document).ready(function ($) {
         var id = $(this).attr("forward_task");
         var from = $(this).attr("from");
         user_api({act:'get_forward_task',id:id},function(res){
-            show_popup(res,'Редактирование статуса выполнения');
+            show_popup(res,'Редактирование задачи');
+            if(jQuery().styler) {
+                $(".popup select").styler();
+            }
             add_popup_button("Сохранить",'save_forward', false, function(vars){
                 var request = $("#percent_form").serialize();
                 user_api(request,function(res){
@@ -197,12 +202,19 @@ $(document).ready(function ($) {
                 });
             });
 
+            var message = $(".message_task");
+            $("#status").change(function(){
+
+                var value = $(this).val();
+                if (value == "feedback" || value == "rejected") message.show();
+                else message.hide();
+            });
+
             $("#time1").slider({
                 range: "min",
                 value: 0,
                 min: 0,
                 max: 90,
-                disabled: true,
                 step: 10,
                 animate: "normal",
                 slide: function(event, ui) {
@@ -218,7 +230,6 @@ $(document).ready(function ($) {
                 value: 0,
                 min: 0,
                 max: 10,
-                disabled: true,
                 step: 0.5,
                 animate: "normal",
                 slide: function(event, ui) {
@@ -238,29 +249,12 @@ $(document).ready(function ($) {
                 animate: "normal",
                 slide: function(event, ui) {
                     var current_percent = parseInt($("#current_percent").val());
-                    if (ui.value < current_percent) {
-                        return false;
-                    }
                 },
                 stop: function(event,ui) {
                     var current_percent = parseInt($("#current_percent").val());
                     $("#new_percent").text(ui.value);
                     $("#new_current_percent").val(ui.value);
-                    if (ui.value == 100) $("#percent_close").show();
-                    else $("#percent_close").hide();
-
-                    if (current_percent < ui.value)
-                    {
-                        $("#time1").slider('enable');
-                        $("#time2").slider('enable');
-                    }
-                    else
-                    {
-                        $("#time1").slider('disable');
-                        $("#time2").slider('disable');
-                    }
                 }
-
             });
         });
     });

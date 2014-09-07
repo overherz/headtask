@@ -8,7 +8,7 @@ $GLOBALS['lang'] = array(
     'stats_tasks_all' => 'всего',
     'stats_tasks_new' => array('новая','новых','новых'),
     'stats_tasks_progress' => 'в процессе',
-    'stats_tasks_closed' => array('закрытая','закрытых','закрытых'),
+    'stats_tasks_closed' => array('завершенная','завершенных','завершенных'),
     'stats_tasks_rejected' => array('отклоненная','отклоненных','отклоненных'),
     'stats_tasks_open' => array('открытая','открытых','открытых'),
     'stats_news' => array('новость','новости','новостей'),
@@ -47,8 +47,9 @@ $GLOBALS['lang'] = array(
     //task's status
     'task_status_new' => 'новая',
     'task_status_in_progress' => 'в процессе',
-    'task_status_closed' => 'закрытая',
+    'task_status_closed' => 'завершена',
     'task_status_rejected' => 'отклоненная',
+    'task_status_feedback' => 'обратная связь',
 
     //task's priority
     'task_priority_1' => 'низкий',
@@ -60,6 +61,13 @@ $GLOBALS['lang'] = array(
     'task_priority_label_2' => '<span class="label label-success">обычный</span>',
     'task_priority_label_3' => '<span class="label label-warning">высокий</span>',
     'task_priority_label_4' => '<span class="label label-danger">критический</span>',
+
+    'log_task_change_name' => 'Название %s',
+    'log_task_change_status' => 'Статус %s (<s>%s</s>)',
+    'log_task_change_percent' => "%s%% (<s>%s%%</s>)",
+    'log_task_change_priority' => "Приоритет %s (<s>%s</s>)",
+    'log_task_change' => '%s',
+    'log_task_create' => '%s',
 
 
     //logs types

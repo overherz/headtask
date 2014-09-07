@@ -234,9 +234,9 @@ class __TwigTemplate_96757e7e6cbc1d42ff73e84aac9690bc7fbf3d4bfe12017d3656b0e1b1b
                 <th>Статус
                     ");
         // line 73
-        if (($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") == "rejected")) {
+        if (((($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") == "rejected") || ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "status") == "feedback")) && ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "message") != ""))) {
             // line 74
-            echo \layout::func_from_text("                        <i class=\"fa fa-info-circle get_info\" rel=\"popover\" data-title=\"Причина отклонения\" data-content=\"");
+            echo \layout::func_from_text("                        <i class=\"fa fa-info-circle get_info\" rel=\"popover\" data-title=\"Сообщение\" data-content=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "message"), "html", null, true));
             echo \layout::func_from_text("\"></i>
                     ");
@@ -388,14 +388,14 @@ class __TwigTemplate_96757e7e6cbc1d42ff73e84aac9690bc7fbf3d4bfe12017d3656b0e1b1b
                 if ((isset($context["show_task"]) ? $context["show_task"] : null)) {
                     echo \layout::func_from_text("show_task");
                 }
-                echo \layout::func_from_text("' ><i class=\"fa fa-forward fa-fw\"></i></a>");
+                echo \layout::func_from_text("' ><i class=\"fa fa-forward \"></i></a>");
             }
             // line 130
             echo \layout::func_from_text("                            ");
             if (($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "edit_tasks") || ($this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id_user") == $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user")))) {
                 echo \layout::func_from_text("<a class=\"btn btn-info btn-sm\" href=\"/projects/tasks/edit/");
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["task"]) ? $context["task"] : null), "id"), "html", null, true));
-                echo \layout::func_from_text("\"><i class=\"fa fa-pencil fa-fw\"></i></a>");
+                echo \layout::func_from_text("\"><i class=\"fa fa-pencil\"></i></a>");
             }
             // line 131
             echo \layout::func_from_text("                            ");
@@ -406,7 +406,7 @@ class __TwigTemplate_96757e7e6cbc1d42ff73e84aac9690bc7fbf3d4bfe12017d3656b0e1b1b
                 if ((isset($context["show_task"]) ? $context["show_task"] : null)) {
                     echo \layout::func_from_text("show_task");
                 }
-                echo \layout::func_from_text("' href=\"\"><i class=\"fa fa-trash-o fa-fw\"></i></a>");
+                echo \layout::func_from_text("' href=\"\"><i class=\"fa fa-trash-o\"></i></a>");
             }
             // line 132
             echo \layout::func_from_text("                        ");

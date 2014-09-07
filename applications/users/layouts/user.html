@@ -10,12 +10,6 @@
 <script type="text/javascript" src="{{ app.path('/source/js/','jquery.form.js',true) }}"></script>
 <script type="text/javascript" src="{{ app.path('/source/js/','jquery.color.js',true) }}"></script>
 <script type="text/javascript" src="{{  app.path('projects','user_tasks.js') }}"></script>
-<script>
-    $(document).ready(function($)
-    {
-        $(".sidebar-nav li").removeClass("active");
-    });
-</script>
 {% endblock %}
 
 {% block context %}
@@ -42,7 +36,6 @@
                     <td style="width:1px;white-space: nowrap;font-weight: bold;">{{p.alias}}:</td>
                     <td style="text-align: justify;">
                         {% if p.name == 'skypename' %}
-                        <script type="text/javascript" src="/source/js/skypeCheck.js"></script>
                         <a href="skype:{{p.value}}?chat">{{p.value}}</a>
                         {% else %}
                         {{p.value|nl2br}}

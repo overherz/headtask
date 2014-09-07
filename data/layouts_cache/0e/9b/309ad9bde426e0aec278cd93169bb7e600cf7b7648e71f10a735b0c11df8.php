@@ -70,7 +70,7 @@ class __TwigTemplate_0e9b309ad9bde426e0aec278cd93169bb7e600cf7b7648e71f10a735b0c
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "documents")) {
             // line 18
             echo \layout::func_from_text("    <td style=\"width: 75px;\">
-        <div class=\"btn-group\">
+        <div class=\"btn-group pull-right\">
             <a class=\"btn btn-foxtrot btn-sm\" href=\"/projects/documents/edit/");
             // line 20
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["n"]) ? $context["n"] : null), "id"), "html", null, true));
@@ -99,6 +99,6 @@ class __TwigTemplate_0e9b309ad9bde426e0aec278cd93169bb7e600cf7b7648e71f10a735b0c
 
     public function getDebugInfo()
     {
-        return array (  80 => 21,  72 => 18,  70 => 17,  67 => 16,  55 => 14,  51 => 12,  45 => 9,  24 => 2,  87 => 25,  83 => 19,  79 => 17,  76 => 20,  62 => 15,  40 => 13,  38 => 12,  33 => 5,  29 => 8,  21 => 2,  19 => 1,  61 => 16,  58 => 14,  54 => 13,  52 => 12,  49 => 11,  43 => 8,  39 => 7,  36 => 6,  31 => 4,  28 => 3,);
+        return array (  87 => 25,  80 => 21,  76 => 20,  72 => 18,  70 => 17,  67 => 16,  55 => 14,  51 => 12,  49 => 11,  45 => 9,  39 => 7,  33 => 5,  31 => 4,  24 => 2,  19 => 1,);
     }
 }

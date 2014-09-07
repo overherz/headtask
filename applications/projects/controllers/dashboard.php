@@ -5,6 +5,12 @@ class dashboard extends \Controller {
     
     function default_method()
     {
+        $t_cr = $this->get_controller("projects","tasks");
+        foreach ($t_cr->status as $k => $f)
+        {
+            $form_status[$f] = lang("task_status_".$f);
+        }
+
         $form = array(
             'my' => array('label' => 'Мои',
                 'type' => 'checkbox'
@@ -16,7 +22,7 @@ class dashboard extends \Controller {
             ),
             'status' => array('label' => 'Статус',
                 'type' => 'multy_select',
-                'options' => array('new' => 'новая','in_progress' => 'в процессе','closed' => 'закрытая','rejected' => 'отклоненная'),
+                'options' => $form_status,
                 'selected' => array('new','in_progress','closed')
             ),
             'priority' => array('label' => 'Приоритет',

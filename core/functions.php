@@ -66,7 +66,7 @@ function pr($a)
         $methods = get_class_methods($a);
         $a = (array) $a;
         $a = $a + array('methods' => $methods);
-        echo "<pre style='background:#fff;padding-top: 50px;'>".print_r($a,true)."</pre>";
+        echo "<pre style='background:#fff;padding-top: 50px;margin-left:250px;'>".print_r($a,true)."</pre>";
     }
     else echo "<pre style='background:#fff;padding-top: 50px;'>{$a}</pre>";
 }

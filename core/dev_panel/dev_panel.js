@@ -83,7 +83,11 @@ $(document).ready(function($) {
                         $("#dev_panel_ajax_count_ajax_error").html(data.count_error);
                         dev_panel_name.css("background","darkred")
                     }
-                    else dev_panel_name.css("background","#000")
+                    else
+                    {
+                        $("#dev_panel_ajax_count_ajax_error").html("0");
+                        dev_panel_name.css("background","#000")
+                    }
 
                     $(".dev_panel_time").text(data.time);
                     $(".dev_panel_memory").text(data.memory);

@@ -510,13 +510,13 @@ function isMyStuffScrolling() {
     return (docHeight == scroll);
 }
 
-$(document).ready(function ($) {
+function popover()
+{
     if(jQuery().popover)
     {
         $(".get_info").popover({
             offset: 10,
             trigger: 'manual',
-            html: true,
             placement: 'right',
             template: '<div class="popover" onmouseover="clearTimeout(timeoutObj);$(this).mouseleave(function() {$(this).hide();});"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
         }).mouseenter(function(e) {
@@ -526,12 +526,16 @@ $(document).ready(function ($) {
             timeoutObj = setTimeout(function(){
                 ref.popover('hide');
             }, 50);
+        }).click(function(e) {
+            $(this).popover('show');
         });
     }
-});
-
+}
 
 $(document).ready(function() {
+
+    popover();
+
     $(document).on("submit","#search_form",function(){
         search();
         return false;
@@ -581,8 +585,14 @@ function search(){
         if(typeof activate_fancy == 'function') {
             activate_fancy();
         }
+
         if(typeof get_statuses == 'function') {
             get_statuses();
+        }
+
+        if(jQuery().popover)
+        {
+            popover();
         }
 
         if(jQuery().styler) {

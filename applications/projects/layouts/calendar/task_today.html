@@ -1,5 +1,5 @@
 {% include '/source/jpaginator_boot.html' %}
-<table class="table table-hover table_style">
+<table class="table table-hover table_style no_padding_right">
     <thead>
     <tr>
         <th></th>
@@ -15,9 +15,9 @@
     <tbody>
     {% for task in tasks %}
         <tr id="task{{task.id}}">
-            <td style="width: 1px;{% if task.status == "rejected" %}padding-left:0;padding-right: 0;text-align: center;{% endif %}" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}">
-                {% if task.status == "rejected" %}
-                    <i class="fa fa-info-circle get_info" rel="popover" data-title="Причина отклонения" data-content="{{task.message}}"></i>
+            <td style="width: 1px;{% if (task.status == "rejected" or task.status == "feedback") and task.message != "" %}padding:0 !important;text-align: center;{% endif %}" class="priority{{ task.priority }}" title="{{ ("task_priority_"~task.priority)|lang }}">
+                {% if (task.status == "rejected" or task.status == "feedback") and task.message != "" %}
+                    <i class="fa fa-info-circle get_info" rel="popover" data-title="Сообщение" data-content="{{task.message}}"></i>
                 {% endif %}
             </td>
             {% if not id_project %}
@@ -31,7 +31,7 @@
                 {% endif %}
             </td>
             {% if dashboard %}<td style="font-weight: bold;width: 1px;">{{ comment_count[task.id].count }}</td>{% endif %}
-            <td style="width: 110px;height: 100%;">
+            <td style="width: 120px;height: 100%;">
                 {% set undate = false %}
                 {% if task.end and ((now|date('Y-m-d') > task.end) and (task.status == 'new' or task.status == 'in_progress'))%}
                     {% set undate = true %}
@@ -59,12 +59,12 @@
             </td>
 
             {% if id_project %}
-            <td style="width: 140px;text-align: right;">
-                <div class="btn-group">
+            <td style="width: 140px;">
+                <div class="btn-group pull-right">
                     {% if access.edit_tasks or task.assigned == globals.user.id_user or task.id_user == globals.user.id_user or not task.assigned %}
-                        {% if task.status != "closed" %}<a class="btn btn-success btn-sm" forward_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}'><i class="fa fa-forward fa-fw"></i></a>{% endif %}
-                        {% if access.edit_tasks or task.id_user == globals.user.id_user %}<a class="btn btn-info btn-sm" href="/projects/tasks/edit/{{task.id}}"><i class="fa fa-pencil fa-fw"></i></a>{% endif %}
-                        {% if access.delete_tasks %}<a class="btn btn-danger btn-sm" delete_task={{task.id}} from='{% if show_task %}show_task{% endif %}' href=""><i class="fa fa-trash-o fa-fw"></i></a>{% endif %}
+                        {% if task.status != "closed" %}<a class="btn btn-success btn-sm" forward_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}'><i class="fa fa-forward"></i></a>{% endif %}
+                        {% if access.edit_tasks or task.id_user == globals.user.id_user %}<a class="btn btn-info btn-sm" href="/projects/tasks/edit/{{task.id}}"><i class="fa fa-pencil"></i></a>{% endif %}
+                        {% if access.delete_tasks %}<a class="btn btn-danger btn-sm" delete_task={{task.id}} from='{% if show_task %}show_task{% endif %}' href=""><i class="fa fa-trash-o"></i></a>{% endif %}
                     {% endif %}
                 </div>
             </td>

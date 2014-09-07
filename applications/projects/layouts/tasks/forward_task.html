@@ -15,8 +15,16 @@
     <div>Выбранный: <b><span id="new_percent">{{ task.percent }}</span></b> %</div>
 </div>
 
-<div style="height: 30px;">
-    <div id="percent_close" style="color: red;display: none;">Задача будет закрыта</div>
+<div style="margin-top: 10px;"><b>Статус:</b></div>
+<select name="status" id="status">
+    {% for s in status %}
+        <option value="{{ s }}" {% if task.status == s %}selected {% endif %}>{{ ("task_status_"~s)|lang }}</option>
+    {% endfor %}
+</select>
+
+<div class="message_task" {% if task.status != 'feedback' and task.status != 'rejected' %}style='display: none;'{% endif %}>
+    <div style="margin-top: 10px;"><b>Сообщение:</b></div>
+    <textarea name="message" style="width: 100%;height: 100px;">{{ task.message }}</textarea>
 </div>
 
 <div style="margin-top: 10px;"><b>Затраченное время</b></div>

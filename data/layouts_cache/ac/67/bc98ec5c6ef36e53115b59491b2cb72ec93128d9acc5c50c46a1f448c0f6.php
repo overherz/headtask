@@ -138,7 +138,7 @@ class __TwigTemplate_ac67bc98ec5c6ef36e53115b59491b2cb72ec93128d9acc5c50c46a1f44
                 if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "forum")) {
                     // line 42
                     echo \layout::func_from_text("        <td style=\"width: 75px;\">
-            <div class=\"btn-group\">
+            <div class=\"btn-group pull-right\">
                 <a class=\"btn btn-oscar btn-sm\" href=\"/projects/forum/edit/");
                     // line 44
                     echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["f"]) ? $context["f"] : null), "id"), "html", null, true));

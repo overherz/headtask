@@ -1010,6 +1010,10 @@ td .progress {
 }
 */
 
+.menu_users_profile_,.menu_users_logout_ {
+    display: block !important;
+}
+
 @media(min-width:1100px) {
     #wrapper {
         padding-left: 200px;
@@ -1102,6 +1106,14 @@ td .progress {
     #wrapper.toggled .jpaginator_project_panel {
         display: none;
     }
+
+    #wrapper.toggled .menu_users_profile_,#wrapper.toggled .menu_users_logout_ {
+        display: block !important;
+    }
+
+    .menu_users_profile_,.menu_users_logout_ {
+        display: none !important;
+    }
 }
 
 .jq-select-multiple {
@@ -1180,4 +1192,12 @@ td .progress {
 
 .user_name {
     font-weight: bold;
+}
+
+.table_style .btn-group {
+    display: flex;
+}
+
+.get_info {
+    cursor: pointer;
 }

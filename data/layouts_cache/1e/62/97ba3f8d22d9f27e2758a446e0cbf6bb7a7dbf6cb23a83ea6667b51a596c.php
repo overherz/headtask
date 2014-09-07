@@ -171,7 +171,7 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "users")) {
                 // line 47
                 echo \layout::func_from_text("            <td style=\"width: 75px;\">
-                <div class=\"btn-group\">
+                <div class=\"btn-group pull-right\">
                     <a class=\"btn btn-primary btn-sm\" href=\"/projects/users/edit/");
                 // line 49
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
@@ -221,6 +221,6 @@ class __TwigTemplate_1e6297ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51
 
     public function getDebugInfo()
     {
-        return array (  209 => 62,  205 => 60,  196 => 56,  190 => 54,  183 => 50,  177 => 49,  173 => 47,  171 => 46,  168 => 45,  164 => 43,  158 => 42,  154 => 40,  150 => 39,  143 => 38,  133 => 37,  127 => 34,  119 => 31,  113 => 30,  107 => 29,  101 => 28,  95 => 27,  88 => 24,  84 => 22,  79 => 21,  69 => 20,  56 => 18,  47 => 17,  42 => 16,  37 => 13,  33 => 12,  21 => 2,  19 => 1,  62 => 18,  59 => 17,  52 => 12,  49 => 11,  43 => 8,  39 => 7,  36 => 6,  31 => 4,  28 => 3,);
+        return array (  209 => 62,  205 => 60,  196 => 56,  190 => 54,  183 => 50,  177 => 49,  173 => 47,  171 => 46,  168 => 45,  164 => 43,  158 => 42,  154 => 40,  150 => 39,  143 => 38,  133 => 37,  127 => 34,  119 => 31,  113 => 30,  107 => 29,  101 => 28,  95 => 27,  88 => 24,  84 => 22,  79 => 21,  69 => 20,  56 => 18,  47 => 17,  42 => 16,  37 => 13,  33 => 12,  21 => 2,  19 => 1,);
     }
 }
