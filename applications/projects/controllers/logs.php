@@ -173,6 +173,7 @@ class logs extends \Controller {
             $where[] = "p.id=?";
             $search_data[] = $id_project;
         }
+        else $where[] = "p.archive IS NULL";
 
         if ($id_task)
         {
@@ -198,7 +199,7 @@ class logs extends \Controller {
                     from projects_logs as pl
                     LEFT JOIN projects_tasks as t ON pl.id_task = t.id
                     LEFT JOIN projects as p ON pl.id_project = p.id
-                    WHERE pl.id_project IN (SELECT id_project from projects_users where id_user=?) and p.archive IS NULL
+                    WHERE pl.id_project IN (SELECT id_project from projects_users where id_user=?)
                     {$where_string}
         ");
         $query->execute($search_data);
@@ -217,7 +218,7 @@ class logs extends \Controller {
                     LEFT JOIN trash_data as tu ON pl.id_user = tu.id_for_type and tu.type = 'user'
                     LEFT JOIN trash_data as tp ON pl.id_project = tp.id_for_type and tp.type = 'project'
                     LEFT JOIN groups as g ON u.id_group=g.id
-                    WHERE pl.id_project IN (SELECT id_project from projects_users where id_user=?) and p.archive IS NULL
+                    WHERE pl.id_project IN (SELECT id_project from projects_users where id_user=?)
                     {$where_string}
                     group by pl.id
                     order by pl.created DESC
