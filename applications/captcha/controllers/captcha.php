@@ -16,7 +16,18 @@ class captcha extends \Controller {
             $decrypt = explode("-",$this->aes->decrypt($_GET['image']));
             $name = $decrypt[0];
             $file = ROOT."/source/images/captcha/".$name;
+            header('Content-Description: File Transfer');
+            header('Content-Type: image/png');
+            header('Content-Disposition: attachment; filename='.basename($file));
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            ob_clean();
+            flush();
             readfile($file);
+            exit;
         }
     }
 
@@ -37,7 +48,9 @@ class captcha extends \Controller {
         while($row = $result->fetch())
         {
             $row['image'] .= "-".time();
-            $row['image'] = $this->aes->encrypt($row['image']);
+            $row['image'] = str_replace("/","slash",$this->aes->encrypt($row['image']));
+            $row['image'] = str_replace("+","plus",$row['image']);
+            $row['image'] = str_replace("=","equal",$row['image']);
 
             if ($i == $select)
             {
@@ -45,7 +58,7 @@ class captcha extends \Controller {
                 $captcha_id = rand(1,10000);
                 $_SESSION['captcha'][$captcha_id] = $i;
             }
-            $captcha_html .= "<td style='vertical-align:top;height:30px;text-align:center;padding: 0;'><label for='capt{$i}' style='margin-bottom: 0;'><img src='/captcha/?image={$row['image']}' style='background:#fff;border:none;cursor:pointer;width: 30px;' alt='image'></label></td>";
+            $captcha_html .= "<td style='vertical-align:top;height:30px;text-align:center;padding: 0;'><label for='capt{$i}' style='margin-bottom: 0;'><img src='/captcha/get_image/{$row['image']}/' style='background:#fff;border:none;cursor:pointer;width: 30px;' alt='image'></label></td>";
             $radio .= "<td style='text-align: center;' width='1'><input type='radio' id ='capt{$i}' name='captcha' value='{$i}' style='border:none;'></td>";
             $i++;
         }

@@ -137,15 +137,15 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
         echo \layout::func_from_text("                </div>
             </td>
         </tr>
-        <tr>
-            <td colspan=\"2\">
+    </table>
+        <div>
+
                 <div class=\"comment_body\">");
-        // line 36
+        // line 37
         echo \layout::func_from_text($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "text"));
         echo \layout::func_from_text("</div>
-            </td>
-        </tr>
-    </table>
+
+        </div>
 </div>
 
 ");
@@ -206,6 +206,6 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
 
     public function getDebugInfo()
     {
-        return array (  192 => 47,  177 => 45,  173 => 44,  155 => 43,  153 => 42,  144 => 36,  137 => 31,  130 => 30,  125 => 29,  119 => 28,  116 => 27,  111 => 26,  103 => 25,  99 => 24,  96 => 23,  90 => 21,  84 => 19,  82 => 18,  79 => 17,  67 => 15,  63 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
+        return array (  192 => 47,  177 => 45,  173 => 44,  155 => 43,  153 => 42,  145 => 37,  137 => 31,  130 => 30,  125 => 29,  119 => 28,  116 => 27,  111 => 26,  103 => 25,  99 => 24,  96 => 23,  90 => 21,  84 => 19,  82 => 18,  79 => 17,  67 => 15,  63 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
     }
 }

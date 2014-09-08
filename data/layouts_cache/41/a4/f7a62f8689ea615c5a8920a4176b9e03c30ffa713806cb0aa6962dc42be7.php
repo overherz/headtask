@@ -137,21 +137,17 @@ class __TwigTemplate_41a4f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc
         echo \layout::func_from_text("                </div>
             </td>
         </tr>
-        <tr>
-            <td colspan=\"2\">
-                <div class=\"comment_body\">");
-        // line 36
+    </table>
+    <div class=\"comment_body\">");
+        // line 35
         echo \layout::func_from_text($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "text"));
         echo \layout::func_from_text("</div>
-            </td>
-        </tr>
-    </table>
 </div>
 
 ");
-        // line 42
+        // line 38
         if ($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "category")) {
-            // line 43
+            // line 39
             echo \layout::func_from_text("    ");
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "category"));
@@ -169,11 +165,11 @@ class __TwigTemplate_41a4f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["_key"] => $context["com"]) {
-                // line 44
+                // line 40
                 echo \layout::func_from_text("        ");
                 $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/comment.html"), "method"));
                 $template->display($context);
-                // line 45
+                // line 41
                 echo \layout::func_from_text("    ");
                 ++$context['loop']['index0'];
                 ++$context['loop']['index'];
@@ -188,7 +184,7 @@ class __TwigTemplate_41a4f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['com'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
         }
-        // line 47
+        // line 43
         echo \layout::func_from_text("
 </div>
 ");
@@ -206,6 +202,6 @@ class __TwigTemplate_41a4f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc
 
     public function getDebugInfo()
     {
-        return array (  192 => 47,  177 => 45,  173 => 44,  155 => 43,  153 => 42,  144 => 36,  137 => 31,  130 => 30,  125 => 29,  119 => 28,  116 => 27,  111 => 26,  103 => 25,  99 => 24,  96 => 23,  90 => 21,  84 => 19,  82 => 18,  79 => 17,  67 => 15,  63 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
+        return array (  188 => 43,  173 => 41,  169 => 40,  151 => 39,  149 => 38,  143 => 35,  137 => 31,  130 => 30,  125 => 29,  119 => 28,  116 => 27,  111 => 26,  103 => 25,  99 => 24,  96 => 23,  90 => 21,  84 => 19,  82 => 18,  79 => 17,  67 => 15,  63 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
     }
 }

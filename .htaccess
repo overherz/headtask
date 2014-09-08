@@ -1,6 +1,6 @@
 Options -Indexes
 
-php_flag display_errors Off
+#php_flag display_errors Off
 
 RewriteEngine on
 RewriteBase /
@@ -16,10 +16,10 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteRule ^.*$ index.php [L]
 
-php_value upload_max_filesize 500M
-php_value post_max_size 500M
-php_value max_execution_time 1800
-php_value max_input_time 1800
+#php_value upload_max_filesize 500M
+#php_value post_max_size 500M
+#php_value max_execution_time 1800
+#php_value max_input_time 1800
 
 <IfModule mod_deflate.c>
   <FilesMatch "\.(css|js|x?html?|php)$">
