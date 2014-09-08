@@ -116,6 +116,12 @@
     border-bottom: 1px dashed #cccccc;
     padding: 10px 0;
 }
+
+.all_comments .comment img {
+    height: auto !important;
+    max-width: 100% !important;
+}
+
 .all_comments .comment .commdate{
     display: inline-block;
     margin-left: 15px;
