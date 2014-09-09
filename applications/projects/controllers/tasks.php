@@ -767,7 +767,7 @@ class tasks extends \Controller {
         $created = time();
 //        $created_test = $created-$this->time_limit;
 
-        if ($access['task']['status'] == "closed") $res['error'] = "Закрытые задачи нельзя комментировать";
+    //    if ($access['task']['status'] == "closed") $res['error'] = "Закрытые задачи нельзя комментировать";
         if ($comment == "") $res['error'] = "Комментарий не может быть пустым";
 //        if ($_SESSION['last_comment'] > $created_test && $_SESSION['user']['id_group'] != 1) $res['error'] = "Комментарий можно добавлять каждые {$this->time_limit} секунд";
 
@@ -789,7 +789,7 @@ class tasks extends \Controller {
                 $log->set_logs("comment",$access['project']['id'],"К задаче <a href='/projects/tasks/show/{$access['task']['id']}/#comment_{$insert_id}'>{$access['task']['name']}</a>","add");
 
                 $_SESSION['last_comment'] = $created;
-                $query = $this->db->prepare("select c.*,u.nickname,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
+                $query = $this->db->prepare("select c.*,u.nickname,u.gender,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
                     from projects_tasks_comments as c
                     LEFT JOIN users as u ON u.id_user=c.id_user
                     LEFT JOIN groups as gr ON gr.id=u.id_group where c.id = ? LIMIT 1
@@ -837,7 +837,7 @@ class tasks extends \Controller {
     function generate_comments($id)
     {
         $comments = array();
-        $query = $this->db->prepare("SELECT c.*,u.nickname,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
+        $query = $this->db->prepare("SELECT c.*,u.nickname,u.gender,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
                 from projects_tasks_comments as c
                 LEFT JOIN users as u ON u.id_user=c.id_user
                 LEFT JOIN groups as gr ON gr.id=u.id_group

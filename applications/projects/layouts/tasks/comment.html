@@ -6,7 +6,7 @@
     <a name="comment_{{com.id}}"></a>
     <table class="comment_tbl">
         <tr>
-            <td class="comm_ava_td"><a class="a_comm_ava" href="/users/~{{com.id_user}}/"><img class="comm_ava" {% if not com.avatar or com.avatar == '' %}src="/source/images/no-ava-comment.jpg"{% else %}src="/uploads/users/ava_comment/{{com.avatar|real_path}}"{% endif %}></a></td>
+            <td class="comm_ava_td"><a class="a_comm_ava" href="/users/~{{com.id_user}}/"><img class="comm_ava" {% if not com.avatar or com.avatar == '' %}src="/source/images/no-ava-comment{% if com.gender == "f" %}_f{% endif %}.jpg"{% else %}src="/uploads/users/ava_comment/{{com.avatar|real_path}}"{% endif %}></a></td>
             <td class="comm_td">
                 <div class="comment_head">
                     {% if globals.user.id_user == com.id_user %}

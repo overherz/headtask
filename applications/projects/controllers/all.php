@@ -21,7 +21,7 @@ class all extends \Controller {
                 $s = $this->db->quote("%{$s}%");
                 $search_ar[] = "p.name LIKE ".$s;
             }
-            $where[] = "(".implode("OR ",$search_ar).")";
+            $where[] = "(".implode(" OR ",$search_ar).")";
         }
 
         if ($_POST['my'] != "")
@@ -32,9 +32,10 @@ class all extends \Controller {
                 if ($v == "1") $my[] = "p.owner=".$_SESSION['user']['id_user'];
                 if ($v == "2") $my[] = "p.owner IS NULL";
             }
-            if (count($my) != 2) $where[] = "(".implode("OR ",$my).")";
+            $where[] = "(".implode(" OR ",$my).")";
         }
         else if ($_GET['filter'] == "my") $where[] = "p.owner=".$_SESSION['user']['id_user'];
+        else $where[] = "(p.owner=".$_SESSION['user']['id_user']." OR p.owner IS NULL)";
 
         if ($_POST['in'] != "")
         {
@@ -44,9 +45,9 @@ class all extends \Controller {
                 if ($v == "1") $in[] = "u.id_user='{$_SESSION['user']['id_user']}'";
                 if ($v == "2") $in[] = "u.id_user IS NULL";
             }
-            if (count($in) != 2) $where[] = "(".implode("OR ",$in).")";
+            $where[] = "(".implode("OR ",$in).")";
         }
-        else if (!$_POST) $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
+        else $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
 
         if ($_POST['archive'] != "")
         {
@@ -56,9 +57,9 @@ class all extends \Controller {
                 if ($v == "1") $archive[] = "p.archive IS NULL";
                 if ($v == "2") $archive[] = "p.archive IS NOT NULL";
             }
-            if (count($archive) != 2) $where[] = "(".implode("OR ",$archive).")";
+            $where[] = "(".implode(" OR ",$archive).")";
         }
-        else if (!$_POST) $where[] = "p.archive IS NULL";
+        else $where[] = "p.archive IS NULL";
 
         if ($where) $where = "where ".implode(" and ",$where);
 
