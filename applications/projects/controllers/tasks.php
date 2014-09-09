@@ -318,7 +318,6 @@ class tasks extends \Controller {
         {
             if ($_POST['assigned'] == "") $_POST['assigned'] = null;
             if ($_POST['estimated_time'] == "") $_POST['estimated_time'] = null;
-            if ($_POST['status'] != "rejected") $_POST['message'] = null;
 
             if ($project['owner']) $_POST['assigned'] = $_SESSION['user']['id_user'];
 
