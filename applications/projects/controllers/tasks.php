@@ -612,7 +612,7 @@ class tasks extends \Controller {
             if ($query->execute(array($_POST['id'])))
             {
                 $res['success']['project'] = $task['id_project'];
-                $log->set_logs("task",$access['project']['id'],"delete","{$task['name']}");
+                $log->set_logs("task",$access['project']['id'],$task['name'],"delete");
             }
             else $res['error'] = "Ошибка базы данных";
         }
