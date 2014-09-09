@@ -568,16 +568,12 @@ function get_page(page){
 }
 
 function search(){
-    if (search_query) return false;
-
     var input = $("input[name='search']");
     input.css('background','url(/source/images/admin/preloader.gif) 99% 50% no-repeat');
 
     if (window.clear) $('[name="page"]').val(1);
     var request = $('#search_form').serialize();
     var p = $('#search_form').attr("path")
-
-    var search_query = setTimeout(function(){$('#search_form :input').attr("disabled", true).trigger('refresh')},200);
 
     user_api(request,function(res){
         clearTimeout(window.timer);
@@ -600,10 +596,5 @@ function search(){
         if(jQuery().styler) {
             $(".popup input").styler();
         }
-        clearTimeout(search_query);
-        $('#search_form :input').attr("disabled", false).trigger('refresh');
-    },function(){
-        clearTimeout(search_query);
-        $('#search_form :input').attr("disabled", false).trigger('refresh');
-    },p);
+    },false,p);
 }
