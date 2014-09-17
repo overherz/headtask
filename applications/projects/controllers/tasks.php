@@ -434,6 +434,7 @@ class tasks extends \Controller {
                 $message = $this->layout_get("tasks/task_mail.html",array(
                     'domain' => get_full_domain_name(),
                     'name' => $project['name'],
+                    'task_name' => $_POST['name'],
                     'edit' => $edit,
                     'task' => $res['success']
                 ));

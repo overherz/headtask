@@ -1,14 +1,20 @@
-<div>Здравствуйте, <b>{{new_topics.fio}}</b></div>
+{% extends "/source/mail.html" %}
 
-<div>На форумах Таскера появились новые темы</div>
+{% block title %}
+    Новые темы на форумах
+{% endblock %}
 
-<br><br>
-{% for n in new_topics.topics %}
-    {% for nn in n  %}
-        {% if project_id != nn.id %}
-            {% set project_id = nn.id  %}
-            На форумах проекта {{ nn.name }}
-        {% endif %}
-        <div> <a href="{{ domain }}/projects/forum/show_topic/{{ nn.topic_id }}/"><b>{{ nn.topic_name }}</b></a>
+{% block body %}
+    {% import "/source/link_mail_macro.html" as link_mail %}
+
+    {% for n in new_topics.topics %}
+        {% for nn in n  %}
+            {% if project_id != nn.id %}
+                {% set project_id = nn.id  %}
+                На форумах проекта {{ nn.name }}
+            {% endif %}
+            <div>
+            {{ link_mail.format(domain,'projects/forum/show_topic/'~nn.topic_id,nn.topic_name) }}
+        {% endfor %}
     {% endfor %}
-{% endfor %}
+{% endblock %}

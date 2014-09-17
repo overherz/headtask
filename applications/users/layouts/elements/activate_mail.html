@@ -1,10 +1,21 @@
-{% if password %}
-    Спасибо за регистрацию!
-    <div>Ваши регистрационные данные:</div>
-    <div><b>Логин:</b> {{ email }}</div>
-    <div><b>Пароль:</b> {{ password }}</div>
-{% endif %}
+{% extends "/source/mail.html" %}
 
-<div>
-    Вам необходимо подтвердить email, для этого перейдите по ссылке <a href='{{ domain }}/users/registration/?act=confirm&confirmcode={{ code }}'>{{ domain }}/users/registration/?act=confirm&confirmcode={{ code }}</a>"
-</div>
+{% block title %}
+    Подтверждение email
+{% endblock %}
+
+{% block body %}
+    {% import "/source/link_mail_macro.html" as link_mail %}
+
+    {% if password %}
+        Спасибо за регистрацию!
+        <div>Ваши регистрационные данные:</div>
+        <div><b>Логин:</b> {{ email }}</div>
+        <div><b>Пароль:</b> {{ password }}</div>
+    {% endif %}
+
+    <div>
+        Вам необходимо подтвердить свой email, для этого перейдите по
+        {{ link_mail.format(domain,'users/registration/?act=confirm&confirmcode='~code,'ссылке') }}
+    </div>
+{% endblock %}

@@ -149,22 +149,29 @@
     {% endif %}
     <div id="tabs-3" class="tab-pane fade">
     {% if logs %}
-        <table class="table table-hover table-condensed table-border">
+        <table class="table table-hover table_style">
             <thead>
             <tr>
-                <th>Пользователь</th>
-                <th>Дата</th>
+                <th></th>
                 <th>Описание</th>
+                <th>Дата</th>
+                <th>Пользователь</th>
             </tr>
             </thead>
             <tbody>
             {% for l in logs %}
                 <tr>
+                    <td style="width: 1px;">
+                        {% if l.action == 'add' %}<i class="fa fa-plus" style="color:#5cb85c;"></i>
+                        {% elseif l.action == 'edit' %}<i class="fa fa-pencil" style="color:#5bc0de;"></i>
+                        {% elseif l.action == 'delete' %}<i class="fa fa-trash-o" style="color:#d9534f;"></i>
+                        {% endif %}
+                    </td>
+                    <td>{{l.text|raw}}</td>
+                    <td>{{l.created|date('d.m.Y H:i')}}</td>
                     <td>
                         <a href="/users/~{{l.id_user}}/" style="color:{{ l.color }} !important;font-weight: bold;" title="{{ l.group_name }}">{{l.fio}}</a>
                     </td>
-                    <td>{{l.created|date('d.m.Y H:i')}}</td>
-                    <td>{{l.text|raw}}</td>
                 </tr>
             {% endfor %}
             </tbody>

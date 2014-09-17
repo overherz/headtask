@@ -1,2 +1,12 @@
-Вы запросили смену адреса электронной почты.
-Для этого необходимо подтвердить свои действия, перейдя по <a href='{{ domain }}/users/mailconfirm/{{ code }}/'>этой ссылке</a>
+{% extends "/source/mail.html" %}
+
+{% block title %}
+    Запрос на смену email
+{% endblock %}
+
+{% block body %}
+    {% import "/source/link_mail_macro.html" as link_mail %}
+
+    Вы запросили смену адреса электронной почты.
+    Для этого необходимо подтвердить свои действия, перейдя по {{ link_mail.format(domain,'users/mailconfirm/'~ code,'ссылке') }}
+{% endblock %}
