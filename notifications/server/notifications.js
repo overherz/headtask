@@ -361,9 +361,14 @@ function get_status(ids,callback)
 
 function remake_link(text)
 {
-    return text.replace(/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/g, function(match, href, name, s)
+    text = text.replace(/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/g, function(match, href, name, s)
         {
             return "<a "+ _.unescape(href)+">"+name+"</a>";
         }
     );
+
+    text = text.replace(/&lt;s&gt;/g,"<s>");
+    text = text.replace(/&lt;\/s&gt;/g,"</s>");
+
+    return text;
 }
