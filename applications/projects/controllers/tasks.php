@@ -365,8 +365,10 @@ class tasks extends \Controller {
                     {
                         $res['success'] = $_POST['id'];
 
+                        $message_mail = implode(". ",$text_log);
                         array_unshift($text_log,lang("log_task_change","<a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a>"));
-                        $log->set_logs("task",$task['id_project'],implode(". ",$text_log),"edit",$task['id']);
+                        $message = implode(". ",$text_log);
+                        $log->set_logs("task",$task['id_project'],$message,"edit",$task['id']);
                     }
                     else $res['error'] = "Ошибка сохранения задачи";
 
@@ -440,7 +442,9 @@ class tasks extends \Controller {
                     'name' => $project['name'],
                     'task_name' => $_POST['name'],
                     'edit' => $edit,
-                    'task' => $res['success']
+                    'task' => $res['success'],
+                    'message' => $message_mail,
+                    'id_project' => $project['id']
                 ));
 
                 if ($_POST['assigned'] != "")
@@ -495,8 +499,8 @@ class tasks extends \Controller {
                         if ($task['percent'] != $_POST['new_current_percent'])
                             $text_log[] = lang("log_task_change_percent",array($_POST['new_current_percent'],$task['percent']));
 
+                        $message_mail = implode(". ",$text_log);
                         array_unshift($text_log,lang("log_task_change","<a href='/projects/tasks/show/{$task['id']}/'>{$task['name']}</a>"));
-
                         $message = implode(". ",$text_log);
                         $log->set_logs("task",$task['id_project'],$message,"edit",$task['id']);
 
@@ -505,10 +509,12 @@ class tasks extends \Controller {
                             'name' => $access['project']['name'],
                             'edit' => true,
                             'task' => $task['id'],
-                            'message' => $message
+                            'task_name' => $task['name'],
+                            'message' => $message_mail,
+                            'id_project' => $access['project']['id']
                         ));
 
-                        $notif = "В Задаче \"{$task['name']}\" в проекте \"{$access['project']['name']}\" изменена готовность";
+                        $notif = "В задаче \"{$task['name']}\" в проекте \"{$access['project']['name']}\" изменена готовность";
 
                         $this->send_notification($task['assigned'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
                         $this->send_notification($task['id_user'],$notif,$message,$email=$_POST['email'],$phone=$_POST['sms']);
@@ -623,6 +629,19 @@ class tasks extends \Controller {
             {
                 $res['success']['project'] = $task['id_project'];
                 $log->set_logs("task",$access['project']['id'],$task['name'],"delete");
+
+                $message = $this->layout_get("tasks/task_mail.html",array(
+                    'domain' => get_full_domain_name(),
+                    'name' => $access['project']['name'],
+                    'delete' => true,
+                    'task_name' => $task['name'],
+                    'id_project' => $access['project']['id']
+                ));
+
+                $notif = "Удалена задача \"{$task['name']}\" в проекте \"{$access['project']['name']}\"";
+
+                $this->send_notification($task['assigned'],$notif,$message,true,false);
+                $this->send_notification($task['id_user'],$notif,$message,true,false);
             }
             else $res['error'] = "Ошибка базы данных";
         }

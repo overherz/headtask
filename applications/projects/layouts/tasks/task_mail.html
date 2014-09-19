@@ -3,6 +3,8 @@
 {% block title %}
     {% if edit %}
         Изменена задача
+    {% elseif delete %}
+        Удалена задача
     {% else %}
         Добавлена задача
     {% endif %}
@@ -10,6 +12,6 @@
 
 {% block body %}
 {% import "/source/link_mail_macro.html" as link_mail %}
-Проект {{name}}. Задача {{ link_mail.format(domain,'projects/tasks/show/'~task,task_name) }}
-{% if message %}<div>{{ message|replace({"<s>": "<span style='text-decoration:line-through;'>", '</s>': "</span>"}) }}</div>{% endif %}
+Проект {{ link_mail.format(domain,'projects/~'~id_project,name) }}. Задача {% if not delete %}{{ link_mail.format(domain,'projects/tasks/show/'~task,task_name) }}{% else %}{{ task_name }}{% endif %}
+{% if message %}<div>{{ message|replace({"<s>": "<span style='text-decoration:line-through;'>", '</s>': "</span>"})|raw }}</div>{% endif %}
 {% endblock %}
