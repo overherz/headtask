@@ -16,6 +16,6 @@
 
     <div>
         Вам необходимо подтвердить свой email, для этого перейдите по
-        {{ link_mail.format(domain,'users/registration/?act=confirm&confirmcode='~code,'ссылке') }}.
+        {{ link_mail.format(domain,'users/registration/?act=confirm&confirmcode='~code,'ссылке',true) }}.
     </div>
 {% endblock %}

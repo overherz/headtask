@@ -16,6 +16,7 @@ CKEDITOR.editorConfig = function( config )
     config.contentsCss = ["/source/css/content.css"];
     config.autoGrow_maxHeight = 500;
     config.autoGrow_minHeight = 166;
+    config.autoGrow_onStartup = true;
     config.enterMode = CKEDITOR.ENTER_DIV;
     config.allowedContent = true;
     config.protectedSource.push(/<(script).*>.*<\/script>/ig);

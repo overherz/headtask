@@ -21,7 +21,7 @@
     <i class="fa fa-lock" style="float: left;font-size: 40px;margin-right: 10px;" title="Закрытая тема"></i>
 {% endif %}
 {% if topic.fixed %}
-    <i class="fa-thumb-tack " style="float: left;font-size: 40px;" title="Закрепленная тема"></i>
+    <i class="fa fa-thumb-tack " style="float: left;font-size: 40px;" title="Закрепленная тема"></i>
 {% endif %}
 <table class="table table_style no_padding_right no_padding_left" id="posts_table">
     {% for p in posts %}
@@ -44,7 +44,6 @@
             <div id="post{{p.id}}" class="post">{{p.text|raw}}</div>
         </td>
     </tr>
-        {% if not loop.last %}
             <tr>
                 <td colspan="2" style="border:none !important;text-align: right;background: {{ color }} !important;padding-bottom: 10px !important;">
                     <div class="btn-group">
@@ -58,7 +57,6 @@
                     </div>
                 </td>
             </tr>
-        {% endif %}
     {% endfor %}
     </tbody>
 </table>

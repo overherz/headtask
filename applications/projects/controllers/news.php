@@ -54,7 +54,7 @@ class news extends \Controller {
         }
 
         $access = $this->get_controller("projects","users")->get_access($id_project);
-        if ($access['access']['news'])
+        if ($access['access']['news'] && $access['access']['show_news'])
         {
             $project = $access['project'];
 
@@ -88,19 +88,22 @@ class news extends \Controller {
         if ($news = $this->get_news($this->_0))
         {
             $access = $this->get_controller("projects","users")->get_access($news['id_project']);
+            if ($access['access']['show_news'])
+            {
+                crumbs($access['project']['name'],"/projects/~{$access['project']['id']}/");
+                crumbs("Новости","/projects/news/{$access['project']['id']}");
+                crumbs($news['name']);
 
-            crumbs($access['project']['name'],"/projects/~{$access['project']['id']}/");
-            crumbs("Новости","/projects/news/{$access['project']['id']}");
-            crumbs($news['name']);
-
-            $this->set_global('id_project',$access['project']['id']);
-            $this->layout_show("news/news_show.html",array(
-                'news' => $news,
-                'project' => $access['project'],
-                //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
-                'news_button' => true,
-                'access' => $access['access'],
-            ));
+                $this->set_global('id_project',$access['project']['id']);
+                $this->layout_show("news/news_show.html",array(
+                    'news' => $news,
+                    'project' => $access['project'],
+                    //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+                    'news_button' => true,
+                    'access' => $access['access'],
+                ));
+            }
+            else $this->error_page('denied');
         }
         else $this->error_page();
     }
@@ -113,7 +116,8 @@ class news extends \Controller {
     function show_all_news()
     {
         $access = $this->get_controller("projects","users")->get_access($this->id);
-        if ($project = $access['project'])
+        $project = $access['project'];
+        if ($access['access']['show_news'])
         {
             crumbs($project['name'],"/projects/~{$project['id']}/");
             crumbs("Новости");
@@ -154,7 +158,7 @@ class news extends \Controller {
             }
             else $this->layout_show('news/news.html',$data);
         }
-        else $this->error_page();
+        else $this->error_page('denied');
     }
 
     function get_news($id)
@@ -163,8 +167,10 @@ class news extends \Controller {
             LEFT JOIN users as u ON pn.author = u.id_user
             where pn.id=?");
         $query->execute(array($id));
-        $news = $query->fetch();
-        $news['fio'] = build_user_name($news['first_name'],$news['last_name']);
+        if ($news = $query->fetch())
+        {
+            $news['fio'] = build_user_name($news['first_name'],$news['last_name']);
+        }
 
         return $news;
     }
@@ -202,7 +208,7 @@ class news extends \Controller {
             $log = $this->get_controller("projects","logs");
             if ($_POST['id'])
             {
-                if ($access['access']['news'])
+                if ($access['access']['news'] && $access['access']['show_news'])
                 {
                     $query = $this->db->prepare("update projects_news set name=?,description=?,created=? where id=?");
                     if ($query->execute(array($_POST['name'],$_POST['description'],time(),$_POST['id'])))
@@ -219,7 +225,7 @@ class news extends \Controller {
             }
             else
             {
-                if ($access['access']['news'])
+                if ($access['access']['news'] && $access['access']['show_news'])
                 {
                     $query = $this->db->prepare("insert into projects_news(name,description,created,author,id_project) values(?,?,?,?,?)");
                     if ($query->execute(array($_POST['name'],$_POST['description'],time(),$_SESSION['user']['id_user'],$id_project)))
@@ -270,7 +276,7 @@ class news extends \Controller {
         $access = $this->get_controller("projects","users")->get_access($news['id_project']);
         $log = $this->get_controller("projects","logs");
 
-        if ($access['access']['news'])
+        if ($access['access']['news'] && $access['access']['show_news'])
         {
             $query = $this->db->prepare("delete from projects_news where id=?");
             if ($query->execute(array($_POST['id'])))

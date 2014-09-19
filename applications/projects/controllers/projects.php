@@ -41,6 +41,13 @@ class projects extends \Controller {
                 else $this->error_page();
             }
 
+            if (!$access['access']['show_review'])
+            {
+                if ($_POST) $res['error'] = "У Вас недостаточно прав";
+                else $this->error_page("denied");
+            }
+
+
             if (!$res['error'])
             {
                 if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");

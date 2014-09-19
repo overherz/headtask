@@ -50,7 +50,7 @@ class users extends \Controller {
         }
 
         $access = $this->get_access($id_project);
-        if ($access['access']['users'] && !$access['project']['owner'])
+        if ($access['access']['users'] && !$access['project']['owner'] && $access['access']['show_users'])
         {
             $project = $access['project'];
 
@@ -87,7 +87,7 @@ class users extends \Controller {
             $query = $this->db->query("select pr.*,pg.name as group_name
                 from projects_access_rights as pr
                 LEFT JOIN projects_access_groups as pg ON pr.id_access_group=pg.id
-                order by pr.id_access_group ASC,pr.alias ASC
+                order by pr.id_access_group ASC,pr.name ASC
             ");
             while ($row = $query->fetch())
             {
@@ -117,13 +117,15 @@ class users extends \Controller {
         $access = $this->get_access($this->id);
         if (!$project = $access['project']) $this->error_page();
 
-        $total = $this->db->num_rows("projects_users where id_project=".$this->db->quote($this->id));
+        if ($access['access']['show_users'])
+        {
+            $total = $this->db->num_rows("projects_users where id_project=".$this->db->quote($this->id));
 
-        require_once(ROOT.'libraries/paginator/paginator.php');
-        $paginator = new \Paginator($total, $_POST['page'], $this->limit);
-        if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
+            require_once(ROOT.'libraries/paginator/paginator.php');
+            $paginator = new \Paginator($total, $_POST['page'], $this->limit);
+            if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-        $query = $this->db->prepare("select u.*,g.color,g.name as group_name,pu.role,u.last_user_action,pu.description
+            $query = $this->db->prepare("select u.*,g.color,g.name as group_name,pu.role,u.last_user_action,pu.description
             from projects_users as pu
             LEFT JOIN users as u ON pu.id_user=u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
@@ -132,42 +134,44 @@ class users extends \Controller {
             LIMIT {$this->limit}
             OFFSET {$paginator->get_range('from')}
         ");
-        $query->execute(array($this->id));
-        while ($row = $query->fetch()) {
-            $ids[] = $row['id_user'];
-            $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
-            $users[$row['id_user']] = $row;
-        }
-
-        if ($ids)
-        {
-            $ids = implode(",",$ids);
-            $p2 = $this->db->query("select up.iduser,up.value, pr.name, pr.alias FROM userprofiles as up LEFT JOIN profile as pr ON up.idprof=pr.id WHERE up.iduser IN ({$ids}) AND pr.name IN ('skypename', 'mphone')");
-            while ($row = $p2->fetch()) {
-                $users[$row['iduser']][$row['name']]=$row['value'];
+            $query->execute(array($this->id));
+            while ($row = $query->fetch()) {
+                $ids[] = $row['id_user'];
+                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                $users[$row['id_user']] = $row;
             }
+
+            if ($ids)
+            {
+                $ids = implode(",",$ids);
+                $p2 = $this->db->query("select up.iduser,up.value, pr.name, pr.alias FROM userprofiles as up LEFT JOIN profile as pr ON up.idprof=pr.id WHERE up.iduser IN ({$ids}) AND pr.name IN ('skypename', 'mphone')");
+                while ($row = $p2->fetch()) {
+                    $users[$row['iduser']][$row['name']]=$row['value'];
+                }
+            }
+
+            crumbs($project['name'],"/projects/~{$project['id']}");
+            crumbs("Участники");
+
+            $this->set_global('id_project',$project['id']);
+            $data = array(
+                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                'users_button' => true,
+                'project' => $project,
+                'users' => $users,
+                'access' => $access['access'],
+                'paginator' => $paginator,
+                'stats' => $this->get_controller("projects","tasks")->get_users_stats($project['id'])
+            );
+
+            if ($_POST)
+            {
+                $res['success'] = $this->layout_get("users/users_table.html",$data);
+                echo json_encode($res);
+            }
+            else $this->layout_show('users/users.html',$data);
         }
-
-        crumbs($project['name'],"/projects/~{$project['id']}");
-        crumbs("Участники");
-
-        $this->set_global('id_project',$project['id']);
-        $data = array(
-            //'projects' => $this->get_controller("projects")->get_projects($project['id']),
-            'users_button' => true,
-            'project' => $project,
-            'users' => $users,
-            'access' => $access['access'],
-            'paginator' => $paginator,
-            'stats' => $this->get_controller("projects","tasks")->get_users_stats($project['id'])
-        );
-
-        if ($_POST)
-        {
-            $res['success'] = $this->layout_get("users/users_table.html",$data);
-            echo json_encode($res);
-        }
-        else $this->layout_show('users/users.html',$data);
+        else $this->error_page('denied');
     }
 
     function get_user_and_role($id_project,$id_user)
@@ -278,7 +282,7 @@ class users extends \Controller {
 
         $this->db->beginTransaction();
 
-        if ($access['access']['users'] && !$access['project']['owner'])
+        if ($access['access']['users'] && !$access['project']['owner'] && $access['access']['show_users'])
         {
             $role = $this->get_role($_POST['id_project'],$_POST['id_user']);
             if ($_SESSION['user']['id_group'] != 1 && $role == "manager") $res['error'] = "Только администратор может снимать и назначать менеджеров";

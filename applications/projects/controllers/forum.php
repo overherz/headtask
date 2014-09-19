@@ -73,13 +73,15 @@ class forum extends \Admin {
     function new_posts()
     {
         $access = $this->get_controller("projects","users")->get_access($this->_0);
-        $project = $access['project'];
+        if ($access['access']['show_forum'])
+        {
+            $project = $access['project'];
 
-        crumbs($project['name'],"/projects/~{$project['id']}/");
-        crumbs("Форум","/projects/forum/{$project['id']}/");
-        crumbs("Новые сообщения");
+            crumbs($project['name'],"/projects/~{$project['id']}/");
+            crumbs("Форум","/projects/forum/{$project['id']}/");
+            crumbs("Новые сообщения");
 
-        $query = $this->db->prepare("SELECT count(distinct t.id) as count
+            $query = $this->db->prepare("SELECT count(distinct t.id) as count
             FROM projects_topics as t
             LEFT JOIN projects_posts as p ON p.id_topic=t.id
             LEFT JOIN projects_forums as f ON t.id_forum=f.id
@@ -88,13 +90,13 @@ class forum extends \Admin {
 
             order by p.created DESC
         ");
-        $query->execute(array($this->_0,$_SESSION['user']['id_user']));
-        $count = $query->fetch();
+            $query->execute(array($this->_0,$_SESSION['user']['id_user']));
+            $count = $query->fetch();
 
-        require_once(ROOT.'libraries/paginator/paginator.php');
-        $paginator = new \Paginator($count['count'], $_POST['page'], $this->limit_new_posts);
+            require_once(ROOT.'libraries/paginator/paginator.php');
+            $paginator = new \Paginator($count['count'], $_POST['page'], $this->limit_new_posts);
 
-        $query = $this->db->prepare("SELECT f.name as forum_name,t.name as topic_name,f.id as forum_id,t.id, r.last_action,(select count(id) from projects_posts where id_topic=t.id and created > r.last_action) as count
+            $query = $this->db->prepare("SELECT f.name as forum_name,t.name as topic_name,f.id as forum_id,t.id, r.last_action,(select count(id) from projects_posts where id_topic=t.id and created > r.last_action) as count
             FROM projects_topics as t
             LEFT JOIN projects_posts as p ON p.id_topic=t.id
             LEFT JOIN projects_forums as f ON t.id_forum=f.id
@@ -106,27 +108,29 @@ class forum extends \Admin {
             OFFSET {$paginator->get_range('from')}
         ");
 
-        $query->execute(array($this->_0,$_SESSION['user']['id_user']));
-        $new_posts = $query->fetchAll();
+            $query->execute(array($this->_0,$_SESSION['user']['id_user']));
+            $new_posts = $query->fetchAll();
 
-        $this->set_global('id_project',$access['project']['id']);
-        $data = array(
-            'new_posts' => $new_posts,
-            'access' => $access['access'],
-            //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
-            'forum_button' => true,
-            'paginator' => $paginator,
-            'project' => $access['project']
-        );
+            $this->set_global('id_project',$access['project']['id']);
+            $data = array(
+                'new_posts' => $new_posts,
+                'access' => $access['access'],
+                //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+                'forum_button' => true,
+                'paginator' => $paginator,
+                'project' => $access['project']
+            );
 
-        if ($_POST)
-        {
-            if ($text = $this->layout_get('/forum/new_posts_table.html',$data)) $result['success'] = $text;
-            else $result['error'] = "Ничего не найдено";
+            if ($_POST)
+            {
+                if ($text = $this->layout_get('/forum/new_posts_table.html',$data)) $result['success'] = $text;
+                else $result['error'] = "Ничего не найдено";
 
-            echo json_encode($result);
+                echo json_encode($result);
+            }
+            else $this->layout_show('/forum/new_posts.html',$data);
         }
-        else $this->layout_show('/forum/new_posts.html',$data);
+        else $this->error_page('denied');
     }
 
     function add_or_edit_forum($mode)
@@ -172,12 +176,14 @@ class forum extends \Admin {
     function show_forums()
     {
         $access = $this->get_controller("projects","users")->get_access($this->id);
-        if ($project = $access['project'])
+        if ($access['access']['show_forum'])
         {
-            crumbs($project['name'],"/projects/~{$project['id']}/");
-            crumbs("Форум");
+            if ($project = $access['project'])
+            {
+                crumbs($project['name'],"/projects/~{$project['id']}/");
+                crumbs("Форум");
 
-            $query = $this->db->prepare("select pf.*,count(distinct pt.id) as count_topics,count(pp.id) as count_posts
+                $query = $this->db->prepare("select pf.*,count(distinct pt.id) as count_topics,count(pp.id) as count_posts
                     from projects_forums as pf
                     LEFT JOIN projects_topics as pt ON pf.id=pt.id_forum
                     LEFT JOIN projects_posts as pp ON pt.id=pp.id_topic
@@ -185,17 +191,17 @@ class forum extends \Admin {
                     group by pf.id
                     order by name ASC
                 ");
-            $query->execute(array($this->id));
-            while ($row = $query->fetch())
-            {
-                $forums[$row['id']] = $row;
-                $ids[] = $row['id'];
-            }
+                $query->execute(array($this->id));
+                while ($row = $query->fetch())
+                {
+                    $forums[$row['id']] = $row;
+                    $ids[] = $row['id'];
+                }
 
-            if ($forums)
-            {
-                $ids = implode(",",$ids);
-                $query = $this->db->query("SELECT t.id,t.id_forum,p.created,u.id_user,u.nickname,u.first_name,u.last_name,t.name,g.color,g.name as group_name
+                if ($forums)
+                {
+                    $ids = implode(",",$ids);
+                    $query = $this->db->query("SELECT t.id,t.id_forum,p.created,u.id_user,u.nickname,u.first_name,u.last_name,t.name,g.color,g.name as group_name
                         FROM projects_posts p JOIN projects_topics t ON p.id_topic = t.id
                         LEFT JOIN users as u ON u.id_user=p.author
                         LEFT JOIN groups as g ON u.id_group=g.id
@@ -204,32 +210,34 @@ class forum extends \Admin {
                             WHERE t.id_forum = t2.id_forum AND p.created < p2.created
                         ) and t.id_forum IN ({$ids})");
 
-                while ($row = $query->fetch())
-                {
-                    $forums[$row['id_forum']]['last'] = array(
-                        'id' => $row['id'],
-                        'name' => $row['name'],
-                        'author' => array('id_user' => $row['id_user'],'fio' => build_user_name($row['first_name'],$row['last_name']),'nickname' => $row['nickname']),
-                        'created' => $row['created'],
-                        'color' => $row['color'],
-                        'group_name' => $row['group_name']
-                    );
+                    while ($row = $query->fetch())
+                    {
+                        $forums[$row['id_forum']]['last'] = array(
+                            'id' => $row['id'],
+                            'name' => $row['name'],
+                            'author' => array('id_user' => $row['id_user'],'fio' => build_user_name($row['first_name'],$row['last_name']),'nickname' => $row['nickname']),
+                            'created' => $row['created'],
+                            'color' => $row['color'],
+                            'group_name' => $row['group_name']
+                        );
+                    }
                 }
+
+                $this->set_global('id_project',$project['id']);
+                $data = array(
+                    'project' => $project,
+                    //  'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                    'forum_button' => true,
+                    'access' => $access['access'],
+                    'forums' => $forums,
+                    'new_post_count' => $this->get_new_forum_post_count($this->id)
+                );
+
+                $this->layout_show('forum/forum.html',$data);
             }
-
-            $this->set_global('id_project',$project['id']);
-            $data = array(
-                'project' => $project,
-              //  'projects' => $this->get_controller("projects")->get_projects($project['id']),
-                'forum_button' => true,
-                'access' => $access['access'],
-                'forums' => $forums,
-                'new_post_count' => $this->get_new_forum_post_count($this->id)
-            );
-
-            $this->layout_show('forum/forum.html',$data);
+            else $this->error_page();
         }
-        else $this->error_page();
+        else $this->error_page("denied");
     }
 
     function show_forum()
@@ -239,15 +247,17 @@ class forum extends \Admin {
         {
             $access = $this->get_controller("projects","users")->get_access($forum['id_project']);
 
-            crumbs($access['project']['name'],"/projects/~{$access['project']['id']}/");
-            crumbs("Форум","/projects/forum/{$access['project']['id']}");
-            crumbs($forum['name']);
+            if ($access['access']['show_forum'])
+            {
+                crumbs($access['project']['name'],"/projects/~{$access['project']['id']}/");
+                crumbs("Форум","/projects/forum/{$access['project']['id']}");
+                crumbs($forum['name']);
 
-            $total = $this->db->num_rows("projects_topics where id_forum={$this->db->quote($id_forum)} and fixed IS NULL");
-            require_once(ROOT.'libraries/paginator/paginator.php');
-            $paginator = new \Paginator($total, $_POST['page'], $this->limit);
+                $total = $this->db->num_rows("projects_topics where id_forum={$this->db->quote($id_forum)} and fixed IS NULL");
+                require_once(ROOT.'libraries/paginator/paginator.php');
+                $paginator = new \Paginator($total, $_POST['page'], $this->limit);
 
-            $query = $this->db->prepare("select t.*,(select count(*) from projects_posts where id_topic=t.id) as count_posts,
+                $query = $this->db->prepare("select t.*,(select count(*) from projects_posts where id_topic=t.id) as count_posts,
                     p.created,u.id_user,u.first_name,u.last_name,u.nickname,t.created as topic_created,g.color,g.name as group_name
                     from projects_topics t
                     LEFT JOIN projects_posts as p ON p.id_topic=t.id
@@ -258,15 +268,15 @@ class forum extends \Admin {
                     order by p.created DESC
                     LIMIT {$this->limit}
                     OFFSET {$paginator->get_range('from')}");
-            $query->execute(array($id_forum));
-            while ($row = $query->fetch())
-            {
-                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
-                $topics[$row['id']] = $row;
-                if ($row['author'] != "") $ids[] = $row['author'];
-            }
+                $query->execute(array($id_forum));
+                while ($row = $query->fetch())
+                {
+                    $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                    $topics[$row['id']] = $row;
+                    if ($row['author'] != "") $ids[] = $row['author'];
+                }
 
-            $query = $this->db->prepare("select t.*,(select count(*) from projects_posts where id_topic=t.id) as count_posts,
+                $query = $this->db->prepare("select t.*,(select count(*) from projects_posts where id_topic=t.id) as count_posts,
                     p.created,u.id_user,u.first_name,u.last_name,u.nickname,t.created as topic_created,g.color,g.name as group_name
                     from projects_topics t
                     LEFT JOIN projects_posts as p ON p.id_topic=t.id
@@ -275,51 +285,53 @@ class forum extends \Admin {
                     where id_forum=? and t.fixed IS NOT NULL and p.id = (select max(id) from projects_posts where id_topic=t.id)
                     group by t.id
                     order by p.created DESC");
-            $query->execute(array($id_forum));
-            while ($row = $query->fetch())
-            {
-                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
-                $fixed_topics[$row['id']] = $row;
-                if ($row['author'] != "") $ids[] = $row['author'];
-            }
+                $query->execute(array($id_forum));
+                while ($row = $query->fetch())
+                {
+                    $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                    $fixed_topics[$row['id']] = $row;
+                    if ($row['author'] != "") $ids[] = $row['author'];
+                }
 
-            if ($topics)
-            {
-                $ids = implode(",",$ids);
-                $query = $this->db->query("select u.nickname,u.id_user,u.first_name,u.last_name,g.color,g.name as group_name
+                if ($topics)
+                {
+                    $ids = implode(",",$ids);
+                    $query = $this->db->query("select u.nickname,u.id_user,u.first_name,u.last_name,g.color,g.name as group_name
                     from users as u
                     LEFT JOIN groups as g ON u.id_group=g.id
                     where id_user IN({$ids})
                 ");
-                while ($row = $query->fetch())
-                {
-                    $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
-                    $authors[$row['id_user']] = $row;
+                    while ($row = $query->fetch())
+                    {
+                        $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                        $authors[$row['id_user']] = $row;
+                    }
                 }
+
+                $this->set_global('id_project',$access['project']['id']);
+                $data = array(
+                    'forum' => $forum,
+                    'project' => $access['project'],
+                    //   'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+                    'forum_button' => true,
+                    'access' => $access['access'],
+                    'paginator' => $paginator,
+                    'topics' => $topics,
+                    'fixed_topics' => $fixed_topics,
+                    'authors' => $authors,
+                    'new_post_count' => $this->get_new_forum_post_count($forum['id_project'])
+                );
+
+                if ($_POST)
+                {
+                    if ($text = $this->layout_get('forum/topics.html',$data)) $result['success'] = $text;
+                    else $result['error'] = "Ничего не найдено";
+
+                    echo json_encode($result);
+                }
+                else $this->layout_show('forum/forum_show.html',$data);
             }
-
-            $this->set_global('id_project',$access['project']['id']);
-            $data = array(
-                'forum' => $forum,
-                'project' => $access['project'],
-             //   'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
-                'forum_button' => true,
-                'access' => $access['access'],
-                'paginator' => $paginator,
-                'topics' => $topics,
-                'fixed_topics' => $fixed_topics,
-                'authors' => $authors,
-                'new_post_count' => $this->get_new_forum_post_count($forum['id_project'])
-            );
-
-            if ($_POST)
-            {
-                if ($text = $this->layout_get('forum/topics.html',$data)) $result['success'] = $text;
-                else $result['error'] = "Ничего не найдено";
-
-                echo json_encode($result);
-            }
-            else $this->layout_show('forum/forum_show.html',$data);
+            else $this->error_page("denied");
         }
         else $this->error_page();
     }
@@ -330,17 +342,18 @@ class forum extends \Admin {
         {
             $forum = $this->get_forum($topic['id_forum']);
             $access = $this->get_controller("projects","users")->get_access($forum['id_project']);
+            if ($access['access']['show_forum'])
+            {
+                crumbs($access['project']['name'],"/projects/~{$access['project']['id']}/");
+                crumbs("Форум","/projects/forum/{$access['project']['id']}/");
+                crumbs($forum['name'],"/projects/forum/show/{$topic['id_forum']}/");
+                crumbs($topic['name']);
 
-            crumbs($access['project']['name'],"/projects/~{$access['project']['id']}/");
-            crumbs("Форум","/projects/forum/{$access['project']['id']}/");
-            crumbs($forum['name'],"/projects/forum/show/{$topic['id_forum']}/");
-            crumbs($topic['name']);
+                $total = $this->db->num_rows("projects_posts where id_topic={$this->db->quote($topic['id'])}");
+                require_once(ROOT.'libraries/paginator/paginator.php');
+                $paginator = new \Paginator($total, $_GET['page'], $this->limit_posts);
 
-            $total = $this->db->num_rows("projects_posts where id_topic={$this->db->quote($topic['id'])}");
-            require_once(ROOT.'libraries/paginator/paginator.php');
-            $paginator = new \Paginator($total, $_GET['page'], $this->limit_posts);
-
-            $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,u.id_user,u.avatar,u.last_user_action,g.color,g.name as group_name
+                $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,u.id_user,u.avatar,u.last_user_action,g.color,g.name as group_name
                     from projects_posts as p
                     LEFT JOIN users as u ON p.author=u.id_user
                     LEFT JOIN groups as g ON u.id_group=g.id
@@ -349,31 +362,33 @@ class forum extends \Admin {
                     LIMIT {$this->limit}
                     OFFSET {$paginator->get_range('from')}");
 
-            $query->execute(array($topic['id']));
-            while ($row = $query->fetch())
-            {
-                $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
-                $posts[] = $row;
+                $query->execute(array($topic['id']));
+                while ($row = $query->fetch())
+                {
+                    $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                    $posts[] = $row;
+                }
+
+                $query = $this->db->prepare("update projects_topics set number_of_views = number_of_views + 1 where id=?");
+                $query->execute(array($topic['id']));
+
+                $first_post = $this->get_first_post($this->_0);
+                $this->update_subscribe($this->_0);
+                $topic['subscribe'] = $this->check_subscribe($this->_0);
+
+                $this->set_global('id_project',$access['project']['id']);
+                $this->layout_show("forum/show_topic.html",array(
+                    //  'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+                    'project' => $access['project'],
+                    'access' => $access['access'],
+                    'posts' => $posts,
+                    'paginator' => $paginator,
+                    'topic' => $topic,
+                    'forum_button' => true,
+                    'first_post' => $first_post['id']
+                ));
             }
-
-            $query = $this->db->prepare("update projects_topics set number_of_views = number_of_views + 1 where id=?");
-            $query->execute(array($topic['id']));
-
-            $first_post = $this->get_first_post($this->_0);
-            $this->update_subscribe($this->_0);
-            $topic['subscribe'] = $this->check_subscribe($this->_0);
-
-            $this->set_global('id_project',$access['project']['id']);
-            $this->layout_show("forum/show_topic.html",array(
-              //  'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
-                'project' => $access['project'],
-                'access' => $access['access'],
-                'posts' => $posts,
-                'paginator' => $paginator,
-                'topic' => $topic,
-                'forum_button' => true,
-                'first_post' => $first_post['id']
-            ));
+            else $this->error_page('denied');
         }
         else $this->error_page();
     }
@@ -440,7 +455,7 @@ class forum extends \Admin {
         $project = $access['project'];
 
         if ($_POST['name'] == "") $res['error'] = "Введите название";
-        if (!$access['access']['forum']) $res['error'] = "У Вас недостаточно прав";
+        if (!$access['access']['forum'] && !$access['access']['show_forum']) $res['error'] = "У Вас недостаточно прав";
 
         if (!$res['error'])
         {
@@ -476,7 +491,7 @@ class forum extends \Admin {
         $forum = $this->get_forum($_POST['id']);
         $access = $this->get_controller("projects","users")->get_access($forum['id_project']);
 
-        if ($access['access']['forum'])
+        if ($access['access']['forum'] && $access['access']['show_forum'])
         {
             $query = $this->db->prepare("delete from projects_forums where id=?");
             if ($query->execute(array($_POST['id'])))
@@ -511,6 +526,7 @@ class forum extends \Admin {
         else $res['error'][] = "Передан неверный id раздела форума";
 
         $access = $this->get_controller("projects","users")->get_access($id_project);
+        if (!$access['access']['show_forum']) $res['error'] = "У Вас недостаточно прав";
 
         if ($_POST['name'] == "") $res['error'][] = "Введите название";
         if ($_POST['text'] == "") $res['error'][] = "Введите текст";
@@ -571,6 +587,7 @@ class forum extends \Admin {
         $topic = $this->get_topic($id_topic);
         $id_project = $this->get_id_project_from_topic($id_topic);
         $access = $this->get_controller("projects","users")->get_access($id_project);
+        if (!$access['access']['show_forum']) $res['error'] = "У Вас недостаточно прав";
 
         require_once(ROOT.'libraries/simple_html_dom.php');
 
@@ -626,7 +643,7 @@ class forum extends \Admin {
         $id_project = $this->get_id_project_from_topic($_POST['id']);
         $access = $this->get_controller("projects","users")->get_access($id_project);
 
-        if ($access['access']['forum'])
+        if ($access['access']['forum'] && $access['access']['show_forum'])
         {
             $query = $this->db->prepare("select name from projects_topics where id=?");
             $query->execute(array($_POST['id']));
@@ -659,7 +676,7 @@ class forum extends \Admin {
         $id_project = $this->get_id_project_from_post($_POST['id']);
         $access = $this->get_controller("projects","users")->get_access($id_project);
 
-        if ($access['access']['forum'] || $post['author'] == $_SESSION['user']['id_user'])
+        if (($access['access']['forum'] && $access['access']['show_forum']) || $post['author'] == $_SESSION['user']['id_user'])
         {
             if ($post) $res['success'] = $post;
             else $res['error'] = "Сообщение не найдено";
@@ -727,7 +744,7 @@ class forum extends \Admin {
 
         if (!$res['error'])
         {
-            if ($access['access']['forum'])
+            if ($access['access']['forum'] && $access['access']['show_forum'])
             {
                 $query = $this->db->prepare("delete from projects_posts where id=? LIMIT 1");
                 if ($query->execute(array($_POST['id']))) $res['success'] = true;
@@ -770,25 +787,31 @@ class forum extends \Admin {
 
     function subscribe()
     {
-        $id_project = $this->get_id_project_from_post($_POST['id']);
+        $id_project = $this->get_id_project_from_topic($_POST['id']);
         $access = $this->get_controller("projects","users")->get_access($id_project);
-
-        $visit = time();
-        $query = $this->db->prepare("insert into projects_forums_subscribes(id_user,id_topic,last_action) values(?,?,?)");
-        if (!$query->execute(array($_SESSION['user']['id_user'],$_POST['id'],$visit))) $res['error'] = "Ошибка базы данных";
-        else $res['success'] = true;
+        if (!$access['access']['show_forum']) $res['error'] = "У Вас недостаточно прав";
+        if (!$res['error'])
+        {
+            $visit = time();
+            $query = $this->db->prepare("insert into projects_forums_subscribes(id_user,id_topic,last_action) values(?,?,?)");
+            if (!$query->execute(array($_SESSION['user']['id_user'],$_POST['id'],$visit))) $res['error'] = "Ошибка базы данных";
+            else $res['success'] = true;
+        }
 
         echo json_encode($res);
     }
 
     function unsubscribe()
     {
-        $id_project = $this->get_id_project_from_post($_POST['id']);
+        $id_project = $this->get_id_project_from_topic($_POST['id']);
         $access = $this->get_controller("projects","users")->get_access($id_project);
-
-        $query = $this->db->prepare("delete from projects_forums_subscribes where id_user=? and id_topic=? LIMIT 1");
-        if (!$query->execute(array($_SESSION['user']['id_user'],$_POST['id']))) $res['error'] = "Ошибка базы данных";
-        else $res['success'] = true;
+        if (!$access['access']['show_forum']) $res['error'] = "У Вас недостаточно прав";
+        if (!$res['error'])
+        {
+            $query = $this->db->prepare("delete from projects_forums_subscribes where id_user=? and id_topic=? LIMIT 1");
+            if (!$query->execute(array($_SESSION['user']['id_user'],$_POST['id']))) $res['error'] = "Ошибка базы данных";
+            else $res['success'] = true;
+        }
 
         echo json_encode($res);
     }

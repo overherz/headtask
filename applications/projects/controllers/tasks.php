@@ -93,85 +93,89 @@ class tasks extends \Controller {
         }
         else if ($this->id == "edit") $to_task = true;
 
-        if ($this->_0)
-        {
-            $access = $this->get_controller("projects","users")->get_access(false,false,$this->_0);
-            if (!$project = $access['project']) $this->error_page();
-            if (!$access['access']['edit_task'] && !$access['access']['edit_tasks'] && $this->id == "edit") $this->error_page('denied');
-            $task = $access['task'];
-            if (intval($task['spent_time']) == $task['spent_time']) $task['spent_time'] = (int) $task['spent_time'];
+        if ($this->_0) {
+            $access = $this->get_controller("projects", "users")->get_access(false, false, $this->_0);
 
-            if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
-            crumbs($project['name'],"/projects/~{$project['id']}");
-            crumbs("Задачи","/projects/tasks/{$project['id']}/");
-            crumbs($task['name'],"/projects/tasks/show/{$task['id']}/");
+            if ($access['access']['show_tasks'] && ($access['task']['id_user'] == $_SESSION['user']['id_user'] || $access['task']['assigned'] == $_SESSION['user']['id_user']))
+            {
+                if (!$project = $access['project']) $this->error_page();
+                if (!$access['access']['edit_task'] && !$access['access']['edit_tasks'] && $this->id == "edit") $this->error_page('denied');
+                $task = $access['task'];
+                if (intval($task['spent_time']) == $task['spent_time']) $task['spent_time'] = (int) $task['spent_time'];
 
-            $query = $this->db->prepare("select ft.*,f.*,u.first_name,u.last_name,u.nickname,u.id_user,u.id_group,g.color,g.name as group_name
+                if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
+                crumbs($project['name'],"/projects/~{$project['id']}");
+                crumbs("Задачи","/projects/tasks/{$project['id']}/");
+                crumbs($task['name'],"/projects/tasks/show/{$task['id']}/");
+
+                $query = $this->db->prepare("select ft.*,f.*,u.first_name,u.last_name,u.nickname,u.id_user,u.id_group,g.color,g.name as group_name
                     from files_to_tasks as ft
                     LEFT JOIN projects_files as f ON f.id = ft.id_file
                     LEFT JOIN users as u ON f.owner=u.id_user
                     LEFT JOIN groups as g ON u.id_group=g.id
                     where id_task=?");
-            $query->execute(array($task['id']));
-            $f_ctr = $this->get_controller("projects","files");
-            while ($row = $query->fetch())
-            {
-                $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
-                $row['size'] = $f_ctr->format_file_size($row['size']);
-                $files[] = $row;
-            }
+                $query->execute(array($task['id']));
+                $f_ctr = $this->get_controller("projects","files");
+                while ($row = $query->fetch())
+                {
+                    $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
+                    $row['size'] = $f_ctr->format_file_size($row['size']);
+                    $files[] = $row;
+                }
 
-            $query = $this->db->prepare("select c.*
+                $query = $this->db->prepare("select c.*
                 from projects_tasks_to_categories as tc
                 LEFT JOIN projects_tasks_categories as c ON tc.id_category=c.id
                 where id_task=?
             ");
-            $query->execute(array($task['id']));
-            while ($row = $query->fetch())
-            {
-                $task_categories[$row['id']] = $row;;
+                $query->execute(array($task['id']));
+                while ($row = $query->fetch())
+                {
+                    $task_categories[$row['id']] = $row;;
+                }
+
+                if ($this->id == "edit")
+                {
+                    $users = $this->get_controller("projects","users")->get_users_project($task['id_project']);
+                    crumbs("Редактирование");
+                    $layout = "tasks/add_task.html";
+                    if (!$access['access']['edit_tasks'] && !$access['access']['edit_task']) $this->error_page("denied");
+                    $categories = $this->get_controller("projects")->get_categories($task['id_project']);
+                }
+                else $layout = "tasks/show_task.html";
+
+                if ($this->id == "show")
+                {
+                    $query = $this->db->prepare("select * from projects_tasks_last_visit where id_task=? and id_user=? LIMIT 1");
+                    $query->execute(array($this->_0,$_SESSION['user']['id_user']));
+                    $task['subscribe'] = $query->fetch();
+                    $last_visit = time();
+                    $query = $this->db->prepare("insert into projects_tasks_last_visit (last_visit,id_task,id_user) values (?,?,?) ON DUPLICATE KEY UPDATE last_visit=?");
+                    $query->execute(array($last_visit,$this->_0,$_SESSION['user']['id_user'],$last_visit));
+                    $task['diff'] = $this->get_date_diff($task['end']);
+
+                    $comments = $this->generate_comments($this->_0);
+                }
+
+                $this->set_global('id_project',$project['id']);
+                $this->layout_show($layout,array(
+                    //'projects' => $this->get_controller("projects")->get_projects($project['id']),
+                    'tasks_button' => true,
+                    'project' => $project,
+                    'task' => $task,
+                    'users' => $users,
+                    'files' => $files,
+                    'show_task' => $show_task,
+                    'to_task' => $to_task,
+                    'access' => $access['access'],
+                    'logs' => $logs['logs'],
+                    'comments'=> $comments,
+                    'categories' => $categories,
+                    'task_categories' => $task_categories,
+                    'status' => $this->status,
+                ));
             }
-
-            if ($this->id == "edit")
-            {
-                $users = $this->get_controller("projects","users")->get_users_project($task['id_project']);
-                crumbs("Редактирование");
-                $layout = "tasks/add_task.html";
-                if (!$access['access']['edit_tasks'] && !$access['access']['edit_task']) $this->error_page("denied");
-                $categories = $this->get_controller("projects")->get_categories($task['id_project']);
-            }
-            else $layout = "tasks/show_task.html";
-
-            if ($this->id == "show")
-            {
-                $query = $this->db->prepare("select * from projects_tasks_last_visit where id_task=? and id_user=? LIMIT 1");
-                $query->execute(array($this->_0,$_SESSION['user']['id_user']));
-                $task['subscribe'] = $query->fetch();
-                $last_visit = time();
-                $query = $this->db->prepare("insert into projects_tasks_last_visit (last_visit,id_task,id_user) values (?,?,?) ON DUPLICATE KEY UPDATE last_visit=?");
-                $query->execute(array($last_visit,$this->_0,$_SESSION['user']['id_user'],$last_visit));
-                $task['diff'] = $this->get_date_diff($task['end']);
-
-                $comments = $this->generate_comments($this->_0);
-            }
-
-            $this->set_global('id_project',$project['id']);
-            $this->layout_show($layout,array(
-                //'projects' => $this->get_controller("projects")->get_projects($project['id']),
-                'tasks_button' => true,
-                'project' => $project,
-                'task' => $task,
-                'users' => $users,
-                'files' => $files,
-                'show_task' => $show_task,
-                'to_task' => $to_task,
-                'access' => $access['access'],
-                'logs' => $logs['logs'],
-                'comments'=> $comments,
-                'categories' => $categories,
-                'task_categories' => $task_categories,
-                'status' => $this->status,
-            ));
+            else $this->error_page("denied");
         }
         else $this->error_page();
     }
@@ -521,6 +525,7 @@ class tasks extends \Controller {
 
     function add_file_to_task()
     {
+        $access = $this->get_controller("projects","users")->get_access($_POST['project']);
         if ($_POST['files'])
         {
             foreach ($_POST['files'] as &$v) $v = (int) $v;
@@ -530,6 +535,7 @@ class tasks extends \Controller {
 
         $limit = 10;
 
+        $where = array();
         if (isset($_POST['search']) && $_POST['search'] != '')
         {
             $search = explode(" ",$_POST['search']);
@@ -538,10 +544,13 @@ class tasks extends \Controller {
                 $s = $this->db->quote("%{$s}%");
                 $search_ar[] = "p.name LIKE ".$s;
             }
-            $search_name = "and (".implode("OR ",$search_ar).")";
+            $where[] = "(".implode("OR ",$search_ar).")";
         }
+        if (!$access['access']['show_files']) $where[] = "p.owner=".$_SESSION['user']['id_user'];
 
-        $total = $this->db->num_rows("projects_files as p where id_project=".$this->db->quote($_POST['project'])." {$excluded} {$search_name}");
+        if (count($where) > 0) $where_text = "AND ".implode(" AND ",$where);
+
+        $total = $this->db->num_rows("projects_files as p where id_project=".$this->db->quote($_POST['project'])." {$excluded} {$where_text}");
 
         require_once(ROOT.'libraries/paginator/paginator.php');
         $paginator = new \Paginator($total, $_POST['page'], $limit);
@@ -551,7 +560,7 @@ class tasks extends \Controller {
                 from projects_files as p
                 LEFT JOIN users as u ON p.owner=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
-                where p.id_project=? {$excluded} {$search_name}
+                where p.id_project=? {$excluded} {$where_text}
                 order by p.created DESC
                 LIMIT {$limit}
                 OFFSET {$paginator->get_range('from')}
@@ -760,6 +769,10 @@ class tasks extends \Controller {
     function add_comment()
     {
         $access = $this->get_controller("projects","users")->get_access(false,false,$_POST['id']);
+        if (!$access['access']['show_tasks'])
+        {
+            if ($access['task']['id_user'] != $_SESSION['user']['id_user'] && $access['task']['assigned'] != $_SESSION['user']['id_user']) $res['error'] = "У Вас недостаточно прав";
+        }
 
         $parent = intval($_POST['parent']);
         if ($parent < 1) $parent = null;

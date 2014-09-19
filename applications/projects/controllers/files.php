@@ -117,10 +117,12 @@ class files extends \Admin {
             $access = $this->get_controller("projects","users")->get_access($this->id);
             if (!$project = $access['project']) $this->error_page();
 
+
             if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}/");
             crumbs("Файлы");
 
+            $where = array();
             if (isset($_POST['search']) && $_POST['search'] != '')
             {
                 $search = explode(" ",$_POST['search']);
@@ -129,24 +131,27 @@ class files extends \Admin {
                     $s = $this->db->quote("%{$s}%");
                     $search_ar[] = "p.name LIKE ".$s;
                 }
-                $search_name = "and (".implode("OR ",$search_ar).")";
+                $where[] = "(".implode("OR ",$search_ar).")";
             }
+            if (!$access['access']['show_files']) $where[] = "p.owner=".$_SESSION['user']['id_user'];
 
-            $total = $this->db->num_rows("projects_files as p where id_project={$this->db->quote($this->id)} {$search_name}");
+            if (count($where) > 0) $where_text = "AND ".implode(" AND ",$where);
+
+            $total = $this->db->num_rows("projects_files as p where id_project={$this->db->quote($this->id)} {$where_text}");
 
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
             if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
             $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
-                from projects_files as p
-                LEFT JOIN users as u ON p.owner=u.id_user
-                LEFT JOIN groups as g ON u.id_group=g.id
-                where p.id_project=? {$search_name}
-                order by p.created DESC
-                LIMIT {$this->limit}
-                OFFSET {$paginator->get_range('from')}
-            ");
+            from projects_files as p
+            LEFT JOIN users as u ON p.owner=u.id_user
+            LEFT JOIN groups as g ON u.id_group=g.id
+            where p.id_project=? {$where_text}
+            order by p.created DESC
+            LIMIT {$this->limit}
+            OFFSET {$paginator->get_range('from')}
+        ");
             $query->execute(array($this->id));
             while ($row = $query->fetch())
             {

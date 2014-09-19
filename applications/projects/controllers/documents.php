@@ -54,7 +54,7 @@ class documents extends \Controller {
         }
 
         $access = $this->get_controller("projects","users")->get_access($id_project);
-        if ($access['access']['documents'])
+        if ($access['access']['documents'] && $access['access']['show_documents'])
         {
             $project = $access['project'];
 
@@ -87,19 +87,23 @@ class documents extends \Controller {
         {
             $access = $this->get_controller("projects","users")->get_access($documents['id_project']);
 
-            if ($access['project']['owner']) crumbs("Личные","/projects/all/?filter=my");
-            crumbs($access['project']['name'],"/projects/~{$access['project']['id']}/");
-            crumbs("Wiki","/projects/documents/{$access['project']['id']}");
-            crumbs($documents['name']);
+            if ($access['access']['show_documents'])
+            {
+                if ($access['project']['owner']) crumbs("Личные","/projects/all/?filter=my");
+                crumbs($access['project']['name'],"/projects/~{$access['project']['id']}/");
+                crumbs("Wiki","/projects/documents/{$access['project']['id']}");
+                crumbs($documents['name']);
 
-            $this->set_global('id_project',$access['project']['id']);
-            $this->layout_show("documents/documents_show.html",array(
-                'documents' => $documents,
-                'project' => $access['project'],
-                //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
-                'documents_button' => true,
-                'access' => $access['access'],
-            ));
+                $this->set_global('id_project',$access['project']['id']);
+                $this->layout_show("documents/documents_show.html",array(
+                    'documents' => $documents,
+                    'project' => $access['project'],
+                    //'projects' => $this->get_controller("projects")->get_projects($access['project']['id']),
+                    'documents_button' => true,
+                    'access' => $access['access'],
+                ));
+            }
+            else $this->error_page('denied');
         }
         else $this->error_page();
     }
@@ -107,7 +111,8 @@ class documents extends \Controller {
     function show_documents()
     {
         $access = $this->get_controller("projects","users")->get_access($this->id);
-        if ($project = $access['project'])
+        $project = $access['project'];
+        if ($access['access']['show_documents'])
         {
             if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
             crumbs($project['name'],"/projects/~{$project['id']}/");
@@ -163,7 +168,7 @@ class documents extends \Controller {
             }
             else $this->layout_show('documents/documents.html',$data);
         }
-        else $this->error_page();
+        else $this->error_page('denied');
     }
 
     function get_documents($id)
@@ -172,8 +177,10 @@ class documents extends \Controller {
             LEFT JOIN users as u ON pd.author = u.id_user
             where pd.id=?");
         $query->execute(array($id));
-        $documents = $query->fetch();
-        $documents['fio'] = build_user_name($documents['first_name'],$documents['last_name']);
+        if ($documents = $query->fetch())
+        {
+            $documents['fio'] = build_user_name($documents['first_name'],$documents['last_name']);
+        }
 
         return $documents;
     }
@@ -209,7 +216,7 @@ class documents extends \Controller {
             $log = $this->get_controller("projects","logs");
             if ($_POST['id'])
             {
-                if ($access['access']['documents'])
+                if ($access['access']['documents'] && $access['access']['show_documents'])
                 {
                     $query = $this->db->prepare("update projects_documents set name=?,description=?,created=? where id=?");
                     if ($query->execute(array($_POST['name'],$_POST['description'],time(),$_POST['id'])))
@@ -224,7 +231,7 @@ class documents extends \Controller {
             }
             else
             {
-                if ($access['access']['documents'])
+                if ($access['access']['documents'] && $access['access']['show_documents'])
                 {
                     $query = $this->db->prepare("insert into projects_documents(name,description,created,author,id_project) values(?,?,?,?,?)");
                     if ($query->execute(array($_POST['name'],$_POST['description'],time(),$_SESSION['user']['id_user'],$id_project)))
@@ -248,7 +255,7 @@ class documents extends \Controller {
         $access = $this->get_controller("projects","users")->get_access($documents['id_project']);
         $log = $this->get_controller("projects","logs");
 
-        if ($access['access']['documents'])
+        if ($access['access']['documents'] && $access['access']['show_documents'])
         {
             $query = $this->db->prepare("delete from projects_documents where id=?");
             if ($query->execute(array($_POST['id'])))

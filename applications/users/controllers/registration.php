@@ -121,7 +121,7 @@ class registration extends \Controller {
                 if ($this->send_activate_link($_POST['email'],$_POST['password1']))
                 {
                     $created = time();
-                    $p = $this->db->prepare("insert into users(last_name,first_name,nickname,email,pass,salt,uniq_key,gender, id_group, mailconfirm,created, tzOffset,birthday) values(?,?,?,?,?,?,?,?,?,0,?,?,?)");
+                    $p = $this->db->prepare("insert into users(last_name,first_name,nickname,email,pass,salt,uniq_key,gender, id_group, mailconfirm,created, tzOffset,birthday) values(?,?,?,?,?,?,?,?,?,1,?,?,?)");
                     if (!$p->execute(array(
                             $_POST['last_name'],
                             $_POST['first_name'],
