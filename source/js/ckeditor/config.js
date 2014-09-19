@@ -14,7 +14,8 @@ CKEDITOR.editorConfig = function( config )
     config.filebrowserImageUploadUrl = '/uploader/?debug_mode=off&ajax=on';
     config.bodyClass = 'wysiwyg content_text';
     config.contentsCss = ["/source/css/content.css"];
-    config.height = 400;
+    config.autoGrow_maxHeight = 500;
+    config.autoGrow_minHeight = 166;
     config.enterMode = CKEDITOR.ENTER_DIV;
     config.allowedContent = true;
     config.protectedSource.push(/<(script).*>.*<\/script>/ig);
