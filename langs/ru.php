@@ -78,4 +78,8 @@ $GLOBALS['lang'] = array(
     'type_wiki' => 'Wiki',
     'type_comment' => 'Комментарий',
     'type_forum' => 'Форум',
+
+    //roles
+    'role_user' => 'участник',
+    'role_manager' => 'менеджер',
 );

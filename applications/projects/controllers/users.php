@@ -84,16 +84,7 @@ class users extends \Controller {
                 }
             }
 
-            $query = $this->db->query("select pr.*,pg.name as group_name
-                from projects_access_rights as pr
-                LEFT JOIN projects_access_groups as pg ON pr.id_access_group=pg.id
-                order by pr.id_access_group ASC,pr.name ASC
-            ");
-            while ($row = $query->fetch())
-            {
-                $rights[$row['id_access_group']]['name'] = $row['group_name'];
-                $rights[$row['id_access_group']]['rights'][] = $row;
-            }
+            $rights = $this->get_rigts(true);
 
             $this->set_global('id_project',$project['id']);
             $this->layout_show('users/add_user.html',array(
@@ -112,6 +103,29 @@ class users extends \Controller {
         else $this->error_page("denied");
     }
 
+    function get_rigts($group=false)
+    {
+        $query = $this->db->query("select pr.*,pg.name as group_name
+                from projects_access_rights as pr
+                LEFT JOIN projects_access_groups as pg ON pr.id_access_group=pg.id
+                order by pr.id_access_group ASC,pr.name ASC
+            ");
+        while ($row = $query->fetch())
+        {
+            if ($group)
+            {
+                $rights[$row['id_access_group']]['name'] = $row['group_name'];
+                $rights[$row['id_access_group']]['rights'][] = $row;
+            }
+            else
+            {
+                $rights[$row['id']] = $row;
+            }
+        }
+
+        return $rights;
+    }
+
     function show_users()
     {
         $access = $this->get_access($this->id);
@@ -119,25 +133,40 @@ class users extends \Controller {
 
         if ($access['access']['show_users'])
         {
-            $total = $this->db->num_rows("projects_users where id_project=".$this->db->quote($this->id));
+            $where[] = "pu.id_project=".$this->db->quote($this->id);
+            if (isset($_POST['search']) && $_POST['search'] != '')
+            {
+                $search = str_replace(" ","%",$_POST['search']);
+                $s = $this->db->quote("%{$search}%");
+                $where[] = "(u.first_name LIKE {$s} OR u.last_name LIKE {$s})";
+            }
+            if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
+
+            $total = $this->db->num_rows("projects_users as pu LEFT JOIN users as u ON pu.id_user=u.id_user {$where}");
 
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
             if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-            $query = $this->db->prepare("select u.*,g.color,g.name as group_name,pu.role,u.last_user_action,pu.description
+            $query = $this->db->prepare("select u.*,g.color,g.name as group_name,pu.role,
+            u.last_user_action,pu.description,
+            GROUP_CONCAT(r.id_right order by rg.id_access_group SEPARATOR ',') as rights
             from projects_users as pu
             LEFT JOIN users as u ON pu.id_user=u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
-            where pu.id_project=?
+            LEFT JOIN projects_rights_users as r ON r.id_user=u.id_user
+            LEFT JOIN projects_access_rights as rg ON r.id_right = rg.id
+            {$where}
+            group by u.id_user
             order by last_name ASC
             LIMIT {$this->limit}
             OFFSET {$paginator->get_range('from')}
         ");
-            $query->execute(array($this->id));
+            $query->execute();
             while ($row = $query->fetch()) {
                 $ids[] = $row['id_user'];
                 $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                $row['rights'] = explode(",",$row['rights']);
                 $users[$row['id_user']] = $row;
             }
 
@@ -161,7 +190,8 @@ class users extends \Controller {
                 'users' => $users,
                 'access' => $access['access'],
                 'paginator' => $paginator,
-                'stats' => $this->get_controller("projects","tasks")->get_users_stats($project['id'])
+                'stats' => $this->get_controller("projects","tasks")->get_users_stats($project['id']),
+                'rights' => $this->get_rigts()
             );
 
             if ($_POST)
