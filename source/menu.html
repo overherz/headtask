@@ -24,9 +24,8 @@
                         {% if m.path == "/projects/" %}
                             <div style="position: absolute;top:0;right:15px;">
                                 {% if access.add_project or access.add_own_project or globals.access.add_project or globals.access.add_own_project %}
-                                    <a href="/projects/add/" class="{% if add %}active{% endif %}" style="display: inline-block;text-indent: 2px;padding-right: 4px;"><i class="fa fa-plus"></i></a>
+                                    <a href="/projects/add/" class="{% if add %}active{% endif %}" style="display: inline-block !important;text-indent: 2px;padding-right: 4px;"><i class="fa fa-plus"></i></a>
                                 {% endif %}
-                                <a href="/projects/all/" class="{% if all_projects %}active{% endif %}" style="display: inline-block;text-indent: 2px;padding-right: 4px;" title="Все проекты"><i class="fa fa-book"></i></a>
                             </div>
                         {% endif %}</div>
                 {% if m.category %}

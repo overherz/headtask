@@ -9,8 +9,8 @@ $INFO['dev_mode'] = 1;
 $INFO['error_to_mail'] = 1;
 $INFO['antiddos'] = 0;
 
-$INFO['domain_name'] = "overherz.dyndns.org";
-$INFO['secure'] = 1; //enable to https redirect
+$INFO['domain_name'] = "tasker";
+$INFO['secure'] = 0; //enable to https redirect
 
 $INFO['cache'] = 0;
 $INFO['cache_storage'] = "memcache"; // files, sqlite, auto, apc, wincache, xcache, memcache, memcached
