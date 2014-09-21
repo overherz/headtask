@@ -933,6 +933,10 @@ td .progress {
     font-weight: bold;
 }
 
+.submenu li.active a {
+    font-weight: normal;
+}
+
 .sidebar_project a {
     color: #999 !important;
 }
@@ -1242,13 +1246,15 @@ input[disabled], select[disabled], textarea[disabled] {
 }
 
 .submenu.clone {
-    margin-top: 0;
     position: fixed;
     left: 40px;
     text-align: left;
     z-index: 1502;
     padding: 0;
-    min-height: 40px;
+    height: 100%;
+    overflow-y: auto;
+    background: #333;
+    top: 0;
 }
 
 .submenu.clone a {

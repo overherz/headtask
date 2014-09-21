@@ -124,8 +124,8 @@ class projects extends \Controller {
     {
         if ($this->get_global('id_project')) $id_project = $this->get_global('id_project');
 
-        if ($_POST['project_panel_page'] != "") $page = $_POST['project_panel_page'];
-        else if ($id_project) $page = $this->get_number_page($id_project);
+    //    if ($_POST['project_panel_page'] != "") $page = $_POST['project_panel_page'];
+    //    else if ($id_project) $page = $this->get_number_page($id_project);
 
         $where[] = "archive IS NULL";
         $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
@@ -133,22 +133,20 @@ class projects extends \Controller {
 
         if ($where) $where = "where ".implode(" and ",$where);
 
-        $query = $this->db->query("select count(distinct p.id) as count from projects as p
-            LEFT JOIN projects_users as u ON p.id = u.id_project and u.id_user=".$_SESSION['user']['id_user']."
-            {$where}
-        ");
-        $total =$query->fetch();
-        $total = $total['count'];
+    //    $query = $this->db->query("select count(distinct p.id) as count from projects as p
+    //        LEFT JOIN projects_users as u ON p.id = u.id_project and u.id_user=".$_SESSION['user']['id_user']."
+    //        {$where}
+    //    ");
+   //     $total =$query->fetch();
+   //     $total = $total['count'];
 
-        require_once(ROOT.'libraries/paginator/paginator.php');
-        $paginator = new \Paginator($total, $page, $this->project_panel_limit);
+   //     require_once(ROOT.'libraries/paginator/paginator.php');
+    //    $paginator = new \Paginator($total, $page, $this->project_panel_limit);
 
         $query = $this->db->query("select p.*,u.role from projects as p
             LEFT JOIN projects_users as u ON p.id = u.id_project and u.id_user=".$_SESSION['user']['id_user']."
             {$where}
             order by p.owner DESC,p.name
-            LIMIT {$this->project_panel_limit}
-            OFFSET {$paginator->get_range('from')}
         ");
 
         while ($row = $query->fetch())

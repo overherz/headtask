@@ -79,9 +79,10 @@
                 {
                     id_dropdown = this_id_dropdown;
                     var position = $(this).position();
-                    var html = $(".dropdown"+id_dropdown).clone().addClass('clone').css('top',position.top).show();
+                    var html = $(".dropdown"+id_dropdown).clone().addClass('clone').show();
                     html.find("a,li").show();
-                    show_overlay("0.55");
+                    if ($(this).find('.menu_projects_').length == 0) html.css('paddingTop',position.top);
+                    show_overlay();
                     $("body").append(html);
                 }
                 else id_dropdown = false;

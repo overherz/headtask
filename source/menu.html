@@ -9,7 +9,7 @@
 
         {% for k,m in globals.menu %}
             {% if k != "crumbs"%}
-                <li data-dropdown='{{ k }}' class="{% if m.active or globals.menu.crumbs[m.id] %}active{% endif %} {% if m.category %}dropdown{% endif %}" {% if m.path == '/users/logout/' %}style="margin-top: 30px;" {% endif %}>
+                <li data-dropdown='{{ k }}' class="{% if m.active or globals.menu.crumbs[m.id] %}active{% endif %} {% if m.category or m.path == "/projects/" %}dropdown{% endif %}" {% if m.path == '/users/logout/' %}style="margin-top: 30px;" {% endif %}>
                     <div style="position: relative;">
                         <a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>
                             {% if m.path == '/projects/' %}<i class="fa fa-tasks sidebar_icon fa-fw"></i>{% endif %}
@@ -37,16 +37,16 @@
                     {% endfor %}
                     </ul>
                 {% endif %}
-                </li>
-                {% if m.path == "/projects/" %}
-                    <div id="project_panel_result">[[projects__get_projects]]</div>
+                    {% if m.path == "/projects/" %}
+                        <ul id="project_panel_result" class="submenu dropdown{{ k }}" >[[projects__get_projects]]</ul>
 
-                    <form action="" class="project_panel_form" method="post" style="margin: 0px;">
-                        <input type="hidden" name="project_panel_page" value="">
-                        <input type="hidden" name="act" value="get_panel_page_projects">
-                        <input type="hidden" name="id_project" value="{{project.id}}">
-                    </form>
-                {% endif %}
+                        <form action="" class="project_panel_form" method="post" style="margin: 0px;">
+                            <input type="hidden" name="project_panel_page" value="">
+                            <input type="hidden" name="act" value="get_panel_page_projects">
+                            <input type="hidden" name="id_project" value="{{project.id}}">
+                        </form>
+                    {% endif %}
+                </li>
             {% endif %}
         {% endfor %}
     </ul>

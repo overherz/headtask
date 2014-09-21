@@ -10,15 +10,18 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/16/af/8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5b180e.php" afterPath="$PROJECT_DIR$/data/layouts_cache/16/af/8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5b180e.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/1e/62/97ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51a596c.php" afterPath="$PROJECT_DIR$/data/layouts_cache/1e/62/97ba3f8d22d9f27e2758a446e0cbf6bb7a7dbf6cb23a83ea6667b51a596c.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/ee/3b/993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c469ae93.php" afterPath="$PROJECT_DIR$/data/layouts_cache/ee/3b/993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c469ae93.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/7c/06/a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116449a1.php" afterPath="$PROJECT_DIR$/data/layouts_cache/7c/06/a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116449a1.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.php" afterPath="$PROJECT_DIR$/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/9e/d9/d4a859cdffc73bec10e2f096da45a8d40f7f82bde756753a403a10fcc0d7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/9e/d9/d4a859cdffc73bec10e2f096da45a8d40f7f82bde756753a403a10fcc0d7.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" afterPath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/87/b6/ecca88bc216e6757dc52b0a4487f497b8b8d324af3941a58da5018a192d2.php" afterPath="$PROJECT_DIR$/data/layouts_cache/87/b6/ecca88bc216e6757dc52b0a4487f497b8b8d324af3941a58da5018a192d2.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/41/a4/f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc42be7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/41/a4/f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc42be7.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/css/index.css" afterPath="$PROJECT_DIR$/source/css/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/menu.html" afterPath="$PROJECT_DIR$/source/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/projects.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/projects.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/projects_in_panel.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/projects_in_panel.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/wrapper_index.html" afterPath="$PROJECT_DIR$/source/wrapper_index.html" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
     <list id="3204c51e-7cb7-4919-b55d-dfb58f872d14" name="Failed commit: Default (2)" comment="new design" />
@@ -66,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="menu.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/menu.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3588808" vertical-offset="164" max-vertical-offset="986">
-              <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+            <state vertical-scroll-proportion="-12.18868" vertical-offset="51" max-vertical-offset="986">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
@@ -80,7 +83,19 @@
                 <element signature="n#style#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#form#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#form#0;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="projects_in_panel.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/projects_in_panel.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="255">
+              <caret line="3" column="61" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
+              <folding>
+                <element signature="e#42#65#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,8 +114,8 @@
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.25" vertical-offset="612" max-vertical-offset="21454">
-              <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
+            <state vertical-scroll-proportion="-9.160714" vertical-offset="20703" max-vertical-offset="21556">
+              <caret line="1248" column="0" selection-start-line="1248" selection-start-column="0" selection-end-line="1248" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -127,11 +142,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wrapper_index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wrapper_index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-41.846153" vertical-offset="68" max-vertical-offset="2652">
-              <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.7494199" vertical-offset="765" max-vertical-offset="2669">
+              <caret line="83" column="67" selection-start-line="83" selection-start-column="67" selection-end-line="83" selection-end-column="67" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -165,31 +180,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notifications.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/notifications/server/notifications.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6443">
-              <caret line="6" column="88" selection-start-line="6" selection-start-column="88" selection-end-line="6" selection-end-column="88" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="projects.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/projects/controllers/projects.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="44.46154" vertical-offset="1938" max-vertical-offset="4930">
-              <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
+            <state vertical-scroll-proportion="-22.884615" vertical-offset="1921" max-vertical-offset="4896">
+              <caret line="148" column="40" selection-start-line="148" selection-start-column="40" selection-end-line="148" selection-end-column="40" />
               <folding>
-                <marker date="1411132370326" expanded="true" signature="4227:4413" placeholder="SELECT n FRO..@recNo..." />
-                <marker date="1411132370326" expanded="true" signature="4254:4386" placeholder="SELECT @recN..projects..." />
-                <marker date="1411132370326" expanded="true" signature="5341:5521" placeholder="select count..." />
-                <marker date="1411132370326" expanded="true" signature="5790:6067" placeholder="select p.*,u..projects..." />
-                <marker date="1411132370326" expanded="true" signature="7184:7217" placeholder="select * fro..projects..." />
-                <marker date="1411132370326" expanded="true" signature="8432:8479" placeholder="select * fro..projects_files..." />
-                <marker date="1411132370326" expanded="true" signature="8724:8755" placeholder="delete from ..." />
-                <marker date="1411132370326" expanded="true" signature="8926:8991" placeholder="insert into ..." />
-                <marker date="1411132370326" expanded="true" signature="10652:10710" placeholder="select * fro..projects_tasks_categories..." />
+                <marker date="1411273481355" expanded="true" signature="4227:4413" placeholder="SELECT n FRO..@recNo..." />
+                <marker date="1411273481355" expanded="true" signature="4254:4386" placeholder="SELECT @recN..projects..." />
+                <marker date="1411273481355" expanded="true" signature="5347:5531" placeholder="select count..." />
+                <marker date="1411273481355" expanded="true" signature="5810:6020" placeholder="select p.*,u..projects..." />
+                <marker date="1411273481355" expanded="true" signature="5810:6020" placeholder="select p.*,u..projects..." />
+                <marker date="1411273481355" expanded="true" signature="7106:7139" placeholder="select * fro..projects..." />
+                <marker date="1411273481355" expanded="true" signature="8354:8401" placeholder="select * fro..projects_files..." />
+                <marker date="1411273481355" expanded="true" signature="8646:8677" placeholder="delete from ..." />
+                <marker date="1411273481355" expanded="true" signature="8848:8913" placeholder="insert into ..." />
+                <marker date="1411273481355" expanded="true" signature="10574:10632" placeholder="select * fro..projects_tasks_categories..." />
               </folding>
             </state>
           </provider>
@@ -218,7 +224,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/applications/captcha/controllers/captcha.php" />
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/applications/.htaccess" />
         <option value="$PROJECT_DIR$/core/.htaccess" />
@@ -251,7 +256,6 @@
         <option value="$PROJECT_DIR$/applications/projects/controllers/files.php" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/user_tasks.php" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/forum.php" />
-        <option value="$PROJECT_DIR$/applications/projects/controllers/projects.php" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/project_menu.html" />
         <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/tasks.php" />
@@ -265,10 +269,12 @@
         <option value="$PROJECT_DIR$/applications/pages/layouts/templates/index.html" />
         <option value="$PROJECT_DIR$/globals/get_user_menu.php" />
         <option value="$PROJECT_DIR$/source/css/plugins.css" />
-        <option value="$PROJECT_DIR$/source/wrapper_index.html" />
         <option value="$PROJECT_DIR$/source/js/functions.js" />
-        <option value="$PROJECT_DIR$/source/menu.html" />
         <option value="$PROJECT_DIR$/source/css/index.css" />
+        <option value="$PROJECT_DIR$/applications/projects/layouts/projects_in_panel.html" />
+        <option value="$PROJECT_DIR$/source/menu.html" />
+        <option value="$PROJECT_DIR$/applications/projects/controllers/projects.php" />
+        <option value="$PROJECT_DIR$/source/wrapper_index.html" />
       </list>
     </option>
   </component>
@@ -641,6 +647,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="applications" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1700,7 +1728,13 @@
       <option name="project" value="LOCAL" />
       <updated>1411261844703</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <task id="LOCAL-00156" summary="1">
+      <created>1411271753284</created>
+      <option name="number" value="00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1411271753284</updated>
+    </task>
+    <option name="localTasksCounter" value="157" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1770,13 +1804,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="877">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/logs.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5452463" vertical-offset="0" max-vertical-offset="986">
@@ -2275,17 +2302,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-41.846153" vertical-offset="68" max-vertical-offset="2652">
-          <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6477" max-vertical-offset="10387">
@@ -2311,34 +2327,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.25" vertical-offset="612" max-vertical-offset="21454">
-          <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
+        <state vertical-scroll-proportion="-9.160714" vertical-offset="20703" max-vertical-offset="21556">
+          <caret line="1248" column="0" selection-start-line="1248" selection-start-column="0" selection-end-line="1248" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/projects.php">
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/projects_in_panel.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="44.46154" vertical-offset="1938" max-vertical-offset="4930">
-          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
+        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="255">
+          <caret line="3" column="61" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
           <folding>
-            <marker date="1411132370326" expanded="true" signature="4227:4413" placeholder="SELECT n FRO..@recNo..." />
-            <marker date="1411132370326" expanded="true" signature="4254:4386" placeholder="SELECT @recN..projects..." />
-            <marker date="1411132370326" expanded="true" signature="5341:5521" placeholder="select count..." />
-            <marker date="1411132370326" expanded="true" signature="5790:6067" placeholder="select p.*,u..projects..." />
-            <marker date="1411132370326" expanded="true" signature="7184:7217" placeholder="select * fro..projects..." />
-            <marker date="1411132370326" expanded="true" signature="8432:8479" placeholder="select * fro..projects_files..." />
-            <marker date="1411132370326" expanded="true" signature="8724:8755" placeholder="delete from ..." />
-            <marker date="1411132370326" expanded="true" signature="8926:8991" placeholder="insert into ..." />
-            <marker date="1411132370326" expanded="true" signature="10652:10710" placeholder="select * fro..projects_tasks_categories..." />
+            <element signature="e#42#65#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3588808" vertical-offset="164" max-vertical-offset="986">
-          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+        <state vertical-scroll-proportion="-12.18868" vertical-offset="51" max-vertical-offset="986">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
@@ -2348,7 +2356,37 @@
             <element signature="n#style#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#0;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/projects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.884615" vertical-offset="1921" max-vertical-offset="4896">
+          <caret line="148" column="40" selection-start-line="148" selection-start-column="40" selection-end-line="148" selection-end-column="40" />
+          <folding>
+            <marker date="1411273481355" expanded="true" signature="4227:4413" placeholder="SELECT n FRO..@recNo..." />
+            <marker date="1411273481355" expanded="true" signature="4254:4386" placeholder="SELECT @recN..projects..." />
+            <marker date="1411273481355" expanded="true" signature="5347:5531" placeholder="select count..." />
+            <marker date="1411273481355" expanded="true" signature="5810:6020" placeholder="select p.*,u..projects..." />
+            <marker date="1411273481355" expanded="true" signature="5810:6020" placeholder="select p.*,u..projects..." />
+            <marker date="1411273481355" expanded="true" signature="7106:7139" placeholder="select * fro..projects..." />
+            <marker date="1411273481355" expanded="true" signature="8354:8401" placeholder="select * fro..projects_files..." />
+            <marker date="1411273481355" expanded="true" signature="8646:8677" placeholder="delete from ..." />
+            <marker date="1411273481355" expanded="true" signature="8848:8913" placeholder="insert into ..." />
+            <marker date="1411273481355" expanded="true" signature="10574:10632" placeholder="select * fro..projects_tasks_categories..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7494199" vertical-offset="765" max-vertical-offset="2669">
+          <caret line="83" column="67" selection-start-line="83" selection-start-column="67" selection-end-line="83" selection-end-column="67" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
