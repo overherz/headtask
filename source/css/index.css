@@ -937,8 +937,8 @@ td .progress {
     color: #999 !important;
 }
 
-.sidebar_project.active {
-
+.sidebar_project.active a {
+    color: #fff !important;
 }
 
 .sidebar_project.active a {
