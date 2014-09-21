@@ -39,12 +39,6 @@
                 {% endif %}
                     {% if m.path == "/projects/" %}
                         <ul id="project_panel_result" class="submenu dropdown{{ k }}" >[[projects__get_projects]]</ul>
-
-                        <form action="" class="project_panel_form" method="post" style="margin: 0px;">
-                            <input type="hidden" name="project_panel_page" value="">
-                            <input type="hidden" name="act" value="get_panel_page_projects">
-                            <input type="hidden" name="id_project" value="{{project.id}}">
-                        </form>
                     {% endif %}
                 </li>
             {% endif %}
