@@ -82,6 +82,7 @@
                     var html = $(".dropdown"+id_dropdown).clone().addClass('clone').show();
                     html.find("a,li").show();
                     if ($(this).find('.menu_projects_').length == 0) html.css('paddingTop',position.top);
+                    $(this).css('backgroundColor','#333');
                     show_overlay();
                     $("body").append(html);
                 }
@@ -134,6 +135,7 @@
         {
             clones.remove();
             hide_overlay();
+            $(".dropdown").css('backgroundColor','');
         }
     }
 

@@ -1255,6 +1255,7 @@ input[disabled], select[disabled], textarea[disabled] {
     overflow-y: auto;
     background: #333;
     top: 0;
+    min-width: 150px;
 }
 
 .submenu.clone a {
