@@ -111,16 +111,6 @@
             }
         });
 
-        function hide_sudmenu()
-        {
-            var clones = $(".submenu.clone");
-            if (clones.length > 0)
-            {
-                clones.remove();
-                hide_overlay();
-            }
-        }
-
         soundManager.setup({
             useFlashBlock : false,
             url : '/source/js/sound_manager/',
@@ -139,6 +129,16 @@
         });
         {% endif %}
     });
+
+    function hide_sudmenu()
+    {
+        var clones = $(".submenu.clone");
+        if (clones.length > 0)
+        {
+            clones.remove();
+            hide_overlay();
+        }
+    }
 
     {% if globals.user.id_user %}
     window.ms = {
