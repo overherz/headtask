@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<div id="wrapper">
+<div id="wrapper" {% if cookie_data.sidebar == 'toggled' %}class="toggled" {% endif %}>
 
 {% block menu %}
     {% include "/source/menu.html" %}
@@ -61,10 +61,6 @@
         })
 
         var window_width = get_window_width();
-        if (window_width >= 1100)
-        {
-            if ($.cookie('sidebar') == "toggled") $("#wrapper").addClass('toggled');
-        }
 
         $(".sidebar-brand a").click(function(e) {
             e.stopPropagation();
