@@ -3,8 +3,8 @@ var vm = require('vm');
 var path = require("path");
 var _ = require('../../node_modules/underscore');
 
-var privateKey  = fs.readFileSync(path.join(__dirname, '','/ssl/server.key'), 'utf8');
-var certificate = fs.readFileSync(path.join(__dirname, '','/ssl/server.cert'), 'utf8');
+var privateKey  = fs.readFileSync(path.join(__dirname, '','/ssl/headtask.key'), 'utf8');
+var certificate = fs.readFileSync(path.join(__dirname, '','/ssl/headtask.crt'), 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 //var http = require('http').createServer(onRequest);

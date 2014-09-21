@@ -846,7 +846,7 @@ td .progress {
 */
 
 #sidebar-wrapper {
-    z-index: 1000;
+    z-index: 1503;
     position: fixed;
     left: 0;
     top: 0;
@@ -896,6 +896,11 @@ td .progress {
     line-height: 40px;
 }
 
+.submenu.clone li {
+    text-indent: 7px;
+    line-height: 40px;
+}
+
 .sidebar-brand {
     text-indent: 7px !important;
 }
@@ -907,23 +912,23 @@ td .progress {
 }
 */
 
-.sidebar-nav li a {
-    display: block;
+.sidebar-nav li a, .submenu.clone a {
+    display: block !important;
     text-decoration: none;
     color: #ccc;
 }
 
-.sidebar-nav li a:hover {
+.sidebar-nav li a:hover, .submenu.clone li a:hover {
     text-decoration: none;
     color: #fff;
     background: rgba(255,255,255,0.2);
 }
 
-.sidebar-nav li.active {
+.sidebar-nav li.active, .submenu li.active {
     background: #428bca;
 }
 
-.sidebar-nav li.active a {
+.sidebar-nav li.active div > a, .submenu li.active a {
     color: #fff !important;
     font-weight: bold;
 }
@@ -940,7 +945,7 @@ td .progress {
     font-weight: normal !important;
 }
 
-.sidebar-nav li.active a {
+.sidebar-nav li.active > a {
     color: #fff;
 }
 
@@ -1010,8 +1015,12 @@ td .progress {
 }
 */
 
-.menu_users_profile_,.menu_users_logout_ {
-    display: block !important;
+.submenu .menu_users_profile_,.menu_users_logout_ {
+    display: block;
+}
+
+.submenu {
+    display: none;
 }
 
 @media(min-width:1100px) {
@@ -1107,12 +1116,20 @@ td .progress {
         display: none;
     }
 
-    #wrapper.toggled .menu_users_profile_,#wrapper.toggled .menu_users_logout_ {
-        display: block !important;
+    #wrapper.toggled .submenu .menu_users_profile_,#wrapper.toggled .menu_users_logout_ {
+        display: block;
     }
 
-    .menu_users_profile_,.menu_users_logout_ {
-        display: none !important;
+    .submenu .menu_users_profile_,.submenu .menu_users_logout_ {
+        display: none;
+    }
+
+    .submenu {
+        display: block;
+    }
+
+    #wrapper.toggled .submenu {
+        display: none;
     }
 }
 
@@ -1207,4 +1224,24 @@ input[disabled], select[disabled], textarea[disabled] {
     background: #F5F5F5 !important;
     box-shadow: none !important;
     color: #888 !important;
+}
+
+.submenu {
+    background: #222;
+    padding-left: 0;
+}
+
+.submenu a {
+    padding: 0 30px;
+    color: #999 !important;
+}
+
+.submenu.clone {
+    margin-top: 0;
+    position: fixed;
+    left: 10px;
+    text-align: left;
+    z-index: 1502;
+    padding: 0 0 0 20px;
+    min-height: 40px;
 }

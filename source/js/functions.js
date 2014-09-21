@@ -386,10 +386,11 @@ function hide_popup(callback)
     $("body").css({"overflow":"","marginRight": "","paddingRight": ""});
 }
 
-function show_overlay()
+function show_overlay(opacity)
 {
+    if (!opacity) opacity = "0.4"
     if ($("#overlay").length < 1) $('body').prepend("<div id='overlay'></div>");
-    $('#overlay').css({'z-index':'1001','position':'fixed','background':'#000','width':'100%','height':'100%','left':'0','top':'0','opacity':'0.4','overflow':'hidden'});
+    $('#overlay').css({'z-index':'1001','position':'fixed','background':'#000','width':'100%','height':'100%','left':'0','top':'0','opacity':opacity,'overflow':'hidden'});
 }
 
 function hide_overlay()
@@ -597,4 +598,9 @@ function search(){
             $(".popup input").styler();
         }
     },false,p);
+}
+
+function get_window_width()
+{
+    return parseInt($(window).width()) + parseInt(scrollbarWidth(false,true));
 }

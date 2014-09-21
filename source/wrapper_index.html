@@ -60,7 +60,7 @@
             event.stopPropagation();
         })
 
-        var window_width = parseInt($(window).width()) + parseInt(scrollbarWidth(false,true));
+        var window_width = get_window_width();
         if (window_width >= 1100)
         {
             if ($.cookie('sidebar') == "toggled") $("#wrapper").addClass('toggled');
@@ -70,15 +70,56 @@
             e.stopPropagation();
         });
 
-        $(".sidebar-brand").click(function(e) {
-            if (parseInt($(window).width()) + parseInt(scrollbarWidth(false,true)) >= 1100)
+        var id_dropdown;
+        $(".dropdown").click(function(e){
+            window_width = get_window_width();
+            if ($("#wrapper").hasClass('toggled') || window_width < 1100)
             {
+                e.preventDefault();
+                var this_id_dropdown = $(this).data('dropdown');
+                hide_sudmenu();
+
+                if (id_dropdown != this_id_dropdown)
+                {
+                    id_dropdown = this_id_dropdown;
+                    var position = $(this).position();
+                    var html = $(".dropdown"+id_dropdown).clone().addClass('clone').css('top',position.top).show();
+                    html.find("a,li").show();
+                    show_overlay("0.55");
+                    $("body").append(html);
+                }
+                else id_dropdown = false;
+            }
+        });
+
+        $(document).on('click','#overlay',function(){
+            hide_sudmenu();
+            id_dropdown = false;
+        });
+
+        $(".sidebar-brand").click(function(e) {
+            window_width = get_window_width();
+            if (window_width >= 1100)
+            {
+                hide_sudmenu();
+                id_dropdown = false;
+
                 $("#wrapper").toggleClass("toggled");
                 var c_tog = false;
                 if ($("#wrapper").hasClass('toggled')) c_tog = 'toggled';
                 $.cookie('sidebar', c_tog, { expires: 30, path: '/' });
             }
         });
+
+        function hide_sudmenu()
+        {
+            var clones = $(".submenu.clone");
+            if (clones.length > 0)
+            {
+                clones.remove();
+                hide_overlay();
+            }
+        }
 
         soundManager.setup({
             useFlashBlock : false,
