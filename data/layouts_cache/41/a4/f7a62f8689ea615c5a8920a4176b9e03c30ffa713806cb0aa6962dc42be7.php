@@ -47,7 +47,11 @@ class __TwigTemplate_41a4f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id_user"), "html", null, true));
         echo \layout::func_from_text("/\"><img class=\"comm_ava\" ");
         if (((!$this->getAttribute((isset($context["com"]) ? $context["com"] : null), "avatar")) || ($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "avatar") == ""))) {
-            echo \layout::func_from_text("src=\"/source/images/no-ava-comment.jpg\"");
+            echo \layout::func_from_text("src=\"/source/images/no-ava-comment");
+            if (($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "gender") == "f")) {
+                echo \layout::func_from_text("_f");
+            }
+            echo \layout::func_from_text(".jpg\"");
         } else {
             echo \layout::func_from_text("src=\"/uploads/users/ava_comment/");
             echo \layout::func_from_text(twig_escape_filter($this->env, real_path($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "avatar")), "html", null, true));
@@ -202,6 +206,6 @@ class __TwigTemplate_41a4f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc
 
     public function getDebugInfo()
     {
-        return array (  188 => 43,  173 => 41,  169 => 40,  151 => 39,  149 => 38,  143 => 35,  137 => 31,  130 => 30,  125 => 29,  119 => 28,  116 => 27,  111 => 26,  103 => 25,  99 => 24,  96 => 23,  90 => 21,  84 => 19,  82 => 18,  79 => 17,  67 => 15,  63 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
+        return array (  192 => 43,  177 => 41,  173 => 40,  155 => 39,  153 => 38,  147 => 35,  141 => 31,  134 => 30,  129 => 29,  123 => 28,  120 => 27,  115 => 26,  107 => 25,  103 => 24,  100 => 23,  94 => 21,  88 => 19,  86 => 18,  83 => 17,  71 => 15,  67 => 13,  65 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
     }
 }

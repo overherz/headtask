@@ -7,8 +7,6 @@ class __TwigTemplate_820ebbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157ed
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("/source/wrapper_index.html");
-
         $this->blocks = array(
             'css' => array($this, 'block_css'),
             'js' => array($this, 'block_js'),
@@ -19,12 +17,12 @@ class __TwigTemplate_820ebbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157ed
 
     protected function doGetParent(array $context)
     {
-        return "/source/wrapper_index.html";
+        return $this->env->resolveTemplate((((isset($context["ajax_data"]) ? $context["ajax_data"] : null)) ? ("/source/ajax_wrapper.html") : ("/source/wrapper_index.html")));
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $this->parent->display($context, array_merge($this->blocks, $blocks));
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
     }
 
     // line 2
@@ -54,7 +52,10 @@ class __TwigTemplate_820ebbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157ed
         echo \layout::func_from_text("<input type=\"hidden\" name=\"id_project\" value=\"");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("\">
-
+");
+        // line 11
+        echo \layout::func_from_text(twig_escape_filter($this->env, (isset($context["ajax"]) ? $context["ajax"] : null), "html", null, true));
+        echo \layout::func_from_text("
     <div style=\"margin: 10px 15px -15px\">
         ");
         // line 13
@@ -88,6 +89,6 @@ class __TwigTemplate_820ebbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157ed
 
     public function getDebugInfo()
     {
-        return array (  75 => 17,  70 => 18,  68 => 17,  63 => 14,  61 => 13,  54 => 10,  51 => 9,  44 => 6,  41 => 5,  34 => 3,  31 => 2,);
+        return array (  76 => 17,  71 => 18,  69 => 17,  64 => 14,  62 => 13,  57 => 11,  52 => 10,  49 => 9,  42 => 6,  39 => 5,  32 => 3,  29 => 2,);
     }
 }

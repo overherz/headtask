@@ -93,7 +93,7 @@ Object.size = function(obj) {
     return size;
 };
 
-io.set('transports', ['websocket', 'polling']);
+//io.set('transports', ['websocket', 'polling']);
 io.set('origins', '*:*');
 
 io.on('connection', function (client) {
@@ -117,6 +117,8 @@ io.on('connection', function (client) {
                 //get_count_of_new_messages(real_id,function(count){
                 //    client.emit('set_count_of_new_messages', {count: count});
                 //});
+
+
              //   if (new_connect) io.sockets.emit('userJoined', {'name': incoming.name,'id':real_id});
             }
             else

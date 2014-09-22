@@ -27,7 +27,7 @@
     <div id="page-content-wrapper">
         <div class="container-fluid" style="padding: 0">
             <div class="row" style="margin-right: 0;">
-                <div class="col-lg-12" style="padding-right: 0;">
+                <div class="col-lg-12" style="padding-right: 0;" id="pajax">
                 {% block body %}{% endblock %}
                 </div>
             </div>
@@ -48,17 +48,32 @@
     <script src="{{ app.path('/source/js/sound_manager/','soundmanager2-nodebug-jsmin.js',true) }}"></script>
 {% endif %}
 <script src="//yastatic.net/jquery-ui/1.10.4/jquery-ui.min.js"></script>
+
+
+<script src="/source/js/jquery.pjax.js"></script>
+
+
 <script src="{{ app.path('/source/js/','functions.js',true) }}"></script>
 <script src="//yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>-->
 <script type="text/javascript">
     $(document).ready(function($) {
+        //$(document).pjax('.pajax', '#pajax');
+
+        if ($.support.pjax) {
+            $(document).on('click', '.pajax', function(event) {
+                var container = $("#pajax");
+                $.pjax.click(event, {container: container})
+            })
+        }
+
+        $(document).on('pjax:complete', function() {
+            $('input,select').styler();
+        })
+
         $('input,select').styler();
 
         {% if globals.user.id_user %}
-        $(".sidebar-nav").click(function(event){
-            event.stopPropagation();
-        })
 
         var window_width = get_window_width();
 

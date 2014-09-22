@@ -49,16 +49,19 @@ class __TwigTemplate_87b6ecca88bc216e6757dc52b0a4487f497b8b8d324af3941a58da5018a
     public function block_project_data($context, array $blocks = array())
     {
         // line 12
+        echo \layout::func_from_text("    ");
+        $this->env->loadTemplate("/source/search_form.html")->display($context);
+        // line 13
         echo \layout::func_from_text("    <form action=\"\" id=\"search_form\" method=\"post\" class=\"form-horizontal\" style=\"margin: 0px;float: left;\">
         <input type=\"hidden\" name=\"page\" value=\"\">
     </form>
     <div class=\"clearfix\"></div>
     <div id=\"search_result\">
         ");
-        // line 17
+        // line 18
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "users/users_table.html"), "method"));
         $template->display($context);
-        // line 18
+        // line 19
         echo \layout::func_from_text("    </div>
 ");
     }
@@ -75,6 +78,6 @@ class __TwigTemplate_87b6ecca88bc216e6757dc52b0a4487f497b8b8d324af3941a58da5018a
 
     public function getDebugInfo()
     {
-        return array (  62 => 18,  59 => 17,  52 => 12,  49 => 11,  43 => 8,  39 => 7,  36 => 6,  31 => 4,  28 => 3,);
+        return array (  65 => 19,  62 => 18,  55 => 13,  52 => 12,  49 => 11,  43 => 8,  39 => 7,  36 => 6,  31 => 4,  28 => 3,);
     }
 }

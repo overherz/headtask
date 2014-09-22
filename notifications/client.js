@@ -26,11 +26,11 @@ $(document).ready(function(){
         'reconnectionDelay': 1000,
         'reconnectionDelayMax': 5000,
         'timeout': 5000,
-        'autoConnect': true,
-        'transports': ['websocket', 'polling']
+        'autoConnect': true
     });
 
     socket.on('connect', function () {
+        show_message('success','success');
         connect = true;
         socket.emit('auth', {hash: window.ms.uniq_key, name:window.ms.name});
         get_statuses();

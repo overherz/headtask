@@ -7,8 +7,6 @@ class __TwigTemplate_e7f7d6c69b56ab853539b0c0b3cc9fa4925cac0f0c20cdf7b91e56dd720
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("/source/index.html");
-
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'js' => array($this, 'block_js'),
@@ -18,12 +16,12 @@ class __TwigTemplate_e7f7d6c69b56ab853539b0c0b3cc9fa4925cac0f0c20cdf7b91e56dd720
 
     protected function doGetParent(array $context)
     {
-        return "/source/index.html";
+        return $this->env->resolveTemplate((((isset($context["ajax_data"]) ? $context["ajax_data"] : null)) ? ("/source/ajax_index.html") : ("/source/index.html")));
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $this->parent->display($context, array_merge($this->blocks, $blocks));
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
     }
 
     // line 3
@@ -67,6 +65,6 @@ class __TwigTemplate_e7f7d6c69b56ab853539b0c0b3cc9fa4925cac0f0c20cdf7b91e56dd720
 
     public function getDebugInfo()
     {
-        return array (  52 => 11,  49 => 10,  46 => 9,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  50 => 11,  47 => 10,  44 => 9,  37 => 6,  34 => 5,  28 => 3,);
     }
 }

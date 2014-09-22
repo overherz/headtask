@@ -1,4 +1,4 @@
-{% extends "/source/index.html" %}
+{% extends ajax_data ? "/source/ajax_index.html" : "/source/index.html" %}
 {% block title %}{{user.fio}} {{user.nickname}}{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{ app.path('/source/css/jcrop/','jquery.Jcrop.css',true) }}">
@@ -19,7 +19,7 @@
             <img id="avatar" src="{% if user.avatar %}/uploads/users/ava_profile/{{user.avatar|real_path}}{% else %}/source/images/no-ava-profile{% if user.gender == "f" %}_f{% endif %}.jpg{% endif %}"/>
             {% if globals.user and user.id_user == globals.user.id_user %}
                 <div style="margin: 5px 0;display: inline-block;"><a href="" change_avatar class="btn btn-primary">Фотография</a></div>
-                <div style="margin: 5px 0;display: inline-block;"><a href="/users/edit/" class="btn btn-primary">Профиль</a></div>
+                <div style="margin: 5px 0;display: inline-block;"><a href="/users/edit/" class="btn btn-primary pajax">Профиль</a></div>
             {% endif %}
         </td>
         <td style="border-top:none;vertical-align: top !important;padding-top: 2px;">

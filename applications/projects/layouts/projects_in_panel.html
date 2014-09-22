@@ -1,7 +1,7 @@
 
 {% for p in projects.projects %}
     <li style="text-indent: 0;" class="sidebar_project {% if project.id == p.id or projects.current_project == p.id %}active{% endif %}">
-    <a href="/projects/tasks/{{p.id}}/" data-id="{{ p.id }}" >
+    <a href="/projects/tasks/{{p.id}}/" data-id="{{ p.id }}" class="pajax">
         {% if p.owner %}<i class="fa fa-user" style="text-indent: 0;"></i> {% endif %}{{p.name}}
     </a>
     </li>

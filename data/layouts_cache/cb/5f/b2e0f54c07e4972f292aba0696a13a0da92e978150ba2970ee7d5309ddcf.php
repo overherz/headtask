@@ -62,7 +62,12 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
         echo \layout::func_from_text("</head>
 
 <body>
-<div id=\"wrapper\">
+<div id=\"wrapper\" ");
+        // line 20
+        if (($this->getAttribute((isset($context["cookie_data"]) ? $context["cookie_data"] : null), "sidebar") == "toggled")) {
+            echo \layout::func_from_text("class=\"toggled\" ");
+        }
+        echo \layout::func_from_text(">
 
 ");
         // line 22
@@ -73,7 +78,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     <div id=\"page-content-wrapper\">
         <div class=\"container-fluid\" style=\"padding: 0\">
             <div class=\"row\" style=\"margin-right: 0;\">
-                <div class=\"col-lg-12\" style=\"padding-right: 0;\">
+                <div class=\"col-lg-12\" style=\"padding-right: 0;\" id=\"pajax\">
                 ");
         // line 31
         $this->displayBlock('body', $context, $blocks);
@@ -113,37 +118,81 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
         }
         // line 50
         echo \layout::func_from_text("<script src=\"//yastatic.net/jquery-ui/1.10.4/jquery-ui.min.js\"></script>
+
+
+<script src=\"/source/js/jquery.pjax.js\"></script>
+
+
 <script src=\"");
-        // line 51
+        // line 56
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "/source/js/", 1 => "functions.js", 2 => true), "method"), "html", null, true));
         echo \layout::func_from_text("\"></script>
 <script src=\"//yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js\"></script>
 <!--<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js\"></script>-->
 <script type=\"text/javascript\">
     \$(document).ready(function(\$) {
+        //\$(document).pjax('.pajax', '#pajax');
+
+        if (\$.support.pjax) {
+            \$(document).on('click', '.pajax', function(event) {
+                var container = \$(\"#pajax\");
+                \$.pjax.click(event, {container: container})
+            })
+        }
+
+        \$(document).on('pjax:complete', function() {
+            \$('input,select').styler();
+        })
+
         \$('input,select').styler();
 
         ");
-        // line 58
+        // line 76
         if ($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user")) {
-            // line 59
-            echo \layout::func_from_text("        \$(\".sidebar-nav\").click(function(event){
-            event.stopPropagation();
-        })
-
-        var window_width = parseInt(\$(window).width()) + parseInt(scrollbarWidth(false,true));
-        if (window_width >= 1100)
-        {
-            if (\$.cookie('sidebar') == \"toggled\") \$(\"#wrapper\").addClass('toggled');
-        }
+            // line 77
+            echo \layout::func_from_text("
+        var window_width = get_window_width();
 
         \$(\".sidebar-brand a\").click(function(e) {
             e.stopPropagation();
         });
 
-        \$(\".sidebar-brand\").click(function(e) {
-            if (parseInt(\$(window).width()) + parseInt(scrollbarWidth(false,true)) >= 1100)
+        var id_dropdown;
+        \$(\".dropdown\").click(function(e){
+            window_width = get_window_width();
+            if (\$(\"#wrapper\").hasClass('toggled') || window_width < 1100)
             {
+                e.preventDefault();
+                var this_id_dropdown = \$(this).data('dropdown');
+                hide_sudmenu();
+
+                if (id_dropdown != this_id_dropdown)
+                {
+                    id_dropdown = this_id_dropdown;
+                    var position = \$(this).position();
+                    var html = \$(\".dropdown\"+id_dropdown).clone().addClass('clone').show();
+                    html.find(\"a,li\").show();
+                    if (\$(this).find('.menu_projects_').length == 0) html.css('paddingTop',position.top);
+                    \$(this).css('backgroundColor','#333');
+                    show_overlay();
+                    \$(\"body\").append(html);
+                }
+                else id_dropdown = false;
+            }
+        });
+
+        \$(document).on('click','#overlay',function(){
+            hide_sudmenu();
+            id_dropdown = false;
+        });
+
+        \$(\".sidebar-brand\").click(function(e) {
+            window_width = get_window_width();
+            if (window_width >= 1100)
+            {
+                hide_sudmenu();
+                id_dropdown = false;
+
                 \$(\"#wrapper\").toggleClass(\"toggled\");
                 var c_tog = false;
                 if (\$(\"#wrapper\").hasClass('toggled')) c_tog = 'toggled';
@@ -169,39 +218,50 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
         });
         ");
         }
-        // line 100
+        // line 144
         echo \layout::func_from_text("    });
 
+    function hide_sudmenu()
+    {
+        var clones = \$(\".submenu.clone\");
+        if (clones.length > 0)
+        {
+            clones.remove();
+            hide_overlay();
+            \$(\".dropdown\").css('backgroundColor','');
+        }
+    }
+
     ");
-        // line 102
+        // line 157
         if ($this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user")) {
-            // line 103
+            // line 158
             echo \layout::func_from_text("    window.ms = {
         address: \"");
-            // line 104
+            // line 159
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "message_server"), "html", null, true));
             echo \layout::func_from_text("\",
         uniq_key: \"");
-            // line 105
+            // line 160
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "uniq_key"), "html", null, true));
             echo \layout::func_from_text("\",
         name: \"");
-            // line 106
+            // line 161
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "fio"), "html", null, true));
             echo \layout::func_from_text("\",
         id: \"");
-            // line 107
+            // line 162
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "user"), "id_user"), "html", null, true));
             echo \layout::func_from_text("\"
     }
     ");
         }
-        // line 110
+        // line 165
         echo \layout::func_from_text("</script>
 ");
-        // line 111
+        // line 166
         $this->displayBlock('js', $context, $blocks);
-        // line 113
+        // line 168
         echo \layout::func_from_text("</body>
 </html>");
     }
@@ -233,7 +293,7 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
     {
     }
 
-    // line 111
+    // line 166
     public function block_js($context, array $blocks = array())
     {
     }
@@ -250,6 +310,6 @@ class __TwigTemplate_cb5fb2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d530
 
     public function getDebugInfo()
     {
-        return array (  237 => 111,  232 => 31,  228 => 24,  225 => 23,  222 => 22,  218 => 16,  215 => 15,  210 => 4,  205 => 113,  203 => 111,  200 => 110,  194 => 107,  190 => 106,  186 => 105,  182 => 104,  179 => 103,  177 => 102,  173 => 100,  130 => 59,  128 => 58,  118 => 51,  115 => 50,  110 => 48,  106 => 47,  102 => 46,  97 => 45,  95 => 44,  81 => 32,  79 => 31,  71 => 25,  69 => 22,  62 => 17,  60 => 15,  55 => 13,  51 => 12,  47 => 11,  42 => 9,  29 => 4,  24 => 1,);
+        return array (  297 => 166,  292 => 31,  288 => 24,  285 => 23,  282 => 22,  278 => 16,  275 => 15,  270 => 4,  265 => 168,  263 => 166,  260 => 165,  254 => 162,  250 => 161,  246 => 160,  242 => 159,  239 => 158,  237 => 157,  222 => 144,  153 => 77,  151 => 76,  128 => 56,  120 => 50,  115 => 48,  111 => 47,  107 => 46,  102 => 45,  100 => 44,  86 => 32,  84 => 31,  76 => 25,  74 => 22,  67 => 20,  62 => 17,  60 => 15,  55 => 13,  51 => 12,  47 => 11,  42 => 9,  29 => 4,  24 => 1,);
     }
 }

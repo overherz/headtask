@@ -5,7 +5,7 @@ $INFO['sql_host'] = '127.0.0.1';
 $INFO['sql_database'] = 'tasker';
 $INFO['sql_user'] = 'overherz';
 $INFO['sql_pass'] = 'jckjck';
-$INFO['dev_mode'] = 1;
+$INFO['dev_mode'] = 0;
 $INFO['error_to_mail'] = 1;
 $INFO['antiddos'] = 0;
 
