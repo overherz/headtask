@@ -1,78 +1,16 @@
 $(document).ready(function ($) {
 
-    $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
-    $("[name='start']").datepicker({
-        changeMonth: true,
-        dateFormat: "dd.mm.yy",
-        showButtonPanel: true,
-        'maxDate': $("[name='end']").val(),
-        onClose: function( selectedDate ) {
-            $("[name='end']").datepicker( "option", "minDate", selectedDate );
-        },
-        beforeShow: function (input) {
-            dpClearButton(input);
-
-        },
-        onChangeMonthYear: function (yy, mm, inst) {
-            dpClearButton(inst.input);
-        }
-    });
-
-    $("[name='end']").datepicker({
-        changeMonth: true,
-        dateFormat: "dd.mm.yy",
-        'minDate': $("[name='start']").val(),
-        showButtonPanel: true,
-        onClose: function( selectedDate ) {
-            $("[name='start']").datepicker( "option", "maxDate", selectedDate );
-        },
-        beforeShow: function (input) {
-            dpClearButton(input);
-
-        },
-        onChangeMonthYear: function (yy, mm, inst) {
-            dpClearButton(inst.input);
-        }
-    });
-
-    $("[name='start_edit']").datepicker({
-        changeMonth: true,
-        dateFormat: "dd.mm.yy",
-        showButtonPanel: true,
-        'maxDate': $("[name='end_edit']").val(),
-        onClose: function( selectedDate ) {
-            $("[name='end_edit']").datepicker( "option", "minDate", selectedDate );
-        },
-        beforeShow: function (input) {
-            dpClearButton(input);
-
-        },
-        onChangeMonthYear: function (yy, mm, inst) {
-            dpClearButton(inst.input);
-        }
-    });
-
-    $("[name='end_edit']").datepicker({
-        changeMonth: true,
-        dateFormat: "dd.mm.yy",
-        'minDate': $("[name='start_edit']").val(),
-        showButtonPanel: true,
-        onClose: function( selectedDate ) {
-            $("[name='start_edit']").datepicker( "option", "maxDate", selectedDate );
-        },
-        beforeShow: function (input) {
-            dpClearButton(input);
-
-        },
-        onChangeMonthYear: function (yy, mm, inst) {
-            dpClearButton(inst.input);
-        }
-    });
-
+    init_datepicker();
 
     if ($("[name='description']").length > 0)
     {
-        CKEDITOR.replace('description',{toolbar:'Basic',extraPlugins : 'divarea'});
+        var ck = setInterval(function(){
+            if( typeof(CKEDITOR) !== "undefined" )
+            {
+                CKEDITOR.replace('description',{toolbar:'Basic',extraPlugins : 'divarea'});
+                clearInterval(ck);
+            }
+        },100)
     }
 
     $(document).on("click", ".save_task", function () {
@@ -313,7 +251,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click",".comment_to_comment",function(){
+    $(document).off("click",".comment_to_comment").on("click",".comment_to_comment",function(){
         var id = $(this).attr('to_comment');
         var form = $(".comment_form").clone().attr('class','comment_form_clone').show();
         $(".comment_form_clone").remove();
@@ -325,19 +263,25 @@ $(document).ready(function ($) {
             $(this).after(form);
             $(this).css('display', 'none');
         }
-        CKEDITOR.replace('comment',{toolbar:'Forum',height:200, on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
-        CKEDITOR.instances.comment.on( 'key', function (evt) {
-            var kc = evt.data.keyCode,
-                csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
-            if (kc == 1114125) $(".comment_form_clone .add_comment").trigger("click")
-        });
+        var ck = setInterval(function(){
+            if( typeof(CKEDITOR) !== "undefined" )
+            {
+                CKEDITOR.replace('comment',{toolbar:'Forum',height:200, on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+                CKEDITOR.instances.comment.on( 'key', function (evt) {
+                    var kc = evt.data.keyCode,
+                        csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
+                    if (kc == 1114125) $(".comment_form_clone .add_comment").trigger("click")
+                });
+                clearInterval(ck);
+            }
+        },100)
 
         $("[name='parent']").val(id);
         $("[name='comment']").focus();
         return false;
     });
 
-    $(document).on("click",".comment_form_clone .add_comment",function(){
+    $(document).off("click",".comment_form_clone .add_comment").on("click",".comment_form_clone .add_comment",function(){
         $("[name='comment']").val(CKEDITOR.instances.comment.getData());
         var request = $(".comment_form_clone").serialize();
         var parent = $(".comment_form_clone").find("[name='parent']").val();
@@ -419,4 +363,76 @@ function dpClearButton (input) {
             click: function () { jQuery.datepicker._clearDate(input); }
         }).appendTo(buttonPane).addClass("ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all");
     }, 1)
+}
+
+function init_datepicker()
+{
+    $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
+    $("[name='start']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        showButtonPanel: true,
+        'maxDate': $("[name='end']").val(),
+        onClose: function( selectedDate ) {
+            $("[name='end']").datepicker( "option", "minDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+        }
+    });
+
+    $("[name='end']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        'minDate': $("[name='start']").val(),
+        showButtonPanel: true,
+        onClose: function( selectedDate ) {
+            $("[name='start']").datepicker( "option", "maxDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+        }
+    });
+
+    $("[name='start_edit']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        showButtonPanel: true,
+        'maxDate': $("[name='end_edit']").val(),
+        onClose: function( selectedDate ) {
+            $("[name='end_edit']").datepicker( "option", "minDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+        }
+    });
+
+    $("[name='end_edit']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        'minDate': $("[name='start_edit']").val(),
+        showButtonPanel: true,
+        onClose: function( selectedDate ) {
+            $("[name='start_edit']").datepicker( "option", "maxDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+        }
+    });
 }

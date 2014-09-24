@@ -253,12 +253,18 @@ function get_statuses()
     if (socket)
     {
         get_statuses_ids(function(ids){
-            socket.emit('get_status', {ids: ids});
+            if (ids.length > 0)
+            {
+                socket.emit('get_status', {ids: ids});
+            }
         });
 
         status_t_int = setInterval(function(){
             get_statuses_ids(function(ids){
-                socket.emit('get_status', {ids: ids});
+                if (ids.length > 0)
+                {
+                    socket.emit('get_status', {ids: ids});
+                }
             })
         },5000);
     }

@@ -62,14 +62,65 @@
 
         if ($.support.pjax) {
             $(document).on('click', '.pajax', function(event) {
+                if ($(this).hasClass('menu_link'))
+                {
+
+                    var menu_parent = $(this).parent().parent();
+                    if (($("#wrapper").hasClass('toggled') || window_width < 1100) && menu_parent.hasClass('dropdown'))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        $(".menu_li,.menu_sub_li").removeClass("active");
+                        menu_parent.addClass("active");
+                        hide_sudmenu();
+                        id_dropdown = false;
+                    }
+                }
+
+                if ($(this).hasClass('menu_sub_link'))
+                {
+                    $(".menu_li,.menu_sub_li").removeClass("active");
+                    $(this).parent().addClass("active");
+                    $(this).parent().parent().parent().addClass('active');
+
+                    var submenu_parent = $(this).parent().parent();
+                    if (submenu_parent.hasClass('clone'))
+                    {
+                        $("[data-dropdown='"+id_dropdown+"']").addClass('active');
+                        hide_sudmenu();
+                        id_dropdown = false;
+                    }
+                }
+
                 var container = $("#pajax");
                 $.pjax.click(event, {container: container})
             })
+
+            $(document).on('pjax:beforeReplace', function() {
+                $("#scripts").find("script").remove();
+            });
+
+            $(document).on('pjax:success', function() {
+                $('input,select').styler();
+                get_statuses();
+
+
+                $(".get_script").each(function(){
+                    var path = $(this).data('path');
+                //    $.getScript(path);
+                //    add_script(path);
+                    $.getScript(path,false,true);
+                });
+            })
         }
 
-        $(document).on('pjax:complete', function() {
-            $('input,select').styler();
-        })
+        $(".get_script").each(function(){
+            var path = $(this).data('path');
+            //add_script(path);
+            $.getScript(path,false,true);
+        });
 
         $('input,select').styler();
 
@@ -165,5 +216,6 @@
 </script>
 {% block js %}
 {% endblock %}
+<div id="scripts"></div>
 </body>
 </html>

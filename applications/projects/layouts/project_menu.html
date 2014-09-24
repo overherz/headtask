@@ -7,13 +7,13 @@
     {% if not project.owner and access.show_news %}
     <div class="btn-group">
         <a class="btn btn-black pajax {% if news_button %}active{% endif %}" href="/projects/news/{{project.id}}/"><i class="fa fa-rss menu_icon"></i><span class="menu_text">Новости</span></a>
-        {% if access.news %}<a class="btn btn-black {% if add_news_button %}active{% endif %}" href="/projects/news/add/{{project.id}}/"><i class="fa fa-plus"></i></a>{% endif %}
+        {% if access.news %}<a class="btn btn-black pajax {% if add_news_button %}active{% endif %}" href="/projects/news/add/{{project.id}}/"><i class="fa fa-plus"></i></a>{% endif %}
     </div>
     {% endif %}
     <div class="btn-group">
         <a class="btn btn-success pajax {% if tasks_button %}active{% endif %}" href="/projects/tasks/{{project.id}}/"><i class="fa fa-tasks menu_icon"></i><span class="menu_text">Задачи</span></a>
         <a class="btn btn-success pajax {% if gantt_button %}active{% endif %}" href="/projects/gantt/{{project.id}}/"><i class="fa fa-bar-chart-o"></i></a>
-        {% if access.add_task %}<a class="btn btn-success {% if add_tasks_button %}active{% endif %}" href="/projects/tasks/add/{{project.id}}/"><i class="fa fa-plus"></i></a>{% endif %}
+        {% if access.add_task %}<a class="btn btn-success pajax {% if add_tasks_button %}active{% endif %}" href="/projects/tasks/add/{{project.id}}/"><i class="fa fa-plus"></i></a>{% endif %}
     </div>
 
     <div class="btn-group">
@@ -24,24 +24,24 @@
     {% if not project.owner and access.show_users %}
     <div class="btn-group">
         <a href="/projects/users/{{project.id}}/" class="btn btn-primary pajax {% if users_button %}active{% endif %}"><i class="fa fa-users menu_icon"></i><span class="menu_text">Участники</span></a>
-        {% if access.users %}<a class="btn btn-primary {% if add_users_button %}active{% endif %}" href="/projects/users/add/{{ project.id }}/"><i class="fa fa-plus"></i></a>{% endif %}
+        {% if access.users %}<a class="btn btn-primary pajax {% if add_users_button %}active{% endif %}" href="/projects/users/add/{{ project.id }}/"><i class="fa fa-plus"></i></a>{% endif %}
     </div>
     {% endif %}
     {% if access.show_documents %}
     <div class="btn-group">
         <a class="btn btn-foxtrot pajax {% if documents_button %}active{% endif %}" href="/projects/documents/{{project.id}}/"><i class="fa fa-file-text-o menu_icon"></i><span class="menu_text">Wiki</span></a>
-        {% if access.documents %}<a class="btn btn-foxtrot {% if add_documents_button %}active{% endif %}" href="/projects/documents/add/{{project.id}}/"><i class="fa fa-plus"></i></a>{% endif %}
+        {% if access.documents %}<a class="btn btn-foxtrot pajax {% if add_documents_button %}active{% endif %}" href="/projects/documents/add/{{project.id}}/"><i class="fa fa-plus"></i></a>{% endif %}
     </div>
     {% endif %}
     {% if not project.owner and access.show_forum %}
     <div class="btn-group">
         <a class="btn btn-oscar pajax {% if forum_button %}active{% endif %}" href="/projects/forum/{{project.id}}/"><i class="fa fa-comments menu_icon"></i><span class="menu_text">Форум</span></a>
-        {% if access.forum %}<a class="btn btn-oscar {% if add_forum_button %}active{% endif %}" href="/projects/forum/add/{{project.id}}/"><i class="fa fa-plus"></i></a>{% endif %}
+        {% if access.forum %}<a class="btn btn-oscar pajax {% if add_forum_button %}active{% endif %}" href="/projects/forum/add/{{project.id}}/"><i class="fa fa-plus"></i></a>{% endif %}
         <!--<div class="nickname" style="font-size: 12px;position: absolute;margin-top: -6px;">Новые: {{globals.count_new_posts}}</div>-->
     </div>
     {% endif %}
     <div class="btn-group">
-        {% if access.edit_project %}<a class="btn btn-danger {% if edit_button %}active{% endif %}" href="/projects/edit/{{project.id}}/"><i class="fa fa-pencil"></i></a>{% endif %}
+        {% if access.edit_project %}<a class="btn btn-danger pajax {% if edit_button %}active{% endif %}" href="/projects/edit/{{project.id}}/"><i class="fa fa-pencil"></i></a>{% endif %}
         {% if access.delete_project %}<a class="btn btn-danger delete_project" href="" project_id="{{project.id}}" data-name="{{ project.name }}"><i class="fa fa-trash-o"></i></a>{% endif %}
     </div>
 </div>

@@ -4,7 +4,7 @@ namespace global_module;
 class get_user_menu extends \global_module
 {
     protected $admin = false;
-    protected $on_ajax_not_run = true;
+    protected $on_ajax_not_run = false;
 
     function run_module()
     {

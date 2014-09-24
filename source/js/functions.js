@@ -542,15 +542,15 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#search_form select').on("change",function(){
+    $(document).on("change",'#search_form select',function(){
         $('#search_form').submit();
     });
 
-    $("#search_form [type='text']").on("change",function(){
+    $(document).on("change","#search_form [type='text']",function(){
         $('#search_form').submit();
     });
 
-    $("#search_form [type='checkbox'],#search_form [type='radio']").change(function(){
+    $(document).on("change","#search_form [type='checkbox'],#search_form [type='radio']",function(){
         $('#search_form').submit();
     });
 
@@ -604,3 +604,31 @@ function get_window_width()
 {
     return parseInt($(window).width()) + parseInt(scrollbarWidth(false,true));
 }
+
+function add_script(path)
+{
+    s = document.createElement("script");
+    s.src= path;
+    if(s.addEventListener) {
+        s.addEventListener("load",callback,false);
+    }
+    else if(s.readyState) {
+        s.onreadystatechange = callback;
+    }
+    document.getElementById('scripts').appendChild(s);
+}
+
+function callback() { console.log("loaded"); }
+
+(function () {
+    $.getScript = function(url, callback, cache)
+    {
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: callback,
+            dataType: "script",
+            cache: cache
+        });
+    };
+})();

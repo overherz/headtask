@@ -3,7 +3,7 @@
     <li>{{globals.crumbs.name}}</li>
     {% else %}
     {% for k,cr in globals.crumbs %}
-    {% if not loop.last and cr.url %}<li><a href="{{cr.url}}">{{cr.name}}</a></li>{% else %}<li><a class="current">{{cr.name}}</a></li>{% endif %}
+    {% if not loop.last and cr.url %}<li><a href="{{cr.url}}" class="pajax">{{cr.name}}</a></li>{% else %}<li><a class="current pajax">{{cr.name}}</a></li>{% endif %}
     {% endfor %}
     {% endif %}
 </ul>

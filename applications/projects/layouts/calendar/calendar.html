@@ -1,17 +1,14 @@
-{% extends "/source/index.html" %}
+{% extends ajax_data ? "/source/ajax_index.html" : "/source/index.html" %}
 
 {% block title %}Календарь{% endblock %}
-
-{% block js %}
-<script type="text/javascript" src="{{app.path('projects','calendar.js')}}"></script>
-{% endblock %}
-
 
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{ app.path('/libraries/calendar/','calendar.css',true) }}">
 {% endblock %}
 
 {% block context %}
+    <div class="get_script" style="display: none;" data-path="{{app.path('projects','calendar.js')}}"></div>
+
 <div id="calendar">
     {% include app.path('projects','calendar/month.html') %}
 </div>

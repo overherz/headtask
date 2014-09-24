@@ -9,14 +9,10 @@
 <link rel="stylesheet" type="text/css" href="{{ app.path('/source/js/fancybox/','jquery.fancybox.css',true) }}">
 {% endblock %}
 
-{% block js %}
-    {{parent()}}
-    <script type ="text/javascript" src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
-    <script type ="text/javascript" src="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></script>
-    <script type ="text/javascript" src="{{ app.path('projects','tasks.js')}}"></script>
-{% endblock %}
-
 {% block project_data %}
+    <div class="get_script" style="display: none;" data-path="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('projects','tasks.js')}}"></div>
 
 {% if task %}
         {% if access.edit_tasks or access.edit_task %}{% set full_edit = true %}{% endif %}
