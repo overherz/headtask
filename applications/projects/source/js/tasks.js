@@ -1,17 +1,7 @@
 $(document).ready(function ($) {
 
     init_datepicker();
-
-    if ($("[name='description']").length > 0)
-    {
-        var ck = setInterval(function(){
-            if( typeof(CKEDITOR) !== "undefined" )
-            {
-                CKEDITOR.replace('description',{toolbar:'Basic',extraPlugins : 'divarea'});
-                clearInterval(ck);
-            }
-        },100)
-    }
+    init_ckeditor();
 
     $(document).on("click", ".save_task", function () {
         if ($("[name='description']").length > 0) $("[name='description']").val(CKEDITOR.instances.description.getData());
@@ -59,7 +49,7 @@ $(document).ready(function ($) {
         else $(".message").hide();
     });
 
-    $("[add_file_to_task]").click(function(){
+    $(document).on("click","[add_file_to_task]",function(){
         var project = $("[name='id_project']").val();
         var files = $("[name='files[]']").serializeArray();
         var input_file = "";
@@ -263,18 +253,13 @@ $(document).ready(function ($) {
             $(this).after(form);
             $(this).css('display', 'none');
         }
-        var ck = setInterval(function(){
-            if( typeof(CKEDITOR) !== "undefined" )
-            {
-                CKEDITOR.replace('comment',{toolbar:'Forum',height:200, on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
-                CKEDITOR.instances.comment.on( 'key', function (evt) {
-                    var kc = evt.data.keyCode,
-                        csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
-                    if (kc == 1114125) $(".comment_form_clone .add_comment").trigger("click")
-                });
-                clearInterval(ck);
-            }
-        },100)
+
+        CKEDITOR.replace('comment',{toolbar:'Forum',height:200, on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+        CKEDITOR.instances.comment.on( 'key', function (evt) {
+            var kc = evt.data.keyCode,
+                csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
+            if (kc == 1114125) $(".comment_form_clone .add_comment").trigger("click")
+        });
 
         $("[name='parent']").val(id);
         $("[name='comment']").focus();
@@ -435,4 +420,15 @@ function init_datepicker()
             dpClearButton(inst.input);
         }
     });
+}
+
+function init_ckeditor()
+{
+    if ($(".ckeditor").length > 0)
+    {
+        $(".ckeditor").each(function(){
+            var name = $(this).attr('name');
+            CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
+        });
+    }
 }

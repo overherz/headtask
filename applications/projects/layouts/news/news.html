@@ -3,11 +3,6 @@
 {% block title %}
 Новости {{project.name}}{% endblock %}
 
-{% block js %}
-{{ parent() }}
-<script src="{{app.path('projects','tasks.js')}}"></script>
-{% endblock %}
-
 {% block project_data %}
 <form action="" id="search_form" method="post" class="form-horizontal" style="margin: 0px;float: left;">
     <input type="hidden" name="page" value="">

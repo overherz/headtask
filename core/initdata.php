@@ -9,7 +9,7 @@ if (php_sapi_name() != "cli") define('URI', $_SERVER['REQUEST_URI']);
 define(strtoupper('root'),dirname(dirname(__FILE__)).DS);
 define(strtoupper('admin_root'),dirname(dirname(__FILE__)).DS."admin".DS);
 define("LANG","ru");
-define("AJAX", $_SERVER['X-PJAX'] || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'));
+define("AJAX", (isset($_SERVER['X-PJAX']) && $_SERVER['X-PJAX']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'));
 
 require_once(ROOT."langs/".LANG.".php");
 require_once(ROOT.'config.php');

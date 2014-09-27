@@ -23,9 +23,7 @@ $(document).ready(function($) {
                 if (activeUploads > 0)
                 {
                     show_message("error","Загрузка отменена");
-                    setInterval(function(){
-                        redirect();
-                    },1500);
+                    redirect(false,1);
                 }
             });
 
@@ -141,39 +139,55 @@ function formatBitrate(bits) {
 
 
 
-/*!
- * jQuery UI Widget 1.10.4+amd
- * https://github.com/blueimp/jQuery-File-Upload
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/jQuery.widget/
- */
+/*! jQuery UI - v1.11.1 - 2014-09-17
+ * http://jqueryui.com
+ * Includes: widget.js
+ * Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
 
-(function (factory) {
-    if (typeof define === "function" && define.amd) {
-        // Register as an anonymous AMD module:
-        define(["jquery"], factory);
+(function( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+
+        // AMD. Register as an anonymous module.
+        define([ "jquery" ], factory );
     } else {
-        // Browser globals:
-        factory(jQuery);
-    }
-}(function( $, undefined ) {
 
-    var uuid = 0,
-        slice = Array.prototype.slice,
-        _cleanData = $.cleanData;
-    $.cleanData = function( elems ) {
-        for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
-            try {
-                $( elem ).triggerHandler( "remove" );
-                // http://bugs.jquery.com/ticket/8235
-            } catch( e ) {}
-        }
-        _cleanData( elems );
-    };
+        // Browser globals
+        factory( jQuery );
+    }
+}(function( $ ) {
+    /*!
+     * jQuery UI Widget 1.11.1
+     * http://jqueryui.com
+     *
+     * Copyright 2014 jQuery Foundation and other contributors
+     * Released under the MIT license.
+     * http://jquery.org/license
+     *
+     * http://api.jqueryui.com/jQuery.widget/
+     */
+
+
+    var widget_uuid = 0,
+        widget_slice = Array.prototype.slice;
+
+    $.cleanData = (function( orig ) {
+        return function( elems ) {
+            var events, elem, i;
+            for ( i = 0; (elem = elems[i]) != null; i++ ) {
+                try {
+
+                    // Only trigger remove when necessary to save time
+                    events = $._data( elem, "events" );
+                    if ( events && events.remove ) {
+                        $( elem ).triggerHandler( "remove" );
+                    }
+
+                    // http://bugs.jquery.com/ticket/8235
+                } catch( e ) {}
+            }
+            orig( elems );
+        };
+    })( $.cleanData );
 
     $.widget = function( name, base, prototype ) {
         var fullName, existingConstructor, constructor, basePrototype,
@@ -286,10 +300,12 @@ function formatBitrate(bits) {
         }
 
         $.widget.bridge( name, constructor );
+
+        return constructor;
     };
 
     $.widget.extend = function( target ) {
-        var input = slice.call( arguments, 1 ),
+        var input = widget_slice.call( arguments, 1 ),
             inputIndex = 0,
             inputLength = input.length,
             key,
@@ -318,7 +334,7 @@ function formatBitrate(bits) {
         var fullName = object.prototype.widgetFullName || name;
         $.fn[ name ] = function( options ) {
             var isMethodCall = typeof options === "string",
-                args = slice.call( arguments, 1 ),
+                args = widget_slice.call( arguments, 1 ),
                 returnValue = this;
 
             // allow multiple hashes to be passed on init
@@ -330,9 +346,13 @@ function formatBitrate(bits) {
                 this.each(function() {
                     var methodValue,
                         instance = $.data( this, fullName );
+                    if ( options === "instance" ) {
+                        returnValue = instance;
+                        return false;
+                    }
                     if ( !instance ) {
                         return $.error( "cannot call methods on " + name + " prior to initialization; " +
-                            "attempted to call method '" + options + "'" );
+                        "attempted to call method '" + options + "'" );
                     }
                     if ( !$.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
                         return $.error( "no such method '" + options + "' for " + name + " widget instance" );
@@ -349,7 +369,10 @@ function formatBitrate(bits) {
                 this.each(function() {
                     var instance = $.data( this, fullName );
                     if ( instance ) {
-                        instance.option( options || {} )._init();
+                        instance.option( options || {} );
+                        if ( instance._init ) {
+                            instance._init();
+                        }
                     } else {
                         $.data( this, fullName, new object( options, this ) );
                     }
@@ -376,7 +399,7 @@ function formatBitrate(bits) {
         _createWidget: function( options, element ) {
             element = $( element || this.defaultElement || this )[ 0 ];
             this.element = $( element );
-            this.uuid = uuid++;
+            this.uuid = widget_uuid++;
             this.eventNamespace = "." + this.widgetName + this.uuid;
             this.options = $.widget.extend( {},
                 this.options,
@@ -400,7 +423,7 @@ function formatBitrate(bits) {
                     // element within the document
                     element.ownerDocument :
                     // element is window or document
-                    element.document || element );
+                element.document || element );
                 this.window = $( this.document[0].defaultView || this.document[0].parentWindow );
             }
 
@@ -419,9 +442,6 @@ function formatBitrate(bits) {
             // all event bindings should go through this._on()
             this.element
                 .unbind( this.eventNamespace )
-                // 1.9 BC for #7810
-                // TODO remove dual storage
-                .removeData( this.widgetName )
                 .removeData( this.widgetFullName )
                 // support: jquery <1.6.3
                 // http://bugs.jquery.com/ticket/9413
@@ -430,8 +450,8 @@ function formatBitrate(bits) {
                 .unbind( this.eventNamespace )
                 .removeAttr( "aria-disabled" )
                 .removeClass(
-                    this.widgetFullName + "-disabled " +
-                        "ui-state-disabled" );
+                this.widgetFullName + "-disabled " +
+                "ui-state-disabled" );
 
             // clean up events and states
             this.bindings.unbind( this.eventNamespace );
@@ -497,20 +517,23 @@ function formatBitrate(bits) {
 
             if ( key === "disabled" ) {
                 this.widget()
-                    .toggleClass( this.widgetFullName + "-disabled ui-state-disabled", !!value )
-                    .attr( "aria-disabled", value );
-                this.hoverable.removeClass( "ui-state-hover" );
-                this.focusable.removeClass( "ui-state-focus" );
+                    .toggleClass( this.widgetFullName + "-disabled", !!value );
+
+                // If the widget is becoming disabled, then nothing is interactive
+                if ( value ) {
+                    this.hoverable.removeClass( "ui-state-hover" );
+                    this.focusable.removeClass( "ui-state-focus" );
+                }
             }
 
             return this;
         },
 
         enable: function() {
-            return this._setOption( "disabled", false );
+            return this._setOptions({ disabled: false });
         },
         disable: function() {
-            return this._setOption( "disabled", true );
+            return this._setOptions({ disabled: true });
         },
 
         _on: function( suppressDisabledCheck, element, handlers ) {
@@ -530,7 +553,6 @@ function formatBitrate(bits) {
                 element = this.element;
                 delegateElement = this.widget();
             } else {
-                // accept selectors, DOM elements
                 element = delegateElement = $( element );
                 this.bindings = this.bindings.add( element );
             }
@@ -542,7 +564,7 @@ function formatBitrate(bits) {
                     // - disabled class as method for disabling individual parts
                     if ( !suppressDisabledCheck &&
                         ( instance.options.disabled === true ||
-                            $( this ).hasClass( "ui-state-disabled" ) ) ) {
+                        $( this ).hasClass( "ui-state-disabled" ) ) ) {
                         return;
                     }
                     return ( typeof handler === "string" ? instance[ handler ] : handler )
@@ -555,7 +577,7 @@ function formatBitrate(bits) {
                         handler.guid || handlerProxy.guid || $.guid++;
                 }
 
-                var match = event.match( /^(\w+)\s*(.*)$/ ),
+                var match = event.match( /^([\w:-]*)\s*(.*)$/ ),
                     eventName = match[1] + instance.eventNamespace,
                     selector = match[2];
                 if ( selector ) {
@@ -612,7 +634,7 @@ function formatBitrate(bits) {
             event = $.Event( event );
             event.type = ( type === this.widgetEventPrefix ?
                 type :
-                this.widgetEventPrefix + type ).toLowerCase();
+            this.widgetEventPrefix + type ).toLowerCase();
             // the original event may come from any element
             // so we need to reset the target on the new event
             event.target = this.element[ 0 ];
@@ -629,8 +651,8 @@ function formatBitrate(bits) {
 
             this.element.trigger( event, data );
             return !( $.isFunction( callback ) &&
-                callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
-                event.isDefaultPrevented() );
+            callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
+            event.isDefaultPrevented() );
         }
     };
 
@@ -644,7 +666,7 @@ function formatBitrate(bits) {
                     method :
                     options === true || typeof options === "number" ?
                         defaultEffect :
-                        options.effect || defaultEffect;
+                    options.effect || defaultEffect;
             options = options || {};
             if ( typeof options === "number" ) {
                 options = { duration: options };
@@ -670,7 +692,12 @@ function formatBitrate(bits) {
         };
     });
 
+    var widget = $.widget;
+
+
+
 }));
+
 
 
 /*
@@ -890,7 +917,7 @@ function formatBitrate(bits) {
 
 
 /*
- * jQuery File Upload Plugin 5.41.1
+ * jQuery File Upload Plugin 5.42.0
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2010, Sebastian Tschan
@@ -923,12 +950,12 @@ function formatBitrate(bits) {
     $.support.fileInput = !(new RegExp(
         // Handle devices which give false positives for the feature detection:
         '(Android (1\\.[0156]|2\\.[01]))' +
-            '|(Windows Phone (OS 7|8\\.0))|(XBLWP)|(ZuneWP)|(WPDesktop)' +
-            '|(w(eb)?OSBrowser)|(webOS)' +
-            '|(Kindle/(1\\.0|2\\.[05]|3\\.0))'
+        '|(Windows Phone (OS 7|8\\.0))|(XBLWP)|(ZuneWP)|(WPDesktop)' +
+        '|(w(eb)?OSBrowser)|(webOS)' +
+        '|(Kindle/(1\\.0|2\\.[05]|3\\.0))'
     ).test(window.navigator.userAgent) ||
         // Feature detection for all other devices:
-        $('<input type="file">').prop('disabled'));
+    $('<input type="file">').prop('disabled'));
 
     // The FileReader API is not actually used, but works as feature detection,
     // as some Safari versions (5?) support XHR file uploads via the FormData API,
@@ -940,7 +967,7 @@ function formatBitrate(bits) {
 
     // Detect support for Blob slicing (required for chunked uploads):
     $.support.blobSlice = window.Blob && (Blob.prototype.slice ||
-        Blob.prototype.webkitSlice || Blob.prototype.mozSlice);
+    Blob.prototype.webkitSlice || Blob.prototype.mozSlice);
 
     // Helper function to create drag handlers for dragover/dragenter/dragleave:
     function getDragHandler(type) {
@@ -975,9 +1002,9 @@ function formatBitrate(bits) {
             // The drop target element(s), by the default the complete document.
             // Set to null to disable drag & drop support:
             dropZone: $(document),
-            // The paste target element(s), by the default the complete document.
-            // Set to null to disable paste support:
-            pasteZone: $(document),
+            // The paste target element(s), by the default undefined.
+            // Set to a DOM node or jQuery object to enable file pasting:
+            pasteZone: undefined,
             // The file input field(s), that are listened to for change events.
             // If undefined, it is set to the file input fields inside
             // of the widget element on plugin initialization.
@@ -1197,8 +1224,8 @@ function formatBitrate(bits) {
 
         _isXHRUpload: function (options) {
             return !options.forceIframeTransport &&
-                ((!options.multipart && $.support.xhrFileUpload) ||
-                    $.support.xhrFormDataFileUpload);
+            ((!options.multipart && $.support.xhrFileUpload) ||
+            $.support.xhrFormDataFileUpload);
         },
 
         _getFormData: function (options) {
@@ -1337,7 +1364,7 @@ function formatBitrate(bits) {
             }
             if (!multipart || options.blob || !this._isInstanceOf('File', file)) {
                 options.headers['Content-Disposition'] = 'attachment; filename="' +
-                    encodeURI(file.name) + '"';
+                encodeURI(file.name) + '"';
             }
             if (!multipart) {
                 options.contentType = file.type || 'application/octet-stream';
@@ -1358,7 +1385,7 @@ function formatBitrate(bits) {
                         $.each(options.files, function (index, file) {
                             formData.push({
                                 name: ($.type(options.paramName) === 'array' &&
-                                    options.paramName[index]) || paramName,
+                                options.paramName[index]) || paramName,
                                 value: file
                             });
                         });
@@ -1382,7 +1409,7 @@ function formatBitrate(bits) {
                                 that._isInstanceOf('Blob', file)) {
                                 formData.append(
                                     ($.type(options.paramName) === 'array' &&
-                                        options.paramName[index]) || paramName,
+                                    options.paramName[index]) || paramName,
                                     file,
                                     file.uploadName || file.name
                                 );
@@ -1469,9 +1496,9 @@ function formatBitrate(bits) {
             }
             // The HTTP request method must be "POST" or "PUT":
             options.type = (options.type ||
-                ($.type(options.form.prop('method')) === 'string' &&
-                    options.form.prop('method')) || ''
-                ).toUpperCase();
+            ($.type(options.form.prop('method')) === 'string' &&
+            options.form.prop('method')) || ''
+            ).toUpperCase();
             if (options.type !== 'POST' && options.type !== 'PUT' &&
                 options.type !== 'PATCH') {
                 options.type = 'POST';
@@ -1645,16 +1672,16 @@ function formatBitrate(bits) {
                 o.chunkSize = o.blob.size;
                 // Expose the chunk bytes position range:
                 o.contentRange = 'bytes ' + ub + '-' +
-                    (ub + o.chunkSize - 1) + '/' + fs;
+                (ub + o.chunkSize - 1) + '/' + fs;
                 // Process the upload data (the blob and potential form data):
                 that._initXHRData(o);
                 // Add progress listeners for this chunk upload:
                 that._initProgressListener(o);
                 jqXHR = ((that._trigger('chunksend', null, o) !== false && $.ajax(o)) ||
-                    that._getXHRPromise(false, o.context))
+                that._getXHRPromise(false, o.context))
                     .done(function (result, textStatus, jqXHR) {
                         ub = that._getUploadedBytes(jqXHR) ||
-                            (ub + o.chunkSize);
+                        (ub + o.chunkSize);
                         // Create a progress event if no final progress event
                         // with loaded equaling total has been triggered
                         // for this chunk:
@@ -1781,14 +1808,14 @@ function formatBitrate(bits) {
                     // Set timer for bitrate progress calculation:
                     options._bitrateTimer = new that._BitrateTimer();
                     jqXHR = jqXHR || (
-                        ((aborted || that._trigger(
-                            'send',
-                            $.Event('send', {delegatedEvent: e}),
-                            options
-                        ) === false) &&
-                            that._getXHRPromise(false, options.context, aborted)) ||
-                            that._chunkedUpload(options) || $.ajax(options)
-                        ).done(function (result, textStatus, jqXHR) {
+                    ((aborted || that._trigger(
+                        'send',
+                        $.Event('send', {delegatedEvent: e}),
+                        options
+                    ) === false) &&
+                    that._getXHRPromise(false, options.context, aborted)) ||
+                    that._chunkedUpload(options) || $.ajax(options)
+                    ).done(function (result, textStatus, jqXHR) {
                             that._onDone(result, textStatus, jqXHR, options);
                         }).fail(function (jqXHR, textStatus, errorThrown) {
                             that._onFail(jqXHR, textStatus, errorThrown, options);
@@ -1825,7 +1852,7 @@ function formatBitrate(bits) {
             this._beforeSend(e, options);
             if (this.options.sequentialUploads ||
                 (this.options.limitConcurrentUploads &&
-                    this.options.limitConcurrentUploads <= this._sending)) {
+                this.options.limitConcurrentUploads <= this._sending)) {
                 if (this.options.limitConcurrentUploads > 1) {
                     slot = $.Deferred();
                     this._slots.push(slot);
@@ -1967,9 +1994,9 @@ function formatBitrate(bits) {
                 },
                 successHandler = function (entries) {
                     that._handleFileTreeEntries(
-                            entries,
-                            path + entry.name + '/'
-                        ).done(function (files) {
+                        entries,
+                        path + entry.name + '/'
+                    ).done(function (files) {
                             dfd.resolve(files);
                         }).fail(errorHandler);
                 },
@@ -2010,11 +2037,11 @@ function formatBitrate(bits) {
         _handleFileTreeEntries: function (entries, path) {
             var that = this;
             return $.when.apply(
-                    $,
-                    $.map(entries, function (entry) {
-                        return that._handleFileTreeEntry(entry, path);
-                    })
-                ).pipe(function () {
+                $,
+                $.map(entries, function (entry) {
+                    return that._handleFileTreeEntry(entry, path);
+                })
+            ).pipe(function () {
                     return Array.prototype.concat.apply(
                         [],
                         arguments
@@ -2081,9 +2108,9 @@ function formatBitrate(bits) {
                 return this._getSingleFileInputFiles(fileInput);
             }
             return $.when.apply(
-                    $,
-                    $.map(fileInput, this._getSingleFileInputFiles)
-                ).pipe(function () {
+                $,
+                $.map(fileInput, this._getSingleFileInputFiles)
+            ).pipe(function () {
                     return Array.prototype.concat.apply(
                         [],
                         arguments
@@ -2103,10 +2130,10 @@ function formatBitrate(bits) {
                     that._replaceFileInput(data);
                 }
                 if (that._trigger(
-                    'change',
-                    $.Event('change', {delegatedEvent: e}),
-                    data
-                ) !== false) {
+                        'change',
+                        $.Event('change', {delegatedEvent: e}),
+                        data
+                    ) !== false) {
                     that._onAdd(e, data);
                 }
             });
@@ -2124,10 +2151,10 @@ function formatBitrate(bits) {
                     }
                 });
                 if (this._trigger(
-                    'paste',
-                    $.Event('paste', {delegatedEvent: e}),
-                    data
-                ) !== false) {
+                        'paste',
+                        $.Event('paste', {delegatedEvent: e}),
+                        data
+                    ) !== false) {
                     this._onAdd(e, data);
                 }
             }
@@ -2143,10 +2170,10 @@ function formatBitrate(bits) {
                 this._getDroppedFiles(dataTransfer).always(function (files) {
                     data.files = files;
                     if (that._trigger(
-                        'drop',
-                        $.Event('drop', {delegatedEvent: e}),
-                        data
-                    ) !== false) {
+                            'drop',
+                            $.Event('drop', {delegatedEvent: e}),
+                            data
+                        ) !== false) {
                         that._onAdd(e, data);
                     }
                 });
@@ -2223,7 +2250,7 @@ function formatBitrate(bits) {
 
         _isRegExpOption: function (key, value) {
             return key !== 'url' && $.type(value) === 'string' &&
-                /^\/.*\/[igm]{0,3}$/.test(value);
+            /^\/.*\/[igm]{0,3}$/.test(value);
         },
 
         _initDataAttributes: function () {
@@ -2235,7 +2262,7 @@ function formatBitrate(bits) {
                 clone.data(),
                 function (key, value) {
                     var dataAttributeName = 'data-' +
-                        // Convert camelCase to hyphen-ated key:
+                            // Convert camelCase to hyphen-ated key:
                         key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
                     if (clone.attr(dataAttributeName)) {
                         if (that._isRegExpOption(key, value)) {
@@ -2346,6 +2373,7 @@ function formatBitrate(bits) {
     });
 
 }));
+
 
 
 /*

@@ -2,9 +2,6 @@
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{app.path('projects','projects.css')}}">
 {% endblock %}
-{% block js %}
-    <script type="text/javascript" src="{{app.path('projects','files.js')}}"></script>
-{% endblock %}
 
 {% block body %}
 <input type="hidden" name="id_project" value="{{project.id}}">

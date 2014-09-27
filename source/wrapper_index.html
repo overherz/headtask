@@ -48,20 +48,20 @@
     <script src="{{ app.path('/source/js/sound_manager/','soundmanager2-nodebug-jsmin.js',true) }}"></script>
 {% endif %}
 <script src="//yastatic.net/jquery-ui/1.10.4/jquery-ui.min.js"></script>
-
-
 <script src="/source/js/jquery.pjax.js"></script>
-
-
 <script src="{{ app.path('/source/js/','functions.js',true) }}"></script>
 <script src="//yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>-->
+<script src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
+<script src="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></script>
+<script type="text/javascript" src="{{app.path('projects','files.js')}}"></script>
+<script type="text/javascript" src="{{app.path('projects','tasks.js')}}"></script>
+
 <script type="text/javascript">
     $(document).ready(function($) {
         //$(document).pjax('.pajax', '#pajax');
 
         if ($.support.pjax) {
-            $(document).on('click', '.pajax', function(event) {
+            $(document).on('click', '.pajax, .logs_table a', function(event) {
                 if ($(this).hasClass('menu_link'))
                 {
 
@@ -105,12 +105,12 @@
             $(document).on('pjax:success', function() {
                 $('input,select').styler();
                 get_statuses();
-
+                init_datepicker();
+                init_ckeditor();
 
                 $(".get_script").each(function(){
                     var path = $(this).data('path');
-                //    $.getScript(path);
-                //    add_script(path);
+            //       add_script(path);
                     $.getScript(path,false,true);
                 });
             })
@@ -118,8 +118,8 @@
 
         $(".get_script").each(function(){
             var path = $(this).data('path');
-            //add_script(path);
-            $.getScript(path,false,true);
+//            add_script(path);
+              $.getScript(path,false,true);
         });
 
         $('input,select').styler();

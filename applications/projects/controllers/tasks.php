@@ -96,7 +96,7 @@ class tasks extends \Controller {
         if ($this->_0) {
             $access = $this->get_controller("projects", "users")->get_access(false, false, $this->_0);
 
-            if ($access['access']['show_tasks'] && ($access['task']['id_user'] == $_SESSION['user']['id_user'] || $access['task']['assigned'] == $_SESSION['user']['id_user']))
+            if ($access['access']['show_tasks'] || ($access['task']['id_user'] == $_SESSION['user']['id_user'] || $access['task']['assigned'] == $_SESSION['user']['id_user']))
             {
                 if (!$project = $access['project']) $this->error_page();
                 if (!$access['access']['edit_task'] && !$access['access']['edit_tasks'] && $this->id == "edit") $this->error_page('denied');

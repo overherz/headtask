@@ -16,9 +16,7 @@ $(document).ready(function($)
         var request = $("#edit_profile").serialize();
         user_api(request,function(data){
             show_message("success","Профиль сохранен");
-            setInterval(function(){
-                redirect("/users/~"+data+"/");
-            },1000);
+            redirect("/users/~"+data+"/",1);
         });
         return false;
     });

@@ -3,11 +3,6 @@
 {% block title %}
 Wiki {{project.name}}{% endblock %}
 
-{% block js %}
-{{ parent() }}
-<script src="{{app.path('projects','tasks.js')}}"></script>
-{% endblock %}
-
 {% block project_data %}
 {% include "/source/search_form.html" %}
 <div class="clearfix"></div>

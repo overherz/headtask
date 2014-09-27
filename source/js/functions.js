@@ -307,13 +307,23 @@ jQuery('.back-to-top').click(function(event) {
 function redirect(url,timeout)
 {
     if (!url) url = window.location;
-
     if(timeout)
     {
         timeout*=1000;
-        setTimeout('location.replace("'+url+'")',timeout);
+        if ($.support.pjax) {
+            setTimeout(function(){
+                $.pjax({url: url, container: '#pajax'})
+            },timeout)
+        }
+        else setTimeout('location.replace("'+url+'")',timeout);
     }
-    else location.replace(url)
+    else
+    {
+        if ($.support.pjax) {
+            $.pjax({url: url, container: '#pajax'})
+        }
+        else location.replace(url)
+    }
 }
 
 function show_popup(html,title,callback1,callback2){
@@ -443,7 +453,7 @@ function user_api(request,func,func1,path)
     if(!path)path='';
     return $.ajax({
         url : path+'?dev_mode=off&ajax=on', type : 'POST', dataType: 'json',data : request, cache: false, async: true,
-        beforeSend : function() {
+        beforeSend : function(jqXHR) {
             show_preloader();
         },
         success : function(res) {
@@ -472,8 +482,23 @@ function user_api(request,func,func1,path)
                 }
             }
         },
-        error: function(){
+        error: function(jqXHR, exception){
             hide_preloader();
+                if (jqXHR.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXHR.status == 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXHR.status == 500) {
+                    alert('Internal Server Error [500].');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (exception === 'timeout') {
+                    alert('Time out error.');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error.\n' + jqXHR.responseText);
+                }
             show_message("error","Произошла ошибка при загрузке данных");
         }
     });

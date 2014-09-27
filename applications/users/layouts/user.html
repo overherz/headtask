@@ -4,15 +4,13 @@
     <link rel="stylesheet" type="text/css" href="{{ app.path('/source/css/jcrop/','jquery.Jcrop.css',true) }}">
     <link rel="stylesheet" type="text/css" href="{{app.path('users','users.css')}}">
 {% endblock %}
-{% block js %}
-<script type="text/javascript" src="{{ app.path('/source/js/','jquery.Jcrop.min.js',true) }}"></script>
-<script type="text/javascript" src="{{ app.path('users','edit.js')}}"></script>
-<script type="text/javascript" src="{{ app.path('/source/js/','jquery.form.js',true) }}"></script>
-<script type="text/javascript" src="{{ app.path('/source/js/','jquery.color.js',true) }}"></script>
-<script type="text/javascript" src="{{  app.path('projects','user_tasks.js') }}"></script>
-{% endblock %}
 
 {% block context %}
+    <div class="get_script" style="display: none;" data-path="{{ app.path('/source/js/','jquery.Jcrop.min.js',true) }}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('users','edit.js')}}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('/source/js/','jquery.form.js',true) }}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('/source/js/','jquery.color.js',true) }}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('projects','user_tasks.js') }}"></div>
 <table class="table" style="margin-top: -10px;">
     <tr>
         <td style="width: 1px;vertical-align: top !important;border-top:none;padding-left: 0;">
