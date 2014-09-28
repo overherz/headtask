@@ -25,13 +25,6 @@ set_start_statistic();
 set_error_handler("warning_handler");
 register_shutdown_function('shutdown');
 
-if ($INFO['antiddos'] && php_sapi_name() != "cli")
-{
-    include ROOT."libraries/ksantiddos.php";
-    $ksa = new ksantiddos();
-    $ksa->doit(30,10); // allow 20 hits in 10 seconds
-}
-
 foreach ($INFO as $key => $value)
 {
     if (!is_array($value))

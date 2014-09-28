@@ -1,4 +1,4 @@
-{% extends "/source/index.html" %}
+{% extends ajax_data ? "/source/ajax_index.html" : "/source/index.html" %}
 {% block body %}
 {% if not dev %}
 Произошла фатальная ошибка

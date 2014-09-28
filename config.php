@@ -29,4 +29,4 @@ $INFO['site_login_page'] = '/users/login/';
 $INFO['admin_mail'] = 'overherz@yandex.ru';
 
 $INFO['default_user_group_id'] = 4;
-$INFO['message_server'] = 'https://127.0.0.1:9900';
+$INFO['message_server'] = 'https://overherz.no-ip.org:9900';

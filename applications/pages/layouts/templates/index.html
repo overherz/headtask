@@ -1,4 +1,4 @@
-{% extends "/source/wrapper_index.html" %}
+{% extends ajax_data ? "/source/ajax_wrapper.html" : "/source/wrapper_index.html" %}
 
 {% block body %}
     <div class="wysiwyg jumbotron">    {{ include(template_from_string(page.text)) }}</div>

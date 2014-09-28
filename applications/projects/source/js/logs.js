@@ -1,9 +1,6 @@
 $(document).ready(function($) {
-    var start = false,
-        end = false;
-
     $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
-    start = $("[name='start']").datepicker({
+    $("[name='start']").datepicker({
         changeMonth: true,
         dateFormat: "dd.mm.yy",
         'maxDate': $("[name='end']").val(),
@@ -12,7 +9,7 @@ $(document).ready(function($) {
         }
     });
 
-    end = $("[name='end']").datepicker({
+    $("[name='end']").datepicker({
         changeMonth: true,
         dateFormat: "dd.mm.yy",
         'minDate': $("[name='start']").val(),

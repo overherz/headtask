@@ -10,7 +10,7 @@
 {% block project_data %}
 {% include '/source/paginator.html' %}
 {% if access.forum %}
-<a href="/projects/forum/edit_topic/{{topic.id}}/" class="btn btn-oscar" style="float: right;margin-bottom: 10px;margin-top: 10px;margin-left: 10px;">Редактировать</a>
+<a href="/projects/forum/edit_topic/{{topic.id}}/" class="btn btn-oscar pajax" style="float: right;margin-bottom: 10px;margin-top: 10px;margin-left: 10px;">Редактировать</a>
 {% endif %}
 
 <a href="" class="btn btn-oscar {% if topic.subscribe %}unsubscribe{% else %}subscribe{% endif %}" data-id="{{topic.id}}" style="float: right;margin-bottom: 10px;margin-top: 10px;">{% if topic.subscribe %}Отписаться{% else %}Подписаться{% endif %}</a>
@@ -27,7 +27,7 @@
     <tr>
         <th class="forum_fio" colspan="2" style="text-align: left !important;background: {{ color }} !important;">
             <span class="get_ms_status user_offline" data-id="{{p.author}}" style="font-size: 14px;"></span>
-            <a href="/users/~{{p.author}}/" style="color:{{ p.color }};"><b>{{p.fio}}</b></a>
+            <a href="/users/~{{p.author}}/" style="color:{{ p.color }};" class="pajax"><b>{{p.fio}}</b></a>
             <div style="float: right;">{{p.created|date('d.m.Y H:i')}}</div>
         </th>
     </tr>
@@ -63,7 +63,7 @@
 <form class='post_form_bottom' style="margin-top: 20px;">
     <input type="hidden" name="id_topic" value="{{topic.id}}">
     <input type="hidden" name="act" value="save_post">
-    <div class="wysiwyg"><textarea name='text_bottom'></textarea></div>
+    <div class="wysiwyg"><textarea name='text_bottom' class="ckeditor"></textarea></div>
 </form>
     <div style="text-align: center;"><a href="" class="btn btn-oscar save_post_bottom" style="margin-top: 20px;">Отправить</a></div>
 {% endif %}

@@ -13,8 +13,8 @@
     {% if new_posts %}
         {% for n in new_posts %}
             <tr>
-                <td><a href="/projects/forum/show/{{n.forum_id}}/">{{n.forum_name}}</a></td>
-                <td><a href="/projects/forum/show_topic/{{n.id}}/">{{n.topic_name}}</a></td>
+                <td><a href="/projects/forum/show/{{n.forum_id}}/" class="pajax">{{n.forum_name}}</a></td>
+                <td><a href="/projects/forum/show_topic/{{n.id}}/" class="pajax">{{n.topic_name}}</a></td>
                 <td>{{n.count}}</td>
             </tr>
         {% endfor %}

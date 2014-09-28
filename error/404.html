@@ -1,27 +1,13 @@
-{% extends "/source/index.html" %}
-{% block css %}
-    <style>
-        #wrap {
-            background: #fff;
-        }
-    </style>
-{% endblock %}
-{% block js %}
-<script>
-    $(document).ready(function($)
-    {
-        $(".menu a").removeClass("active");
-    });
-</script>
-{% endblock %}
+{% extends ajax_data ? "/source/ajax_index.html" : "/source/index.html" %}
 {% block crumbs %}
+
 {% endblock %}
 {% block body %}
 <div style="text-align: center;">
     <img src="/source/images/404.jpg" style="height: 500px;">
     <div>
-    {% if referer %}<a href="{{referer}}">вернуться на предыдущую страницу</a>
-    {% else %} <a href="/">вернуться на главную страницу</a>
+    {% if referer %}<a href="{{referer}}" class="pajax">вернуться на предыдущую страницу</a>
+    {% else %} <a href="/" class="pajax">вернуться на главную страницу</a>
     {% endif %}
     </div>
 </div>

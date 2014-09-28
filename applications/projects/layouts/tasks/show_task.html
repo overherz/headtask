@@ -142,7 +142,7 @@
     {% endif %}
     <div id="tabs-3" class="tab-pane fade">
     {% if logs %}
-        <table class="table table-hover table_style">
+        <table class="table table-hover table_style logs_table">
             <thead>
             <tr>
                 <th></th>
@@ -173,7 +173,7 @@
     </div>
 </div>
 
-{% if task.status != 'closed' or comments %}
+{% if comments %}
 <ul class="breadcrumbs-one second">
     <li><a class="current">Комментарии</a></li>
 </ul>

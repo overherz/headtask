@@ -263,7 +263,8 @@ function pjax(options) {
       title: container.title,
       container: context.selector,
       fragment: options.fragment,
-      timeout: options.timeout
+      timeout: options.timeout,
+      vars: options.vars
     }
 
     if (options.push || options.replace) {

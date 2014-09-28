@@ -1,3 +1,5 @@
+var file_upload;
+
 $(document).ready(function($) {
 
     $(document).on("click","[delete_file]",function(){
@@ -17,14 +19,8 @@ $(document).ready(function($) {
         user_api({act:'get_form_upload'},function(res){
             show_popup(res,'Загрузка файлов',function(){
                     make_upload();
-                   // $(".popup .jq-file").hide();
                 },function(){
-                var activeUploads = $('#fileupload').fileupload('active')
-                if (activeUploads > 0)
-                {
-                    show_message("error","Загрузка отменена");
-                    redirect(false,1);
-                }
+                    if (file_upload) file_upload.abort();
             });
 
         },false,'/projects/files/');
@@ -35,7 +31,7 @@ $(document).ready(function($) {
 function make_upload()
 {
     $('#fileupload').fileupload({
-        url: '/projects/files/?dev_mode=off&ajax=on',
+        url: '/projects/files/?&ajax=on',
         formData: {'project' : $("[name='id_project']").val(),'to_task': $("#task_form").length},
         dataType: 'json',
         autoUpload: true,
@@ -57,7 +53,7 @@ function make_upload()
                 "</tr>";
                 $(".table_upload").append(html);
             });
-            data.submit();
+            file_upload = data.submit();
         },
         done: function (e, data) {
             var res = data.result;

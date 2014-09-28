@@ -1,20 +1,20 @@
 <tr id="topic{{t.id}}">
     <td>
-        {% if t.closed %}<i class="fa fa-lock" {% if t.fixed %}style="margin-right: 5px;"{% endif %}></i>{% endif %}{% if t.fixed %}<i class="fa fa-thumb-tack"></i>{% endif %} <a href="/projects/forum/show_topic/{{t.id}}/">{{t.name}}</a>
+        {% if t.closed %}<i class="fa fa-lock" {% if t.fixed %}style="margin-right: 5px;"{% endif %}></i>{% endif %}{% if t.fixed %}<i class="fa fa-thumb-tack"></i>{% endif %} <a href="/projects/forum/show_topic/{{t.id}}/" class="pajax">{{t.name}}</a>
     </td>
-    <td><a href="/users/~{{authors[t.author].id_user}}/" style="color:{{ authors[t.author].color }};font-weight: bold;" title="{{ authors[t.author].group_name }}">{{authors[t.author].fio}}</a></td>
+    <td><a href="/users/~{{authors[t.author].id_user}}/" class="pajax" style="color:{{ authors[t.author].color }};font-weight: bold;" title="{{ authors[t.author].group_name }}">{{authors[t.author].fio}}</a></td>
     <td>
         Ответов: {{t.count_posts}}<br>
         Просмотров: {{t.number_of_views}}
     </td>
     <td>
-        <div><a href="/users/~{{t.id_user}}/" style="color:{{ t.color }};font-weight: bold;" title="{{ t.group_name }}">{{t.fio}}</a></div>
+        <div><a href="/users/~{{t.id_user}}/" style="color:{{ t.color }};font-weight: bold;" class="pajax" title="{{ t.group_name }}">{{t.fio}}</a></div>
         {{t.created|date('d.m.Y H:i')}}
     </td>
     <td style="width: 75px;">
         {% if access.forum %}
             <div class="btn-group pull-right">
-                <a class="btn btn-oscar btn-sm" href="/projects/forum/edit_topic/{{t.id}}"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-oscar btn-sm pajax" href="/projects/forum/edit_topic/{{t.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-oscar btn-sm" delete_topic={{t.id}} href=""><i class="fa fa-trash-o"></i></a>
             </div>
         {% else %}&nbsp;

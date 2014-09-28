@@ -1,6 +1,6 @@
 $(document).ready(function ($) {
 
-    $(document).on("click", ".save_forum", function () {
+    $(document).off("click",".save_forum").on("click", ".save_forum", function () {
         var request = $("#forum_form").serialize();
         request = request + "&project=" + $("[name='id_project']").val();
         user_api(request, function (data) {
@@ -10,7 +10,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click","[delete_forum]",function(){
+    $(document).off("click","[delete_forum]").on("click","[delete_forum]",function(){
         show_popup("<div style='text-align:center;'>Вы хотите удалить этот раздел форума?</div>","Подтверждение удаления");
         var id = $(this).attr("delete_forum");
         var th = this;
@@ -34,7 +34,7 @@ $(document).ready(function ($) {
         CKEDITOR.replace('text_bottom',{toolbar:'Forum',extraPlugins : 'divarea'});
     }
 
-    $(document).on("click", ".save_topic", function() {
+    $(document).off("click",".save_topic").on("click", ".save_topic", function() {
         $("[name='text']").val(CKEDITOR.instances.text.getData());
         var request = $("#topic_form").serialize();
         request = request + "&project=" + $("[name='id_project']").val();
@@ -45,7 +45,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click", ".save_post", function() {
+    $(document).off("click",".save_post").on("click", ".save_post", function() {
         var form = $(this).parent().parent();
         form.find("[name='text']").val(CKEDITOR.instances.text.getData());
         var request = form.serialize();
@@ -63,7 +63,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click", ".save_post_bottom", function() {
+    $(document).off("click",".save_post_bottom").on("click", ".save_post_bottom", function() {
         var form = $(".post_form_bottom");
         form.find("[name='text_bottom']").val(CKEDITOR.instances.text_bottom.getData());
         var request = form.serialize();
@@ -81,7 +81,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click","[delete_topic]",function(){
+    $(document).off("click","[delete_topic]").on("click","[delete_topic]",function(){
         show_popup("<div style='text-align:center;'>Вы хотите удалить эту тему?</div>","Подтверждение удаления");
         var id = $(this).attr("delete_topic");
         var th = this;
@@ -95,7 +95,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click", ".edit_post", function() {
+    $(document).off("click",".edit_post").on("click", ".edit_post", function() {
         var id = $(this).attr('data-id');
         user_api({act:'edit_post',id:id}, function (data) {
             var post_div = $("#post"+id);
@@ -109,13 +109,13 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click",".cancel",function(){
+    $(document).off("click",".cancel").on("click",".cancel",function(){
         $(this).parent().parent().prev(".post").show();
         $(this).parent().parent().remove();
         return false;
     });
 
-    $(document).on("click",".delete_post",function(){
+    $(document).off("click",".delete_post").on("click",".delete_post",function(){
         show_popup("<div style='text-align:center;'>Вы хотите удалить этот ответ?</div>","Подтверждение удаления");
         var id = $(this).attr("data-id");
         var th = this;
@@ -129,7 +129,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click",".subscribe",function(){
+    $(document).off("click",".subscribe").on("click",".subscribe",function(){
         var id = $(this).attr("data-id");
         th = this;
         user_api({id:id,act:'subscribe'},function(data){
@@ -141,7 +141,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click",".unsubscribe",function(){
+    $(document).off("click",".unsubscribe").on("click",".unsubscribe",function(){
         var id = $(this).attr("data-id");
         th = this;
         user_api({id:id,act:'unsubscribe'},function(data){
@@ -153,14 +153,14 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click",".set_all_read",function(){
+    $(document).off("click",".set_all_read").on("click",".set_all_read",function(){
         user_api({act:'set_all_read'},function(data){
             redirect();
         });
         return false;
     });
 
-    $(document).on("click",".quote_post",function(){
+    $(document).off("click",".quote_post").on("click",".quote_post",function(){
         var text = getSelectionHtml();
         var html = "";
         if (text != "")

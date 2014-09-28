@@ -304,13 +304,13 @@ jQuery('.back-to-top').click(function(event) {
     return false;
 })
 
-function redirect(url,timeout)
+function redirect(url,timeout,full_reload_page)
 {
     if (!url) url = window.location;
     if(timeout)
     {
         timeout*=1000;
-        if ($.support.pjax) {
+        if ($.support.pjax && !full_reload_page) {
             setTimeout(function(){
                 $.pjax({url: url, container: '#pajax'})
             },timeout)
@@ -319,7 +319,7 @@ function redirect(url,timeout)
     }
     else
     {
-        if ($.support.pjax) {
+        if ($.support.pjax && !full_reload_page) {
             $.pjax({url: url, container: '#pajax'})
         }
         else location.replace(url)
@@ -412,7 +412,7 @@ function show_preloader()
 {
     window.loading_message = setTimeout(function(){
         show_message("info","<img src='/source/images/admin/jgrowl_preloader.gif' style='margin-right: 10px;'>Загрузка",true,'loading');
-    },500);
+    },1000);
 }
 
 function hide_preloader()
@@ -464,7 +464,7 @@ function user_api(request,func,func1,path)
                 if (res == 'AdminloginException') redirect('/admin/');
                 if (res == 'LoginException')
                 {
-                    redirect('/users/login/');
+                    redirect('/users/login/',false,true);
                 }
                 if (res.error){
                     if(func1)

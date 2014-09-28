@@ -148,6 +148,7 @@ class Controller {
                 break;
         }
         if ($GLOBALS['globals']) $values['globals'] = $GLOBALS['globals'];
+        if (defined('AJAX') && AJAX) $values['ajax_data'] = true;
         $values['app'] = new \app_paths();
         if ($_SERVER['HTTP_REFERER'] != "") $values['referer'] = $_SERVER['HTTP_REFERER'];
         $values['url'] = request_url();

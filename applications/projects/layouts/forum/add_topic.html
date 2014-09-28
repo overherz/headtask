@@ -21,7 +21,7 @@
     <div class="form-group">
         <label class="col-lg-2 control-label" for="text">Текст</label>
         <div class="col-lg-10">
-            <div class="wysiwyg"><textarea name='text' id='text'>{{topic.text}}</textarea></div>
+            <div class="wysiwyg"><textarea name='text' id='text' class="ckeditor">{{topic.text}}</textarea></div>
         </div>
     </div>
     {% if access.forum %}
