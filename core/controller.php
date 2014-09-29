@@ -34,7 +34,7 @@ class Controller {
     }
 
     function __destruct() {
-        if (self::$redirect && !$_GET['ajax']) echo "<meta http-equiv='refresh' content='".self::$redirect['delay']."; url=".self::$redirect['url']."'>";
+        if (self::$redirect && !AJAX) echo "<meta http-equiv='refresh' content='".self::$redirect['delay']."; url=".self::$redirect['url']."'>";
     }
 
     public function __toString() {
@@ -305,7 +305,7 @@ class Admin extends Controller {
         if (!$_SESSION['admin'] && ($this->application != "index" || ($this->application == "index" && $this->controller != "index")))
         {
             setcookie('redirect', $_SERVER['REQUEST_URI'], time()+60*60*24*7,"/");
-            if ($_GET['ajax'] == "on")
+            if (defined('AJAX') && AJAX)
             {
                 echo json_encode("AdminloginException");
                 exit();
@@ -314,7 +314,7 @@ class Admin extends Controller {
         }
         else if (is_array($_SESSION['admin']['access']) && in_array($this->path,$_SESSION['admin']['access']))
         {
-            if ($_GET['ajax'] == "on")
+            if (defined('AJAX') && AJAX)
             {
                 echo json_encode("AdminloginException");
                 exit();

@@ -452,7 +452,7 @@ function user_api(request,func,func1,path)
 {
     if(!path)path='';
     return $.ajax({
-        url : path+'?dev_mode=off&ajax=on', type : 'POST', dataType: 'json',data : request, cache: false, async: true,
+        url : path+'?ajax=on', type : 'POST', dataType: 'json',data : request, cache: false, async: true,
         beforeSend : function(jqXHR) {
             show_preloader();
         },

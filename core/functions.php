@@ -204,14 +204,14 @@ function get_resources($ajax=false,$return=false)
         $data['to_email'] = true;
         return layout::layout_get("/core/dev_panel/dev_panel.html",$data);
     }
-    else if ($ajax)
+    else if ($ajax && !PJAX)
     {
         $data['html'] = layout::layout_get("/core/dev_panel/queries.html",array('queries' => $array['queries']));
         unset($_SESSION['dev']);
         echo json_encode($data);
         exit();
     }
-    else echo layout::layout_get("/core/dev_panel/dev_panel.html",$data);
+    else if (!PJAX) echo layout::layout_get("/core/dev_panel/dev_panel.html",$data);
 }
 
 function color_query($g_v)
@@ -298,7 +298,7 @@ function debug($error,$send_mail,$fatal)
     {
         setcookie("redirect", "", time() - 3600,"/");
     }
-    if (!array_key_exists("ajax",$_GET) && php_sapi_name() != "cli")
+    if (!AJAX && php_sapi_name() != "cli")
     {
         if ($fatal) \Controller::error_page();
     }

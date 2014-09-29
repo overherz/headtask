@@ -30,7 +30,7 @@ $(document).ready(function(){
     });
 
     socket.on('connect', function () {
-        show_message('success','success');
+        show_message('success','successful connection');
         connect = true;
         socket.emit('auth', {hash: window.ms.uniq_key, name:window.ms.name});
         get_statuses();

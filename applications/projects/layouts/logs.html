@@ -32,7 +32,7 @@
                 {% elseif l.action == 'delete' %}<i class="fa fa-trash-o" style="color:#d9534f;"></i>
                 {% endif %}
             </td>
-            <td>{{l.text|raw}}</td>
+            <td {% if l.type == 'file' %}class="nopajax" {% endif %}>{{l.text|raw}}</td>
             {% if all %}<td style="white-space: nowrap;">{% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}</td>{% endif %}
             <td>{{l.created|date('H:i')}}</td>
             <td>

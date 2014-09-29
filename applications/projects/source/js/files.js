@@ -43,13 +43,13 @@ function make_upload()
             $.each(data.files, function (index, file) {
                 var html =
                 "<tr>" +
-                    "<td style='border-top: none;width: 1%;white-space: nowrap;'>"+file.name.substr(0,40)+"</td>" +
-                    "<td style='border-top: none;'>" +
+                    "<td style='border-top: none;width: 1%;white-space: nowrap;'><div style='width: 100px;overflow: hidden;text-overflow: ellipsis;'>"+file.name.substr(0,40)+"</div></td>" +
+                    "<td style='border-top: none;min-width:100px;width: 250px;'>" +
                         "<div class='progress progress-striped active'>" +
                             "<div class='progress-bar' id='"+file.name+"' style='width: 0%;text-align: right;'></div>" +
                         "</div>" +
                     "</td>" +
-                    "<td style='width: 100px;border-top: none;' data-speed='"+file.name+"'></td>" +
+                    "<td style='width: 100px;border-top: none;white-space:nowrap;' data-speed='"+file.name+"'></td>" +
                 "</tr>";
                 $(".table_upload").append(html);
             });

@@ -24,14 +24,14 @@
                         {% if m.path == "/projects/" %}
                             <div style="position: absolute;top:0;right:15px;">
                                 {% if access.add_project or access.add_own_project or globals.access.add_project or globals.access.add_own_project %}
-                                    <a href="/projects/add/" class="{% if add %}active{% endif %}" style="display: inline-block !important;text-indent: 2px;padding-right: 4px;"><i class="fa fa-plus"></i></a>
+                                    <a href="/projects/add/" class="pajax {% if add %}active{% endif %}" style="display: inline-block !important;text-indent: 2px;padding-right: 4px;"><i class="fa fa-plus"></i></a>
                                 {% endif %}
                             </div>
                         {% endif %}</div>
                 {% if m.category %}
                     <ul class="submenu dropdown{{ k }}" >
                     {% for sub in m.category %}
-                        <li class="menu_sub_li menu{{sub.path|replace({"/":"_"})}} {% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}" style="text-indent: 0;">
+                        <li data-submenu="menu{{sub.path|replace({"/":"_"})}}" class="menu_sub_li menu{{sub.path|replace({"/":"_"})}} {% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}" style="text-indent: 0;">
                             <a {% if sub.clickable %}href="{{sub.path}}"{% else %}href='javascript:void(0);'{% endif %} class="pajax menu_sub_link menu{{sub.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{sub.name}}</a>
                         </li>
                     {% endfor %}

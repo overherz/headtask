@@ -56,17 +56,17 @@
     <script type="text/javascript" src="{{app.path('projects','files.js')}}"></script>
     <script type="text/javascript" src="{{app.path('projects','tasks.js')}}"></script>
 {% endif %}
-
 <script type="text/javascript">
     $(document).ready(function($) {
         //$(document).pjax('.pajax', '#pajax');
-
         if ($.support.pjax) {
-            $(document).on('click', '.pajax, .logs_table a', function(event) {
+            $.pjax.defaults.timeout = 1500;
+
+            $(document).on('click', '.pajax, .logs_table td:not(".nopajax") a', function(event) {
+                var menu_parent;
                 if ($(this).hasClass('menu_link'))
                 {
-
-                    var menu_parent = $(this).parent().parent();
+                    menu_parent = $(this).parent().parent();
                     if (($("#wrapper").hasClass('toggled') || window_width < 1100) && menu_parent.hasClass('dropdown'))
                     {
                         return false;
@@ -83,8 +83,10 @@
                 if ($(this).hasClass('menu_sub_link'))
                 {
                     $(".menu_li,.menu_sub_li").removeClass("active");
-                    $(this).parent().addClass("active");
-                    $(this).parent().parent().parent().addClass('active');
+                    var menu_sub = $(this).parent();
+                    menu_parent = $(this).parent().parent().parent();
+                    menu_sub.addClass("active");
+                    menu_parent.addClass('active');
 
                     var submenu_parent = $(this).parent().parent();
                     if (submenu_parent.hasClass('clone'))
@@ -96,7 +98,11 @@
                 }
 
                 var container = $("#pajax");
-                $.pjax.click(event, {container: container,vars:{test:'test',some:'foobar'}})
+                var vars_dropdown,vars_sudmenu;
+                if (menu_parent) vars_dropdown = menu_parent.data('dropdown');
+                if (menu_sub) vars_sudmenu = menu_sub.data('submenu');
+
+                $.pjax.click(event, {container: container,vars:{dropdown:vars_dropdown,submenu:vars_sudmenu}})
             });
 
             $(document).on('pjax:beforeReplace', function() {
@@ -104,7 +110,9 @@
             });
 
             $(document).on('pjax:popstate', function(data) {
-                console.log(data)
+                $(".menu_li,.menu_sub_li").removeClass("active");
+                $(".menu_li[data-dropdown='"+data.state.vars.dropdown+"']").addClass('active');
+                $(".menu_sub_li[data-submenu='"+data.state.vars.submenu+"']").addClass('active');
             });
 
             $(document).on('pjax:error', function(event, xhr, textStatus, errorThrown, options) {
