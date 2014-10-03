@@ -137,8 +137,8 @@ a:hover {
 }
 
 .jq-selectbox__select,.jq-checkbox {
-    background: #fff;
-    box-shadow: none;
+    background: #fff !important;
+    box-shadow: none !important;
 }
 
 .jq-radio {
@@ -859,6 +859,8 @@ td .progress {
     -moz-box-shadow:    2px 0px 4px 0px rgba(50, 50, 50, 0.64);
     box-shadow:         2px 0px 4px 0px rgba(50, 50, 50, 0.64);
 }
+
+
 
 /*
 #wrapper.toggled #sidebar-wrapper {
