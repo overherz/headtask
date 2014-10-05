@@ -351,9 +351,7 @@ function show_popup(html,title,callback1,callback2){
         $('.popup').css({'marginTop':get_top_offset()})
     },200);
 
-    if(jQuery().styler) {
-        $(".popup input").styler();
-    }
+    style_input(".popup");
 
     if (callback1) callback1();
 
@@ -568,21 +566,27 @@ $(document).ready(function() {
     });
 
     $(document).on("change",'#search_form select',function(){
-        $('#search_form').submit();
+        if (!$(this).data('no-search'))
+            $('#search_form').submit();
     });
 
     $(document).on("change","#search_form [type='text']",function(){
-        $('#search_form').submit();
+        if (!$(this).data('no-search'))
+            $('#search_form').submit();
     });
 
     $(document).on("change","#search_form [type='checkbox'],#search_form [type='radio']",function(){
-        $('#search_form').submit();
+        if (!$(this).data('no-search'))
+            $('#search_form').submit();
     });
 
     $(document).on('keydown','#search_form input[type="text"],#search_form textarea',function(){
-        clearTimeout(window.timer);
-        window.clear = true;
-        window.timer = setTimeout(function(){$('#search_form').submit();},500);
+        if (!$(this).data('no-search'))
+        {
+            clearTimeout(window.timer);
+            window.clear = true;
+            window.timer = setTimeout(function(){$('#search_form').submit();},500);
+        }
     })
 });
 
@@ -619,10 +623,30 @@ function search(){
             popover();
         }
 
-        if(jQuery().styler) {
-            $(".popup input").styler();
-        }
+        style_input();
     },false,p);
+}
+
+var first_style_input = false;
+function style_input(obj,speed)
+{
+    if (!obj) obj = '';
+    if (!first_style_input) speed = 100;
+    else if (!speed) speed = 0;
+
+    if(jQuery().styler) {
+        if (speed > 0)
+        {
+            setTimeout(function() {
+                $(""+obj+" input:not('.no_style'),"+obj+" select").styler();
+            }, speed);
+        }
+        else
+        {
+            $(""+obj+" input:not('.no_style'),"+obj+" select").styler();
+        }
+    }
+    if (!first_style_input) first_style_input = true;
 }
 
 function get_window_width()

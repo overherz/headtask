@@ -50,7 +50,7 @@ $(document).ready(function($)
     $(document).on("click","[change_avatar]",function(){
         user_api({act:'get_avatar_upload'},function(data){
             show_popup(data,"Загрузка фотографии");
-            $("[name='avatar']").styler();
+            style_input('.popup');
         },false,'/users/edit/');
 
         return false;

@@ -51,9 +51,9 @@
             </table>
         </form>
     {% else %}
-    <ul class="breadcrumbs-one second">
-        <li><a class="current">Задачи</a></li>
-    </ul>
+    <div class="breadcrumbs-one second">
+        <span><a class="current">Задачи</a></span>
+    </div>
     <form path="/projects/user_tasks/" id="search_form" method="post" class="form-horizontal user_tasks" style="margin-bottom:0px;">
         <input type="hidden" name="page" value="">
         <input type="hidden" name="act" value="get_data">

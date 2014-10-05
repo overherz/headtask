@@ -3,7 +3,7 @@ namespace projects;
 
 class news extends \Controller {
 
-    var $limit = 20;
+    var $limit = 30;
     
     function default_method()
     {

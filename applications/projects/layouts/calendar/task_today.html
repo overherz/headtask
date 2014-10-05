@@ -21,7 +21,7 @@
                 {% endif %}
             </td>
             {% if not id_project %}
-            <td style="width: 1px;white-space: nowrap;"><a href="/projects/tasks/{{task.id_project}}/" class="get_info_project" data-id="{{ task.id_project}}">{{ task.project_name }}</a></td>
+            <td style="width: 1px;white-space: nowrap;"><a href="/projects/tasks/{{task.id_project}}/" class="get_info_project pajax" data-id="{{ task.id_project}}">{{ task.project_name }}</a></td>
             {% endif %}
             <td><a href="/projects/tasks/show/{{task.id}}/" class="pajax {% if task.task_creater == globals.user.id_user or task.id_user == globals.user.id_user %}own_task{% endif %}">{{task.name}}</a>
                 {% if task.cats %}

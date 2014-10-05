@@ -5,12 +5,8 @@
 
 {% block body %}
 <input type="hidden" name="id_project" value="{{project.id}}">
-{{ ajax }}
-    <div style="margin: 10px 15px -15px">
-        {% include "/source/crumbs.html" %}
-    </div>
-
     <div class="jumbotron" style="margin-bottom: 0;">
+    {% include "/source/crumbs.html" %}
     {% block project %}{% endblock %}
     </div>
 {% endblock %}

@@ -33,7 +33,7 @@ $(document).ready(function ($) {
 
         user_api({act:"delete_user_form",id_user:id_user,id_project:id_project}, function (data) {
             show_popup(data,"Подтверждение удаления");
-            $("[name='delegate']").styler();
+            style_input('.popup');
 
             add_popup_button("Да",'Yes', false, function(vars){
                 user_api({act:"delete_user",id_user:id_user,id_project:id_project,delegate:$("[name='delegate']").val()}, function (data) {

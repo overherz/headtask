@@ -20,7 +20,7 @@ $(document).ready(function($){
             $.each(res,function(k,v){
                 $("[error='"+k+"']").text(v).show();
             })
-            $('#wrap input, #wrap select').styler();
+            style_input();
         });
         return false;
     })

@@ -1,3 +1,7 @@
+var sounds = {
+    notification: $('#sound_notification')
+};
+
 $(document).ready(function(){
     var chat_with = get_opponent(),
         connect = false;
@@ -9,18 +13,14 @@ $(document).ready(function(){
         'wiki' : 'Wiki',
         'comment' : 'Комментарий',
         'forum' : 'Форум'
-    }
+    };
 
     var icons = {
         'add': '<i class="fa fa-plus" style="color:#5cb85c;font-size: 14px;"></i>',
         'edit': '<i class="fa fa-pencil" style="color:#5bc0de;"></i>',
         'delete': '<i class="fa fa-trash-o" style="color:#d9534f;"></i>'
-    }
+    };
 
-//        playerVersion = swfobject.getFlashPlayerVersion(),
-//        majorVersion = playerVersion.major;
-
-    //if (majorVersion < 10) show_message("warning","Установите последнюю версию Adobe flash player");
     socket = io.connect(window.ms.address,{
         'reconnection': true,
         'reconnectionDelay': 1000,
@@ -30,6 +30,7 @@ $(document).ready(function(){
     });
 
     socket.on('connect', function () {
+        sounds.notification.trigger('play');
         show_message('success','successful connection');
         connect = true;
         socket.emit('auth', {hash: window.ms.uniq_key, name:window.ms.name});
@@ -44,7 +45,7 @@ $(document).ready(function(){
     });
 
     socket.on('logs',function(data){
-        soundManager.play('new_message',{volume:100});
+        sounds.notification.trigger('play');
         show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;font-size:12px;'>"+langs[data.message.type]+"</span>"+icons[data.message.action]+" "+data.message.text,false,false,false,true);
     });
 
@@ -282,9 +283,9 @@ function play_sound(id)
         if ($("[name='sound_trigger']").length > 0 && $("[name='sound_trigger']").prop("checked"))
         {
             localStorage.setItem('ms_message_status','play');
-            soundManager.play('new_message',{volume:50});
+            sounds.notification.play();
         }
-        else if($("[name='sound_trigger']").length < 1) soundManager.play('new_message',{volume:50});
+        else if($("[name='sound_trigger']").length < 1) sounds.notification.play();
     }
 }
 

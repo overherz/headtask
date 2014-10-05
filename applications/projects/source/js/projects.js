@@ -22,9 +22,7 @@ $(document).ready(function ($) {
                 },function(res){
                     show_message('error',res.text);
                     $("#captcha_div").html(res.captcha_html);
-                    if(jQuery().styler) {
-                        $(".popup input").styler();
-                    }
+                    style_input('.popup');
                 }, '/projects/');
             });
         }, false, '/projects/');

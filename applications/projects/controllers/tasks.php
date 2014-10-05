@@ -756,7 +756,7 @@ class tasks extends \Controller {
             $stats[$row['status']]++;
             $stats['all']++;
 
-            if ($row['status'] != "closed" && $row['cats'] != "")
+            if ($row['status'] != "closed" && $row['status'] != "rejected" && $row['cats'] != "")
             {
                 $cats = explode(",",$row['cats']);
                 foreach ($cats as $c)

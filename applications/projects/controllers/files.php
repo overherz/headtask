@@ -3,7 +3,7 @@ namespace projects;
 
 class files extends \Admin {
 
-    var $limit = 10;
+    var $limit = 30;
 
     function default_method()
     {

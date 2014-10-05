@@ -18,9 +18,6 @@ class projects extends \Controller {
             case "get_panel_page_projects":
                 $this->get_projects();
                 break;
-            case "get_category_form":
-                $this->get_category_form();
-                break;
             default:
                 $this->default_for_this();
         }

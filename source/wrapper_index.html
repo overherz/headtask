@@ -17,15 +17,15 @@
 </head>
 
 <body>
-<div id="wrapper" {% if cookie_data.sidebar == 'toggled' %}class="toggled" {% endif %}>
+<div id="wrapper" class="{% if cookie_data.sidebar == 'toggled' %}toggled{% endif %} {% if cookie_data.sidebar2 == 'toggled2' %}toggled2{% endif %}">
 
 {% block menu %}
     {% include "/source/menu.html" %}
  {% endblock %}
-
-    <!-- Page Content -->
+    <i class="fa {% if cookie_data.sidebar == 'toggled' %}fa-caret-right{% else %}fa-caret-left{% endif %} left_toggle"></i>
+    <i class="fa {% if cookie_data.sidebar2 == 'toggled2' %}fa-caret-left{% else %}fa-caret-right{% endif %} right_toggle"></i>
     <div id="page-content-wrapper">
-        <div class="container-fluid" style="padding: 0">
+        <div class="container-fluid" style="padding: 0;">
             <div class="row" style="margin-right: 0;">
                 <div class="col-lg-12" style="padding-right: 0;" id="pajax">
                 {% block body %}{% endblock %}
@@ -33,12 +33,9 @@
             </div>
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
-
+    <div id="sidebar_right"></div>
 </div>
-<!-- /#wrapper -->
-
-
+<audio id="sound_notification" src="/source/js/sound_manager/sound.mp3" type="audio/mp3"></audio>
 
 <script src="//yastatic.net/jquery/2.1.1/jquery.min.js"></script>
 <script src="//yastatic.net/jquery-ui/1.10.4/jquery-ui.min.js"></script>
@@ -50,7 +47,6 @@
     <script src="{{ app.path('/source/js/socket.io/','socket.io.js',true)}}"></script>
     <script src="{{ app.path('/notifications/','client.js',true)}}"></script>
     <script src="{{ app.path('projects','projects.js')}}"></script>
-    <script src="{{ app.path('/source/js/sound_manager/','soundmanager2-nodebug-jsmin.js',true) }}"></script>
     <script src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
     <script src="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></script>
     <script type="text/javascript" src="{{app.path('projects','files.js')}}"></script>
@@ -75,7 +71,7 @@
                     {
                         $(".menu_li,.menu_sub_li").removeClass("active");
                         menu_parent.addClass("active");
-                        hide_sudmenu();
+                        hide_submenu();
                         id_dropdown = false;
                     }
                 }
@@ -92,7 +88,7 @@
                     if (submenu_parent.hasClass('clone'))
                     {
                         $("[data-dropdown='"+id_dropdown+"']").addClass('active');
-                        hide_sudmenu();
+                        hide_submenu();
                         id_dropdown = false;
                     }
                 }
@@ -119,12 +115,20 @@
                 options.success(xhr.responseText, textStatus, xhr);
                 return false;
             });
-            $(document).on('pjax:success', function() {
-                $('input,select').styler();
+
+            $(document).on('pjax:end', function() {
+                init_affix_crumbs();
+                style_input();
                 get_statuses();
                 init_datepicker();
                 init_ckeditor();
+                if(jQuery().popover)
+                {
+                    popover();
+                }
+            });
 
+            $(document).on('pjax:success', function() {
                 $(".get_script").each(function(){
                     var path = $(this).data('path');
             //       add_script(path);
@@ -133,13 +137,15 @@
             })
         }
 
+        init_affix_crumbs();
+
         $(".get_script").each(function(){
             var path = $(this).data('path');
 //            add_script(path);
               $.getScript(path,false,true);
         });
 
-        $('input,select').styler();
+        style_input();
 
         {% if globals.user.id_user %}
 
@@ -156,7 +162,7 @@
             {
                 e.preventDefault();
                 var this_id_dropdown = $(this).data('dropdown');
-                hide_sudmenu();
+                hide_submenu();
 
                 if (id_dropdown != this_id_dropdown)
                 {
@@ -174,44 +180,81 @@
         });
 
         $(document).on('click','#overlay',function(){
-            hide_sudmenu();
+            hide_submenu();
             id_dropdown = false;
         });
 
-        $(".sidebar-brand").click(function(e) {
+        $(".left_toggle").click(function(e) {
             window_width = get_window_width();
             if (window_width >= 1100)
             {
-                hide_sudmenu();
+                hide_submenu();
                 id_dropdown = false;
 
                 $("#wrapper").toggleClass("toggled");
                 var c_tog = false;
                 if ($("#wrapper").hasClass('toggled')) c_tog = 'toggled';
                 $.cookie('sidebar', c_tog, { expires: 30, path: '/' });
+
+                if ($(this).hasClass('fa-caret-right'))
+                {
+                    $(this).removeClass('fa-caret-right').addClass('fa-caret-left')
+                }
+                else
+                {
+                    $(this).removeClass('fa-caret-left').addClass('fa-caret-right')
+                }
             }
         });
 
-        soundManager.setup({
-            useFlashBlock : false,
-            url : '/source/js/sound_manager/',
-            debugMode : false,
-            consoleOnly : false,
-            onready : function() {
-                soundManager.createSound({
-                    id:'new_message',
-                    url:'/source/js/sound_manager/sound.mp3'
-                });
-                soundManager.createSound({
-                    id:'call',
-                    url:'/source/js/sound_manager/incoming_call.mp3'
-                });
+        $(".right_toggle").click(function(e) {
+            window_width = get_window_width();
+            if (window_width >= 1100)
+            {
+                hide_submenu();
+                id_dropdown = false;
+
+                $("#wrapper").toggleClass("toggled2");
+                var c_tog = false;
+                if ($("#wrapper").hasClass('toggled2')) c_tog = 'toggled2';
+                $.cookie('sidebar2', c_tog, { expires: 30, path: '/' });
+
+                if ($(this).hasClass('fa-caret-right'))
+                {
+                    $(this).removeClass('fa-caret-right').addClass('fa-caret-left')
+                }
+                else
+                {
+                    $(this).removeClass('fa-caret-left').addClass('fa-caret-right')
+                }
             }
         });
         {% endif %}
     });
 
-    function hide_sudmenu()
+    function init_affix_crumbs(){
+        var crumbs = $("#crumbs");
+        $(window).scroll(function(){
+            affix_crumbs(crumbs,crumbs.height());
+        });
+        affix_crumbs(crumbs,crumbs.height());
+    }
+
+    function affix_crumbs(crumbs,height) {
+        var scrollTop = $(window).scrollTop();
+        if (scrollTop > 0)
+        {
+            $("#pajax").css('paddingTop',height);
+            crumbs.addClass('affix');
+        }
+        else
+        {
+            $("#pajax").css('paddingTop','');
+            crumbs.removeClass('affix');
+        }
+    }
+
+    function hide_submenu()
     {
         var clones = $(".submenu.clone");
         if (clones.length > 0)
