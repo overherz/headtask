@@ -201,7 +201,7 @@ input,textarea {
 
 .jumbotron {
     background: #fff;
-    padding: 5px 20px !important;
+    padding: 5px 20px 10px !important;
 }
 
 .pagination_disabled a {
@@ -228,7 +228,7 @@ input,textarea {
 }
 
 .user_online,.user_offline {
-    font-size: 20px;
+    font-size: 12px;
 }
 
 .user_online.small,.user_offline.small {
@@ -248,13 +248,11 @@ input,textarea {
 }
 
 .user_online:before {
-    content: "\f130";
-    font-family: FontAwesome;
+    content: "online";
 }
 
 .user_offline:before {
-    content: "\f131";
-    font-family: FontAwesome;
+    content: "offline";
 }
 
 #ui-datepicker-div {
@@ -442,7 +440,7 @@ fieldset[disabled] .btn-oscar.active {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 101;
 }
 
 .breadcrumbs-one span {
@@ -623,29 +621,30 @@ blockquote:before {
     cursor: pointer;
 }
 
-.img-circle {
-    border-radius: 50% !important;
-    margin: 0 auto;
-}
 .img-responsive {
     display: block;
-    height: auto;
-    max-width: 123px;
-    max-height: 123px;
+    width: auto;
+    max-width: 100px;
+    max-height: 100px;
 }
 
-.user_card {
-    height: 310px;
-    text-align: center;
+.users_avatar {
+    width: 100px;
+    height: 100px;
 }
 
-.user_sub_card {
-    height: 285px;
-    background-color: #eeeeee;
+.users_div {
+    float: left;
+    margin: 10px 10px 0 0;
+    background-color: #fafafa;
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 4px;
+}
+
+.users_sub_div {
+    float: left;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .table-condensed2 td, .table-condensed2 th {
@@ -981,7 +980,7 @@ td .progress {
     position: fixed;
     font-size: 20px;
     cursor: pointer;
-    z-index: 101;
+    z-index: 107;
     top: 7px;
     color: #bbb;
 }
@@ -995,12 +994,14 @@ td .progress {
 }
 
 .breadcrumbs-one.affix {
-    left: 200px;
-    right: 250px;
+    left: 40px;
+    right: 0;
     padding: 5px 20px;
-    -webkit-box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    0px 5px 5px 0px rgba(50, 50, 50, 0.75);
-    box-shadow:         0px 5px 5px 0px rgba(50, 50, 50, 0.75);
+    background: #f2f2f2;
+    border-bottom: 1px dashed #666;
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+    box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 
 @media(min-width:1100px) {
@@ -1096,6 +1097,11 @@ td .progress {
         position: relative;
         padding-right: 0 !important;
         padding-left: 200px;
+    }
+
+    .breadcrumbs-one.affix {
+        left: 200px;
+        right: 250px;
     }
 
     #wrapper.toggled .breadcrumbs-one.affix {
@@ -1267,6 +1273,7 @@ input[disabled], select[disabled], textarea[disabled] {
 .submenu {
     background: #222;
     padding-left: 0;
+    white-space: nowrap;
 }
 
 .submenu a {
@@ -1287,9 +1294,11 @@ input[disabled], select[disabled], textarea[disabled] {
     padding: 0;
     height: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
     background: #333;
     top: 0;
     min-width: 150px;
+    max-width: 200px;
 }
 
 .submenu.clone a {
@@ -1302,4 +1311,17 @@ input[disabled], select[disabled], textarea[disabled] {
 
 #tasks_table th {
     padding-left: 0;
+}
+
+.project_menu .btn-group {
+    margin-bottom: 5px;
+}
+
+.overflow_ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.logs_table_sidebar td {
+    border-bottom: 2px solid #000;
 }

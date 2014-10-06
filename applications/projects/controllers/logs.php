@@ -3,7 +3,7 @@ namespace projects;
 
 class logs extends \Controller {
 
-    private $limit = 30;
+    public $limit = 30;
 
     function default_method()
     {
@@ -229,7 +229,7 @@ class logs extends \Controller {
         while ($row = $query->fetch())
         {
             $row['text'] = htmlentities($row['text']);
-            $row['text'] = preg_replace("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u","<a html_entity_decode($1)>$2</a>",$row['text']);
+            $row['text'] = preg_replace_callback("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u",array($this, 'replaceEntities'),$row['text']);
             $row['text'] = str_replace(
                 array(
                     "&lt;s&gt;",
@@ -258,5 +258,12 @@ class logs extends \Controller {
             $query = $this->db->prepare("insert into projects_logs(id_user,id_project,id_task,text,created,type,action) values(?,?,?,?,?,?,?)");
             if ($query->execute(array($_SESSION['user']['id_user'],$id_project,$id_task,$text,time(),$type,$action))) return true;
         }
+    }
+
+    function replaceEntities($matches)
+    {
+        $str = html_entity_decode($matches[1]);
+        $str = "<a {$str}>{$matches[2]}</a>";
+        return $str;
     }
 }

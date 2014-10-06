@@ -33,7 +33,13 @@
                 {% endif %}
             </td>
             <td {% if l.type == 'file' %}class="nopajax" {% endif %}>{{l.text|raw}}</td>
-            {% if all %}<td style="white-space: nowrap;">{% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}</td>{% endif %}
+            {% if all %}
+                <td style="width: 1px;">
+                    <div style="max-width: 150px;white-space: nowrap;" class="overflow_ellipsis">
+                    {% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}
+                    </div>
+                </td>
+            {% endif %}
             <td>{{l.created|date('H:i')}}</td>
             <td>
                 {% if globals.user.id_user == l.id_user %}

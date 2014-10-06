@@ -27,13 +27,30 @@
     <div id="page-content-wrapper">
         <div class="container-fluid" style="padding: 0;">
             <div class="row" style="margin-right: 0;">
-                <div class="col-lg-12" style="padding-right: 0;" id="pajax">
+                <div class="col-lg-12" style="padding-right: 0;position: relative;" id="pajax">
                 {% block body %}{% endblock %}
                 </div>
             </div>
         </div>
     </div>
-    <div id="sidebar_right"></div>
+    <div id="sidebar_right">
+        <table class="logs_table logs_table_sidebar">
+        {% for l in globals.logs.logs %}
+        <tr>
+            <td style="width: 22px;" class="log_{{ l.type }}">
+                {% if l.action == 'add' %}<i class="fa fa-plus" style="color:#5cb85c;"></i>
+                {% elseif l.action == 'edit' %}<i class="fa fa-pencil" style="color:#5bc0de;"></i>
+                {% elseif l.action == 'delete' %}<i class="fa fa-trash-o" style="color:#d9534f;"></i>
+                {% endif %}
+                <span class="label" style="max-width: 30px;text-overflow: ellipsis;overflow: hidden;">{{ ("type_"~l.type)|lang|first }}</span>
+            </td>
+            <td {% if l.type == 'file' %}class="nopajax" {% endif %} style="font-size: 12px;">
+                    {{l.text|raw}}
+            </td>
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
 </div>
 <audio id="sound_notification" src="/source/js/sound_manager/sound.mp3" type="audio/mp3"></audio>
 
@@ -234,23 +251,34 @@
 
     function init_affix_crumbs(){
         var crumbs = $("#crumbs");
-        $(window).scroll(function(){
-            affix_crumbs(crumbs,crumbs.height());
-        });
-        affix_crumbs(crumbs,crumbs.height());
+        $("#pajax").css('paddingTop','');
+        $(window).off('scroll');
+        if (crumbs.length > 0)
+        {
+            $(window).scroll(function(){
+                affix_crumbs(crumbs);
+            });
+            affix_crumbs(crumbs);
+        }
     }
 
-    function affix_crumbs(crumbs,height) {
-        var scrollTop = $(window).scrollTop();
-        if (scrollTop > 0)
+    var mobile = detectmob();
+
+    function affix_crumbs(crumbs) {
+        if (!mobile)
         {
-            $("#pajax").css('paddingTop',height);
-            crumbs.addClass('affix');
-        }
-        else
-        {
-            $("#pajax").css('paddingTop','');
-            crumbs.removeClass('affix');
+            var height = crumbs.height();
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop > 0)
+            {
+                crumbs.addClass('affix');
+                $("#pajax").css('paddingTop',height+15);
+            }
+            else
+            {
+                crumbs.removeClass('affix');
+                $("#pajax").css('paddingTop','');
+            }
         }
     }
 

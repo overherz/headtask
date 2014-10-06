@@ -120,7 +120,7 @@ class user_tasks extends \Controller {
         if ($this->id_project)
         {
             $where[] = "t.id_project=".$this->db->quote($this->id_project);
-            if (!$this->access['access']['show_tasks'])
+            if (!$this->access['show_tasks'])
             {
                 $where[] = "(t.id_user={$_SESSION['user']['id_user']} or t.assigned={$_SESSION['user']['id_user']})";
             }

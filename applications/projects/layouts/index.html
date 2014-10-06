@@ -5,7 +5,7 @@
 
 {% block body %}
 <input type="hidden" name="id_project" value="{{project.id}}">
-    <div class="jumbotron" style="margin-bottom: 0;">
+    <div class="jumbotron" style="position: relative;">
     {% include "/source/crumbs.html" %}
     {% block project %}{% endblock %}
     </div>

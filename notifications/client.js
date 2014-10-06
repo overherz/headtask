@@ -46,7 +46,7 @@ $(document).ready(function(){
 
     socket.on('logs',function(data){
         sounds.notification.trigger('play');
-        show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;font-size:12px;'>"+langs[data.message.type]+"</span>"+icons[data.message.action]+" "+data.message.text,false,false,false,true);
+        show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;font-size:12px;'>"+langs[data.message.type]+"</span>"+icons[data.message.action]+" "+data.message.text,true,false,false,true);
     });
 
     socket.on('connect_error',function(){
