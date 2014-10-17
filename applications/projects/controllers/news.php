@@ -259,11 +259,12 @@ class news extends \Controller {
                 $message = $this->layout_get("news/news_mail.html",array(
                     'domain' => get_full_domain_name(),
                     'name' => $project['name'],
+                    'id_project' => $project['id'],
                     'edit' => $edit,
-                    'news' => $res['success'],
-                    'news_name' => $_POST['name'],
-                    'old_news_name' => $news['name']
+                    'news' => $res['success']
                 ));
+                $message['news_name'] = $_POST['id'] ? $news['name'] : $_POST['name'];
+
                 $notif_cr->send_notification($k,$notif,$message,$v['email'],$v['sms']);
             }
         }

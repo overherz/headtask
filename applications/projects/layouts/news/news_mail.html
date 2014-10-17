@@ -1,6 +1,14 @@
-{% if edit %}
-Изменена новость "{{ old_news_name }}" в проекте
-{% else %}
-Добавлена новость "{{ news_name }}" в проект
-{% endif %}
-&nbsp;"{{name}}" <a href="{{ domain }}/projects/news/show/{{news}}/">{{ domain }}/projects/news/show/{{news}}/</a>
+{% extends "/source/mail.html" %}
+
+{% block title %}
+    {% if edit %}
+        Изменена новость
+    {% else %}
+        Добавлена новость
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% import "/source/link_mail_macro.html" as link_mail %}
+    Проект {{ link_mail.format(domain,'projects/~'~id_project,name) }}. Новость {{ link_mail.format(domain,'projects/news/show/'~news,news_name) }}
+{% endblock %}
