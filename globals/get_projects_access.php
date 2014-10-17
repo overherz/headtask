@@ -2,7 +2,7 @@
 
 namespace global_module;
 
-class get_sprojects_access extends \global_module
+class get_projects_access extends \Global_module
 {
     protected $admin = false;
     protected $on_ajax_not_run = true;

@@ -5,7 +5,7 @@
         <div style="width: 100px;" class="users_sub_div">
             <a href="/users/~{{u.id_user}}/" class="pajax"><img class="users_avatar" src="{% if u.avatar %}/uploads/users/ava_middle/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}" title="{{u.fio}}"></a>
         </div>
-        <div style="width: 200px;padding-left: 10px;" class="users_sub_div">
+        <div style="width: 170px;padding-left: 10px;" class="users_sub_div">
             <div style="margin-top: 0;" class="user_name"><a href="/users/~{{u.id_user}}/" style="color:{{ u.color }};" class="pajax">{{u.last_name}} {{u.first_name}}</a></div>
             <small>{{ u.group_name }}
                 <div class="get_ms_status user_offline" data-id="{{u.id_user}}"></div>

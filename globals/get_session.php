@@ -2,7 +2,7 @@
 
 namespace global_module;
 
-class get_session extends \global_module
+class get_session extends \Global_module
 {
     protected $admin = false;
     protected $on_ajax_not_run = false;

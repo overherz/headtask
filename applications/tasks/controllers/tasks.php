@@ -1,7 +1,7 @@
 <?php
 namespace tasks;
 
-use global_module\get_options;
+use Global_module\get_options;
 
 require_once(__DIR__ .'../../../../core/initdata.php');
 

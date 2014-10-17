@@ -2,7 +2,7 @@
 
 namespace global_module;
 
-class get_logs extends \global_module
+class get_logs extends \Global_module
 {
     protected $admin = false;
     protected $on_ajax_not_run = true;

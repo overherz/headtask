@@ -356,7 +356,7 @@ class Admin extends Controller {
     }
 }
 
-class global_module
+class Global_module
 {
     protected $admin = false;
     protected $on_ajax_not_run = true;
@@ -367,7 +367,11 @@ class global_module
         if (!$module)
         {
             $folder = ROOT.'globals'.DS;
-            foreach (glob($folder."*.php") as $filename) $this->modules[] = basename($filename);
+            include_once($folder.DS."config.php");
+            foreach ($glogals_run_order as $k => $v)
+            {
+                $this->modules[] = $v.".php";
+            }
         }
         else $this->modules[] = $module.".php";
         if (count($this->modules) > 0)

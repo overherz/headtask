@@ -77,7 +77,7 @@ class Router {
         unset($this->route[1]);
         $this->rules();
 
-        $g = new global_module();
+        $g = new \Global_module();
         $g->run(self::$admin);
 
         $this->get_application();
