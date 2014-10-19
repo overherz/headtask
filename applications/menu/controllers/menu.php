@@ -43,7 +43,7 @@ class menu extends \Controller {
             $query = $this->db->prepare("select * from menu where invisible IS NULL and target=? order by position");
             $query->execute(array($target));
             while ($row = $query->fetch()) $menu[$row['id']] = $row;
-            $this->cache->set('menu',$menu,300);
+            $this->cache->set('menu',$menu,60*60);
         }
         else $menu = $this->cache->get('menu');
 

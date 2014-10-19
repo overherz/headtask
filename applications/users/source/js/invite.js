@@ -1,6 +1,6 @@
 $(document).ready(function($)
 {
-    $(document).on("click","#invite_user",function(){
+    $(document).off("click","#invite_user").on("click","#invite_user",function(){
         user_api({act:'get_invite_form'},function(data){
             show_popup(data,'Приглашение пользователя');
             add_popup_button("Пригласить",'Yes',false,function(vars){

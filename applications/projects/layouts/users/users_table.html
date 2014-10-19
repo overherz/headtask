@@ -15,9 +15,9 @@
     <tbody>
     {% for u in users %}
         <tr {% if u.role == 'manager' %}class="success"{% endif %} id="tr_user{{u.id_user}}">
-            <td style="text-align: center;"><a href="/users/~{{u.id_user}}/">{% if u.avatar %}<img src="/uploads/users/ava_small/{{u.avatar|real_path}}">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}</a></td>
+            <td style="text-align: center;"><a href="/users/~{{u.id_user}}/" class="pajax">{% if u.avatar %}<img src="/uploads/users/ava_small/{{u.avatar|real_path}}">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}</a></td>
             <td>
-                <div style="margin-bottom: 5px;"><a href="/users/~{{u.id_user}}/" style="color:{{ u.color }};font-weight: bold;" title="{{ u.group_name }}">{{u.fio}}</a>
+                <div style="margin-bottom: 5px;"><a href="/users/~{{u.id_user}}/" class="pajax" style="color:{{ u.color }};font-weight: bold;" title="{{ u.group_name }}">{{u.fio}}</a>
                     <div style="font-weight: bold;">
                         {{ ('role_'~u.role)|lang }}
                     </div>

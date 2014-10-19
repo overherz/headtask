@@ -9,6 +9,11 @@
 {% block js %}
 {% endblock %}
 
+{% block menu_active %}
+    <input type="hidden" name="menu_li" value="{{ globals.menu_li }}">
+    <input type="hidden" name="menu_sub_li" value="{{ globals.menu_sub_li}}">
+{% endblock %}
+
 {% block body %}
 
 {% endblock %}

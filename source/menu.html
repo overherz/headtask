@@ -9,7 +9,7 @@
 
         {% for k,m in globals.menu %}
             {% if k != "crumbs"%}
-                <li data-dropdown='{{ k }}' class="menu_li {% if m.active or globals.menu.crumbs[m.id] %}active{% endif %} {% if m.category or m.path == "/projects/" %}dropdown{% endif %}" {% if m.path == '/users/logout/' %}style="margin-top: 30px;" {% endif %}>
+                <li id='menu_li_{{ k }}' class="menu_li {% if m.active or globals.menu.crumbs[m.id] %}active{% endif %} {% if m.category or m.path == "/projects/" %}dropdown{% endif %}" {% if m.path == '/users/logout/' %}style="margin-top: 30px;" {% endif %}>
                     <div style="position: relative;">
                         <a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="pajax menu_link menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>
                             {% if m.path == '/projects/' %}<i class="fa fa-tasks sidebar_icon fa-fw"></i>{% endif %}
@@ -30,8 +30,8 @@
                         {% endif %}</div>
                 {% if m.category %}
                     <ul class="submenu dropdown{{ k }}" >
-                    {% for sub in m.category %}
-                        <li data-submenu="menu{{sub.path|replace({"/":"_"})}}" class="menu_sub_li menu{{sub.path|replace({"/":"_"})}} {% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}" style="text-indent: 0;">
+                    {% for s,sub in m.category %}
+                        <li id="menu_sub_li_{{ s }}" class="menu_sub_li menu{{sub.path|replace({"/":"_"})}} {% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}" style="text-indent: 0;">
                             <a {% if sub.clickable %}href="{{sub.path}}"{% else %}href='javascript:void(0);'{% endif %} class="pajax menu_sub_link menu{{sub.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{sub.name}}</a>
                         </li>
                     {% endfor %}
