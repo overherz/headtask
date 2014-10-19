@@ -13,6 +13,7 @@ var io = require('../../node_modules/socket.io')(http);
 var template = require('../../node_modules/swig');
 
 vm.runInThisContext(fs.readFileSync(__dirname + "/notifications_data.js"));
+vm.runInThisContext(fs.readFileSync(path.join(__dirname, '../../','/langs/ru.js'), 'utf8'));
 http.listen(9900);
 
 http.on('error', function (e) {
@@ -314,6 +315,13 @@ function notify(last_id)
     });
 }
 
+function get_from_lang(key,vars)
+{
+    if (lang[key]) return lang[key];
+    else return lang['dictionary_not_found'];
+}
+
+var logs_template = template.compileFile(path.join(__dirname, '../..','/applications/projects/layouts/logs/sidebar_row.html'));
 function notify_logs(last_id_logs)
 {
     if (!last_id_logs) last_id_logs = "0";
@@ -331,6 +339,15 @@ function notify_logs(last_id_logs)
 
         for(var i = 0; i < res.length; i++){
             res[i].text = remake_link(_.escape(res[i].text));
+            var renderedHtml = logs_template({
+                l : {
+                    type : res[i].type,
+                    type_lang : get_from_lang("type_"+res[i].type),
+                    action : res[i].action,
+                    text : res[i].text
+                },
+                not_show : true
+            });
             for (key in transport) {
                 if (res[i].type == 'task' && res[i].assigned != key && res[i].creater_task != key) continue;
                 if (res[i].id_user == key) continue;
@@ -338,7 +355,7 @@ function notify_logs(last_id_logs)
                 if (users_projects[key].indexOf(res[i].id_project) != -1)
                 {
                     for (socketid in transport[key]) {
-                        io.sockets.connected[socketid].emit('logs', {message: res[i]});
+                        io.sockets.connected[socketid].emit('logs', {message: res[i],sidebar:renderedHtml});
                     }
                 }
             }

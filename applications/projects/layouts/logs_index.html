@@ -4,7 +4,7 @@
 
 {% block context %}
     <div class="get_script" style="display: none;" data-path="{{app.path('projects','logs.js')}}"></div>
-
+    {% include "/source/crumbs.html" %}
 <form action="" id="search_form" method="post" class="form-horizontal user_tasks" style="margin-bottom:20px;">
     <input type="hidden" name="page" value="">
     <table class="table table_style no_style" style="width: auto;margin-top: 0">

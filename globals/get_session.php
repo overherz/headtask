@@ -26,6 +26,7 @@ class get_session extends \Global_module
                 session_start();
             }
 
+            if (\Router::application() == "users" && \Router::controller() == "recovery") return false;
             if (\Router::application() == "users" && \Router::controller() == "registration") return false;
             if (\Router::application() == "captcha" && \Router::controller() == "get_image") return false;
             if (\Router::application() == "users" && ($_POST['act'] == "lost_pass" || $_POST['act'] == "get_lost_pass")) return false;

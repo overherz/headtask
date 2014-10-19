@@ -51,7 +51,7 @@ class recovery extends \Controller {
             }
             else $error = $data['error'];
         }
-        $this->layout_show("recovery.html",array('id' => $this->id,'success' => $success,'error' => $error,'change' => $change));
+        $this->layout_show("recovery.html",array('id' => $this->id,'success' => $success,'error' => $error,'change' => $change,'no_sidebars' => true));
     }
 
     function add_recovery($email)

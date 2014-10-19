@@ -3,6 +3,7 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block context %}
+    {% include "/source/crumbs.html" %}
 <div id="projects_info"></div>
     {{ user_tasks|raw }}
 

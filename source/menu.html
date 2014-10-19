@@ -38,7 +38,7 @@
                     </ul>
                 {% endif %}
                     {% if m.path == "/projects/" %}
-                        <ul id="project_panel_result" class="submenu dropdown{{ k }}" >[[projects__get_projects]]</ul>
+                        <ul id="project_panel_ul" style="max-height: 300px;overflow-x:hidden;overflow-y: auto;" class="submenu dropdown{{ k }}" >[[projects__get_projects]]</ul>
                     {% endif %}
                 </li>
             {% endif %}

@@ -63,7 +63,7 @@ function make_upload()
             {
                 show_message("success",data.files[0].name+" успешно загружен");
                 $("#no_file").hide();
-                $("#files_table tr:first").after(res.success);
+                $("#files_table > tbody").prepend(res.success);
                 activate_fancy();
             }
         },

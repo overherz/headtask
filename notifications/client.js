@@ -6,15 +6,6 @@ $(document).ready(function(){
     var chat_with = get_opponent(),
         connect = false;
 
-    var langs = { 'project' : 'Проект',
-        'task' : 'Задача',
-        'file' : 'Файл',
-        'news' : 'Новость',
-        'wiki' : 'Wiki',
-        'comment' : 'Комментарий',
-        'forum' : 'Форум'
-    };
-
     var icons = {
         'add': '<i class="fa fa-plus" style="color:#5cb85c;font-size: 14px;"></i>',
         'edit': '<i class="fa fa-pencil" style="color:#5bc0de;"></i>',
@@ -46,7 +37,14 @@ $(document).ready(function(){
 
     socket.on('logs',function(data){
         sounds.notification.trigger('play');
-        show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;font-size:12px;'>"+langs[data.message.type]+"</span>"+icons[data.message.action]+" "+data.message.text,true,false,false,true);
+        if ($("#sidebar_right").width() == 0)
+            show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;font-size:12px;'>"+lang[data.message.type]+"</span>"+icons[data.message.action]+" "+data.message.text,true,false,false,true);
+
+        $(".logs_table_sidebar:last").fadeOut("slow",function(){
+            $(this).remove();
+            $("#sidebar_right .mCSB_container").prepend(data.sidebar).mCustomScrollbar("update");
+            $(".logs_table_sidebar:hidden").fadeIn("slow");
+        });
     });
 
     socket.on('connect_error',function(){

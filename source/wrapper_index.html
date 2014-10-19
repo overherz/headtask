@@ -33,22 +33,7 @@
             </div>
         </div>
     </div>
-    <div id="sidebar_right">
-        {% for l in globals.logs.logs %}
-        <div class="logs_table_sidebar" style="clear: both;">
-            <div style="width: 22px;text-align: center;display: inline-block;">
-                <span class="label log_{{ l.type }}" style="margin-top: 2px;text-overflow: ellipsis;overflow: hidden;">{{ ("type_"~l.type)|lang|first }}</span>
-                {% if l.action == 'add' %}<i class="fa fa-plus" style="color:#5cb85c;"></i>
-                {% elseif l.action == 'edit' %}<i class="fa fa-pencil" style="color:#5bc0de;"></i>
-                {% elseif l.action == 'delete' %}<i class="fa fa-trash-o" style="color:#d9534f;"></i>
-                {% endif %}
-            </div>
-            <div {% if l.type == 'file' %}class="nopajax" {% endif %} style="overflow:hidden;font-size: 12px;padding-left: 5px;display:inline-block;vertical-align:top;width: 263px;">
-                    {{l.text|raw}}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+    {% include "/source/sidebar_right.html" %}
 </div>
 <audio id="sound_notification" src="/source/js/sound_manager/sound.mp3" type="audio/mp3"></audio>
 
@@ -75,10 +60,10 @@
             scrollInertia: 0,
             autoHideScrollbar: true,
             mouseWheel:{ preventDefault: true },
-            autoExpandScrollbar: true,
+            autoExpandScrollbar: true
         });
 
-        $("#sidebar-wrapper").mCustomScrollbar({
+        $("#project_panel_ul").mCustomScrollbar({
             axis:"y",
             theme:"light-3",
             scrollInertia: 0,
@@ -87,7 +72,6 @@
             autoExpandScrollbar: true
         });
 
-        //$(document).pjax('.pajax', '#pajax');
         if ($.support.pjax) {
             $.pjax.defaults.timeout = 1500;
 
@@ -201,12 +185,21 @@
                 {
                     id_dropdown = this_id_dropdown;
                     var position = $(this).position();
-                    var html = $(".dropdown"+id_dropdown).clone().addClass('clone').show();
+                    var html = $(".dropdown"+id_dropdown).mCustomScrollbar("destroy").clone().addClass('clone').show();
                     html.find("a,li").show();
                     if ($(this).find('.menu_projects_').length == 0) html.css('paddingTop',position.top);
                     $(this).css('backgroundColor','#333');
                     show_overlay();
                     $("body").append(html);
+                    $("#project_panel_ul.submenu.clone").css({'max-height':'100%','height':'100%'})
+                    .mCustomScrollbar({
+                        axis:"y",
+                        theme:"light-3",
+                        scrollInertia: 0,
+                        autoHideScrollbar: true,
+                        mouseWheel:{ preventDefault: true },
+                        autoExpandScrollbar: true
+                    });
                 }
                 else id_dropdown = false;
             }
@@ -232,6 +225,14 @@
                 if ($(this).hasClass('fa-caret-right'))
                 {
                     $(this).removeClass('fa-caret-right').addClass('fa-caret-left')
+                    $("#project_panel_ul").mCustomScrollbar("destroy").mCustomScrollbar({
+                        axis:"y",
+                        theme:"light-3",
+                        scrollInertia: 0,
+                        autoHideScrollbar: true,
+                        mouseWheel:{ preventDefault: true },
+                        autoExpandScrollbar: true
+                    });
                 }
                 else
                 {
@@ -305,8 +306,8 @@
         {
             clones.remove();
             hide_overlay();
-            $(".dropdown").css('backgroundColor','');
         }
+        $(".dropdown").css('backgroundColor','');
     }
 
     {% if globals.user.id_user %}

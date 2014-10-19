@@ -800,6 +800,7 @@ td .progress {
 #sidebar-wrapper {
     background: #333;
     left: 0;
+    overflow-y: hidden;
 }
 
 #sidebar_right {
@@ -1297,7 +1298,7 @@ input[disabled], select[disabled], textarea[disabled] {
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    background: #333;
+    background: #444;
     top: 0;
     min-width: 150px;
     max-width: 200px;
@@ -1328,6 +1329,35 @@ input[disabled], select[disabled], textarea[disabled] {
     border-bottom: 2px solid #000;
 }
 
+.logs_table_sidebar_block {
+    width: 42px;
+    text-align: center;
+    float: left;
+    height: 20px;
+}
+
+.logs_table_sidebar_span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+    width: 25px;
+    padding: 2px !important;
+    margin-top: 3px;
+}
+
+.logs_table_sidebar_block .fa {
+    margin-top: -3px;
+    vertical-align: 3px;
+    font-size: 12px;
+}
+
+.logs_table_sidebar_text {
+    overflow:hidden;
+    font-size: 13px;
+    padding-left: 5px;
+    vertical-align:top;
+}
+
 .pagination > li > a, .pagination > li > span {
     padding: 3px 6px;
 }
@@ -1336,6 +1366,7 @@ input[disabled], select[disabled], textarea[disabled] {
     width: 290px;
     border-bottom: 1px dashed #999;
     padding: 2px 0;
+    clear: both;
 }
 
 #sidebar_right .mCSB_container {
@@ -1347,15 +1378,15 @@ input[disabled], select[disabled], textarea[disabled] {
     right: auto;
 }
 
-#sidebar-wrapper .mCSB_container {
+#sidebar-wrapper .mCSB_container,.submenu.clone .mCSB_container {
     margin: 0 0 0 0;
 }
 
-#sidebar-wrapper .mCSB_scrollTools_vertical {
+#sidebar-wrapper .mCSB_scrollTools_vertical,.submenu.clone .mCSB_scrollTools_vertical {
     right: -6px;
     left: auto;
 }
 
-#sidebar-wrapper .mCSB_dragger_bar, #sidebar_right .mCSB_dragger_bar {
+#sidebar-wrapper .mCSB_dragger_bar, #sidebar_right .mCSB_dragger_bar,.submenu.clone .mCSB_dragger_bar {
     background: orange;
 }

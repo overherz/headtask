@@ -10,7 +10,7 @@ class get_logs extends \Global_module
     function run_module()
     {
         $logs_cr = \Controller::get_controller("projects","logs");
-        $logs_cr->limit = 20;
+        $logs_cr->limit = 30;
         $logs = $logs_cr->get_logs();
         \Controller::set_global("logs",$logs);
     }
