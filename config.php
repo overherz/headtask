@@ -6,7 +6,7 @@ $INFO['sql_database'] = 'tasker';
 $INFO['sql_user'] = 'overherz';
 $INFO['sql_pass'] = 'jckjck';
 $INFO['dev_mode'] = 1;
-$INFO['error_to_mail'] = 0;
+$INFO['error_to_mail'] = 1;
 $INFO['antiddos'] = 0;
 
 $INFO['domain_name'] = "tasker";

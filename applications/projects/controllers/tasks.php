@@ -124,10 +124,10 @@ class tasks extends \Controller {
                 }
 
                 $query = $this->db->prepare("select c.*
-                from projects_tasks_to_categories as tc
-                LEFT JOIN projects_tasks_categories as c ON tc.id_category=c.id
-                where id_task=?
-            ");
+                    from projects_tasks_to_categories as tc
+                    LEFT JOIN projects_tasks_categories as c ON tc.id_category=c.id
+                    where id_task=? order by c.name ASC
+                ");
                 $query->execute(array($task['id']));
                 while ($row = $query->fetch())
                 {

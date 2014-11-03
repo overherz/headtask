@@ -250,7 +250,16 @@ $(document).ready(function ($) {
             $(this).css('display', 'none');
         }
 
-        CKEDITOR.replace('comment',{toolbar:'Forum',height:200, on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+        var editor = CKEDITOR.replace('comment',{toolbar:'Forum', on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+
+        editor.on( 'paste', function( evt ) {
+            var data = evt.data;
+            data.dataValue = data.dataValue.replace(
+                /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
+            // Text could be pasted, but you transformed it into HTML so update that.
+            data.type = 'html';
+        });
+
         CKEDITOR.instances.comment.on( 'key', function (evt) {
             var kc = evt.data.keyCode,
                 csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
@@ -424,7 +433,15 @@ function init_ckeditor()
     {
         $(".ckeditor").each(function(){
             var name = $(this).attr('name');
-            CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
+            var editor = CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
+
+            editor.on( 'paste', function( evt ) {
+                var data = evt.data;
+                data.dataValue = data.dataValue.replace(
+                    /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
+                // Text could be pasted, but you transformed it into HTML so update that.
+                data.type = 'html';
+            });
         });
     }
 }

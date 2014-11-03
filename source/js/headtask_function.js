@@ -20,7 +20,7 @@ $(document).ready(function($) {
     if ($.support.pjax) {
         $.pjax.defaults.timeout = 1500;
 
-        $(document).on('click', '.pajax, .logs_table td:not(".nopajax") a', function(event) {
+        $(document).on('click', '.pajax, .logs_table td:not(".nopajax") a, .logs_table_sidebar_text:not(".nopajax") a', function(event) {
             if ($(this).hasClass('menu_link'))
             {
                 menu_parent = $(this).parent().parent();

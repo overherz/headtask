@@ -7,7 +7,7 @@
         <th>Задача</th>
         {% if dashboard %}<th><i class="fa fa-comment"></i></th>{% endif %}
         <th>Статус</th>
-        {% if dashboard %}<th>Делегировано</th>{% endif %}
+        {% if dashboard %}<th>Исполнитель</th>{% endif %}
         <th><i class="fa fa-calendar"></i></th>
         {% if id_project %}<th></th>{% endif %}
     </tr>
@@ -29,7 +29,7 @@
             {% endif %}
             <td><a href="/projects/tasks/show/{{task.id}}/" class="pajax {% if task.task_creater == globals.user.id_user or task.id_user == globals.user.id_user %}own_task{% endif %}">{{task.name}}</a>
                 {% if task.cats %}
-                    {% for k in task.cats %}
+                    {% for k,name in task.cats %}
                         <div style="margin-bottom:2px;display: inline-block;"><span class="label label-cat" style="background: {{ cats[k].color }};color: {{ cats[k].color_text }}">{{ cats[k].name }}</span></div>
                     {% endfor %}
                 {% endif %}
@@ -50,7 +50,7 @@
             {% if dashboard %}
             <td style="width: 1px;white-space: nowrap;">
                 {% if globals.user.id_user == task.assigned %}
-                    <span class="user_name">мне</span>
+                    <span class="user_name">я</span>
                 {% else %}
                 <a href="/users/~{{task.assigned}}/" style="color:{{ task.color }} !important;" class="user_name" title="{{ task.group_name }}">{{task.assigned_name}}</a>
                 {% endif %}

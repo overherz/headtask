@@ -149,19 +149,19 @@ class users extends \Controller {
             if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
             $query = $this->db->prepare("select u.*,g.color,g.name as group_name,pu.role,
-            u.last_user_action,pu.description,
-            GROUP_CONCAT(r.id_right order by rg.id_access_group SEPARATOR ',') as rights
-            from projects_users as pu
-            LEFT JOIN users as u ON pu.id_user=u.id_user
-            LEFT JOIN groups as g ON u.id_group=g.id
-            LEFT JOIN projects_rights_users as r ON r.id_user=u.id_user
-            LEFT JOIN projects_access_rights as rg ON r.id_right = rg.id
-            {$where}
-            group by u.id_user
-            order by last_name ASC
-            LIMIT {$this->limit}
-            OFFSET {$paginator->get_range('from')}
-        ");
+                u.last_user_action,pu.description,
+                GROUP_CONCAT(r.id_right order by rg.id_access_group SEPARATOR ',') as rights
+                from projects_users as pu
+                LEFT JOIN users as u ON pu.id_user=u.id_user
+                LEFT JOIN groups as g ON u.id_group=g.id
+                LEFT JOIN projects_rights_users as r ON r.id_user=u.id_user and r.id_project = pu.id_project
+                LEFT JOIN projects_access_rights as rg ON r.id_right = rg.id
+                {$where}
+                group by u.id_user
+                order by last_name ASC
+                LIMIT {$this->limit}
+                OFFSET {$paginator->get_range('from')}
+            ");
             $query->execute();
             while ($row = $query->fetch()) {
                 $ids[] = $row['id_user'];

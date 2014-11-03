@@ -68,7 +68,7 @@ function pr($a)
         $a = $a + array('methods' => $methods);
         echo "<pre style='background:#fff;padding-top: 50px;margin-left:250px;'>".print_r($a,true)."</pre>";
     }
-    else echo "<pre style='background:#fff;padding-top: 50px;'>{$a}</pre>";
+    else echo "<pre style='background:#fff;padding-top: 50px;margin-left:250px;'>{$a}</pre>";
 }
 
 function send_mail($from, $to, $subject, $message, $alias)
@@ -91,19 +91,19 @@ function debug_mail($text=false)
         $res = "<b>Ошибка на странице:</b> ".WEBROOT.mb_substr($_SERVER['REQUEST_URI'],1)."<br>";
         $res .= $text."<br>";
         if($_SERVER['REMOTE_ADDR']) $res.="<b>IP:</b> ".$_SERVER['REMOTE_ADDR']."<br>";
-        $user = $_SESSION['user']?$_SESSION['user']['email'] : $_SERVER['PHP_AUTH_USER'];
+        $user = $_SESSION['user'] ? $_SESSION['user']['email'] : $_SERVER['PHP_AUTH_USER'];
         if($user) $res .= "<b>Пользователь:</b> ".$user."<br>";
-        if($_SERVER['HTTP_USER_AGENT']) $res.="<b>Агент:</b> ".$_SERVER['HTTP_USER_AGENT']."<br>";
+        if($_SERVER['HTTP_USER_AGENT']) $res .= "<b>Агент:</b> ".$_SERVER['HTTP_USER_AGENT']."<br>";
         if($_SERVER['HTTP_REFERER']) {
-            $url=parse_url($_SERVER['HTTP_REFERER']);
-            $res.="<b>Переход с:</b> <a href='".$_SERVER['HTTP_REFERER']."'>".$url['host']."</a><br><br>";
+            $url = parse_url($_SERVER['HTTP_REFERER']);
+            $res .= "<b>Переход с:</b> <a href='".$_SERVER['HTTP_REFERER']."'>".$url['host']."</a><br><br>";
         }
-        if($_SERVER['REQUEST_TIME']) $res.="<b>Зафиксировано:</b> ".date("d.m.Y, H:i:s",$_SERVER['REQUEST_TIME'])."<br><br><b>";
+        if($_SERVER['REQUEST_TIME']) $res .= "<b>Зафиксировано:</b> ".date("d.m.Y, H:i:s",$_SERVER['REQUEST_TIME'])."<br><br>";
 
-        $res .= get_resources(false,true);
+        $res .= get_resources(AJAX,true);
 
         if($_REQUEST) {
-            $res.="<br><br><b><b>REQUEST:</b> <br>";
+            $res.="<br><br><b>REQUEST:</b> <br>";
             foreach ($_REQUEST as $key=>$value) $res.="[{$key}] = {$value}<br>";
             $res.="<br><br>";
 
@@ -179,13 +179,9 @@ function get_resources($ajax=false,$return=false)
     $count_error = 0;
     $array = $ajax ? $_SESSION['dev'] : $GLOBALS['dev'];
 
-    if (count($array['queries']) > 0 )
+    if ($array['queries_error'])
     {
-        foreach ($array['queries'] as &$g_v)
-        {
-            $g_v = color_query($g_v);
-            if ($g_v['error'][2] != "") $count_error++;
-        }
+        $count_error = $array['queries_error'];
     }
 
     $count_queries = count($array['queries']);
@@ -265,6 +261,10 @@ function shutdown()
         }
         else debug($error,true,true);
     }
+    else
+    {
+        if ($GLOBALS['dev']['queries_error']) debug_mail();
+    }
 }
 
 
@@ -273,7 +273,6 @@ function warning_handler($errno, $errstr, $errfile, $errline)
     if (!(error_reporting() & $errno)) {
         return;
     }
-
     debug(array(
         'message' => $errstr,
         'file' => $errfile,

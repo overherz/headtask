@@ -1,5 +1,5 @@
 {% extends ajax_data ? "/source/ajax_index.html" : "/source/index.html" %}
-{% block title %}{{user.fio}} {{user.nickname}}{% endblock %}
+{% block title %}{{user.fio}}{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{ app.path('/source/css/jcrop/','jquery.Jcrop.css',true) }}">
     <link rel="stylesheet" type="text/css" href="{{app.path('users','users.css')}}">

@@ -265,7 +265,7 @@ class projects extends \Controller {
 
     function get_categories($id_project,$for_filter=false)
     {
-        $query = $this->db->prepare("select * from projects_tasks_categories where id_project=?");
+        $query = $this->db->prepare("select * from projects_tasks_categories where id_project=? order by name ASC");
         $query->execute(array($id_project));
         if ($for_filter)
         {

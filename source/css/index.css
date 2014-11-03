@@ -1371,6 +1371,10 @@ input[disabled], select[disabled], textarea[disabled] {
 }
 
 #sidebar_right .mCSB_container {
+    margin: 0 0 0 0;
+}
+
+#sidebar_right_content {
     margin: 0 0 0 10px;
 }
 

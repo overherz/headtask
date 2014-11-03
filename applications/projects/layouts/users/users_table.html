@@ -1,76 +1,71 @@
-{% include '/source/jpaginator_boot.html' %}
+<div>{% include '/source/jpaginator_boot.html' %}</div>
 
-<table class="table table-hover table_style no_padding_right no_padding_left">
-    <thead>
-    <tr>
-        <th style="width: 100px;"></th>
-        <th>Имя</th>
-        <th>Права</th>
-        <th style="width: 10px;">Статус</th>
-        <th style="width: 200px;">Контакты</th>
-        <th style="width: 1px;">Активность</th>
-        {% if access.users %}<th></th>{% endif %}
-    </tr>
-    </thead>
-    <tbody>
-    {% for u in users %}
-        <tr {% if u.role == 'manager' %}class="success"{% endif %} id="tr_user{{u.id_user}}">
-            <td style="text-align: center;"><a href="/users/~{{u.id_user}}/" class="pajax">{% if u.avatar %}<img src="/uploads/users/ava_small/{{u.avatar|real_path}}">{% else %}<img src='/source/images/no-ava-small.jpg' class="img-polaroid">{% endif %}</a></td>
-            <td>
-                <div style="margin-bottom: 5px;"><a href="/users/~{{u.id_user}}/" class="pajax" style="color:{{ u.color }};font-weight: bold;" title="{{ u.group_name }}">{{u.fio}}</a>
-                    <div style="font-weight: bold;">
-                        {{ ('role_'~u.role)|lang }}
-                    </div>
-                <div class="nickname">{{ u.description }}</div>
-                </div>
-                <span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].all|default(0)}}</span> {{ "stats_tasks_all"|lang }}</span>
-                <span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].new|default(0)}}</span> {{ "stats_tasks_new"|lang(stats[u.id_user].new|default(0)) }}</span>
-                <span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}</span>
-                <span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(stats[u.id_user].closed|default(0)) }}</span>
-                <span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats[u.id_user].rejected|default(0)) }}</span>
-            </td>
-            <td>
-                {% if u.role == 'manager' %}
-                все
-                {% else %}
-                    <i class="fa fa-info-circle get_info" rel="popover" data-html='true' data-content="{{task.message}}
+{% for u in users %}
+    <div class="users_div" style="height: 200px;overflow: hidden;">
+        <div style="width: 100px;text-align: center;" class="users_sub_div">
+            <a href="/users/~{{u.id_user}}/" class="pajax">
+                <img class="users_avatar" src="{% if u.avatar %}/uploads/users/ava_middle/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}" title="{{u.fio}}">
+            </a>
+            <div>
+                <span style="font-weight: bold;">{{ ('role_'~u.role)|lang }}</span>
+                {% if u.role != 'manager' %}
+
+                        <i class="fa fa-info-circle get_info" rel="popover" data-html='true' data-content="{{task.message}}
                     {% for r in u.rights %}
                         {% if group != rights[r].id_access_group %}
                             {% set group = rights[r].id_access_group %}
                                 {% if not loop.first %}<hr style='margin: 5px 0;'>{% endif %}
                         {% endif %}
                         {{ rights[r].name }}{% if not loop.last %} <br> {% endif %}
+                    {% else %}
+                        права отсутствуют
                     {% endfor %}
                     "></i>
                 {% endif %}
-            </td>
-            <td style="text-align: center;">
-                <div class="get_ms_status user_offline big" data-id="{{u.id_user}}"></div>
-            </td>
-            <td>
-                {% if u.skypename %}<div><span style="font-weight: bold;">Skype:</span> <a href="skype:{{u.skypename}}?chat">{{ u.skypename }}</a>{% endif %}</div>
-                {% if u.mphone %}<div><span style="font-weight: bold;">М. тел:</span> {{ u.mphone }}{% endif %}</div>
-                {% if not u.skypename and not u.mphone %}&nbsp;{% endif %}
-            </td>
-            <td>
-                {% if u.last_user_action %}{{ u.last_user_action|date('d.m.Y H:i') }}
-                {% else %}дата неизвестна
+            </div>
+            <div class="btn-group" style="margin-top: 20px;">
+                <a class="btn btn-primary btn-sm pajax" href="/projects/users/edit/{{ project.id }}/{{ u.id_user }}/"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-primary btn-sm" href="" delete_project_user="{{ u.id_user }}"><i class="fa fa-trash-o"></i></a>
+            </div>
+        </div>
+        <div style="width: 170px;padding-left: 10px;" class="users_sub_div">
+            <div style="margin-top: 0;" class="user_name"><a href="/users/~{{u.id_user}}/" style="color:{{ u.color }};" class="pajax">{{u.last_name}} {{u.first_name}}</a></div>
+            <small><div class="nickname">{{ u.description }}</div>
+                <div class="get_ms_status user_offline" data-id="{{u.id_user}}"></div>
+                {% if u.last_user_action %}
+                    {% if ''|date('d.m.Y') == u.last_user_action|date('d.m.Y') %}<span style="color:red">сегодня</span> в {{ u.last_user_action|date('H:i') }}
+                    {% else %}
+                        {{ u.last_user_action|date('d.m.Y H:i') }}
+                    {% endif %}
                 {% endif %}
-            </td>
-            {% if access.users %}
-            <td style="width: 75px;">
-                <div class="btn-group pull-right">
-                    <a class="btn btn-primary btn-sm pajax" href="/projects/users/edit/{{ project.id }}/{{ u.id_user }}/"><i class="fa fa-pencil"></i></a>
-                    <a class="btn btn-primary btn-sm" href="" delete_project_user="{{ u.id_user }}"><i class="fa fa-trash-o"></i></a>
+            </small>
+            <div><span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].all|default(0)}}</span> {{ "stats_tasks_all"|lang }}</span></div>
+            <div><span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].new|default(0)}}</span> {{ "stats_tasks_new"|lang(stats[u.id_user].new|default(0)) }}</span></div>
+            <div><span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].in_progress|default(0)}}</span> {{ "stats_tasks_progress"|lang }}</span></div>
+            <div><span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].closed|default(0)}}</span> {{ "stats_tasks_closed"|lang(stats[u.id_user].closed|default(0)) }}</span></div>
+            <div><span style="white-space: nowrap;"><span class="label label-info">{{stats[u.id_user].rejected|default(0)}}</span> {{ "stats_tasks_rejected"|lang(stats[u.id_user].rejected|default(0)) }}</span></div>
+        </div>
+        <div style="width: 160px;padding-left: 10px;" class="users_sub_div">
+            <div style="font-size: 12px;">
+                <div>
+                    <a>Написать сообщение</a>
                 </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% else %}
-        <tr><td colspan="7">
-            <span style="margin-left: 10px;">участников нет</span>
-        </td></tr>
-    {% endfor %}
-    </tbody>
-</table>
-{% include '/source/jpaginator_boot_if.html' %}
+                <div>
+                    <a>Видеозвонок</a>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <a>Отправить письмо</a>
+                </div>
+
+                <div>
+                    {% if u.skypename %}<span style="font-weight: bold;">Skype: </span><a href="skype:{{u.skypename}}?chat">{{ u.skypename }}</a>
+                    {% endif %}
+                </div>
+                <div>
+                    {% if u.mphone %}<span style="font-weight: bold;">М. тел:</span> {{ u.mphone }}{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<div style="margin-right: 15px;">{% include '/source/jpaginator_boot_if.html' %}</div>
