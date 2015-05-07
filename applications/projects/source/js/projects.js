@@ -18,7 +18,7 @@ $(document).ready(function ($) {
                 user_api(request, function (data) {
                     show_message("success", "Проект удален");
                     hide_popup();
-                    redirect("/projects/", 1);
+                    redirect("/projects/", 2);
                 },function(res){
                     show_message('error',res.text);
                     $("#captcha_div").html(res.captcha_html);

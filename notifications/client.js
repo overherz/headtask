@@ -44,7 +44,7 @@ $(document).ready(function(){
 
         $(".logs_table_sidebar:last").fadeOut("slow",function(){
             $(this).remove();
-            $("#sidebar_right .mCSB_container").prepend(data.sidebar).mCustomScrollbar("update");
+            $("#sidebar_right_content").prepend(data.sidebar).mCustomScrollbar("update");
             $(".logs_table_sidebar:hidden").fadeIn("slow");
         });
     });
@@ -246,6 +246,11 @@ $(document).ready(function(){
 });
 
 var status_t_int = false;
+
+function set_user_projects(id_user)
+{
+    socket.emit('set_user_projects',{real_id: id_user});
+}
 
 function get_statuses()
 {

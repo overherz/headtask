@@ -298,6 +298,18 @@ class users extends \Controller {
 
         if (!$res['error'])
         {
+            $log = $this->get_controller("projects","logs");
+            $u_ct = $this->get_controller("users","users");
+            $user = $u_ct->get_user($id_user);
+            $user_name = build_user_name($user['first_name'],$user['last_name']);
+            if ($_POST['id'])
+            {
+                $log->set_logs("users",$_POST['project'],"Отредактирован <a href='/users/{$id_user}'>{$user_name}</a>","edit");
+            }
+            else
+            {
+                $log->set_logs("users",$_POST['project'],"Добавлен <a href='/users/{$id_user}'>{$user_name}</a>","add");
+            }
             $this->db->commit();
             $res['success'] = $_POST['project'];
         }

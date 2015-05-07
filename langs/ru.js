@@ -7,5 +7,6 @@ var lang = {
     'type_news' : 'Новость',
     'type_wiki' : 'Wiki',
     'type_comment' : 'Комментарий',
-    'type_forum' : 'Форум'
+    'type_forum' : 'Форум',
+    'type_users' : 'Пользователи'
 };

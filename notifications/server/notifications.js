@@ -109,12 +109,7 @@ io.on('connection', function (client) {
                 if (!transport[real_id]) transport[real_id] = {};
                 transport[real_id][client.id] = 1; // Куда отсылать, зная только id пользователя
                 users[incoming.hash] = real_id; // Соответствие хэша реальному id
-                get_user_projects(real_id,function(data){
-                    var result = data.split(",").map(function (x) {
-                        return parseInt(x);
-                    });
-                    users_projects[real_id] = result;
-                });
+                set_user_projects(real_id);
                 //get_count_of_new_messages(real_id,function(count){
                 //    client.emit('set_count_of_new_messages', {count: count});
                 //});
@@ -128,6 +123,10 @@ io.on('connection', function (client) {
                 client.disconnect();
             }
         });
+    });
+
+    client.on('set_user_projects',function(data) {
+        set_user_projects(data.real_id);
     });
 
     client.on('new_message', function(message) {
@@ -215,6 +214,16 @@ io.on('connection', function (client) {
     });
 });
 
+
+function set_user_projects(real_id)
+{
+    get_user_projects(real_id,function(data){
+        var result = data.split(",").map(function (x) {
+            return parseInt(x);
+        });
+        users_projects[real_id] = result;
+    });
+}
 
 // Достает реальный id из базы
 function get_real_id(hash,callback)
@@ -326,11 +335,13 @@ function notify_logs(last_id_logs)
 {
     if (!last_id_logs) last_id_logs = "0";
     connection.query("select pl.*," +
-        " t.assigned,t.id_user as creater_task" +
+        " p.name as project_name,t.assigned,t.id_user as creater_task,tu.trash_name as trash_user_name,tp.trash_name as trash_project_name" +
         " from projects_logs as pl" +
         " LEFT JOIN projects_tasks as t ON pl.id_task = t.id" +
         " LEFT JOIN projects as p ON pl.id_project = p.id" +
-        " WHERE p.archive IS NULL and pl.id > "+last_id_logs+
+        " LEFT JOIN trash_data as tu ON pl.id_user = tu.id_for_type and tu.type = 'user'" +
+        " LEFT JOIN trash_data as tp ON pl.id_project = tp.id_for_type and tp.type = 'project'" +
+        " WHERE (p.archive IS NULL OR tu.id_for_type IS NOT NULL OR tp.id_for_type IS NOT NULL) and pl.id > "+last_id_logs+
         " group by pl.id" +
         " order by pl.created DESC LIMIT 200", function(err, res){
         if (err){
@@ -339,13 +350,9 @@ function notify_logs(last_id_logs)
 
         for(var i = 0; i < res.length; i++){
             res[i].text = remake_link(_.escape(res[i].text));
+            res[i].type_lang = get_from_lang("type_"+res[i].type);
             var renderedHtml = logs_template({
-                l : {
-                    type : res[i].type,
-                    type_lang : get_from_lang("type_"+res[i].type),
-                    action : res[i].action,
-                    text : res[i].text
-                },
+                l : res[i],
                 not_show : true
             });
             for (key in transport) {

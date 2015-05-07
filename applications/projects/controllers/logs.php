@@ -4,6 +4,7 @@ namespace projects;
 class logs extends \Controller {
 
     public $limit = 30;
+    public $without_user = false;
 
     function default_method()
     {
@@ -25,7 +26,7 @@ class logs extends \Controller {
        // pr($logs['paginator']);
 
         $data = array(
-            'types' => array('project','task','file','news','comment','forum'),//$this->db->get_enum("projects_logs","type"),
+            'types' => array('project','task','file','news','comment','forum','users'),//$this->db->get_enum("projects_logs","type"),
             'logs' => $logs['logs'],
             'paginator' => $logs['paginator'],
             'start' => date("d.m.Y",$start),
@@ -149,7 +150,6 @@ class logs extends \Controller {
 
         if ($type)
         {
-
             if (!is_array($type))
             {
                 $old_type = $type;
@@ -190,6 +190,11 @@ class logs extends \Controller {
                 $search_ar[] = "pl.text LIKE ".$s;
             }
             $where[] = "(".implode("OR ",$search_ar).")";
+        }
+
+        if ($this->without_user)
+        {
+            $where[] = "pl.id_user !=". $_SESSION['user']['id_user'];
         }
 
         if (count($where) > 0) $where_string = " AND ".implode(" AND ",$where);

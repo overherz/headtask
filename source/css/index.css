@@ -723,6 +723,14 @@ td .progress {
     padding: 4px !important;
 }
 
+.log_users {
+    background-color: #428bca;
+    border-color: #428bca;
+    color: #fff;
+    display: block;
+    padding: 4px !important;
+}
+
 .label-cat {
     padding: 1px 4px;
     border: 1px solid #ddd;
@@ -1350,6 +1358,7 @@ input[disabled], select[disabled], textarea[disabled] {
     margin-top: -3px;
     vertical-align: 3px;
     font-size: 12px;
+    margin-left: 1px;
 }
 
 .logs_table_sidebar_text {
@@ -1359,15 +1368,25 @@ input[disabled], select[disabled], textarea[disabled] {
     vertical-align:top;
 }
 
+.logs_table_sidebar_head {
+    overflow:hidden;
+    font-size: 9px;
+    vertical-align:top;
+    background: #f2f2f2;
+    text-align: right;
+    padding-right: 5px;
+    border-bottom: 1px solid #eee;
+}
+
 .pagination > li > a, .pagination > li > span {
     padding: 3px 6px;
 }
 
 .logs_table_sidebar {
-    width: 290px;
-    border-bottom: 1px dashed #999;
-    padding: 2px 0;
+    width: 295px;
     clear: both;
+    border-top: 1px solid #ccc;
+    background: #dedede;
 }
 
 #sidebar_right .mCSB_container {
@@ -1375,7 +1394,7 @@ input[disabled], select[disabled], textarea[disabled] {
 }
 
 #sidebar_right_content {
-    margin: 0 0 0 10px;
+    margin: 0 0 0 5px;
 }
 
 #sidebar_right .mCSB_scrollTools_vertical {

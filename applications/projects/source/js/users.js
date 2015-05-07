@@ -2,7 +2,7 @@ var timer_user_search = false;
 
 $(document).ready(function ($) {
 
-    $(document).on('keydown','.search_user',function(){
+    $(document).off('keydown','.search_user').on('keydown','.search_user',function(){
         clearTimeout(timer_user_search);
         timer_user_search = setTimeout(function(){
             var search = $('.search_user').val();
@@ -17,17 +17,19 @@ $(document).ready(function ($) {
         },500);
     });
 
-    $(document).on("click", ".save_user", function () {
+    $(document).off("click", ".save_user").on("click", ".save_user", function () {
         var request = $("#users_form").serialize();
         request = request + "&project=" + $("[name='id_project']").val();
+        var id_user = $("[name='new_user']").val() | $("[name='id']").val();
         user_api(request, function (data) {
             show_message("success", "Сохранено");
+            set_user_projects(id_user);
             redirect("/projects/users/"+data+"/", 1);
         });
         return false;
     });
 
-    $(document).on("click","[delete_project_user]",function(){
+    $(document).off("click","[delete_project_user]").on("click","[delete_project_user]",function(){
         var id_project = $("[name='id_project']").val();
         var id_user = $(this).attr("delete_project_user");
 
@@ -46,7 +48,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("change","input.users_checkbox",function(){
+    $(document).off("change","input.users_checkbox").on("change","input.users_checkbox",function(){
         var mode = false;
         if ($(this).is(":checked")) mode = true;
 
@@ -54,11 +56,11 @@ $(document).ready(function ($) {
         td.find("input").prop("checked",mode).trigger('refresh');
     });
 
-    $(document).on("change",".rights input:checkbox",function(){
+    $(document).off("change",".rights input:checkbox").on("change",".rights input:checkbox",function(){
         set_users_checkbox();
     });
 
-    $(document).on("change","[name='role']",function(){
+    $(document).off("change","[name='role']").on("change","[name='role']",function(){
         if($(this).val() == "manager")
         {
             $("#control-group-rights").hide();
