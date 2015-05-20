@@ -92,7 +92,7 @@ $(document).ready(function($) {
             var this_id_dropdown = $(this).data('dropdown');
             hide_submenu();
 
-            if (id_dropdown != this_id_dropdown)
+            if (typeof(this_id_dropdown) != "undefined" && id_dropdown != this_id_dropdown)
             {
                 id_dropdown = this_id_dropdown;
                 var position = $(this).position();

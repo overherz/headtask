@@ -3,7 +3,7 @@
 
         {% for k,m in globals.menu %}
             {% if k != "crumbs"%}
-                <li id='menu_li_{{ k }}' class="menu_li {% if m.active or globals.menu.crumbs[m.id] %}active{% endif %} {% if m.category or m.path == "/projects/" %}dropdown{% endif %}" {% if m.path == '/users/logout/' %}style="margin-top: 30px;" {% endif %}>
+                <li data-dropdown="{{ k }}" id='menu_li_{{ k }}' class="menu_li {% if m.active or globals.menu.crumbs[m.id] %}active{% endif %} {% if m.category or m.path == "/projects/" %}dropdown{% endif %}" {% if m.path == '/users/logout/' %}style="margin-top: 30px;" {% endif %}>
                     <div style="position: relative;">
                         <a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="pajax menu_link menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>
                             {% if m.path == '/projects/' %}<i class="fa fa-tasks sidebar_icon fa-fw"></i>{% endif %}
