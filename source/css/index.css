@@ -435,7 +435,7 @@ fieldset[disabled] .btn-oscar.active {
 
 .breadcrumbs-one.affix {
     position: fixed;
-    top: 40px;
+    top: 39px;
     left: 0;
     z-index: 101;
 }

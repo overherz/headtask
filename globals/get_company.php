@@ -11,6 +11,7 @@ class get_company extends \Global_module
     {
         if ($_SESSION['user'])
         {
+            $_SESSION['user']['current_company'] = $_SESSION['user']['current_company'] ? $_SESSION['user']['current_company'] : $_SESSION['user']['company'][0];
             if (!\Cache::connect()->get('company'))
             {
                 $query = \MyPDO::connect()->query("select * from company
@@ -21,7 +22,6 @@ class get_company extends \Global_module
                     $company[$row['id']] = $row['name'];
                 }
 
-                $_SESSION['user']['current_company'] = $_SESSION['user']['current_company'] ? $_SESSION['user']['current_company'] : $_SESSION['user']['company'][0];
                 \Controller::set_global('company',$company);
                 \Cache::connect()->set('company',$company,100);
             }

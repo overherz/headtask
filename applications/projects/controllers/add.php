@@ -60,10 +60,10 @@ class add extends \Controller {
             {
                 if ($access['access']['add_project'] || $access['access']['add_own_project'])
                 {
-                    $query = $this->db->prepare("insert into projects(name,description,url,archive,owner) values(?,?,?,?,?)");
+                    $query = $this->db->prepare("insert into projects(name,description,url,archive,owner,id_company) values(?,?,?,?,?,?)");
                     if ($_POST['owner'] || !$access['access']['add_project']) $owner = $_SESSION['user']['id_user'];
 
-                    if ($query->execute(array($_POST['name'],$_POST['description'],$_POST['url'],$_POST['archive'],$owner)))
+                    if ($query->execute(array($_POST['name'],$_POST['description'],$_POST['url'],$_POST['archive'],$owner,$_SESSION['user']['current_company'])))
                     {
                         $last_id = $this->db->lastInsertId();
                         $res['success'] = $last_id;

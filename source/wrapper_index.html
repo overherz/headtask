@@ -20,6 +20,7 @@
 
 
 
+{% if globals.user %}
 <div id="wrapper" class="{% if cookie_data.sidebar == 'toggled' %}toggled{% endif %} {% if cookie_data.sidebar2 == 'toggled2' %}toggled2{% endif %}">
     <nav class="navbar navbar-default navbar-static-top topmenu" style="">
         <span class="navbar-brand logo_color1">h<span class="brand_full">ead</span><span class="logo_color2">t<span class="brand_full">ask</span></span></span>
@@ -37,10 +38,13 @@
             {% endif %}
         </div>
     </nav>
+{% endif %}
+{% if globals.user %}
 {% block menu %}
     {% include "/source/menu.html" %}
     <i class="fa {% if cookie_data.sidebar == 'toggled' %}fa-caret-right{% else %}fa-caret-left{% endif %} left_toggle"></i>
  {% endblock %}
+{% endif %}
     <div id="page-content-wrapper">
         <div class="container-fluid" style="padding: 0;">
             <div class="row" style="margin-right: 0;">
@@ -55,10 +59,12 @@
             </div>
         </div>
     </div>
+    {% if globals.user %}
     {% block right_sidebar %}
         <i class="fa {% if cookie_data.sidebar2 == 'toggled2' %}fa-caret-left{% else %}fa-caret-right{% endif %} right_toggle"></i>
         {% include "/source/sidebar_right.html" %}
     {% endblock %}
+    {% endif %}
 </div>
 <audio id="sound_notification" src="/source/js/sound_manager/sound.mp3" type="audio/mp3"></audio>
 

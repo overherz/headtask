@@ -82,6 +82,8 @@ class projects extends \Controller {
             }
             else $where[] = "p.archive IS NULL";
 
+            $where[] = "p.id_company=".$_SESSION['user']['current_company'];
+
             if ($where) $where = "where ".implode(" and ",$where);
 
             $total = $this->db->num_rows("projects as p

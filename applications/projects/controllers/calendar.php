@@ -95,14 +95,14 @@ class calendar extends \Controller {
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
-            where p.archive IS NULL and pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL))))
+            where p.id_company=? and p.archive IS NULL and pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL))))
             and ((pt.start <= ? and pt.status IN ('new','in_progress','feedback'))
             or (pt.updated >= ? and pt.updated <= ? and pt.status = 'closed'))
             order by pt.updated DESC
         ");
 
 //            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL)))) and ((pt.start <= ?)
-        $query->execute(array($id_user,$id_user,$id_user,$date,$begin_of_day,$end_of_day));
+        $query->execute(array($_SESSION['user']['current_company'],$id_user,$id_user,$id_user,$date,$begin_of_day,$end_of_day));
         while ($row = $query->fetch())
         {
             $row['assigned_name'] = build_user_name($row['first_name'],$row['last_name'],true);
