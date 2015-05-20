@@ -212,6 +212,7 @@ class projects extends \Controller {
     //    if ($_POST['project_panel_page'] != "") $page = $_POST['project_panel_page'];
     //    else if ($id_project) $page = $this->get_number_page($id_project);
 
+        $where[] = "p.id_company=".$_SESSION['user']['current_company'];
         $where[] = "archive IS NULL";
         $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
 //        else $where[] = "(p.owner='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";

@@ -197,6 +197,8 @@ class logs extends \Controller {
             $where[] = "pl.id_user !=". $_SESSION['user']['id_user'];
         }
 
+        $where[] = "p.id_company=".$_SESSION['user']['current_company'];
+
         if (count($where) > 0) $where_string = " AND ".implode(" AND ",$where);
 
         $query = $this->db->prepare("

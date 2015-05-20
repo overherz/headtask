@@ -47,6 +47,7 @@ class registration extends \Controller {
         $query->execute(array($this->id));
         $invite = $query->fetch();
         $data['email'] = $invite['email'];
+        $data['invite'] = $invite;
         
         $this->layout_show('registration.html',$data);
         
@@ -54,10 +55,14 @@ class registration extends \Controller {
 
     function from_single_registration()
     {
-        $query = $this->db->prepare("select email,hash,date,type from recovery where hash=?");
-        $query->execute(array($this->id));
-        if (!$invite = $query->fetch()) $res['error']['global'] = "код приглашения недействителен";
-        else
+        if ($this->id != "")
+        {
+            $query = $this->db->prepare("select email,hash,date,type from recovery where hash=?");
+            $query->execute(array($this->id));
+            if (!$invite = $query->fetch()) $res['error']['global'] = "код приглашения недействителен";
+        }
+
+        if (!$res['error'])
         {
             foreach ($_POST as $k => &$v)
             {
@@ -86,13 +91,21 @@ class registration extends \Controller {
             $query->execute(array($_POST['email']));
             if ($result = $query->fetch()) $res['error']['email'] = "адрес уже занят";
 
+            if (!$invite)
+            {
+                if ($_POST['company'] == "") $res['error']['company'] = "пусто";
+            }
+
             //Проверка никнейма
             if ($_POST['nickname'] == "") $res['error']['nickname'] = "пусто";
             else if (!preg_match(iconv("utf-8","windows-1251",'/^[a-zA-Z0-9]{3,16}$/i'),iconv("utf-8","windows-1251",$_POST['nickname']))) $res['error']['nickname'] = "Неверно введен псевдоним";
 
-            $query = $this->db->prepare("select nickname from users where nickname=? LIMIT 1");
-            $query->execute(array($_POST['nickname']));
-            if ($result = $query->fetch()) $res['error']['nickname'] = "ник уже занят";
+            if ($_POST['nickname'] != "")
+            {
+                $query = $this->db->prepare("select nickname from users where nickname=? LIMIT 1");
+                $query->execute(array($_POST['nickname']));
+                if ($result = $query->fetch()) $res['error']['nickname'] = "ник уже занят";
+            }
 
             // Проверка имени
             if ($_POST['last_name'] == "") $res['error']['last_name'] = "пусто";
@@ -136,11 +149,24 @@ class registration extends \Controller {
                             $_POST['tz'],
                             $birthday)
                     )) $res['error']['global'] = "Ошибка базы данных";
+                    else $id_user = $this->db->lastInsertId();
                 }
                 else $res['error']['global'] = "Ошибка базы данных";
 
                 $query = $this->db->prepare("delete from recovery where hash=?");
                 if (!$query->execute(array($invite['hash']))) $res['error']['global'] = "Ошибка базы данных";
+
+                if (!$invite && $id_user)
+                {
+                    $query_cr_company = $this->db->prepare("insert into company(name) values(?)");
+                    if (!$query_cr_company->execute(array($_POST['company']))) $res['error']['global'] = "Ошибка базы данных";
+                    else
+                    {
+                        $id_company = $this->db->lastInsertId();
+                        $query_cr_link_to_company = $this->db->prepare("insert into company_users(id_company,id_user) values(?,?)");
+                        if (!$query_cr_link_to_company->execute(array($id_company,$id_user))) $res['error']['global'] = "Ошибка базы данных";
+                    }
+                }
 
             }
             else $res['error']['captcha_html'] = $this->get_controller("captcha")->get_captcha(6);

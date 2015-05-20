@@ -95,7 +95,7 @@ class users extends \Controller {
 
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
-            $p = $this->db->prepare("select distinct u.first_name,u.last_name,u.nickname,u.avatar,u.gender,u.id_user,gr.id as id_group,gr.name as group_name,gr.color as color,u.last_user_action
+            $p = $this->db->prepare("select distinct u.first_name,u.last_name,u.nickname,u.email,u.avatar,u.gender,u.id_user,gr.id as id_group,gr.name as group_name,gr.color as color,u.last_user_action
                     from users as u
                     LEFT JOIN groups as gr ON u.id_group=gr.id
                     {$where}

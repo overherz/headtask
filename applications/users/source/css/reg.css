@@ -2,6 +2,10 @@ body {
     background: url(/source/images/login_back.jpg) no-repeat;
 }
 
+#wrapper {
+    padding: 0;
+}
+
 #male {
     background: url("/source/images/male.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
     cursor: pointer;
@@ -47,4 +51,8 @@ body {
 
 #wrapper {
     padding-left: 0 !important;
+}
+
+.radio {
+    display: inline-block;
 }

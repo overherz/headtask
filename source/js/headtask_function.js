@@ -188,6 +188,10 @@ $(document).ready(function($) {
             }
         }
     });
+
+    $("#select_company").change(function(){
+        document.location.replace("/projects/change_company/"+$(this).val());
+    });
 });
 
 function activate_menu()

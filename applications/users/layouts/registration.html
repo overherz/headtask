@@ -9,6 +9,7 @@
     <script type ="text/javascript" src="{{ app.path('users','reg.js')}}"></script>
 {% endblock %}
 {% block menu %}{% endblock %}
+{% block right_sidebar %}{% endblock %}
 {% block body %}
     <div class="container">
         <form id="regForm">
@@ -17,6 +18,14 @@
                 <div class="panel-body">
                     <div class="alert alert-danger reg_erroru" error="global"></div>
                     <div class="alert alert-success" error="success" style="display: none;"></div>
+                    {% if not invite %}
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="company">Название компании <span error="tz" class="reg_erroru"></span></label>
+                                <input type="text" name="company" id="company" maxlength="128" class="form-control" tabindex="4">
+                            </div>
+                        </div>
+                    {% endif %}
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="email">Email <span error="email" class="reg_erroru"></span></label>

@@ -51,17 +51,14 @@ body {
     font-size: 22px;
     color: #f9840e;
     text-indent: 0;
-    position: absolute;
-    top:10px;
-    right:15px;
 }
 
 .username_in_top {
     color: #444 !important;
     text-indent: 0;
-    position: absolute;
-    top:5px;
-    right:30px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 20px;
 }
 
 .username_in_top:hover {
@@ -438,7 +435,7 @@ fieldset[disabled] .btn-oscar.active {
 
 .breadcrumbs-one.affix {
     position: fixed;
-    top: 0;
+    top: 40px;
     left: 0;
     z-index: 101;
 }
@@ -765,6 +762,7 @@ td .progress {
 
 #wrapper {
     padding-left: 0;
+    margin-top: 40px;
 }
 
 /*
@@ -816,7 +814,7 @@ td .progress {
     right: 0;
     width: 0;
     z-index: 1000;
-    box-shadow: 1px 0 0 0 rgba(0, 0, 0, 0.2) inset;
+    border-left: 1px solid #333;
 }
 
 /*
@@ -993,7 +991,7 @@ td .progress {
     font-size: 20px;
     cursor: pointer;
     z-index: 107;
-    top: 7px;
+    top: 47px;
     color: #bbb;
 }
 
@@ -1016,9 +1014,26 @@ td .progress {
     box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 
+.topmenu {
+    position: fixed;
+    width: 100%;
+    margin-top: -40px;
+    padding: 0 10px;
+    min-height: 40px;
+    height: 40px;
+}
+
 @media(min-width:1100px) {
     #wrapper {
         padding: 0 300px 0 200px;
+    }
+
+    .topmenu {
+        margin-left: -200px;
+    }
+
+    .topmenu .pull-right {
+        padding-right: 300px;
     }
 
     #wrapper.toggled {
@@ -1057,6 +1072,17 @@ td .progress {
         left: 205px;
     }
 
+    #wrapper.toggled .topmenu {
+        margin-left: 0;
+    }
+
+    #wrapper.toggled2 .topmenu {
+        margin-left: 0;
+    }
+
+    #wrapper.toggled2 .topmenu .pull-right {
+        padding-right: 0;
+    }
 
     #sidebar-wrapper {
         width: 200px;
@@ -1128,9 +1154,7 @@ td .progress {
         display: inline;
     }
 
-    #wrapper.toggled .brand_full {
-        display: none;
-    }
+
 
     #user_menu {
         display: block;

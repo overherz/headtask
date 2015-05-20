@@ -77,6 +77,8 @@ class user_tasks extends \Controller {
             $where[] = "(".implode("OR ",$search_ar).")";
         }
 
+        $where[] = "p.id_company=".$_SESSION['user']['current_company'];
+
         if (isset($_POST['status']) && $_POST['status'] != '')
         {
             foreach ($_POST['status'] as &$s) $s = $this->db->quote($s);
