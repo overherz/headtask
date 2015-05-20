@@ -31,7 +31,7 @@
                 {% endfor %}
             </select>
             {% if globals.user %}
-                <a href="/users/profile/" class="username_in_top" title="Профиль"><span>{{globals.user.fio}}</span></a>
+                <a href="/users/profile/" class="username_in_top pajax" title="Профиль"><span>{{globals.user.fio}}</span></a>
             {% endif %}
             {% if globals.user %}
                 <a href="/users/logout/" id="logout"><i class="fa fa-power-off"></i></a>

@@ -1363,7 +1363,6 @@ input[disabled], select[disabled], textarea[disabled] {
 }
 
 .logs_table_sidebar_block {
-    width: 42px;
     text-align: center;
     float: left;
     height: 20px;
@@ -1373,7 +1372,7 @@ input[disabled], select[disabled], textarea[disabled] {
     text-overflow: ellipsis;
     overflow: hidden;
     display: inline-block;
-    width: 25px;
+    width: 20px;
     padding: 2px !important;
     margin-top: 3px;
 }
@@ -1409,8 +1408,7 @@ input[disabled], select[disabled], textarea[disabled] {
 .logs_table_sidebar {
     width: 295px;
     clear: both;
-    border-top: 1px solid #ccc;
-    background: #dedede;
+    background: #f8f8f8;
 }
 
 #sidebar_right .mCSB_container {

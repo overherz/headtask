@@ -1,21 +1,7 @@
 $(document).ready(function($) {
-    $("#sidebar_right").mCustomScrollbar({
-        axis:"y",
-        theme:"dark-3",
-        scrollInertia: 0,
-        autoHideScrollbar: true,
-        mouseWheel:{ preventDefault: true },
-        autoExpandScrollbar: true
-    });
 
-    $("#project_panel_ul").mCustomScrollbar({
-        axis:"y",
-        theme:"light-3",
-        scrollInertia: 0,
-        autoHideScrollbar: true,
-        mouseWheel:{ preventDefault: true },
-        autoExpandScrollbar: true
-    });
+    init_left_bar();
+    init_right_bar();
 
     if ($.support.pjax) {
         $.pjax.defaults.timeout = 1500;
@@ -190,7 +176,7 @@ $(document).ready(function($) {
     });
 
     $("#select_company").change(function(){
-        document.location.replace("/projects/change_company/"+$(this).val());
+        document.location.href = "/projects/change_company/"+$(this).val();
     });
 });
 
@@ -248,4 +234,28 @@ function hide_submenu()
         hide_overlay();
     }
     $(".dropdown").css('backgroundColor','');
+}
+
+function init_left_bar()
+{
+    $("#project_panel_ul").mCustomScrollbar({
+        axis:"y",
+        theme:"light-3",
+        scrollInertia: 0,
+        autoHideScrollbar: true,
+        mouseWheel:{ preventDefault: true },
+        autoExpandScrollbar: true
+    });
+}
+
+function init_right_bar()
+{
+    $("#sidebar_right").mCustomScrollbar({
+        axis:"y",
+        theme:"dark-3",
+        scrollInertia: 0,
+        autoHideScrollbar: true,
+        mouseWheel:{ preventDefault: true },
+        autoExpandScrollbar: true
+    });
 }

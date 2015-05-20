@@ -42,6 +42,11 @@ $(document).ready(function(){
             show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;font-size:12px;'>"+lang["type_"+data.message.type]+"</span>"+icons[data.message.action]+" "+data.message.text,false,false,false,true);
         }
 
+        if (data.message.type == "project" || data.message.type == "users")
+        {
+            update_projects_list();
+        }
+
         $(".logs_table_sidebar:last").fadeOut("slow",function(){
             $(this).remove();
             $("#sidebar_right_content").prepend(data.sidebar).mCustomScrollbar("update");

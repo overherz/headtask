@@ -19,6 +19,9 @@ class projects extends \Controller {
             case "get_panel_page_projects":
                 $this->get_projects();
                 break;
+            case "get_projects":
+                $this->get_projects();
+                break;
             default:
                 $this->default_for_this();
         }

@@ -10,6 +10,17 @@
         {{l.text|raw}}
     </span>
     <div class="logs_table_sidebar_head">
+        <span class="pull-left">
+        {% if not date or date != l.created|date('d.m.Y') %}
+            {% set date = l.created|date('d.m.Y') %}
+            {% if ""|date('d.m.Y') == date %}
+                сегодня
+            {% else %}
+                {{ date }}
+            {% endif %}
+            {{l.created|date('H:i')}}
+        {% endif %}
+        </span>
         {% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}
     </div>
 </div>

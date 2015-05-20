@@ -70,6 +70,8 @@ $(document).ready(function ($) {
             $("#control-group-rights").show();
         }
     });
+
+    set_users_checkbox();
 });
 
 function set_users_checkbox()
