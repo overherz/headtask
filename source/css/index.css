@@ -263,14 +263,6 @@ input,textarea {
     height: 9px;
 }
 
-.user_online:before {
-    content: "";
-}
-
-.user_offline:before {
-    content: "";
-}
-
 #ui-datepicker-div {
     z-index: 100 !important;
 }
@@ -953,7 +945,6 @@ td .progress {
 }
 .navbar-brand {
     cursor: pointer;
-    float: none;
     display: inline-block;
 }
 

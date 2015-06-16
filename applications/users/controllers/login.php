@@ -57,7 +57,9 @@ class login extends \Controller {
                             $u['fio'] = build_user_name($u['first_name'],$u['last_name']);
                             $u['timezone'] = $this->get_controller("users")->get_user_timezone($u['tzOffset']);
                             $_SESSION['user'] = $u;
-                            $res['success'] = true;
+
+                            if ($_POST['redirect'] != "") $res['success']['redirect'] = $_POST['redirect'];
+                            else $res['success'] = true;
                             if (!$post) return true;
                         }
                         else $res['error']['mailconfirm'] = $login;

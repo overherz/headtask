@@ -21,8 +21,13 @@ class get_company extends \Global_module
                 $company[$row['id']] = $row['name'];
             }
 
+            if (!$company[$_SESSION['user']['current_company']])
+            {
+                $_SESSION['user']['current_company'] = $_SESSION['user']['company'][0];
+                \Controller::redirect();
+            }
+
             \Controller::set_global('company',$company);
-            \Cache::connect()->set('company',$company,100);
         }
     }
 }

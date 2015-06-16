@@ -212,6 +212,7 @@ class projects extends \Controller {
 
     function get_projects($id_project=false,$data=false)
     {
+        pr('2323');
         if ($this->get_global('id_project')) $id_project = $this->get_global('id_project');
 
     //    if ($_POST['project_panel_page'] != "") $page = $_POST['project_panel_page'];
@@ -220,6 +221,7 @@ class projects extends \Controller {
         $where[] = "p.id_company=".$_SESSION['user']['current_company'];
         $where[] = "archive IS NULL";
         $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
+        $where[] = "(p.owner ='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";
 //        else $where[] = "(p.owner='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";
 
         if ($where) $where = "where ".implode(" and ",$where);

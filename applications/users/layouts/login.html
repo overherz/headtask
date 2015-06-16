@@ -16,6 +16,7 @@
             </div>
             <div class="panel-body">
                 <input type="hidden" name="act" value="login">
+                <input type="hidden" name="redirect" value="{{ get_data.redirect|raw }}">
                 <input type="text" name="login" placeholder="Email">
                 <input type="password" name="password" placeholder="Password">
                 <div class="checkbox" style="padding-left: 0px;">

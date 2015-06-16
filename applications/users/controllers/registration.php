@@ -60,10 +60,13 @@ class registration extends \Controller {
             {
                 $c_cr = $this->get_controller("company");
                 $this->invite['company'] = $c_cr->get_company($this->invite['id_company']);
+                $u_cr = $this->get_controller("users");
+                $user = $u_cr->get_user_from_email($this->invite['email']);
             }
         }
 
         if ($this->invite && $_SESSION['user'] && $this->invite['company']) $this->add_user_to_company();
+        else if ($this->invite && $user && $this->invite['company']) $this->redirect("/users/login?redirect=/users/registration/".$this->invite['hash']);
         else if ($_POST) $this->full_registration();
         else $this->showform();
     }
@@ -114,7 +117,7 @@ class registration extends \Controller {
                 if ($this->send_activate_link($_POST['email'],$_POST['password1']))
                 {
                     $created = time();
-                    $p = $this->db->prepare("insert into users(last_name,first_name,email,pass,salt,uniq_key,gender, id_group, mailconfirm,created, tzOffset,birthday) values(?,?,?,?,?,?,?,?,?,1,?,?,?)");
+                    $p = $this->db->prepare("insert into users(last_name,first_name,email,pass,salt,uniq_key,gender,id_group,mailconfirm,created,tzOffset,birthday) values(?,?,?,?,?,?,?,?,1,?,?,?)");
                     if (!$p->execute(array(
                             $_POST['last_name'],
                             $_POST['first_name'],

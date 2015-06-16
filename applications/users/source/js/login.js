@@ -3,7 +3,8 @@ $(document).ready(function($) {
         var request = $("#login_form").serialize();
         hide_message_login();
         user_api(request,function(data){
-            redirect("/",false,true);
+            if (data.redirect != "") redirect(data.redirect,false,true);
+            else redirect("/",false,true);
         },function(data){
             if (!data.mailconfirm) show_message_login(data);
             else
