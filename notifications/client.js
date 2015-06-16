@@ -36,7 +36,7 @@ $(document).ready(function(){
     });
 
     socket.on('logs',function(data){
-        if ($("#id_company").val() == data.id_company)
+        if ($("#id_company").val() == data.message.id_company)
         {
             sounds.notification.trigger('play');
             if ($("#sidebar_right").width() == 0)

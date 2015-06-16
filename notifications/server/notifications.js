@@ -335,7 +335,7 @@ function notify_logs(last_id_logs)
 {
     if (!last_id_logs) last_id_logs = "0";
     connection.query("select pl.*," +
-        " p.name as project_name,t.assigned,t.id_user as creater_task,tu.trash_name as trash_user_name,tp.trash_name as trash_project_name" +
+        " p.name as project_name,p.id_company,t.assigned,t.id_user as creater_task,tu.trash_name as trash_user_name,tp.trash_name as trash_project_name" +
         " from projects_logs as pl" +
         " LEFT JOIN projects_tasks as t ON pl.id_task = t.id" +
         " LEFT JOIN projects as p ON pl.id_project = p.id" +
