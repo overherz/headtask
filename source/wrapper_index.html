@@ -25,7 +25,7 @@
     <nav class="navbar navbar-default navbar-static-top topmenu">
         <span class="navbar-brand logo_color1">h<span class="brand_full">ead</span><span class="logo_color2">t<span class="brand_full">ask</span></span></span>
         <div class="pull-right">
-            {{ ("role_"~session_data.user.role_company)|lang|capitalize }}
+            <span style="margin-right: 10px;">{{ ("role_"~session_data.user.role_company)|lang|capitalize }}</span>
             <select id="select_company">
                 {% for k,c in globals.company %}
                     <option value="{{ k }}" {% if session_data.user.current_company == k %}selected{% endif %}>{{ c.name }}</option>

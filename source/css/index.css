@@ -6,7 +6,7 @@ body {
 
 body {
     overflow-y: scroll;
-    background: #fff;
+    background: url("/source/images/paper_fibers.jpg") repeat;
     min-width: 720px;
 }
 
@@ -51,7 +51,7 @@ body {
     font-size: 22px;
     color: #f9840e;
     text-indent: 0;
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 .username_in_top {
@@ -59,7 +59,7 @@ body {
     text-indent: 0;
     font-size: 16px;
     font-weight: bold;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 40px;
 }
 
 .username_in_top:hover {
@@ -198,7 +198,7 @@ input,textarea {
 }
 
 .jumbotron {
-    background: #fff;
+    background: url("/source/images/paper_fibers.jpg") repeat;
     padding: 5px 20px 10px !important;
 }
 
@@ -435,7 +435,6 @@ fieldset[disabled] .btn-oscar.active {
 }
 
 .breadcrumbs-one {
-    background: #fff;
     border: none;
     overflow: hidden;
     padding: 0;
@@ -815,7 +814,7 @@ td .progress {
 }
 
 #sidebar-wrapper {
-    background: #434a54;
+    background: url('/source/images/back.jpg') repeat;
     left: 0;
     overflow-y: hidden;
 }
@@ -1238,7 +1237,7 @@ td .progress {
 }
 
 .table_style td {
-    padding: 0 8px !important;
+    padding: 3px 8px !important;
     border-top: 1px solid #eee !important;
     border-bottom: 1px solid #eee !important;
     background: #f7f7f7;
@@ -1316,7 +1315,7 @@ input[disabled], select[disabled], textarea[disabled] {
 }
 
 .submenu {
-    background: #434a54;
+    background: url('/source/images/back.jpg') repeat;
     padding-left: 0;
     white-space: nowrap;
 }
@@ -1404,10 +1403,9 @@ input[disabled], select[disabled], textarea[disabled] {
     overflow:hidden;
     font-size: 9px;
     vertical-align:top;
-    background: #f2f2f2;
     text-align: right;
     padding-right: 5px;
-    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
 }
 
 .pagination > li > a, .pagination > li > span {
@@ -1417,7 +1415,16 @@ input[disabled], select[disabled], textarea[disabled] {
 .logs_table_sidebar {
     width: 295px;
     clear: both;
-    background: #f8f8f8;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+
+.logs_table_sidebar:nth-of-type(even) {
+    background: #eee;
+}
+
+.logs_table_sidebar:nth-of-type(odd) {
+    background: #ddd;
 }
 
 #sidebar_right .mCSB_container {
