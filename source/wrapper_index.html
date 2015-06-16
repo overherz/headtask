@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ app.path('/source/css/','plugins.css',true) }}" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ app.path('/source/admin/fonts/font-awesome/css/','font-awesome.min.css',true) }}">
     <link rel="stylesheet" href="{{ app.path('/source/css/','content.css',true) }}" type="text/css" />
     <link rel="stylesheet" href="{{ app.path('/source/css/ui-lightness/','jquery-ui-1.10.4.custom.min.css',true) }}" />
@@ -25,9 +25,10 @@
     <nav class="navbar navbar-default navbar-static-top topmenu">
         <span class="navbar-brand logo_color1">h<span class="brand_full">ead</span><span class="logo_color2">t<span class="brand_full">ask</span></span></span>
         <div class="pull-right">
+            {{ ("role_"~session_data.user.role_company)|lang|capitalize }}
             <select id="select_company">
                 {% for k,c in globals.company %}
-                    <option value="{{ k }}" {% if globals.user.current_company == k %}selected{% endif %}>{{ c }}</option>
+                    <option value="{{ k }}" {% if session_data.user.current_company == k %}selected{% endif %}>{{ c.name }}</option>
                 {% endfor %}
             </select>
             {% if globals.user %}
@@ -37,6 +38,7 @@
             {% if globals.user %}
                 <a href="/users/logout/" id="logout"><i class="fa fa-power-off"></i></a>
             {% endif %}
+            <input type="hidden" id="id_company" name="id_company" value="{{ globals.user.current_company }}">
         </div>
     </nav>
 {% endif %}
@@ -73,7 +75,7 @@
 <script src="//yastatic.net/jquery-ui/1.10.4/jquery-ui.min.js"></script>
 <script src="/source/js/jquery.pjax.js"></script>
 <script src="{{ app.path('/source/js/','functions.js',true) }}"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="/langs/ru.js"></script>
 
 {% if globals.user.id_user %}

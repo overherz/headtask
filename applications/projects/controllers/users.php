@@ -73,10 +73,10 @@ class users extends \Controller {
                 crumbs("Добавление участника");
 
                 $query = $this->db->prepare("select id_user,first_name,last_name
-                    from users
-                    where id_user NOT IN (select id_user from projects_users where id_project=?)
+                    from users as u
+                    where id_user NOT IN (select id_user from projects_users where id_project=?) and id_user IN (select id_user from company_users where id_company=?)
                 ");
-                $query->execute(array($this->_0));
+                $query->execute(array($this->_0,$_SESSION['user']['current_company']));
                 while ($row = $query->fetch())
                 {
                     $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
@@ -250,6 +250,8 @@ class users extends \Controller {
 
         if ($_POST['id'] == "" && $_POST['new_user'] == "") $res['error'] = "Выберите участника";
         if ($_POST['role'] == "") $res['error'] = "Укажите роль в проекте";
+        $c_cr = $this->get_controller("company");
+        if (!$c_cr->user_in_company($_POST['id'],$_SESSION['current_company'])) $res['error'] = "В компании нет такого участника";
         if (!$res['error'])
         {
             if ($access['access']['users'] && !$access['project']['owner'])
@@ -431,6 +433,11 @@ class users extends \Controller {
             else if ($_SESSION['user']['id_group'] != 1) $this->error_page("denied");
 
             $project = $this->get_controller("projects")->get_project($id_project);
+            if ($accesses['role'] || $_SESSION['user']['id_group'] == 1)
+            {
+                set_company($project['id_company']);
+            }
+
             if ($project['owner'] && $project['owner'] != $id_user)
             {
                 foreach ($accesses as &$a) $a = false;
@@ -457,7 +464,6 @@ class users extends \Controller {
                 }
             }
         }
-
         return array('access' => $accesses,'project' => $project,'task' => $task,'role' => $role);
     }
 

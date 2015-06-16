@@ -274,4 +274,16 @@ class logs extends \Controller {
         $str = "<a {$str}>{$matches[2]}</a>";
         return $str;
     }
+
+    function get_logs_from_layout()
+    {
+        if ($_SESSION['user'])
+        {
+            $this->limit = 30;
+            $this->without_user = true;
+            $logs = $this->get_logs();
+            \Controller::set_global("logs",$logs);
+            return $this->layout_get("/logs/sidebar_index.html");
+        }
+    }
 }

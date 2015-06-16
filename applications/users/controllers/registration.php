@@ -117,7 +117,7 @@ class registration extends \Controller {
                 if ($this->send_activate_link($_POST['email'],$_POST['password1']))
                 {
                     $created = time();
-                    $p = $this->db->prepare("insert into users(last_name,first_name,email,pass,salt,uniq_key,gender,id_group,mailconfirm,created,tzOffset,birthday) values(?,?,?,?,?,?,?,?,1,?,?,?)");
+                    $p = $this->db->prepare("insert into users(last_name,first_name,email,pass,salt,uniq_key,gender,id_group,mailconfirm,created,tzOffset,birthday) values(?,?,?,?,?,?,?,?,?,?,?,?)");
                     if (!$p->execute(array(
                             $_POST['last_name'],
                             $_POST['first_name'],
@@ -127,6 +127,7 @@ class registration extends \Controller {
                             $uniq_key,
                             $_POST['gender'],
                             DEFAULT_USER_GROUP_ID,
+                            true,
                             $created,
                             $_POST['tz'],
                             $birthday)

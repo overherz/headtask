@@ -503,3 +503,10 @@ function get_full_domain_name()
 
     return $protocol.$domain;
 }
+
+function set_company($id_company)
+{
+    $_SESSION['user']['current_company'] = $id_company;
+    $company = \Controller::get_global('company');
+    $_SESSION['user']['role_company'] = $company[$_SESSION['user']['current_company']]['role'];
+}

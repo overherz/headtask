@@ -212,7 +212,6 @@ class projects extends \Controller {
 
     function get_projects($id_project=false,$data=false)
     {
-        pr('2323');
         if ($this->get_global('id_project')) $id_project = $this->get_global('id_project');
 
     //    if ($_POST['project_panel_page'] != "") $page = $_POST['project_panel_page'];

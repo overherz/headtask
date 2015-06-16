@@ -122,6 +122,7 @@ class Controller {
         if ($GLOBALS['settings']) $values['settings'] = $GLOBALS['settings'];
         if ($_POST) $values['post_data'] = $_POST;
         if ($_GET) $values['get_data'] = $_GET;
+        if ($_SESSION) $values['session_data'] = $_SESSION;
         if (defined('AJAX') && AJAX) $values['ajax_data'] = true;
         if ($_COOKIE) $values['cookie_data'] = $_COOKIE;
         layout::layout_show($this->layout.$layout,$values);
@@ -134,6 +135,7 @@ class Controller {
         if ($GLOBALS['settings']) $values['settings'] = $GLOBALS['settings'];
         if ($_POST) $values['post_data'] = $_POST;
         if ($_GET) $values['get_data'] = $_GET;
+        if ($_SESSION) $values['session_data'] = $_SESSION;
         if (defined('AJAX') && AJAX) $values['ajax_data'] = true;
         if ($_COOKIE) $values['cookie_data'] = $_COOKIE;
         return layout::layout_get($this->layout.$layout,$values);

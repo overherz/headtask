@@ -1,5 +1,3 @@
-/* formstyler.css */
-
 .jq-checkbox {
     top: -1px;
     width: 13px;
@@ -236,6 +234,12 @@
 .jq-selectbox li {
     min-height: 18px;
     padding: 5px 10px 6px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    white-space: nowrap;
     color: #231F20;
 }
 .jq-selectbox li.selected {
@@ -294,6 +298,12 @@
 .jq-select-multiple li {
     padding: 3px 9px 4px;
     list-style: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    white-space: nowrap;
 }
 .jq-select-multiple li:first-child {
     border-radius: 3px 3px 0 0;
@@ -415,8 +425,6 @@ input[type="submit"].styler[disabled] {
     box-shadow: none;
     color: #888;
 }
-
-/* formstyler.css END */
 
 
 /* jqrowl */
