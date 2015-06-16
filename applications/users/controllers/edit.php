@@ -74,14 +74,14 @@ class edit extends \Controller {
         if (!$res['error'])
         {
             $this->db->beginTransaction();
-            $query = $this->db->prepare("update users set first_name=?,last_name=?, birthday=?,tzOffset=?,nickname=? WHERE id_user=? LIMIT 1");
-            if (!$query->execute(array($user['first_name'],$user['last_name'], $user['birthday'],$user['tz'],$user['nickname'],$_POST['id']))) $res['error'][] = "Ошибка базы данных";
+            $query = $this->db->prepare("update users set first_name=?,last_name=?, birthday=?,tzOffset=? WHERE id_user=? LIMIT 1");
+            if (!$query->execute(array($user['first_name'],$user['last_name'], $user['birthday'],$user['tz'],$_POST['id']))) $res['error'][] = "Ошибка базы данных";
             else
             {
                 $query = $this->db->prepare("insert into userprofiles (idprof, iduser, value) VALUES ((SELECT id FROM profile WHERE name=?), ?, ?) ON DUPLICATE KEY UPDATE value=?");
                 foreach ($user as $k=>$v)
                 {
-                    if ($k != 'first_name' && $k != 'last_name' && $k != 'avatar' && $k != 'tz' && $k != 'birthday' && $k != 'nickname')
+                    if ($k != 'first_name' && $k != 'last_name' && $k != 'avatar' && $k != 'tz' && $k != 'birthday')
                     {
                         if (!$query->execute(array($k, $_POST['id'], $v, $v))) $res['error'][] = "Ошибка базы данных";
                     }
@@ -124,8 +124,8 @@ class edit extends \Controller {
                     $query = $this->db->prepare("update users set pass=?,salt=?,uniq_key=? WHERE id_user=?");
                     if ($query->execute(array($get_pass['password'], $get_pass['salt'], $get_pass['uniq_key'], $_SESSION['user']['id_user'])))
                     {
-                        setcookie('login', $user['email'], time()+60*60*24*30,"/",null,null,true);
-                        setcookie('password', $get_pass['password'], time()+60*60*24*30,"/",null,null,true);
+                        setcookie('login', $user['email'], time()+60*60*24*90,"/",null,null,true);
+                        setcookie('password', $get_pass['password'], time()+60*60*24*90,"/",null,null,true);
                         $res['success'] = true;
                     }
                     else $res['error'] = "Ошибка базы данных";

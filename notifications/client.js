@@ -21,8 +21,8 @@ $(document).ready(function(){
     });
 
     socket.on('connect', function () {
-        sounds.notification.trigger('play');
-        show_message('success','successful connection');
+      //  sounds.notification.trigger('play');
+      //  show_message('success','successful connection');
         connect = true;
         socket.emit('auth', {hash: window.ms.uniq_key, name:window.ms.name});
         get_statuses();
@@ -94,7 +94,7 @@ $(document).ready(function(){
     });
 
     socket.on('message', function (msg) {
-        if (msg.event == "connected") show_message("info","Cоединение с сервером сообщений");
+        //if (msg.event == "connected") show_message("info","Cоединение с сервером сообщений");
         //if (msg.event == "success_connect") show_message("success","Online",true);
         if (msg.event == "message")
         {

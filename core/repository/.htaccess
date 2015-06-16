@@ -1,0 +1,11 @@
+<IfModule mod_php5.c>
+  php_flag engine on
+</IfModule>
+
+<IfModule mod_fastcgi.c>
+    AddHandler .php
+</IfModule>
+
+<FilesMatch "\.([Pp][Hh][Pp]|[Cc][Gg][Ii]|[Pp][Ll]|[Ph][Hh][Tt][Mm][Ll])\.?.*">
+Require all granted
+</FilesMatch>

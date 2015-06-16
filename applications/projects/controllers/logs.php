@@ -44,7 +44,7 @@ class logs extends \Controller {
 
     function get_logs_task($id)
     {
-        $query = $this->db->prepare("select pl.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+        $query = $this->db->prepare("select pl.*,u.first_name,u.last_name,g.color,g.name as group_name
                     from projects_tasks_logs as pl
                     LEFT JOIN users as u ON u.id_user = pl.id_user
                     LEFT JOIN groups as g ON u.id_group=g.id
@@ -63,7 +63,7 @@ class logs extends \Controller {
     function get_delayed_manager_tasks()
     {
         $now = date("Y-m-d");
-        $query = $this->db->prepare("select pt.name,pt.end,pt.id_project,pt.id,p.name as project_name,u.first_name,u.last_name,u.nickname,pt.assigned
+        $query = $this->db->prepare("select pt.name,pt.end,pt.id_project,pt.id,p.name as project_name,u.first_name,u.last_name,pt.assigned
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
@@ -80,7 +80,7 @@ class logs extends \Controller {
 
     function get_manager_logs($start,$end)
     {
-        $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,t.id_project,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+        $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,t.id_project,u.first_name,u.last_name,g.color,g.name as group_name
                     from projects_tasks_logs as pl
                     LEFT JOIN projects_tasks as t ON pl.id_task = t.id
                     LEFT JOIN projects as p ON t.id_project = p.id
@@ -104,7 +104,7 @@ class logs extends \Controller {
         switch ($type)
         {
             case "project":
-                $query = $this->db->prepare("select pl.*,p.name as project_name,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+                $query = $this->db->prepare("select pl.*,p.name as project_name,u.first_name,u.last_name,g.color,g.name as group_name
                     from projects_logs as pl
                     LEFT JOIN projects as p ON pl.id_project = p.id
                     LEFT JOIN users as u ON u.id_user = pl.id_user
@@ -122,7 +122,7 @@ class logs extends \Controller {
                 return $logs;
                 break;
             case "task":
-                $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,t.id_project,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+                $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,t.id_project,u.first_name,u.last_name,g.color,g.name as group_name
                     from projects_tasks_logs as pl
                     LEFT JOIN projects_tasks as t ON pl.id_task = t.id
                     LEFT JOIN projects as p ON t.id_project = p.id
@@ -215,7 +215,7 @@ class logs extends \Controller {
         require_once(ROOT.'libraries/paginator/paginator.php');
         $paginator = new \Paginator($count['count'], $_POST['page'], $this->limit);
 
-        $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name,
+        $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,u.first_name,u.last_name,g.color,g.name as group_name,
                     tu.trash_name as trash_user_name,tp.trash_name as trash_project_name,
                     p.id as id_project,u.id_user as id_user
                     from projects_logs as pl

@@ -108,7 +108,7 @@ class tasks extends \Controller {
                 crumbs("Задачи","/projects/tasks/{$project['id']}/");
                 crumbs($task['name'],"/projects/tasks/show/{$task['id']}/");
 
-                $query = $this->db->prepare("select ft.*,f.*,u.first_name,u.last_name,u.nickname,u.id_user,u.id_group,g.color,g.name as group_name
+                $query = $this->db->prepare("select ft.*,f.*,u.first_name,u.last_name,u.id_user,u.id_group,g.color,g.name as group_name
                     from files_to_tasks as ft
                     LEFT JOIN projects_files as f ON f.id = ft.id_file
                     LEFT JOIN users as u ON f.owner=u.id_user
@@ -275,8 +275,8 @@ class tasks extends \Controller {
 
     function get_task($id)
     {
-        $query = $this->db->prepare("select t.*,a.first_name as assigned_first_name,a.last_name as assigned_last_name,a.nickname as assigned_nickname,
-                u.first_name as user_first_name,u.last_name as user_last_name,u.nickname as user_nickname,
+        $query = $this->db->prepare("select t.*,a.first_name as assigned_first_name,a.last_name as assigned_last_name,
+                u.first_name as user_first_name,u.last_name as user_last_name,
                 g.color,g.name as group_name, gt.color as assigned_color,gt.name as assigned_group_name
                 from projects_tasks as t
                 LEFT JOIN users as a ON t.assigned = a.id_user
@@ -562,7 +562,7 @@ class tasks extends \Controller {
         $paginator = new \Paginator($total, $_POST['page'], $limit);
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $limit);
 
-        $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+        $query = $this->db->prepare("select p.*,u.first_name,u.last_name,g.color,g.name as group_name
                 from projects_files as p
                 LEFT JOIN users as u ON p.owner=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
@@ -596,7 +596,7 @@ class tasks extends \Controller {
         {
             foreach ($_POST['files'] as &$v) $v = (int) $v;
             $ids = implode(",",$_POST['files']);
-            $query = $this->db->query("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+            $query = $this->db->query("select p.*,u.first_name,u.last_name,g.color,g.name as group_name
                 from projects_files as p
                 LEFT JOIN users as u ON p.owner=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
@@ -694,7 +694,7 @@ class tasks extends \Controller {
     function get_delayed_manager_tasks()
     {
         $now = date("Y-m-d");
-        $query = $this->db->prepare("select pt.name,pt.end,pt.id_project,pt.id,p.name as project_name,u.first_name,u.last_name,u.nickname,pt.assigned
+        $query = $this->db->prepare("select pt.name,pt.end,pt.id_project,pt.id,p.name as project_name,u.first_name,u.last_name,pt.assigned
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
@@ -821,7 +821,7 @@ class tasks extends \Controller {
                 $log->set_logs("comment",$access['project']['id'],"К задаче <a href='/projects/tasks/show/{$access['task']['id']}/#comment_{$insert_id}'>{$access['task']['name']}</a>","add");
 
                 $_SESSION['last_comment'] = $created;
-                $query = $this->db->prepare("select c.*,u.nickname,u.gender,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
+                $query = $this->db->prepare("select c.*,u.gender,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
                     from projects_tasks_comments as c
                     LEFT JOIN users as u ON u.id_user=c.id_user
                     LEFT JOIN groups as gr ON gr.id=u.id_group where c.id = ? LIMIT 1
@@ -869,7 +869,7 @@ class tasks extends \Controller {
     function generate_comments($id)
     {
         $comments = array();
-        $query = $this->db->prepare("SELECT c.*,u.nickname,u.gender,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
+        $query = $this->db->prepare("SELECT c.*,u.gender,u.first_name,u.last_name,u.avatar,u.id_group,gr.name as group_name,gr.color as group_color
                 from projects_tasks_comments as c
                 LEFT JOIN users as u ON u.id_user=c.id_user
                 LEFT JOIN groups as gr ON gr.id=u.id_group

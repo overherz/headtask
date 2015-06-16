@@ -47,10 +47,10 @@ class login extends \Controller {
                     {
                         if ($u['mailconfirm'] == 1)
                         {
-                            if ($post && $_POST['cookie'])
+                            if (($post && $_POST['cookie']) || ($_COOKIE['login'] != "" && $_COOKIE['password'] != "" && $_SESSION['user']))
                             {
-                                setcookie('login', $login, time()+60*60*24*30,"/",null,null,true);
-                                setcookie('password', $u['pass'], time()+60*60*24*30,"/",null,null,true);
+                                setcookie('login', $login, time()+60*60*24*90,"/",null,null,true);
+                                setcookie('password', $u['pass'], time()+60*60*24*90,"/",null,null,true);
                             }
 
                             unset($u['salt']);unset($u['access_site']); unset($u['pass']);

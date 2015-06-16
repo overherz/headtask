@@ -32,6 +32,7 @@
             </select>
             {% if globals.user %}
                 <a href="/users/profile/" class="username_in_top pajax" title="Профиль"><span>{{globals.user.fio}}</span></a>
+                <div class="get_ms_status user_offline middle" data-id="{{globals.user.id_user}}"></div>
             {% endif %}
             {% if globals.user %}
                 <a href="/users/logout/" id="logout"><i class="fa fa-power-off"></i></a>

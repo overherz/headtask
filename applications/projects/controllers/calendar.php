@@ -90,7 +90,7 @@ class calendar extends \Controller {
         $begin_of_day = strtotime("midnight", time());
         $end_of_day   = strtotime("tomorrow", $begin_of_day) - 1;
 
-        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,p.name as project_name,pt.percent,u.first_name,u.last_name,u.nickname as assigned_nickname,p.id as id_project,g.color,g.name as group_name
+        $query = $this->db->prepare("select pt.id,pt.message,pt.updated,pt.name,pt.start,pt.end,pt.assigned,pt.id_user as task_creater,pt.status,pt.priority,p.name as project_name,pt.percent,u.first_name,u.last_name,p.id as id_project,g.color,g.name as group_name
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user

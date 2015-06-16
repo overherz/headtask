@@ -16,6 +16,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><b>Регистрация</b></div>
                 <div class="panel-body">
+                    {% if add_success %}
+                        Вы стали участником
+                    {% else %}
                     <div class="alert alert-danger reg_erroru" error="global"></div>
                     <div class="alert alert-success" error="success" style="display: none;"></div>
                     {% if not invite %}
@@ -32,6 +35,7 @@
                             <input type="text" name="email" id="email" maxlength="60" class="form-control" tabindex="1" value="{{ email }}" autocomplete="off">
                         </div>
                     </div>
+                    <div class="clearfix"></div>
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="password1">Пароль <span error="password1" class="reg_erroru"></span></label>
@@ -40,8 +44,8 @@
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label for="nickname">Ник <span error="nickname" class="reg_erroru"></span></label>
-                            <input type="text" name="nickname" id="nickname" maxlength="60" class="form-control" tabindex="2">
+                            <label for="first_name">Имя <span error="first_name" class="reg_erroru"></span></label>
+                            <input type="text" name="first_name" id="first_name" maxlength="60" class="form-control" tabindex="4">
                         </div>
                     </div>
                     <div class="col-xs-6">
@@ -62,12 +66,7 @@
                             <input type="text" name="birthday" id="birthday" maxlength="60" class="form-control">
                         </div>
                     </div>
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label for="first_name">Имя <span error="first_name" class="reg_erroru"></span></label>
-                            <input type="text" name="first_name" id="first_name" maxlength="60" class="form-control" tabindex="4">
-                        </div>
-                    </div>
+
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label>Пол <span error="gender" class="reg_erroru"></span></label>
@@ -95,7 +94,9 @@
                     </div>
                     <div class="col-xs-12" style="margin-top: 30px;">
                         <a href="#" id="sendReg" class="btn btn-primary"><span>Зарегистрироваться</span></a>
+                        <a href="/users/login" class="btn btn-danger">Авторизоваться</a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </form>

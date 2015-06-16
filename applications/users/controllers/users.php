@@ -80,8 +80,9 @@ class users extends \Controller {
             {
                 $search = str_replace(" ","%",$_POST['search']);
                 $s = $this->db->quote("%{$search}%");
-                $where[] = "(u.first_name LIKE {$s} OR u.last_name LIKE {$s} OR u.nickname LIKE {$s} OR gr.name LIKE {$s})";
+                $where[] = "(u.first_name LIKE {$s} OR u.last_name LIKE {$s} OR gr.name LIKE {$s})";
             }
+            $where[] = "cu.id_company=".$_SESSION['user']['current_company'];
 
             if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
             else $where = "";
@@ -89,15 +90,17 @@ class users extends \Controller {
             $total= $this->db->query("select distinct u.id_user
                     from users as u
                     LEFT JOIN groups as gr ON u.id_group=gr.id
+                    LEFT JOIN company_users as cu ON u.id_user=cu.id_user
                     {$where}
                     ")->fetchAll();
             $total = count($total);
 
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
-            $p = $this->db->prepare("select distinct u.first_name,u.last_name,u.nickname,u.email,u.avatar,u.gender,u.id_user,gr.id as id_group,gr.name as group_name,gr.color as color,u.last_user_action
+            $p = $this->db->prepare("select distinct u.first_name,u.last_name,u.email,u.avatar,u.gender,u.id_user,gr.id as id_group,gr.name as group_name,gr.color as color,u.last_user_action
                     from users as u
                     LEFT JOIN groups as gr ON u.id_group=gr.id
+                    LEFT JOIN company_users as cu ON u.id_user=cu.id_user
                     {$where}
                     ORDER BY u.last_name ASC
                     LIMIT {$this->limit}
@@ -139,7 +142,7 @@ class users extends \Controller {
             $id = intval($this->id);
             if($_SESSION['user']['id_user'] == $id) $this->set_global("user_menu", "profile");
 
-            $result = $this->db->prepare("select u.first_name,u.last_name,u.nickname,u.gender,u.avatar,u.id_user,u.last_user_action,gr.id as id_group,gr.name as group_name,gr.color
+            $result = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.avatar,u.id_user,u.last_user_action,gr.id as id_group,gr.name as group_name,gr.color
                 from users as u
                 LEFT JOIN groups as gr ON u.id_group=gr.id
                 WHERE id_user = ? and u.mailconfirm = '1' LIMIT 1
@@ -229,7 +232,7 @@ class users extends \Controller {
         if ($group)
         {
             $group = (int) $group;
-            $query = $this->db->query("select id_user,first_name,last_name,nickname,avatar from users where id_group='{$group}' ORDER BY id_user DESC LIMIT {$limit}");
+            $query = $this->db->query("select id_user,first_name,last_name,avatar from users where id_group='{$group}' ORDER BY id_user DESC LIMIT {$limit}");
             while ($row = $query->fetch())
             {
                 $users[$row['id_user']] = $row;
@@ -252,6 +255,15 @@ class users extends \Controller {
     {
         $query = $this->db->prepare("select * from users where id_user=?");
         $query->execute(array($id));
+        $user = $query->fetch();
+
+        return $user;
+    }
+
+    function get_user_from_email($email)
+    {
+        $query = $this->db->prepare("select * from users where email=?");
+        $query->execute(array($email));
         $user = $query->fetch();
 
         return $user;

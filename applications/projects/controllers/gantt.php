@@ -37,7 +37,7 @@ class gantt extends \Controller {
 
     function get_tasks($id_project)
     {
-        $query = $this->db->prepare("select t.id,t.name,t.start,t.end,t.priority,a.first_name as assigned_first_name,a.last_name as assigned_last_name,a.nickname as assigned_nickname
+        $query = $this->db->prepare("select t.id,t.name,t.start,t.end,t.priority,a.first_name as assigned_first_name,a.last_name as assigned_last_name
                 from projects_tasks as t
                 LEFT JOIN users as a ON t.assigned = a.id_user
                 where t.id_project=? and t.status IN ('new', 'in_progress')

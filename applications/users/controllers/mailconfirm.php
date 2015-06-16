@@ -25,7 +25,7 @@ class mailconfirm extends \Controller {
                                      $msg = "Почтовый ящик изменен! Обратите внимание, на то, что при входе на сайт, необходимо указывать новый адрес электронной почты.";
                                      $success = true;
                                      $this->db->commit();
-                                     setcookie('login', $user['newmail'], time()+60*60*24*7,"/",null,null,true);
+                                     setcookie('login', $user['newmail'], time()+60*60*24*90,"/",null,null,true);
                                      $_SESSION['user']['email'] = $user['newmail'];
                                  } else {
                                     $error = "Ошибка базы данных";

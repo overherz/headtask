@@ -85,7 +85,7 @@ class files extends \Admin {
 
                 if (!$res['error'])
                 {
-                    $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+                    $query = $this->db->prepare("select p.*,u.first_name,u.last_name,g.color,g.name as group_name
                         from projects_files as p
                         LEFT JOIN users as u ON p.owner=u.id_user
                         LEFT JOIN groups as g ON u.id_group=g.id
@@ -143,7 +143,7 @@ class files extends \Admin {
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
             if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-            $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+            $query = $this->db->prepare("select p.*,u.first_name,u.last_name,g.color,g.name as group_name
             from projects_files as p
             LEFT JOIN users as u ON p.owner=u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id

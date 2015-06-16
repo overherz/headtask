@@ -201,7 +201,7 @@ class forum extends \Admin {
                 if ($forums)
                 {
                     $ids = implode(",",$ids);
-                    $query = $this->db->query("SELECT t.id,t.id_forum,p.created,u.id_user,u.nickname,u.first_name,u.last_name,t.name,g.color,g.name as group_name
+                    $query = $this->db->query("SELECT t.id,t.id_forum,p.created,u.id_user,u.first_name,u.last_name,t.name,g.color,g.name as group_name
                         FROM projects_posts p JOIN projects_topics t ON p.id_topic = t.id
                         LEFT JOIN users as u ON u.id_user=p.author
                         LEFT JOIN groups as g ON u.id_group=g.id
@@ -215,7 +215,7 @@ class forum extends \Admin {
                         $forums[$row['id_forum']]['last'] = array(
                             'id' => $row['id'],
                             'name' => $row['name'],
-                            'author' => array('id_user' => $row['id_user'],'fio' => build_user_name($row['first_name'],$row['last_name']),'nickname' => $row['nickname']),
+                            'author' => array('id_user' => $row['id_user'],'fio' => build_user_name($row['first_name'],$row['last_name'])),
                             'created' => $row['created'],
                             'color' => $row['color'],
                             'group_name' => $row['group_name']
@@ -258,7 +258,7 @@ class forum extends \Admin {
                 $paginator = new \Paginator($total, $_POST['page'], $this->limit);
 
                 $query = $this->db->prepare("select t.*,(select count(*) from projects_posts where id_topic=t.id) as count_posts,
-                    p.created,u.id_user,u.first_name,u.last_name,u.nickname,t.created as topic_created,g.color,g.name as group_name
+                    p.created,u.id_user,u.first_name,u.last_name,t.created as topic_created,g.color,g.name as group_name
                     from projects_topics t
                     LEFT JOIN projects_posts as p ON p.id_topic=t.id
                     LEFT JOIN users as u ON p.author=u.id_user
@@ -277,7 +277,7 @@ class forum extends \Admin {
                 }
 
                 $query = $this->db->prepare("select t.*,(select count(*) from projects_posts where id_topic=t.id) as count_posts,
-                    p.created,u.id_user,u.first_name,u.last_name,u.nickname,t.created as topic_created,g.color,g.name as group_name
+                    p.created,u.id_user,u.first_name,u.last_name,t.created as topic_created,g.color,g.name as group_name
                     from projects_topics t
                     LEFT JOIN projects_posts as p ON p.id_topic=t.id
                     LEFT JOIN users as u ON p.author=u.id_user
@@ -296,7 +296,7 @@ class forum extends \Admin {
                 if ($topics)
                 {
                     $ids = implode(",",$ids);
-                    $query = $this->db->query("select u.nickname,u.id_user,u.first_name,u.last_name,g.color,g.name as group_name
+                    $query = $this->db->query("select u.id_user,u.first_name,u.last_name,g.color,g.name as group_name
                     from users as u
                     LEFT JOIN groups as g ON u.id_group=g.id
                     where id_user IN({$ids})
@@ -353,7 +353,7 @@ class forum extends \Admin {
                 require_once(ROOT.'libraries/paginator/paginator.php');
                 $paginator = new \Paginator($total, $_GET['page'], $this->limit_posts);
 
-                $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,u.id_user,u.avatar,u.last_user_action,g.color,g.name as group_name
+                $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.id_user,u.avatar,u.last_user_action,g.color,g.name as group_name
                     from projects_posts as p
                     LEFT JOIN users as u ON p.author=u.id_user
                     LEFT JOIN groups as g ON u.id_group=g.id

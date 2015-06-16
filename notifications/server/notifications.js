@@ -302,7 +302,7 @@ else setTimeout(function(){notify_logs(last_id)},1000);
 function notify(last_id)
 {
     if (!last_id) last_id = "0";
-    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.nickname,u.gender,u.tzOffset,SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages as m LEFT JOIN users as u ON u.id_user=m.id_user where id > '"+last_id+"' LIMIT 200", function(err, res){
+    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.gender,u.tzOffset,SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages as m LEFT JOIN users as u ON u.id_user=m.id_user where id > '"+last_id+"' LIMIT 200", function(err, res){
         if (err){
             throw err;
         }

@@ -206,7 +206,7 @@ class users extends \Controller {
 
     function get_user_and_role($id_project,$id_user)
     {
-        $query = $this->db->prepare("select pu.role,u.first_name,u.last_name,u.nickname,pu.id_user,pu.description
+        $query = $this->db->prepare("select pu.role,u.first_name,u.last_name,pu.id_user,pu.description
             from projects_users as pu
             LEFT JOIN users as u ON pu.id_user=u.id_user
             where pu.id_project=? and pu.id_user=?
@@ -358,7 +358,7 @@ class users extends \Controller {
 
     function delete_user_form()
     {
-        $query = $this->db->prepare("select u.id_user,u.first_name,u.last_name,u.nickname
+        $query = $this->db->prepare("select u.id_user,u.first_name,u.last_name
             from projects_users as pu
             LEFT JOIN users as u ON u.id_user = pu.id_user
             where pu.id_project=? and pu.id_user !=?
@@ -474,7 +474,7 @@ class users extends \Controller {
     function get_users_project($project,$without_me=false)
     {
         if ($without_me) $without_me_string = " and u.id_user != ?";
-        $query = $this->db->prepare("select distinct u.id_user,u.first_name,u.last_name,u.nickname
+        $query = $this->db->prepare("select distinct u.id_user,u.first_name,u.last_name
             from users as u
             LEFT JOIN projects_users as pu ON pu.id_user = u.id_user
             where pu.id_project=? {$without_me_string}
