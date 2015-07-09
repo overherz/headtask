@@ -15,13 +15,13 @@ if (!$INFO['dev_mode'])
 if ($_GET['app_name'] != "")
 {
   //  layout::
-    //new_application(dirname(dirname(dirname(__FILE__)))."/applications/".$_GET['app_name'],$_GET['app_name'],true);
+    new_application(dirname(dirname(dirname(__FILE__)))."/applications/".$_GET['app_name'],$_GET['app_name'],true);
 }
 
 
 function new_application($application,$app_name,$first,$mdir = false)
 {
-    if (!$mdir) $mdir = "blank"; 
+    if (!$mdir) $mdir = "blank";
 
     if(!is_dir($application))
     {
@@ -33,30 +33,30 @@ function new_application($application,$app_name,$first,$mdir = false)
         else chmod($application, 0777);
     }
     $dir = opendir($mdir);
-    
+
     while(false !== ($check = readdir($dir)))
-    {                
+    {
         if($check != '.' && $check != '..' && $check != ".svn")
         {
             if(is_dir($mdir .'/'. $check))
-            {         
+            {
                 //$check = str_replace("blank", $application, $check);
                 mkdir($application .'/'. $check);
                 chmod($application .'/'. $check,0777);
                 new_application($application .'/'. $check, $app_name, false, $mdir .'/'. $check);
-            } 
+            }
             elseif(is_file($mdir .'/'. $check))
             {
                 copy($mdir .'/'. $check, $application .'/'. $check);
                 chmod($application .'/'. $check,0777);
                 $new_name = str_replace("%blank%",$app_name,$check);
-                rename($application .'/'. $check, $application .'/'. $new_name);   
+                rename($application .'/'. $check, $application .'/'. $new_name);
 
                 $text = file_get_contents($application .'/'. $new_name);
                 $text = str_replace("%blank%",$app_name,$text);
                 file_put_contents($application .'/'. $new_name, $text, LOCK_EX);
             }
-        } 
+        }
     }
     header('Location: /'.$_GET['app_name']);
 }

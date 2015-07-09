@@ -1,36 +1,28 @@
+var sounds = {
+    notification: $('#sound_notification')
+};
+
 $(document).ready(function(){
     var chat_with = get_opponent(),
         connect = false;
-
-    var langs = { 'project' : 'Проект',
-        'task' : 'Задача',
-        'file' : 'Файл',
-        'news' : 'Новость',
-        'wiki' : 'Wiki',
-        'comment' : 'Комментарий',
-        'forum' : 'Форум'
-    }
 
     var icons = {
         'add': '<i class="fa fa-plus" style="color:#5cb85c;font-size: 14px;"></i>',
         'edit': '<i class="fa fa-pencil" style="color:#5bc0de;"></i>',
         'delete': '<i class="fa fa-trash-o" style="color:#d9534f;"></i>'
-    }
+    };
 
-//        playerVersion = swfobject.getFlashPlayerVersion(),
-//        majorVersion = playerVersion.major;
-
-    //if (majorVersion < 10) show_message("warning","Установите последнюю версию Adobe flash player");
     socket = io.connect(window.ms.address,{
         'reconnection': true,
         'reconnectionDelay': 1000,
         'reconnectionDelayMax': 5000,
         'timeout': 5000,
-        'autoConnect': true,
-        'transports': ['websocket', 'polling']
+        'autoConnect': true
     });
 
     socket.on('connect', function () {
+      //  sounds.notification.trigger('play');
+      //  show_message('success','successful connection');
         connect = true;
         socket.emit('auth', {hash: window.ms.uniq_key, name:window.ms.name});
         get_statuses();
@@ -44,8 +36,25 @@ $(document).ready(function(){
     });
 
     socket.on('logs',function(data){
-        soundManager.play('new_message',{volume:100});
-        show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;font-size:12px;'>"+langs[data.message.type]+"</span>"+icons[data.message.action]+" "+data.message.text,false,false,false,true);
+        if ($("#id_company").val() == data.message.id_company)
+        {
+            sounds.notification.trigger('play');
+            if ($("#sidebar_right").width() == 0)
+            {
+                show_message("logs","<span class='label label-default log_"+data.message.type+"' style='margin:-10px -10px 5px -10px;font-size:12px;'>"+lang["type_"+data.message.type]+"</span>"+icons[data.message.action]+" "+data.message.text,false,false,false,true);
+            }
+
+            if (data.message.type == "project" || data.message.type == "users")
+            {
+                update_projects_list();
+            }
+
+            $(".logs_table_sidebar:last").fadeOut("slow",function(){
+                $(this).remove();
+                $("#sidebar_right_content").prepend(data.sidebar).mCustomScrollbar("update");
+                $(".logs_table_sidebar:hidden").fadeIn("slow");
+            });
+        }
     });
 
     socket.on('connect_error',function(){
@@ -88,7 +97,7 @@ $(document).ready(function(){
     });
 
     socket.on('message', function (msg) {
-        if (msg.event == "connected") show_message("info","Cоединение с сервером сообщений");
+        //if (msg.event == "connected") show_message("info","Cоединение с сервером сообщений");
         //if (msg.event == "success_connect") show_message("success","Online",true);
         if (msg.event == "message")
         {
@@ -246,6 +255,11 @@ $(document).ready(function(){
 
 var status_t_int = false;
 
+function set_user_projects(id_user)
+{
+    socket.emit('set_user_projects',{real_id: id_user});
+}
+
 function get_statuses()
 {
     clearInterval(status_t_int);
@@ -253,12 +267,18 @@ function get_statuses()
     if (socket)
     {
         get_statuses_ids(function(ids){
-            socket.emit('get_status', {ids: ids});
+            if (ids.length > 0)
+            {
+                socket.emit('get_status', {ids: ids});
+            }
         });
 
         status_t_int = setInterval(function(){
             get_statuses_ids(function(ids){
-                socket.emit('get_status', {ids: ids});
+                if (ids.length > 0)
+                {
+                    socket.emit('get_status', {ids: ids});
+                }
             })
         },5000);
     }
@@ -276,9 +296,9 @@ function play_sound(id)
         if ($("[name='sound_trigger']").length > 0 && $("[name='sound_trigger']").prop("checked"))
         {
             localStorage.setItem('ms_message_status','play');
-            soundManager.play('new_message',{volume:50});
+            sounds.notification.play();
         }
-        else if($("[name='sound_trigger']").length < 1) soundManager.play('new_message',{volume:50});
+        else if($("[name='sound_trigger']").length < 1) sounds.notification.play();
     }
 }
 

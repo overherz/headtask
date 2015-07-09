@@ -7,11 +7,6 @@
 {% block js %}
     {{parent()}}
     <script src="{{ app.path('projects','users.js') }}"></script>
-    <script>
-        $(document).ready(function ($) {
-            set_users_checkbox();
-        });
-    </script>
 {% endblock %}
 
 {% block project_data %}
@@ -49,8 +44,8 @@
                 <label class="col-lg-1 control-label" for="role">Роль</label>
                 <div class="col-lg-6">
                     <select name="role">
-                        <option value="manager">Менеджер</option>
-                        <option value="user" {% if user.role == "user" %}selected{% endif %}>Участник проекта</option>
+                        <option value="manager">менеджер</option>
+                        <option value="user" {% if user.role == "user" %}selected{% endif %}>участник</option>
                     </select>
                 </div>
             </div>

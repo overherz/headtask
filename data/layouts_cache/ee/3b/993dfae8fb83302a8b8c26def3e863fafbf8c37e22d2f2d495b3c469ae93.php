@@ -17,23 +17,29 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
     {
         // line 1
         echo \layout::func_from_text("<div class=\"btn-block\" style=\"margin-bottom: 20px;\">
-    <div class=\"btn-group\">
-        <a class=\"btn btn-india ");
-        // line 3
-        if ((isset($context["review_button"]) ? $context["review_button"] : null)) {
-            echo \layout::func_from_text("active");
-        }
-        echo \layout::func_from_text("\" href=\"/projects/~");
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
-        echo \layout::func_from_text("/\"><i class=\"fa fa-info menu_icon\"></i><span class=\"menu_text\">Обзор</span></a>
+    ");
+        // line 2
+        if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "show_review")) {
+            // line 3
+            echo \layout::func_from_text("    <div class=\"btn-group\">
+        <a class=\"btn btn-india pajax ");
+            // line 4
+            if ((isset($context["review_button"]) ? $context["review_button"] : null)) {
+                echo \layout::func_from_text("active");
+            }
+            echo \layout::func_from_text("\" href=\"/projects/~");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
+            echo \layout::func_from_text("/\"><i class=\"fa fa-info menu_icon\"></i><span class=\"menu_text\">Обзор</span></a>
     </div>
     ");
-        // line 5
-        if ((!$this->getAttribute((isset($context["project"]) ? $context["project"] : null), "owner"))) {
-            // line 6
+        }
+        // line 7
+        echo \layout::func_from_text("    ");
+        if (((!$this->getAttribute((isset($context["project"]) ? $context["project"] : null), "owner")) && $this->getAttribute((isset($context["access"]) ? $context["access"] : null), "show_news"))) {
+            // line 8
             echo \layout::func_from_text("    <div class=\"btn-group\">
-        <a class=\"btn btn-black ");
-            // line 7
+        <a class=\"btn btn-black pajax ");
+            // line 9
             if ((isset($context["news_button"]) ? $context["news_button"] : null)) {
                 echo \layout::func_from_text("active");
             }
@@ -41,7 +47,7 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("/\"><i class=\"fa fa-rss menu_icon\"></i><span class=\"menu_text\">Новости</span></a>
         ");
-            // line 8
+            // line 10
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "news")) {
                 echo \layout::func_from_text("<a class=\"btn btn-black ");
                 if ((isset($context["add_news_button"]) ? $context["add_news_button"] : null)) {
@@ -51,22 +57,22 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("/\"><i class=\"fa fa-plus\"></i></a>");
             }
-            // line 9
+            // line 11
             echo \layout::func_from_text("    </div>
     ");
         }
-        // line 11
+        // line 13
         echo \layout::func_from_text("    <div class=\"btn-group\">
-        <a class=\"btn btn-success ");
-        // line 12
+        <a class=\"btn btn-success pajax ");
+        // line 14
         if ((isset($context["tasks_button"]) ? $context["tasks_button"] : null)) {
             echo \layout::func_from_text("active");
         }
         echo \layout::func_from_text("\" href=\"/projects/tasks/");
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("/\"><i class=\"fa fa-tasks menu_icon\"></i><span class=\"menu_text\">Задачи</span></a>
-        <a class=\"btn btn-success ");
-        // line 13
+        <a class=\"btn btn-success pajax ");
+        // line 15
         if ((isset($context["gantt_button"]) ? $context["gantt_button"] : null)) {
             echo \layout::func_from_text("active");
         }
@@ -74,7 +80,7 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
         echo \layout::func_from_text("/\"><i class=\"fa fa-bar-chart-o\"></i></a>
         ");
-        // line 14
+        // line 16
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_task")) {
             echo \layout::func_from_text("<a class=\"btn btn-success ");
             if ((isset($context["add_tasks_button"]) ? $context["add_tasks_button"] : null)) {
@@ -84,39 +90,41 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("/\"><i class=\"fa fa-plus\"></i></a>");
         }
-        // line 15
+        // line 17
         echo \layout::func_from_text("    </div>
+
     <div class=\"btn-group\">
         <a href=\"/projects/files/");
-        // line 17
+        // line 20
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
-        echo \layout::func_from_text("\" class=\"btn btn-info ");
+        echo \layout::func_from_text("/\" class=\"btn btn-info pajax ");
         if ((isset($context["files_button"]) ? $context["files_button"] : null)) {
             echo \layout::func_from_text("active");
         }
         echo \layout::func_from_text("\"><i class=\"fa fa-files-o menu_icon\"></i><span class=\"menu_text\">Файлы</span></a>
         ");
-        // line 18
+        // line 21
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "add_files")) {
             echo \layout::func_from_text("<a class=\"btn btn-info upload_files\" href=\"\"><i class=\"fa fa-plus\"></i></a>");
         }
-        // line 19
+        // line 22
         echo \layout::func_from_text("    </div>
+
     ");
-        // line 20
-        if ((!$this->getAttribute((isset($context["project"]) ? $context["project"] : null), "owner"))) {
-            // line 21
+        // line 24
+        if (((!$this->getAttribute((isset($context["project"]) ? $context["project"] : null), "owner")) && $this->getAttribute((isset($context["access"]) ? $context["access"] : null), "show_users"))) {
+            // line 25
             echo \layout::func_from_text("    <div class=\"btn-group\">
         <a href=\"/projects/users/");
-            // line 22
+            // line 26
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("\" class=\"btn btn-primary ");
+            echo \layout::func_from_text("/\" class=\"btn btn-primary pajax ");
             if ((isset($context["users_button"]) ? $context["users_button"] : null)) {
                 echo \layout::func_from_text("active");
             }
             echo \layout::func_from_text("\"><i class=\"fa fa-users menu_icon\"></i><span class=\"menu_text\">Участники</span></a>
         ");
-            // line 23
+            // line 27
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "users")) {
                 echo \layout::func_from_text("<a class=\"btn btn-primary ");
                 if ((isset($context["add_users_button"]) ? $context["add_users_button"] : null)) {
@@ -126,40 +134,45 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("/\"><i class=\"fa fa-plus\"></i></a>");
             }
-            // line 24
+            // line 28
             echo \layout::func_from_text("    </div>
     ");
         }
-        // line 26
-        echo \layout::func_from_text("    <div class=\"btn-group\">
-        <a class=\"btn btn-foxtrot ");
-        // line 27
-        if ((isset($context["documents_button"]) ? $context["documents_button"] : null)) {
-            echo \layout::func_from_text("active");
-        }
-        echo \layout::func_from_text("\" href=\"/projects/documents/");
-        echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
-        echo \layout::func_from_text("/\"><i class=\"fa fa-file-text-o menu_icon\"></i><span class=\"menu_text\">Wiki</span></a>
-        ");
-        // line 28
-        if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "documents")) {
-            echo \layout::func_from_text("<a class=\"btn btn-foxtrot ");
-            if ((isset($context["add_documents_button"]) ? $context["add_documents_button"] : null)) {
-                echo \layout::func_from_text("active");
-            }
-            echo \layout::func_from_text("\" href=\"/projects/documents/add/");
-            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("/\"><i class=\"fa fa-plus\"></i></a>");
-        }
-        // line 29
-        echo \layout::func_from_text("    </div>
-    ");
         // line 30
-        if ((!$this->getAttribute((isset($context["project"]) ? $context["project"] : null), "owner"))) {
+        echo \layout::func_from_text("    ");
+        if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "show_documents")) {
             // line 31
             echo \layout::func_from_text("    <div class=\"btn-group\">
-        <a class=\"btn btn-oscar ");
+        <a class=\"btn btn-foxtrot pajax ");
             // line 32
+            if ((isset($context["documents_button"]) ? $context["documents_button"] : null)) {
+                echo \layout::func_from_text("active");
+            }
+            echo \layout::func_from_text("\" href=\"/projects/documents/");
+            echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
+            echo \layout::func_from_text("/\"><i class=\"fa fa-file-text-o menu_icon\"></i><span class=\"menu_text\">Wiki</span></a>
+        ");
+            // line 33
+            if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "documents")) {
+                echo \layout::func_from_text("<a class=\"btn btn-foxtrot ");
+                if ((isset($context["add_documents_button"]) ? $context["add_documents_button"] : null)) {
+                    echo \layout::func_from_text("active");
+                }
+                echo \layout::func_from_text("\" href=\"/projects/documents/add/");
+                echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
+                echo \layout::func_from_text("/\"><i class=\"fa fa-plus\"></i></a>");
+            }
+            // line 34
+            echo \layout::func_from_text("    </div>
+    ");
+        }
+        // line 36
+        echo \layout::func_from_text("    ");
+        if (((!$this->getAttribute((isset($context["project"]) ? $context["project"] : null), "owner")) && $this->getAttribute((isset($context["access"]) ? $context["access"] : null), "show_forum"))) {
+            // line 37
+            echo \layout::func_from_text("    <div class=\"btn-group\">
+        <a class=\"btn btn-oscar pajax ");
+            // line 38
             if ((isset($context["forum_button"]) ? $context["forum_button"] : null)) {
                 echo \layout::func_from_text("active");
             }
@@ -167,7 +180,7 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("/\"><i class=\"fa fa-comments menu_icon\"></i><span class=\"menu_text\">Форум</span></a>
         ");
-            // line 33
+            // line 39
             if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "forum")) {
                 echo \layout::func_from_text("<a class=\"btn btn-oscar ");
                 if ((isset($context["add_forum_button"]) ? $context["add_forum_button"] : null)) {
@@ -177,17 +190,17 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
                 echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
                 echo \layout::func_from_text("/\"><i class=\"fa fa-plus\"></i></a>");
             }
-            // line 34
+            // line 40
             echo \layout::func_from_text("        <!--<div class=\"nickname\" style=\"font-size: 12px;position: absolute;margin-top: -6px;\">Новые: ");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["globals"]) ? $context["globals"] : null), "count_new_posts"), "html", null, true));
             echo \layout::func_from_text("</div>-->
     </div>
     ");
         }
-        // line 37
+        // line 43
         echo \layout::func_from_text("    <div class=\"btn-group\">
         ");
-        // line 38
+        // line 44
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "edit_project")) {
             echo \layout::func_from_text("<a class=\"btn btn-danger ");
             if ((isset($context["edit_button"]) ? $context["edit_button"] : null)) {
@@ -197,7 +210,7 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("/\"><i class=\"fa fa-pencil\"></i></a>");
         }
-        // line 39
+        // line 45
         echo \layout::func_from_text("        ");
         if ($this->getAttribute((isset($context["access"]) ? $context["access"] : null), "delete_project")) {
             echo \layout::func_from_text("<a class=\"btn btn-danger delete_project\" href=\"\" project_id=\"");
@@ -206,7 +219,7 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["project"]) ? $context["project"] : null), "name"), "html", null, true));
             echo \layout::func_from_text("\"><i class=\"fa fa-trash-o\"></i></a>");
         }
-        // line 40
+        // line 46
         echo \layout::func_from_text("    </div>
 </div>");
     }
@@ -223,6 +236,6 @@ class __TwigTemplate_ee3b993dfae8fb83302a8b8c26def3e863fafbf8c37e22d2f2d495b3c46
 
     public function getDebugInfo()
     {
-        return array (  201 => 39,  191 => 38,  181 => 34,  171 => 33,  163 => 32,  158 => 30,  155 => 29,  145 => 28,  112 => 22,  109 => 21,  107 => 20,  78 => 14,  70 => 13,  37 => 7,  32 => 5,  23 => 3,  49 => 9,  39 => 7,  36 => 6,  28 => 3,  301 => 80,  297 => 78,  288 => 74,  282 => 72,  277 => 69,  274 => 68,  263 => 67,  256 => 66,  245 => 65,  243 => 64,  239 => 62,  237 => 61,  233 => 59,  230 => 58,  219 => 57,  217 => 56,  210 => 40,  206 => 53,  190 => 49,  188 => 37,  185 => 47,  183 => 46,  160 => 31,  157 => 39,  154 => 38,  148 => 36,  146 => 35,  137 => 27,  134 => 26,  131 => 31,  118 => 29,  113 => 28,  111 => 27,  100 => 18,  90 => 24,  88 => 15,  85 => 22,  79 => 20,  77 => 19,  67 => 18,  62 => 12,  57 => 16,  52 => 12,  45 => 8,  41 => 10,  31 => 4,  27 => 6,  119 => 16,  99 => 13,  94 => 12,  84 => 10,  65 => 6,  61 => 5,  43 => 8,  40 => 3,  34 => 6,  21 => 2,  197 => 86,  194 => 51,  184 => 78,  178 => 75,  174 => 74,  170 => 42,  166 => 41,  151 => 37,  143 => 34,  136 => 49,  130 => 24,  127 => 45,  125 => 44,  120 => 23,  116 => 15,  110 => 40,  104 => 19,  98 => 38,  92 => 17,  87 => 35,  80 => 8,  76 => 28,  74 => 27,  59 => 11,  55 => 9,  48 => 12,  42 => 8,  38 => 9,  25 => 3,  22 => 2,  19 => 1,);
+        return array (  223 => 46,  214 => 45,  204 => 44,  201 => 43,  194 => 40,  184 => 39,  176 => 38,  173 => 37,  170 => 36,  166 => 34,  156 => 33,  148 => 32,  145 => 31,  142 => 30,  138 => 28,  128 => 27,  120 => 26,  117 => 25,  115 => 24,  111 => 22,  107 => 21,  99 => 20,  94 => 17,  84 => 16,  76 => 15,  68 => 14,  65 => 13,  61 => 11,  51 => 10,  43 => 9,  40 => 8,  37 => 7,  27 => 4,  24 => 3,  22 => 2,  19 => 1,);
     }
 }

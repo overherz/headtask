@@ -247,6 +247,7 @@ class pages extends \Admin {
         {
             $this->db->commit();
             $res['success'] = true;
+            $this->get_controller("pages")->update_cache_pages();
         }
         else $this->db->rollBack();
 

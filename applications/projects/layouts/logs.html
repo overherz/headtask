@@ -1,5 +1,5 @@
 <div style="position: relative;">{% include '/source/jpaginator_boot.html' %}</div>
-<table class="table table-hover table_style no_padding_left">
+<table class="table table-hover table_style no_padding_left logs_table">
     <thead>
     <tr>
         <th style="width: 1px;white-space: nowrap;">Тип</th>
@@ -15,7 +15,7 @@
         {% if not date or date != l.created|date('d.m.Y') %}
         {% set date = l.created|date('d.m.Y') %}
         <tr>
-            <td colspan="5" style="font-size: 14px;font-weight: bold;text-align: center;">
+            <td colspan="6" style="font-size: 14px;font-weight: bold;text-align: center;">
                 {% if ""|date('d.m.Y') == date %}
                     сегодня
                 {% else %}
@@ -32,8 +32,14 @@
                 {% elseif l.action == 'delete' %}<i class="fa fa-trash-o" style="color:#d9534f;"></i>
                 {% endif %}
             </td>
-            <td>{{l.text|raw}}</td>
-            {% if all %}<td style="white-space: nowrap;">{% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}</td>{% endif %}
+            <td {% if l.type == 'file' %}class="nopajax" {% endif %}>{{l.text|raw}}</td>
+            {% if all %}
+                <td style="width: 1px;">
+                    <div style="max-width: 150px;white-space: nowrap;" class="overflow_ellipsis">
+                    {% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}
+                    </div>
+                </td>
+            {% endif %}
             <td>{{l.created|date('H:i')}}</td>
             <td>
                 {% if globals.user.id_user == l.id_user %}

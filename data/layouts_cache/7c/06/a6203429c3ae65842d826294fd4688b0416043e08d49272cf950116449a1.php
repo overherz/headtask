@@ -16,7 +16,7 @@ class __TwigTemplate_7c06a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo \layout::func_from_text("<ul style=\"list-style: none;padding-left: 0;\" class=\"projects_in_panel\">
+        echo \layout::func_from_text("
 ");
         // line 2
         $context['_parent'] = (array) $context;
@@ -33,7 +33,7 @@ class __TwigTemplate_7c06a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
             echo \layout::func_from_text("/\" data-id=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : null), "id"), "html", null, true));
-            echo \layout::func_from_text("\" style=\"padding: 5px 0 5px 30px;line-height: 15px;\">
+            echo \layout::func_from_text("\" class=\"pajax\">
         ");
             // line 5
             if ($this->getAttribute((isset($context["p"]) ? $context["p"] : null), "owner")) {
@@ -49,7 +49,7 @@ class __TwigTemplate_7c06a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['p'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 9
-        echo \layout::func_from_text("</ul>
+        echo \layout::func_from_text("
 ");
         // line 10
         $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "jpaginator_project_panel.html"), "method"));

@@ -12,18 +12,16 @@ $(document).ready(function($)
         'maxDate': $("[name='end']").val()
     });
 
-    $(document).on("click","#save_profile",function(){
+    $(document).off("click","#save_profile").on("click","#save_profile",function(){
         var request = $("#edit_profile").serialize();
         user_api(request,function(data){
             show_message("success","Профиль сохранен");
-            setInterval(function(){
-                redirect("/users/~"+data+"/");
-            },1000);
+            redirect("/users/~"+data+"/",1);
         });
         return false;
     });
 
-    $(document).on("click","[add_to_cl]",function(){
+    $(document).off("click","[add_to_cl]").on("click","[add_to_cl]",function(){
         th = this;
         var id = $(this).attr("add_to_cl");
         var username = $(th).attr("username");
@@ -34,7 +32,7 @@ $(document).ready(function($)
         return false;
     });
 
-    $(document).on("click","[del_from_cl]",function(){
+    $(document).off("click","[del_from_cl]").on("click","[del_from_cl]",function(){
         th = this;
         var id = $(th).attr("del_from_cl");
         var username = $(th).attr("username");
@@ -49,16 +47,16 @@ $(document).ready(function($)
         return false;
     });
 
-    $(document).on("click","[change_avatar]",function(){
+    $(document).off("click","[change_avatar]").on("click","[change_avatar]",function(){
         user_api({act:'get_avatar_upload'},function(data){
             show_popup(data,"Загрузка фотографии");
-            $("[name='avatar']").styler();
+            style_input('.popup');
         },false,'/users/edit/');
 
         return false;
     });
 
-    $(document).on("change","[name='avatar']",function(){
+    $(document).off("change","[name='avatar']").on("change","[name='avatar']",function(){
         var options = {
             dataType : 'json',
             url: "/users/edit/?dev_mode=off&ajax=on",
@@ -116,7 +114,7 @@ $(document).ready(function($)
         $("#upload_avatar").ajaxSubmit(options);
     });
 
-    $(document).on("click","[save_avatar]",function(){
+    $(document).off("click","[save_avatar]").on("click","[save_avatar]",function(){
         var request = $("#save_avatar").serialize();
         user_api(request,function(data){
             hide_popup();
@@ -129,7 +127,7 @@ $(document).ready(function($)
         return false;
     });
 
-    $(document).on("click","#change_password",function(){
+    $(document).off("click","#change_password").on("click","#change_password",function(){
         var request = $("#change_password_form").serialize();
         user_api(request,function(data){
             $("#change_password_form").trigger('reset')
@@ -138,7 +136,7 @@ $(document).ready(function($)
         return false;
     })
 
-    $(document).on("click","#change_email",function(){
+    $(document).off("click","#change_email").on("click","#change_email",function(){
         var request = $("#change_email_form").serialize();
         user_api(request,function(data){
             show_message("success", "На оба почтовых адреса высланы коды подтверждения операции");
@@ -149,7 +147,7 @@ $(document).ready(function($)
         });
         return false;
     })
-    $(document).on("click","#cancel_change_email",function(){
+    $(document).off("click","#cancel_change_email").on("click","#cancel_change_email",function(){
         user_api({act:'cancel_change_email'},function(data){
             show_message("success", "Процесс смены адреса электронной почты отменен!");
             $('#not_change_email').fadeOut(500, function (){
@@ -159,7 +157,7 @@ $(document).ready(function($)
         return false;
     })
 
-    $(document).on("click","[send_invite]",function(){
+    $(document).off("click","[send_invite]").on("click","[send_invite]",function(){
         th = this;
         var community = $(this).attr("send_invite");
         var user = $(this).attr('user');

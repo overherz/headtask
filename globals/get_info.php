@@ -2,7 +2,7 @@
 
 namespace global_module;
 
-class get_info extends \global_module
+class get_info extends \Global_module
 {
     protected $admin = true;
     protected $on_ajax_not_run = false;

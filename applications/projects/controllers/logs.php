@@ -3,7 +3,8 @@ namespace projects;
 
 class logs extends \Controller {
 
-    private $limit = 30;
+    public $limit = 30;
+    public $without_user = false;
 
     function default_method()
     {
@@ -25,7 +26,7 @@ class logs extends \Controller {
        // pr($logs['paginator']);
 
         $data = array(
-            'types' => array('project','task','file','news','comment','forum'),//$this->db->get_enum("projects_logs","type"),
+            'types' => array('project','task','file','news','comment','forum','users'),//$this->db->get_enum("projects_logs","type"),
             'logs' => $logs['logs'],
             'paginator' => $logs['paginator'],
             'start' => date("d.m.Y",$start),
@@ -43,7 +44,7 @@ class logs extends \Controller {
 
     function get_logs_task($id)
     {
-        $query = $this->db->prepare("select pl.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+        $query = $this->db->prepare("select pl.*,u.first_name,u.last_name,g.color,g.name as group_name
                     from projects_tasks_logs as pl
                     LEFT JOIN users as u ON u.id_user = pl.id_user
                     LEFT JOIN groups as g ON u.id_group=g.id
@@ -62,7 +63,7 @@ class logs extends \Controller {
     function get_delayed_manager_tasks()
     {
         $now = date("Y-m-d");
-        $query = $this->db->prepare("select pt.name,pt.end,pt.id_project,pt.id,p.name as project_name,u.first_name,u.last_name,u.nickname,pt.assigned
+        $query = $this->db->prepare("select pt.name,pt.end,pt.id_project,pt.id,p.name as project_name,u.first_name,u.last_name,pt.assigned
             from projects_tasks as pt
             LEFT JOIN projects as p ON pt.id_project = p.id
             LEFT JOIN users as u ON pt.assigned = u.id_user
@@ -79,7 +80,7 @@ class logs extends \Controller {
 
     function get_manager_logs($start,$end)
     {
-        $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,t.id_project,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+        $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,t.id_project,u.first_name,u.last_name,g.color,g.name as group_name
                     from projects_tasks_logs as pl
                     LEFT JOIN projects_tasks as t ON pl.id_task = t.id
                     LEFT JOIN projects as p ON t.id_project = p.id
@@ -103,7 +104,7 @@ class logs extends \Controller {
         switch ($type)
         {
             case "project":
-                $query = $this->db->prepare("select pl.*,p.name as project_name,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+                $query = $this->db->prepare("select pl.*,p.name as project_name,u.first_name,u.last_name,g.color,g.name as group_name
                     from projects_logs as pl
                     LEFT JOIN projects as p ON pl.id_project = p.id
                     LEFT JOIN users as u ON u.id_user = pl.id_user
@@ -121,7 +122,7 @@ class logs extends \Controller {
                 return $logs;
                 break;
             case "task":
-                $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,t.id_project,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+                $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,t.id_project,u.first_name,u.last_name,g.color,g.name as group_name
                     from projects_tasks_logs as pl
                     LEFT JOIN projects_tasks as t ON pl.id_task = t.id
                     LEFT JOIN projects as p ON t.id_project = p.id
@@ -149,7 +150,6 @@ class logs extends \Controller {
 
         if ($type)
         {
-
             if (!is_array($type))
             {
                 $old_type = $type;
@@ -192,6 +192,13 @@ class logs extends \Controller {
             $where[] = "(".implode("OR ",$search_ar).")";
         }
 
+        if ($this->without_user)
+        {
+            $where[] = "pl.id_user !=". $_SESSION['user']['id_user'];
+        }
+
+        $where[] = "p.id_company=".$_SESSION['user']['current_company'];
+
         if (count($where) > 0) $where_string = " AND ".implode(" AND ",$where);
 
         $query = $this->db->prepare("
@@ -208,7 +215,7 @@ class logs extends \Controller {
         require_once(ROOT.'libraries/paginator/paginator.php');
         $paginator = new \Paginator($count['count'], $_POST['page'], $this->limit);
 
-        $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name,
+        $query = $this->db->prepare("select pl.*,t.name as task_name,p.name as project_name,u.first_name,u.last_name,g.color,g.name as group_name,
                     tu.trash_name as trash_user_name,tp.trash_name as trash_project_name,
                     p.id as id_project,u.id_user as id_user
                     from projects_logs as pl
@@ -229,7 +236,7 @@ class logs extends \Controller {
         while ($row = $query->fetch())
         {
             $row['text'] = htmlentities($row['text']);
-            $row['text'] = preg_replace("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u","<a html_entity_decode($1)>$2</a>",$row['text']);
+            $row['text'] = preg_replace_callback("/&lt;a(.*?)&gt;(.*)&lt;\/a&gt;/u",array($this, 'replaceEntities'),$row['text']);
             $row['text'] = str_replace(
                 array(
                     "&lt;s&gt;",
@@ -246,6 +253,7 @@ class logs extends \Controller {
 //            pr($matches);
 
             $row['fio'] = build_user_name($row['first_name'],$row['last_name'],true);
+            $row['type_lang'] = $GLOBALS['lang']["type_".$row['type']];
             $logs[] = $row;
         }
         return array('logs' => $logs,'paginator' => $paginator);
@@ -257,6 +265,25 @@ class logs extends \Controller {
         {
             $query = $this->db->prepare("insert into projects_logs(id_user,id_project,id_task,text,created,type,action) values(?,?,?,?,?,?,?)");
             if ($query->execute(array($_SESSION['user']['id_user'],$id_project,$id_task,$text,time(),$type,$action))) return true;
+        }
+    }
+
+    function replaceEntities($matches)
+    {
+        $str = html_entity_decode($matches[1]);
+        $str = "<a {$str}>{$matches[2]}</a>";
+        return $str;
+    }
+
+    function get_logs_from_layout()
+    {
+        if ($_SESSION['user'])
+        {
+            $this->limit = 30;
+            $this->without_user = true;
+            $logs = $this->get_logs();
+            \Controller::set_global("logs",$logs);
+            return $this->layout_get("/logs/sidebar_index.html");
         }
     }
 }

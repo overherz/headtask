@@ -60,6 +60,7 @@ class MyPDO extends PDO
                 'error' => array('2' => $e->getMessage()),
                 'trace' => $trace
             );
+            $GLOBALS['dev']['queries_error']++;
         }
     }
 
@@ -84,6 +85,7 @@ class MyPDO extends PDO
                 'error' => array('2' => $e->getMessage()),
                 'trace' => $trace
             );
+            $GLOBALS['dev']['queries_error']++;
         }
     }
 
@@ -157,6 +159,7 @@ class MyPDOStatement extends PDOStatement
                 'error' => array('2' => $e->getMessage()),
                 'trace' => $trace
             );
+            $GLOBALS['dev']['queries_error']++;
         }
     }
 

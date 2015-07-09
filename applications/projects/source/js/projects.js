@@ -4,6 +4,7 @@ $(document).ready(function ($) {
         var request = $("#project_form").serialize();
         user_api(request, function (data) {
             show_message("success", "Сохранено");
+            update_projects_list();
             redirect("/projects/~" + data, 1);
         }, false, '/projects/add/');
         return false;
@@ -18,13 +19,12 @@ $(document).ready(function ($) {
                 user_api(request, function (data) {
                     show_message("success", "Проект удален");
                     hide_popup();
+                    update_projects_list();
                     redirect("/projects/", 1);
                 },function(res){
                     show_message('error',res.text);
                     $("#captcha_div").html(res.captcha_html);
-                    if(jQuery().styler) {
-                        $(".popup input").styler();
-                    }
+                    style_input('.popup');
                 }, '/projects/');
             });
         }, false, '/projects/');
@@ -105,4 +105,12 @@ function create_color_input()
             $("#category_demo").css({'background':color,'color':color_text});
         }
     });
+}
+
+function update_projects_list()
+{
+    user_api({act:'get_projects',project_panel_page:true},function(data){
+        $("#project_panel_ul").mCustomScrollbar("destroy").html(data);
+        init_left_bar();
+    },false,'/projects/');
 }

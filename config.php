@@ -12,8 +12,8 @@ $INFO['antiddos'] = 0;
 $INFO['domain_name'] = "tasker";
 $INFO['secure'] = 0; //enable to https redirect
 
-$INFO['cache'] = 0;
-$INFO['cache_storage'] = "memcache"; // files, sqlite, auto, apc, wincache, xcache, memcache, memcached
+$INFO['cache'] = 1;
+$INFO['cache_storage'] = "memcached"; // files, sqlite, auto, apc, wincache, xcache, memcache, memcached
 $INFO['cache_server'] = array(
                             array("127.0.0.1",11211),
                             //array("localhost",11211,70)

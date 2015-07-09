@@ -34,7 +34,7 @@ class Controller {
     }
 
     function __destruct() {
-        if (self::$redirect && !$_GET['ajax']) echo "<meta http-equiv='refresh' content='".self::$redirect['delay']."; url=".self::$redirect['url']."'>";
+        if (self::$redirect && !AJAX) echo "<meta http-equiv='refresh' content='".self::$redirect['delay']."; url=".self::$redirect['url']."'>";
     }
 
     public function __toString() {
@@ -122,6 +122,8 @@ class Controller {
         if ($GLOBALS['settings']) $values['settings'] = $GLOBALS['settings'];
         if ($_POST) $values['post_data'] = $_POST;
         if ($_GET) $values['get_data'] = $_GET;
+        if ($_SESSION) $values['session_data'] = $_SESSION;
+        if (defined('AJAX') && AJAX) $values['ajax_data'] = true;
         if ($_COOKIE) $values['cookie_data'] = $_COOKIE;
         layout::layout_show($this->layout.$layout,$values);
     }
@@ -133,6 +135,8 @@ class Controller {
         if ($GLOBALS['settings']) $values['settings'] = $GLOBALS['settings'];
         if ($_POST) $values['post_data'] = $_POST;
         if ($_GET) $values['get_data'] = $_GET;
+        if ($_SESSION) $values['session_data'] = $_SESSION;
+        if (defined('AJAX') && AJAX) $values['ajax_data'] = true;
         if ($_COOKIE) $values['cookie_data'] = $_COOKIE;
         return layout::layout_get($this->layout.$layout,$values);
     }
@@ -146,6 +150,7 @@ class Controller {
                 break;
         }
         if ($GLOBALS['globals']) $values['globals'] = $GLOBALS['globals'];
+        if (defined('AJAX') && AJAX) $values['ajax_data'] = true;
         $values['app'] = new \app_paths();
         if ($_SERVER['HTTP_REFERER'] != "") $values['referer'] = $_SERVER['HTTP_REFERER'];
         $values['url'] = request_url();
@@ -302,7 +307,7 @@ class Admin extends Controller {
         if (!$_SESSION['admin'] && ($this->application != "index" || ($this->application == "index" && $this->controller != "index")))
         {
             setcookie('redirect', $_SERVER['REQUEST_URI'], time()+60*60*24*7,"/");
-            if ($_GET['ajax'] == "on")
+            if (defined('AJAX') && AJAX)
             {
                 echo json_encode("AdminloginException");
                 exit();
@@ -311,7 +316,7 @@ class Admin extends Controller {
         }
         else if (is_array($_SESSION['admin']['access']) && in_array($this->path,$_SESSION['admin']['access']))
         {
-            if ($_GET['ajax'] == "on")
+            if (defined('AJAX') && AJAX)
             {
                 echo json_encode("AdminloginException");
                 exit();
@@ -353,7 +358,7 @@ class Admin extends Controller {
     }
 }
 
-class global_module
+class Global_module
 {
     protected $admin = false;
     protected $on_ajax_not_run = true;
@@ -364,7 +369,11 @@ class global_module
         if (!$module)
         {
             $folder = ROOT.'globals'.DS;
-            foreach (glob($folder."*.php") as $filename) $this->modules[] = basename($filename);
+            include_once($folder.DS."config.php");
+            foreach ($glogals_run_order as $k => $v)
+            {
+                $this->modules[] = $v.".php";
+            }
         }
         else $this->modules[] = $module.".php";
         if (count($this->modules) > 0)

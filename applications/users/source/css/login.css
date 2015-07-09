@@ -6,10 +6,11 @@ body {
 
 #page-content-wrapper {
     padding-left : 0;
+    padding-right: 0;
 }
 
 .form-signin {
-    width: 250px;
+    width: 350px;
     margin: 100px auto 20px;
 }
 .form-signin .form-signin-heading,
@@ -30,4 +31,13 @@ body {
 
 #wrapper {
     padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#wrapper .fa-caret-left, #wrapper .fa-caret-right {
+    display: none;
+}
+
+#sidebar_right {
+    display: none;
 }

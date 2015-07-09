@@ -7,148 +7,99 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ app.path('/source/css/','plugins.css',true) }}" type="text/css" />
-    <link rel="stylesheet" href="//yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ app.path('/source/admin/fonts/font-awesome/css/','font-awesome.min.css',true) }}">
     <link rel="stylesheet" href="{{ app.path('/source/css/','content.css',true) }}" type="text/css" />
     <link rel="stylesheet" href="{{ app.path('/source/css/ui-lightness/','jquery-ui-1.10.4.custom.min.css',true) }}" />
-    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic'  type='text/css'>
+    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' type='text/css'>
     {% block css %}
     {% endblock %}
 </head>
 
 <body>
-<div id="wrapper" {% if cookie_data.sidebar == 'toggled' %}class="toggled" {% endif %}>
 
+
+
+{% if globals.user %}
+<div id="wrapper" class="{% if cookie_data.sidebar == 'toggled' %}toggled{% endif %} {% if cookie_data.sidebar2 == 'toggled2' %}toggled2{% endif %}">
+    <nav class="navbar navbar-default navbar-static-top topmenu">
+        <span class="navbar-brand logo_color1">h<span class="brand_full">ead</span><span class="logo_color2">t<span class="brand_full">ask</span></span></span>
+        <div class="pull-right">
+            <span style="margin-right: 10px;">{{ ("role_"~session_data.user.role_company)|lang|capitalize }}</span>
+            <select id="select_company">
+                {% for k,c in globals.company %}
+                    <option value="{{ k }}" {% if session_data.user.current_company == k %}selected{% endif %}>{{ c.name }}</option>
+                {% endfor %}
+            </select>
+            {% if globals.user %}
+                <a href="/users/profile/" class="username_in_top pajax" title="Профиль"><span>{{globals.user.fio}}</span></a>
+                <div class="get_ms_status user_offline middle" data-id="{{globals.user.id_user}}"></div>
+            {% endif %}
+            {% if globals.user %}
+                <a href="/users/logout/" id="logout"><i class="fa fa-power-off"></i></a>
+            {% endif %}
+            <input type="hidden" id="id_company" name="id_company" value="{{ globals.user.current_company }}">
+        </div>
+    </nav>
+{% endif %}
+{% if globals.user %}
 {% block menu %}
     {% include "/source/menu.html" %}
+    <i class="fa {% if cookie_data.sidebar == 'toggled' %}fa-caret-right{% else %}fa-caret-left{% endif %} left_toggle"></i>
  {% endblock %}
-
-    <!-- Page Content -->
+{% endif %}
     <div id="page-content-wrapper">
-        <div class="container-fluid" style="padding: 0">
+        <div class="container-fluid" style="padding: 0;">
             <div class="row" style="margin-right: 0;">
-                <div class="col-lg-12" style="padding-right: 0;">
-                {% block body %}{% endblock %}
+                <div class="col-lg-12" style="padding-right: 0;position: relative;" id="pajax">
+                    {% block menu_active %}
+                        <input type="hidden" name="menu_li" value="{{ globals.menu_li }}">
+                        <input type="hidden" name="menu_sub_li" value="{{ globals.menu_sub_li }}">
+                    {% endblock %}
+                {% block body %}
+                {% endblock %}
                 </div>
             </div>
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
-
+    {% if globals.user %}
+    {% block right_sidebar %}
+        <i class="fa {% if cookie_data.sidebar2 == 'toggled2' %}fa-caret-left{% else %}fa-caret-right{% endif %} right_toggle"></i>
+        {% include "/source/sidebar_right.html" %}
+    {% endblock %}
+    {% endif %}
 </div>
-<!-- /#wrapper -->
-
-
+<audio id="sound_notification" src="/source/js/sound_manager/sound.mp3" type="audio/mp3"></audio>
 
 <script src="//yastatic.net/jquery/2.1.1/jquery.min.js"></script>
+<script src="//yastatic.net/jquery-ui/1.10.4/jquery-ui.min.js"></script>
+<script src="/source/js/jquery.pjax.js"></script>
+<script src="{{ app.path('/source/js/','functions.js',true) }}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/langs/ru.js"></script>
+
 {% if globals.user.id_user %}
     <script src="{{ app.path('/source/js/socket.io/','socket.io.js',true)}}"></script>
     <script src="{{ app.path('/notifications/','client.js',true)}}"></script>
     <script src="{{ app.path('projects','projects.js')}}"></script>
-    <script src="{{ app.path('/source/js/sound_manager/','soundmanager2-nodebug-jsmin.js',true) }}"></script>
+    <script src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
+    <script src="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></script>
+    <script type="text/javascript" src="{{app.path('projects','files.js')}}"></script>
+    <script type="text/javascript" src="{{app.path('projects','tasks.js')}}"></script>
+    <script src="{{ app.path('/source/js/','headtask_function.js',true) }}"></script>
 {% endif %}
-<script src="//yastatic.net/jquery-ui/1.10.4/jquery-ui.min.js"></script>
-<script src="{{ app.path('/source/js/','functions.js',true) }}"></script>
-<script src="//yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>-->
 <script type="text/javascript">
-    $(document).ready(function($) {
-        $('input,select').styler();
-
-        {% if globals.user.id_user %}
-        $(".sidebar-nav").click(function(event){
-            event.stopPropagation();
-        })
-
-        var window_width = get_window_width();
-
-        $(".sidebar-brand a").click(function(e) {
-            e.stopPropagation();
-        });
-
-        var id_dropdown;
-        $(".dropdown").click(function(e){
-            window_width = get_window_width();
-            if ($("#wrapper").hasClass('toggled') || window_width < 1100)
-            {
-                e.preventDefault();
-                var this_id_dropdown = $(this).data('dropdown');
-                hide_sudmenu();
-
-                if (id_dropdown != this_id_dropdown)
-                {
-                    id_dropdown = this_id_dropdown;
-                    var position = $(this).position();
-                    var html = $(".dropdown"+id_dropdown).clone().addClass('clone').show();
-                    html.find("a,li").show();
-                    if ($(this).find('.menu_projects_').length == 0) html.css('paddingTop',position.top);
-                    $(this).css('backgroundColor','#333');
-                    show_overlay();
-                    $("body").append(html);
-                }
-                else id_dropdown = false;
-            }
-        });
-
-        $(document).on('click','#overlay',function(){
-            hide_sudmenu();
-            id_dropdown = false;
-        });
-
-        $(".sidebar-brand").click(function(e) {
-            window_width = get_window_width();
-            if (window_width >= 1100)
-            {
-                hide_sudmenu();
-                id_dropdown = false;
-
-                $("#wrapper").toggleClass("toggled");
-                var c_tog = false;
-                if ($("#wrapper").hasClass('toggled')) c_tog = 'toggled';
-                $.cookie('sidebar', c_tog, { expires: 30, path: '/' });
-            }
-        });
-
-        soundManager.setup({
-            useFlashBlock : false,
-            url : '/source/js/sound_manager/',
-            debugMode : false,
-            consoleOnly : false,
-            onready : function() {
-                soundManager.createSound({
-                    id:'new_message',
-                    url:'/source/js/sound_manager/sound.mp3'
-                });
-                soundManager.createSound({
-                    id:'call',
-                    url:'/source/js/sound_manager/incoming_call.mp3'
-                });
-            }
-        });
-        {% endif %}
-    });
-
-    function hide_sudmenu()
-    {
-        var clones = $(".submenu.clone");
-        if (clones.length > 0)
-        {
-            clones.remove();
-            hide_overlay();
-            $(".dropdown").css('backgroundColor','');
-        }
-    }
-
     {% if globals.user.id_user %}
     window.ms = {
         address: "{{globals.message_server}}",
         uniq_key: "{{globals.user.uniq_key}}",
         name: "{{globals.user.fio}}",
         id: "{{globals.user.id_user}}"
-    }
+    };
     {% endif %}
 </script>
 {% block js %}
 {% endblock %}
+<div id="scripts"></div>
 </body>
 </html>

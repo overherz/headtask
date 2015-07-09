@@ -1,19 +1,11 @@
 {% extends "/source/index.html" %}
 
-{% block js %}
-<script>
-    $(document).ready(function($)
-    {
-        $(".menu a").removeClass("active");
-    });
-</script>
-{% endblock  %}
 {% block body %}
 <div class="content">
 {% if id %}
     {% if error %}<span style="color:red;">{{error}}</span>
     {% elseif change %}
-        <div style="color:green;">Вам отправлено письмо с новым паролем</div>    
+        <div style="color:green;">Вам отправлено письмо с новым паролем</div>
     {% endif %}
 {% else %}
     {% if success %}

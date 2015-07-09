@@ -1,17 +1,11 @@
-<div id="sidebar-wrapper">
+<div id="sidebar-wrapper" style="margin-top: 39px;">
     <ul class="sidebar-nav">
-        <li class="sidebar-brand" style="background: #fff;">
-            <span class="navbar-brand logo_color1">h<span class="brand_full">ead</span><span class="logo_color2">t<span class="brand_full">ask</span></span></span>
-            <div style="position: absolute;top:0;right:0;" id="user_menu">
-                <a href="/users/logout/" id="logout" style="display: inline-block;"><i class="fa fa-power-off"></i></a>
-            </div>
-        </li>
 
         {% for k,m in globals.menu %}
             {% if k != "crumbs"%}
-                <li data-dropdown='{{ k }}' class="{% if m.active or globals.menu.crumbs[m.id] %}active{% endif %} {% if m.category or m.path == "/projects/" %}dropdown{% endif %}" {% if m.path == '/users/logout/' %}style="margin-top: 30px;" {% endif %}>
+                <li data-dropdown="{{ k }}" id='menu_li_{{ k }}' class="menu_li {% if m.active or globals.menu.crumbs[m.id] %}active{% endif %} {% if m.category or m.path == "/projects/" %}dropdown{% endif %}" {% if m.path == '/users/logout/' %}style="margin-top: 30px;" {% endif %}>
                     <div style="position: relative;">
-                        <a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>
+                        <a {% if m.clickable and (m.application or m.type == 'link') %}href="{% if m.type == 'link' %}{% endif %}{{m.path}}"{% else %}href='javascript:void(0);'{% endif %} class="pajax menu_link menu{{m.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>
                             {% if m.path == '/projects/' %}<i class="fa fa-tasks sidebar_icon fa-fw"></i>{% endif %}
                             {% if m.path == '/projects/dashboard/' %}<i class="fa fa-tachometer sidebar_icon fa-fw"></i>{% endif %}
                             {% if m.path == '/projects/calendar/' %}<i class="fa fa-calendar sidebar_icon fa-fw"></i>{% endif %}
@@ -24,24 +18,27 @@
                         {% if m.path == "/projects/" %}
                             <div style="position: absolute;top:0;right:15px;">
                                 {% if access.add_project or access.add_own_project or globals.access.add_project or globals.access.add_own_project %}
-                                    <a href="/projects/add/" class="{% if add %}active{% endif %}" style="display: inline-block !important;text-indent: 2px;padding-right: 4px;"><i class="fa fa-plus"></i></a>
+                                    <a href="/projects/add/" class="pajax {% if add %}active{% endif %}" style="display: inline-block !important;text-indent: 2px;padding-right: 4px;"><i class="fa fa-plus"></i></a>
                                 {% endif %}
                             </div>
                         {% endif %}</div>
                 {% if m.category %}
                     <ul class="submenu dropdown{{ k }}" >
-                    {% for sub in m.category %}
-                        <li class="menu{{sub.path|replace({"/":"_"})}} {% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}" style="text-indent: 0;">
-                            <a {% if sub.clickable %}href="{{sub.path}}"{% else %}href='javascript:void(0);'{% endif %} class="menu{{sub.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{sub.name}}</a>
+                    {% for s,sub in m.category %}
+                        <li id="menu_sub_li_{{ s }}" class="menu_sub_li menu{{sub.path|replace({"/":"_"})}} {% if sub.active or globals.menu.crumbs[sub.id] %}active{% endif %}" style="text-indent: 0;">
+                            <a {% if sub.clickable %}href="{{sub.path}}"{% else %}href='javascript:void(0);'{% endif %} class="pajax menu_sub_link menu{{sub.path|replace({"/":"_"})}}" {% if m.new_window %}target="_blank"{% endif %}>{{sub.name}}</a>
                         </li>
                     {% endfor %}
                     </ul>
                 {% endif %}
                     {% if m.path == "/projects/" %}
-                        <ul id="project_panel_result" class="submenu dropdown{{ k }}" >[[projects__get_projects]]</ul>
+                        <ul id="project_panel_ul" style="max-height: 300px;overflow-x:hidden;overflow-y: auto;" class="submenu dropdown{{ k }}" >[[projects__get_projects]]</ul>
                     {% endif %}
                 </li>
             {% endif %}
         {% endfor %}
     </ul>
+    <audio controls style="position: absolute;bottom:0;width: 200px;display: none;" id="test2">
+        <source src="/2.mp3" type="audio/mp3">
+    </audio>
 </div>

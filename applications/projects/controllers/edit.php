@@ -58,7 +58,7 @@ class edit extends \Controller {
 
     function get_categories($id_project)
     {
-        $query = $this->db->prepare("select * from projects_tasks_categories where id_project=?");
+        $query = $this->db->prepare("select * from projects_tasks_categories where id_project=? order by name ASC");
         $query->execute(array($id_project));
         return $query->fetchAll();
     }

@@ -73,10 +73,10 @@ class users extends \Controller {
                 crumbs("Добавление участника");
 
                 $query = $this->db->prepare("select id_user,first_name,last_name
-                    from users
-                    where id_user NOT IN (select id_user from projects_users where id_project=?)
+                    from users as u
+                    where id_user NOT IN (select id_user from projects_users where id_project=?) and id_user IN (select id_user from company_users where id_company=?)
                 ");
-                $query->execute(array($this->_0));
+                $query->execute(array($this->_0,$_SESSION['user']['current_company']));
                 while ($row = $query->fetch())
                 {
                     $row['fio'] = build_user_name($row['first_name'],$row['last_name']);
@@ -149,19 +149,19 @@ class users extends \Controller {
             if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
             $query = $this->db->prepare("select u.*,g.color,g.name as group_name,pu.role,
-            u.last_user_action,pu.description,
-            GROUP_CONCAT(r.id_right order by rg.id_access_group SEPARATOR ',') as rights
-            from projects_users as pu
-            LEFT JOIN users as u ON pu.id_user=u.id_user
-            LEFT JOIN groups as g ON u.id_group=g.id
-            LEFT JOIN projects_rights_users as r ON r.id_user=u.id_user
-            LEFT JOIN projects_access_rights as rg ON r.id_right = rg.id
-            {$where}
-            group by u.id_user
-            order by last_name ASC
-            LIMIT {$this->limit}
-            OFFSET {$paginator->get_range('from')}
-        ");
+                u.last_user_action,pu.description,
+                GROUP_CONCAT(r.id_right order by rg.id_access_group SEPARATOR ',') as rights
+                from projects_users as pu
+                LEFT JOIN users as u ON pu.id_user=u.id_user
+                LEFT JOIN groups as g ON u.id_group=g.id
+                LEFT JOIN projects_rights_users as r ON r.id_user=u.id_user and r.id_project = pu.id_project
+                LEFT JOIN projects_access_rights as rg ON r.id_right = rg.id
+                {$where}
+                group by u.id_user
+                order by last_name ASC
+                LIMIT {$this->limit}
+                OFFSET {$paginator->get_range('from')}
+            ");
             $query->execute();
             while ($row = $query->fetch()) {
                 $ids[] = $row['id_user'];
@@ -206,7 +206,7 @@ class users extends \Controller {
 
     function get_user_and_role($id_project,$id_user)
     {
-        $query = $this->db->prepare("select pu.role,u.first_name,u.last_name,u.nickname,pu.id_user,pu.description
+        $query = $this->db->prepare("select pu.role,u.first_name,u.last_name,pu.id_user,pu.description
             from projects_users as pu
             LEFT JOIN users as u ON pu.id_user=u.id_user
             where pu.id_project=? and pu.id_user=?
@@ -250,6 +250,8 @@ class users extends \Controller {
 
         if ($_POST['id'] == "" && $_POST['new_user'] == "") $res['error'] = "Выберите участника";
         if ($_POST['role'] == "") $res['error'] = "Укажите роль в проекте";
+        $c_cr = $this->get_controller("company");
+        if (!$c_cr->user_in_company($_POST['id'],$_SESSION['current_company'])) $res['error'] = "В компании нет такого участника";
         if (!$res['error'])
         {
             if ($access['access']['users'] && !$access['project']['owner'])
@@ -258,7 +260,7 @@ class users extends \Controller {
                 if ($_POST['id'])
                 {
                     $role = $this->get_role($_POST['project'],$_POST['id']);
-                    if ($_SESSION['user']['id_group'] != 1 && ($role == "manager" || $_POST['role'] == "manager")) $res['error'] = "Только администратор может снимать и назначать менеджеров";
+                    if ($_SESSION['user']['role_company'] != "admin" && ($role == "manager" || $_POST['role'] == "manager")) $res['error'] = "Только администратор может снимать и назначать менеджеров";
                     else
                     {
                         $query = $this->db->prepare("update projects_users set role=?,description=? where id_user=? and id_project=? LIMIT 1");
@@ -271,7 +273,7 @@ class users extends \Controller {
                 }
                 else
                 {
-                    if ($_SESSION['user']['id_group'] != 1 && $_POST['role'] == "manager") $res['error'] = "Только администратор может снимать и назначать менеджеров";
+                    if ($_SESSION['user']['role_company'] != "admin" && $_POST['role'] == "manager") $res['error'] = "Только администратор может снимать и назначать менеджеров";
                     else
                     {
                         $query = $this->db->prepare("insert into projects_users(id_user,id_project,role,description) values(?,?,?,?)");
@@ -298,6 +300,18 @@ class users extends \Controller {
 
         if (!$res['error'])
         {
+            $log = $this->get_controller("projects","logs");
+            $u_ct = $this->get_controller("users","users");
+            $user = $u_ct->get_user($id_user);
+            $user_name = build_user_name($user['first_name'],$user['last_name']);
+            if ($_POST['id'])
+            {
+                $log->set_logs("project",$_POST['project'],"Отредактирован участник <a href='/users/{$id_user}'>{$user_name}</a>","edit");
+            }
+            else
+            {
+                $log->set_logs("project",$_POST['project'],"Добавлен участник <a href='/users/{$id_user}'>{$user_name}</a>","add");
+            }
             $this->db->commit();
             $res['success'] = $_POST['project'];
         }
@@ -315,7 +329,7 @@ class users extends \Controller {
         if ($access['access']['users'] && !$access['project']['owner'] && $access['access']['show_users'])
         {
             $role = $this->get_role($_POST['id_project'],$_POST['id_user']);
-            if ($_SESSION['user']['id_group'] != 1 && $role == "manager") $res['error'] = "Только администратор может снимать и назначать менеджеров";
+            if ($_SESSION['user']['role_company'] != "admin" && $role == "manager") $res['error'] = "Только администратор может снимать и назначать менеджеров";
             else
             {
                 $query = $this->db->prepare("delete from projects_users where id_user=? and id_project=? LIMIT 1");
@@ -330,8 +344,14 @@ class users extends \Controller {
 
         if (!$res['error'])
         {
+            $log = $this->get_controller("projects","logs");
+            $u_ct = $this->get_controller("users","users");
+            $user = $u_ct->get_user($_POST['id_user']);
+            $user_name = build_user_name($user['first_name'],$user['last_name']);
+
             $this->db->commit();
             $res['success'] = true;
+            $log->set_logs("project",$_POST['id_project'],"Удален участник <a href='/users/{$_POST['id_user']}'>{$user_name}</a>","edit");
         }
         else $this->db->rollBack();
 
@@ -340,7 +360,7 @@ class users extends \Controller {
 
     function delete_user_form()
     {
-        $query = $this->db->prepare("select u.id_user,u.first_name,u.last_name,u.nickname
+        $query = $this->db->prepare("select u.id_user,u.first_name,u.last_name
             from projects_users as pu
             LEFT JOIN users as u ON u.id_user = pu.id_user
             where pu.id_project=? and pu.id_user !=?
@@ -405,14 +425,19 @@ class users extends \Controller {
             }
         }
 
-        if ($group == 1) foreach ($accesses as &$a) $a = true;
+        if ($_SESSION['user']['role_company'] == "admin") foreach ($accesses as &$a) $a = true;
 
         if ($id_project)
         {
             if ($role = $this->get_role($id_project,$id_user)) $accesses['role'] = $role;
-            else if ($_SESSION['user']['id_group'] != 1) $this->error_page("denied");
+            else if ($_SESSION['user']['role_company'] != "admin") $this->error_page("denied");
 
             $project = $this->get_controller("projects")->get_project($id_project);
+            if ($accesses['role'])
+            {
+                set_company($project['id_company']);
+            }
+
             if ($project['owner'] && $project['owner'] != $id_user)
             {
                 foreach ($accesses as &$a) $a = false;
@@ -420,7 +445,7 @@ class users extends \Controller {
             }
             else if ($project['owner']) $accesses['delete_project'] = true;
 
-            if ($role == "manager" || $group == 1)
+            if ($role == "manager" || $_SESSION['user']['role_company'] == "admin")
             {
                 $query = $this->db->query("select * from projects_access_rights");
                 while ($row = $query->fetch()) $accesses[$row['alias']] = true;
@@ -439,7 +464,6 @@ class users extends \Controller {
                 }
             }
         }
-
         return array('access' => $accesses,'project' => $project,'task' => $task,'role' => $role);
     }
 
@@ -456,7 +480,7 @@ class users extends \Controller {
     function get_users_project($project,$without_me=false)
     {
         if ($without_me) $without_me_string = " and u.id_user != ?";
-        $query = $this->db->prepare("select distinct u.id_user,u.first_name,u.last_name,u.nickname
+        $query = $this->db->prepare("select distinct u.id_user,u.first_name,u.last_name
             from users as u
             LEFT JOIN projects_users as pu ON pu.id_user = u.id_user
             where pu.id_project=? {$without_me_string}

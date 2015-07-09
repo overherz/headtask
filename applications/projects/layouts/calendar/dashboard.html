@@ -1,12 +1,9 @@
-{% extends "/source/index.html" %}
+{% extends ajax_data ? "/source/ajax_index.html" : "/source/index.html" %}
 
 {% block title %}Dashboard{% endblock %}
 
-{% block js %}
-    <script src="{{app.path('projects','tasks.js')}}"></script>
-{% endblock %}
-
 {% block context %}
+    {% include "/source/crumbs.html" %}
 <div id="projects_info"></div>
     {{ user_tasks|raw }}
 

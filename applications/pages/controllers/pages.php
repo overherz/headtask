@@ -34,7 +34,7 @@ class pages extends \Controller {
     function get_layout($layout)
     {
         $this->layout = false;
-        return $this->layout_get($layout,array($data));
+        return $this->layout_get($layout);
     }
 
     function rules($template,$id)
@@ -51,6 +51,18 @@ class pages extends \Controller {
             }
         }
         return $data;
+    }
+
+    function update_cache_pages()
+    {
+        $query = $this->db->prepare("select id,name,path from pages");
+        $query->execute();
+        while ($row = $query->fetch())
+        {
+            $pages[$row['path']] = $row;
+        }
+        \Cache::connect()->set('pages',$pages,100000);
+        return $pages;
     }
 }
 

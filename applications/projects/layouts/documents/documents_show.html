@@ -4,21 +4,16 @@
     Wiki - {{ documents.name }}. Проект {{ project.name }}
 {% endblock %}
 
-{% block js %}
-{{parent()}}
-<script src="{{app.path('projects','tasks.js')}}"></script>
-{% endblock %}
-
 {% block project_data %}
-<ul class="breadcrumbs-one second">
-    <li><a class="current">{{documents.created|date('d.m.Y H:i')}} |
-            {{documents.fio}}</a></li>
+<div class="breadcrumbs-one second">
+    <span><a class="current">{{documents.created|date('d.m.Y H:i')}} |
+            {{documents.fio}}</a></span>
     {% if access.documents %}
         <div class="btn-group" style="float: right;">
-            <a class="btn btn-foxtrot btn-sm current" href="/projects/documents/edit/{{documents.id}}"><i class="fa fa-pencil"></i></a>
+            <a class="btn btn-foxtrot btn-sm current pajax" href="/projects/documents/edit/{{documents.id}}"><i class="fa fa-pencil"></i></a>
             <a class="btn btn-foxtrot btn-sm current" delete_documents="{{documents.id}}" href="" mode='inside'><i class="fa fa-trash-o"></i></a>
         </div>
     {% endif %}
-</ul>
+</div>
 <div class="wysiwyg">{{documents.description|raw}}</div>
 {% endblock %}

@@ -1,79 +1,7 @@
 $(document).ready(function ($) {
 
-    $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
-    $("[name='start']").datepicker({
-        changeMonth: true,
-        dateFormat: "dd.mm.yy",
-        showButtonPanel: true,
-        'maxDate': $("[name='end']").val(),
-        onClose: function( selectedDate ) {
-            $("[name='end']").datepicker( "option", "minDate", selectedDate );
-        },
-        beforeShow: function (input) {
-            dpClearButton(input);
-
-        },
-        onChangeMonthYear: function (yy, mm, inst) {
-            dpClearButton(inst.input);
-        }
-    });
-
-    $("[name='end']").datepicker({
-        changeMonth: true,
-        dateFormat: "dd.mm.yy",
-        'minDate': $("[name='start']").val(),
-        showButtonPanel: true,
-        onClose: function( selectedDate ) {
-            $("[name='start']").datepicker( "option", "maxDate", selectedDate );
-        },
-        beforeShow: function (input) {
-            dpClearButton(input);
-
-        },
-        onChangeMonthYear: function (yy, mm, inst) {
-            dpClearButton(inst.input);
-        }
-    });
-
-    $("[name='start_edit']").datepicker({
-        changeMonth: true,
-        dateFormat: "dd.mm.yy",
-        showButtonPanel: true,
-        'maxDate': $("[name='end_edit']").val(),
-        onClose: function( selectedDate ) {
-            $("[name='end_edit']").datepicker( "option", "minDate", selectedDate );
-        },
-        beforeShow: function (input) {
-            dpClearButton(input);
-
-        },
-        onChangeMonthYear: function (yy, mm, inst) {
-            dpClearButton(inst.input);
-        }
-    });
-
-    $("[name='end_edit']").datepicker({
-        changeMonth: true,
-        dateFormat: "dd.mm.yy",
-        'minDate': $("[name='start_edit']").val(),
-        showButtonPanel: true,
-        onClose: function( selectedDate ) {
-            $("[name='start_edit']").datepicker( "option", "maxDate", selectedDate );
-        },
-        beforeShow: function (input) {
-            dpClearButton(input);
-
-        },
-        onChangeMonthYear: function (yy, mm, inst) {
-            dpClearButton(inst.input);
-        }
-    });
-
-
-    if ($("[name='description']").length > 0)
-    {
-        CKEDITOR.replace('description',{toolbar:'Basic',extraPlugins : 'divarea'});
-    }
+    init_datepicker();
+    init_ckeditor();
 
     $(document).on("click", ".save_task", function () {
         if ($("[name='description']").length > 0) $("[name='description']").val(CKEDITOR.instances.description.getData());
@@ -121,7 +49,7 @@ $(document).ready(function ($) {
         else $(".message").hide();
     });
 
-    $("[add_file_to_task]").click(function(){
+    $(document).on("click","[add_file_to_task]",function(){
         var project = $("[name='id_project']").val();
         var files = $("[name='files[]']").serializeArray();
         var input_file = "";
@@ -141,9 +69,7 @@ $(document).ready(function ($) {
                 "<div class='clearfix'></div>"+
                 "<div id='search_result'>"+data+"</div></form>","Прикрепление файлов");
 
-            if(jQuery().styler) {
-                $(".popup input").styler();
-            }
+            style_input('.popup');
 
             add_popup_button("Добавить выбранные", 'Yes', false, function (vars) {
                 files_to_add = [];
@@ -189,9 +115,7 @@ $(document).ready(function ($) {
         var from = $(this).attr("from");
         user_api({act:'get_forward_task',id:id},function(res){
             show_popup(res,'Редактирование задачи');
-            if(jQuery().styler) {
-                $(".popup select").styler();
-            }
+            style_input('.popup');
             add_popup_button("Сохранить",'save_forward', false, function(vars){
                 var request = $("#percent_form").serialize();
                 user_api(request,function(res){
@@ -313,7 +237,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click",".comment_to_comment",function(){
+    $(document).off("click",".comment_to_comment").on("click",".comment_to_comment",function(){
         var id = $(this).attr('to_comment');
         var form = $(".comment_form").clone().attr('class','comment_form_clone').show();
         $(".comment_form_clone").remove();
@@ -325,7 +249,17 @@ $(document).ready(function ($) {
             $(this).after(form);
             $(this).css('display', 'none');
         }
-        CKEDITOR.replace('comment',{toolbar:'Forum',height:200, on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+
+        var editor = CKEDITOR.replace('comment',{toolbar:'Forum', on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+
+        editor.on( 'paste', function( evt ) {
+            var data = evt.data;
+            data.dataValue = data.dataValue.replace(
+                /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
+            // Text could be pasted, but you transformed it into HTML so update that.
+            data.type = 'html';
+        });
+
         CKEDITOR.instances.comment.on( 'key', function (evt) {
             var kc = evt.data.keyCode,
                 csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
@@ -337,7 +271,7 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).on("click",".comment_form_clone .add_comment",function(){
+    $(document).off("click",".comment_form_clone .add_comment").on("click",".comment_form_clone .add_comment",function(){
         $("[name='comment']").val(CKEDITOR.instances.comment.getData());
         var request = $(".comment_form_clone").serialize();
         var parent = $(".comment_form_clone").find("[name='parent']").val();
@@ -393,11 +327,7 @@ $(document).ready(function ($) {
         clearTimeout(project_info);
         project_info = setTimeout(function(){
             user_api({id:id}, function (data) {
-                var scrollTop = $(document).scrollTop();
-                var offset = $(".jumbotron").offset();
-                offset_top = scrollTop-offset.top;
-                if (offset_top < 0) offset_top = 0;
-                $("#projects_info").html(data).stop(true,true).css('top',offset_top).show();
+                $(".sidebar_right").html(data).stop(true,true);
             },false,"/projects/"+id+"/");
         },700)
         return false;
@@ -419,4 +349,99 @@ function dpClearButton (input) {
             click: function () { jQuery.datepicker._clearDate(input); }
         }).appendTo(buttonPane).addClass("ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all");
     }, 1)
+}
+
+function init_datepicker()
+{
+    $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
+    $("[name='start']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        showButtonPanel: true,
+        'maxDate': $("[name='end']").val(),
+        onClose: function( selectedDate ) {
+            $("[name='end']").datepicker( "option", "minDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+            style_input("#ui-datepicker-div",20);
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+            style_input("#ui-datepicker-div",20);
+        }
+    });
+
+    $("[name='end']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        'minDate': $("[name='start']").val(),
+        showButtonPanel: true,
+        onClose: function( selectedDate ) {
+            $("[name='start']").datepicker( "option", "maxDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+            style_input("#ui-datepicker-div",20);
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+            style_input("#ui-datepicker-div",20);
+        }
+    });
+
+    $("[name='start_edit']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        showButtonPanel: true,
+        'maxDate': $("[name='end_edit']").val(),
+        onClose: function( selectedDate ) {
+            $("[name='end_edit']").datepicker( "option", "minDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+            style_input("#ui-datepicker-div",20);
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+            style_input("#ui-datepicker-div",20);
+        }
+    });
+
+    $("[name='end_edit']").datepicker({
+        changeMonth: true,
+        dateFormat: "dd.mm.yy",
+        'minDate': $("[name='start_edit']").val(),
+        showButtonPanel: true,
+        onClose: function( selectedDate ) {
+            $("[name='start_edit']").datepicker( "option", "maxDate", selectedDate );
+        },
+        beforeShow: function (input) {
+            dpClearButton(input);
+            style_input("#ui-datepicker-div",20);
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
+            style_input("#ui-datepicker-div",20);
+        }
+    });
+}
+
+function init_ckeditor()
+{
+    if ($(".ckeditor").length > 0)
+    {
+        $(".ckeditor").each(function(){
+            var name = $(this).attr('name');
+            var editor = CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
+
+            editor.on( 'paste', function( evt ) {
+                var data = evt.data;
+                data.dataValue = data.dataValue.replace(
+                    /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
+                // Text could be pasted, but you transformed it into HTML so update that.
+                data.type = 'html';
+            });
+        });
+    }
 }

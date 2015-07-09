@@ -77,7 +77,7 @@ class Router {
         unset($this->route[1]);
         $this->rules();
 
-        $g = new global_module();
+        $g = new \Global_module();
         $g->run(self::$admin);
 
         $this->get_application();
@@ -97,18 +97,20 @@ class Router {
     {
         if (!self::$admin)
         {
-            $c = \MyPDO::connect();
             if (self::$url == "/") self::$url = "/index/";
-            $query = $c->prepare("select id,name from pages where path=?");
-            $query->execute(array(self::$url));
-            $result = $query->fetch();
 
-            if ($result['id'] != "")
+            $result = \Cache::connect()->get('pages');
+            if (!$result)
             {
-                self::$id = $result['id'];
+                $result = \Controller::get_controller("pages")->update_cache_pages();
+            }
+
+            if ($result[self::$url])
+            {
+                self::$id = $result[self::$url]['id'];
                 self::$application = "pages";
                 self::$controller = "pages";
-                \Controller::set_global('page_name',$result['name']);
+                \Controller::set_global('page_name',$result[self::$url]['name']);
             }
         }
     }

@@ -25,7 +25,7 @@
                     {% if com.parent_id > 0 %}<a href="#comment_{{com.parent_id}}" parent="{{com.parent_id}}">↑</a>{% endif %}
                     {% if task.subscribe.last_visit and com.created > task.subscribe.last_visit %}<span style="color:blue;">новый!</span>{% endif  %}
 
-                    {% if task.status != 'closed' %}<div style="float:right;"><a href="" class="comment_to_comment" to_comment="{{com.id}}">ответить</a></div>{% endif %}
+                    <div style="float:right;"><a href="" class="comment_to_comment" to_comment="{{com.id}}">ответить</a></div>
                     {% if access_article.comment and access_article.delete_comment %}<div style="float:right;margin-left: 5px;">|&nbsp;</div>{% endif %}
                     {% if access_article.delete_comment %}<div style="float:right;"><a href="" class="del_comment" del_comment="{{com.id}}">удалить</a></div>{% endif %}
                 </div>

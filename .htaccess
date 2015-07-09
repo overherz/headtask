@@ -9,10 +9,6 @@ RewriteCond %{THE_REQUEST} ^.*/index.php
 RewriteRule ^index.php$ / [R=301,L]
 
 RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteCond %{REQUEST_URI} !(.*)/$
-RewriteRule ^(.*[^/])$ $1/ [L,R=301]
-
-RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteRule ^.*$ index.php [L]
 

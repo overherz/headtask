@@ -49,7 +49,11 @@ class __TwigTemplate_a878d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4
                 echo \layout::func_from_text("/uploads/users/ava_middle/");
                 echo \layout::func_from_text(twig_escape_filter($this->env, real_path($this->getAttribute((isset($context["u"]) ? $context["u"] : null), "avatar")), "html", null, true));
             } else {
-                echo \layout::func_from_text("/source/images/no-ava-profile.jpg");
+                echo \layout::func_from_text("/source/images/no-ava-profile");
+                if (($this->getAttribute((isset($context["u"]) ? $context["u"] : null), "gender") == "f")) {
+                    echo \layout::func_from_text("_f");
+                }
+                echo \layout::func_from_text(".jpg");
             }
             echo \layout::func_from_text("\" title=\"");
             echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : null), "fio"), "html", null, true));
@@ -136,6 +140,6 @@ class __TwigTemplate_a878d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4
 
     public function getDebugInfo()
     {
-        return array (  123 => 33,  119 => 31,  110 => 27,  107 => 26,  101 => 24,  93 => 22,  91 => 21,  88 => 20,  81 => 18,  78 => 17,  69 => 15,  64 => 13,  35 => 8,  31 => 6,  27 => 5,  19 => 1,  63 => 14,  60 => 12,  57 => 12,  54 => 11,  49 => 10,  46 => 10,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  127 => 33,  123 => 31,  114 => 27,  111 => 26,  105 => 24,  97 => 22,  95 => 21,  92 => 20,  85 => 18,  82 => 17,  73 => 15,  68 => 13,  64 => 12,  46 => 10,  35 => 8,  31 => 6,  27 => 5,  19 => 1,);
     }
 }

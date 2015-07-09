@@ -7,7 +7,7 @@ $(document).ready(function($) {
         $("#dev_panel").css("display","block");
         setTimeout(function(){
             $(".dev_panel_name").fadeTo('fast',1);
-        },10);
+        },20);
     }
     else
     {
@@ -20,17 +20,18 @@ $(document).ready(function($) {
     check_queries_one_line();
 
     $(document).on("click",".dev_panel_name",function(){
+        var dev_panel = $("#dev_panel");
         if (localStorage.getItem('dev_panel') == "hide")
         {
             localStorage.setItem('dev_panel',"show");
-            $("#dev_panel").slideDown(function(){
+            dev_panel.slideDown(function(){
                 $(".dev_panel_name").fadeTo('fast',0.99);
             });
         }
         else
         {
             localStorage.setItem('dev_panel',"hide");
-            $("#dev_panel").slideUp(function(){
+            dev_panel.slideUp(function(){
                 $(".dev_panel_name").fadeTo('fast',0.4);
             });
         }
@@ -67,7 +68,7 @@ $(document).ready(function($) {
                             class_name = v.type ? "fatal_error" : "warning_error";
                             dev_error.append("<div class='"+class_name+"'><div>"+v.err+"</div><div>file "+v.file+" line "+v.line+"</div></div>");
                         });
-                        dev_panel_name.css("background","darkred")
+                        dev_panel_name.css("background","darkred");
                         dev_error.show();
                     }
                     else
@@ -97,17 +98,18 @@ $(document).ready(function($) {
         },200);
     });
 
-    $(document).on("change","#queries_one_line",function(){
-        if ($(this).prop("checked")) localStorage.setItem('queries_one_line',"yes");
+    $(document).on("change",".queries_one_line",function(){
+        if ($(this).is(":checked")) localStorage.setItem('queries_one_line',"yes");
         else localStorage.setItem('queries_one_line',"no");
 
         location.replace(window.location);
     });
 
     $(document).on("click",".dev_panel_options_link",function(){
-        var html = $(".dev_panel_options").html();
+        var html = $(".dev_panel_options").clone();
         show_popup(html,'Опции');
         $(".popup .dev_panel_options").show();
+
         check_queries_one_line();
         return false;
     });
@@ -117,7 +119,7 @@ function check_queries_one_line()
 {
     if (localStorage.getItem('queries_one_line') == "yes")
     {
-        $("#queries_one_line").prop("checked",true);
+        $(".queries_one_line").prop("checked",true);
         $(".dev_br").hide();
     }
 }

@@ -3,11 +3,6 @@
 {% block title %}
 Задачи {{project.name}}{% endblock %}
 
-{% block js %}
-{{ parent() }}
-<script src="{{app.path('projects','tasks.js')}}"></script>
-{% endblock %}
-
 {% block project_data %}
     {{ user_tasks|raw }}
 {% endblock %}

@@ -1,5 +1,5 @@
 <tr id="news{{n.id}}">
-    <td><a href="/projects/news/show/{{n.id}}/">{{n.name}}</a></td>
+    <td><a href="/projects/news/show/{{n.id}}/" class="pajax">{{n.name}}</a></td>
     <td>
         {% if ""|date('d.m.Y') == n.created|date('d.m.Y') %}
             сегодня {{ n.created|date('H:i') }}
@@ -17,7 +17,7 @@
     {% if access.news %}
     <td style="width: 75px;">
         <div class="btn-group pull-right">
-            <a class="btn btn-black btn-sm" href="/projects/news/edit/{{n.id}}"><i class="fa fa-pencil"></i></a>
+            <a class="btn btn-black btn-sm pajax" href="/projects/news/edit/{{n.id}}"><i class="fa fa-pencil"></i></a>
             <a class="btn btn-black btn-sm" delete_news={{n.id}} href=""><i class="fa fa-trash-o"></i></a>
         </div>
     </td>

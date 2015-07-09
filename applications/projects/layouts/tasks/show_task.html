@@ -9,13 +9,6 @@
 <link rel="stylesheet" type="text/css" href="{{ app.path('/source/js/fancybox/','jquery.fancybox.css',true) }}">
 {% endblock %}
 
-{% block js %}
-{{parent()}}
-    <script type ="text/javascript" src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
-    <script type ="text/javascript" src="{{ app.path('/source/js/fancybox/','jquery.fancybox.pack.js',true) }}"></script>
-    <script src="{{app.path('projects','tasks.js')}}"></script>
-{% endblock %}
-
 {% block project_data %}
 
 {% set undate = false %}
@@ -55,7 +48,7 @@
             </div>
         {% endif %}
 
-        <table class="table table-condensed table-border" style="width: 700px;margin-top: 20px;" id="tasks_table">
+        <table class="table table-condensed" style="width: 700px;margin-top: 20px;" id="tasks_table">
             <tr>
                 <th>Приоритет</th>
                 <td style="width: 1px;">{{ ("task_priority_label_"~task.priority)|lang|raw }}</td>
@@ -98,10 +91,10 @@
                 </td>
             </tr>
             <tr>
-                <th>Делегировано</th>
+                <th>Исполнитель</th>
                 <td style="width: 200px;">
                     {% if globals.user.id_user == task.assigned %}
-                        <span class="user_name">мне</span>
+                        <span class="user_name">я</span>
                     {% else %}
                         <a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a>
                     {% endif %}
@@ -110,7 +103,7 @@
                 <td style="white-space: nowrap;">{% if task.estimated_time %}{{task.estimated_time}} ч.{% else %}не указано{% endif %}</td>
             </tr>
             <tr>
-                <th>Добавил</th>
+                <th>Создатель</th>
                 <td>
                     {% if globals.user.id_user == task.id_user %}
                         <span class="user_name">я</span>
@@ -127,7 +120,7 @@
                     <div class="btn-group">
                         {% if access.edit_tasks or task.assigned == globals.user.id_user or task.id_user == globals.user.id_user or not task.assigned %}
                             {% if task.status != "closed" %}<a class="btn btn-success btn-sm" forward_task="{{task.id}}" from='{% if show_task %}show_task{% endif %}' ><i class="fa fa-forward "></i></a>{% endif %}
-                            {% if access.edit_tasks or task.id_user == globals.user.id_user %}<a class="btn btn-info btn-sm" href="/projects/tasks/edit/{{task.id}}"><i class="fa fa-pencil"></i></a>{% endif %}
+                            {% if access.edit_tasks or task.id_user == globals.user.id_user %}<a class="btn btn-info btn-sm pajax" href="/projects/tasks/edit/{{task.id}}"><i class="fa fa-pencil"></i></a>{% endif %}
                             {% if access.delete_tasks %}<a class="btn btn-danger btn-sm" delete_task={{task.id}} from='{% if show_task %}show_task{% endif %}' href=""><i class="fa fa-trash-o"></i></a>{% endif %}
                         {% endif %}
                     </div>
@@ -149,7 +142,7 @@
     {% endif %}
     <div id="tabs-3" class="tab-pane fade">
     {% if logs %}
-        <table class="table table-hover table_style">
+        <table class="table table-hover table_style logs_table">
             <thead>
             <tr>
                 <th></th>
@@ -180,10 +173,9 @@
     </div>
 </div>
 
-{% if task.status != 'closed' or comments %}
-<ul class="breadcrumbs-one second">
-    <li><a class="current">Комментарии</a></li>
-</ul>
+<div class="breadcrumbs-one second">
+    <span><a class="current">Комментарии</a></span>
+</div>
 
 <div class="all_comments">
     {% if comments %}
@@ -192,7 +184,6 @@
         {% endfor %}
     {% endif %}
 </div>
-{% endif %}
 
 
 <div>

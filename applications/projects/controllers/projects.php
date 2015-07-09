@@ -4,6 +4,7 @@ namespace projects;
 class projects extends \Controller {
 
     private $project_panel_limit = 15;
+    private $limit = 30;
     
     function default_method()
     {
@@ -18,8 +19,8 @@ class projects extends \Controller {
             case "get_panel_page_projects":
                 $this->get_projects();
                 break;
-            case "get_category_form":
-                $this->get_category_form();
+            case "get_projects":
+                $this->get_projects();
                 break;
             default:
                 $this->default_for_this();
@@ -30,7 +31,96 @@ class projects extends \Controller {
     {
         if (!$this->id)
         {
-            $this->redirect("/projects/all/");
+            crumbs("Все проекты");
+            $access = $this->get_controller("projects","users")->get_access();
+
+            //  $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
+            //else $where[] = "(p.owner='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";
+
+            if (isset($_POST['search']) && $_POST['search'] != '')
+            {
+                $search = explode(" ",$_POST['search']);
+                foreach ($search as $s)
+                {
+                    $s = $this->db->quote("%{$s}%");
+                    $search_ar[] = "p.name LIKE ".$s;
+                }
+                $where[] = "(".implode(" OR ",$search_ar).")";
+            }
+
+            if ($_POST['my'] != "")
+            {
+                $my = array();
+                foreach ($_POST['my'] as $v)
+                {
+                    if ($v == "1") $my[] = "p.owner=".$_SESSION['user']['id_user'];
+                    if ($v == "2") $my[] = "p.owner IS NULL";
+                }
+                $where[] = "(".implode(" OR ",$my).")";
+            }
+            else if ($_GET['filter'] == "my") $where[] = "p.owner=".$_SESSION['user']['id_user'];
+            else $where[] = "(p.owner=".$_SESSION['user']['id_user']." OR p.owner IS NULL)";
+
+            if ($_POST['in'] != "")
+            {
+                $in = array();
+                foreach ($_POST['in'] as $v)
+                {
+                    if ($v == "1") $in[] = "u.id_user='{$_SESSION['user']['id_user']}'";
+                    if ($v == "2") $in[] = "u.id_user IS NULL";
+                }
+                $where[] = "(".implode("OR ",$in).")";
+            }
+            else $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
+
+            if ($_POST['archive'] != "")
+            {
+                $archive = array();
+                foreach ($_POST['archive'] as $v)
+                {
+                    if ($v == "1") $archive[] = "p.archive IS NULL";
+                    if ($v == "2") $archive[] = "p.archive IS NOT NULL";
+                }
+                $where[] = "(".implode(" OR ",$archive).")";
+            }
+            else $where[] = "p.archive IS NULL";
+
+            $where[] = "p.id_company=".$_SESSION['user']['current_company'];
+
+            if ($where) $where = "where ".implode(" and ",$where);
+
+            $total = $this->db->num_rows("projects as p
+            LEFT JOIN projects_users as u ON p.id = u.id_project and u.id_user=".$_SESSION['user']['id_user']."
+            {$where}
+            order by p.owner DESC,p.name
+        ");
+
+            require_once(ROOT.'libraries/paginator/paginator.php');
+            $paginator = new \Paginator($total, $_POST['page'], $this->limit);
+
+            $query = $this->db->query("select * from projects as p
+            LEFT JOIN projects_users as u ON p.id = u.id_project and u.id_user=".$_SESSION['user']['id_user']."
+            {$where}
+            group by p.id
+            order by p.owner DESC,p.name
+            LIMIT {$this->limit}
+            OFFSET {$paginator->get_range('from')}
+        ");
+            $projects = $query->fetchAll();
+
+            $data = array(
+                'all_projects' => $projects,
+                //'projects' => $this->get_controller("projects")->get_projects(),
+                'access' => $access['access'],
+                'paginator' => $paginator
+            );
+
+            if ($_POST)
+            {
+                $res['success'] = $this->layout_get("all_projects_table.html",$data);
+                echo json_encode($res);
+            }
+            else $this->layout_show("all_projects.html",$data);
         }
         else
         {
@@ -70,7 +160,7 @@ class projects extends \Controller {
 //                    'access' => $access['access'],
                         'project' => $project,
                         'stats' => $this->get_controller("projects","tasks")->get_stats($this->id),
-                        'categories' => $this->get_categories($this->id)
+                        //'categories' => $this->get_categories($this->id)
                     );
                     $res['success'] = $this->layout_get("review_post.html",$data);
                 }
@@ -87,7 +177,7 @@ class projects extends \Controller {
                         'review_button' => true,
                         'stats' => $this->get_controller("projects","tasks")->get_stats($this->id),
                         'stats_other' => $stats_other,
-                        'categories' => $this->get_categories($this->id),
+                        //'categories' => $this->get_categories($this->id),
                         'logs' => $logs['logs'],
                         'paginator' => $logs['paginator'],
                         'types' => array('project','task','file','news','comment','forum'),//$this->db->get_enum("projects_logs","type"),
@@ -127,8 +217,10 @@ class projects extends \Controller {
     //    if ($_POST['project_panel_page'] != "") $page = $_POST['project_panel_page'];
     //    else if ($id_project) $page = $this->get_number_page($id_project);
 
+        $where[] = "p.id_company=".$_SESSION['user']['current_company'];
         $where[] = "archive IS NULL";
         $where[] = "u.id_user='{$_SESSION['user']['id_user']}'";
+        $where[] = "(p.owner ='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";
 //        else $where[] = "(p.owner='{$_SESSION['user']['id_user']}' OR p.owner IS NULL)";
 
         if ($where) $where = "where ".implode(" and ",$where);
@@ -268,7 +360,7 @@ class projects extends \Controller {
 
     function get_categories($id_project,$for_filter=false)
     {
-        $query = $this->db->prepare("select * from projects_tasks_categories where id_project=?");
+        $query = $this->db->prepare("select * from projects_tasks_categories where id_project=? order by name ASC");
         $query->execute(array($id_project));
         if ($for_filter)
         {

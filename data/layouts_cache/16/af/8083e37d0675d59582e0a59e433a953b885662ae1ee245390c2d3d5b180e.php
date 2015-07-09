@@ -47,7 +47,11 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
         echo \layout::func_from_text(twig_escape_filter($this->env, $this->getAttribute((isset($context["com"]) ? $context["com"] : null), "id_user"), "html", null, true));
         echo \layout::func_from_text("/\"><img class=\"comm_ava\" ");
         if (((!$this->getAttribute((isset($context["com"]) ? $context["com"] : null), "avatar")) || ($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "avatar") == ""))) {
-            echo \layout::func_from_text("src=\"/source/images/no-ava-comment.jpg\"");
+            echo \layout::func_from_text("src=\"/source/images/no-ava-comment");
+            if (($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "gender") == "f")) {
+                echo \layout::func_from_text("_f");
+            }
+            echo \layout::func_from_text(".jpg\"");
         } else {
             echo \layout::func_from_text("src=\"/uploads/users/ava_comment/");
             echo \layout::func_from_text(twig_escape_filter($this->env, real_path($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "avatar")), "html", null, true));
@@ -138,20 +142,16 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
             </td>
         </tr>
     </table>
-        <div>
-
-                <div class=\"comment_body\">");
-        // line 37
+    <div class=\"comment_body\">");
+        // line 35
         echo \layout::func_from_text($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "text"));
         echo \layout::func_from_text("</div>
-
-        </div>
 </div>
 
 ");
-        // line 42
+        // line 38
         if ($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "category")) {
-            // line 43
+            // line 39
             echo \layout::func_from_text("    ");
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["com"]) ? $context["com"] : null), "category"));
@@ -169,11 +169,11 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["_key"] => $context["com"]) {
-                // line 44
+                // line 40
                 echo \layout::func_from_text("        ");
                 $template = $this->env->resolveTemplate($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path", array(0 => "projects", 1 => "tasks/comment.html"), "method"));
                 $template->display($context);
-                // line 45
+                // line 41
                 echo \layout::func_from_text("    ");
                 ++$context['loop']['index0'];
                 ++$context['loop']['index'];
@@ -188,7 +188,7 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['com'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
         }
-        // line 47
+        // line 43
         echo \layout::func_from_text("
 </div>
 ");
@@ -206,6 +206,6 @@ class __TwigTemplate_16af8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5
 
     public function getDebugInfo()
     {
-        return array (  192 => 47,  177 => 45,  173 => 44,  155 => 43,  153 => 42,  145 => 37,  137 => 31,  130 => 30,  125 => 29,  119 => 28,  116 => 27,  111 => 26,  103 => 25,  99 => 24,  96 => 23,  90 => 21,  84 => 19,  82 => 18,  79 => 17,  67 => 15,  63 => 13,  61 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
+        return array (  192 => 43,  177 => 41,  173 => 40,  155 => 39,  153 => 38,  147 => 35,  141 => 31,  134 => 30,  129 => 29,  123 => 28,  120 => 27,  115 => 26,  107 => 25,  103 => 24,  100 => 23,  94 => 21,  88 => 19,  86 => 18,  83 => 17,  71 => 15,  67 => 13,  65 => 12,  47 => 9,  41 => 6,  26 => 2,  19 => 1,);
     }
 }

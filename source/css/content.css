@@ -1,5 +1,9 @@
 @import url('/source/css/index.css');
 
+body.wysiwyg {
+    min-width: 300px !important;
+}
+
 .wysiwyg.content_text {
     height: auto !important;
     overflow-x: auto;

@@ -1,30 +1,29 @@
-{% extends "/source/index.html" %}
-{% block title %}{{user.fio}} {{user.nickname}}{% endblock %}
+{% extends ajax_data ? "/source/ajax_index.html" : "/source/index.html" %}
+{% block title %}{{user.fio}}{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{ app.path('/source/css/jcrop/','jquery.Jcrop.css',true) }}">
     <link rel="stylesheet" type="text/css" href="{{app.path('users','users.css')}}">
 {% endblock %}
-{% block js %}
-<script type="text/javascript" src="{{ app.path('/source/js/','jquery.Jcrop.min.js',true) }}"></script>
-<script type="text/javascript" src="{{ app.path('users','edit.js')}}"></script>
-<script type="text/javascript" src="{{ app.path('/source/js/','jquery.form.js',true) }}"></script>
-<script type="text/javascript" src="{{ app.path('/source/js/','jquery.color.js',true) }}"></script>
-<script type="text/javascript" src="{{  app.path('projects','user_tasks.js') }}"></script>
-{% endblock %}
 
 {% block context %}
+    <div class="get_script" style="display: none;" data-path="{{ app.path('/source/js/','jquery.Jcrop.min.js',true) }}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('users','edit.js')}}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('/source/js/','jquery.form.js',true) }}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('/source/js/','jquery.color.js',true) }}"></div>
+    <div class="get_script" style="display: none;" data-path="{{ app.path('projects','user_tasks.js') }}"></div>
+    {% include "/source/crumbs.html" %}
 <table class="table" style="margin-top: -10px;">
     <tr>
         <td style="width: 1px;vertical-align: top !important;border-top:none;padding-left: 0;">
             <img id="avatar" src="{% if user.avatar %}/uploads/users/ava_profile/{{user.avatar|real_path}}{% else %}/source/images/no-ava-profile{% if user.gender == "f" %}_f{% endif %}.jpg{% endif %}"/>
             {% if globals.user and user.id_user == globals.user.id_user %}
                 <div style="margin: 5px 0;display: inline-block;"><a href="" change_avatar class="btn btn-primary">Фотография</a></div>
-                <div style="margin: 5px 0;display: inline-block;"><a href="/users/edit/" class="btn btn-primary">Профиль</a></div>
+                <div style="margin: 5px 0;display: inline-block;"><a href="/users/edit/" class="btn btn-primary pajax">Профиль</a></div>
             {% endif %}
         </td>
         <td style="border-top:none;vertical-align: top !important;padding-top: 2px;">
             <a href="" style="font-weight: bold;font-size: 20px;">{{user.fio}}</a>
-            <span class="get_ms_status user_offline" data-id="{{user.id_user}}"></span>
+            <span class="get_ms_status user_offline big" data-id="{{user.id_user}}"></span>
             <table class="table table-striped table-border" style="margin-top: 10px;">
                 <tr>
                     <td style="width:1px;white-space: nowrap;font-weight: bold;border-top: none;">Группа:</td>

@@ -77,6 +77,8 @@ class user_tasks extends \Controller {
             $where[] = "(".implode("OR ",$search_ar).")";
         }
 
+        $where[] = "p.id_company=".$_SESSION['user']['current_company'];
+
         if (isset($_POST['status']) && $_POST['status'] != '')
         {
             foreach ($_POST['status'] as &$s) $s = $this->db->quote($s);
@@ -155,7 +157,7 @@ class user_tasks extends \Controller {
         if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
         $query = $this->db->prepare("select t.id,t.name,t.assigned,t.status,t.priority,t.start,t.end,t.estimated_time,t.spent_time,t.id_project,t.percent,t.message,t.id_user,t.created,t.updated,
-            p.name as project_name,g.color,g.name as group_name,u.first_name,u.last_name,GROUP_CONCAT(c.id_category) as cats
+            p.name as project_name,g.color,g.name as group_name,u.first_name,u.last_name
             from projects_tasks as t
             LEFT JOIN projects as p ON t.id_project = p.id
             LEFT JOIN users as u ON t.assigned = u.id_user
@@ -168,16 +170,12 @@ class user_tasks extends \Controller {
             OFFSET {$paginator->get_range('from')}
         ");
         $query->execute();
-        $cats_ids = array();
+        $tasks_ids = array();
         while ($row = $query->fetch())
         {
             $row['assigned_name'] = build_user_name($row['first_name'],$row['last_name'],true);
             $row['diff'] = $t_cr->get_date_diff($row['end']);
-
-            $row['cats'] = explode(",",$row['cats']);
-            if ($row['cats'][0] == "") $row['cats'] = false;
-            if (is_array($row['cats'])) $cats_ids = array_merge($cats_ids,$row['cats']);
-
+            $tasks_ids[] = $row['id'];
             $tasks[$row['id']] = $row;
         }
 
@@ -187,15 +185,16 @@ class user_tasks extends \Controller {
             $comment_count = $t_cr->get_count_new_comments($ids);
         }
 
-        if (count($cats_ids) > 0)
+        if (count($tasks_ids) > 0)
         {
-            $cats_ids = array_unique($cats_ids);
-            $uniq_ids = implode(",",$cats_ids);
-
-            $query = $this->db->query("select * from projects_tasks_categories where id IN({$uniq_ids})");
+            $tasks_ids = implode(",",$tasks_ids);
+            $query = $this->db->query("select *
+                from projects_tasks_to_categories as tc
+                LEFT JOIN projects_tasks_categories as c ON tc.id_category = c.id
+                where tc.id_task IN({$tasks_ids}) order by c.name ASC");
             while ($row = $query->fetch())
             {
-                $cats[$row['id']] = $row;
+                $tasks[$row['id_task']]['cats'][] = $row;
             }
         }
 
@@ -209,7 +208,6 @@ class user_tasks extends \Controller {
             'end' => $this->end,
             'start_edit' => $this->start_edit,
             'end_edit' => $this->end_edit,
-            'cats' => $cats,
             'comment_count' => $comment_count,
             'id_project' => $this->id_project,
             'access' => $this->access

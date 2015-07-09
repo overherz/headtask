@@ -7,7 +7,7 @@
 {% block project %}
     <form action="" id="search_form" method="post">
     {% if access.add_project or access.add_own_project or globals.access.add_project or globals.access.add_own_project %}
-        <a href="/projects/add/" class="btn btn-primary" style="position: absolute;right: 15px;">Создать проект</a>
+        <a href="/projects/add/" class="btn btn-primary pajax" style="position: absolute;right: 20px;">Создать проект</a>
     {% endif %}
         <div class="form-group col-xs-6" style="padding-left: 0;">
             <input type="text" name="search" class="form-control" placeholder="Поиск" style="margin-bottom: 10px;">

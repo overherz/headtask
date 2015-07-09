@@ -4,13 +4,6 @@
 {% if documents %}Редактирование документа{% else %}Добавление документа{% endif %}. Проект {{ project.name }}
 {% endblock %}
 
-{% block js %}
-{{parent()}}
-<script type ="text/javascript" src="{{ app.path('/source/js/ckeditor/','ckeditor.js',true) }}"></script>
-
-<script src="{{app.path('projects','tasks.js')}}"></script>
-{% endblock %}
-
 {% block project_data %}
 <form id="documents_form" class="form-horizontal">
     <input type="hidden" name="act" value="save_documents">
@@ -24,7 +17,7 @@
     <div class="form-group">
         <label class="col-lg-2 control-label" for="description">Текст</label>
         <div class="col-lg-10">
-            <div class="wysiwyg"><textarea rows="5" class="form-control" name="description" id="description">{{documents.description}}</textarea></div>
+            <div class="wysiwyg"><textarea rows="5" class="form-control ckeditor" name="description" id="description">{{documents.description}}</textarea></div>
         </div>
     </div>
     <div style="text-align: center;margin-top: 10px;">

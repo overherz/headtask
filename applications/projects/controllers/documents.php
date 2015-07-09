@@ -3,7 +3,7 @@ namespace projects;
 
 class documents extends \Controller {
 
-    var $limit = 20;
+    var $limit = 30;
     
     function default_method()
     {
@@ -134,7 +134,7 @@ class documents extends \Controller {
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
 
-            $query = $this->db->query("select d.id,d.name,d.created,d.author,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+            $query = $this->db->query("select d.id,d.name,d.created,d.author,u.first_name,u.last_name,g.color,g.name as group_name
                 from projects_documents as d
                 LEFT JOIN users as u ON d.author=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
@@ -173,7 +173,7 @@ class documents extends \Controller {
 
     function get_documents($id)
     {
-        $query = $this->db->prepare("select pd.*,u.id_user,u.first_name,u.last_name,u.nickname from projects_documents as pd
+        $query = $this->db->prepare("select pd.*,u.id_user,u.first_name,u.last_name from projects_documents as pd
             LEFT JOIN users as u ON pd.author = u.id_user
             where pd.id=?");
         $query->execute(array($id));

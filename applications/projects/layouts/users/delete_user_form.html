@@ -1,8 +1,8 @@
 <div style='text-align:center;margin-bottom: 20px;'>Вы хотите удалить этого участника?</div>
-Делегировать задачи:&nbsp;
+Передать задачи:&nbsp;
 <select name="delegate">
     <option value="none">никому</option>
     {% for u in users %}
-        <option value="{{u.id_user}}">{{u.fio}} {{u.nickname}}</option>
+        <option value="{{u.id_user}}">{{u.fio}}</option>
     {% endfor %}
 </select>

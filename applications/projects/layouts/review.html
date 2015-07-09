@@ -3,11 +3,6 @@
 {% block title %}
 Обзор {{project.name}}{% endblock %}
 
-{% block js %}
-{{ parent() }}
-<script src="{{app.path('projects','tasks.js')}}"></script>
-{% endblock %}
-
 {% block project_data %}
 
 {% if project.description or project.url %}

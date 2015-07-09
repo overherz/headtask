@@ -1,19 +1,12 @@
-{% extends "/source/wrapper_index.html" %}
+{% extends ajax_data ? "/source/ajax_wrapper.html" : "/source/wrapper_index.html" %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{app.path('projects','projects.css')}}">
-{% endblock %}
-{% block js %}
-    <script type="text/javascript" src="{{app.path('projects','files.js')}}"></script>
 {% endblock %}
 
 {% block body %}
 <input type="hidden" name="id_project" value="{{project.id}}">
-
-    <div style="margin: 10px 15px -15px">
-        {% include "/source/crumbs.html" %}
-    </div>
-
-    <div class="jumbotron" style="margin-bottom: 0;">
+    <div class="jumbotron" style="position: relative;">
+    {% include "/source/crumbs.html" %}
     {% block project %}{% endblock %}
     </div>
 {% endblock %}

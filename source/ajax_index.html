@@ -1,0 +1,21 @@
+<title>
+{% block title %}
+{% endblock %}
+</title>
+
+{% block css %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block menu_active %}
+    <input type="hidden" name="menu_li" value="{{ globals.menu_li }}">
+    <input type="hidden" name="menu_sub_li" value="{{ globals.menu_sub_li or globals.id_project }}">
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron" style="position: relative;">
+        {% block context %}{% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<div class="logs_table_sidebar" {% if not_show %}style="display: none;" {% endif %}>
+    <div class="logs_table_sidebar_block">
+        <span class="label log_{{ l.type }} logs_table_sidebar_span">{{ l.type_lang|first }}</span>
+        {% if l.action == 'add' %}<i class="fa fa-plus" style="color:#5cb85c;"></i>
+        {% elseif l.action == 'edit' %}<i class="fa fa-pencil" style="color:#5bc0de;"></i>
+        {% elseif l.action == 'delete' %}<i class="fa fa-trash-o" style="color:#d9534f;"></i>
+        {% endif %}
+    </div>
+    <span class="logs_table_sidebar_text {% if l.type == 'file' %}nopajax{% endif %}">
+        {{l.text|raw}}
+    </span>
+    <div class="logs_table_sidebar_head">
+        <span class="pull-left">
+        {% if not date or date != l.created|date('d.m.Y') %}
+            {% set date = l.created|date('d.m.Y') %}
+            {% if ""|date('d.m.Y') == date %}
+                сегодня
+            {% else %}
+                {{ date }}
+            {% endif %}
+            {{l.created|date('H:i')}}
+        {% endif %}
+        </span>
+        {% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}
+    </div>
+</div>

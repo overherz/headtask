@@ -10,7 +10,6 @@
 {% endblock %}
 
 {% block js %}
-{{ parent() }}
     <script src="{{ app.path('/libraries/gantt/js/','jquery.fn.gantt.min.js',true) }}"></script>
     <script src="{{ app.path('projects','gantt.js') }}"></script>
 {% endblock %}

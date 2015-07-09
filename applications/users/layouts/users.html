@@ -1,4 +1,4 @@
-{% extends "/source/index.html" %}
+{% extends ajax_data ? "/source/ajax_wrapper.html" : "/source/wrapper_index.html" %}
 
 {% block title %}Пользователи{% endblock %}
 
@@ -6,10 +6,13 @@
     <script type ="text/javascript" src="{{ app.path('users','invite.js') }}"></script>
 {% endblock %}
 
-{% block context %}
-    {% if invite %}<input type="button" class="btn btn-primary" value="Пригласить" style="position: absolute;right: 15px;" id="invite_user">{% endif %}
-    {% include "/source/search_form.html" %}
-    <div id="search_result" style="margin: 0 -15px;">
-        {% include app.path('users','users_table.html') %}
+{% block body %}
+    <div class="jumbotron" style="position: relative;">
+        {% include "/source/crumbs.html" %}
+        {% if invite %}<input type="button" class="btn btn-primary" value="Пригласить" style="position: absolute;right: 20px;" id="invite_user">{% endif %}
+        {% include "/source/search_form.html" %}
+        <div id="search_result">
+            {% include app.path('users','users_table.html') %}
+        </div>
     </div>
 {% endblock %}

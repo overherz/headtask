@@ -24,7 +24,7 @@
     </td>
     <td style="width: 200px;">
         {% if globals.user.id_user == task.assigned %}
-            <span class="user_name">мне</span>
+            <span class="user_name">я</span>
         {% else %}
             <a href="/users/~{{task.assigned}}/" style="color:{{ task.assigned_color }}!important;font-weight: bold;" title="{{ task.assigned_group_name }}">{{task.assigned_name}}</a>
         {% endif %}

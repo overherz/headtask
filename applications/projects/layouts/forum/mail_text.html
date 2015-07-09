@@ -7,6 +7,6 @@
 {% block body %}
     {% import "/source/link_mail_macro.html" as link_mail %}
     {% for n in new_posts %}
-        <div>Проект {{ link_mail.format(domain,'projects/forum/new_posts/'~n.id,n_name) }}. Новых сообщений - {{ n.count }}</div>
+        <div>Проект {{ link_mail.format(domain,'projects/forum/new_posts/'~n.id,n.name) }}. Новых сообщений - {{ n.count }}</div>
     {% endfor %}
 {% endblock %}

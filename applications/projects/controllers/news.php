@@ -3,7 +3,7 @@ namespace projects;
 
 class news extends \Controller {
 
-    var $limit = 20;
+    var $limit = 30;
     
     function default_method()
     {
@@ -124,7 +124,7 @@ class news extends \Controller {
             $total = $this->get_news_count($this->id);
             require_once(ROOT.'libraries/paginator/paginator.php');
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
-            $query = $this->db->query("select n.id,n.name,n.created,n.author,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+            $query = $this->db->query("select n.id,n.name,n.created,n.author,u.first_name,u.last_name,g.color,g.name as group_name
                 from projects_news as n
                 LEFT JOIN users as u ON n.author=u.id_user
                 LEFT JOIN groups as g ON u.id_group=g.id
@@ -163,7 +163,7 @@ class news extends \Controller {
 
     function get_news($id)
     {
-        $query = $this->db->prepare("select pn.*,u.id_user,u.first_name,u.last_name,u.nickname from projects_news as pn
+        $query = $this->db->prepare("select pn.*,u.id_user,u.first_name,u.last_name from projects_news as pn
             LEFT JOIN users as u ON pn.author = u.id_user
             where pn.id=?");
         $query->execute(array($id));
@@ -259,11 +259,12 @@ class news extends \Controller {
                 $message = $this->layout_get("news/news_mail.html",array(
                     'domain' => get_full_domain_name(),
                     'name' => $project['name'],
+                    'id_project' => $project['id'],
                     'edit' => $edit,
-                    'news' => $res['success'],
-                    'news_name' => $_POST['name'],
-                    'old_news_name' => $news['name']
+                    'news' => $res['success']
                 ));
+                $message['news_name'] = $_POST['id'] ? $news['name'] : $_POST['name'];
+
                 $notif_cr->send_notification($k,$notif,$message,$v['email'],$v['sms']);
             }
         }

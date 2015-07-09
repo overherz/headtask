@@ -4,13 +4,11 @@
 Форум {{project.name}}{% endblock %}
 
 {% block js %}
-{{ parent() }}
 <script type ="text/javascript" src="{{app.path('projects','forum.js')}}"></script>
-<script src="{{app.path('projects','tasks.js')}}"></script>
 {% endblock %}
 
 {% block project_data %}
-<div class="new_post_count"><a href='/projects/forum/new_posts/{{project.id}}'>Новый сообщений: {{new_post_count}}</a></div>
+<div class="new_post_count"><a href='/projects/forum/new_posts/{{project.id}}' class="pajax">Новый сообщений: {{new_post_count}}</a></div>
 <table class="table table-hover table_style no_padding_right" id="tasks_table">
     <thead>
     <tr>
@@ -24,15 +22,15 @@
     {% if forums %}
     {% for f in forums %}
     <tr id="forum{{f.id}}">
-        <td><a href="/projects/forum/show/{{f.id}}/" style="font-size: 18px;">{{f.name}}</a></td>
+        <td><a href="/projects/forum/show/{{f.id}}/" style="font-size: 18px;" class="pajax">{{f.name}}</a></td>
         <td>
             Тем: {{f.count_topics}}<br>
             Ответов: {{f.count_posts}}
         </td>
         <td>
             {% if f.last %}
-                <div><a href='/projects/forum/show_topic/{{f.last.id}}/'>{{f.last.name}}</a></div>
-                <div><a href='/users/~{{f.last.author.id_user}}/' style="color:{{ f.last.color }};font-weight: bold;" title="{{ f.last.group_name }}">{{f.last.author.fio}}</a></div>
+                <div><a href='/projects/forum/show_topic/{{f.last.id}}/' class="pajax">{{f.last.name}}</a></div>
+                <div><a href='/users/~{{f.last.author.id_user}}/' style="color:{{ f.last.color }};font-weight: bold;" class="pajax" title="{{ f.last.group_name }}">{{f.last.author.fio}}</a></div>
                 <div>{{f.last.created|date('d.m.Y H:i')}}</div>
             {% else %}
                 сообщений нет
@@ -41,7 +39,7 @@
         {% if access.forum %}
         <td style="width: 75px;">
             <div class="btn-group pull-right">
-                <a class="btn btn-oscar btn-sm" href="/projects/forum/edit/{{f.id}}"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-oscar btn-sm pajax" href="/projects/forum/edit/{{f.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-oscar btn-sm" delete_forum={{f.id}} href=""><i class="fa fa-trash-o"></i></a>
             </div>
         </td>

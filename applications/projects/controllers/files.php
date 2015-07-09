@@ -3,7 +3,7 @@ namespace projects;
 
 class files extends \Admin {
 
-    var $limit = 10;
+    var $limit = 30;
 
     function default_method()
     {
@@ -85,7 +85,7 @@ class files extends \Admin {
 
                 if (!$res['error'])
                 {
-                    $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+                    $query = $this->db->prepare("select p.*,u.first_name,u.last_name,g.color,g.name as group_name
                         from projects_files as p
                         LEFT JOIN users as u ON p.owner=u.id_user
                         LEFT JOIN groups as g ON u.id_group=g.id
@@ -101,7 +101,7 @@ class files extends \Admin {
                         if ($file['type'] == "image") $path_file = "/uploads/projects/projects_big/".real_path($file['file']);
                         else $path_file = "/uploads/projects/".real_path($file['file']);
 
-                        $log->set_logs("file",$access['project']['id'],"<a href='{$path_file}'>{$file['name']}</a>","add");
+                        $log->set_logs("file",$access['project']['id'],"<a href='{$path_file}' download='{$file['name']}'>{$file['name']}</a>","add");
                     }
 
                     $res['success'] = $this->layout_get("files/file.html",array('file' => $file,'access' => $access['access'],'to_task' => (bool) $_POST['to_task']));
@@ -143,7 +143,7 @@ class files extends \Admin {
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
             if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-            $query = $this->db->prepare("select p.*,u.first_name,u.last_name,u.nickname,g.color,g.name as group_name
+            $query = $this->db->prepare("select p.*,u.first_name,u.last_name,g.color,g.name as group_name
             from projects_files as p
             LEFT JOIN users as u ON p.owner=u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id

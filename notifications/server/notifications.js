@@ -13,6 +13,7 @@ var io = require('../../node_modules/socket.io')(http);
 var template = require('../../node_modules/swig');
 
 vm.runInThisContext(fs.readFileSync(__dirname + "/notifications_data.js"));
+vm.runInThisContext(fs.readFileSync(path.join(__dirname, '../../','/langs/ru.js'), 'utf8'));
 http.listen(9900);
 
 http.on('error', function (e) {
@@ -93,7 +94,7 @@ Object.size = function(obj) {
     return size;
 };
 
-io.set('transports', ['websocket', 'polling']);
+//io.set('transports', ['websocket', 'polling']);
 io.set('origins', '*:*');
 
 io.on('connection', function (client) {
@@ -108,15 +109,12 @@ io.on('connection', function (client) {
                 if (!transport[real_id]) transport[real_id] = {};
                 transport[real_id][client.id] = 1; // Куда отсылать, зная только id пользователя
                 users[incoming.hash] = real_id; // Соответствие хэша реальному id
-                get_user_projects(real_id,function(data){
-                    var result = data.split(",").map(function (x) {
-                        return parseInt(x);
-                    });
-                    users_projects[real_id] = result;
-                });
+                set_user_projects(real_id);
                 //get_count_of_new_messages(real_id,function(count){
                 //    client.emit('set_count_of_new_messages', {count: count});
                 //});
+
+
              //   if (new_connect) io.sockets.emit('userJoined', {'name': incoming.name,'id':real_id});
             }
             else
@@ -125,6 +123,10 @@ io.on('connection', function (client) {
                 client.disconnect();
             }
         });
+    });
+
+    client.on('set_user_projects',function(data) {
+        set_user_projects(data.real_id);
     });
 
     client.on('new_message', function(message) {
@@ -213,6 +215,16 @@ io.on('connection', function (client) {
 });
 
 
+function set_user_projects(real_id)
+{
+    get_user_projects(real_id,function(data){
+        var result = data.split(",").map(function (x) {
+            return parseInt(x);
+        });
+        users_projects[real_id] = result;
+    });
+}
+
 // Достает реальный id из базы
 function get_real_id(hash,callback)
 {
@@ -290,7 +302,7 @@ else setTimeout(function(){notify_logs(last_id)},1000);
 function notify(last_id)
 {
     if (!last_id) last_id = "0";
-    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.nickname,u.gender,u.tzOffset,SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages as m LEFT JOIN users as u ON u.id_user=m.id_user where id > '"+last_id+"' LIMIT 200", function(err, res){
+    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.gender,u.tzOffset,SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages as m LEFT JOIN users as u ON u.id_user=m.id_user where id > '"+last_id+"' LIMIT 200", function(err, res){
         if (err){
             throw err;
         }
@@ -312,15 +324,24 @@ function notify(last_id)
     });
 }
 
+function get_from_lang(key,vars)
+{
+    if (lang[key]) return lang[key];
+    else return lang['dictionary_not_found'];
+}
+
+var logs_template = template.compileFile(path.join(__dirname, '../..','/applications/projects/layouts/logs/sidebar_row.html'));
 function notify_logs(last_id_logs)
 {
     if (!last_id_logs) last_id_logs = "0";
     connection.query("select pl.*," +
-        " t.assigned,t.id_user as creater_task" +
+        " p.name as project_name,p.id_company,t.assigned,t.id_user as creater_task,tu.trash_name as trash_user_name,tp.trash_name as trash_project_name" +
         " from projects_logs as pl" +
         " LEFT JOIN projects_tasks as t ON pl.id_task = t.id" +
         " LEFT JOIN projects as p ON pl.id_project = p.id" +
-        " WHERE p.archive IS NULL and pl.id > "+last_id_logs+
+        " LEFT JOIN trash_data as tu ON pl.id_user = tu.id_for_type and tu.type = 'user'" +
+        " LEFT JOIN trash_data as tp ON pl.id_project = tp.id_for_type and tp.type = 'project'" +
+        " WHERE (p.archive IS NULL OR tu.id_for_type IS NOT NULL OR tp.id_for_type IS NOT NULL) and pl.id > "+last_id_logs+
         " group by pl.id" +
         " order by pl.created DESC LIMIT 200", function(err, res){
         if (err){
@@ -329,6 +350,11 @@ function notify_logs(last_id_logs)
 
         for(var i = 0; i < res.length; i++){
             res[i].text = remake_link(_.escape(res[i].text));
+            res[i].type_lang = get_from_lang("type_"+res[i].type);
+            var renderedHtml = logs_template({
+                l : res[i],
+                not_show : true
+            });
             for (key in transport) {
                 if (res[i].type == 'task' && res[i].assigned != key && res[i].creater_task != key) continue;
                 if (res[i].id_user == key) continue;
@@ -336,7 +362,7 @@ function notify_logs(last_id_logs)
                 if (users_projects[key].indexOf(res[i].id_project) != -1)
                 {
                     for (socketid in transport[key]) {
-                        io.sockets.connected[socketid].emit('logs', {message: res[i]});
+                        io.sockets.connected[socketid].emit('logs', {message: res[i],sidebar:renderedHtml});
                     }
                 }
             }
