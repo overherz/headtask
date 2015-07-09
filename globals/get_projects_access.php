@@ -11,7 +11,7 @@ class get_projects_access extends \Global_module
     {
         if ($_SESSION && array_key_exists('user',$_SESSION))
         {
-            $access = \Controller::get_controller("projects","users")->get_access(false,false,false,$_SESSION['user']['id_group']);
+            $access = \Controller::get_controller("projects","users")->get_access();
             \Controller::set_global('access',$access['access']);
         }
     }

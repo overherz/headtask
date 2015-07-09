@@ -4,7 +4,7 @@
         <tr>
             {% for p in all_projects %}
             <td style="width:33%;font-size: 20px;">
-                {% if not p.role and globals.user.id_group != 1 %}{{ p.name }}
+                {% if not p.role and globals.user.role_company != "admin" %}{{ p.name }}
                 {% else %}
                     <a href="/projects/~{{p.id}}" class="pajax"> {{p.name}}</a>
                 {% endif %}

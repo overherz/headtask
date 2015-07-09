@@ -6,7 +6,7 @@ body {
 
 body {
     overflow-y: scroll;
-    background: url("/source/images/paper_fibers.jpg") repeat;
+    background: url("/source/images/brillant.png") repeat;
     min-width: 720px;
 }
 
@@ -198,7 +198,7 @@ input,textarea {
 }
 
 .jumbotron {
-    background: url("/source/images/paper_fibers.jpg") repeat;
+    background: url("/source/images/brillant.png") repeat;
     padding: 5px 20px 10px !important;
 }
 
@@ -820,7 +820,7 @@ td .progress {
 }
 
 #sidebar_right {
-    background: #f2f2f2;
+    background: #eee;
     right: 0;
     width: 0;
     z-index: 1000;

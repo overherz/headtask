@@ -24,7 +24,7 @@ class invite extends \Controller {
 
     function send_invite()
     {
-        if ($_SESSION['user']['id_group'] != "1") $res['error'] = "Приглашать могут только администраторы";
+        if ($_SESSION['user']['role_company'] != "admin") $res['error'] = "Приглашать могут только администраторы";
         if (!check_mail($_POST['email'])) $res['error'] = "Email неверен";
         else
         {

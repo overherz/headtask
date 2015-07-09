@@ -260,7 +260,7 @@ class users extends \Controller {
                 if ($_POST['id'])
                 {
                     $role = $this->get_role($_POST['project'],$_POST['id']);
-                    if ($_SESSION['user']['id_group'] != 1 && ($role == "manager" || $_POST['role'] == "manager")) $res['error'] = "Только администратор может снимать и назначать менеджеров";
+                    if ($_SESSION['user']['role_company'] != "admin" && ($role == "manager" || $_POST['role'] == "manager")) $res['error'] = "Только администратор может снимать и назначать менеджеров";
                     else
                     {
                         $query = $this->db->prepare("update projects_users set role=?,description=? where id_user=? and id_project=? LIMIT 1");
@@ -273,7 +273,7 @@ class users extends \Controller {
                 }
                 else
                 {
-                    if ($_SESSION['user']['id_group'] != 1 && $_POST['role'] == "manager") $res['error'] = "Только администратор может снимать и назначать менеджеров";
+                    if ($_SESSION['user']['role_company'] != "admin" && $_POST['role'] == "manager") $res['error'] = "Только администратор может снимать и назначать менеджеров";
                     else
                     {
                         $query = $this->db->prepare("insert into projects_users(id_user,id_project,role,description) values(?,?,?,?)");
@@ -329,7 +329,7 @@ class users extends \Controller {
         if ($access['access']['users'] && !$access['project']['owner'] && $access['access']['show_users'])
         {
             $role = $this->get_role($_POST['id_project'],$_POST['id_user']);
-            if ($_SESSION['user']['id_group'] != 1 && $role == "manager") $res['error'] = "Только администратор может снимать и назначать менеджеров";
+            if ($_SESSION['user']['role_company'] != "admin" && $role == "manager") $res['error'] = "Только администратор может снимать и назначать менеджеров";
             else
             {
                 $query = $this->db->prepare("delete from projects_users where id_user=? and id_project=? LIMIT 1");
@@ -425,15 +425,15 @@ class users extends \Controller {
             }
         }
 
-        if ($group == 1) foreach ($accesses as &$a) $a = true;
+        if ($_SESSION['user']['role_company'] == "admin") foreach ($accesses as &$a) $a = true;
 
         if ($id_project)
         {
             if ($role = $this->get_role($id_project,$id_user)) $accesses['role'] = $role;
-            else if ($_SESSION['user']['id_group'] != 1) $this->error_page("denied");
+            else if ($_SESSION['user']['role_company'] != "admin") $this->error_page("denied");
 
             $project = $this->get_controller("projects")->get_project($id_project);
-            if ($accesses['role'] || $_SESSION['user']['id_group'] == 1)
+            if ($accesses['role'])
             {
                 set_company($project['id_company']);
             }
@@ -445,7 +445,7 @@ class users extends \Controller {
             }
             else if ($project['owner']) $accesses['delete_project'] = true;
 
-            if ($role == "manager" || $group == 1)
+            if ($role == "manager" || $_SESSION['user']['role_company'] == "admin")
             {
                 $query = $this->db->query("select * from projects_access_rights");
                 while ($row = $query->fetch()) $accesses[$row['alias']] = true;

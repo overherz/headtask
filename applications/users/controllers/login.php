@@ -78,7 +78,7 @@ class login extends \Controller {
     {
         if ($_SESSION['user'])
         {
-            $data = $this->db->query("select g.id,g.access_site,u.uniq_key,GROUP_CONCAT(cu.id_company) as company
+            $data = $this->db->query("select g.id,g.access_site,u.uniq_key,cu.role,GROUP_CONCAT(cu.id_company) as company
                     from users as u
                     LEFT JOIN groups as g ON g.id=u.id_group
                     LEFT JOIN company_users as cu ON u.id_user=cu.id_user
