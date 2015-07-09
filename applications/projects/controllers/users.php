@@ -251,7 +251,7 @@ class users extends \Controller {
         if ($_POST['id'] == "" && $_POST['new_user'] == "") $res['error'] = "Выберите участника";
         if ($_POST['role'] == "") $res['error'] = "Укажите роль в проекте";
         $c_cr = $this->get_controller("company");
-        if (!$c_cr->user_in_company($_POST['id'],$_SESSION['current_company'])) $res['error'] = "В компании нет такого участника";
+        if (!$c_cr->user_in_company($_POST['id'],$_SESSION['user']['current_company'])) $res['error'] = "В компании нет такого участника";
         if (!$res['error'])
         {
             if ($access['access']['users'] && !$access['project']['owner'])
