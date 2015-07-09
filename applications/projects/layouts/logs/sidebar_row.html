@@ -21,6 +21,6 @@
             {{l.created|date('H:i')}}
         {% endif %}
         </span>
-        {% if l.id_project %}<a href="/projects/~{{l.id_project}}/">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}
+        {% if l.id_project %}<a href="/projects/~{{l.id_project}}/" class="pajax">{{l.project_name}}</a>{% else %}{{ l.trash_project_name }}{% endif %}
     </div>
 </div>

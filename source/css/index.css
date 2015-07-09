@@ -1,6 +1,6 @@
 html,
 body {
-    height: calc(100% - 40px);
+    /*height: calc(100% - 40px);*/
     font-family: 'Open Sans', sans-serif !important;
 }
 
