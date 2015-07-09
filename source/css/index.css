@@ -1452,3 +1452,7 @@ input[disabled], select[disabled], textarea[disabled] {
 #sidebar-wrapper .mCSB_dragger_bar, #sidebar_right .mCSB_dragger_bar,.submenu.clone .mCSB_dragger_bar {
     background: orange;
 }
+
+.menu_sub_li > a {
+    white-space: pre-wrap;
+}
