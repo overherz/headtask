@@ -67,12 +67,12 @@ body {
 }
 
 a {
-    color: #434a54;
+    color: #035980;
     outline: none !important;
 }
 
 a:hover {
-    text-decoration: none;
+
 }
 
 .table tbody tr.danger td {
