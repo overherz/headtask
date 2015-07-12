@@ -1,0 +1,15 @@
+{% if company %}
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Пользователей</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for g in company %}
+        {% include app.path('company','admin/elements/company.html') %}
+        {% endfor %}
+        </tbody>
+   </table>
+{% endif %}

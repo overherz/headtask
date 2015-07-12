@@ -3,7 +3,7 @@
 $name = "company";
 
 $submenu['content'] = array(
-  //  'company' => 'company'
+    'company' => 'Компании'
 );
 
 $icon = false;
