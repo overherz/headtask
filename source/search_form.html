@@ -1,7 +1,17 @@
+{% if invite_send_button %}
+
+<div class="input-group col-xs-6" style="padding-left: 0;">
+  <input type="text" name="search" class="form-control" placeholder="Поиск">
+  <span class="input-group-btn">
+    <input type="button" class="btn btn-primary" id="invite_user" value="Пригласить" style="height: 30px;margin-left: 10px;padding-top: 4px;">
+  </span>
+</div>
+{% else %}
 <form action="" id="search_form" method="post">
     <div class="form-group col-xs-6" style="padding-left: 0;">
         <input type="text" name="search" class="form-control" placeholder="Поиск">
     </div>
     <input type="hidden" name="page" value="">
 </form>
+{% endif %}
 <div class="clearfix"></div>

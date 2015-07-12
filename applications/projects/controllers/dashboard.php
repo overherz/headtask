@@ -17,7 +17,7 @@ class dashboard extends \Controller {
             ),
             'assigned' => array('label' => 'Делегированные',
                 'type' => 'radio',
-                'options' => array('me' => 'Мне','not_all' => 'Никому','not_me' => 'Не мне'),
+                'options' => array('all' => 'Все','me' => 'Мне','not_all' => 'Никому','not_me' => 'Не мне'),
                 'selected' => 'me'
             ),
             'status' => array('label' => 'Статус',

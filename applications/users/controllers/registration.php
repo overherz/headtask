@@ -41,7 +41,6 @@ class registration extends \Controller {
         $captcha = $this->get_controller("captcha")->get_captcha(6);
         $data['captcha'] = $captcha;
         $data['tz'] = $this->get_controller("users")->tz;
-        crumbs("Регистрация",false,true);
 
         $query = $this->db->prepare("select email,hash,date from invites where hash=?");
         $query->execute(array($this->id));
@@ -52,23 +51,42 @@ class registration extends \Controller {
         $this->layout_show('registration.html',$data);
     }
 
+    function showform_create_company()
+    {
+        if (!$_SESSION['user']) $this->redirect('/users/login');
+        else
+        {
+            $captcha = $this->get_controller("captcha")->get_captcha(6);
+            $data['captcha'] = $captcha;
+            $this->layout_show('create_company.html',$data);
+        }
+    }
+
     function init_registration()
     {
-        if ($this->id != "")
+        if ($this->id == "create_company")
         {
-            if ($this->invite = $this->get_invite($this->id))
-            {
-                $c_cr = $this->get_controller("company");
-                $this->invite['company'] = $c_cr->get_company($this->invite['id_company']);
-                $u_cr = $this->get_controller("users");
-                $user = $u_cr->get_user_from_email($this->invite['email']);
-            }
+            if ($_POST) $this->create_company();
+            else $this->showform_create_company();
         }
+        else
+        {
+            if ($this->id != "")
+            {
+                if ($this->invite = $this->get_invite($this->id))
+                {
+                    $c_cr = $this->get_controller("company");
+                    $this->invite['company'] = $c_cr->get_company($this->invite['id_company']);
+                    $u_cr = $this->get_controller("users");
+                    $user = $u_cr->get_user_from_email($this->invite['email']);
+                }
+            }
 
-        if ($this->invite && $_SESSION['user'] && $this->invite['company']) $this->add_user_to_company();
-        else if ($this->invite && $user && $this->invite['company']) $this->redirect("/users/login?redirect=/users/registration/".$this->invite['hash']);
-        else if ($_POST) $this->full_registration();
-        else $this->showform();
+            if ($this->invite && $_SESSION['user'] && $this->invite['company']) $this->add_user_to_company();
+            else if ($this->invite && $user && $this->invite['company']) $this->redirect("/users/login?redirect=/users/registration/".$this->invite['hash']);
+            else if ($_POST) $this->full_registration();
+            else $this->showform();
+        }
     }
 
     function add_user_to_company()
@@ -90,6 +108,41 @@ class registration extends \Controller {
 
             $this->layout_show('registration.html',array('add_success' => !$error));
             $this->redirect('/',3);
+        }
+    }
+
+    function create_company()
+    {
+        if (!$_SESSION['user']) $res['error']['global'] = "Доступно только авторизованным пользователям";
+        else
+        {
+            $this->db->beginTransaction();
+            if ($_SESSION['captcha'][$_POST['id_captcha']] != $_POST['captcha']) $res['error']['captcha'] = "выбор неверен";
+            if ($_POST['company'] == "") $res['error']['company'] = "пусто";
+
+            $query = $this->db->prepare("insert into company(name) values(?)");
+            if (!$query->execute(array($_POST['company']))) $res['error']['global'] = "Ошибка базы данных";
+            else
+            {
+                $id_company = $this->db->lastInsertId();
+
+                $query = $this->db->prepare("insert into company_users(id_company,id_user,role) values(?,?,?)");
+                if (!$query->execute(array($id_company,$_SESSION['user']['id_user'],"admin"))) $res['error']['global'] = "Ошибка базы данных";
+            }
+
+            if ($res['error'])
+            {
+                $this->db->rollBack();
+                $res['error']['captcha_html'] = $this->get_controller("captcha")->get_captcha(6);
+            }
+            else
+            {
+                $res['success'] = true;
+                $this->db->commit();
+                $_SESSION['user']['current_company'] = $id_company;
+            }
+
+            echo json_encode($res);
         }
     }
 

@@ -60,6 +60,9 @@ body {
     font-size: 16px;
     font-weight: bold;
     margin: 0 0 0 40px;
+    display: inline-block;
+    line-height: 16px;
+    margin-top: 2px;
 }
 
 .username_in_top:hover {
@@ -1455,7 +1458,7 @@ input[disabled], select[disabled], textarea[disabled] {
 
 .menu_sub_li > a {
     white-space: pre-wrap;
-    line-height: 19px;
+    line-height: 17px;
     padding-top: 3px;
-    padding-bottom: 4px;
+    padding-bottom: 3px;
 }

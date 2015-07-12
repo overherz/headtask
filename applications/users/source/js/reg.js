@@ -1,6 +1,10 @@
 $(document).ready(function($){
     $(".menu a").removeClass("active");
-    $("[name='birthday']").mask("99.99.9999");
+
+    if ($("[name='birthday']").length > 0)
+    {
+        $("[name='birthday']").mask("99.99.9999");
+    }
 
     $("#regForm").keypress(function(e){
           if(e.which == 13){
@@ -12,18 +16,43 @@ $(document).ready(function($){
     $("#sendReg").on("click", function(){
         user_api($("#regForm").serialize(),function(res){
             $("[error='success']").text("Регистрация выполнена").show();
-            redirect("/",2);
+            $("#regForm .reg_erroru").hide();
+            redirect("/",2,true);
         },function(res){
             $("#registration_captcha").html(res.captcha_html);
             if ($(".reg_erroru #captcha_name").length < 1) $("#captcha_name").append("&nbsp;<span class='reg_erroru' error='captcha'></span>")
             $("#regForm .reg_erroru").hide();
             $.each(res,function(k,v){
                 $("[error='"+k+"']").text(v).show();
-            })
+            });
             style_input();
         });
         return false;
-    })
+    });
+
+    $("#reg_form_create_company").keypress(function(e){
+        if(e.which == 13){
+            ii = $('#send_create_company').click();
+            return false;
+        }
+    });
+
+    $("#send_create_company").on("click", function(){
+        user_api($("#reg_form_create_company").serialize(),function(res){
+            $("[error='success']").text("Компания создана").show();
+            $("#reg_form_create_company .reg_erroru").hide();
+            redirect("/",2,true);
+        },function(res){
+            $("#registration_captcha").html(res.captcha_html);
+            if ($(".reg_erroru #captcha_name").length < 1) $("#captcha_name").append("&nbsp;<span class='reg_erroru' error='captcha'></span>")
+            $("#reg_form_create_company .reg_erroru").hide();
+            $.each(res,function(k,v){
+                $("[error='"+k+"']").text(v).show();
+            });
+            style_input();
+        });
+        return false;
+    });
 
     $("#male,#female").on("click",function(){
         $("#male,#female").removeClass("select");

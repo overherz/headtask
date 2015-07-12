@@ -9,7 +9,7 @@
 {% block body %}
     <div class="jumbotron" style="position: relative;">
         {% include "/source/crumbs.html" %}
-        {% if invite %}<input type="button" class="btn btn-primary" value="Пригласить" style="position: absolute;right: 20px;" id="invite_user">{% endif %}
+        {% if invite %}{% set invite_send_button = true %}{% endif %}
         {% include "/source/search_form.html" %}
         <div id="search_result">
             {% include app.path('users','users_table.html') %}
