@@ -15,29 +15,30 @@
     {% block css %}
     {% endblock %}
 </head>
-
 <body>
-
-
-
 {% if globals.user %}
 <div id="wrapper" class="{% if cookie_data.sidebar == 'toggled' %}toggled{% endif %} {% if cookie_data.sidebar2 == 'toggled2' %}toggled2{% endif %}">
     <nav class="navbar navbar-default navbar-static-top topmenu">
         <span class="navbar-brand logo_color1">h<span class="brand_full">ead</span><span class="logo_color2">t<span class="brand_full">ask</span></span></span>
+        <a href="/users/registration/create_company" class="btn btn-success btn-xs" style="margin-left: 30px;margin-top: 7px;">Создать компанию</a>
         <div class="pull-right">
-            <span style="margin-right: 10px;">{{ ("role_"~session_data.user.role_company)|lang|capitalize }}</span>
-            <select id="select_company">
-                {% for k,c in globals.company %}
-                    <option value="{{ k }}" {% if session_data.user.current_company == k %}selected{% endif %}>{{ c.name }}</option>
-                {% endfor %}
-            </select>
+
             {% if globals.user %}
-                <a href="/users/profile/" class="username_in_top pajax" title="Профиль"><span>{{globals.user.fio}}</span></a>
-                <div class="get_ms_status user_offline middle" data-id="{{globals.user.id_user}}"></div>
+                <a href="/users/logout/" id="logout"  style="float: right;margin-top: 2px;"><i class="fa fa-power-off"></i></a>
             {% endif %}
             {% if globals.user %}
-                <a href="/users/logout/" id="logout"><i class="fa fa-power-off"></i></a>
+                <a href="/users/profile/" class="username_in_top pajax" title="Профиль"  style="float: right;">
+                    <span>{{globals.user.fio}}                 <div class="get_ms_status user_offline middle" data-id="{{globals.user.id_user}}"></div></span><br>
+                    <div style="display: inline-block;font-weight: normal;font-size: 12px;">{{ ("role_"~session_data.user.role_company)|lang|capitalize }}</div>
+                </a>
             {% endif %}
+            <div  style="float: right;margin-top: 7px;">
+                <select id="select_company" >
+                    {% for k,c in globals.company %}
+                        <option value="{{ k }}" {% if session_data.user.current_company == k %}selected{% endif %}>{{ c.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <input type="hidden" id="id_company" name="id_company" value="{{ globals.user.current_company }}">
         </div>
     </nav>

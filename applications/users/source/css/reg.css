@@ -27,7 +27,7 @@ body {
     width: 25px;
 }
 
-#regForm {
+#regForm,#reg_form_create_company {
     padding: 19px 29px 29px;
     margin: 100px auto 20px;
 }
@@ -35,17 +35,17 @@ body {
 #female.select {
     background: url("/source/images/female_select.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
-#regForm .reg_erroru {
+#regForm .reg_erroru,#reg_form_create_company .reg_erroru {
     color: red;
     font-weight: bold;
     display: none;
 }
 
-#regForm #captcha_name {
+#regForm #captcha_name, #reg_form_create_company #captcha_name {
     font-weight: bold;
 }
 
-#regForm input.error, .body_reg #captcha.error,.body_reg #gender.error {
+#regForm input.error, .body_reg #captcha.error,.body_reg #gender.error,#reg_form_create_company input.error, .body_reg #captcha.error,.body_reg #gender.error {
     background: #FFC1C1 !important;
 }
 

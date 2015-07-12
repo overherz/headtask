@@ -605,11 +605,12 @@ $(document).ready(function() {
     })
 });
 
-function get_page(page){
+function get_page(page,bottom){
     $('[name="page"]').val(page);
     window.page = page;
     window.clear = false;
     $('#search_form').submit();
+    if (bottom) $.scrollTo(0);
 }
 
 function search(){

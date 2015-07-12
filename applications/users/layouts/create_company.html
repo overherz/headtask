@@ -1,0 +1,38 @@
+{% extends "/source/wrapper_index.html" %}
+
+{% block title %}Создание компании{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{app.path('users','reg.css')}}">
+{% endblock %}
+{% block js %}
+    <script type ="text/javascript" src="{{ app.path('users','reg.js')}}"></script>
+{% endblock %}
+{% block menu %}{% endblock %}
+{% block right_sidebar %}{% endblock %}
+{% block body %}
+    <div class="container">
+        <form id="reg_form_create_company">
+            <div class="panel panel-default">
+                <div class="panel-heading"><b>Создание компании</b></div>
+                <div class="panel-body">
+                    <div class="alert alert-danger reg_erroru" error="global"></div>
+                    <div class="alert alert-success" error="success" style="display: none;"></div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="company">Название компании <span error="company" class="reg_erroru"></span></label>
+                            <input type="text" name="company" id="company" maxlength="128" class="form-control" tabindex="4">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12" style="vertical-align: top !important;padding-top:5px;" id="registration_captcha">
+                        {{captcha|raw}}
+                    </div>
+                    <div class="col-xs-12" style="margin-top: 30px;">
+                        <a href="#" id="send_create_company" class="btn btn-primary"><span>Создать компанию</span></a>
+                        <a href="/" class="btn btn-danger">Отмена</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
