@@ -1469,6 +1469,10 @@ input[disabled], select[disabled], textarea[disabled] {
     width: 200px;
 }
 
+#table_categories {
+    white-space: inherit;
+}
+
 #table_categories label {
     margin-right: 5px;
     white-space: inherit;
