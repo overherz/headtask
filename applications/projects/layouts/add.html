@@ -15,7 +15,8 @@
     {% if project.id %}
         {% include app.path('projects','project_menu.html') %}
 
-    <ul class="nav nav-tabs" id="form_tabs">
+    {% if access.delete_project %}<a class="btn btn-danger delete_project" href="" project_id="{{project.id}}" data-name="{{ project.name }}">Удалить проект</a>{% endif %}
+    <ul class="nav nav-tabs" id="form_tabs" style="margin-top: 20px;">
         <li class="active"><a href="#tabs-1">Описание</a></li>
         <li><a href="#tabs-2">Метки задач</a></li>
     </ul>

@@ -1,4 +1,4 @@
-<div class="btn-block project_menu" style="margin-bottom: 20px;">
+<div class="btn-block project_menu" style="border-bottom: 1px solid #e7e7e7;margin-bottom: 20px;">
     {% if access.show_review %}
     <div class="btn-group">
         <a class="btn btn-india pajax {% if review_button %}active{% endif %}" href="/projects/~{{project.id}}/"><i class="fa fa-info menu_icon"></i><span class="menu_text">Обзор</span></a>
@@ -42,6 +42,5 @@
     {% endif %}
     <div class="btn-group">
         {% if access.edit_project %}<a class="btn btn-danger pajax {% if edit_button %}active{% endif %}" href="/projects/edit/{{project.id}}/"><i class="fa fa-pencil"></i></a>{% endif %}
-        {% if access.delete_project %}<a class="btn btn-danger delete_project" href="" project_id="{{project.id}}" data-name="{{ project.name }}"><i class="fa fa-trash-o"></i></a>{% endif %}
     </div>
 </div>

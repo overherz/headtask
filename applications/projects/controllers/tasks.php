@@ -197,8 +197,9 @@ class tasks extends \Controller {
         }
 
         $form = array(
-            'my' => array('label' => 'Мои',
-                'type' => 'checkbox'
+            'my' => array('label' => 'Создал я',
+                'type' => 'checkbox',
+                'wrapper' => 'div'
             ),
             'assigned' => array('label' => 'Делегированные',
                 'type' => 'radio',
@@ -206,18 +207,22 @@ class tasks extends \Controller {
                 'selected' => 'all'
             ),
             'status' => array('label' => 'Статус',
-                'type' => 'multy_select',
+                'type' => 'checkbox',
                 'options' => $form_status,
-                'selected' => array('new','in_progress','rejected')
+                'selected' => array('new','in_progress','rejected'),
+                'wrapper' => 'div'
             ),
             'priority' => array('label' => 'Приоритет',
-                'type' => 'multy_select',
-                'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический')
+                'type' => 'checkbox',
+                'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический'),
+                'wrapper' => 'div'
             ),
             'category' => array('label' => 'Категории',
-                'type' => 'multy_select',
+                'type' => 'checkbox',
                 'options' => $categories,
-                'selected' => array(intval($_GET['cat']))
+                'selected' => array(intval($_GET['cat'])),
+                'class' => 'category_task_menu'
+
             ),
             'percent' => array('label' => 'Просроченные',
                 'type' => 'checkbox'

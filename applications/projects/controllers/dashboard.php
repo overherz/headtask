@@ -12,8 +12,9 @@ class dashboard extends \Controller {
         }
 
         $form = array(
-            'my' => array('label' => 'Мои',
-                'type' => 'checkbox'
+            'my' => array('label' => 'Создал я',
+                'type' => 'checkbox',
+                'wrapper' => 'div'
             ),
             'assigned' => array('label' => 'Делегированные',
                 'type' => 'radio',
@@ -21,13 +22,15 @@ class dashboard extends \Controller {
                 'selected' => 'me'
             ),
             'status' => array('label' => 'Статус',
-                'type' => 'multy_select',
+                'type' => 'checkbox',
                 'options' => $form_status,
-                'selected' => array('new','in_progress','closed')
+                'selected' => array('new','in_progress','closed'),
+                'wrapper' => 'div'
             ),
             'priority' => array('label' => 'Приоритет',
-                'type' => 'multy_select',
-                'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический')
+                'type' => 'checkbox',
+                'options' => array('1' => 'низкий','2' => 'обычный','3' => 'высокий','4' => 'критический'),
+                'wrapper' => 'div'
             ),
             'percent' => array('label' => 'Просроченные',
                 'type' => 'checkbox'
