@@ -1119,6 +1119,10 @@ td .progress {
         line-height: 25px;
     }
 
+    .menu_sub_li {
+        line-height: 17px !important;
+    }
+
     #wrapper.toggled .sidebar-nav li {
         line-height: 40px;
         text-indent: 10px;
