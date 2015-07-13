@@ -61,8 +61,8 @@ body {
     font-weight: bold;
     margin: 0 0 0 40px;
     display: inline-block;
-    line-height: 16px;
-    margin-top: 2px;
+    line-height: 12px;
+    margin-top: 7px;
 }
 
 .username_in_top:hover {
@@ -1046,7 +1046,7 @@ td .progress {
     }
 
     .topmenu .pull-right {
-        padding-right: 300px;
+        margin-right: 300px;
     }
 
     #wrapper.toggled {
@@ -1094,7 +1094,7 @@ td .progress {
     }
 
     #wrapper.toggled2 .topmenu .pull-right {
-        padding-right: 0;
+        margin-right: 0;
     }
 
     #sidebar-wrapper {

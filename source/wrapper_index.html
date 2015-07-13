@@ -20,7 +20,9 @@
 <div id="wrapper" class="{% if cookie_data.sidebar == 'toggled' %}toggled{% endif %} {% if cookie_data.sidebar2 == 'toggled2' %}toggled2{% endif %}">
     <nav class="navbar navbar-default navbar-static-top topmenu">
         <span class="navbar-brand logo_color1">h<span class="brand_full">ead</span><span class="logo_color2">t<span class="brand_full">ask</span></span></span>
-        <div class="pull-right">
+        <table class="pull-right">
+            <tr>
+                <td>
             {% if globals.user %}
                 <a href="/users/logout/" id="logout" title="Выход" style="float: right;margin-top: 2px;"><i class="fa fa-sign-out"></i></a>
             {% endif %}
@@ -30,23 +32,23 @@
                     <div style="display: inline-block;font-weight: normal;font-size: 12px;">{{ ("role_"~session_data.user.role_company)|lang|capitalize }}</div>
                 </a>
             {% endif %}
-            <div class="input-group" style="padding-left: 0;float: right;margin-top: 5px;display: flex;">
+            <div class="input-group" style="padding-left: 0;float: right;margin-top: 5px;">
                 <select id="select_company" class="width-200">
                     {% for k,c in globals.company %}
                         <option value="{{ k }}" {% if session_data.user.current_company == k %}selected{% endif %}>{{ c.name }}</option>
                     {% endfor %}
                 </select>
-                {% if session_data.user.role_company == 'admin' %}
                   <span class="input-group-btn">
-                    <a href="/company/settings" title="Настройки компании" class="btn btn-primary btn-black" style="height: 30px;padding-top: 4px;"><i class="fa fa-cog"></i></a>
-                  </span>
-                {% endif %}
-                  <span class="input-group-btn">
+                    {% if session_data.user.role_company == 'admin' %}
+                        <a href="/company/settings" title="Настройки компании" class="btn btn-primary btn-black" style="height: 30px;padding-top: 4px;"><i class="fa fa-cog"></i></a>
+                    {% endif %}
                     <a href="/users/registration/create_company" title="Создать компанию" class="btn btn-success" style="height: 30px;padding-top: 4px;"><i class="fa fa-plus"></i></a>
                   </span>
             </div>
             <input type="hidden" id="id_company" name="id_company" value="{{ globals.user.current_company }}">
-        </div>
+                </td>
+            </tr>
+        </table>
     </nav>
 {% endif %}
 {% if globals.user %}
