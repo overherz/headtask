@@ -335,6 +335,30 @@ $(document).ready(function ($) {
         clearTimeout(project_info);
         $("#projects_info").fadeOut();
     });
+
+    $(document).on("click", "#get_table_categories", function () {
+        user_api({act:'get_categories'}, function (data) {
+            show_popup(data,"Метки задач");
+
+            $("#table_categories").find("input").each(function(){
+                $("#cat_"+$(this).val()).prop("checked",true).trigger('refresh');
+            });
+            add_popup_button("Выбрать",'check',false,function(vars){
+                var insert_html = '';
+                $("#get_categories_form").find("input:checkbox:checked").each(function() {
+                    var value = $(this).val();
+                    var html_label = $("#get_categories_form").find("label[for='cat_"+value+"']").clone().wrap('<p>').parent().html();
+                    insert_html = insert_html + "<input type='hidden' name='category[]' value='"+$(this).val()+"'>";
+                    insert_html = insert_html + html_label;
+                });
+                $("#table_categories").html(insert_html);
+                $('#search_form').submit();
+                hide_popup();
+                return false;
+            });
+        });
+        return false;
+    });
 });
 
 

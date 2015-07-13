@@ -368,8 +368,14 @@ class projects extends \Controller {
             {
                 $cats[$row['id']] = $row['name'];
             }
-            return $cats;
         }
-        else return $query->fetchAll();
+        else
+        {
+            while ($row = $query->fetch())
+            {
+                $cats[$row['id']] = $row;
+            }
+        }
+        return $cats;
     }
 }
