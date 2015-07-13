@@ -1469,8 +1469,14 @@ input[disabled], select[disabled], textarea[disabled] {
     width: 200px;
 }
 
-.category_task_menu {
-    margin-right: 10px;
+#table_categories label {
+    margin-right: 5px;
+    white-space: inherit;
+}
+
+#get_table_categories {
+    font-weight: bold;
+    font-size: 14px;
 }
 
 

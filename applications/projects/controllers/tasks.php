@@ -34,6 +34,9 @@ class tasks extends \Controller {
             case "delete_comment":
                 $this->delete_comment();
                 break;
+            case "get_categories":
+                $this->get_categories();
+                break;
             default:
                 $this->default_for_this();
         }
@@ -82,6 +85,13 @@ class tasks extends \Controller {
             ));
         }
         else $this->error_page("denied");
+    }
+
+    function get_categories()
+    {
+        $categories = $this->get_controller("projects")->get_categories($this->id);
+        $res['success'] = $this->layout_get("tasks/get_categories.html",array('categories' => $categories));
+        echo json_encode($res);
     }
 
     function show_edit_task()
@@ -189,7 +199,7 @@ class tasks extends \Controller {
         crumbs($project['name'],"/projects/~{$project['id']}");
         crumbs("Задачи");
 
-        $categories = $this->get_controller("projects")->get_categories($this->id,true);
+        $categories = $this->get_controller("projects")->get_categories($this->id);
 
         foreach ($this->status as $k => $f)
         {
@@ -218,10 +228,9 @@ class tasks extends \Controller {
                 'wrapper' => 'div'
             ),
             'category' => array('label' => 'Категории',
-                'type' => 'checkbox',
+                'type' => 'multy_select',
                 'options' => $categories,
                 'selected' => array(intval($_GET['cat'])),
-                'class' => 'category_task_menu'
 
             ),
             'percent' => array('label' => 'Просроченные',
@@ -241,12 +250,28 @@ class tasks extends \Controller {
         }
         else if ($user_data = $u_data_cr->get_user_data($_SESSION['user']['id_user'],"project_filter".$this->id))
         {
+            $cats_ids = array();
             $filter = unserialize($user_data['data']);
+
+            if ($filter['category'] != "" && count($categories) > 0)
+            {
+                foreach ($categories as $c => $cat)
+                {
+                    if (in_array($c,$filter['category']))
+                    {
+                        $categories_show[$c] = $cat;
+                        $cats_ids[] = $c;
+                    }
+                }
+            }
+
             foreach ($form as $k => &$f)
             {
                 if ($filter[$k]) $f['selected'] = $filter[$k];
                 else $f['selected'] = false;
             }
+
+            $form['category']['data'] = $categories_show;
 
             $start = $filter['start'];
             $end = $filter['end'];
@@ -272,7 +297,7 @@ class tasks extends \Controller {
             'tasks_button' => true,
             'access' => $access['access'],
             'all' => true,
-            'user_tasks' => $u_cr->default_method()
+            'user_tasks' => $u_cr->default_method(),
         );
 
         if (!$_POST['act'] == "get_data") $this->layout_show('tasks/tasks.html',$data);

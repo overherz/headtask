@@ -25,7 +25,7 @@
                     <th>Статус</th>
                     <th>Приоритет</th>
                     {% if id_project and form.category.options%}
-                    <th>Метка</th>
+                    <th><a href="" class="btn btn-xs btn-primary" id="get_table_categories">Выбрать метки</a></th>
                     {% endif %}
                 </tr>
                 </thead>
@@ -41,9 +41,16 @@
                     <td>{{ inputs.input(form.status,'status') }}</td>
                     <td>{{ inputs.input(form.priority,'priority') }}</td>
 
-                    {% if id_project and form.category.options%}
+                    {% if id_project and form.category.options %}
                     <td>
-                        {{ inputs.input(form.category,'category') }}
+                        <div id="table_categories">
+                        {% for cat in form.category.data %}
+                                <input type="hidden" id="cat_{{ cat.id }}" name="category[]" value="{{ cat.id }}">
+                                <label class="label label-cat" for="cat_{{ cat.id }}" style="background: {{ cat.color }};color: {{ cat.color_text }};position: relative;top:0;">
+                                    {{ cat.name }}
+                                </label>
+                        {% endfor %}
+                        </div>
                     </td>
                     {% endif %}
                 </tr>
