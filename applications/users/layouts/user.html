@@ -29,7 +29,7 @@
                     <td style="width:1px;white-space: nowrap;font-weight: bold;border-top: none;">Общие компании:</td>
                     <td>
                         {% for i in intersect %}
-                            {{ i.name }}{% if not loop.last %}, {% endif %}
+                            <a href='{{ i.domain|subdomain }}'>{{ i.name }}</a>{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </td>
                 </tr>

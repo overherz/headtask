@@ -9,7 +9,7 @@ $INFO['dev_mode'] = 1;
 $INFO['error_to_mail'] = 1;
 $INFO['antiddos'] = 0;
 
-$INFO['domain_name'] = "tasker";
+$INFO['domain_name'] = "tasker.dev";
 $INFO['secure'] = 0; //enable to https redirect
 
 $INFO['cache'] = 1;

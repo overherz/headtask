@@ -95,6 +95,11 @@ class registration extends \Controller {
         else
         {
             $this->db->beginTransaction();
+
+            $query = $this->db->prepare("select domain from company where id_company=?");
+            $query->execute(array($this->invite['id_company']));
+            $domain = $query->fetch();
+
             $query = $this->db->prepare("insert into company_users(id_company,id_user,role) values(?,?,?)");
             if (!$query->execute(array($this->invite['id_company'],$_SESSION['user']['id_user'],"user"))) $error = true;
             if (!$this->delete_invite($this->invite['hash'])) $error = true;
@@ -102,12 +107,11 @@ class registration extends \Controller {
             if (!$error)
             {
                 $this->db->commit();
-                $_SESSION['user']['current_company'] = $this->invite['id_company'];
             }
             else $this->db->rollBack();
 
             $this->layout_show('registration.html',array('add_success' => !$error));
-            $this->redirect('/',3);
+            $this->redirect(get_full_domain_name($domain['domain']),3);
         }
     }
 
@@ -119,6 +123,7 @@ class registration extends \Controller {
             $this->db->beginTransaction();
             if ($_SESSION['captcha'][$_POST['id_captcha']] != $_POST['captcha']) $res['error']['captcha'] = "выбор неверен";
             if ($_POST['company'] == "") $res['error']['company'] = "пусто";
+            if ($_POST['subdomain'] == "") $res['error']['subdomain'] = "пусто";
 
             $query = $this->db->prepare("insert into company(name) values(?)");
             if (!$query->execute(array($_POST['company']))) $res['error']['global'] = "Ошибка базы данных";
@@ -137,9 +142,8 @@ class registration extends \Controller {
             }
             else
             {
-                $res['success'] = true;
+                $res['success'] = $_POST['subdomain'];
                 $this->db->commit();
-                $_SESSION['user']['current_company'] = $id_company;
             }
 
             echo json_encode($res);
@@ -306,7 +310,7 @@ class registration extends \Controller {
         {
             $subject = "Регистрация";
             $message = $this->layout_get("elements/activate_mail.html",array(
-                'domain' => get_full_domain_name(),
+                'domain' => get_full_domain_name(SUBDOMAIN),
                 'email' => $email,
                 'password' => $password,
                 'code' => $code

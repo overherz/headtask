@@ -14,7 +14,7 @@ class password extends \Admin {
                 $this->save_password();
                 break;
             default:
-                setcookie('redirect', "", time()+60*60*24*7,"/");
+                setcookie('redirect', "", time()+60*60*24*7,"/",get_cookie_domain());
                 $this->redirect("/admin/");
         }
     }

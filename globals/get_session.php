@@ -14,6 +14,7 @@ class get_session extends \Global_module
         {
             if (session_id() && $_GET[$session_name] != session_id()) session_destroy();
             $_COOKIE[$session_name] = $_GET[$session_name];
+            session_set_cookie_params(0, '/', get_cookie_domain());
             session_id($_GET[$session_name]);
             session_start();
         }
@@ -22,7 +23,8 @@ class get_session extends \Global_module
 
         if(defined('SITE_ACCESS_CHECK') && SITE_ACCESS_CHECK)
         {
-            if(!isset($_SESSION)) {
+            if(!session_id()) {
+                session_set_cookie_params(0, '/', get_cookie_domain());
                 session_start();
             }
 

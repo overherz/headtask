@@ -184,7 +184,7 @@ $(document).ready(function($) {
     });
 
     $("#select_company").change(function(){
-        document.location.href = "/projects/change_company/"+$(this).val();
+        document.location.href = $(this).val();
     });
 });
 

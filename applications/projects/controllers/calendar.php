@@ -102,7 +102,7 @@ class calendar extends \Controller {
         ");
 
 //            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL)))) and ((pt.start <= ?)
-        $query->execute(array($_SESSION['user']['current_company'],$id_user,$id_user,$id_user,$date,$begin_of_day,$end_of_day));
+        $query->execute(array($GLOBALS['globals']['current_company'],$id_user,$id_user,$id_user,$date,$begin_of_day,$end_of_day));
         while ($row = $query->fetch())
         {
             $row['assigned_name'] = build_user_name($row['first_name'],$row['last_name'],true);
