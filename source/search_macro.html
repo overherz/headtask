@@ -9,8 +9,8 @@
     {% elseif f.type == "checkbox" %}
         {% if f.options  %}
             {% for j,o in f.options %}
-                {% if f.wrapper %}<{{ f.wrapper }} {% if f.class %} class="{{ f.class }}"{% endif %}>
-                {% else %}<span {% if f.class %} class="{{ f.class }}"{% endif %}>
+                {% if f.wrapper %}<{{ f.wrapper }} style="white-space: nowrap;" {% if f.class %} class="{{ f.class }}"{% endif %}>
+                {% else %}<span style="white-space: nowrap;" {% if f.class %} class="{{ f.class }}"{% endif %}>
                 {% endif %}
 
                 <input type='checkbox' name='{{name}}[]' value="{{ j }}" {% if j in f.selected %}checked{% endif %} style="margin-top:-2px;"> {{ o }}
@@ -24,7 +24,7 @@
                 {% else %}<span {% if f.class %} class="{{ f.class }}"{% endif %}>
                 {% endif %}
 
-                <input type='checkbox' name='{{name}}' {% if f.selected %}checked{% endif %} style="margin-top:-2px;"> {{ f.label }}
+                <input type='checkbox' style="white-space: nowrap;" name='{{name}}' {% if f.selected %}checked{% endif %} style="margin-top:-2px;"> {{ f.label }}
 
                 {% if f.wrapper %}</{{ f.wrapper }}>
                 {% else %}</span>
