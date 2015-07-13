@@ -7,11 +7,33 @@
     {% endfor %}
     </select>
     {% elseif f.type == "checkbox" %}
-    <input type='checkbox' name='{{name}}' {% if f.selected %}checked{% endif %} style="margin-top:-2px;">
+        {% if f.options  %}
+            {% for j,o in f.options %}
+                {% if f.wrapper %}<{{ f.wrapper }} {% if f.class %} class="{{ f.class }}"{% endif %}>
+                {% else %}<span {% if f.class %} class="{{ f.class }}"{% endif %}>
+                {% endif %}
+
+                <input type='checkbox' name='{{name}}[]' value="{{ j }}" {% if j in f.selected %}checked{% endif %} style="margin-top:-2px;"> {{ o }}
+
+                {% if f.wrapper %}</{{ f.wrapper }}>
+                {% else %}</span>
+                {% endif %}
+            {% endfor %}
+            {% else %}
+                {% if f.wrapper %}<{{ f.wrapper }} {% if f.class %} class="{{ f.class }}"{% endif %}>
+                {% else %}<span {% if f.class %} class="{{ f.class }}"{% endif %}>
+                {% endif %}
+
+                <input type='checkbox' name='{{name}}' {% if f.selected %}checked{% endif %} style="margin-top:-2px;"> {{ f.label }}
+
+                {% if f.wrapper %}</{{ f.wrapper }}>
+                {% else %}</span>
+                {% endif %}
+        {% endif %}
     {% elseif f.type == "radio" %}
         {% for j,o in f.options %}
             <div style="white-space: nowrap;"><input name="{{ name }}" type="radio" value="{{j}}" {% if j in f.selected %}checked{% endif %}> {{o}}</div>
         {% endfor %}
     {% endif %}
-    {% if label and f.type != 'text' %}&nbsp;{{f.label|raw}}{% endif %}
+    {% if label and f.type != 'text' and f.type != 'checkbox'%}&nbsp;{{f.label|raw}}{% endif %}
 {% endmacro %}
