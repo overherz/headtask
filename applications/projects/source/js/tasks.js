@@ -343,6 +343,12 @@ $(document).ready(function ($) {
             $("#table_categories").find("input").each(function(){
                 $("#cat_"+$(this).val()).prop("checked",true).trigger('refresh');
             });
+            add_popup_button("Отменить все",'clear',false,function(vars){
+                $("#table_categories").html('');
+                $('#search_form').submit();
+                hide_popup();
+                return false;
+            });
             add_popup_button("Выбрать",'check',false,function(vars){
                 var insert_html = '';
                 $("#get_categories_form").find("input:checkbox:checked").each(function() {
