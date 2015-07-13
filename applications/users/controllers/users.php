@@ -140,31 +140,48 @@ class users extends \Controller {
         else
         {
             $id = intval($this->id);
-            if($_SESSION['user']['id_user'] == $id) $this->set_global("user_menu", "profile");
-
-            $result = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.avatar,u.id_user,u.last_user_action,gr.id as id_group,gr.name as group_name,gr.color
-                from users as u
-                LEFT JOIN groups as gr ON u.id_group=gr.id
-                WHERE id_user = ? and u.mailconfirm = '1' LIMIT 1
-            ");
-            $result->execute(array($id));
-            if ($user = $result->fetch())
+            $this->intersect_users_company($id,$_SESSION['user']['id_user']);
+            if ($intersect = $this->intersect_users_company($id,$_SESSION['user']['id_user']))
             {
-                $user['fio'] = build_user_name($user['first_name'],$user['last_name']);
-                $res2 = $this->db->prepare("select up.*, pr.* FROM userprofiles as up LEFT JOIN profile as pr ON up.idprof=pr.id WHERE up.iduser = ? and pr.share = '1'");
-                $res2->execute(array($id));
-                while ($row = $res2->fetch())
-                {
-                    $user['profile'][$row['name']]=$row;
-                }
+                if($_SESSION['user']['id_user'] == $id) $this->set_global("user_menu", "profile");
 
-                $this->layout_show('user.html', array(
-                    'user'=>$user,
-                    'user_tasks' => $this->get_controller("projects","user_tasks")->default_method($id)
-                ));
+                $result = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.avatar,u.id_user,u.last_user_action,gr.id as id_group,gr.name as group_name,gr.color
+                    from users as u
+                    LEFT JOIN groups as gr ON u.id_group=gr.id
+                    WHERE id_user = ? and u.mailconfirm = '1' LIMIT 1
+                ");
+                $result->execute(array($id));
+                if ($user = $result->fetch())
+                {
+                    $user['fio'] = build_user_name($user['first_name'],$user['last_name']);
+                    $res2 = $this->db->prepare("select up.*, pr.* FROM userprofiles as up LEFT JOIN profile as pr ON up.idprof=pr.id WHERE up.iduser = ? and pr.share = '1'");
+                    $res2->execute(array($id));
+                    while ($row = $res2->fetch())
+                    {
+                        $user['profile'][$row['name']]=$row;
+                    }
+
+                    $this->layout_show('user.html', array(
+                        'user'=>$user,
+                        'intersect' => $intersect,
+                        'user_tasks' => $this->get_controller("projects","user_tasks")->default_method($id)
+                    ));
+                }
+                else return $this->error_page();
             }
-            else return $this->error_page();
+            else $this->error_page('denied');
         }
+    }
+
+    function intersect_users_company($id_user1,$id_user2)
+    {
+        $query = $this->db->prepare("
+                select * from company_users as t1
+                LEFT JOIN company as c ON t1.id_company=c.id
+                where t1.id_user=? AND t1.id_company IN (select id_company from company_users where id_user=?)
+        ");
+        $query->execute(array($id_user1,$id_user2));
+        return $query->fetchAll();
     }
 
     function inCL($id_owner, $id_contact)
