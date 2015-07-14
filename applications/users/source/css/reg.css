@@ -2,7 +2,7 @@ body {
     background: url(/source/images/login_back.jpg) no-repeat;
 }
 
-#wrapper {
+#wrapper,#page-content-wrapper {
     padding: 0;
 }
 
@@ -29,7 +29,7 @@ body {
 
 #regForm,#reg_form_create_company {
     padding: 19px 29px 29px;
-    margin: 100px auto 20px;
+    margin: 50px auto;
 }
 
 #female.select {
