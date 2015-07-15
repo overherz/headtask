@@ -44,8 +44,6 @@ class tasks extends \Controller {
 
     function default_for_this()
     {
-        $this->new_comments_to_mail();
-
         switch($this->id)
         {
             case "add":
