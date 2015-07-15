@@ -8,6 +8,10 @@ define('DS', DIRECTORY_SEPARATOR);
 if (php_sapi_name() != "cli") define('URI', $_SERVER['REQUEST_URI']);
 define(strtoupper('root'),dirname(dirname(__FILE__)).DS);
 define(strtoupper('admin_root'),dirname(dirname(__FILE__)).DS."admin".DS);
+
+$sub = explode(".",$_SERVER['HTTP_HOST']);
+if (count($sub) == 3) define(strtoupper('subdomain'),array_shift($sub));
+
 define("LANG","ru");
 define("AJAX", (isset($_SERVER["HTTP_X_PJAX"]) && $_SERVER["HTTP_X_PJAX"]) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'));
 define("PJAX", (isset($_SERVER["HTTP_X_PJAX"]) && $_SERVER["HTTP_X_PJAX"]));

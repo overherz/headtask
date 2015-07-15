@@ -95,6 +95,11 @@ class registration extends \Controller {
         else
         {
             $this->db->beginTransaction();
+
+            $query = $this->db->prepare("select domain from company where id_company=?");
+            $query->execute(array($this->invite['id_company']));
+            $domain = $query->fetch();
+
             $query = $this->db->prepare("insert into company_users(id_company,id_user,role) values(?,?,?)");
             if (!$query->execute(array($this->invite['id_company'],$_SESSION['user']['id_user'],"user"))) $error = true;
             if (!$this->delete_invite($this->invite['hash'])) $error = true;
@@ -102,12 +107,11 @@ class registration extends \Controller {
             if (!$error)
             {
                 $this->db->commit();
-                $_SESSION['user']['current_company'] = $this->invite['id_company'];
             }
             else $this->db->rollBack();
 
             $this->layout_show('registration.html',array('add_success' => !$error));
-            $this->redirect('/',3);
+            $this->redirect(get_full_domain_name($domain['domain']),3);
         }
     }
 
@@ -118,16 +122,22 @@ class registration extends \Controller {
         {
             $this->db->beginTransaction();
             if ($_SESSION['captcha'][$_POST['id_captcha']] != $_POST['captcha']) $res['error']['captcha'] = "выбор неверен";
+
             if ($_POST['company'] == "") $res['error']['company'] = "пусто";
+            else if (!$this->check_company_name($_POST['company'])) $res['error']['company'] = "содержит запрещенные символы";
+            else if (!$this->check_company_name2($_POST['company'])) $res['error']['company'] = "название занято";
 
-            $query = $this->db->prepare("insert into company(name) values(?)");
-            if (!$query->execute(array($_POST['company']))) $res['error']['global'] = "Ошибка базы данных";
-            else
+            if (!$res['error'])
             {
-                $id_company = $this->db->lastInsertId();
+                $query = $this->db->prepare("insert into company(name) values(?)");
+                if (!$query->execute(array($_POST['company']))) $res['error']['global'] = "Ошибка базы данных";
+                else
+                {
+                    $id_company = $this->db->lastInsertId();
 
-                $query = $this->db->prepare("insert into company_users(id_company,id_user,role) values(?,?,?)");
-                if (!$query->execute(array($id_company,$_SESSION['user']['id_user'],"admin"))) $res['error']['global'] = "Ошибка базы данных";
+                    $query = $this->db->prepare("insert into company_users(id_company,id_user,role) values(?,?,?)");
+                    if (!$query->execute(array($id_company,$_SESSION['user']['id_user'],"admin"))) $res['error']['global'] = "Ошибка базы данных";
+                }
             }
 
             if ($res['error'])
@@ -137,9 +147,8 @@ class registration extends \Controller {
             }
             else
             {
-                $res['success'] = true;
+                $res['success'] = get_full_domain_name($_POST['company']);
                 $this->db->commit();
-                $_SESSION['user']['current_company'] = $id_company;
             }
 
             echo json_encode($res);
@@ -160,67 +169,65 @@ class registration extends \Controller {
             $birthday = convert_date($_POST['birthday'],true);
 
             $this->db->beginTransaction();
-            if (!$res['error'])
+
+            $get_pass = get_pass($_POST['password1']);
+            $pass = $get_pass['password'];
+            $salt = $get_pass['salt'];
+            $uniq_key = $get_pass['uniq_key'];
+
+
+            $created = time();
+            $p = $this->db->prepare("insert into users(last_name,first_name,email,pass,salt,uniq_key,gender,id_group,mailconfirm,created,tzOffset,birthday) values(?,?,?,?,?,?,?,?,?,?,?,?)");
+            if (!$p->execute(array(
+                    $_POST['last_name'],
+                    $_POST['first_name'],
+                    $_POST['email'],
+                    $pass,
+                    $salt,
+                    $uniq_key,
+                    $_POST['gender'],
+                    DEFAULT_USER_GROUP_ID,
+                    true,
+                    $created,
+                    $_POST['tz'],
+                    $birthday)
+            )) $res['error']['global'] = "Ошибка базы данных";
+            else $id_user = $this->db->lastInsertId();
+
+            if ($this->invite)
             {
-                $get_pass = get_pass($_POST['password1']);
-                $pass = $get_pass['password'];
-                $salt = $get_pass['salt'];
-                $uniq_key = $get_pass['uniq_key'];
+                if (!$this->delete_invite($this->invite['hash'])) $res['error']['global'] = "Ошибка базы данных";
+            }
 
-                if ($this->send_activate_link($_POST['email'],$_POST['password1']))
+            if (!$this->invite && $id_user)
+            {
+                $query_cr_company = $this->db->prepare("insert into company(name) values(?)");
+                if (!$query_cr_company->execute(array($_POST['company']))) $res['error']['global'] = "Ошибка базы данных";
+                else
                 {
-                    $created = time();
-                    $p = $this->db->prepare("insert into users(last_name,first_name,email,pass,salt,uniq_key,gender,id_group,mailconfirm,created,tzOffset,birthday) values(?,?,?,?,?,?,?,?,?,?,?,?)");
-                    if (!$p->execute(array(
-                            $_POST['last_name'],
-                            $_POST['first_name'],
-                            $_POST['email'],
-                            $pass,
-                            $salt,
-                            $uniq_key,
-                            $_POST['gender'],
-                            DEFAULT_USER_GROUP_ID,
-                            true,
-                            $created,
-                            $_POST['tz'],
-                            $birthday)
-                    )) $res['error']['global'] = "Ошибка базы данных";
-                    else $id_user = $this->db->lastInsertId();
-                }
-                else $res['error']['global'] = "Ошибка базы данных";
-
-                if ($this->invite)
-                {
-                    if (!$this->delete_invite($this->invite['hash'])) $res['error']['global'] = "Ошибка базы данных";
-                }
-
-                if (!$this->invite && $id_user)
-                {
-                    $query_cr_company = $this->db->prepare("insert into company(name) values(?)");
-                    if (!$query_cr_company->execute(array($_POST['company']))) $res['error']['global'] = "Ошибка базы данных";
-                    else
-                    {
-                        $id_company = $this->db->lastInsertId();
-                        $query_cr_link_to_company = $this->db->prepare("insert into company_users(id_company,id_user,role) values(?,?,?)");
-                        if (!$query_cr_link_to_company->execute(array($id_company,$id_user,"admin"))) $res['error']['global'] = "Ошибка базы данных";
-                    }
-                }
-                else if ($this->invite && $id_user)
-                {
-                    $id_company = $this->invite['id_company'];
+                    $id_company = $this->db->lastInsertId();
                     $query_cr_link_to_company = $this->db->prepare("insert into company_users(id_company,id_user,role) values(?,?,?)");
-                    if (!$query_cr_link_to_company->execute(array($id_company,$id_user,"user"))) $res['error']['global'] = "Ошибка базы данных";
+                    if (!$query_cr_link_to_company->execute(array($id_company,$id_user,"admin"))) $res['error']['global'] = "Ошибка базы данных";
                 }
             }
-            else $res['error']['captcha_html'] = $this->get_controller("captcha")->get_captcha(6);
+            else if ($this->invite && $id_user)
+            {
+                $id_company = $this->invite['id_company'];
+                $query_cr_link_to_company = $this->db->prepare("insert into company_users(id_company,id_user,role) values(?,?,?)");
+                if (!$query_cr_link_to_company->execute(array($id_company,$id_user,"user"))) $res['error']['global'] = "Ошибка базы данных";
+            }
+
+            if (!$res['error'])
+                if (!$this->send_activate_link($_POST['email'],$_POST['password1'],$_POST['company'])) $res['error'] = "Ошибка при отправке письма";
 
             if ($res['error']) $this->db->rollBack();
             else
             {
-                $res['success'] = true;
+                $res['success'] = get_full_domain_name($_POST['company']);
                 $this->db->commit();
             }
         }
+        else $res['error']['captcha_html'] = $this->get_controller("captcha")->get_captcha(6);
         echo json_encode($res);
     }
 
@@ -246,11 +253,13 @@ class registration extends \Controller {
 
         $query = $this->db->prepare("select email from users where email=? LIMIT 1");
         $query->execute(array($_POST['email']));
-        if ($result = $query->fetch()) $res['error']['email'] = "адрес уже занят";
+        if ($result = $query->fetch()) $res['error']['email'] = "адрес занят";
 
         if (!$this->invite)
         {
             if ($_POST['company'] == "") $res['error']['company'] = "пусто";
+            else if (!$this->check_company_name($_POST['company'])) $res['error']['company'] = "содержит запрещенные символы";
+            else if (!$this->check_company_name2($_POST['company'])) $res['error']['company'] = "название занято";
         }
 
         // Проверка имени
@@ -295,7 +304,7 @@ class registration extends \Controller {
         echo json_encode($res);
     }
 
-    function send_activate_link($email,$password=false)
+    function send_activate_link($email,$password=false,$subdomain=false)
     {
         $get_pass = get_pass(uniqid());
         $salt = $get_pass['salt'];
@@ -306,12 +315,27 @@ class registration extends \Controller {
         {
             $subject = "Регистрация";
             $message = $this->layout_get("elements/activate_mail.html",array(
-                'domain' => get_full_domain_name(),
+                'domain' => get_full_domain_name($subdomain),
                 'email' => $email,
                 'password' => $password,
                 'code' => $code
             ));
             if (send_mail(get_setting('email'), $email, $subject, $message, get_setting('site_name'))) return true;
         }
+    }
+
+    function check_company_name($name)
+    {
+        if (preg_match("/^[[a-z0-9]{1}[a-z0-9_]{1,14}[a-z0-9]{1}$/",$name))
+        {
+            if (!preg_match("/(_){2,}/",$name)) return true;
+        }
+    }
+
+    function check_company_name2($name)
+    {
+        $query = $this->db->prepare("select * from company where name=?");
+        $query->execute(array($name));
+        if (!$query->fetch()) return true;
     }
 }

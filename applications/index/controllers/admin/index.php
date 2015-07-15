@@ -19,9 +19,6 @@ class index extends \Admin {
 
     function show()
     {
-        if(!isset($_SESSION)) {
-            session_start();
-        }
         if (!$_SESSION['admin']) $this->layout_show('admin/login.html');
         else if ($_COOKIE['redirect']) $this->redirect($_COOKIE['redirect']);
         else if ($_SESSION['admin']['id_group'] == 1) $this->redirect("/admin/logs");

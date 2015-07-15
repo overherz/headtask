@@ -33,6 +33,7 @@ class captcha extends \Controller {
 
     function get_captcha($count=6)
     {
+        session_set_cookie_params(0, '/', get_cookie_domain());
         session_start();
         require_once(ROOT.'/libraries/AES_class.php');
         $this->aes = new \AESCrypt($this->key);

@@ -125,6 +125,7 @@ class Controller {
         if ($_SESSION) $values['session_data'] = $_SESSION;
         if (defined('AJAX') && AJAX) $values['ajax_data'] = true;
         if ($_COOKIE) $values['cookie_data'] = $_COOKIE;
+        if (SUBDOMAIN) $values['site']['subdomain'] = SUBDOMAIN;
         layout::layout_show($this->layout.$layout,$values);
     }
 
@@ -138,6 +139,7 @@ class Controller {
         if ($_SESSION) $values['session_data'] = $_SESSION;
         if (defined('AJAX') && AJAX) $values['ajax_data'] = true;
         if ($_COOKIE) $values['cookie_data'] = $_COOKIE;
+        if (SUBDOMAIN) $values['site']['subdomain'] = SUBDOMAIN;
         return layout::layout_get($this->layout.$layout,$values);
     }
 
@@ -280,7 +282,7 @@ class Admin extends Controller {
     {
         if ($_SESSION['admin'] && ($this->application != "index" || ($this->application == "index" && $this->controller != "index" && $this->controller != "logout")))
         {
-            setcookie('redirect', $_SERVER['REDIRECT_URL'], time()+60*60*24*7,"/");
+            setcookie('redirect', $_SERVER['REDIRECT_URL'], time()+60*60*24*7,"/",get_cookie_domain());
         }
         $session_name = session_name();
         if ($_GET[$session_name])
@@ -288,6 +290,7 @@ class Admin extends Controller {
             if (session_id() && $_GET[$session_name] != session_id()) session_destroy();
             $_COOKIE[$session_name] = $_GET[$session_name];
             session_id($_GET[$session_name]);
+            session_set_cookie_params(0, '/', get_cookie_domain());
             session_start();                    
         }
         
@@ -306,7 +309,7 @@ class Admin extends Controller {
 
         if (!$_SESSION['admin'] && ($this->application != "index" || ($this->application == "index" && $this->controller != "index")))
         {
-            setcookie('redirect', $_SERVER['REQUEST_URI'], time()+60*60*24*7,"/");
+            setcookie('redirect', $_SERVER['REQUEST_URI'], time()+60*60*24*7,"/",get_cookie_domain());
             if (defined('AJAX') && AJAX)
             {
                 echo json_encode("AdminloginException");

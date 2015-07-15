@@ -82,7 +82,7 @@ class users extends \Controller {
                 $s = $this->db->quote("%{$search}%");
                 $where[] = "(u.first_name LIKE {$s} OR u.last_name LIKE {$s} OR gr.name LIKE {$s})";
             }
-            $where[] = "cu.id_company=".$_SESSION['user']['current_company'];
+            $where[] = "cu.id_company=".$GLOBALS['globals']['current_company'];
 
             if (count($where) > 0) $where = "WHERE ".implode(" AND ",$where);
             else $where = "";
@@ -127,7 +127,7 @@ class users extends \Controller {
                 'total' => $total,
                 'paginator' => $paginator,
                 'search' => $_POST['search'],
-                'invite' => $_SESSION['user']['role_company'] == "admin" ? true : false,
+                'invite' => $GLOBALS['globals']['role_company'] == "admin" ? true : false,
             );
 
             if ($_POST)

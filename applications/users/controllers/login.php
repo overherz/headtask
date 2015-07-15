@@ -49,8 +49,8 @@ class login extends \Controller {
                         {
                             if (($post && $_POST['cookie']) || ($_COOKIE['login'] != "" && $_COOKIE['password'] != "" && $_SESSION['user']))
                             {
-                                setcookie('login', $login, time()+60*60*24*90,"/",null,null,true);
-                                setcookie('password', $u['pass'], time()+60*60*24*90,"/",null,null,true);
+                                setcookie('login', $login, time()+60*60*24*90,"/",get_cookie_domain(),null,true);
+                                setcookie('password', $u['pass'], time()+60*60*24*90,"/",get_cookie_domain(),null,true);
                             }
 
                             unset($u['salt']);unset($u['access_site']); unset($u['pass']);

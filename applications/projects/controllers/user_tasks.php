@@ -77,7 +77,7 @@ class user_tasks extends \Controller {
             $where[] = "(".implode("OR ",$search_ar).")";
         }
 
-        $where[] = "p.id_company=".$_SESSION['user']['current_company'];
+        $where[] = "p.id_company=".$GLOBALS['globals']['current_company'];
 
         if (isset($_POST['status']) && $_POST['status'] != '')
         {

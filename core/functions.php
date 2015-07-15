@@ -295,7 +295,7 @@ function debug($error,$send_mail,$fatal)
 
     if (defined('ADMIN') && ADMIN && $_COOKIE['redirect'])
     {
-        setcookie("redirect", "", time() - 3600,"/");
+        setcookie("redirect", "", time() - 3600,"/",get_cookie_domain());
     }
     if (!AJAX && php_sapi_name() != "cli")
     {
@@ -496,17 +496,24 @@ function build_user_name($first_name,$last_name,$first_letter_name=false)
     if ($first_name != "" && $last_name != "") return $last_name." ".$first_name;
 }
 
-function get_full_domain_name()
+function get_full_domain_name($subdomain=false)
 {
     $protocol = (defined('SECURE') && SECURE) ? "https://" : "http://";
     $domain = (defined('DOMAIN_NAME') && DOMAIN_NAME) ? DOMAIN_NAME : $_SERVER["SERVER_NAME"];
 
+    if ($subdomain != "") return $protocol.$subdomain.".".$domain;
     return $protocol.$domain;
+}
+
+function get_cookie_domain($domain=false)
+{
+    if ($domain) return ".".$domain;
+    else return ".".DOMAIN_NAME;
 }
 
 function set_company($id_company)
 {
-    $_SESSION['user']['current_company'] = $id_company;
+    $GLOBALS['globals']['current_company'] = $id_company;
     $company = \Controller::get_global('company');
-    $_SESSION['user']['role_company'] = $company[$_SESSION['user']['current_company']]['role'];
+    $GLOBALS['globals']['role_company'] = $company[$GLOBALS['globals']['current_company']]['role'];
 }

@@ -11,26 +11,40 @@ class get_company extends \Global_module
     {
         if ($_SESSION['user'])
         {
-            $_SESSION['user']['current_company'] = $_SESSION['user']['current_company'] ? $_SESSION['user']['current_company'] : $_SESSION['user']['company'][0];
-
+            $first = false;
             $query = \MyPDO::connect()->query("select * from company as c
               LEFT JOIN company_users as cu ON cu.id_company=c.id
               where c.id IN ({$_SESSION['user']['company']}) and cu.id_user = {$_SESSION['user']['id_user']}
             ");
             while ($row = $query->fetch())
             {
+                if (!$first) $first = $row;
                 $company[$row['id']] = $row;
+                if (SUBDOMAIN == $row['name']) $GLOBALS['globals']['current_company'] = $row['id'];
             }
 
-            if (!$company[$_SESSION['user']['current_company']])
+            if ($_SERVER['HTTP_REFERER'])
             {
-                $_SESSION['user']['current_company'] = $_SESSION['user']['company'][0];
-                \Controller::redirect();
+                $url = parse_url($_SERVER['HTTP_REFERER']);
+
+                if ($url['host'] == DOMAIN_NAME && $url['path'] == "/users/login/" && !defined('SUBDOMAIN'))
+                {
+                    \Controller::redirect(get_full_domain_name($first['name']));
+                }
+            }
+            else if (!defined('SUBDOMAIN'))
+            {
+                \Controller::redirect(get_full_domain_name($first['name']));
             }
 
-            $_SESSION['user']['role_company'] = $company[$_SESSION['user']['current_company']]['role'];
+            if (!$GLOBALS['globals']['current_company'])
+            {
+                \Controller::redirect(get_full_domain_name($first['name']));
+            }
 
             \Controller::set_global('company',$company);
+            set_company($GLOBALS['globals']['current_company']);
+            $_SESSION['current_company'] = $GLOBALS['globals']['current_company'];
         }
     }
 }

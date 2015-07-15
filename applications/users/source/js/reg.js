@@ -17,7 +17,7 @@ $(document).ready(function($){
         user_api($("#regForm").serialize(),function(res){
             $("[error='success']").text("Регистрация выполнена").show();
             $("#regForm .reg_erroru").hide();
-            redirect("/",2,true);
+            redirect(res,2,true);
         },function(res){
             $("#registration_captcha").html(res.captcha_html);
             if ($(".reg_erroru #captcha_name").length < 1) $("#captcha_name").append("&nbsp;<span class='reg_erroru' error='captcha'></span>")
@@ -41,7 +41,7 @@ $(document).ready(function($){
         user_api($("#reg_form_create_company").serialize(),function(res){
             $("[error='success']").text("Компания создана").show();
             $("#reg_form_create_company .reg_erroru").hide();
-            redirect("/",2,true);
+            redirect(res,2,true);
         },function(res){
             $("#registration_captcha").html(res.captcha_html);
             if ($(".reg_erroru #captcha_name").length < 1) $("#captcha_name").append("&nbsp;<span class='reg_erroru' error='captcha'></span>")
