@@ -23,7 +23,7 @@
         <table class="pull-right">
             <tr>
                 <td>
-                    <div class="input-group" style="padding-left: 0;margin-top: 5px;">
+                    <div class="input-group" style="padding-left: 30px;margin-top: 5px;">
                         <select id="select_company">
                             {% for k,c in globals.company %}
                                 <option value="{{ c.name|subdomain }}" {% if globals.current_company == c.id %}selected{% endif %}>{{ c.name }}</option>
@@ -37,6 +37,10 @@
                           </span>
                     </div>
                     <input type="hidden" id="id_company" name="id_company" value="{{ globals.current_company }}">
+                </td>
+                <td style="padding-left: 100px;">
+                    <a href="/users/messages" title="Сообщения" class="pajax"><i class="fa fa-comments fa-15x"></i></a>
+                    <span id="count_new_messages">{% if globals.messages_not_read_count %}{{ globals.messages_not_read_count }}{% else %}0{% endif %}</span>
                 </td>
                 {% if globals.user %}
                     <td>

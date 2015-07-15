@@ -140,7 +140,7 @@ io.on('connection', function (client) {
     });
 
     client.on('set_read', function(data) {
-        if (users[data.hash] && Object.size(transport[users[data.hash]] > 0))
+        if (users[data.hash] && Object.size(transport[users[data.hash]]) > 0)
         {
             connection.query("update messages set be_read='1' where id=? and to_user=? and owner=?",[data.id,users[data.hash],users[data.hash]], function(err, res){
                 if (err) client.json.send({'event': 'error','message':'Ошибка базы данных'});
@@ -277,7 +277,7 @@ function get_user_projects(id_user,callback)
 var last_id = 0,
     last_id_logs = 0;
 
-/*
+
 if (last_id < 1)
 {
 
@@ -286,7 +286,6 @@ if (last_id < 1)
     });
 }
 else setTimeout(function(){notify(last_id)},1000);
- */
 
 if (last_id_logs < 1)
 {
@@ -296,8 +295,7 @@ if (last_id_logs < 1)
 }
 else setTimeout(function(){notify_logs(last_id)},1000);
 
-
-//var message_to_dialog = template.compileFile("../../applications/users/layouts/elements/dialog_message_node.html");
+var message_to_dialog = template.compileFile(path.join(__dirname, '../..','/applications/users/layouts/elements/dialog_message_node.html'));
 
 function notify(last_id)
 {
@@ -313,9 +311,9 @@ function notify(last_id)
             if (res[i].id_user == res[i].owner) res[i].my = true;
             if (transport[res[i].owner])
             {
-                var renderedHtml = message_to_dialog.render(res[i]);
-                for (key in transport[res[i].owner]) {
-                    socket.sockets.socket(key).json.send({'event': 'message','message':res[i],'renderedHtml' : renderedHtml});
+                var renderedHtml = message_to_dialog(res[i]);
+                for (socketid in transport[res[i].owner]) {
+                    io.sockets.connected[socketid].emit('message', {'event': 'message','message':res[i],'renderedHtml' : renderedHtml});
                 }
             }
             last_id = res[i].id;

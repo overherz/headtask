@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/applications/projects/controllers/tasks.php" line="858" />
+    <bookmark url="file://$PROJECT_DIR$/applications/projects/controllers/tasks.php" line="856" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdf5c29a-24fb-4c64-9b57-8afedebe91d7" name="Default" comment="1">
@@ -232,8 +232,10 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/67/9d/679dc5cc110ee2c7b083cf52541544c01efea0181434462564.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/67/9d/679dc5cc110ee2c7b083cf52541544c01efea0181434462626.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/67/9d/679dc5cc110ee2c7b083cf52541544c01efea0181434465270.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/applications/pages/layouts/templates/clear.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/globals/count_messages.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/applications/users/layouts/dialog.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploads/projects/f9/d7/f9d7d4eff306394dae3c66890d22cd86f5bb6cba1411840910.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/applications/users/layouts/messages.html" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/0e/9b/309ad9bde426e0aec278cd93169bb7e600cf7b7648e71f10a735b0c11df8.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/15/2f/e584277f575f99ecdef8b36a789134a51d9ec62fa8cf5b756f597a3902dc.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/16/af/8083e37d0675d59582e0a59e433a953b885662ae1ee245390c2d3d5b180e.php" afterPath="" />
@@ -272,7 +274,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/0f/70/b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c61e68c.php" afterPath="$PROJECT_DIR$/data/layouts_cache/0f/70/b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c61e68c.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/82/0e/bbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157edb7b87.php" afterPath="$PROJECT_DIR$/data/layouts_cache/82/0e/bbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157edb7b87.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/tasks/comments_mail.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/tasks/comments_mail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notifications/client.js" afterPath="$PROJECT_DIR$/notifications/client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/globals/config.php" afterPath="$PROJECT_DIR$/globals/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" afterPath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/e7/f7/d6c69b56ab853539b0c0b3cc9fa4925cac0f0c20cdf7b91e56dd7205d061.php" afterPath="$PROJECT_DIR$/data/layouts_cache/e7/f7/d6c69b56ab853539b0c0b3cc9fa4925cac0f0c20cdf7b91e56dd7205d061.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/f3/2a/e676a2c1076ef9582d18dffc14e34d7e68c4d4148b544ae7377f79312e76.php" afterPath="$PROJECT_DIR$/data/layouts_cache/f3/2a/e676a2c1076ef9582d18dffc14e34d7e68c4d4148b544ae7377f79312e76.php" />
@@ -280,8 +283,14 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/35/42/f1d0ba3ea1b1500d297afcb51ddd24695c27b34edaf1a681f2f856b39b78.php" afterPath="$PROJECT_DIR$/data/layouts_cache/35/42/f1d0ba3ea1b1500d297afcb51ddd24695c27b34edaf1a681f2f856b39b78.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/4c/3e/fc7425397325fa126c8b81d10f7b69972c01e815db1e648d4dccf1d4705f.php" afterPath="$PROJECT_DIR$/data/layouts_cache/4c/3e/fc7425397325fa126c8b81d10f7b69972c01e815db1e648d4dccf1d4705f.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/00/5a/fe09e6b64544dbad05e552917bfce7da558bf75da9b197bccfa1dd97322a.php" afterPath="$PROJECT_DIR$/data/layouts_cache/00/5a/fe09e6b64544dbad05e552917bfce7da558bf75da9b197bccfa1dd97322a.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/tasks.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/tasks.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/js/headtask_function.js" afterPath="$PROJECT_DIR$/source/js/headtask_function.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/css/index.css" afterPath="$PROJECT_DIR$/source/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/controllers/messages.php" afterPath="$PROJECT_DIR$/applications/users/controllers/messages.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notifications/server/notifications.js" afterPath="$PROJECT_DIR$/notifications/server/notifications.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/layouts/users.html" afterPath="$PROJECT_DIR$/applications/users/layouts/users.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/layouts/users_table.html" afterPath="$PROJECT_DIR$/applications/users/layouts/users_table.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/wrapper_index.html" afterPath="$PROJECT_DIR$/source/wrapper_index.html" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
     <list id="3204c51e-7cb7-4919-b55d-dfb58f872d14" name="Failed commit: Default (2)" comment="new design" />
@@ -309,136 +318,125 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="default.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/pages/layouts/templates/default.html">
+      <file leaf-file-name="messages.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/applications/users/layouts/messages.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="170">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clear.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/pages/layouts/templates/clear.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="102">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tasks.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.09434" vertical-offset="459" max-vertical-offset="17595">
-              <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.72215843" vertical-offset="0" max-vertical-offset="871">
+              <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
               <folding>
-                <marker date="1436973320559" expanded="true" signature="4381:4747" placeholder="select ft.*,..files_to_tasks..." />
-                <marker date="1436973320559" expanded="true" signature="5207:5417" placeholder="select c.* f..projects_tasks_to_categories..." />
-                <marker date="1436973320559" expanded="true" signature="6313:6390" placeholder="select * fro..projects_tasks_last_visit..." />
-                <marker date="1436973320559" expanded="true" signature="6627:6725" placeholder="insert into ..." />
-                <marker date="1436973320559" expanded="true" signature="6726:6745" placeholder="UPDATE last_..." />
-                <marker date="1436973320559" expanded="true" signature="12000:12575" placeholder="select t.*,a..projects_tasks..." />
-                <marker date="1436973320559" expanded="true" signature="15396:15593" placeholder="update proje..." />
-                <marker date="1436973320559" expanded="true" signature="17366:17569" placeholder="insert into ..." />
-                <marker date="1436973320559" expanded="true" signature="18840:18882" placeholder="delete from ..." />
-                <marker date="1436973320559" expanded="true" signature="19099:19154" placeholder="insert into ..." />
-                <marker date="1436973320559" expanded="true" signature="19434:19490" placeholder="delete from ..." />
-                <marker date="1436973320559" expanded="true" signature="19710:19783" placeholder="insert into ..." />
-                <marker date="1436973320559" expanded="true" signature="22293:22423" placeholder="update proje..." />
-                <marker date="1436973320559" expanded="true" signature="26134:26512" placeholder="select p.*,u..projects_files..." />
-                <marker date="1436973320559" expanded="true" signature="27387:27647" placeholder="select p.*,u..projects_files..." />
-                <marker date="1436973320559" expanded="true" signature="28528:28565" placeholder="delete from ..." />
-                <marker date="1436973320559" expanded="true" signature="29878:30050" placeholder="select * fro..profile..." />
-                <marker date="1436973320559" expanded="true" signature="30718:30757" placeholder="select email..users..." />
-                <marker date="1436973320559" expanded="true" signature="31108:31303" placeholder="select pt.na..projects_tasks..." />
-                <marker date="1436973320559" expanded="true" signature="31583:31947" placeholder="select pt.na..projects_tasks..." />
-                <marker date="1436973320559" expanded="true" signature="31870:31942" placeholder="SELECT id_pr..projects_users..." />
-                <marker date="1436973320559" expanded="true" signature="32801:33070" placeholder="select pt.st..projects_users..." />
-                <marker date="1436973320559" expanded="true" signature="33408:33657" placeholder="select disti..projects_tasks..." />
-                <marker date="1436973320559" expanded="true" signature="34277:34375" placeholder="select statu..projects_tasks..." />
-                <marker date="1436973320559" expanded="true" signature="35684:35733" placeholder="select id fr..projects_tasks_comments..." />
-                <marker date="1436973320559" expanded="true" signature="35953:36046" placeholder="insert into ..." />
-                <marker date="1436973320559" expanded="true" signature="36587:36901" placeholder="select c.*,u..projects_tasks_comments..." />
-                <marker date="1436973320559" expanded="true" signature="37193:37289" placeholder="insert into ..." />
-                <marker date="1436973320559" expanded="true" signature="37290:37309" placeholder="UPDATE last_..." />
-                <marker date="1436973320559" expanded="true" signature="37865:37957" placeholder="select id_ta..projects_tasks_comments..." />
-                <marker date="1436973320559" expanded="true" signature="38321:38396" placeholder="delete from ..." />
-                <marker date="1436973320559" expanded="true" signature="38655:39002" placeholder="SELECT c.*,u..projects_tasks_comments..." />
-                <marker date="1436973320559" expanded="true" signature="39944:40299" placeholder="SELECT count..." />
-                <marker date="1436973320559" expanded="true" signature="40788:40840" placeholder="select id_us..users..." />
-                <marker date="1436973320559" expanded="true" signature="41250:41918" placeholder="SELECT count..." />
-                <marker date="1436973320559" expanded="true" signature="42511:42562" placeholder="select * fro..tasks..." />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#4;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#5;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comments_mail.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/comments_mail.html">
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1923077" vertical-offset="0" max-vertical-offset="884">
-              <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+            <state vertical-scroll-proportion="-29.518518" vertical-offset="25859" max-vertical-offset="26775">
+              <caret line="1568" column="18" selection-start-line="1568" selection-start-column="18" selection-end-line="1568" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendar.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/controllers/calendar.php">
+      <file leaf-file-name="wrapper_index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.038462" vertical-offset="1352" max-vertical-offset="2431">
-              <caret line="101" column="11" selection-start-line="101" selection-start-column="11" selection-end-line="101" selection-end-column="11" />
+            <state vertical-scroll-proportion="-18.76923" vertical-offset="209" max-vertical-offset="2159">
+              <caret line="41" column="51" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
               <folding>
-                <marker date="1436822080721" expanded="true" signature="2860:3725" placeholder="select pt.id..projects_tasks..." />
-                <marker date="1436822080721" expanded="true" signature="3375:3525" placeholder="SELECT id_pr..projects_users..." />
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#span#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#span#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tasks.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/tasks/controllers/tasks.php">
+      <file leaf-file-name="get_info.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/globals/get_info.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="2346">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="357">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_logs.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/globals/get_logs.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="476">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_options.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/globals/get_options.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="680">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1413551000120" expanded="true" signature="482:501" placeholder="select * fro..tasks..." />
-                <marker date="1413551000120" expanded="true" signature="2264:2317" placeholder="update tasks..." />
-                <marker date="1413551000120" expanded="true" signature="2668:2754" placeholder="update tasks..." />
-                <marker date="1413551000120" expanded="true" signature="2910:2940" placeholder="select * fro..tasks..." />
+                <marker date="1432023740458" expanded="true" signature="402:423" placeholder="select * fro..options..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="communities.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/tasks/controllers/communities.php">
+      <file leaf-file-name="count_messages.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/globals/count_messages.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="663">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="442">
+              <caret line="14" column="60" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/pages/layouts/templates/index.html">
+      <file leaf-file-name="messages.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/users/controllers/messages.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="221">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="-30.692308" vertical-offset="1344" max-vertical-offset="2329">
+              <caret line="126" column="33" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="33" />
+              <folding>
+                <marker date="1436982819331" expanded="true" signature="733:1594" placeholder="select messa..messages..." />
+                <marker date="1436982819331" expanded="true" signature="851:1273" placeholder="select if(id..messages..." />
+                <marker date="1436982819331" expanded="true" signature="2025:2110" placeholder="select id_us..users..." />
+                <marker date="1436982819331" expanded="true" signature="2621:2936" placeholder="select m.*,u..messages..." />
+                <marker date="1436982819331" expanded="true" signature="3156:3382" placeholder="SELECT count..." />
+                <marker date="1436982819331" expanded="true" signature="3580:3658" placeholder="SELECT first..users..." />
+                <marker date="1436982819331" expanded="true" signature="4008:4081" placeholder="update messa..." />
+                <marker date="1436982819331" expanded="true" signature="4571:4795" placeholder="select * fro..messages..." />
+                <marker date="1436982819331" expanded="true" signature="5330:5425" placeholder="delete from ..." />
+                <marker date="1436982819331" expanded="true" signature="2274:2351" placeholder="select id_us..users..." />
+                <marker date="1436982819331" expanded="true" signature="2749:2983" placeholder="SELECT count..." />
+                <marker date="1436982819331" expanded="true" signature="3156:3216" placeholder="SELECT fio,a..users..." />
+                <marker date="1436982819331" expanded="true" signature="3752:3825" placeholder="update messa..." />
+                <marker date="1436982819331" expanded="true" signature="4439:4571" placeholder="select * fro..messages..." />
+                <marker date="1436982819331" expanded="true" signature="5199:5367" placeholder="select m.*,u..messages..." />
+                <marker date="1436982819331" expanded="true" signature="5745:6007" placeholder="delete from ..." />
+                <marker date="1436982819331" expanded="true" signature="5792:5848" placeholder="select count..." />
+                <marker date="1436982819331" expanded="true" signature="5792:5866" placeholder="select count..." />
+                <marker date="1436982819331" expanded="true" signature="5792:6005" placeholder="select count..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/users/source/js/login.js">
+      <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/globals/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="104" max-vertical-offset="1207">
-              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="272">
+              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -460,24 +458,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="pajax" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/source/menu.html" />
-        <option value="$PROJECT_DIR$/source/js/nprogress/nprogress.css" />
-        <option value="$PROJECT_DIR$/source/js/nprogress/nprogress.js" />
-        <option value="$PROJECT_DIR$/applications/projects/controllers/dashboard.php" />
-        <option value="$PROJECT_DIR$/source/search_macro.html" />
-        <option value="$PROJECT_DIR$/source/js/functions.js" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/user_tasks.html" />
-        <option value="$PROJECT_DIR$/applications/projects/layouts/tasks/get_categories.html" />
-        <option value="$PROJECT_DIR$/applications/projects/source/js/tasks.js" />
         <option value="$PROJECT_DIR$/source/css/plugins.css" />
-        <option value="$PROJECT_DIR$/source/css/index.css" />
         <option value="$PROJECT_DIR$/core/layout.php" />
         <option value="$PROJECT_DIR$/applications/users/layouts/user.html" />
         <option value="$PROJECT_DIR$/config.php" />
@@ -486,7 +474,6 @@
         <option value="$PROJECT_DIR$/applications/users/controllers/logout.php" />
         <option value="$PROJECT_DIR$/applications/users/controllers/mailconfirm.php" />
         <option value="$PROJECT_DIR$/applications/captcha/controllers/captcha.php" />
-        <option value="$PROJECT_DIR$/source/js/headtask_function.js" />
         <option value="$PROJECT_DIR$/core/controller.php" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/add.php" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/calendar.php" />
@@ -506,7 +493,6 @@
         <option value="$PROJECT_DIR$/applications/users/controllers/invite.php" />
         <option value="$PROJECT_DIR$/applications/users/controllers/users.php" />
         <option value="$PROJECT_DIR$/applications/users/layouts/create_company.html" />
-        <option value="$PROJECT_DIR$/source/wrapper_index.html" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/applications/users/source/js/reg.js" />
         <option value="$PROJECT_DIR$/applications/users/layouts/registration.html" />
@@ -516,8 +502,20 @@
         <option value="$PROJECT_DIR$/applications/users/controllers/registration.php" />
         <option value="$PROJECT_DIR$/globals/get_company.php" />
         <option value="$PROJECT_DIR$/applications/pages/layouts/templates/clear.html" />
-        <option value="$PROJECT_DIR$/applications/projects/controllers/tasks.php" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/tasks/comments_mail.html" />
+        <option value="$PROJECT_DIR$/applications/projects/controllers/tasks.php" />
+        <option value="$PROJECT_DIR$/applications/users/layouts/users_table.html" />
+        <option value="$PROJECT_DIR$/applications/users/layouts/users.html" />
+        <option value="$PROJECT_DIR$/notifications/server/notifications.js" />
+        <option value="$PROJECT_DIR$/notifications/client.js" />
+        <option value="$PROJECT_DIR$/source/js/headtask_function.js" />
+        <option value="$PROJECT_DIR$/applications/users/layouts/dialog.html" />
+        <option value="$PROJECT_DIR$/globals/count_messages.php" />
+        <option value="$PROJECT_DIR$/source/wrapper_index.html" />
+        <option value="$PROJECT_DIR$/applications/users/controllers/messages.php" />
+        <option value="$PROJECT_DIR$/globals/config.php" />
+        <option value="$PROJECT_DIR$/source/css/index.css" />
+        <option value="$PROJECT_DIR$/applications/users/layouts/messages.html" />
       </list>
     </option>
   </component>
@@ -582,38 +580,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="globals" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -660,29 +626,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="applications" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="users" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -723,54 +667,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layouts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="applications" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layouts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="applications" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -808,11 +704,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/globals" />
       <recent name="$PROJECT_DIR$/applications/pages/layouts/templates" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/applications/company/layouts" />
       <recent name="$PROJECT_DIR$/applications/users/layouts" />
-      <recent name="$PROJECT_DIR$/core/repository" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/applications/projects/layouts" />
@@ -2061,7 +1957,19 @@
       <option name="project" value="LOCAL" />
       <updated>1436970935369</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="1">
+      <created>1436973491347</created>
+      <option name="number" value="00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1436973491347</updated>
+    </task>
+    <task id="LOCAL-00202" summary="1">
+      <created>1436973692129</created>
+      <option name="number" value="00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1436973692129</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2072,6 +1980,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5176094" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -2082,7 +1991,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5176094" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -2131,156 +2039,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.807693" vertical-offset="298" max-vertical-offset="1173">
-          <caret line="31" column="58" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="629">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/change_company.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="357">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.576923" vertical-offset="934" max-vertical-offset="1615">
-          <caret line="65" column="130" selection-start-line="65" selection-start-column="130" selection-end-line="65" selection-end-column="141" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/logs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.038462" vertical-offset="3216" max-vertical-offset="4998">
-          <caret line="203" column="37" selection-start-line="203" selection-start-column="37" selection-end-line="203" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/projects.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3461537" vertical-offset="3558" max-vertical-offset="6562">
-          <caret line="219" column="54" selection-start-line="219" selection-start-column="54" selection-end-line="219" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6923075" vertical-offset="1169" max-vertical-offset="3927">
-          <caret line="79" column="54" selection-start-line="79" selection-start-column="54" selection-end-line="79" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/session.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.384615" vertical-offset="5348" max-vertical-offset="6545">
-          <caret line="332" column="9" selection-start-line="332" selection-start-column="9" selection-end-line="332" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/index/source/js/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/_superglobals.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34276018" vertical-offset="2638" max-vertical-offset="3944">
-          <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.5" vertical-offset="2506" max-vertical-offset="6885">
-          <caret line="165" column="20" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/index/controllers/admin/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0769231" vertical-offset="260" max-vertical-offset="1632">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/globals/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="910">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/globals/get_session.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.0" vertical-offset="217" max-vertical-offset="1088">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/layout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.653847" vertical-offset="1028" max-vertical-offset="2669">
-          <caret line="89" column="27" selection-start-line="89" selection-start-column="27" selection-end-line="89" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/forum.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.923077" vertical-offset="15546" max-vertical-offset="16065">
-          <caret line="922" column="134" selection-start-line="922" selection-start-column="134" selection-end-line="922" selection-end-column="134" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/news.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.423077" vertical-offset="4262" max-vertical-offset="5083">
-          <caret line="259" column="62" selection-start-line="259" selection-start-column="62" selection-end-line="259" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/controllers/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.576923" vertical-offset="3858" max-vertical-offset="4726">
-          <caret line="237" column="115" selection-start-line="237" selection-start-column="115" selection-end-line="237" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/controllers/recovery.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.269231" vertical-offset="1036" max-vertical-offset="1615">
-          <caret line="69" column="139" selection-start-line="69" selection-start-column="139" selection-end-line="69" selection-end-column="139" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/index/controllers/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="910">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3162">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/initdata.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1292">
@@ -2289,24 +2047,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="875">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/search_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/controllers/users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2081" max-vertical-offset="6324">
-          <caret line="129" column="63" selection-start-line="129" selection-start-column="63" selection-end-line="129" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -2393,30 +2137,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8033" max-vertical-offset="8908">
-          <caret line="498" column="9" selection-start-line="498" selection-start-column="9" selection-end-line="498" selection-end-column="9" />
-          <folding>
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/users/controllers/registration.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="5899">
@@ -2500,10 +2220,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2346">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1413551000120" expanded="true" signature="482:501" placeholder="select * fro..tasks..." />
-            <marker date="1413551000120" expanded="true" signature="2264:2317" placeholder="update tasks..." />
-            <marker date="1413551000120" expanded="true" signature="2668:2754" placeholder="update tasks..." />
-            <marker date="1413551000120" expanded="true" signature="2910:2940" placeholder="select * fro..tasks..." />
+            <marker date="1413551000120" expanded="true" signature="-1:-1" placeholder="select * fro..tasks..." />
+            <marker date="1413551000120" expanded="true" signature="-1:-1" placeholder="update tasks..." />
+            <marker date="1413551000120" expanded="true" signature="-1:-1" placeholder="update tasks..." />
+            <marker date="1413551000120" expanded="true" signature="-1:-1" placeholder="select * fro..tasks..." />
           </folding>
         </state>
       </provider>
@@ -2529,70 +2249,357 @@
         <state vertical-scroll-proportion="-14.038462" vertical-offset="1352" max-vertical-offset="2431">
           <caret line="101" column="11" selection-start-line="101" selection-start-column="11" selection-end-line="101" selection-end-column="11" />
           <folding>
-            <marker date="1436822080721" expanded="true" signature="2860:3725" placeholder="select pt.id..projects_tasks..." />
-            <marker date="1436822080721" expanded="true" signature="3375:3525" placeholder="SELECT id_pr..projects_users..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3203769" vertical-offset="204" max-vertical-offset="2091">
-          <caret line="28" column="66" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.09434" vertical-offset="459" max-vertical-offset="17595">
-          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-          <folding>
-            <marker date="1436973320559" expanded="true" signature="4381:4747" placeholder="select ft.*,..files_to_tasks..." />
-            <marker date="1436973320559" expanded="true" signature="5207:5417" placeholder="select c.* f..projects_tasks_to_categories..." />
-            <marker date="1436973320559" expanded="true" signature="6313:6390" placeholder="select * fro..projects_tasks_last_visit..." />
-            <marker date="1436973320559" expanded="true" signature="6627:6725" placeholder="insert into ..." />
-            <marker date="1436973320559" expanded="true" signature="6726:6745" placeholder="UPDATE last_..." />
-            <marker date="1436973320559" expanded="true" signature="12000:12575" placeholder="select t.*,a..projects_tasks..." />
-            <marker date="1436973320559" expanded="true" signature="15396:15593" placeholder="update proje..." />
-            <marker date="1436973320559" expanded="true" signature="17366:17569" placeholder="insert into ..." />
-            <marker date="1436973320559" expanded="true" signature="18840:18882" placeholder="delete from ..." />
-            <marker date="1436973320559" expanded="true" signature="19099:19154" placeholder="insert into ..." />
-            <marker date="1436973320559" expanded="true" signature="19434:19490" placeholder="delete from ..." />
-            <marker date="1436973320559" expanded="true" signature="19710:19783" placeholder="insert into ..." />
-            <marker date="1436973320559" expanded="true" signature="22293:22423" placeholder="update proje..." />
-            <marker date="1436973320559" expanded="true" signature="26134:26512" placeholder="select p.*,u..projects_files..." />
-            <marker date="1436973320559" expanded="true" signature="27387:27647" placeholder="select p.*,u..projects_files..." />
-            <marker date="1436973320559" expanded="true" signature="28528:28565" placeholder="delete from ..." />
-            <marker date="1436973320559" expanded="true" signature="29878:30050" placeholder="select * fro..profile..." />
-            <marker date="1436973320559" expanded="true" signature="30718:30757" placeholder="select email..users..." />
-            <marker date="1436973320559" expanded="true" signature="31108:31303" placeholder="select pt.na..projects_tasks..." />
-            <marker date="1436973320559" expanded="true" signature="31583:31947" placeholder="select pt.na..projects_tasks..." />
-            <marker date="1436973320559" expanded="true" signature="31870:31942" placeholder="SELECT id_pr..projects_users..." />
-            <marker date="1436973320559" expanded="true" signature="32801:33070" placeholder="select pt.st..projects_users..." />
-            <marker date="1436973320559" expanded="true" signature="33408:33657" placeholder="select disti..projects_tasks..." />
-            <marker date="1436973320559" expanded="true" signature="34277:34375" placeholder="select statu..projects_tasks..." />
-            <marker date="1436973320559" expanded="true" signature="35684:35733" placeholder="select id fr..projects_tasks_comments..." />
-            <marker date="1436973320559" expanded="true" signature="35953:36046" placeholder="insert into ..." />
-            <marker date="1436973320559" expanded="true" signature="36587:36901" placeholder="select c.*,u..projects_tasks_comments..." />
-            <marker date="1436973320559" expanded="true" signature="37193:37289" placeholder="insert into ..." />
-            <marker date="1436973320559" expanded="true" signature="37290:37309" placeholder="UPDATE last_..." />
-            <marker date="1436973320559" expanded="true" signature="37865:37957" placeholder="select id_ta..projects_tasks_comments..." />
-            <marker date="1436973320559" expanded="true" signature="38321:38396" placeholder="delete from ..." />
-            <marker date="1436973320559" expanded="true" signature="38655:39002" placeholder="SELECT c.*,u..projects_tasks_comments..." />
-            <marker date="1436973320559" expanded="true" signature="39944:40299" placeholder="SELECT count..." />
-            <marker date="1436973320559" expanded="true" signature="40788:40840" placeholder="select id_us..users..." />
-            <marker date="1436973320559" expanded="true" signature="41250:41918" placeholder="SELECT count..." />
-            <marker date="1436973320559" expanded="true" signature="42511:42562" placeholder="select * fro..tasks..." />
+            <marker date="1436822080721" expanded="true" signature="-1:-1" placeholder="select pt.id..projects_tasks..." />
+            <marker date="1436822080721" expanded="true" signature="-1:-1" placeholder="SELECT id_pr..projects_users..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/layouts/tasks/comments_mail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1923077" vertical-offset="0" max-vertical-offset="884">
+        <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="323">
           <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/tasks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.773585" vertical-offset="476" max-vertical-offset="17561">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select ft.*,..files_to_tasks..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select c.* f..projects_tasks_to_categories..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select * fro..projects_tasks_last_visit..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="UPDATE last_..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select t.*,a..projects_tasks..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="update proje..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="update proje..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select p.*,u..projects_files..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select p.*,u..projects_files..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select * fro..profile..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select email..users..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select pt.na..projects_tasks..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select pt.na..projects_tasks..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="SELECT id_pr..projects_users..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select pt.st..projects_users..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select disti..projects_tasks..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select statu..projects_tasks..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select id fr..projects_tasks_comments..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select c.*,u..projects_tasks_comments..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="UPDATE last_..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select id_ta..projects_tasks_comments..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="SELECT c.*,u..projects_tasks_comments..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select id_us..users..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
+            <marker date="1436973686615" expanded="true" signature="-1:-1" placeholder="select * fro..tasks..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/user_tasks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="46.26923" vertical-offset="2546" max-vertical-offset="3927">
+          <caret line="79" column="54" selection-start-line="79" selection-start-column="54" selection-end-line="79" selection-end-column="54" />
+          <folding>
+            <marker date="1436822106761" expanded="true" signature="-1:-1" placeholder="select t.id,..projects_tasks..." />
+            <marker date="1436822106761" expanded="true" signature="-1:-1" placeholder="select * fro..projects_tasks_to_categories..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/task_today.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1513">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/calendar/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="255">
+          <caret line="9" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="9" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/elements/dialog_message_node.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="897">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.576923" vertical-offset="7829" max-vertical-offset="8908">
+          <caret line="492" column="0" selection-start-line="492" selection-start-column="0" selection-end-line="496" selection-end-column="1" />
+          <folding>
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436824963097" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notifications/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.925926" vertical-offset="1631" max-vertical-offset="8619">
+          <caret line="126" column="263" selection-start-line="126" selection-start-column="263" selection-end-line="126" selection-end-column="263" />
+          <folding>
+            <marker date="1436978685107" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436978685107" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1436978685107" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/js/headtask_function.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3817" max-vertical-offset="4743">
+          <caret line="272" column="66" selection-start-line="272" selection-start-column="66" selection-end-line="272" selection-end-column="66" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/controllers/users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.884615" vertical-offset="1571" max-vertical-offset="6324">
+          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="137" selection-end-column="56" />
+          <folding>
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select disti..users..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select disti..users..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select up.id..userprofiles..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select u.fir..users..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select up.*,..userprofiles..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select * fro..company_users..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select id_co..company_users..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="SELECT id_ow..contact_list..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select id,na..users_notes..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select t.*, ..tags_to_users..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select id_us..users..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select up.id..userprofiles..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select * fro..users..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select * fro..users..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select up.*,..userprofiles..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select * fro..contact_list..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="update data=..." />
+            <marker date="1436827190665" expanded="true" signature="-1:-1" placeholder="select * fro..users_data..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="910">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="1037">
+          <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
+          <folding>
+            <element signature="e#170#197#0#HTML" expanded="true" />
+            <element signature="e#378#397#0#HTML" expanded="true" />
+            <element signature="e#531#605#0#HTML" expanded="true" />
+            <element signature="e#1282#1322#0#HTML" expanded="true" />
+            <element signature="e#1412#1440#0#HTML" expanded="true" />
+            <element signature="e#1579#1598#0#HTML" expanded="true" />
+            <element signature="e#1933#1957#0#HTML" expanded="true" />
+            <element signature="e#2012#2066#0#HTML" expanded="true" />
+            <element signature="e#2137#2156#0#HTML" expanded="true" />
+            <element signature="e#2518#2565#0#HTML" expanded="true" />
+            <element signature="e#2618#2639#0#HTML" expanded="true" />
+            <element signature="e#2694#2722#0#HTML" expanded="true" />
+            <element signature="e#2918#2940#0#HTML" expanded="true" />
+            <element signature="e#3028#3075#0#HTML" expanded="true" />
+            <element signature="e#3116#3137#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notifications/server/notifications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.888889" vertical-offset="67" max-vertical-offset="6851">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/project.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="910">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="408">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users_table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="816">
+          <caret line="8" column="86" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/globals/get_info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/globals/get_logs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/globals/get_projects_access.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/globals/get_options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1432023740458" expanded="true" signature="402:423" placeholder="select * fro..options..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.76923" vertical-offset="209" max-vertical-offset="2159">
+          <caret line="41" column="51" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#span#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#span#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/globals/count_messages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="442">
+          <caret line="14" column="60" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/controllers/messages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-30.692308" vertical-offset="1344" max-vertical-offset="2329">
+          <caret line="126" column="33" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="33" />
+          <folding>
+            <marker date="1436982819331" expanded="true" signature="733:1594" placeholder="select messa..messages..." />
+            <marker date="1436982819331" expanded="true" signature="851:1273" placeholder="select if(id..messages..." />
+            <marker date="1436982819331" expanded="true" signature="2025:2110" placeholder="select id_us..users..." />
+            <marker date="1436982819331" expanded="true" signature="2621:2936" placeholder="select m.*,u..messages..." />
+            <marker date="1436982819331" expanded="true" signature="3156:3382" placeholder="SELECT count..." />
+            <marker date="1436982819331" expanded="true" signature="3580:3658" placeholder="SELECT first..users..." />
+            <marker date="1436982819331" expanded="true" signature="4008:4081" placeholder="update messa..." />
+            <marker date="1436982819331" expanded="true" signature="4571:4795" placeholder="select * fro..messages..." />
+            <marker date="1436982819331" expanded="true" signature="5330:5425" placeholder="delete from ..." />
+            <marker date="1436982819331" expanded="true" signature="2274:2351" placeholder="select id_us..users..." />
+            <marker date="1436982819331" expanded="true" signature="2749:2983" placeholder="SELECT count..." />
+            <marker date="1436982819331" expanded="true" signature="3156:3216" placeholder="SELECT fio,a..users..." />
+            <marker date="1436982819331" expanded="true" signature="3752:3825" placeholder="update messa..." />
+            <marker date="1436982819331" expanded="true" signature="4439:4571" placeholder="select * fro..messages..." />
+            <marker date="1436982819331" expanded="true" signature="5199:5367" placeholder="select m.*,u..messages..." />
+            <marker date="1436982819331" expanded="true" signature="5745:6007" placeholder="delete from ..." />
+            <marker date="1436982819331" expanded="true" signature="5792:5848" placeholder="select count..." />
+            <marker date="1436982819331" expanded="true" signature="5792:5866" placeholder="select count..." />
+            <marker date="1436982819331" expanded="true" signature="5792:6005" placeholder="select count..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/globals/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="272">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/user_tasks.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26030624" vertical-offset="85" max-vertical-offset="1632">
+          <caret line="18" column="52" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-29.518518" vertical-offset="25859" max-vertical-offset="26775">
+          <caret line="1568" column="18" selection-start-line="1568" selection-start-column="18" selection-end-line="1568" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/messages.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.72215843" vertical-offset="0" max-vertical-offset="871">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#4;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#5;n#tr#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -267,3 +267,8 @@ function init_right_bar()
         autoExpandScrollbar: true
     });
 }
+
+function build_user_name(first_name,last_name)
+{
+    if (first_name != "" && last_name != "") return last_name+" "+first_name;
+}

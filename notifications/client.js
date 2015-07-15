@@ -105,6 +105,7 @@ $(document).ready(function(){
             if (msg.message.owner == msg.message.id_user) my = true;
 
             chat_with = get_opponent();
+
             if (chat_with == msg.message.to_user || chat_with == msg.message.id_user)
             {
                 $(".all_messages").append(msg.renderedHtml);
@@ -122,8 +123,8 @@ $(document).ready(function(){
             else if (!my)
             {
                 play_sound(msg.message.id);
-                socket.emit('set_read', {id: msg.message.id,'hash': window.ms.uniq_key});
-                show_message("info","Сообщение от "+ msg.message.fio+" <br>"+msg.message.message+"<br><a href='/users/messages/"+msg.message.id_user+"/' style='color:#fff;text-decoration:underline;'>открыть чат</a>");
+                socket.emit('set_read', {id: msg.message.id,hash: window.ms.uniq_key});
+                show_message("info","Сообщение от "+ build_user_name(msg.message.first_name,msg.message.last_name)+" <br>"+msg.message.message+"<br><a href='/users/messages/"+msg.message.id_user+"/' style='color:#fff;text-decoration:underline;'>открыть чат</a>");
                 value_count = parseInt($("#count_new_messages").text());
                 if (isNaN(value_count)) value_count = 0;
                 new_count = value_count+1;
@@ -131,7 +132,7 @@ $(document).ready(function(){
             }
 
             scroll_to_last();
-            if ($("[name='message_from_profile']").length > 0) hide_popup();
+            if ($("[name='many_message']").length > 0) hide_popup();
         }
         if (msg.event == "error")
         {
@@ -194,7 +195,7 @@ $(document).ready(function(){
         else if( (e.ctrlKey && (keyCode == 13)) || (keyCode == 10) ) {
             $("[name='message']").val($("[name='message']").val()+"\n");
         }
-    })
+    });
 
     $(document).on("click","[prepare_message]",function(){
         var id = $(this).attr("prepare_message");
@@ -296,9 +297,9 @@ function play_sound(id)
         if ($("[name='sound_trigger']").length > 0 && $("[name='sound_trigger']").prop("checked"))
         {
             localStorage.setItem('ms_message_status','play');
-            sounds.notification.play();
+            sounds.notification.trigger('play');
         }
-        else if($("[name='sound_trigger']").length < 1) sounds.notification.play();
+        else if($("[name='sound_trigger']").length < 1) sounds.notification.trigger('play');
     }
 }
 
@@ -325,7 +326,7 @@ function loopSound() {
 
 function set_count_of_new_messages(new_count)
 {
-    //$("#count_new_messages").text(new_count);
+    $("#count_new_messages").text(new_count);
     if (new_count > 0) $("#count_new_messages_box").show();
     else $("#count_new_messages_box").hide();
 }

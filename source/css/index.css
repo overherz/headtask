@@ -1565,3 +1565,6 @@ input[disabled], select[disabled], textarea[disabled] {
     100% { transform: rotate(360deg); }
 }
 
+.table_style.no_before tbody::before {
+    content: none;
+}

@@ -1,0 +1,56 @@
+{% extends ajax_data ? "/source/ajax_wrapper.html" : "/source/wrapper_index.html" %}
+
+{% block title %}Диалоги{% endblock %}
+
+{% block body %}
+    <div class="jumbotron" style="position: relative;">
+        <input type="hidden" name="hash" value="{{globals.user.pass}}">
+        {% if messages %}
+            <div class="msgs_container all_messages_box">
+                <table style='width:100%;' class="all_messages">
+
+                    {% if count > 20 %}
+                        <tr style="">
+                            <td style="padding:5px;background: silver;cursor: pointer;text-align: center;" colspan="3" id="get_old"><div>Предыдущие</div></td>
+                        </tr>
+                    {% endif %}
+                    {% include '/applications/users/layouts/elements/dialog_message.html' %}
+                </table>
+            </div>
+            Звуковые уведомления: <input type="checkbox" name="sound_trigger" checked>
+            <form id='message_form'>
+                <input type='hidden' name='act' value='send'>
+                <input type='hidden' name='last_message' value='{% for m in messages %}{% if loop.last %}{{m.id}}{% endif %}{% endfor %}'>
+                <input type='hidden' name='message_to' value='{{opponent}}'>
+                <table style="margin: 25px auto 0;width:707px;">
+                    <tr>
+                        <td></td>
+                        <td  style="padding: 0 13px 3px;">Написать сообщение:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 1px;">
+                            <a href='/users/~{{globals.user.id_user}}/'><img src="{% if globals.user.avatar %}/uploads/users/ava_small/{{globals.user.avatar|real_path}}{% else %}/source/images/no-ava-small{% if globals.user.gender == "f" %}_f{% endif %}.jpg{% endif %}"></a>
+                        </td>
+                        <td style="padding: 0 13px;">
+                            <textarea name='message' style='width:482px;height:88px;border-color: #c0c0c0;'></textarea>
+                        </td>
+                        <td style="width: 1px;">
+                            <a href='/users/~{{opponent}}/'><img src="{% if opavatar.avatar %}/uploads/users/ava_small/{{opavatar.avatar|real_path}}{% else %}/source/images/no-ava-small{% if opavatar.gender == "f" %}_f{% endif %}.jpg{% endif %}"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;text-align: center;"><div get_ms_status="{{globals.user.id_user}}"><span style="color:#cccccc">offline</span></div></td>
+                        <td style="padding: 7px 13px 0;">
+                            <a href="" class="newbtn" send_message_from_dialog><span>Отправить</span></a>
+                            <a href="" class="newbtn" get_ms_status_call="{{opponent}}" style="display: none;"><span>Видеозвонок</span></a>
+                        </td>
+                        <td style="vertical-align: top;text-align: center;"><div get_ms_status="{{opponent}}"><span style="color:#cccccc">offline</span></div></td>
+                    </tr>
+                </table>
+            </form>
+        {% else%}
+            сообщений пока нет
+        {% endif %}
+    </div>
+{% endblock %}
