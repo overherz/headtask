@@ -44,6 +44,8 @@ class tasks extends \Controller {
 
     function default_for_this()
     {
+        $this->new_comments_to_mail();
+
         switch($this->id)
         {
             case "add":
@@ -103,7 +105,8 @@ class tasks extends \Controller {
         }
         else if ($this->id == "edit") $to_task = true;
 
-        if ($this->_0) {
+        if ($this->_0)
+        {
             $access = $this->get_controller("projects", "users")->get_access(false, false, $this->_0);
             if (!$project = $access['project']) $this->error_page();
 
@@ -1005,7 +1008,7 @@ class tasks extends \Controller {
             $from = get_setting('email');
             foreach($new_comments as $n)
             {
-                $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n,'domain' => get_full_domain_name($n['subdomain'])));
+                $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n));
                 if (!send_mail($from, $n['email'], "Новые комментарии в задачах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }
