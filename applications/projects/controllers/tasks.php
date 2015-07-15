@@ -973,10 +973,12 @@ class tasks extends \Controller {
                 if ($tasks)
                 {
                     $ids = array_keys($tasks);
-                    $query_c = $this->db->prepare("SELECT count(c.id) as count,c.id_task,t.name
+                    $query_c = $this->db->prepare("SELECT count(c.id) as count,c.id_task,t.name,company.name as subdomain
                         FROM projects_tasks_comments as c
                         LEFT JOIN projects_tasks_last_visit as ls ON c.id_task=ls.id_task and ls.id_user=?
                         LEFT JOIN projects_tasks as t ON c.id_task=t.id
+                        LEFT JOIN projects as p ON t.id_project=p.id
+                        LEFT JOIN company as company ON p.id_company=company.id
                         WHERE (c.created > IF(ls.last_visit > {$last_action}, ls.last_visit, {$last_action})) and c.id_task IN (".implode(",",$ids).") and c.id_user !=?
                         group by c.id_task
                     ");
@@ -1003,7 +1005,7 @@ class tasks extends \Controller {
             $from = get_setting('email');
             foreach($new_comments as $n)
             {
-                $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n,'domain' => get_full_domain_name(SUBDOMAIN)));
+                $html = $this->layout_get("tasks/comments_mail.html",array('new_comments' => $n,'domain' => get_full_domain_name($n['subdomain'])));
                 if (!send_mail($from, $n['email'], "Новые комментарии в задачах", $html, get_setting('site_name'))) echo "error {$n['email']}\n\r";
             }
         }
