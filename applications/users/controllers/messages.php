@@ -26,7 +26,7 @@ class messages extends \Controller {
 
         if (!$this->id)
         {
-            $query = $this->db->prepare("select id_dialog from dialogs_users where id_user=?");
+            $query = $this->db->prepare("select id_dialog from dialogs_users where id_user=? and user_exit IS NULL");
             $query->execute(array($_SESSION['user']['id_user']));
             while ($row = $query->fetch())
             {
@@ -39,9 +39,14 @@ class messages extends \Controller {
                 $ids = array_unique($ids);
                 $ids = implode(",",$ids);
 
-                $query = $this->db->query("select m.id_user,m.message,m.id_dialog,m.created from messages as m
+                $query = $this->db->query("select m.id_user,m.message,md.id_dialog,m.created from messages as m
+                  LEFT JOIN messages_dialogs as md ON md.id_message=m.id
                   inner join
-                  (select created,id_dialog,id_user,message, max(id) as maxid from messages group by id_dialog) as b ON m.id = b.maxid");
+                  (select m.created,m.id_user,m.message, max(m.id) as maxid from messages as m
+                    LEFT JOIN messages_dialogs as md ON md.id_message=m.id
+                    group by md.id_dialog
+                  ) as b ON m.id = b.maxid
+                  where md.id_dialog IN({$ids})");
                 while ($row = $query->fetch())
                 {
                     $dialogs[$row['id_dialog']]['message'] = $row;
@@ -68,43 +73,43 @@ class messages extends \Controller {
             {
                 crumbs("Диалог");
 
-                $query = $this->db->prepare("select m.*,u.first_name,u.last_name,u.gender,u.id_user,u.avatar from messages as m
+                $query = $this->db->prepare("select * from dialogs_users where id_user=? and id_dialog=? and user_exit IS NULL");
+                $query->execute(array($_SESSION['user']['id_user'],$this->id));
+                if ($query->fetch())
+                {
+                    $query = $this->db->prepare("select m.*,u.first_name,u.last_name,u.gender,u.id_user,u.avatar from messages as m
+                    LEFT JOIN messages_dialogs as md ON md.id_message=m.id
                     LEFT JOIN users as u ON u.id_user=m.id_user
-                    where m.id_dialog=? order by m.created DESC LIMIT 20");
-                $query->execute(array($this->id));
-                while ($row = $query->fetch())
-                {
-                    $messages[$row['id']] = $row;
-                    $messages[$row['id']]['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                    where md.id_dialog=? and md.id_user=? order by m.created DESC LIMIT 20");
+                    $query->execute(array($this->id,$_SESSION['user']['id_user']));
+                    while ($row = $query->fetch())
+                    {
+                        $messages[$row['id']] = $row;
+                        $messages[$row['id']]['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                    }
+                    if ($messages) $messages = array_reverse($messages);
+
+                    $query = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.id_user,u.avatar
+                      from dialogs_users as du
+                      LEFT JOIN users as u ON u.id_user=du.id_user
+                      where id_dialog=?");
+                    $query->execute(array($this->id));
+                    while ($row = $query->fetch())
+                    {
+                        $users[$row['id_user']] = $row;
+                    }
+
+                    $query = $this->db->prepare("SELECT count(m.id) as count from messages as m
+                     LEFT JOIN messages_dialogs as md ON md.id_message=m.id
+                     where md.id_dialog=? and md.id_user=?");
+                    $query->execute(array($this->id,$_SESSION['user']['id_user']));
+                    $count = $query->fetch();
+
+                    //clear count of new messages from this opponent
+                    $query = $this->db->prepare("update messages_dialogs set user_read='1' where id_user=? and id_dialog=?");
+                    $query->execute(array($_SESSION['user']['id_user'],$this->id));
                 }
-                if ($messages) $messages = array_reverse($messages);
-
-                $query = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.id_user,u.avatar
-                  from dialogs_users as du
-                  LEFT JOIN users as u ON u.id_user=du.id_user
-                  where id_dialog=?");
-                $query->execute(array($this->id));
-                while ($row = $query->fetch())
-                {
-                    $users[$row['id_user']] = $row;
-                }
-
-                $query = $this->db->prepare("SELECT count(m.id) as count from messages as m
-                    where m.id_dialog=?");
-                $query->execute(array($this->id));
-                $count = $query->fetch();
-
-                /*
-
-                $query = $this->db->prepare("SELECT first_name,last_name,avatar,gender from users where id_user = ? limit 1");
-                $query->execute(array($id));
-                $opavatar = $query->fetch();
-                $opavatar['fio'] = build_user_name($opavatar['first_name'],$opavatar['last_name']);
-                */
-
-                //clear count of new messages from this opponent
-  //              $query = $this->db->prepare("update messages set be_read='1' where to_user=? and id_user=? and owner=?");
-  //              $query->execute(array($_SESSION['user']['id_user'],$this->id,$_SESSION['user']['id_user']));
+                else $this->error_page('404');
             }
 
             $data = array('messages' => $messages,'id_dialog' => $this->id,'count' => $count['count'],'users' => $users);
@@ -130,17 +135,29 @@ class messages extends \Controller {
 
     function delete_dialog()
     {
-        $opponent = intval($_POST['opponent']);
-        $query = $this->db->prepare("delete from messages where ((to_user=? and id_user=?) or (to_user=? and id_user=?)) and owner=?");
-        if ($query->execute(array($_SESSION['user']['id_user'],$opponent,$opponent,$_SESSION['user']['id_user'],$_SESSION['user']['id_user']))) $res['success'] = true;
-        else $res['error'] = "Произошла ошибка при попытке удаления диалога";
+        $this->db->beginTransaction();
+
+        $query = $this->db->prepare("update dialogs_users set user_exit='1' where id_dialog=? and id_user=?");
+        if (!$query->execute(array($_POST['id_dialog'],$_SESSION['user']['id_user'])))
+            $res['error'] = "Произошла ошибка при попытке удалить диалог";
+
+        $query = $this->db->prepare("update messages_dialogs set user_read='1' where id_dialog=? and id_user=?");
+        if (!$query->execute(array($_POST['id_dialog'],$_SESSION['user']['id_user'])))
+            $res['error'] = "Произошла ошибка при попытке удалить диалог";
+
+        if ($res['error']) $this->db->rollBack();
+        else
+        {
+            $this->db->commit();
+            $res['success'] = true;
+        }
 
         echo json_encode($res);
     }
 
     function get_not_read_count()
     {
-        $query = $this->db->prepare("select count(id) as count from messages where be_read != '1' and to_user=?");
+        $query = $this->db->prepare("select count(id_message) as count from messages_dialogs where id_user=? and user_read IS NULL");
         $query->execute(array($_SESSION['user']['id_user']));
         $count = $query->fetch();
         return $count['count'];

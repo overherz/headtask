@@ -139,14 +139,41 @@ io.on('connection', function (client) {
             check_dialog_exists(users[message.from],message.to,message.dialog,function(id_dialog) {
                 if (id_dialog)
                 {
-                    connection.query("insert into messages(message,created,id_user,id_dialog) values(?,UNIX_TIMESTAMP(),?,?)",[message.message,users[message.from],id_dialog], function(err, res){
-                        if (err) client.json.send({'event': 'error','message':'Ошибка базы данных'});
+                    connection.beginTransaction(function(err) {
+                        if (err) {
+                            throw err;
+                        }
+                        connection.query("insert into messages(message,created,id_user) values(?,UNIX_TIMESTAMP(),?)", [message.message, users[message.from]], function (err, result) {
+                            if (err) {
+                                return connection.rollback(function () {
+                                    client.json.send({'event': 'error', 'message': 'Ошибка базы данных1'});
+                                    throw err;
+                                });
+                            }
+
+                            var id_message = result.insertId;
+
+                            connection.query("insert into messages_dialogs(id_message,id_user,id_dialog) select ?,id_user,? from dialogs_users where id_dialog=?", [id_message,id_dialog,id_dialog], function (err, result) {
+                                if (err) {
+                                    return connection.rollback(function () {
+                                        client.json.send({'event': 'error', 'message': 'Ошибка базы данных1'});
+                                        throw err;
+                                    });
+                                }
+                                connection.commit(function(err) {
+                                    if (err) {
+                                        return connection.rollback(function() {
+                                            client.json.send({'event': 'error','message':'Ошибка базы данных4'});
+                                            throw err;
+                                        });
+                                    }
+                                });
+                            });
+                        });
                     });
-                    console.log('exists');
                 }
                 else
                 {
-                    console.log('not_exists');
                     connection.beginTransaction(function(err)
                     {
                         if (err) { throw err; }
@@ -160,7 +187,7 @@ io.on('connection', function (client) {
 
                             var id_dialog = result.insertId;
 
-                            connection.query("insert into messages(message,created,id_user,id_dialog) values(?,UNIX_TIMESTAMP(),?,?)",[message.message,users[message.from],id_dialog], function(err, result){
+                            connection.query("insert into messages(message,created,id_user) values(?,UNIX_TIMESTAMP(),?)",[message.message,users[message.from]], function(err, result){
                                 if (err) {
                                     return connection.rollback(function() {
                                         client.json.send({'event': 'error','message':'Ошибка базы данных2'});
@@ -168,20 +195,33 @@ io.on('connection', function (client) {
                                     });
                                 }
 
+                                var id_message = result.insertId;
+                                console.log(id_message);
+
                                 connection.query("insert into dialogs_users(id_dialog,id_user) values(?,?),(?,?)",[id_dialog,users[message.from],id_dialog,message.to],function(err,result){
                                     if (err) {
-                                        return connection.rollback(function() {
-                                            client.json.send({'event': 'error','message':'Ошибка базы данных3'});
+                                        return connection.rollback(function () {
+                                            client.json.send({'event': 'error', 'message': 'Ошибка базы данных1'});
                                             throw err;
                                         });
                                     }
-                                    connection.commit(function(err) {
+
+                                    connection.query("insert into messages_dialogs(id_message,id_user,id_dialog) select ?,id_user,? from dialogs_users where id_dialog=?", [id_message,id_dialog,id_dialog], function (err, result) {
                                         if (err) {
                                             return connection.rollback(function() {
-                                                client.json.send({'event': 'error','message':'Ошибка базы данных4'});
+                                                client.json.send({'event': 'error','message':'Ошибка базы данных3'});
                                                 throw err;
                                             });
                                         }
+
+                                        connection.commit(function(err) {
+                                            if (err) {
+                                                return connection.rollback(function() {
+                                                    client.json.send({'event': 'error','message':'Ошибка базы данных4'});
+                                                    throw err;
+                                                });
+                                            }
+                                        });
                                     });
                                 });
                             });
@@ -307,7 +347,19 @@ function check_dialog_exists(from,to,dialog,callback)
     }
     else
     {
-        connection.query("SELECT id_dialog,id_user,count(id_user) as count FROM dialogs_users WHERE id_user IN (?,?) GROUP  BY id_dialog HAVING count = 2",
+        connection.query(" SELECT id_dialog" +
+            " FROM   dialogs_users a" +
+            " WHERE  id_user IN (?,?) and user_exit IS NULL AND" +
+            " EXISTS" +
+            " (" +
+            "    SELECT  1" +
+            "     FROM    dialogs_users b" +
+            "     WHERE   a.id_dialog = b.id_dialog" +
+            "     GROUP   BY id_dialog" +
+            "     HAVING  COUNT(DISTINCT id_user) = 2" +
+            " )" +
+            " GROUP  BY id_dialog" +
+            " HAVING COUNT(*) = 2",
             [from,to],function(err,res) {
                 if (res && res[0]) callback(res[0].id_dialog);
                 else callback(null);
@@ -374,12 +426,12 @@ var message_to_dialog = template.compileFile(path.join(__dirname, '../..','/appl
 function notify(last_id)
 {
     if (!last_id) last_id = "0";
-    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.gender,u.tzOffset,du.id_user as to_user," +
-    " SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages as m " +
-    " LEFT JOIN dialogs as d ON m.id_dialog=d.id" +
-    " LEFT JOIN dialogs_users as du ON d.id=du.id_dialog" +
+    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.gender,u.tzOffset,md.id_dialog,md.id_user as to_user," +
+    " SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages_dialogs as md " +
+    " LEFT JOIN dialogs_users as du ON md.id_user=du.id_user" +
+    " LEFT JOIN messages as m ON md.id_message=m.id" +
     " LEFT JOIN users as u ON u.id_user=m.id_user " +
-    " where m.id > '"+last_id+"' LIMIT 200", function(err, res){
+    " where m.id > '"+last_id+"' and du.user_exit IS NULL group by m.id,to_user", function(err, res){
         if (err){
             throw err;
         }

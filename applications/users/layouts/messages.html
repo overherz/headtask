@@ -6,27 +6,34 @@
     <div class="jumbotron" style="position: relative;">
         {% include "/source/crumbs.html" %}
         {% if dialogs %}
+            <table class="table table-hover table_style no_before">
             {% for k,d in dialogs %}
-                <table class="table table-hover table_style no_before">
-                    <tr>
+                <tr dialog="{{ k }}">
                         <td style="width: 118px;">
                             {% set users_count = d.users|length %}
+                            {% set i = 1 %}
                             {% for u in d.users %}
-                                {% if globals.user.id_user != u.id_user %}
+                                {% if globals.user.id_user != u.id_user and i < 5 %}
                                     {% if users_count > 2 %}<div class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}">{% endif %}
-                                    <a href="/users/~{{u.id_user}}/">
+                                    <a href="/users/~{{u.id_user}}/" class="pajax">
                                         <img {% if users_count > 3 %}width="45" height="45" {% endif %} {% if users_count > 2 %}class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}" {% endif %} src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}">
                                     </a>
                                     {% if users_count > 2 %}</div>{% endif %}
+                                    {% set i = i+1 %}
                                 {% endif %}
                             {% endfor %}
                         </td>
                         <td style="white-space: nowrap;width: 300px;">
+                            {% set i = 1 %}
                             {% for u in d.users %}
-                                {% if globals.user.id_user != u.id_user %}
+                                {% if globals.user.id_user != u.id_user and i < 5 %}
                                     <div><a class="pajax" href="/users/{{ u.id_user }}">{{ u.fio }}</a></div>
+                                    {% set i = i+1 %}
                                 {% endif %}
                             {% endfor %}
+                            {% if d.users|length > 3 %}
+                            и другие ({{ d.users|length - i }})
+                            {% endif %}
                         </td>
                         <td style="width: 1px;">
                             {% if d.message %}
@@ -41,9 +48,10 @@
                         </td>
                         <td style="width:150px;"><a href="/users/messages/{{k}}/" class="btn {% if d.id_user != globals.user.id_user and not d.be_read %}btn-success{% else %}btn-default{% endif %} pajax"><span>открыть диалог</span></a></td>
                         <td style="width:1px;"><a href="" class="btn btn-danger" delete_dialog="{{k}}"><span>Удалить</span></a></td>
-                    </tr>
-                </table>
+             </tr>
             {% endfor %}
+            </tr>
+            </table>
         {% else%}
             сообщений пока нет
         {% endif %}

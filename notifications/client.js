@@ -236,16 +236,16 @@ $(document).ready(function(){
     });
 
     $(document).on("click","[delete_dialog]",function(){
-        show_popup("Действительно хотите удалить этот диалог?","Подтверждение");
+        show_popup("Действительно хотите выйти из диалога?","Подтверждение");
         add_popup_button("Да",'delete_dialog_from_base='+$(this).attr('delete_dialog'));
         return false;
     });
 
     $(document).on("click","[delete_dialog_from_base]",function(){
-        var opponent = $(this).attr('delete_dialog_from_base');
-        user_api({act:'delete_dialog',opponent:opponent},function(data){
+        var id_dialog = $(this).attr('delete_dialog_from_base');
+        user_api({act:'delete_dialog',id_dialog:id_dialog},function(data){
             hide_popup();
-            $("[dialog='"+opponent+"']").remove();
+            $("[dialog='"+id_dialog+"']").remove();
         },false,'/users/messages/');
         return false;
     })
