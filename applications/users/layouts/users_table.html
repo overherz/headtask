@@ -19,6 +19,7 @@
         </div>
         <div style="width: 160px;padding-left: 10px;" class="users_sub_div">
             <div style="font-size: 12px;">
+                {% if globals.user.id_user != u.id_user %}
                 <div>
                     <a href="" prepare_message="{{u.id_user}}">Написать сообщение</a>
                 </div>
@@ -28,7 +29,7 @@
                 <div style="margin-bottom: 10px;">
                     <a href="mailto:{{ u.email }}">Отправить письмо</a>
                 </div>
-
+                {% endif %}
                 <div>
                     {% if u.skypename %}<span style="font-weight: bold;">Skype: </span><a href="skype:{{u.skypename}}?chat">{{ u.skypename }}</a>
                     {% endif %}

@@ -130,10 +130,64 @@ io.on('connection', function (client) {
     });
 
     client.on('new_message', function(message) {
-        if (users[message.from] && message.from && message.to && message.message != "")
+        if (users[message.from] == message.to)
         {
-            connection.query("insert into messages(message,created,id_user,to_user,owner,be_read,type) values(?,UNIX_TIMESTAMP(),?,?,?,0,?),(?,UNIX_TIMESTAMP(),?,?,?,1,?)",[message.message,users[message.from],message.to,message.to,message.type,message.message,users[message.from],message.to,users[message.from],message.type], function(err, res){
-                if (err) client.json.send({'event': 'error','message':err});
+            client.json.send({'event': 'error','message':'Вы не можете писать сами себе'});
+        }
+        else if (users[message.from] && message.from && message.to && message.message != "")
+        {
+            check_dialog_exists(users[message.from],message.to,function(id_dialog) {
+                if (id_dialog)
+                {
+                    connection.query("insert into messages(message,created,id_user,id_dialog) values(?,UNIX_TIMESTAMP(),?,?)",[message.message,users[message.from],id_dialog], function(err, res){
+                        if (err) client.json.send({'event': 'error','message':'Ошибка базы данных'});
+                    });
+                    console.log('exists');
+                }
+                else
+                {
+                    console.log('not_exists');
+                    connection.beginTransaction(function(err)
+                    {
+                        if (err) { throw err; }
+                        connection.query('insert into dialogs(id) values(null)', false, function(err, result) {
+                            if (err) {
+                                return connection.rollback(function() {
+                                    client.json.send({'event': 'error','message':'Ошибка базы данных1'});
+                                    throw err;
+                                });
+                            }
+
+                            var id_dialog = result.insertId;
+
+                            connection.query("insert into messages(message,created,id_user,id_dialog) values(?,UNIX_TIMESTAMP(),?,?)",[message.message,users[message.from],id_dialog], function(err, result){
+                                if (err) {
+                                    return connection.rollback(function() {
+                                        client.json.send({'event': 'error','message':'Ошибка базы данных2'});
+                                        throw err;
+                                    });
+                                }
+
+                                connection.query("insert into dialogs_users(id_dialog,id_user) values(?,?),(?,?)",[id_dialog,users[message.from],id_dialog,message.to],function(err,result){
+                                    if (err) {
+                                        return connection.rollback(function() {
+                                            client.json.send({'event': 'error','message':'Ошибка базы данных3'});
+                                            throw err;
+                                        });
+                                    }
+                                    connection.commit(function(err) {
+                                        if (err) {
+                                            return connection.rollback(function() {
+                                                client.json.send({'event': 'error','message':'Ошибка базы данных4'});
+                                                throw err;
+                                            });
+                                        }
+                                    });
+                                });
+                            });
+                        });
+                    });
+                }
             });
         }
         else client.json.send({'event': 'error','message':'Переданы неверные параметры'});
@@ -241,11 +295,20 @@ function get_real_id(hash,callback)
     }
 }
 
+function check_dialog_exists(from,to,callback)
+{
+    connection.query("SELECT id_dialog,id_user,count(id_user) as count FROM dialogs_users WHERE id_user IN (?,?) GROUP  BY id_dialog HAVING count = 2",
+        [from,to],function(err,res) {
+            if (res && res[0]) callback(res[0].id_dialog);
+            else callback(null);
+        });
+}
+
 //Количество непрочитанных сообщений пользователя
 function get_count_of_new_messages(user,callback)
 {
     connection.query("SELECT count(id) as count FROM messages where to_user='"+user+"' and be_read='0' and owner='"+user+"'", function(err, res){
-        if (res && res[0]) callback(res[0].count)
+        if (res && res[0]) callback(res[0].count);
         else callback(null);
     });
 }
@@ -300,7 +363,12 @@ var message_to_dialog = template.compileFile(path.join(__dirname, '../..','/appl
 function notify(last_id)
 {
     if (!last_id) last_id = "0";
-    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.gender,u.tzOffset,SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages as m LEFT JOIN users as u ON u.id_user=m.id_user where id > '"+last_id+"' LIMIT 200", function(err, res){
+    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.gender,u.tzOffset,du.id_user as to_user," +
+    " SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages as m " +
+    " LEFT JOIN dialogs as d ON m.id_dialog=d.id" +
+    " LEFT JOIN dialogs_users as du ON d.id=du.id_dialog" +
+    " LEFT JOIN users as u ON u.id_user=m.id_user " +
+    " where m.id > '"+last_id+"' LIMIT 200", function(err, res){
         if (err){
             throw err;
         }
@@ -308,11 +376,10 @@ function notify(last_id)
         for(var i = 0; i < res.length; i++){
             res[i].created = res[i].created*1000;
             res[i].tzOffset = res[i].tzOffset / 60;
-            if (res[i].id_user == res[i].owner) res[i].my = true;
-            if (transport[res[i].owner])
+            if (transport[res[i].to_user])
             {
                 var renderedHtml = message_to_dialog(res[i]);
-                for (socketid in transport[res[i].owner]) {
+                for (socketid in transport[res[i].to_user]) {
                     io.sockets.connected[socketid].emit('message', {'event': 'message','message':res[i],'renderedHtml' : renderedHtml});
                 }
             }

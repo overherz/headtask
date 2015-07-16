@@ -8,7 +8,7 @@
 
 {% block body %}
     <div class="jumbotron" style="position: relative;">
-        <input type="hidden" name='many_message' value="1">
+        <input type="hidden" name='not_dialog_message' value="1">
         {% include "/source/crumbs.html" %}
         {% if invite %}{% set invite_send_button = true %}{% endif %}
         {% include "/source/search_form.html" %}

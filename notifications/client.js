@@ -97,16 +97,14 @@ $(document).ready(function(){
     });
 
     socket.on('message', function (msg) {
-        //if (msg.event == "connected") show_message("info","Cоединение с сервером сообщений");
-        //if (msg.event == "success_connect") show_message("success","Online",true);
         if (msg.event == "message")
         {
             var my = false;
-            if (msg.message.owner == msg.message.id_user) my = true;
+            if (msg.message.to_user == msg.message.id_user) my = true;
 
             chat_with = get_opponent();
 
-            if (chat_with == msg.message.to_user || chat_with == msg.message.id_user)
+            if (chat_with == msg.message.to_user)
             {
                 $(".all_messages").append(msg.renderedHtml);
                 if (my) window.ajax = false;
@@ -123,7 +121,7 @@ $(document).ready(function(){
             else if (!my)
             {
                 play_sound(msg.message.id);
-                socket.emit('set_read', {id: msg.message.id,hash: window.ms.uniq_key});
+              //  socket.emit('set_read', {id: msg.message.id,hash: window.ms.uniq_key});
                 show_message("info","Сообщение от "+ build_user_name(msg.message.first_name,msg.message.last_name)+" <br>"+msg.message.message+"<br><a href='/users/messages/"+msg.message.id_user+"/' style='color:#fff;text-decoration:underline;'>открыть чат</a>");
                 value_count = parseInt($("#count_new_messages").text());
                 if (isNaN(value_count)) value_count = 0;
@@ -132,7 +130,7 @@ $(document).ready(function(){
             }
 
             scroll_to_last();
-            if ($("[name='many_message']").length > 0) hide_popup();
+            if ($("[name='not_dialog_message']").length > 0) hide_popup();
         }
         if (msg.event == "error")
         {
@@ -217,7 +215,7 @@ $(document).ready(function(){
         message = $("[name='message']").val();
         if (message != "" && connect)
         {
-            socket.emit('new_message',{to:get_opponent(),message:message,from: window.ms.uniq_key,type:"message"});
+            socket.emit('new_message',{to:get_opponent(),message:message,from: window.ms.uniq_key});
             window.send_message_show_success = true;
         }
         return false;
