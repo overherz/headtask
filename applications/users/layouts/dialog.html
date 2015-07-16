@@ -3,11 +3,17 @@
 {% block title %}Диалоги{% endblock %}
 
 {% block js %}
-    <script>setTimeout(scroll_to_last,200);</script>
+    <script>
+        setTimeout(function() {
+            scroll_to_last();
+            update_count_not_read();
+        },200);
+    </script>
 {% endblock %}
 
 {% block body %}
     <div class="jumbotron" style="position: relative;">
+        <input type="hidden" name="not_read" value="{{ not_read }}">
         {% include "/source/crumbs.html" %}
         <div class="all_messages_box">
             <table class="all_messages table table-hover table_style no_before">
@@ -37,7 +43,7 @@
                     <td style="padding: 0 13px;">
                         <textarea name='message' style='width:100%;height:88px;border-color: #c0c0c0;'></textarea>
                     </td>
-                    <td style="width: 118px;">
+                    <td style="width: 118px;white-space: nowrap;">
                         {% set users_count = users|length %}
                         {% for u in users %}
                             {% if globals.user.id_user != u.id_user %}
@@ -54,7 +60,7 @@
                     <td></td>
                     <td style="padding: 7px 13px 0;">
                         <a href="" class="btn btn-primary" id="send_message_from_dialog"><span>Отправить</span></a>
-                        <a href="" class="newbtn" get_ms_status_call="{{opponent}}" style="display: none;"><span>Видеозвонок</span></a>
+                        <a href="" class="btn btn-warning" id="invite_to_dialog"><span>Пригласить в диалог</span></a>
                     </td>
                     <td></td>
                 </tr>

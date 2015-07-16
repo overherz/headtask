@@ -502,3 +502,10 @@ function scroll_to_last()
         $(document).scrollTo(msg,0);
     }
 }
+
+function update_count_not_read()
+{
+    var not_read = parseInt($("[name='not_read']").val()) | 0;
+    var old = parseInt($("#count_new_messages").text()) | 0;
+    set_count_of_new_messages(old-not_read);
+}

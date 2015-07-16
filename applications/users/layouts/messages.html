@@ -46,7 +46,7 @@
                             {{d.message.message}}
                             {% endif %}
                         </td>
-                        <td style="width:150px;"><a href="/users/messages/{{k}}/" class="btn {% if d.id_user != globals.user.id_user and not d.be_read %}btn-success{% else %}btn-default{% endif %} pajax"><span>открыть диалог</span></a></td>
+                        <td style="width:80px;"><a href="/users/messages/{{k}}/" class="btn {% if d.id_user != globals.user.id_user and not d.be_read %}btn-success{% else %}btn-default{% endif %} pajax"><span>открыть</span></a></td>
                         <td style="width:1px;"><a href="" class="btn btn-danger" delete_dialog="{{k}}"><span>Удалить</span></a></td>
              </tr>
             {% endfor %}

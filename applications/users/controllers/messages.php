@@ -105,14 +105,16 @@ class messages extends \Controller {
                     $query->execute(array($this->id,$_SESSION['user']['id_user']));
                     $count = $query->fetch();
 
+                    $not_read = $this->get_not_read_count_dialog($this->id);
+
                     //clear count of new messages from this opponent
-                    $query = $this->db->prepare("update messages_dialogs set user_read='1' where id_user=? and id_dialog=?");
+                    $query = $this->db->prepare("update messages_dialogs set user_read='1' where id_user=? and id_dialog=? and user_read IS NULL");
                     $query->execute(array($_SESSION['user']['id_user'],$this->id));
                 }
                 else $this->error_page('404');
             }
 
-            $data = array('messages' => $messages,'id_dialog' => $this->id,'count' => $count['count'],'users' => $users);
+            $data = array('messages' => $messages,'id_dialog' => $this->id,'count' => $count['count'],'users' => $users,'not_read' => $not_read);
             $this->layout_show('dialog.html',$data);
         }
     }
@@ -159,6 +161,14 @@ class messages extends \Controller {
     {
         $query = $this->db->prepare("select count(id_message) as count from messages_dialogs where id_user=? and user_read IS NULL");
         $query->execute(array($_SESSION['user']['id_user']));
+        $count = $query->fetch();
+        return $count['count'];
+    }
+
+    function get_not_read_count_dialog($id_dialog)
+    {
+        $query = $this->db->prepare("select count(id_message) as count from messages_dialogs where id_dialog=? and id_user=? and user_read IS NULL");
+        $query->execute(array($id_dialog,$_SESSION['user']['id_user']));
         $count = $query->fetch();
         return $count['count'];
     }

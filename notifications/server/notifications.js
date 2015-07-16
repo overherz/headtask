@@ -153,7 +153,7 @@ io.on('connection', function (client) {
 
                             var id_message = result.insertId;
 
-                            connection.query("insert into messages_dialogs(id_message,id_user,id_dialog) select ?,id_user,? from dialogs_users where id_dialog=?", [id_message,id_dialog,id_dialog], function (err, result) {
+                            connection.query("insert into messages_dialogs(id_message,id_user,id_dialog,user_read) select ?,id_user,?,if(id_user='"+users[message.from]+"',1,null) from dialogs_users where id_dialog=?", [id_message,id_dialog,id_dialog], function (err, result) {
                                 if (err) {
                                     return connection.rollback(function () {
                                         client.json.send({'event': 'error', 'message': 'Ошибка базы данных1'});
@@ -196,7 +196,6 @@ io.on('connection', function (client) {
                                 }
 
                                 var id_message = result.insertId;
-                                console.log(id_message);
 
                                 connection.query("insert into dialogs_users(id_dialog,id_user) values(?,?),(?,?)",[id_dialog,users[message.from],id_dialog,message.to],function(err,result){
                                     if (err) {
@@ -206,7 +205,7 @@ io.on('connection', function (client) {
                                         });
                                     }
 
-                                    connection.query("insert into messages_dialogs(id_message,id_user,id_dialog) select ?,id_user,? from dialogs_users where id_dialog=?", [id_message,id_dialog,id_dialog], function (err, result) {
+                                    connection.query("insert into messages_dialogs(id_message,id_user,id_dialog,user_read) select ?,id_user,?,if(id_user='"+users[message.from]+"',1,null) from dialogs_users where id_dialog=?", [id_message,id_dialog,id_dialog], function (err, result) {
                                         if (err) {
                                             return connection.rollback(function() {
                                                 client.json.send({'event': 'error','message':'Ошибка базы данных3'});
@@ -438,7 +437,7 @@ function notify(last_id)
 
         for(var i = 0; i < res.length; i++){
             res[i].created = res[i].created*1000;
-            res[i].tzOffset = res[i].tzOffset / 60;
+            res[i].tzOffset = -1 * res[i].tzOffset / 60;
             res[i].fio = build_user_name(res[i].first_name,res[i].last_name);
             if (transport[res[i].to_user])
             {
