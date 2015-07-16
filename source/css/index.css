@@ -1508,3 +1508,11 @@ img.dialogs_inline_chatter_half {
     margin: 0 -22px;
     width: 94px;
 }
+
+.msg_date,.msg_img {
+    width: 1px;
+    white-space: nowrap;
+}
+.msg_text {
+    white-space: pre-wrap;
+}

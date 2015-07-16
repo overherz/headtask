@@ -66,18 +66,36 @@ class messages extends \Controller {
             $id = intval($this->id);
             if ($id > 0)
             {
+                crumbs("Диалог");
+
                 $query = $this->db->prepare("select m.*,u.first_name,u.last_name,u.gender,u.id_user,u.avatar from messages as m
                     LEFT JOIN users as u ON u.id_user=m.id_user
                     where m.id_dialog=? order by m.created DESC LIMIT 20");
                 $query->execute(array($this->id));
-                $messages = array_reverse($query->fetchAll());
+                while ($row = $query->fetch())
+                {
+                    $messages[$row['id']] = $row;
+                    $messages[$row['id']]['fio'] = build_user_name($row['first_name'],$row['last_name']);
+                }
+                if ($messages) $messages = array_reverse($messages);
+
+                $query = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.id_user,u.avatar
+                  from dialogs_users as du
+                  LEFT JOIN users as u ON u.id_user=du.id_user
+                  where id_dialog=?");
+                $query->execute(array($this->id));
+                while ($row = $query->fetch())
+                {
+                    $users[$row['id_user']] = $row;
+                }
+
+                $query = $this->db->prepare("SELECT count(m.id) as count from messages as m
+                    where m.id_dialog=?");
+                $query->execute(array($this->id));
+                $count = $query->fetch();
 
                 /*
-                $query = $this->db->prepare("SELECT count(m.id) as count from messages as m
-                    where m.owner='{$_SESSION['user']['id_user']}' and ((m.to_user=? and m.id_user=?) or (m.to_user=? and m.id_user=?))
-                    order by m.created DESC");
-                $query->execute(array($_SESSION['user']['id_user'],$id,$id,$_SESSION['user']['id_user']));
-                $count = $query->fetch();
+
                 $query = $this->db->prepare("SELECT first_name,last_name,avatar,gender from users where id_user = ? limit 1");
                 $query->execute(array($id));
                 $opavatar = $query->fetch();
@@ -85,11 +103,11 @@ class messages extends \Controller {
                 */
 
                 //clear count of new messages from this opponent
-//                $query = $this->db->prepare("update messages set be_read='1' where to_user=? and id_user=? and owner=?");
+  //              $query = $this->db->prepare("update messages set be_read='1' where to_user=? and id_user=? and owner=?");
   //              $query->execute(array($_SESSION['user']['id_user'],$this->id,$_SESSION['user']['id_user']));
             }
 
-            $data = array('messages' => $messages,'opponent' => $this->id,'count' => $count['count'], 'opavatar' => $opavatar);
+            $data = array('messages' => $messages,'id_dialog' => $this->id,'count' => $count['count'],'users' => $users);
             $this->layout_show('dialog.html',$data);
         }
     }
@@ -97,12 +115,11 @@ class messages extends \Controller {
     function get_old_messages()
     {
         $last_message = intval($_POST['last']);
-        $user = intval($_POST['user']);
 
         $query = $this->db->prepare("select * from messages as m
             LEFT JOIN users as u ON u.id_user=m.id_user
-            where ((m.to_user=? and m.id_user=?) or (m.to_user=? and m.id_user=?)) and m.id < ? and owner=? order by m.created DESC LIMIT 20");
-        $query->execute(array($_SESSION['user']['id_user'],$user,$user,$_SESSION['user']['id_user'],$last_message,$_SESSION['user']['id_user']));
+            where m.id_dialog=? and m.id < ? order by m.created DESC LIMIT 20");
+        $query->execute(array($_POST['id_dialog'],$last_message));
         $messages = array_reverse($query->fetchAll());
 
         $res['success']['html'] = $this->layout_get("elements/dialog_message.html",array('messages' => $messages));

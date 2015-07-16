@@ -7,30 +7,40 @@
         {% include "/source/crumbs.html" %}
         {% if dialogs %}
             {% for k,d in dialogs %}
-                <table class="table table_style no_style no_before"><tr>
-                    <td style="width: 108px;">
-                        {% set users_count = d.users|length %}
-                        {% for u in d.users %}
-                            {% if globals.user.id_user != u.id_user %}
-                                {% if users_count > 2 %}<div class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}">{% endif %}
-                                <a href="/users/~{{u.id_user}}/">
-                                    <img {% if users_count > 3 %}width="45" height="45" {% endif %} {% if users_count > 2 %}class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}" {% endif %} src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}">
-                                </a>
-                                {% if users_count > 2 %}</div>{% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                    <td style="white-space: nowrap;width: 300px;">
-                        <div>{{d.message.created|date("d.m.y H:i:s")}}</div>
-                    </td>
-                    {% if to_id == globals.user.id_user %}
-                        <td style="width: 1px;">
-                            <img width="65" height="65" src="{% if users[to_id].avatar %}/uploads/users/ava_small/{{users[to_id].avatar|real_path}}{% else %}/source/images/no-ava-small{% if users[to_id].gender == "f" %}_f{% endif %}.jpg{% endif %}">
+                <table class="table table-hover table_style no_before">
+                    <tr>
+                        <td style="width: 118px;">
+                            {% set users_count = d.users|length %}
+                            {% for u in d.users %}
+                                {% if globals.user.id_user != u.id_user %}
+                                    {% if users_count > 2 %}<div class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}">{% endif %}
+                                    <a href="/users/~{{u.id_user}}/">
+                                        <img {% if users_count > 3 %}width="45" height="45" {% endif %} {% if users_count > 2 %}class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}" {% endif %} src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}">
+                                    </a>
+                                    {% if users_count > 2 %}</div>{% endif %}
+                                {% endif %}
+                            {% endfor %}
                         </td>
-                    {% endif %}
-                    <td>{{d.message.message}}</td>
-                    <td style="width:150px;"><a href="/users/messages/{{k}}/" class="btn {% if d.id_user != globals.user.id_user and not d.be_read %}btn-success{% else %}btn-default{% endif %} pajax"><span>открыть диалог</span></a></td>
-                    <td style="width:1px;"><a href="" class="btn btn-danger" delete_dialog="{{k}}"><span>Удалить</span></a></td>
+                        <td style="white-space: nowrap;width: 300px;">
+                            {% for u in d.users %}
+                                {% if globals.user.id_user != u.id_user %}
+                                    <div><a class="pajax" href="/users/{{ u.id_user }}">{{ u.fio }}</a></div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td style="width: 1px;">
+                            {% if d.message %}
+                                <img width="65" height="65" src="{% if d.users[d.message.id_user].avatar %}/uploads/users/ava_small/{{d.users[d.message.id_user].avatar|real_path}}{% else %}/source/images/no-ava-small{% if d.users[d.message.id_user].gender == "f" %}_f{% endif %}.jpg{% endif %}">
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if d.message %}
+                            <div>{{d.message.created|date("d.m.y H:i:s")}}</div>
+                            {{d.message.message}}
+                            {% endif %}
+                        </td>
+                        <td style="width:150px;"><a href="/users/messages/{{k}}/" class="btn {% if d.id_user != globals.user.id_user and not d.be_read %}btn-success{% else %}btn-default{% endif %} pajax"><span>открыть диалог</span></a></td>
+                        <td style="width:1px;"><a href="" class="btn btn-danger" delete_dialog="{{k}}"><span>Удалить</span></a></td>
                     </tr>
                 </table>
             {% endfor %}

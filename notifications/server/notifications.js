@@ -134,9 +134,9 @@ io.on('connection', function (client) {
         {
             client.json.send({'event': 'error','message':'Вы не можете писать сами себе'});
         }
-        else if (users[message.from] && message.from && message.to && message.message != "")
+        else if (users[message.from] && message.from && (message.to || message.dialog) && message.message != "")
         {
-            check_dialog_exists(users[message.from],message.to,function(id_dialog) {
+            check_dialog_exists(users[message.from],message.to,message.dialog,function(id_dialog) {
                 if (id_dialog)
                 {
                     connection.query("insert into messages(message,created,id_user,id_dialog) values(?,UNIX_TIMESTAMP(),?,?)",[message.message,users[message.from],id_dialog], function(err, res){
@@ -295,13 +295,24 @@ function get_real_id(hash,callback)
     }
 }
 
-function check_dialog_exists(from,to,callback)
+function check_dialog_exists(from,to,dialog,callback)
 {
-    connection.query("SELECT id_dialog,id_user,count(id_user) as count FROM dialogs_users WHERE id_user IN (?,?) GROUP  BY id_dialog HAVING count = 2",
-        [from,to],function(err,res) {
-            if (res && res[0]) callback(res[0].id_dialog);
-            else callback(null);
-        });
+    if (dialog)
+    {
+        connection.query("SELECT id_dialog from dialogs_users WHERE id_user=? and id_dialog=?",
+            [from,dialog],function(err,res) {
+                if (res && res[0]) callback(res[0].id_dialog);
+                else callback(null);
+            });
+    }
+    else
+    {
+        connection.query("SELECT id_dialog,id_user,count(id_user) as count FROM dialogs_users WHERE id_user IN (?,?) GROUP  BY id_dialog HAVING count = 2",
+            [from,to],function(err,res) {
+                if (res && res[0]) callback(res[0].id_dialog);
+                else callback(null);
+            });
+    }
 }
 
 //Количество непрочитанных сообщений пользователя
@@ -376,6 +387,7 @@ function notify(last_id)
         for(var i = 0; i < res.length; i++){
             res[i].created = res[i].created*1000;
             res[i].tzOffset = res[i].tzOffset / 60;
+            res[i].fio = build_user_name(res[i].first_name,res[i].last_name);
             if (transport[res[i].to_user])
             {
                 var renderedHtml = message_to_dialog(res[i]);
@@ -462,4 +474,9 @@ function remake_link(text)
     text = text.replace(/&lt;\/s&gt;/g,"</s>");
 
     return text;
+}
+
+function build_user_name(first_name,last_name)
+{
+    if (first_name != "" && last_name != "") return last_name+" "+first_name;
 }
