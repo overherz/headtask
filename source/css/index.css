@@ -1517,3 +1517,7 @@ img.dialogs_inline_chatter_half {
 .msg_text {
     white-space: pre-wrap;
 }
+
+.user_invite_to_dialog,.user_invite_from_dialog {
+    cursor: pointer;
+}

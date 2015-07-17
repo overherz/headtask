@@ -1,0 +1,33 @@
+{% include "/source/search_form.html" %}
+<table style="width: 100%;">
+    <tr>
+        <td style="vertical-align: top;">
+            <div id="search_result">
+                {% include app.path('users','elements/users_table_invite.html') %}
+            </div>
+        </td>
+        <td style="width: 270px;vertical-align: top;padding-top: 30px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">Выбранные</div>
+                <div class="panel-body" style="padding: 10px 0 10px 10px;">
+                    <div id="dialog_exists">
+                    {% for u in users_dialog %}
+                        <div class="users_div">
+                            <div style="width: 45px;" class="users_sub_div">
+                                <img width="40" src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}" title="{{u.fio}}">
+                            </div>
+                            <div style="width: 200px;padding-left: 10px;height: 40px;line-height:40px;vertical-align: middle;" class="users_sub_div">
+                                <span style="color:{{ u.color }};" class="user_name">{{u.last_name}} {{u.first_name}}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div style="clear: both;"></div>
+                    <div style="text-align: center;margin-top: 20px;">
+                        <a href="" class="btn btn-primary" id="dialog_exists_save">Сохранить</a>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
