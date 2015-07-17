@@ -19,7 +19,7 @@
             <table class="all_messages table table-hover table_style no_before">
                 {% if count > 20 %}
                     <tr style="">
-                        <td style="padding:5px;background: silver;cursor: pointer;text-align: center;" colspan="3" id="get_old"><div>Предыдущие</div></td>
+                        <td style="padding:5px;background: #eee;cursor: pointer;text-align: center;" colspan="3" id="get_old"><div>Предыдущие</div></td>
                     </tr>
                 {% endif %}
                 {% include '/applications/users/layouts/elements/dialog_message.html' %}
@@ -41,17 +41,19 @@
                         <a href='/users/~{{globals.user.id_user}}/'><img src="{% if globals.user.avatar %}/uploads/users/ava_small/{{globals.user.avatar|real_path}}{% else %}/source/images/no-ava-small{% if globals.user.gender == "f" %}_f{% endif %}.jpg{% endif %}"></a>
                     </td>
                     <td style="padding: 0 13px;">
-                        <textarea name='message' style='width:100%;height:88px;border-color: #c0c0c0;'></textarea>
+                        <textarea name='message' style='width:100%;height:96px;border-color: #eee;'></textarea>
                     </td>
                     <td style="width: 118px;white-space: nowrap;">
                         {% set users_count = users|length %}
+                        {% set i = 1 %}
                         {% for u in users %}
-                            {% if globals.user.id_user != u.id_user %}
+                            {% if globals.user.id_user != u.id_user and i < 5 %}
                                 {% if users_count > 2 %}<div class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}">{% endif %}
                                 <a href="/users/~{{u.id_user}}/">
                                     <img {% if users_count > 3 %}width="45" height="45" {% endif %} {% if users_count > 2 %}class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}" {% endif %} src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}">
                                 </a>
                                 {% if users_count > 2 %}</div>{% endif %}
+                                {% set i = i+1 %}
                             {% endif %}
                         {% endfor %}
                     </td>

@@ -62,17 +62,16 @@ class messages extends \Controller {
                     $dialogs[$row['id_dialog']]['users'][$row['id_user']] = $row;
                     $dialogs[$row['id_dialog']]['users'][$row['id_user']]['fio'] = build_user_name($row['first_name'],$row['last_name']);
                 }
+                $not_read = $this->get_not_read_count_group_dialog();
             }
 
-            $this->layout_show("messages.html",array('dialogs' => $dialogs));
+            $this->layout_show("messages.html",array('dialogs' => $dialogs,'sum' => $not_read['sum'],'not_read' => $not_read['arr']));
         }
         else
         {
             $id = intval($this->id);
             if ($id > 0)
             {
-                crumbs("Диалог");
-
                 $query = $this->db->prepare("select * from dialogs_users where id_user=? and id_dialog=? and user_exit IS NULL");
                 $query->execute(array($_SESSION['user']['id_user'],$this->id));
                 if ($query->fetch())
@@ -94,10 +93,26 @@ class messages extends \Controller {
                       LEFT JOIN users as u ON u.id_user=du.id_user
                       where id_dialog=?");
                     $query->execute(array($this->id));
+                    $i = 1;
                     while ($row = $query->fetch())
                     {
                         $users[$row['id_user']] = $row;
+                        if ($_SESSION['user']['id_user'] != $row['id_user'] && $i < 5)
+                        {
+                            $crumbs[] = build_user_name($row['first_name'],$row['last_name']);
+                            $i++;
+                        }
                     }
+
+                    $count_users = count($users);
+                    if ($count_users > 4)
+                    {
+                        $count_users = count($users) - $i + 1;
+                        if ($count_users > 0) $and_other = " и другими ({$count_users})";
+                    }
+
+                    crumbs("Диалог c ".implode(", ",$crumbs).$and_other);
+
 
                     $query = $this->db->prepare("SELECT count(m.id) as count from messages as m
                      LEFT JOIN messages_dialogs as md ON md.id_message=m.id
@@ -143,7 +158,7 @@ class messages extends \Controller {
         if (!$query->execute(array($_POST['id_dialog'],$_SESSION['user']['id_user'])))
             $res['error'] = "Произошла ошибка при попытке удалить диалог";
 
-        $query = $this->db->prepare("update messages_dialogs set user_read='1' where id_dialog=? and id_user=?");
+        $query = $this->db->prepare("delete from messages_dialogs where id_dialog=? and id_user=?");
         if (!$query->execute(array($_POST['id_dialog'],$_SESSION['user']['id_user'])))
             $res['error'] = "Произошла ошибка при попытке удалить диалог";
 
@@ -171,6 +186,19 @@ class messages extends \Controller {
         $query->execute(array($id_dialog,$_SESSION['user']['id_user']));
         $count = $query->fetch();
         return $count['count'];
+    }
+
+    function get_not_read_count_group_dialog()
+    {
+        $query = $this->db->prepare("select count(id_message) as count,id_dialog from messages_dialogs where id_user=? and user_read IS NULL GROUP by id_dialog");
+        $query->execute(array($_SESSION['user']['id_user']));
+        $sum = 0;
+        while($row = $query->fetch())
+        {
+            $d[$row['id_dialog']] = $row['count'];
+            $sum += $row['count'];
+        }
+        return array('arr' => $d,'sum' => $sum);
     }
 }
 

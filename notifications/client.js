@@ -509,3 +509,9 @@ function update_count_not_read()
     var old = parseInt($("#count_new_messages").text()) | 0;
     set_count_of_new_messages(old-not_read);
 }
+
+function update_count_not_read_all()
+{
+    var not_read = parseInt($("[name='not_read']").val()) | 0;
+    set_count_of_new_messages(not_read);
+}

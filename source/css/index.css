@@ -1500,13 +1500,14 @@ div.dialogs_inline_chatter {
 }
 
 div.dialogs_inline_chatter_half {
-    height: 94px;
+    height: 96px;
+    margin: 0px 4px 0px 0px;
 }
 
 img.dialogs_inline_chatter_half {
-    height: 94px;
+    height: 96px;
     margin: 0 -22px;
-    width: 94px;
+    width: 96px;
 }
 
 .msg_date,.msg_img {

@@ -339,16 +339,20 @@ function check_dialog_exists(from,to,dialog,callback)
     if (dialog)
     {
         connection.query("SELECT id_dialog from dialogs_users WHERE id_user=? and id_dialog=?",
-            [from,dialog],function(err,res) {
-                if (res && res[0]) callback(res[0].id_dialog);
-                else callback(null);
+            [from, dialog], function (err, res) {
+                connection.query("update dialogs_users set user_exit=null WHERE id_dialog=?",
+                    [dialog], function (err, result) {
+                        if (res && res[0]) callback(res[0].id_dialog);
+                        else callback(null);
+                    });
+
             });
     }
     else
     {
         connection.query(" SELECT id_dialog" +
             " FROM   dialogs_users a" +
-            " WHERE  id_user IN (?,?) and user_exit IS NULL AND" +
+            " WHERE  id_user IN (?,?) AND" +
             " EXISTS" +
             " (" +
             "    SELECT  1" +
@@ -360,7 +364,13 @@ function check_dialog_exists(from,to,dialog,callback)
             " GROUP  BY id_dialog" +
             " HAVING COUNT(*) = 2",
             [from,to],function(err,res) {
-                if (res && res[0]) callback(res[0].id_dialog);
+                if (res && res[0])
+                {
+                    connection.query("update dialogs_users set user_exit=null WHERE id_dialog=?",
+                        [res[0].id_dialog], function (err, result) {
+                            callback(res[0].id_dialog);
+                        });
+                }
                 else callback(null);
             });
     }
