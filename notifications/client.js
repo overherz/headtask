@@ -248,7 +248,55 @@ $(document).ready(function(){
             $("[dialog='"+id_dialog+"']").remove();
         },false,'/users/messages/');
         return false;
-    })
+    });
+
+    $(document).on("click","a[href='#tab_chat']",function(e){
+        e.preventDefault();
+        $("#tab_chat").css('display','block');
+        $(".nav-tabs").hide();
+        $("#tab_invite").html('');
+        scroll_to_last();
+        return false;
+    });
+
+    $(document).on("click","#invite_to_dialog",function(e){
+        e.preventDefault();
+        $("#tab_chat").css('display','none');
+        $(".nav-tabs").show();
+        $('a[href="#tab_invite"]').trigger('click');
+
+        var id_dialog = get_dialog();
+        user_api({act:'get_form_invite',id_dialog:id_dialog},function(data){
+            $("#tab_invite").html(data);
+        },false,'/users/messages/');
+
+        return false;
+    });
+
+    $(document).on('click',".user_invite_from_dialog",function(){
+        $("#search_result").append($(this).clone().removeClass('user_invite_from_dialog').addClass('user_invite_to_dialog').wrap('<p>').parent().html());
+        $(this).remove();
+    });
+
+    $(document).on('click',".user_invite_to_dialog",function(){
+        $("#dialog_exists").append($(this).clone().removeClass('user_invite_to_dialog').addClass('user_invite_from_dialog').wrap('<p>').parent().html());
+        $(this).remove();
+    });
+
+    $(document).on('click',"#dialog_exists_save",function(){
+        var ids = [];
+        $("#dialog_exists").find(".users_div").each(function(v){
+            ids.push($(this).data('user'));
+        });
+
+        var id_dialog = get_dialog();
+        user_api({act:'save_dialog_users',id_dialog:id_dialog,users:ids},function(data){
+            show_message("success", "Сохранено");
+            redirect();
+        },false,'/users/messages/');
+
+        return false;
+    });
 
     scroll_to_last();
 });
@@ -344,7 +392,7 @@ function get_statuses_ids(callback)
 {
     var ids = [];
     $(".get_ms_status").each(function(k,v) {
-        ids.push($(v).data('id'));
+        ids.push($(this).data('id'));
     });
     callback(ids);
 }

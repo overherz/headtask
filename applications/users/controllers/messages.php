@@ -16,6 +16,12 @@ class messages extends \Controller {
             case "get_old_messages":
                 $this->get_old_messages();
                 break;
+            case "get_form_invite":
+                $this->get_form_invite();
+                break;
+            case "save_dialog_users":
+                $this->save_dialog_users();
+                break;
             default: $this->show();
         }
     }
@@ -72,9 +78,7 @@ class messages extends \Controller {
             $id = intval($this->id);
             if ($id > 0)
             {
-                $query = $this->db->prepare("select * from dialogs_users where id_user=? and id_dialog=? and user_exit IS NULL");
-                $query->execute(array($_SESSION['user']['id_user'],$this->id));
-                if ($query->fetch())
+                if ($this->user_dialog_exists($_SESSION['user']['id_user'],$this->id))
                 {
                     $query = $this->db->prepare("select m.*,u.first_name,u.last_name,u.gender,u.id_user,u.avatar from messages as m
                     LEFT JOIN messages_dialogs as md ON md.id_message=m.id
@@ -199,6 +203,67 @@ class messages extends \Controller {
             $sum += $row['count'];
         }
         return array('arr' => $d,'sum' => $sum);
+    }
+
+    function get_form_invite()
+    {
+        $query = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.id_user,u.avatar from dialogs_users du
+          LEFT JOIN users as u ON du.id_user=u.id_user
+          where du.id_dialog=?
+          ");
+        $query->execute(array($_POST['id_dialog']));
+        while ($row = $query->fetch())
+        {
+            $users_dialog[] = $row;
+            $ids[] = $row['id_user'];
+        }
+
+        if (count($ids) > 0) $where_ids = " and u.id_user NOT IN (".implode(",",$ids).")";
+        $query = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.id_user,u.avatar from company_users cu
+          LEFT JOIN users as u ON cu.id_user=u.id_user
+          where id_company IN (select id_company from company_users where id_user=?) {$where_ids}
+          GROUP by u.id_user
+          ");
+        $query->execute(array($_SESSION['user']['id_user']));
+        $users = $query->fetchAll();
+
+        $res['success'] = $this->layout_get("elements/invite_dialog.html",array('users' => $users,'users_dialog' => $users_dialog));
+
+        echo json_encode($res);
+    }
+
+    function save_dialog_users()
+    {
+        if ($this->user_dialog_exists($_SESSION['user']['id_user'],$_POST['id_dialog']))
+        {
+            $this->db->beginTransaction();
+            $query = $this->db->prepare("insert into dialogs_users (id_user,id_dialog) values(?,?)");
+            foreach ($_POST['users'] as $v)
+            {
+                if ($v != "")
+                {
+                    if (!$query->execute(array($v,$_POST['id_dialog']))) $res['error'] = "Ошибка базы данных";
+                }
+            }
+
+            if ($res['error']) $this->db->rollBack();
+            else
+            {
+                $this->db->commit();
+                $res['success'] = true;
+            }
+
+        }
+        else $res['error'] = 'Вы не участвуете в этом диалоге';
+
+        echo json_encode($res);
+    }
+
+    function user_dialog_exists($id_user,$id_dialog)
+    {
+        $query = $this->db->prepare("select * from dialogs_users where id_user=? and id_dialog=? and user_exit IS NULL");
+        $query->execute(array($id_user,$id_dialog));
+        if ($query->fetch()) return true;
     }
 }
 
