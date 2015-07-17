@@ -1,0 +1,69 @@
+{% extends ajax_data ? "/source/ajax_index.html" : "/source/index.html" %}
+
+{% block title %}Мои диалоги{% endblock %}
+
+{% block js %}
+    <script>
+        setTimeout(function() {
+            scroll_to_last();
+            update_count_not_read_all();
+        },200);
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron" style="position: relative;">
+        {% include "/source/crumbs.html" %}
+        {% if dialogs %}
+            <input type="hidden" name="not_read" value="{{ sum }}">
+            <table class="table table-hover table_style no_before">
+            {% for k,d in dialogs %}
+                <tr dialog="{{ k }}">
+                        <td style="width: 118px;">
+                            {% set users_count = d.users|length %}
+                            {% set i = 1 %}
+                            {% for u in d.users %}
+                                {% if globals.user.id_user != u.id_user and i < 5 %}
+                                    {% if users_count > 2 %}<div class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}">{% endif %}
+                                    <a href="/users/~{{u.id_user}}/" class="pajax">
+                                        <img {% if users_count > 3 %}width="45" height="45" {% endif %} {% if users_count > 2 %}class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}" {% endif %} src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}">
+                                    </a>
+                                    {% if users_count > 2 %}</div>{% endif %}
+                                    {% set i = i+1 %}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td style="white-space: nowrap;width: 300px;">
+                            {% set i = 1 %}
+                            {% for u in d.users %}
+                                {% if globals.user.id_user != u.id_user and i < 5 %}
+                                    <div><a class="pajax" href="/users/{{ u.id_user }}">{{ u.fio }}</a></div>
+                                    {% set i = i+1 %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if d.users|length > 4 %}
+                            и другие ({{ d.users|length - i + 1 }})
+                            {% endif %}
+                        </td>
+                        <td style="width: 1px;">
+                            {% if d.message %}
+                                <img width="65" height="65" src="{% if d.users[d.message.id_user].avatar %}/uploads/users/ava_small/{{d.users[d.message.id_user].avatar|real_path}}{% else %}/source/images/no-ava-small{% if d.users[d.message.id_user].gender == "f" %}_f{% endif %}.jpg{% endif %}">
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if d.message %}
+                            <div>{{d.message.created|date("d.m.y H:i:s")}}</div>
+                            {{d.message.message}}
+                            {% endif %}
+                        </td>
+                        <td style="width:80px;"><a href="/users/messages/{{k}}/" class="btn {% if d.id_user != globals.user.id_user and not_read[d.id_dialog] > 0 %}btn-success{% else %}btn-default{% endif %} pajax"><span>открыть</span></a></td>
+                        <td style="width:1px;"><a href="" class="btn btn-danger" delete_dialog="{{k}}"><span>Удалить</span></a></td>
+             </tr>
+            {% endfor %}
+            </tr>
+            </table>
+        {% else%}
+            сообщений пока нет
+        {% endif %}
+    </div>
+{% endblock %}

@@ -6,5 +6,6 @@ $glogals_run_order = array(
     'get_session',
     'get_company',
     'get_projects_access',
-    'get_user_menu'
+    'get_user_menu',
+    'count_messages'
 );

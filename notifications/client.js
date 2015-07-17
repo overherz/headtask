@@ -49,11 +49,14 @@ $(document).ready(function(){
                 update_projects_list();
             }
 
-            $(".logs_table_sidebar:last").fadeOut("slow",function(){
-                $(this).remove();
-                $("#sidebar_right_content").prepend(data.sidebar).mCustomScrollbar("update");
-                $(".logs_table_sidebar:hidden").fadeIn("slow");
-            });
+            if ($(".logs_table_sidebar").length >=30)
+            {
+                $(".logs_table_sidebar:last").fadeOut("slow",function(){
+                    $(this).remove();
+                });
+            }
+            $("#sidebar_right_content").prepend(data.sidebar).mCustomScrollbar("update");
+            $(".logs_table_sidebar:hidden").fadeIn("slow");
         }
     });
 
@@ -97,15 +100,12 @@ $(document).ready(function(){
     });
 
     socket.on('message', function (msg) {
-        //if (msg.event == "connected") show_message("info","Cоединение с сервером сообщений");
-        //if (msg.event == "success_connect") show_message("success","Online",true);
         if (msg.event == "message")
         {
             var my = false;
-            if (msg.message.owner == msg.message.id_user) my = true;
+            if (msg.message.to_user == msg.message.id_user) my = true;
 
-            chat_with = get_opponent();
-            if (chat_with == msg.message.to_user || chat_with == msg.message.id_user)
+            if ($("[name='id_dialog'][value='"+msg.message.id_dialog+"']").length > 0)
             {
                 $(".all_messages").append(msg.renderedHtml);
                 if (my) window.ajax = false;
@@ -122,8 +122,8 @@ $(document).ready(function(){
             else if (!my)
             {
                 play_sound(msg.message.id);
-                socket.emit('set_read', {id: msg.message.id,'hash': window.ms.uniq_key});
-                show_message("info","Сообщение от "+ msg.message.fio+" <br>"+msg.message.message+"<br><a href='/users/messages/"+msg.message.id_user+"/' style='color:#fff;text-decoration:underline;'>открыть чат</a>");
+              //  socket.emit('set_read', {id: msg.message.id,hash: window.ms.uniq_key});
+                show_message("info","Сообщение от "+ build_user_name(msg.message.first_name,msg.message.last_name)+" <br>"+msg.message.message+"<br><a href='/users/messages/"+msg.message.id_dialog+"/' style='color:#fff;text-decoration:underline;'>открыть чат</a>");
                 value_count = parseInt($("#count_new_messages").text());
                 if (isNaN(value_count)) value_count = 0;
                 new_count = value_count+1;
@@ -131,7 +131,7 @@ $(document).ready(function(){
             }
 
             scroll_to_last();
-            if ($("[name='message_from_profile']").length > 0) hide_popup();
+            if ($("[name='not_dialog_message']").length > 0) hide_popup();
         }
         if (msg.event == "error")
         {
@@ -170,15 +170,15 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on("click","[send_message_from_dialog]",function(){
+    $(document).on("click","#send_message_from_dialog",function(){
         if (!connect) show_message("warning","Дождитесь соединения с сервером сообщений");
         if (window.ajax) return false;
         message = $.trim($("[name='message']").val());
         if (message != "" && connect)
         {
             window.ajax = true;
-            chat_with = get_opponent();
-            socket.emit('new_message',{to:chat_with,message:message,from: window.ms.uniq_key,type:"message"});
+            dialog = get_dialog();
+            socket.emit('new_message',{dialog:dialog,message:message,from: window.ms.uniq_key});
             $("[name='message']").val('');
             window.ajax = false;
         }
@@ -188,13 +188,13 @@ $(document).ready(function(){
     $(document).on("keydown","#message_form,#message_form_call",function(e){
         var keyCode = e.keyCode || e.which;
         if( (!e.ctrlKey && (keyCode == 13)) ) {
-            $("[send_message_from_dialog]").click();
+            $("#send_message_from_dialog").click();
             return false;
         }
         else if( (e.ctrlKey && (keyCode == 13)) || (keyCode == 10) ) {
             $("[name='message']").val($("[name='message']").val()+"\n");
         }
-    })
+    });
 
     $(document).on("click","[prepare_message]",function(){
         var id = $(this).attr("prepare_message");
@@ -216,7 +216,7 @@ $(document).ready(function(){
         message = $("[name='message']").val();
         if (message != "" && connect)
         {
-            socket.emit('new_message',{to:get_opponent(),message:message,from: window.ms.uniq_key,type:"message"});
+            socket.emit('new_message',{to:get_opponent(),message:message,from: window.ms.uniq_key});
             window.send_message_show_success = true;
         }
         return false;
@@ -227,8 +227,8 @@ $(document).ready(function(){
         window.ajax = true;
         th = this;
         var last = $("[message]:first").attr('message');
-        var user = $("[name='message_to']").val();
-        user_api({act:'get_old_messages',last:last,user:user},function(data){
+        var id_dialog = $("[name='id_dialog']").val();
+        user_api({act:'get_old_messages',last:last,id_dialog:id_dialog},function(data){
             window.ajax = false;
             $("#get_old").parent().after(data.html);
             if (data.count < 20) $(th).remove();
@@ -236,16 +236,16 @@ $(document).ready(function(){
     });
 
     $(document).on("click","[delete_dialog]",function(){
-        show_popup("Действительно хотите удалить этот диалог?","Подтверждение");
+        show_popup("Действительно хотите выйти из диалога?","Подтверждение");
         add_popup_button("Да",'delete_dialog_from_base='+$(this).attr('delete_dialog'));
         return false;
     });
 
     $(document).on("click","[delete_dialog_from_base]",function(){
-        var opponent = $(this).attr('delete_dialog_from_base');
-        user_api({act:'delete_dialog',opponent:opponent},function(data){
+        var id_dialog = $(this).attr('delete_dialog_from_base');
+        user_api({act:'delete_dialog',id_dialog:id_dialog},function(data){
             hide_popup();
-            $("[dialog='"+opponent+"']").remove();
+            $("[dialog='"+id_dialog+"']").remove();
         },false,'/users/messages/');
         return false;
     })
@@ -296,9 +296,9 @@ function play_sound(id)
         if ($("[name='sound_trigger']").length > 0 && $("[name='sound_trigger']").prop("checked"))
         {
             localStorage.setItem('ms_message_status','play');
-            sounds.notification.play();
+            sounds.notification.trigger('play');
         }
-        else if($("[name='sound_trigger']").length < 1) sounds.notification.play();
+        else if($("[name='sound_trigger']").length < 1) sounds.notification.trigger('play');
     }
 }
 
@@ -325,7 +325,7 @@ function loopSound() {
 
 function set_count_of_new_messages(new_count)
 {
-    //$("#count_new_messages").text(new_count);
+    $("#count_new_messages").text(new_count);
     if (new_count > 0) $("#count_new_messages_box").show();
     else $("#count_new_messages_box").hide();
 }
@@ -333,6 +333,11 @@ function set_count_of_new_messages(new_count)
 function get_opponent()
 {
     return $("[name='message_to']").val();
+}
+
+function get_dialog()
+{
+    return $("[name='id_dialog']").val();
 }
 
 function get_statuses_ids(callback)
@@ -490,12 +495,23 @@ function uppodGet(playerID,com,callback) {
 
 function scroll_to_last()
 {
-    $(".all_messages_box").each(function(k,v){
-        if ($(v).length > 0)
-        {
-            setTimeout(function(){
-                $(v).scrollTo($(v).find("[message]:last"),500)
-            },500);
-        }
-    });
+    if ($(".all_messages_box").length > 0)
+    {
+        var msg = $(document).find(".msg_row:last");
+        if (msg.length > 0)
+        $(document).scrollTo(msg,0);
+    }
+}
+
+function update_count_not_read()
+{
+    var not_read = parseInt($("[name='not_read']").val()) | 0;
+    var old = parseInt($("#count_new_messages").text()) | 0;
+    set_count_of_new_messages(old-not_read);
+}
+
+function update_count_not_read_all()
+{
+    var not_read = parseInt($("[name='not_read']").val()) | 0;
+    set_count_of_new_messages(not_read);
 }

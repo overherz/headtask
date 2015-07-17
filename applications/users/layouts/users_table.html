@@ -1,5 +1,4 @@
 <div>{% include '/source/jpaginator_boot.html' %}</div>
-
     {% for u in users %}
     <div class="users_div">
         <div style="width: 100px;" class="users_sub_div">
@@ -20,8 +19,9 @@
         </div>
         <div style="width: 160px;padding-left: 10px;" class="users_sub_div">
             <div style="font-size: 12px;">
+                {% if globals.user.id_user != u.id_user %}
                 <div>
-                    <a>Написать сообщение</a>
+                    <a href="" prepare_message="{{u.id_user}}">Написать сообщение</a>
                 </div>
                 <div>
                     <a>Видеозвонок</a>
@@ -29,7 +29,7 @@
                 <div style="margin-bottom: 10px;">
                     <a href="mailto:{{ u.email }}">Отправить письмо</a>
                 </div>
-
+                {% endif %}
                 <div>
                     {% if u.skypename %}<span style="font-weight: bold;">Skype: </span><a href="skype:{{u.skypename}}?chat">{{ u.skypename }}</a>
                     {% endif %}
