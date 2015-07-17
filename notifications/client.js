@@ -292,7 +292,7 @@ $(document).ready(function(){
         var id_dialog = get_dialog();
         user_api({act:'save_dialog_users',id_dialog:id_dialog,users:ids},function(data){
             show_message("success", "Сохранено");
-            redirect();
+            $.pjax.reload('#pajax');
         },false,'/users/messages/');
 
         return false;
