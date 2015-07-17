@@ -123,7 +123,7 @@ $(document).ready(function(){
             {
                 play_sound(msg.message.id);
               //  socket.emit('set_read', {id: msg.message.id,hash: window.ms.uniq_key});
-                show_message("info","Сообщение от "+ build_user_name(msg.message.first_name,msg.message.last_name)+" <br>"+msg.message.message+"<br><a href='/users/messages/"+msg.message.id_dialog+"/' style='color:#fff;text-decoration:underline;'>открыть чат</a>");
+                show_message("info","Сообщение от "+ build_user_name(msg.message.first_name,msg.message.last_name)+" <br>"+msg.message.message+"<br><a class='pajax' href='/users/messages/"+msg.message.id_dialog+"/' style='color:#fff;text-decoration:underline;'>открыть чат</a>");
                 value_count = parseInt($("#count_new_messages").text());
                 if (isNaN(value_count)) value_count = 0;
                 new_count = value_count+1;
