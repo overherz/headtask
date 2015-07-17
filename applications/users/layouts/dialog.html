@@ -54,7 +54,7 @@
                             {% for u in users %}
                                 {% if globals.user.id_user != u.id_user and i < 5 %}
                                     {% if users_count > 2 %}<div class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}">{% endif %}
-                                    <a href="/users/~{{u.id_user}}/">
+                                    <a href="/users/~{{u.id_user}}/" class="pajax">
                                         <img {% if users_count > 3 %}width="45" height="45" {% endif %} {% if users_count > 2 %}class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}" {% endif %} src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}">
                                     </a>
                                     {% if users_count > 2 %}</div>{% endif %}
