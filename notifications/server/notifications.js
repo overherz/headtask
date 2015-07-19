@@ -167,6 +167,7 @@ io.on('connection', function (client) {
                                             throw err;
                                         });
                                     }
+                                    else send_own_message(id_message,users[message.from]);
                                 });
                             });
                         });
@@ -220,6 +221,7 @@ io.on('connection', function (client) {
                                                     throw err;
                                                 });
                                             }
+                                            else send_own_message(id_message,users[message.from]);
                                         });
                                     });
                                 });
@@ -440,7 +442,7 @@ function notify(last_id)
     " LEFT JOIN dialogs_users as du ON md.id_user=du.id_user" +
     " LEFT JOIN messages as m ON md.id_message=m.id" +
     " LEFT JOIN users as u ON u.id_user=m.id_user " +
-    " where m.id > '"+last_id+"' and du.user_exit IS NULL group by m.id,to_user", function(err, res){
+    " where m.id > '"+last_id+"' and du.user_exit IS NULL and md.user_read IS NULL group by m.id,to_user", function(err, res){
         if (err){
             throw err;
         }
@@ -459,6 +461,33 @@ function notify(last_id)
             last_id = res[i].id;
         }
         setTimeout(function(){notify(last_id)},2000);
+    });
+}
+
+function send_own_message(id_message,id_user)
+{
+    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.gender,u.tzOffset,md.id_dialog,md.id_user as to_user," +
+    " SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages_dialogs as md " +
+    " LEFT JOIN messages as m ON md.id_message=m.id" +
+    " LEFT JOIN users as u ON u.id_user=m.id_user " +
+    " where m.id = '"+id_message+"'", function(err, res){
+        if (err){
+            throw err;
+        }
+
+        if (res && res[0])
+        {
+            res[0].created = res[0].created*1000;
+            res[0].tzOffset = -1 * res[0].tzOffset / 60;
+            res[0].fio = build_user_name(res[0].first_name,res[0].last_name);
+            if (transport[res[0].to_user])
+            {
+                var renderedHtml = message_to_dialog(res[0]);
+                for (socketid in transport[res[0].to_user]) {
+                    io.sockets.connected[socketid].emit('message', {'event': 'message','message':res[0],'renderedHtml' : renderedHtml});
+                }
+            }
+        }
     });
 }
 
