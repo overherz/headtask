@@ -85,12 +85,12 @@ $(document).ready(function(){
         setTimeout(function(){show_message("error","Потеря соединения с сервером сообщений",false,'ms_error');},10000);
     });
 
-    socket.on('show_statuses',function(data){
-        $(".get_ms_status").each(function(k,v) {
-            var id = $(v).data("id");
-            if ($.inArray(id,data.ids) > -1) $(this).removeClass("user_offline").addClass("user_online");
-            else $(this).removeClass("user_online").addClass("user_offline");
-        })
+    socket.on('show_statuses',function(data) {
+        var statuses = $(".get_ms_status");
+        statuses.removeClass("user_online").addClass("user_offline");
+        $.each(data.ids,function(k,v) {
+            statuses.filter("[data-id='"+v+"']").removeClass("user_offline").addClass("user_online");
+        });
 
         $("[get_ms_status_call]").each(function(k,v) {
             id = $(v).attr("get_ms_status_call");
@@ -271,19 +271,23 @@ $(document).ready(function(){
         var id_dialog = get_dialog();
         user_api({act:'get_form_invite',id_dialog:id_dialog},function(data){
             $("#tab_invite").html(data);
+            get_statuses();
         },false,'/users/messages/');
 
         return false;
     });
 
     $(document).on('click',".user_invite_from_dialog",function(){
-        $("#search_result").append($(this).clone().removeClass('user_invite_from_dialog').addClass('user_invite_to_dialog').wrap('<p>').parent().html());
+      //  $("#search_result").append($(this).clone().removeClass('user_invite_from_dialog').addClass('user_invite_to_dialog').wrap('<p>').parent().html());
+        $("[name='ids[]'][value='"+$(this).data('user')+"']").remove();
+        $('#search_form').submit();
         $(this).remove();
     });
 
     $(document).on('click',".user_invite_to_dialog",function(){
         $("#dialog_exists").append($(this).clone().removeClass('user_invite_to_dialog').addClass('user_invite_from_dialog').wrap('<p>').parent().html());
-        $(this).remove();
+        $("#search_ids").append("<input type='hidden' name='ids[]' value='"+$(this).data('user')+"'>");
+        $('#search_form').submit();
     });
 
     $(document).on('click',"#dialog_exists_save",function(){

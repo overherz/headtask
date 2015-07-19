@@ -3,6 +3,8 @@ namespace users;
 
 class messages extends \Controller {
 
+    private $limit = 12;
+
     function default_method()
     {
         switch($_POST['act'])
@@ -58,6 +60,8 @@ class messages extends \Controller {
                     $dialogs[$row['id_dialog']]['message'] = $row;
                     $dialogs[$row['id_dialog']]['message']['message'] = cut($row['message'],220);
                 }
+
+                uasort($dialogs, array($this,"sort_dialogs"));
 
                 $query = $this->db->query("select id_dialog,u.id_user,u.first_name,u.last_name,u.avatar,u.gender
                     from dialogs_users as du
@@ -207,6 +211,23 @@ class messages extends \Controller {
 
     function get_form_invite()
     {
+        if (isset($_POST['search']) && $_POST['search'] != '')
+        {
+            $search = str_replace(" ","%",$_POST['search']);
+            $s = $this->db->quote("%{$search}%");
+            $where[] = "(u.first_name LIKE {$s} OR u.last_name LIKE {$s})";
+        }
+
+        $ids_from_post = count($_POST['ids']);
+
+        if ($ids_from_post)
+        {
+            foreach($_POST['ids'] as $v)
+            {
+                $ids[] = intval($v);
+            }
+        }
+
         $query = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.id_user,u.avatar from dialogs_users du
           LEFT JOIN users as u ON du.id_user=u.id_user
           where du.id_dialog=?
@@ -218,16 +239,45 @@ class messages extends \Controller {
             $ids[] = $row['id_user'];
         }
 
-        if (count($ids) > 0) $where_ids = " and u.id_user NOT IN (".implode(",",$ids).")";
+        if (count($ids) > 0) $where[] = "cu.id_user NOT IN (".implode(",",$ids).")";
+        if (count($where) > 0) $where = "and ".implode(" AND ",$where);
+        else $where = "";
+
+        $query = $this->db->prepare("select count(distinct cu.id_user) as count from company_users cu
+          LEFT JOIN users as u ON cu.id_user=u.id_user
+          where id_company IN (select id_company from company_users where id_user=?) {$where}
+          ");
+        $query->execute(array($_SESSION['user']['id_user']));
+        $total = $query->fetch();
+
+        require_once(ROOT.'libraries/paginator/paginator.php');
+        $paginator = new \Paginator($total['count'], $_POST['page'], $this->limit);
+
         $query = $this->db->prepare("select u.first_name,u.last_name,u.gender,u.id_user,u.avatar from company_users cu
           LEFT JOIN users as u ON cu.id_user=u.id_user
-          where id_company IN (select id_company from company_users where id_user=?) {$where_ids}
+          where id_company IN (select id_company from company_users where id_user=?) {$where}
           GROUP by u.id_user
+          LIMIT {$this->limit}
+          OFFSET {$paginator->get_range('from')}
           ");
         $query->execute(array($_SESSION['user']['id_user']));
         $users = $query->fetchAll();
 
-        $res['success'] = $this->layout_get("elements/invite_dialog.html",array('users' => $users,'users_dialog' => $users_dialog));
+        $data = array(
+            'users' => $users,
+            'users_dialog' => $users_dialog,
+            'total' => $total,
+            'paginator' => $paginator,
+            'search' => $_POST['search'],
+            'id_dialog' => intval($_POST['id_dialog']),
+            'ids' => $ids
+        );
+
+        if (!$_POST['no_search_input'])
+        {
+            $res['success'] = $this->layout_get("elements/invite_dialog.html",$data);
+        }
+        else $res['success'] = $this->layout_get("elements/users_table_invite.html",$data);
 
         echo json_encode($res);
     }
@@ -237,7 +287,7 @@ class messages extends \Controller {
         if ($this->user_dialog_exists($_SESSION['user']['id_user'],$_POST['id_dialog']))
         {
             $this->db->beginTransaction();
-            $query = $this->db->prepare("insert into dialogs_users (id_user,id_dialog) values(?,?)");
+            $query = $this->db->prepare("insert into dialogs_users (id_user,id_dialog) values(?,?) ON DUPLICATE KEY UPDATE id_user=id_user,id_dialog=id_dialog");
             foreach ($_POST['users'] as $v)
             {
                 if ($v != "")
@@ -264,6 +314,11 @@ class messages extends \Controller {
         $query = $this->db->prepare("select * from dialogs_users where id_user=? and id_dialog=? and user_exit IS NULL");
         $query->execute(array($id_user,$id_dialog));
         if ($query->fetch()) return true;
+    }
+
+    function sort_dialogs($a, $b)
+    {
+        return $b['message']['created'] - $a['message']['created'];
     }
 }
 
