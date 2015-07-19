@@ -619,7 +619,7 @@ function search(){
 
     if (window.clear) $('[name="page"]').val(1);
     var request = $('#search_form').serialize();
-    var p = $('#search_form').attr("path")
+    var p = $('#search_form').attr("path");
 
     user_api(request,function(res){
         clearTimeout(window.timer);
