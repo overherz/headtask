@@ -383,6 +383,15 @@ function set_count_of_new_messages(new_count)
     $("#count_new_messages").text(new_count);
     if (new_count > 0) $("#count_new_messages_box").show();
     else $("#count_new_messages_box").hide();
+    if (new_count > 0)
+    {
+        $.titleAlert('Получено сообщение', {
+            requireBlur:true,
+            stopOnFocus:true,
+            duration:1000000,
+            interval:500
+        });
+    }
 }
 
 function get_opponent()
@@ -570,3 +579,26 @@ function update_count_not_read_all()
     var not_read = parseInt($("[name='not_read']").val()) | 0;
     set_count_of_new_messages(not_read);
 }
+
+(function () {
+
+    var original = document.title;
+    var timeout;
+
+    window.flashTitle = function (newMsg) {
+        function step() {
+            document.title = (document.title == original) ? newMsg : original;
+
+            timeout = setTimeout(step, 1000);
+        }
+
+        cancelFlashTitle(timeout);
+        step();
+    };
+
+    window.cancelFlashTitle = function () {
+        clearTimeout(timeout);
+        document.title = original;
+    };
+
+}());
