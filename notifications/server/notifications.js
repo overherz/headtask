@@ -235,9 +235,9 @@ io.on('connection', function (client) {
     });
 
     client.on('set_read', function(data) {
-        if (users[data.hash] && Object.size(transport[users[data.hash]]) > 0)
+        if (users[data.hash])
         {
-            connection.query("update messages set be_read='1' where id=? and to_user=? and owner=?",[data.id,users[data.hash],users[data.hash]], function(err, res){
+            connection.query("update messages_dialogs set user_read='1' where id_message=? and id_user=?",[data.id,users[data.hash]], function(err, res){
                 if (err) client.json.send({'event': 'error','message':'Ошибка базы данных'});
             });
         }
@@ -466,11 +466,11 @@ function notify(last_id)
 
 function send_own_message(id_message,id_user)
 {
-    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.gender,u.tzOffset,md.id_dialog,md.id_user as to_user," +
+    connection.query("SELECT m.*,u.first_name,u.last_name,u.avatar,u.gender,u.tzOffset,md.id_dialog," +
     " SUBSTR(u.avatar,1,2) as avatar_sub1,SUBSTR(u.avatar,3,2) as avatar_sub2 from messages_dialogs as md " +
     " LEFT JOIN messages as m ON md.id_message=m.id" +
     " LEFT JOIN users as u ON u.id_user=m.id_user " +
-    " where m.id = '"+id_message+"'", function(err, res){
+    " where m.id = '"+id_message+"' LIMIT 1", function(err, res){
         if (err){
             throw err;
         }
@@ -480,6 +480,7 @@ function send_own_message(id_message,id_user)
             res[0].created = res[0].created*1000;
             res[0].tzOffset = -1 * res[0].tzOffset / 60;
             res[0].fio = build_user_name(res[0].first_name,res[0].last_name);
+            res[0].to_user = id_user;
             if (transport[res[0].to_user])
             {
                 var renderedHtml = message_to_dialog(res[0]);
