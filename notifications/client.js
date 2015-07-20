@@ -557,9 +557,12 @@ function scroll_to_last()
 {
     if ($(".all_messages_box").length > 0)
     {
+        /*
         var msg = $(document).find(".msg_row:last");
         if (msg.length > 0)
         $(document).scrollTo(msg,0);
+        */
+        $("html, body").animate({ scrollTop: $(document).height() }, "fast");
     }
 }
 
