@@ -205,6 +205,7 @@ input,textarea {
 .jumbotron {
     background: url("/source/images/brillant.png") repeat;
     padding: 5px 20px 10px !important;
+    margin-bottom: 0;
 }
 
 .pagination_disabled a {
