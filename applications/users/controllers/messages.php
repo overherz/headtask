@@ -148,9 +148,10 @@ class messages extends \Controller {
         $last_message = intval($_POST['last']);
 
         $query = $this->db->prepare("select * from messages as m
+            LEFT JOIN messages_dialogs as md ON m.id=md.id_message
             LEFT JOIN users as u ON u.id_user=m.id_user
-            where m.id_dialog=? and m.id < ? order by m.created DESC LIMIT 20");
-        $query->execute(array($_POST['id_dialog'],$last_message));
+            where md.id_dialog=? and m.id < ? and m.id_user=? GROUP by m.id order by m.created DESC LIMIT 20");
+        $query->execute(array($_POST['id_dialog'],$last_message,$_SESSION['user']['id_user']));
         $messages = array_reverse($query->fetchAll());
 
         $res['success']['html'] = $this->layout_get("elements/dialog_message.html",array('messages' => $messages));
