@@ -37,11 +37,10 @@
                 <table style="margin: 25px auto 0;width:100%;">
                     <tr>
                         <td style="padding-bottom: 10px;">
-                            {% set users_count = users|length %}
                             {% for u in users %}
                                 {% if globals.user.id_user != u.id_user%}
                                     <a href="/users/~{{u.id_user}}/" class="pajax" style="display: inline-block;width: 45px;text-align: center;margin-right: 3px;" title="{{ u.fio }}">
-                                        <img {% if users_count > 3 %}width="45" height="45" {% endif %} {% if users_count > 2 %}class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}" {% endif %} src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}">
+                                        <img width="45" height="45" src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}">
                                         <div class="get_ms_status user_offline" data-id="{{u.id_user}}"></div>
                                     </a>
                                 {% endif %}
