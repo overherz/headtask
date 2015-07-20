@@ -112,6 +112,7 @@ $(document).ready(function(){
                 else
                 {
                     play_sound(msg.message.id);
+                    blink_title();
                     socket.emit('set_read', {id: msg.message.id,hash: window.ms.uniq_key});
                 }
             }
@@ -385,12 +386,7 @@ function set_count_of_new_messages(new_count)
     else $("#count_new_messages_box").hide();
     if (new_count > 0)
     {
-        $.titleAlert('Получено сообщение', {
-            requireBlur:true,
-            stopOnFocus:true,
-            duration:1000000,
-            interval:500
-        });
+        blink_title();
     }
 }
 
@@ -580,25 +576,13 @@ function update_count_not_read_all()
     set_count_of_new_messages(not_read);
 }
 
-(function () {
 
-    var original = document.title;
-    var timeout;
-
-    window.flashTitle = function (newMsg) {
-        function step() {
-            document.title = (document.title == original) ? newMsg : original;
-
-            timeout = setTimeout(step, 1000);
-        }
-
-        cancelFlashTitle(timeout);
-        step();
-    };
-
-    window.cancelFlashTitle = function () {
-        clearTimeout(timeout);
-        document.title = original;
-    };
-
-}());
+function blink_title()
+{
+    $.titleAlert('Получено сообщение', {
+        requireBlur:true,
+        stopOnFocus:true,
+        duration:1000000,
+        interval:500
+    });
+}
