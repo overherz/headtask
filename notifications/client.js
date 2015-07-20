@@ -134,7 +134,10 @@ $(document).ready(function(){
                 set_count_of_new_messages(new_count);
             }
 
-            scroll_to_last();
+            var scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
+            console.log(scrollBottom);
+            if (scrollBottom < 250) scroll_to_last();
+
             if ($("[name='not_dialog_message']").length > 0) hide_popup();
         }
         if (msg.event == "error")
@@ -553,7 +556,7 @@ function uppodGet(playerID,com,callback) {
     return document.getElementById(playerID).getUppod(com);
 }
 
-function scroll_to_last()
+function scroll_to_last(mode)
 {
     if ($(".all_messages_box").length > 0)
     {
@@ -562,7 +565,7 @@ function scroll_to_last()
         if (msg.length > 0)
         $(document).scrollTo(msg,0);
         */
-        $("html, body").animate({ scrollTop: $(document).height() }, "fast");
+        $("html, body").animate({ scrollTop: $(document).height() }, 0);
     }
 }
 
