@@ -105,6 +105,7 @@ class messages extends \Controller {
                     while ($row = $query->fetch())
                     {
                         $users[$row['id_user']] = $row;
+                        $users[$row['id_user']]['fio'] = build_user_name($row['first_name'],$row['last_name']);
                         if ($_SESSION['user']['id_user'] != $row['id_user'] && $i < 5)
                         {
                             $crumbs[] = build_user_name($row['first_name'],$row['last_name']);

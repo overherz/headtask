@@ -30,46 +30,39 @@
                     {% include '/applications/users/layouts/elements/dialog_message.html' %}
                 </table>
             </div>
-            Звуковые уведомления: <input type="checkbox" name="sound_trigger" checked>
             <form id='message_form'>
                 <input type='hidden' name='act' value='send'>
                 <input type='hidden' name='last_message' value='{% for m in messages %}{% if loop.last %}{{m.id}}{% endif %}{% endfor %}'>
                 <input type='hidden' name='id_dialog' value='{{id_dialog}}'>
                 <table style="margin: 25px auto 0;width:100%;">
                     <tr>
-                        <td></td>
-                        <td  style="padding: 0 13px 3px;">Написать сообщение:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="width: 1px;">
-                            <a href='/users/~{{globals.user.id_user}}/'><img src="{% if globals.user.avatar %}/uploads/users/ava_small/{{globals.user.avatar|real_path}}{% else %}/source/images/no-ava-small{% if globals.user.gender == "f" %}_f{% endif %}.jpg{% endif %}"></a>
-                        </td>
-                        <td style="padding: 0 13px;">
-                            <textarea name='message' style='width:100%;height:96px;border-color: #eee;'></textarea>
-                        </td>
-                        <td style="width: 118px;white-space: nowrap;">
+                        <td style="padding-bottom: 10px;">
                             {% set users_count = users|length %}
-                            {% set i = 1 %}
                             {% for u in users %}
-                                {% if globals.user.id_user != u.id_user and i < 5 %}
-                                    {% if users_count > 2 %}<div class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}">{% endif %}
-                                    <a href="/users/~{{u.id_user}}/" class="pajax">
+                                {% if globals.user.id_user != u.id_user%}
+                                    <a href="/users/~{{u.id_user}}/" class="pajax" style="display: inline-block;width: 45px;text-align: center;margin-right: 3px;" title="{{ u.fio }}">
                                         <img {% if users_count > 3 %}width="45" height="45" {% endif %} {% if users_count > 2 %}class="dialogs_inline_chatter {% if users_count == 3 %}dialogs_inline_chatter_half {% endif %}" {% endif %} src="{% if u.avatar %}/uploads/users/ava_small/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}">
+                                        <div class="get_ms_status user_offline" data-id="{{u.id_user}}"></div>
                                     </a>
-                                    {% if users_count > 2 %}</div>{% endif %}
-                                    {% set i = i+1 %}
                                 {% endif %}
                             {% endfor %}
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td style="padding: 7px 13px 0;">
+
+                        <td>Написать сообщение:</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea name='message' style='width:100%;height:70px;border-color: #eee;'></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 7px 0 0;">
                             <a href="" class="btn btn-primary" id="send_message_from_dialog"><span>Отправить</span></a>
                             <a href="" class="btn btn-warning" id="invite_to_dialog"><span>Пригласить в диалог</span></a>
+                            <span class="pull-right">Звуковые уведомления: <input type="checkbox" name="sound_trigger" checked></span>
                         </td>
-                        <td></td>
                     </tr>
                 </table>
             </form>
