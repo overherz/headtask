@@ -337,11 +337,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/82/0e/bbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157edb7b87.php" afterPath="$PROJECT_DIR$/data/layouts_cache/82/0e/bbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157edb7b87.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/ac/67/bc98ec5c6ef36e53115b59491b2cb72ec93128d9acc5c50c46a1f448c0f6.php" afterPath="$PROJECT_DIR$/data/layouts_cache/ac/67/bc98ec5c6ef36e53115b59491b2cb72ec93128d9acc5c50c46a1f448c0f6.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.php" afterPath="$PROJECT_DIR$/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/9e/d9/d4a859cdffc73bec10e2f096da45a8d40f7f82bde756753a403a10fcc0d7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/9e/d9/d4a859cdffc73bec10e2f096da45a8d40f7f82bde756753a403a10fcc0d7.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" afterPath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/e7/f7/d6c69b56ab853539b0c0b3cc9fa4925cac0f0c20cdf7b91e56dd7205d061.php" afterPath="$PROJECT_DIR$/data/layouts_cache/e7/f7/d6c69b56ab853539b0c0b3cc9fa4925cac0f0c20cdf7b91e56dd7205d061.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/layouts/dialog.html" afterPath="$PROJECT_DIR$/applications/users/layouts/dialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/layouts/elements/dialog_message.html" afterPath="$PROJECT_DIR$/applications/users/layouts/elements/dialog_message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/users/layouts/elements/dialog_message_node.html" afterPath="$PROJECT_DIR$/applications/users/layouts/elements/dialog_message_node.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/f3/2a/e676a2c1076ef9582d18dffc14e34d7e68c4d4148b544ae7377f79312e76.php" afterPath="$PROJECT_DIR$/data/layouts_cache/f3/2a/e676a2c1076ef9582d18dffc14e34d7e68c4d4148b544ae7377f79312e76.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/45/b3/eaa8c1c9836c53c156522d21b3a27cda763af4fce28a657d6a58f3553e5f.php" afterPath="$PROJECT_DIR$/data/layouts_cache/45/b3/eaa8c1c9836c53c156522d21b3a27cda763af4fce28a657d6a58f3553e5f.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/35/42/f1d0ba3ea1b1500d297afcb51ddd24695c27b34edaf1a681f2f856b39b78.php" afterPath="$PROJECT_DIR$/data/layouts_cache/35/42/f1d0ba3ea1b1500d297afcb51ddd24695c27b34edaf1a681f2f856b39b78.php" />
@@ -381,7 +381,7 @@
       <file leaf-file-name="client.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/notifications/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="10081">
+            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="10081">
               <caret line="114" column="34" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
               <folding>
                 <marker date="1437375260147" expanded="false" signature="217:247" placeholder="..." />
@@ -405,8 +405,8 @@
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.333333" vertical-offset="3186" max-vertical-offset="25993">
-              <caret line="207" column="21" selection-start-line="207" selection-start-column="21" selection-end-line="207" selection-end-column="21" />
+            <state vertical-scroll-proportion="-17.555555" vertical-offset="25264" max-vertical-offset="26129">
+              <caret line="1514" column="31" selection-start-line="1514" selection-start-column="31" selection-end-line="1514" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -416,22 +416,28 @@
         <entry file="file://$PROJECT_DIR$/applications/users/layouts/elements/dialog_message.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="204">
-              <caret line="2" column="189" selection-start-line="2" selection-start-column="175" selection-end-line="2" selection-end-column="189" />
+              <caret line="2" column="208" selection-start-line="2" selection-start-column="196" selection-end-line="2" selection-end-column="208" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dialog.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dialog_message_node.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/applications/users/layouts/elements/dialog_message_node.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.020023556" vertical-offset="0" max-vertical-offset="849">
+              <caret line="1" column="220" selection-start-line="1" selection-start-column="220" selection-end-line="1" selection-end-column="220" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dialog.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/users/layouts/dialog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6548881" vertical-offset="396" max-vertical-offset="1326">
-              <caret line="56" column="80" selection-start-line="56" selection-start-column="80" selection-end-line="56" selection-end-column="80" />
-              <folding>
-                <element signature="e#1747#1776#0#HTML" expanded="true" />
-                <element signature="e#2049#2128#0#HTML" expanded="true" />
-                <element signature="e#3224#3249#0#HTML" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-3.5" vertical-offset="300" max-vertical-offset="1309">
+              <caret line="23" column="82" selection-start-line="23" selection-start-column="82" selection-end-line="23" selection-end-column="82" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -439,7 +445,7 @@
       <file leaf-file-name="users_table.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/users/layouts/users_table.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="833">
+            <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="833">
               <caret line="8" column="86" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="86" />
               <folding />
             </state>
@@ -461,33 +467,33 @@
       <file leaf-file-name="messages.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/users/controllers/messages.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.3461537" vertical-offset="1628" max-vertical-offset="5627">
-              <caret line="107" column="111" selection-start-line="107" selection-start-column="111" selection-end-line="107" selection-end-column="111" />
+            <state vertical-scroll-proportion="-26.961538" vertical-offset="1951" max-vertical-offset="5729">
+              <caret line="156" column="79" selection-start-line="156" selection-start-column="79" selection-end-line="156" selection-end-column="79" />
               <folding>
-                <marker date="1437378267458" expanded="true" signature="967:1040" placeholder="select id_di..dialogs_users..." />
-                <marker date="1437378267458" expanded="true" signature="1443:1916" placeholder="select m.id_..messages..." />
-                <marker date="1437378267458" expanded="true" signature="1633:1825" placeholder="select m.cre..messages..." />
-                <marker date="1437378267458" expanded="true" signature="2276:2502" placeholder="select id_di..dialogs_users..." />
-                <marker date="1437378267458" expanded="true" signature="3292:3604" placeholder="select m.*,u..messages..." />
-                <marker date="1437378267458" expanded="true" signature="4074:4287" placeholder="select u.fir..dialogs_users..." />
-                <marker date="1437378267458" expanded="true" signature="5321:5502" placeholder="SELECT count..." />
-                <marker date="1437378267458" expanded="true" signature="5833:5928" placeholder="update messa..." />
-                <marker date="1437378267458" expanded="true" signature="6436:6597" placeholder="select * fro..messages..." />
-                <marker date="1437378267458" expanded="true" signature="7045:7115" placeholder="update dialo..." />
-                <marker date="1437378267458" expanded="true" signature="7319:7379" placeholder="delete from ..." />
-                <marker date="1437378267458" expanded="true" signature="7815:7908" placeholder="select count..." />
-                <marker date="1437378267458" expanded="true" signature="8141:8250" placeholder="select count..." />
-                <marker date="1437378267458" expanded="true" signature="8490:8612" placeholder="select count..." />
-                <marker date="1437378267458" expanded="true" signature="9444:9611" placeholder="select u.fir..dialogs_users..." />
-                <marker date="1437378267458" expanded="true" signature="10034:10239" placeholder="select count..." />
-                <marker date="1437378267458" expanded="true" signature="10034:10247" placeholder="select count..." />
-                <marker date="1437378267458" expanded="true" signature="10545:10804" placeholder="select u.fir..company_users..." />
-                <marker date="1437378267458" expanded="true" signature="10545:10853" placeholder="select u.fir..company_users..." />
-                <marker date="1437378267458" expanded="true" signature="10713:10765" placeholder="select id_co..company_users..." />
-                <marker date="1437378267458" expanded="true" signature="11804:11861" placeholder="insert into ..." />
-                <marker date="1437378267458" expanded="true" signature="11804:11878" placeholder="insert into ..." />
-                <marker date="1437378267458" expanded="true" signature="11879:11921" placeholder="UPDATE id_us..." />
-                <marker date="1437378267458" expanded="true" signature="12562:12643" placeholder="select * fro..dialogs_users..." />
+                <marker date="1437383664095" expanded="true" signature="967:1040" placeholder="select id_di..dialogs_users..." />
+                <marker date="1437383664095" expanded="true" signature="1443:1916" placeholder="select m.id_..messages..." />
+                <marker date="1437383664095" expanded="true" signature="1633:1825" placeholder="select m.cre..messages..." />
+                <marker date="1437383664095" expanded="true" signature="2276:2502" placeholder="select id_di..dialogs_users..." />
+                <marker date="1437383664095" expanded="true" signature="3292:3604" placeholder="select m.*,u..messages..." />
+                <marker date="1437383664095" expanded="true" signature="4074:4287" placeholder="select u.fir..dialogs_users..." />
+                <marker date="1437383664095" expanded="true" signature="5321:5502" placeholder="SELECT count..." />
+                <marker date="1437383664095" expanded="true" signature="5833:5928" placeholder="update messa..." />
+                <marker date="1437383664095" expanded="true" signature="6436:6750" placeholder="select * fro..messages..." />
+                <marker date="1437383664095" expanded="true" signature="7405:7475" placeholder="update dialo..." />
+                <marker date="1437383664095" expanded="true" signature="7679:7739" placeholder="delete from ..." />
+                <marker date="1437383664095" expanded="true" signature="8175:8268" placeholder="select count..." />
+                <marker date="1437383664095" expanded="true" signature="8501:8610" placeholder="select count..." />
+                <marker date="1437383664095" expanded="true" signature="8850:8972" placeholder="select count..." />
+                <marker date="1437383664095" expanded="true" signature="9804:9971" placeholder="select u.fir..dialogs_users..." />
+                <marker date="1437383664095" expanded="true" signature="10394:10599" placeholder="select count..." />
+                <marker date="1437383664095" expanded="true" signature="10394:10607" placeholder="select count..." />
+                <marker date="1437383664095" expanded="true" signature="10905:11164" placeholder="select u.fir..company_users..." />
+                <marker date="1437383664095" expanded="true" signature="10905:11213" placeholder="select u.fir..company_users..." />
+                <marker date="1437383664095" expanded="true" signature="11073:11125" placeholder="select id_co..company_users..." />
+                <marker date="1437383664095" expanded="true" signature="12164:12221" placeholder="insert into ..." />
+                <marker date="1437383664095" expanded="true" signature="12164:12238" placeholder="insert into ..." />
+                <marker date="1437383664095" expanded="true" signature="12239:12281" placeholder="UPDATE id_us..." />
+                <marker date="1437383664095" expanded="true" signature="12922:13003" placeholder="select * fro..dialogs_users..." />
               </folding>
             </state>
           </provider>
@@ -498,16 +504,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="340">
               <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="invite_dialog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/users/layouts/elements/invite_dialog.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="901">
-              <caret line="5" column="23" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -567,9 +563,7 @@
         <option value="$PROJECT_DIR$/applications/users/layouts/users.html" />
         <option value="$PROJECT_DIR$/source/css/plugins.css" />
         <option value="$PROJECT_DIR$/node_modules/swig/lib/filters.js" />
-        <option value="$PROJECT_DIR$/applications/users/layouts/elements/dialog_message.html" />
         <option value="$PROJECT_DIR$/source/menu.html" />
-        <option value="$PROJECT_DIR$/applications/users/layouts/elements/dialog_message_node.html" />
         <option value="$PROJECT_DIR$/globals/count_messages.php" />
         <option value="$PROJECT_DIR$/applications/users/layouts/messages.html" />
         <option value="$PROJECT_DIR$/notifications/server/notifications.js" />
@@ -584,9 +578,11 @@
         <option value="$PROJECT_DIR$/source/js/headtask_function.js" />
         <option value="$PROJECT_DIR$/notifications/client.js" />
         <option value="$PROJECT_DIR$/config.php" />
-        <option value="$PROJECT_DIR$/source/css/index.css" />
         <option value="$PROJECT_DIR$/applications/users/controllers/messages.php" />
         <option value="$PROJECT_DIR$/applications/users/layouts/dialog.html" />
+        <option value="$PROJECT_DIR$/applications/users/layouts/elements/dialog_message.html" />
+        <option value="$PROJECT_DIR$/source/css/index.css" />
+        <option value="$PROJECT_DIR$/applications/users/layouts/elements/dialog_message_node.html" />
       </list>
     </option>
   </component>
@@ -848,46 +844,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="applications" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="applications" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layouts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2299,7 +2255,31 @@
       <option name="project" value="LOCAL" />
       <updated>1437375269836</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="1">
+      <created>1437378350815</created>
+      <option name="number" value="00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1437378350815</updated>
+    </task>
+    <task id="LOCAL-00222" summary="1">
+      <created>1437378582935</created>
+      <option name="number" value="00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1437378582935</updated>
+    </task>
+    <task id="LOCAL-00223" summary="1">
+      <created>1437379037016</created>
+      <option name="number" value="00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1437379037016</updated>
+    </task>
+    <task id="LOCAL-00224" summary="1">
+      <created>1437383268969</created>
+      <option name="number" value="00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1437383268969</updated>
+    </task>
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2313,7 +2293,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28434506" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29020235" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3276414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2495,13 +2475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/elements/dialog_message_node.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.058419243" vertical-offset="0" max-vertical-offset="873">
-          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/globals/get_projects_access.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="442">
@@ -2534,7 +2507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1275">
           <caret line="28" column="282" selection-start-line="28" selection-start-column="273" selection-end-line="28" selection-end-column="282" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2546,13 +2518,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/underscore/README.md">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="881">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/underscore/package.json">
@@ -2580,7 +2552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="8929" max-vertical-offset="9826">
           <caret line="543" column="9" selection-start-line="543" selection-start-column="9" selection-end-line="543" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2630,7 +2601,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="1632">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="10" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2638,7 +2608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="10107" max-vertical-offset="12257">
           <caret line="621" column="43" selection-start-line="621" selection-start-column="43" selection-end-line="621" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2646,7 +2615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2654,7 +2622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="374">
           <caret line="16" column="28" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2691,9 +2658,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users_table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="833">
+          <caret line="8" column="86" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/notifications/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="10081">
+        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="10081">
           <caret line="114" column="34" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
           <folding>
             <marker date="1437375260147" expanded="false" signature="217:247" placeholder="..." />
@@ -2711,10 +2686,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/controllers/messages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.961538" vertical-offset="1951" max-vertical-offset="5729">
+          <caret line="156" column="79" selection-start-line="156" selection-start-column="79" selection-end-line="156" selection-end-column="79" />
+          <folding>
+            <marker date="1437383664095" expanded="true" signature="967:1040" placeholder="select id_di..dialogs_users..." />
+            <marker date="1437383664095" expanded="true" signature="1443:1916" placeholder="select m.id_..messages..." />
+            <marker date="1437383664095" expanded="true" signature="1633:1825" placeholder="select m.cre..messages..." />
+            <marker date="1437383664095" expanded="true" signature="2276:2502" placeholder="select id_di..dialogs_users..." />
+            <marker date="1437383664095" expanded="true" signature="3292:3604" placeholder="select m.*,u..messages..." />
+            <marker date="1437383664095" expanded="true" signature="4074:4287" placeholder="select u.fir..dialogs_users..." />
+            <marker date="1437383664095" expanded="true" signature="5321:5502" placeholder="SELECT count..." />
+            <marker date="1437383664095" expanded="true" signature="5833:5928" placeholder="update messa..." />
+            <marker date="1437383664095" expanded="true" signature="6436:6750" placeholder="select * fro..messages..." />
+            <marker date="1437383664095" expanded="true" signature="7405:7475" placeholder="update dialo..." />
+            <marker date="1437383664095" expanded="true" signature="7679:7739" placeholder="delete from ..." />
+            <marker date="1437383664095" expanded="true" signature="8175:8268" placeholder="select count..." />
+            <marker date="1437383664095" expanded="true" signature="8501:8610" placeholder="select count..." />
+            <marker date="1437383664095" expanded="true" signature="8850:8972" placeholder="select count..." />
+            <marker date="1437383664095" expanded="true" signature="9804:9971" placeholder="select u.fir..dialogs_users..." />
+            <marker date="1437383664095" expanded="true" signature="10394:10599" placeholder="select count..." />
+            <marker date="1437383664095" expanded="true" signature="10394:10607" placeholder="select count..." />
+            <marker date="1437383664095" expanded="true" signature="10905:11164" placeholder="select u.fir..company_users..." />
+            <marker date="1437383664095" expanded="true" signature="10905:11213" placeholder="select u.fir..company_users..." />
+            <marker date="1437383664095" expanded="true" signature="11073:11125" placeholder="select id_co..company_users..." />
+            <marker date="1437383664095" expanded="true" signature="12164:12221" placeholder="insert into ..." />
+            <marker date="1437383664095" expanded="true" signature="12164:12238" placeholder="insert into ..." />
+            <marker date="1437383664095" expanded="true" signature="12239:12281" placeholder="UPDATE id_us..." />
+            <marker date="1437383664095" expanded="true" signature="12922:13003" placeholder="select * fro..dialogs_users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.5" vertical-offset="300" max-vertical-offset="1309">
+          <caret line="23" column="82" selection-start-line="23" selection-start-column="82" selection-end-line="23" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.333333" vertical-offset="3186" max-vertical-offset="25993">
-          <caret line="207" column="21" selection-start-line="207" selection-start-column="21" selection-end-line="207" selection-end-column="21" />
+        <state vertical-scroll-proportion="-17.555555" vertical-offset="25264" max-vertical-offset="26129">
+          <caret line="1514" column="31" selection-start-line="1514" selection-start-column="31" selection-end-line="1514" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -2722,61 +2738,16 @@
     <entry file="file://$PROJECT_DIR$/applications/users/layouts/elements/dialog_message.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="204">
-          <caret line="2" column="189" selection-start-line="2" selection-start-column="175" selection-end-line="2" selection-end-column="189" />
+          <caret line="2" column="208" selection-start-line="2" selection-start-column="196" selection-end-line="2" selection-end-column="208" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/users_table.html">
+    <entry file="file://$PROJECT_DIR$/applications/users/layouts/elements/dialog_message_node.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="833">
-          <caret line="8" column="86" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="86" />
+        <state vertical-scroll-proportion="0.020023556" vertical-offset="0" max-vertical-offset="849">
+          <caret line="1" column="220" selection-start-line="1" selection-start-column="220" selection-end-line="1" selection-end-column="220" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/controllers/messages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.3461537" vertical-offset="1628" max-vertical-offset="5627">
-          <caret line="107" column="111" selection-start-line="107" selection-start-column="111" selection-end-line="107" selection-end-column="111" />
-          <folding>
-            <marker date="1437378267458" expanded="true" signature="967:1040" placeholder="select id_di..dialogs_users..." />
-            <marker date="1437378267458" expanded="true" signature="1443:1916" placeholder="select m.id_..messages..." />
-            <marker date="1437378267458" expanded="true" signature="1633:1825" placeholder="select m.cre..messages..." />
-            <marker date="1437378267458" expanded="true" signature="2276:2502" placeholder="select id_di..dialogs_users..." />
-            <marker date="1437378267458" expanded="true" signature="3292:3604" placeholder="select m.*,u..messages..." />
-            <marker date="1437378267458" expanded="true" signature="4074:4287" placeholder="select u.fir..dialogs_users..." />
-            <marker date="1437378267458" expanded="true" signature="5321:5502" placeholder="SELECT count..." />
-            <marker date="1437378267458" expanded="true" signature="5833:5928" placeholder="update messa..." />
-            <marker date="1437378267458" expanded="true" signature="6436:6597" placeholder="select * fro..messages..." />
-            <marker date="1437378267458" expanded="true" signature="7045:7115" placeholder="update dialo..." />
-            <marker date="1437378267458" expanded="true" signature="7319:7379" placeholder="delete from ..." />
-            <marker date="1437378267458" expanded="true" signature="7815:7908" placeholder="select count..." />
-            <marker date="1437378267458" expanded="true" signature="8141:8250" placeholder="select count..." />
-            <marker date="1437378267458" expanded="true" signature="8490:8612" placeholder="select count..." />
-            <marker date="1437378267458" expanded="true" signature="9444:9611" placeholder="select u.fir..dialogs_users..." />
-            <marker date="1437378267458" expanded="true" signature="10034:10239" placeholder="select count..." />
-            <marker date="1437378267458" expanded="true" signature="10034:10247" placeholder="select count..." />
-            <marker date="1437378267458" expanded="true" signature="10545:10804" placeholder="select u.fir..company_users..." />
-            <marker date="1437378267458" expanded="true" signature="10545:10853" placeholder="select u.fir..company_users..." />
-            <marker date="1437378267458" expanded="true" signature="10713:10765" placeholder="select id_co..company_users..." />
-            <marker date="1437378267458" expanded="true" signature="11804:11861" placeholder="insert into ..." />
-            <marker date="1437378267458" expanded="true" signature="11804:11878" placeholder="insert into ..." />
-            <marker date="1437378267458" expanded="true" signature="11879:11921" placeholder="UPDATE id_us..." />
-            <marker date="1437378267458" expanded="true" signature="12562:12643" placeholder="select * fro..dialogs_users..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/users/layouts/dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6548881" vertical-offset="396" max-vertical-offset="1326">
-          <caret line="56" column="80" selection-start-line="56" selection-start-column="80" selection-end-line="56" selection-end-column="80" />
-          <folding>
-            <element signature="e#1747#1776#0#HTML" expanded="true" />
-            <element signature="e#2049#2128#0#HTML" expanded="true" />
-            <element signature="e#3224#3249#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

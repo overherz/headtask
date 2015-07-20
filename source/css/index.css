@@ -1511,6 +1511,10 @@ img.dialogs_inline_chatter_half {
     width: 96px;
 }
 
+td.msg_img {
+    padding-left: 0 !important;
+}
+
 .msg_date,.msg_img {
     width: 1px;
     white-space: nowrap;
