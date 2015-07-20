@@ -1522,3 +1522,7 @@ img.dialogs_inline_chatter_half {
 .user_invite_to_dialog,.user_invite_from_dialog {
     cursor: pointer;
 }
+
+#tab_invite.active {
+    padding-top: 20px;
+}
