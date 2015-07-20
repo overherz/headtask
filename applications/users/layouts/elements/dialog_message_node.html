@@ -1,5 +1,5 @@
 <tr class="msg_row {% if my %} msg_row_my{% endif %}" message="{{id}}">
-    <td class="msg_img"><a href="/users/~{{id_user}}" class="pajax"><img src="{% if avatar %}/uploads/users/ava_comment/{{avatar_sub1}}/{{avatar_sub2}}/{{avatar}}{% else %}/source/images/no-ava-comment{% if gender == "f" %}_f{% endif %}.jpg{% endif %}"></a></td>
+    <td class="msg_img"><a href="/users/~{{id_user}}" class="pajax"><img width="45" height="45" src="{% if avatar %}/uploads/users/ava_small/{{avatar_sub1}}/{{avatar_sub2}}/{{avatar}}{% else %}/source/images/no-ava-small{% if gender == "f" %}_f{% endif %}.jpg{% endif %}"></a></td>
     <td class="msg_name"><a href="/users/~{{id_user}}" class="pajax">{{fio}}</a></div><div class="msg_text">{{message}}</td>
     <td class="msg_date">{{created|date("d.m.y H:i",tzOffset)}}</td>
 </tr>
