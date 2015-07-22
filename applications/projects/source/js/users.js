@@ -70,12 +70,11 @@ $(document).ready(function ($) {
             $("#control-group-rights").show();
         }
     });
-
-    set_users_checkbox();
 });
 
 function set_users_checkbox()
 {
+    console.log('test');
     $(".rights").each(function(k,v){
         var count_checked = $(v).find("input:checkbox:checked").length;
         var count_all = $(v).find("input:checkbox").length;

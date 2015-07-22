@@ -7,6 +7,9 @@
 {% block js %}
     {{parent()}}
     <script src="{{ app.path('projects','users.js') }}"></script>
+    <script>
+        set_users_checkbox();
+    </script>
 {% endblock %}
 
 {% block project_data %}

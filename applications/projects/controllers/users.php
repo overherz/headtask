@@ -148,12 +148,12 @@ class users extends \Controller {
             $paginator = new \Paginator($total, $_POST['page'], $this->limit);
             if ($paginator->pages < $_POST['page']) $paginator = new \Paginator($total, $paginator->pages, $this->limit);
 
-            $query = $this->db->prepare("select u.*,g.color,g.name as group_name,pu.role,
+            $query = $this->db->prepare("select u.*,pu.role as project_role,cu.role,
                 u.last_user_action,pu.description,
                 GROUP_CONCAT(r.id_right order by rg.id_access_group SEPARATOR ',') as rights
                 from projects_users as pu
                 LEFT JOIN users as u ON pu.id_user=u.id_user
-                LEFT JOIN groups as g ON u.id_group=g.id
+                LEFT JOIN company_users as cu ON cu.id_user=u.id_user
                 LEFT JOIN projects_rights_users as r ON r.id_user=u.id_user and r.id_project = pu.id_project
                 LEFT JOIN projects_access_rights as rg ON r.id_right = rg.id
                 {$where}

@@ -7,8 +7,8 @@
                 <img class="users_avatar" src="{% if u.avatar %}/uploads/users/ava_middle/{{u.avatar|real_path}}{% else %}/source/images/no-ava-small{% if u.gender == "f" %}_f{% endif %}.jpg{% endif %}" title="{{u.fio}}">
             </a>
             <div>
-                <span style="font-weight: bold;">{{ ('role_'~u.role)|lang }}</span>
-                {% if u.role != 'manager' %}
+                <span style="font-weight: bold;">{{ ('role_'~u.project_role)|lang }}</span>
+                {% if u.project_role != 'manager' %}
 
                         <i class="fa fa-info-circle get_info" rel="popover" data-html='true' data-content="{{task.message}}
                     {% for r in u.rights %}
@@ -29,10 +29,10 @@
             </div>
         </div>
         <div style="width: 170px;padding-left: 10px;" class="users_sub_div">
-            <div style="margin-top: 0;" class="user_name"><a href="/users/~{{u.id_user}}/" style="color:{{ u.color }};" class="pajax">{{u.last_name}} {{u.first_name}}</a>
-                <div class="get_ms_status user_offline" data-id="{{u.id_user}}"></div>
-            </div>
-            <small><div class="nickname">{{ u.description }}</div>
+            <div style="margin-top: 0;" class="user_name"><a href="/users/~{{u.id_user}}/" style="color:{{ u.color }};" class="pajax">{{u.last_name}} {{u.first_name}}</a></div>
+            <div class="get_ms_status user_offline" data-id="{{u.id_user}}"></div>
+            <small>{{ ("role_"~u.role)|lang|capitalize }}
+                <div class="nickname">{{ u.description }}</div>
                 {% if u.last_user_action %}
                     {% if ''|date('d.m.Y') == u.last_user_action|date('d.m.Y') %}<span style="color:red">сегодня</span> в {{ u.last_user_action|date('H:i') }}
                     {% else %}
@@ -49,13 +49,13 @@
         <div style="width: 160px;padding-left: 10px;" class="users_sub_div">
             <div style="font-size: 12px;">
                 <div>
-                    <a>Написать сообщение</a>
+                    <a href="" prepare_message="{{u.id_user}}">Написать сообщение</a>
                 </div>
                 <div>
                     <a>Видеозвонок</a>
                 </div>
                 <div style="margin-bottom: 10px;">
-                    <a>Отправить письмо</a>
+                    <a href="mailto:{{ u.email }}">Отправить письмо</a>
                 </div>
 
                 <div>
