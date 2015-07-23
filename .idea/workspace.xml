@@ -306,6 +306,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/17/51/6976556773f554381de5d4f5723633d76036cfc786b9e531bc4499f29a17.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/a3/8d/ce67c808d89c5d78c99237c10cd182d28e0b83fcd624747fe812759b0b51.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/layouts_cache/f3/29/b5719fa6bb6bb0c1bde3e57a19cad15d37a6160b8c3020f0e48d166bbe83.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/images/404.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/images/access_denied.png" afterPath="" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/data/layouts_cache/6d/7f/13f94c6c0df88561de045a365228d2516727075bcb616df7d30f0e0a89a3.php" afterPath="$PROJECT_DIR$/data/layouts_cache/ad/87/f5b65f1832eec8d075d6df2dfd6767215415ed8bd44ce963b50b196ee601.php" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/data/layouts_cache/89/53/a141f619404cc6feac308694f450fa960fdf4ad9720a9d491b8409b118a4.php" afterPath="$PROJECT_DIR$/data/layouts_cache/20/ad/f3ba6cc7bc5198a4ffd14eb88465193ac628513938f993a9804724555893.php" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/data/layouts_cache/f4/03/680c03536a19c9107d9efee916c033be30f675c9c74fc496fa9ed5886b2f.php" afterPath="$PROJECT_DIR$/data/layouts_cache/e4/02/27136dc8e77dfb2a6d1d8f7adeba6ec042b12e5d5aa87e4d1c90305ad029.php" />
@@ -316,6 +318,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/d9/ec/300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f27ff3.php" afterPath="$PROJECT_DIR$/data/layouts_cache/d9/ec/300ef0ca7205b43e12a721e2dfcb3299d8ebf7a887d7cb1a3af7d0f27ff3.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/dd/d7/3a77e0671052d927c929129ce9a2b04ac6d27125032530f87f49e50cbb41.php" afterPath="$PROJECT_DIR$/data/layouts_cache/dd/d7/3a77e0671052d927c929129ce9a2b04ac6d27125032530f87f49e50cbb41.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/a5/33/40079af33a78839a55fcd7e807c8b8ac4c9606b133dc5c57b1c7880fd261.php" afterPath="$PROJECT_DIR$/data/layouts_cache/a5/33/40079af33a78839a55fcd7e807c8b8ac4c9606b133dc5c57b1c7880fd261.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/error/404.html" afterPath="$PROJECT_DIR$/error/404.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/8b/5d/559c5e810875c12e00f14356b3d2aa71382551cbd4516424c76385d3f51c.php" afterPath="$PROJECT_DIR$/data/layouts_cache/8b/5d/559c5e810875c12e00f14356b3d2aa71382551cbd4516424c76385d3f51c.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/61/56/55a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c398bae4.php" afterPath="$PROJECT_DIR$/data/layouts_cache/61/56/55a341a72f58c69197d78e6443643ccc3b87912def90c40bc0d4c398bae4.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/12/43/5c31254e0e6a95ca704c82f47140a2ffed0baf7175aa29e03de625639d29.php" afterPath="$PROJECT_DIR$/data/layouts_cache/12/43/5c31254e0e6a95ca704c82f47140a2ffed0baf7175aa29e03de625639d29.php" />
@@ -333,7 +336,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/1e/d4/a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300ae8761.php" afterPath="$PROJECT_DIR$/data/layouts_cache/1e/d4/a2045d75d3fceaa2f88f60468fd59b677ffe12bdadb12215d51300ae8761.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/7c/06/a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116449a1.php" afterPath="$PROJECT_DIR$/data/layouts_cache/7c/06/a6203429c3ae65842d826294fd4688b0416043e08d49272cf950116449a1.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/20/6d/aba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade492946.php" afterPath="$PROJECT_DIR$/data/layouts_cache/20/6d/aba782074bbfedc7b97bcd45ac932c1f72d99b4caf7a138568bade492946.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/tasks/add_task.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/tasks/add_task.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/0f/70/b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c61e68c.php" afterPath="$PROJECT_DIR$/data/layouts_cache/0f/70/b003d5591fd42ec35a155e10472b7bfb8db092ac428f8df8997e7c61e68c.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" afterPath="$PROJECT_DIR$/data/layouts_cache/cb/5f/b2e0f54c07e4972f292aba0696a13a0da92e978150ba2970ee7d5309ddcf.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/82/0e/bbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157edb7b87.php" afterPath="$PROJECT_DIR$/data/layouts_cache/82/0e/bbaab80937a4f5bad5c12e6b017237e4b4780cea7d5b64b9a9157edb7b87.php" />
@@ -341,15 +343,13 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/9e/d9/d4a859cdffc73bec10e2f096da45a8d40f7f82bde756753a403a10fcc0d7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/9e/d9/d4a859cdffc73bec10e2f096da45a8d40f7f82bde756753a403a10fcc0d7.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" afterPath="$PROJECT_DIR$/data/layouts_cache/a8/78/d6b0ecc5fd5e6a8b93d0cd6b580a66693610d59edff86094a54d3f4b2369.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/e7/f7/d6c69b56ab853539b0c0b3cc9fa4925cac0f0c20cdf7b91e56dd7205d061.php" afterPath="$PROJECT_DIR$/data/layouts_cache/e7/f7/d6c69b56ab853539b0c0b3cc9fa4925cac0f0c20cdf7b91e56dd7205d061.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/error/denied.html" afterPath="$PROJECT_DIR$/error/denied.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/f3/2a/e676a2c1076ef9582d18dffc14e34d7e68c4d4148b544ae7377f79312e76.php" afterPath="$PROJECT_DIR$/data/layouts_cache/f3/2a/e676a2c1076ef9582d18dffc14e34d7e68c4d4148b544ae7377f79312e76.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/45/b3/eaa8c1c9836c53c156522d21b3a27cda763af4fce28a657d6a58f3553e5f.php" afterPath="$PROJECT_DIR$/data/layouts_cache/45/b3/eaa8c1c9836c53c156522d21b3a27cda763af4fce28a657d6a58f3553e5f.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/35/42/f1d0ba3ea1b1500d297afcb51ddd24695c27b34edaf1a681f2f856b39b78.php" afterPath="$PROJECT_DIR$/data/layouts_cache/35/42/f1d0ba3ea1b1500d297afcb51ddd24695c27b34edaf1a681f2f856b39b78.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/41/a4/f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc42be7.php" afterPath="$PROJECT_DIR$/data/layouts_cache/41/a4/f7a62f8689ea615c5a8920a4176b9e03c30ffa713806cb0aa6962dc42be7.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/4c/3e/fc7425397325fa126c8b81d10f7b69972c01e815db1e648d4dccf1d4705f.php" afterPath="$PROJECT_DIR$/data/layouts_cache/4c/3e/fc7425397325fa126c8b81d10f7b69972c01e815db1e648d4dccf1d4705f.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/layouts_cache/00/5a/fe09e6b64544dbad05e552917bfce7da558bf75da9b197bccfa1dd97322a.php" afterPath="$PROJECT_DIR$/data/layouts_cache/00/5a/fe09e6b64544dbad05e552917bfce7da558bf75da9b197bccfa1dd97322a.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/controllers/files.php" afterPath="$PROJECT_DIR$/applications/projects/controllers/files.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/project_menu.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/project_menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/applications/projects/layouts/logs/sidebar_row.html" afterPath="$PROJECT_DIR$/applications/projects/layouts/logs/sidebar_row.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="c67cfbcc-c85e-48b1-9c69-1c3eff0c9850" name="Failed commit: Default" comment="1" />
@@ -378,35 +378,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="add_user.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/users/add_user.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="1581">
-              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-              <folding>
-                <element signature="e#1632#1675#0#HTML" expanded="true" />
-                <element signature="e#2595#2660#0#HTML" expanded="true" />
-                <element signature="e#2866#2886#0#HTML" expanded="true" />
-                <element signature="e#2949#2970#0#HTML" expanded="true" />
-                <element signature="e#3223#3248#0#HTML" expanded="true" />
-                <element signature="e#3421#3463#0#HTML" expanded="true" />
-                <element signature="e#3579#3604#0#HTML" expanded="true" />
-                <element signature="e#3867#3893#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sidebar_index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/logs/sidebar_index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="136">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="sidebar_row.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/projects/layouts/logs/sidebar_row.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -446,10 +417,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="files.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="files.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/projects/controllers/files.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44051826" vertical-offset="1632" max-vertical-offset="4675">
+            <state vertical-scroll-proportion="-28.115385" vertical-offset="1275" max-vertical-offset="4675">
               <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
               <folding>
                 <marker date="1437610117797" expanded="true" signature="929:1023" placeholder="insert into ..." />
@@ -463,53 +434,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar_right.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/sidebar_right.html">
+      <file leaf-file-name="all_projects.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/all_projects.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="187">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="952">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="headtask_function.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/js/headtask_function.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/applications/projects/layouts/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="7276">
-              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+            <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="306">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="10" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugins.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/css/plugins.css">
+      <file leaf-file-name="denied.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/error/denied.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="19331" max-vertical-offset="20757">
-              <caret line="1151" column="17" selection-start-line="1151" selection-start-column="17" selection-end-line="1151" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.115384616" vertical-offset="0" max-vertical-offset="884">
+              <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
               <folding>
-                <marker date="1437605869034" expanded="true" signature="11496:11760" placeholder="{...}" />
-                <marker date="1437605869034" expanded="true" signature="11787:11916" placeholder="{...}" />
-                <marker date="1437605869034" expanded="true" signature="11963:12096" placeholder="{...}" />
-                <marker date="1437605869034" expanded="true" signature="12123:12252" placeholder="{...}" />
-                <marker date="1437605869034" expanded="true" signature="12303:12567" placeholder="{...}" />
-                <marker date="1437605869034" expanded="true" signature="12594:12858" placeholder="{...}" />
-                <marker date="1437605869034" expanded="true" signature="12908:13041" placeholder="{...}" />
-                <marker date="1437605869034" expanded="true" signature="13068:13332" placeholder="{...}" />
-                <marker date="1437605869034" expanded="true" signature="13377:13510" placeholder="{...}" />
-                <marker date="1437605869034" expanded="true" signature="13537:13666" placeholder="{...}" />
+                <element signature="e#97#124#0#HTML" expanded="true" />
+                <element signature="e#135#190#0#HTML" expanded="true" />
+                <element signature="e#224#263#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wrapper_index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/wrapper_index.html">
+      <file leaf-file-name="controller.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.23077" vertical-offset="264" max-vertical-offset="2159">
-              <caret line="48" column="138" selection-start-line="48" selection-start-column="138" selection-end-line="48" selection-end-column="149" />
-              <folding />
+            <state vertical-scroll-proportion="-5.3018866" vertical-offset="2354" max-vertical-offset="6885">
+              <caret line="155" column="42" selection-start-line="155" selection-start-column="42" selection-end-line="155" selection-end-column="42" />
+              <folding>
+                <marker date="1437610850095" expanded="true" signature="10461:10657" placeholder="select u.id_..users..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="404.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/error/404.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="408">
+              <caret line="8" column="10" selection-start-line="6" selection-start-column="0" selection-end-line="8" selection-end-column="10" />
+              <folding>
+                <element signature="e#170#225#0#HTML" expanded="true" />
+                <element signature="e#259#298#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -537,9 +516,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/applications/users/controllers/recovery.php" />
-        <option value="$PROJECT_DIR$/core/initdata.php" />
-        <option value="$PROJECT_DIR$/applications/users/controllers/invite.php" />
         <option value="$PROJECT_DIR$/applications/users/layouts/create_company.html" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/applications/users/source/js/reg.js" />
@@ -588,6 +564,9 @@
         <option value="$PROJECT_DIR$/applications/projects/layouts/project_menu.html" />
         <option value="$PROJECT_DIR$/applications/projects/layouts/tasks/add_task.html" />
         <option value="$PROJECT_DIR$/applications/projects/controllers/files.php" />
+        <option value="$PROJECT_DIR$/core/controller.php" />
+        <option value="$PROJECT_DIR$/error/404.html" />
+        <option value="$PROJECT_DIR$/error/denied.html" />
       </list>
     </option>
   </component>
@@ -711,6 +690,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="error" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -766,6 +759,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="applications" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="news" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2252,7 +2271,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437607112690</updated>
     </task>
-    <option name="localTasksCounter" value="230" />
+    <task id="LOCAL-00230" summary="project files fix access">
+      <created>1437610282812</created>
+      <option name="number" value="00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1437610282812</updated>
+    </task>
+    <option name="localTasksCounter" value="231" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2317,69 +2342,14 @@
     <MESSAGE value="1" />
     <MESSAGE value="users groups on projects and other small fixes" />
     <MESSAGE value="twig bump version" />
-    <option name="LAST_COMMIT_MESSAGE" value="twig bump version" />
+    <MESSAGE value="project files fix access" />
+    <option name="LAST_COMMIT_MESSAGE" value="project files fix access" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/swig/lib/parser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12750">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/controllers/forum.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1294388" vertical-offset="357" max-vertical-offset="16065">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="81" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="816">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/swig/lib/filters.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="10812">
-          <caret line="93" column="26" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/globals/get_projects_access.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="442">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/globals/get_company.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.76923" vertical-offset="45" max-vertical-offset="952">
-          <caret line="39" column="56" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/globals/count_messages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="442">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/review.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693" vertical-offset="204" max-vertical-offset="2057">
-          <caret line="27" column="53" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/users/layouts/messages.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1275">
@@ -2697,16 +2667,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="19331" max-vertical-offset="20757">
           <caret line="1151" column="17" selection-start-line="1151" selection-start-column="17" selection-end-line="1151" selection-end-column="17" />
           <folding>
-            <marker date="1437605869034" expanded="true" signature="11496:11760" placeholder="{...}" />
-            <marker date="1437605869034" expanded="true" signature="11787:11916" placeholder="{...}" />
-            <marker date="1437605869034" expanded="true" signature="11963:12096" placeholder="{...}" />
-            <marker date="1437605869034" expanded="true" signature="12123:12252" placeholder="{...}" />
-            <marker date="1437605869034" expanded="true" signature="12303:12567" placeholder="{...}" />
-            <marker date="1437605869034" expanded="true" signature="12594:12858" placeholder="{...}" />
-            <marker date="1437605869034" expanded="true" signature="12908:13041" placeholder="{...}" />
-            <marker date="1437605869034" expanded="true" signature="13068:13332" placeholder="{...}" />
-            <marker date="1437605869034" expanded="true" signature="13377:13510" placeholder="{...}" />
-            <marker date="1437605869034" expanded="true" signature="13537:13666" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437605869034" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -2819,7 +2789,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/projects/controllers/files.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44051826" vertical-offset="1632" max-vertical-offset="4675">
+        <state vertical-scroll-proportion="-28.115385" vertical-offset="1275" max-vertical-offset="4675">
           <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
             <marker date="1437610117797" expanded="true" signature="929:1023" placeholder="insert into ..." />
@@ -2828,6 +2798,79 @@
             <marker date="1437610117797" expanded="true" signature="8002:8088" placeholder="select SUM(s..." />
             <marker date="1437610117797" expanded="true" signature="8387:8426" placeholder="select * fro..projects_files..." />
             <marker date="1437610117797" expanded="true" signature="8727:8772" placeholder="delete from ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/all_projects.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/news/news.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/news/news_show.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/project.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="888">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/projects/layouts/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="306">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="10" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3018866" vertical-offset="2354" max-vertical-offset="6885">
+          <caret line="155" column="42" selection-start-line="155" selection-start-column="42" selection-end-line="155" selection-end-column="42" />
+          <folding>
+            <marker date="1437610850095" expanded="true" signature="10461:10657" placeholder="select u.id_..users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/error/404.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="408">
+          <caret line="8" column="10" selection-start-line="6" selection-start-column="0" selection-end-line="8" selection-end-column="10" />
+          <folding>
+            <element signature="e#170#225#0#HTML" expanded="true" />
+            <element signature="e#259#298#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/error/denied.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.115384616" vertical-offset="0" max-vertical-offset="884">
+          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+          <folding>
+            <element signature="e#97#124#0#HTML" expanded="true" />
+            <element signature="e#135#190#0#HTML" expanded="true" />
+            <element signature="e#224#263#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

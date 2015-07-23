@@ -4,7 +4,12 @@
 {% endblock %}
 {% block body %}
 <div style="text-align: center;">
-    <img src="/source/images/404.jpg" style="height: 500px;">
+    <div style="font-size: 160px;color: #444;margin-top: 100px;">
+        404
+    </div>
+    <div style="font-size: 40px;color: #ff4600;">
+        Страница не найдена
+    </div>
     <div>
     {% if referer %}<a href="{{referer}}" class="pajax">вернуться на предыдущую страницу</a>
     {% else %} <a href="/" class="pajax">вернуться на главную страницу</a>
