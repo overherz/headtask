@@ -3,12 +3,8 @@
 {% block title %}
 Участники {{project.name}}{% endblock %}
 
-{% block js %}
-{{ parent() }}
-<script type="text/javascript" src="{{app.path('projects','users.js')}}"></script>
-{% endblock %}
-
 {% block project_data %}
+    <div class="get_script" style="display: none;" data-path="{{ app.path('projects','users.js') }} }}"></div>
     {% include "/source/search_form.html" %}
     <form action="" id="search_form" method="post" class="form-horizontal" style="margin: 0px;float: left;">
         <input type="hidden" name="page" value="">
