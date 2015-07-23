@@ -1,14 +1,12 @@
 {% extends ajax_data ? "/source/ajax_index.html" : "/source/index.html" %}
-{% block css %}
-<style>
-    #wrap {
-        background: #fff;
-    }
-</style>
-{% endblock %}
 {% block body %}
 <div style="text-align: center;">
-    <img src="/source/images/access_denied.png">
+    <div style="font-size: 160px;color: #444;margin-top: 100px;">
+        401
+    </div>
+    <div style="font-size: 40px;color: #ff4600;">
+        У Вас нет доступа к данной странице
+    </div>
     <div>
         {% if referer %}<a href="{{referer}}" class="pajax">вернуться на предыдущую страницу</a>
         {% else %} <a href="/" class="pajax">вернуться на главную страницу</a>
