@@ -16,10 +16,12 @@
         {% if access.add_task %}<a class="btn btn-success pajax {% if add_tasks_button %}active{% endif %}" href="/projects/tasks/add/{{project.id}}/"><i class="fa fa-plus"></i></a>{% endif %}
     </div>
 
+    {% if access.show_files %}
     <div class="btn-group">
         <a href="/projects/files/{{project.id}}/" class="btn btn-info pajax {% if files_button %}active{% endif %}"><i class="fa fa-files-o menu_icon"></i><span class="menu_text">Файлы</span></a>
         {% if access.add_files %}<a class="btn btn-info upload_files" href=""><i class="fa fa-plus"></i></a>{% endif %}
     </div>
+    {% endif %}
 
     {% if not project.owner and access.show_users %}
     <div class="btn-group">

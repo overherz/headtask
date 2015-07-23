@@ -116,6 +116,7 @@ class files extends \Admin {
         {
             $access = $this->get_controller("projects","users")->get_access($this->id);
             if (!$project = $access['project']) $this->error_page();
+            if (!$access['access']['show_files']) $this->error_page('denied');
 
 
             if ($project['owner']) crumbs("Личные","/projects/all/?filter=my");
