@@ -5,14 +5,18 @@
 {% endblock %}
 
 {% block js %}
-    {{parent()}}
-    <script src="{{ app.path('projects','users.js') }}"></script>
     <script>
-        set_users_checkbox();
+        setTimeout(function() {
+            set_users_checkbox();
+        },300);
     </script>
 {% endblock %}
 
 {% block project_data %}
+    <div class="get_script" style="display: none;" data-path="{{ app.path('projects','users.js') }} }}"></div>
+    <script>
+
+    </script>
     <form id="users_form" class="form-horizontal form-small">
         <input type="hidden" name="act" value="save_user">
         {% if user.id_user %}<input type="hidden" name="id" value="{{user.id_user}}">{% endif %}
