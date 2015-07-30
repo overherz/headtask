@@ -240,6 +240,7 @@ $(document).ready(function ($) {
     $(document).off("click",".comment_to_comment").on("click",".comment_to_comment",function(){
         var id = $(this).attr('to_comment');
         var form = $(".comment_form").clone().attr('class','comment_form_clone').show();
+        form.find("[name='comment']").addClass('ckeditor');
         $(".comment_form_clone").remove();
         if (id > 0) {
             $(".comment[id='"+id+"']").after(form);
@@ -250,21 +251,7 @@ $(document).ready(function ($) {
             $(this).css('display', 'none');
         }
 
-        var editor = CKEDITOR.replace('comment',{toolbar:'Forum', on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
-
-        editor.on( 'paste', function( evt ) {
-            var data = evt.data;
-            data.dataValue = data.dataValue.replace(
-                /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
-            // Text could be pasted, but you transformed it into HTML so update that.
-            data.type = 'html';
-        });
-
-        CKEDITOR.instances.comment.on( 'key', function (evt) {
-            var kc = evt.data.keyCode,
-                csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
-            if (kc == 1114125) $(".comment_form_clone .add_comment").trigger("click")
-        });
+        init_comment();
 
         $("[name='parent']").val(id);
         $("[name='comment']").focus();
@@ -459,25 +446,52 @@ function init_datepicker()
 
 function init_ckeditor()
 {
-    if ($(".ckeditor").length > 0)
+    var ckeditors = $(".ckeditor");
+    if (ckeditors.length > 0)
     {
-        $(".ckeditor").each(function(){
+        ckeditors.each(function(){
             var name = $(this).attr('name');
 
+            console.log(name);
             if (CKEDITOR.instances[name]) {
-                $("#cke_"+name).remove();
                 CKEDITOR.remove(CKEDITOR.instances[name]);
+                $("#cke_"+name).remove();
             }
 
-            editor = CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
-
-            editor.on( 'paste', function( evt ) {
-                var data = evt.data;
-                data.dataValue = data.dataValue.replace(
-                    /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
-                // Text could be pasted, but you transformed it into HTML so update that.
-                data.type = 'html';
-            });
+            if (name == 'description') init_description(name);
+            else if (name == 'comment') init_comment(name);
         });
     }
+}
+
+function init_comment(name)
+{
+    var editor = CKEDITOR.replace('comment',{toolbar:'Forum', on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+
+    editor.on( 'paste', function( evt ) {
+        var data = evt.data;
+        data.dataValue = data.dataValue.replace(
+            /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
+        // Text could be pasted, but you transformed it into HTML so update that.
+        data.type = 'html';
+    });
+
+    CKEDITOR.instances.comment.on( 'key', function (evt) {
+        var kc = evt.data.keyCode,
+            csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
+        if (kc == 1114125) $(".comment_form_clone .add_comment").trigger("click")
+    });
+}
+
+function init_description(name)
+{
+    var editor = CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
+
+    editor.on( 'paste', function( evt ) {
+        var data = evt.data;
+        data.dataValue = data.dataValue.replace(
+            /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
+        // Text could be pasted, but you transformed it into HTML so update that.
+        data.type = 'html';
+    });
 }
