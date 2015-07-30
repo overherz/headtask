@@ -1,6 +1,6 @@
 html,
 body {
-    height: 100%
+    height: calc(100% - 20px);
     font-family: 'Open Sans', sans-serif !important;
 }
 
@@ -1540,4 +1540,12 @@ td.msg_img {
 
 #cke_message .cke_top,#cke_comment .cke_top {
     padding: 0 !important;
+}
+
+#cke_message img,#cke_message body img {
+    max-height: 100px;
+}
+
+#cke_message .cke_bottom {
+    display: none !important;
 }

@@ -1,6 +1,6 @@
 {% for m in messages %}        
     <tr class="msg_row{% if loop.last %} msg_row_last{% endif %}{% if globals.user.id_user == m.id_user %} msg_row_my{% endif %}" message="{{m.id}}">
-        <td class="msg_img"><a href="/users/~{{m.id_user}}" class="pajax"><img width="45" height="45" src="{% if m.avatar %}/uploads/users/ava_small/{{m.avatar|real_path}}{% else %}/source/images/no-ava-small{% if m.gender == "f" %}_f{% endif %}.jpg{% endif %}"></a></td>
+        <td class="msg_img" style="vertical-align: top !important;"><a href="/users/~{{m.id_user}}" class="pajax"><img width="45" height="45" src="{% if m.avatar %}/uploads/users/ava_small/{{m.avatar|real_path}}{% else %}/source/images/no-ava-small{% if m.gender == "f" %}_f{% endif %}.jpg{% endif %}"></a></td>
         <td class="msg_name"><a href="/users/~{{m.id_user}}" class="pajax">{{m.fio}}</a></div><div class="msg_text">{{m.message|raw}}</td>
         <td class="msg_date">{{m.created|date("d.m.y H:i")}}</td>
     </tr>
