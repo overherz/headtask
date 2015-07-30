@@ -565,7 +565,7 @@ function scroll_to_last(mode)
         if (msg.length > 0)
         $(document).scrollTo(msg,0);
         */
-        $("html, body").animate({ scrollTop: $(document).height() }, 0);
+        $("html, body").animate({ scrollTop: $(document).height() }, 1000);
     }
 }
 
