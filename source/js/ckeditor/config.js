@@ -53,9 +53,8 @@ CKEDITOR.editorConfig = function( config )
             ['Image','MediaEmbed','Table'],
             ['Blockquote'],
             ['Undo','Redo'],
-            ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+            ['Bold','Italic','Underline','Strike'],
             ['NumberedList','BulletedList','-','Outdent','Indent'],
-            ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
             ['Link','Unlink'],
         ];
 };

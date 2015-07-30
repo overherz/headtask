@@ -180,13 +180,13 @@ $(document).ready(function(){
     $(document).on("click","#send_message_from_dialog",function(){
         if (!connect) show_message("warning","Дождитесь соединения с сервером сообщений");
         if (window.ajax) return false;
-        message = $.trim($("[name='message']").val());
+        message = CKEDITOR.instances.message.getData();
         if (message != "" && connect)
         {
             window.ajax = true;
             dialog = get_dialog();
             socket.emit('new_message',{dialog:dialog,message:message,from: window.ms.uniq_key});
-            $("[name='message']").val('');
+            CKEDITOR.instances.message.setData('');
             window.ajax = false;
         }
         return false;
