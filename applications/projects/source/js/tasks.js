@@ -473,6 +473,8 @@ function init_comment(name)
         data.dataValue = data.dataValue.replace(
             /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
         // Text could be pasted, but you transformed it into HTML so update that.
+        data.dataValue = data.dataValue.replace(/<a href="(https?:\/\/.*\.(?:png|jpg))">[^\s]+<\/a>/i,'<img src="$1">');
+
         data.type = 'html';
     });
 
@@ -492,6 +494,7 @@ function init_description(name)
         data.dataValue = data.dataValue.replace(
             /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
         // Text could be pasted, but you transformed it into HTML so update that.
+        data.dataValue = data.dataValue.replace(/<a href="(https?:\/\/.*\.(?:png|jpg))">[^\s]+<\/a>/i,'<img src="$1">');
         data.type = 'html';
     });
 }
