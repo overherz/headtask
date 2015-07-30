@@ -37,7 +37,7 @@ CKEDITOR.editorConfig = function( config )
             ['Cut','Copy','Paste','PasteText','PasteFromWord'],
             ['Find','Replace','-','SelectAll','RemoveFormat'],
             ['Image','MediaEmbed','Table','HorizontalRule','SpecialChar'],
-            ['Format','FontSize','TextColor','Blockquote'],
+            ['Format','TextColor','Blockquote'],
             ['Maximize'],
             '/',
             ['Undo','Redo'],
@@ -51,7 +51,7 @@ CKEDITOR.editorConfig = function( config )
         [
             ['SelectAll','RemoveFormat'],
             ['Image','MediaEmbed','Table'],
-            ['FontSize','Blockquote'],
+            ['Blockquote'],
             ['Undo','Redo'],
             ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
             ['NumberedList','BulletedList','-','Outdent','Indent'],

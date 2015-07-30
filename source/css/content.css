@@ -2,6 +2,7 @@
 
 body.wysiwyg {
     min-width: 300px !important;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 .wysiwyg.content_text {
@@ -13,6 +14,7 @@ body.wysiwyg {
     min-height: 0px !important;
     color: #444;
     line-height: 120%;
+    font-size: 16px !important;
 }
 .wysiwyg, .wysiwyg p {
     background: transparent;
