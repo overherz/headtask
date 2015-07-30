@@ -18,12 +18,12 @@ CKEDITOR.editorConfig = function( config )
     config.autoGrow_minHeight = 166;
     config.autoGrow_onStartup = true;
     config.enterMode = CKEDITOR.ENTER_DIV;
-    config.allowedContent = true;
-    config.protectedSource.push(/<(script).*>.*<\/script>/ig);
-    config.protectedSource.push(/<(code).*>.*<\/code>/ig);
-    config.protectedSource.push(/<(map).*>.*<\/map>/ig);
-    config.protectedSource.push(/<(area).*>/ig);
-    config.protectedSource.push(/<(form).*>.*<\/form>/ig);
+//    config.allowedContent = true;
+//    config.protectedSource.push(/<(script).*>.*<\/script>/ig);
+//    config.protectedSource.push(/<(code).*>.*<\/code>/ig);
+//    config.protectedSource.push(/<(map).*>.*<\/map>/ig);
+//    config.protectedSource.push(/<(area).*>/ig);
+//    config.protectedSource.push(/<(form).*>.*<\/form>/ig);
   //  config.entities = false;
    // config.basicEntities = false;
 
