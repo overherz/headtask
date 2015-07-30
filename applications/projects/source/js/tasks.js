@@ -463,7 +463,13 @@ function init_ckeditor()
     {
         $(".ckeditor").each(function(){
             var name = $(this).attr('name');
-            var editor = CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
+
+            if (CKEDITOR.instances[name]) {
+                $("#cke_"+name).remove();
+                CKEDITOR.remove(CKEDITOR.instances[name]);
+            }
+
+            editor = CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
 
             editor.on( 'paste', function( evt ) {
                 var data = evt.data;
