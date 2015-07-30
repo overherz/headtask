@@ -1530,3 +1530,7 @@ td.msg_img {
 #tab_invite.active {
     padding-top: 20px;
 }
+
+.jumbotron .h1, .jumbotron h1 {
+    font-size: 36px;
+}

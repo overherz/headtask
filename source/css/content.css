@@ -3,6 +3,7 @@
 body.wysiwyg {
     min-width: 300px !important;
     font-family: 'Open Sans', sans-serif !important;
+    padding: 10px;
 }
 
 .wysiwyg.content_text {
@@ -11,10 +12,10 @@ body.wysiwyg {
 }
 
 .wysiwyg {
-    min-height: 0px !important;
+    min-height: 0 !important;
     color: #444;
     line-height: 120%;
-    font-size: 16px !important;
+    font-size: 16px;
 }
 .wysiwyg, .wysiwyg p {
     background: transparent;
@@ -22,10 +23,6 @@ body.wysiwyg {
 
 .wysiwyg.transparent,.wysiwyg.transparent > p {
     background: transparent !important;
-}
-
-.wysiwyg p {
-    margin-top: 0px;
 }
 
 .cke_wysiwyg_div {

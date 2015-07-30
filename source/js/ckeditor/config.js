@@ -13,7 +13,7 @@ CKEDITOR.editorConfig = function( config )
     config.language = 'ru';
     config.filebrowserImageUploadUrl = '/uploader/?debug_mode=off&ajax=on';
     config.bodyClass = 'wysiwyg content_text';
-    config.contentsCss = ["/source/css/content.css"];
+    config.contentsCss = ["/source/css/content.css","https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"];
     config.autoGrow_maxHeight = 500;
     config.autoGrow_minHeight = 166;
     config.autoGrow_onStartup = true;
