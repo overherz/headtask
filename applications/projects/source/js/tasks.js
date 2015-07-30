@@ -469,11 +469,15 @@ function init_comment(name)
     var editor = CKEDITOR.replace('comment',{toolbar:'Forum', on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
 
     editor.on( 'paste', function( evt ) {
-        var data = evt.data;
-        data.dataValue = data.dataValue.replace(
-            /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
-        // Text could be pasted, but you transformed it into HTML so update that.
-        data.dataValue = data.dataValue.replace(/<a href="(https?:\/\/.*\.(?:png|jpg))">[^\s]+<\/a>/i,'<img src="$1">');
+        evt.stop();
+        var data = evt.data.dataValue;
+
+        if (window.chrome || window.safari) {
+            data = $(data).html();
+        }
+        user_api({data:data}, function (res) {
+            evt.editor.insertHtml(res);
+        },false,"/uploader/detect_image/");
 
         data.type = 'html';
     });
@@ -490,11 +494,16 @@ function init_description(name)
     var editor = CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
 
     editor.on( 'paste', function( evt ) {
-        var data = evt.data;
-        data.dataValue = data.dataValue.replace(
-            /^(http[s]?:\/\/[^\s]+)/gi, '<a href="$1">$1</a>' );
-        // Text could be pasted, but you transformed it into HTML so update that.
-        data.dataValue = data.dataValue.replace(/<a href="(https?:\/\/.*\.(?:png|jpg))">[^\s]+<\/a>/i,'<img src="$1">');
+        evt.stop();
+        var data = evt.data.dataValue;
+
+        if (window.chrome || window.safari) {
+            data = $(data).html();
+        }
+        user_api({data:data}, function (res) {
+            evt.editor.insertHtml(res);
+        },false,"/uploader/detect_image/");
+
         data.type = 'html';
     });
 }
