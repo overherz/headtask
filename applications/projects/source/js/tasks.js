@@ -460,6 +460,7 @@ function init_ckeditor()
 
             if (name == 'description') init_description(name);
             else if (name == 'comment') init_comment(name);
+            else if (name == 'message') init_message(name);
         });
     }
 }
@@ -505,5 +506,30 @@ function init_description(name)
         },false,"/uploader/detect_image/");
 
         data.type = 'html';
+    });
+}
+
+function init_message(name)
+{
+    var editor = CKEDITOR.replace('message',{toolbar:'Forum',autoGrow_maxHeight : 100,autoGrow_minHeight : 100 });
+
+    editor.on( 'paste', function( evt ) {
+        evt.stop();
+        var data = evt.data.dataValue;
+
+        if (window.chrome || window.safari) {
+            data = $(data).html();
+        }
+        user_api({data:data}, function (res) {
+            evt.editor.insertHtml(res);
+        },false,"/uploader/detect_image/");
+
+        data.type = 'html';
+    });
+
+    CKEDITOR.instances.message.on( 'key', function (evt) {
+        var kc = evt.data.keyCode,
+            csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
+        if (kc == 1114125) $("#send_message_from_dialog").trigger("click")
     });
 }

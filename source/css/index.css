@@ -1519,9 +1519,6 @@ td.msg_img {
     width: 1px;
     white-space: nowrap;
 }
-.msg_text {
-    white-space: pre-wrap;
-}
 
 .user_invite_to_dialog,.user_invite_from_dialog {
     cursor: pointer;
@@ -1533,4 +1530,14 @@ td.msg_img {
 
 .jumbotron .h1, .jumbotron h1 {
     font-size: 36px;
+}
+
+#cke_message .cke_toolgroup,#cke_comment .cke_toolgroup {
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+#cke_message .cke_top,#cke_comment .cke_top {
+    padding: 0 !important;
 }
