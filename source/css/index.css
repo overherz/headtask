@@ -1549,6 +1549,14 @@ td.msg_date {
     border: 1px solid #888;
 }
 
+.ckeditor_message_body table td,.msg_text table td,.comment_body table td,
+.msg_text table td:last-child,.comment_body table td:last-child,
+.msg_text table td:first-child,.comment_body table td:first-child,
+.ckeditor_message_body table th,.msg_text table th,.comment_body table th {
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+}
+
 #cke_message .cke_button__link,
 #cke_message .cke_button__image,
 #cke_comment .cke_button__link,
