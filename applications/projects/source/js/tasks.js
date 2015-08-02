@@ -458,16 +458,16 @@ function init_ckeditor()
                 $("#cke_"+name).remove();
             }
 
-            if (name == 'description') init_description(name);
-            else if (name == 'comment') init_comment(name);
-            else if (name == 'message') init_message(name);
+            if (name == 'description') init_description();
+            else if (name == 'comment') init_comment();
+            else if (name == 'message') init_message();
         });
     }
 }
 
-function init_comment(name)
+function init_comment()
 {
-    var editor = CKEDITOR.replace(name,{toolbar:'Forum',bodyClass: 'wysiwyg content_text ckeditor_message_body', on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+    var editor = CKEDITOR.replace('comment',{toolbar:'Forum',bodyClass: 'wysiwyg content_text ckeditor_message_body', on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
 
     editor.on( 'paste', function( evt ) {
         evt.stop();
@@ -486,14 +486,13 @@ function init_comment(name)
 
     if (get_scrollbottom() < 150)
     {
-        console.log('test');
         setTimeout(scroll_to_last,500);
     }
 }
 
-function init_description(name)
+function init_description()
 {
-    var editor = CKEDITOR.replace(name,{toolbar:'Basic',extraPlugins : 'divarea'});
+    var editor = CKEDITOR.replace('description',{toolbar:'Basic',extraPlugins : 'divarea'});
 
     editor.on( 'paste', function( evt ) {
         evt.stop();
@@ -505,9 +504,9 @@ function init_description(name)
     });
 }
 
-function init_message(name)
+function init_message()
 {
-    var editor = CKEDITOR.replace(name,{toolbar:'Forum',autoGrow_maxHeight : 150,autoGrow_minHeight : 150,bodyClass: 'wysiwyg content_text ckeditor_message_body' });
+    var editor = CKEDITOR.replace('message',{toolbar:'Forum',autoGrow_maxHeight : 150,autoGrow_minHeight : 150,bodyClass: 'wysiwyg content_text ckeditor_message_body' });
 
 
     editor.on( 'paste', function( evt ) {
