@@ -1563,3 +1563,8 @@ td.msg_date {
 #cke_comment .cke_button__image {
     display: none !important;
 }
+
+.jGrowl-message {
+    overflow: hidden;
+    max-height: 100px;
+}
