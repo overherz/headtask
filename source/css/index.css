@@ -1545,7 +1545,8 @@ td.msg_date {
 
 .ckeditor_message_body img,.msg_text img,.comment_body img {
     max-height: 100px !important;
-    height: 100px;
+    margin: 2px 5px 3px 0;
+    border: 1px solid #888;
 }
 
 #cke_message .cke_button__link,

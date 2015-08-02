@@ -102,7 +102,17 @@ function activate_fancy()
 {
     if ($(".fancybox,.msg_text img,.comment_body img").length > 0)
     {
-        $(".msg_text img,.comment_body img").each(function () {
+        $(".msg_text img").each(function () {
+            if (!$(this).hasClass('.wrapped'))
+            {
+                var parent = $(this).parents('.msg_row');
+                var newHref = $(this).attr("src");
+                $(this).addClass('wrapped');
+                $(this).wrap("<a class='fancybox' href='" + newHref + "' rel='"+parent.attr('message')+"' />");
+            }
+        });
+
+        $(".comment_body img").each(function () {
             if (!$(this).hasClass('.wrapped'))
             {
                 var newHref = $(this).attr("src");

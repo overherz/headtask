@@ -507,7 +507,7 @@ function init_description(name)
 
 function init_message(name)
 {
-    var editor = CKEDITOR.replace(name,{toolbar:'Forum',autoGrow_maxHeight : 120,autoGrow_minHeight : 120,bodyClass: 'wysiwyg content_text ckeditor_message_body' });
+    var editor = CKEDITOR.replace(name,{toolbar:'Forum',autoGrow_maxHeight : 150,autoGrow_minHeight : 150,bodyClass: 'wysiwyg content_text ckeditor_message_body' });
 
 
     editor.on( 'paste', function( evt ) {
