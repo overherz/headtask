@@ -109,6 +109,10 @@ $(document).ready(function(){
             {
                 $(".all_messages").append(msg.renderedHtml);
                 activate_fancy();
+
+                var scrollBottom = get_scrollbottom();
+                if (scrollBottom < 250) scroll_to_last();
+
                 if (my) window.ajax = false;
                 else
                 {
@@ -134,9 +138,6 @@ $(document).ready(function(){
                 new_count = value_count+1;
                 set_count_of_new_messages(new_count);
             }
-
-            var scrollBottom = get_scrollbottom();
-            if (scrollBottom < 250) scroll_to_last();
 
             if ($("[name='not_dialog_message']").length > 0) hide_popup();
         }
