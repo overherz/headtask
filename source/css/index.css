@@ -1566,4 +1566,5 @@ td.msg_date {
 
 .jGrowl-message {
     overflow: hidden;
+    max-height: 100px;
 }
