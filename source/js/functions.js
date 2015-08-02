@@ -714,3 +714,8 @@ function detectmob() {
         return false;
     }
 }
+
+function get_scrollbottom()
+{
+    return $(document).height() - $(window).height() - $(window).scrollTop();
+}

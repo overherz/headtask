@@ -269,6 +269,7 @@ $(document).ready(function ($) {
             else $(".all_comments").append(data);
             $(th).parent().parent().remove();
             show_message("success","Комментарий добавлен");
+            activate_fancy();
             $("#botnewcomm").css('display', 'inline-block');
         });
 
@@ -466,7 +467,7 @@ function init_ckeditor()
 
 function init_comment(name)
 {
-    var editor = CKEDITOR.replace('comment',{toolbar:'Forum', on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
+    var editor = CKEDITOR.replace(name,{toolbar:'Forum',bodyClass: 'wysiwyg content_text ckeditor_message_body', on: { 'instanceReady': function(evt) { CKEDITOR.instances.comment.focus();} }});
 
     editor.on( 'paste', function( evt ) {
         evt.stop();
@@ -482,6 +483,12 @@ function init_comment(name)
             csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
         if (kc == 1114125) $(".comment_form_clone .add_comment").trigger("click")
     });
+
+    if (get_scrollbottom() < 150)
+    {
+        console.log('test');
+        setTimeout(scroll_to_last,500);
+    }
 }
 
 function init_description(name)
@@ -500,7 +507,7 @@ function init_description(name)
 
 function init_message(name)
 {
-    var editor = CKEDITOR.replace(name,{toolbar:'Forum',autoGrow_maxHeight : 150,autoGrow_minHeight : 150 });
+    var editor = CKEDITOR.replace(name,{toolbar:'Forum',autoGrow_maxHeight : 120,autoGrow_minHeight : 120,bodyClass: 'wysiwyg content_text ckeditor_message_body' });
 
 
     editor.on( 'paste', function( evt ) {
@@ -516,7 +523,6 @@ function init_message(name)
     CKEDITOR.instances.message.on( 'key', function (evt) {
         var kc = evt.data.keyCode,
             csa = ~(CKEDITOR.CTRL | CKEDITOR.SHIFT | CKEDITOR.ALT);
-        console.log(kc);
         if (kc == 1114125) $("#send_message_from_dialog").trigger("click")
     });
 }

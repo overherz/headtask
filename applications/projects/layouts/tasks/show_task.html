@@ -4,6 +4,16 @@
 {% if task %}Задача - {{ task.name}}. Проект {{ project.name }}{% endif %}
 {% endblock %}
 
+{% block js %}
+    <script>
+        $(document).ready(function(){
+            setTimeout(function() {
+                activate_fancy();
+            },300);
+        });
+    </script>
+{% endblock %}
+
 {% block css %}
 {{ parent() }}
 <link rel="stylesheet" type="text/css" href="{{ app.path('/source/js/fancybox/','jquery.fancybox.css',true) }}">

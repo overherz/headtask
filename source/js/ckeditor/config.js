@@ -49,13 +49,12 @@ CKEDITOR.editorConfig = function( config )
 
     config.toolbar_Forum =
         [
-            ['SelectAll','RemoveFormat'],
             ['Image','MediaEmbed','Table'],
             ['Blockquote'],
             ['Undo','Redo'],
             ['Bold','Italic','Underline','Strike'],
             ['NumberedList','BulletedList','-','Outdent','Indent'],
-            ['Link','Unlink'],
+            ['Link'],
         ];
 };
 
