@@ -100,8 +100,17 @@ function make_upload()
 
 function activate_fancy()
 {
-    if ($(".fancybox").length > 0)
+    if ($(".fancybox,.msg_text img,.comment_body img").length > 0)
     {
+        $(".msg_text img,.comment_body img").each(function () {
+            if (!$(this).hasClass('.wrapped'))
+            {
+                var newHref = $(this).attr("src");
+                $(this).addClass('wrapped');
+                $(this).wrap("<a class='fancybox' href='" + newHref + "'/>");
+            }
+        });
+
         $(".fancybox").fancybox({
             openEffect	: 'none',
             closeEffect	: 'none',

@@ -1,6 +1,5 @@
 html,
 body {
-    height: calc(100% - 20px);
     font-family: 'Open Sans', sans-serif !important;
 }
 
@@ -551,22 +550,12 @@ fieldset[disabled] .btn-oscar.active {
 }
 
 blockquote {
-    background: #eee;
-    border: 1px solid #41764E;
-    padding:10px;
+    padding: 0 5px;
     font-size: 14px;
     margin: 0;
+    border-left: 5px solid #ee9100
 }
 
-blockquote:before {
-    content: "Цитата";
-    color: #fff;
-    background: #41764E;
-    display: block;
-    padding: 2px 5px;
-    font-weight: bold;
-    margin: -10px -10px 10px -10px;
-}
 
 .progress {
     position: relative;
@@ -1515,9 +1504,17 @@ td.msg_img {
     padding-left: 0 !important;
 }
 
-.msg_date,.msg_img {
+td.msg_date,td.msg_img {
     width: 1px;
+    vertical-align: top !important;
+}
+
+td.msg_date {
+    width: 150px;
+    max-width: 150px;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .user_invite_to_dialog,.user_invite_from_dialog {
@@ -1542,6 +1539,18 @@ td.msg_img {
     padding: 0 !important;
 }
 
-#cke_message .cke_bottom {
+#cke_message .cke_bottom,#cke_comment .cke_bottom {
+    display: none !important;
+}
+
+.ckeditor_message_body img,.msg_text img,.comment_body img {
+    max-height: 100px !important;
+    height: 100px;
+}
+
+#cke_message .cke_button__link,
+#cke_message .cke_button__image,
+#cke_comment .cke_button__link,
+#cke_comment .cke_button__image {
     display: none !important;
 }

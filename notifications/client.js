@@ -108,6 +108,7 @@ $(document).ready(function(){
             if ($("[name='id_dialog'][value='"+msg.message.id_dialog+"']").length > 0)
             {
                 $(".all_messages").append(msg.renderedHtml);
+                activate_fancy();
                 if (my) window.ajax = false;
                 else
                 {
@@ -134,8 +135,7 @@ $(document).ready(function(){
                 set_count_of_new_messages(new_count);
             }
 
-            var scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
-            console.log(scrollBottom);
+            var scrollBottom = get_scrollbottom();
             if (scrollBottom < 250) scroll_to_last();
 
             if ($("[name='not_dialog_message']").length > 0) hide_popup();
@@ -308,8 +308,6 @@ $(document).ready(function(){
 
         return false;
     });
-
-    scroll_to_last();
 });
 
 var status_t_int = false;
@@ -556,17 +554,9 @@ function uppodGet(playerID,com,callback) {
     return document.getElementById(playerID).getUppod(com);
 }
 
-function scroll_to_last(mode)
+function scroll_to_last()
 {
-    if ($(".all_messages_box").length > 0)
-    {
-        /*
-        var msg = $(document).find(".msg_row:last");
-        if (msg.length > 0)
-        $(document).scrollTo(msg,0);
-        */
-        $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-    }
+    $("html, body").animate({ scrollTop: $(document).height() }, 0);
 }
 
 function update_count_not_read()
