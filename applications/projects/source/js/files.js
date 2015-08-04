@@ -98,6 +98,7 @@ function make_upload()
     activate_fancy();
 }
 
+var fancy;
 function activate_fancy()
 {
     if ($(".fancybox,.msg_text img,.comment_body img").length > 0)
@@ -121,12 +122,15 @@ function activate_fancy()
             }
         });
 
-        $(".fancybox").fancybox({
-            openEffect	: 'none',
-            closeEffect	: 'none',
-            prevEffect  : 'none',
-            nextEffect	: 'none'
-        });
+        if (!fancy)
+        {
+            fancy = $(".fancybox").fancybox({
+                openEffect	: 'none',
+                closeEffect	: 'none',
+                prevEffect  : 'none',
+                nextEffect	: 'none'
+            });
+        }
     }
 }
 
