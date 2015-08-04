@@ -42,6 +42,7 @@ class detect_image extends \Controller {
     function link_it($text)
     {
         $text = str_replace("<br>","\n ",$text);
+        $text = str_replace("<br />","\n ",$text);
         $ret = $text;
         $ret = preg_replace("#(^|[\n ])([\w]+?://[^ \"\n\r\t<]*)#is", "<a href=\"\\2\">\\2</a>", $ret);
         $ret = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r<]*)#is", "\\1<a href=\"http://\\2\">\\2</a>", $ret);
