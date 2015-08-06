@@ -133,7 +133,7 @@ $(document).ready(function(){
             {
                 play_sound(msg.message.id);
                 msg.message.message = msg.message.message.replace(/<img.*?>/g,"<i class='fa fa-picture-o fa-3x' style='margin: 2px 5px 3px 0;'></i>");
-                show_message("info","Сообщение от "+ build_user_name(msg.message.first_name,msg.message.last_name)+" <br>"+msg.message.message+"<br><a class='pajax' href='/users/messages/"+msg.message.id_dialog+"/' style='color:#fff;text-decoration:underline;'>открыть чат</a>",true);
+                show_message("info","Сообщение от "+ build_user_name(msg.message.first_name,msg.message.last_name)+" <br>"+msg.message.message+"<br><a class='pajax' href='/users/messages/"+msg.message.id_dialog+"/' style='color:#fff;text-decoration:underline;'>открыть чат</a>");
                 value_count = parseInt($("#count_new_messages").text());
                 if (isNaN(value_count)) value_count = 0;
                 new_count = value_count+1;
