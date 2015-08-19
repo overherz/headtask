@@ -327,6 +327,7 @@ function capitalize($str) {
 function check_date($date)
 {
     list($dd,$mm,$yy)=explode(".",$date);
+    if ($pos = stripos($yy," ")) $yy = substr($yy,0,$pos);
     if (is_numeric($yy) && is_numeric($mm) && is_numeric($dd))
     {
         if (!checkdate($mm,$dd,$yy)) return false;

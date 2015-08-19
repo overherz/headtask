@@ -29,12 +29,6 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).off("click","[show_legend]").on("click","[show_legend]",function(){
-        var html = $("#legend").html();
-        show_popup(html,"Легенда");
-        return false;
-    });
-
     $(document).off("click","[change_year]").on("click","[change_year]",function(){
         var method = $(this).attr("change_year");
         var year = $("[name='year']").val();
@@ -50,7 +44,6 @@ $(document).ready(function ($) {
     $(document).off("click","[show_hide_tasks]").on("click","[show_hide_tasks]",function(){
         var values = $(this).data('values').split(',');
         var day = $(this).data('day');
-        console.log(values);
         $.each(values,function(k,v){
             $("#day"+day).append("<tr class='"+arr[v].class+"'>" +
                 "<td style='width: 18px;border-left:none;padding-right: 0;'></td>" +

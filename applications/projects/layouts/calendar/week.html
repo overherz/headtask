@@ -1,0 +1,49 @@
+<section class="week" style="clear: both;">
+    <h2 style="text-align: center;">
+        <a class="arrow" href="" month='{{prev_week.year}}:{{prev_week.weekINT}}'>&larr;</a>
+        {{week.weekINT}}-ая неделя
+        <a class="arrow" href="" month='{{next_week.year}}:{{next_week.weekINT}}'>&rarr;</a>
+    </h2>
+
+    <table class="table calendar_table table_style">
+        <thead>
+        <tr>
+            {% for day in week.days %}
+                <th {% if loop.index > 5 %}class="weekend" {% if not weekend %}style='display:none;'{% endif %}{% endif %}>
+                    <div>{{ day|date('d.m') }}</div>
+                    {{("day_"~day.weekday)|lang}}
+                </th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for day in week.days %}
+            <td {% if loop.index > 5 %}class="weekend {% if not weekend %}weekend_hide{% endif %}"{% endif %} style='padding: 0px;background: #fff;'>
+                {% if tasks %}
+                {% for t in tasks %}
+                    {% if t.start|date('Y-m-d') == day or t.end|date('Y-m-d') == day %}
+                        <div class="{% if t.assigned != globals.user.id_user %}warning{% endif %} {% if date != t.start and date != t.end %}hide_tasks{% endif %}">
+                            {% set color = "999" %}
+                            {% if t.priority == "2" %}{% set color = "468847" %}
+                            {% elseif t.priority == "3" %}{% set color = "F89406" %}
+                            {% elseif t.priority == "4" %}{% set color = "B94A48" %}
+                            {% endif %}
+
+                            {% if day == t.start|date('Y-m-d') and t.end != "" and day == t.end|date('Y-m-d') %}<span class="fa fa-clock-o"></span>
+                            {% elseif day == t.start|date('Y-m-d') %}<span class="fa fa-play"></span>
+                            {% elseif day == t.end|date('Y-m-d') %}<span class="fa fa-stop"></span>
+                            {% endif %}
+                            <a href="/projects/tasks/show/{{t.id}}/" title='Проект "{{t.project_name}}"{% if t.assigned_name %}. Ответственный {{ t.assigned_name }}{% endif %}'>
+                                {{t.name}}
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+</section>

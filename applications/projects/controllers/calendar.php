@@ -11,11 +11,47 @@ class calendar extends \Controller {
                 $this->get_months();
                 break;
             default:
-                $this->default_for_this();
+                $this->week();
         }
     }
 
-    function default_for_this()
+    function week()
+    {
+        require_once(ROOT.'/libraries/calendar/calendar.php');
+        $calendar = new \calendar();
+        $week = $calendar->week();
+        $prev_week = $week->prev();
+        $next_week = $week->next();
+        $last_day = $week->lastDay();
+        $first_day = $week->firstDay();
+
+        if ($_POST)
+        {
+            list($year,$month) = explode(":",$_POST['month']);
+            if ($_POST['weekend'] == "show" || $_POST['weekend'] == "") $weekend = true;
+            else $weekend = false;
+        }
+        else
+        {
+            $year = date("Y");
+            $month = date("m");
+        }
+
+        $task = $this->get_controller("projects","tasks");
+        if ($info = $this->get_calendar_tasks($first_day,$last_day)) $tasks = $info['tasks'];
+
+        $data = array(
+            'week' => $week,
+            'prev_week' => $prev_week,
+            'next_week' => $next_week,
+            'tasks' => $tasks,
+            'current_date' => date("Y-m-d"),
+        );
+
+        $this->layout_show('calendar/calendar_week.html',$data);
+    }
+
+    function month()
     {
         require_once(ROOT.'/libraries/calendar/calendar.php');
 
@@ -69,8 +105,11 @@ class calendar extends \Controller {
         echo json_encode($res);
     }
 
-    function get_calendar_tasks($date,$id_user=false,$dashboard=false)
+    function get_calendar_tasks($date_start,$date_end,$id_user=false,$dashboard=false)
     {
+        $date_start = (string) $date_start;
+        $date_end = (string) $date_end;
+
         $t_cr = $this->get_controller("projects","tasks");
         if (!$id_user) $id_user = $_SESSION['user']['id_user'];
 
@@ -96,13 +135,12 @@ class calendar extends \Controller {
             LEFT JOIN users as u ON pt.assigned = u.id_user
             LEFT JOIN groups as g ON u.id_group=g.id
             where p.id_company=? and p.archive IS NULL and pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL))))
-            and ((pt.start <= ? and pt.status IN ('new','in_progress','feedback'))
-            or (pt.updated >= ? and pt.updated <= ? and pt.status = 'closed'))
+            and (pt.start >= ? and pt.start <= ? and pt.status NOT IN ('closed'))
             order by pt.updated DESC
         ");
 
 //            where pt.id_project IN( SELECT id_project from projects_users where id_user=? and (role='manager' or (role='user' and (pt.id_user=? or pt.assigned=? or pt.assigned IS NULL)))) and ((pt.start <= ?)
-        $query->execute(array($GLOBALS['globals']['current_company'],$id_user,$id_user,$id_user,$date,$begin_of_day,$end_of_day));
+        $query->execute(array($GLOBALS['globals']['current_company'],$id_user,$id_user,$id_user,$date_start,$date_end));
         while ($row = $query->fetch())
         {
             $row['assigned_name'] = build_user_name($row['first_name'],$row['last_name'],true);

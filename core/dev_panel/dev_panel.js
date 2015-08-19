@@ -68,13 +68,13 @@ $(document).ready(function($) {
                             class_name = v.type ? "fatal_error" : "warning_error";
                             dev_error.append("<div class='"+class_name+"'><div>"+v.err+"</div><div>file "+v.file+" line "+v.line+"</div></div>");
                         });
-                        dev_panel_name.css("background","darkred");
+                        dev_panel_name.addClass('errors');
                         dev_error.show();
                     }
                     else
                     {
                         dev_error.html('').hide();
-                        dev_panel_name.css("background","#000")
+
                     }
                     $(".queries_tab[mode='dev_panel_ajax_queries']").css('background','red');
                     setTimeout(function(){$(".queries_tab[mode='dev_panel_ajax_queries']").css('background','');},200);
@@ -82,12 +82,12 @@ $(document).ready(function($) {
                     if (data.count_error)
                     {
                         $("#dev_panel_ajax_count_ajax_error").html(data.count_error);
-                        dev_panel_name.css("background","darkred")
+                        dev_panel_name.addClass('errors');
                     }
                     else
                     {
                         $("#dev_panel_ajax_count_ajax_error").html("0");
-                        dev_panel_name.css("background","#000")
+                        if (!dev_panel_name.hasClass('errors')) dev_panel_name.removeClass('errors');
                     }
 
                     $(".dev_panel_time").text(data.time);

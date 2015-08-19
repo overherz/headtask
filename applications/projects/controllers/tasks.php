@@ -956,6 +956,7 @@ class tasks extends \Controller {
         }
     }
 
+    //возможно нужно переделать
     function get_count_new_comments_mail($last_action)
     {
         $last_action = (int) $last_action;

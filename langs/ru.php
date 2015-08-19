@@ -83,5 +83,5 @@ $GLOBALS['lang'] = array(
     //roles
     'role_user' => 'участник',
     'role_manager' => 'менеджер',
-    'role_admin' => 'администратор'
+    'role_admin' => 'администратор',
 );

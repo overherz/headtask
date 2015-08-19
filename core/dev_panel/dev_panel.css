@@ -139,3 +139,7 @@
     color: gold;
     text-decoration: none;
 }
+
+.dev_panel_name.errors {
+    background: darkred;
+}

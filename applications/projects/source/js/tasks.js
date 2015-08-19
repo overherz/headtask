@@ -364,7 +364,10 @@ function dpClearButton (input) {
 
         $("<button>", {
             html: "<i class='fa fa-trash-o'></i>",
-            click: function () { jQuery.datepicker._clearDate(input); }
+            click: function () {
+                jQuery.datepicker._clearDate(input);
+                $("[name='time_start'],[name='time_end']").timepicker('hide').blur();
+            }
         }).appendTo(buttonPane).addClass("ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all");
     }, 1)
 }
@@ -405,6 +408,15 @@ function init_datepicker()
         onChangeMonthYear: function (yy, mm, inst) {
             dpClearButton(inst.input);
             style_input("#ui-datepicker-div",20);
+        }
+    });
+
+    $("[name='time_start'],[name='time_end']").timepicker({
+        beforeShow: function (input) {
+            dpClearButton(input);
+        },
+        onChangeMonthYear: function (yy, mm, inst) {
+            dpClearButton(inst.input);
         }
     });
 
